@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LayoverX - Login</title>
+<!-- Tailwind CSS CDN with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts - Inter -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<style data-purpose="base-typography">
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+<style data-purpose="custom-colors">
+    /* Custom brand colors to match the image */
+    .bg-brand-beige { background-color: #F7F0E3; }
+    .bg-brand-blue { background-color: #0040FF; }
+    .text-brand-blue { color: #0040FF; }
+    .border-brand-gray { border-color: #E2E8F0; }
+  </style>
+</head>
+<body class="bg-gray-400 flex items-center justify-center min-h-screen p-4">
+<!-- BEGIN: Modal Container -->
+<main class="relative bg-white w-full max-w-5xl rounded-3xl overflow-hidden shadow-2xl flex flex-col md:flex-row" data-purpose="main-modal-container" id="login-modal">
+<!-- Close Button -->
+<button aria-label="Close modal" class="absolute top-6 right-6 text-gray-400 hover:text-gray-600 z-10" data-purpose="close-button">
+<svg class="h-6 w-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+<!-- BEGIN: Left Illustration Section -->
+<section class="w-full md:w-1/2 bg-brand-beige p-8 md:p-12 flex flex-col items-center justify-center" data-purpose="benefit-illustration-section">
+<!-- Airport Illustration Container -->
+<div class="w-full mb-12" data-purpose="illustration-container">
+<!-- Using placeholder for the large airport illustration as it's not provided as a separate asset URL -->
+<img alt="Airport terminal illustration" class="w-full h-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAA1O9i7IBk1RXTghJ0EZzqGkJxSlI5GZTJt8Gm5nP6J3FVDIdS3Dq37NtGMrbgxpBTxOGF5jjgRIRe0fum-4uo8xBOhVHajsbUpjSvFEeCKNvwVhA_AWH1LSXyzzxxyS-aQle52lf59uXW5RYxZydTHtkdrN6_EQnyg4WLOL3sBWSFk5h-7Czr5Uy-mg9UsS5CRR02P1YtkmO8lFOMY6DoQyDVwOfMV1D49jNsDhDdu3tFZRZJLJBVTq-RVw2nuudJMpcHWXi0G53x"/>
+</div>
+<!-- Feature List -->
+<div class="space-y-6 w-full max-w-sm" data-purpose="benefit-list">
+<!-- Item 1 -->
+<div class="flex items-center space-x-4">
+<div class="flex-shrink-0 w-8 h-8 flex items-center justify-center">
+<!-- Placeholder for Handshake Icon -->
+<svg class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
+</div>
+<p class="text-gray-800 font-medium text-lg">Manage Multiple Transit Bookings</p>
+</div>
+<!-- Item 2 -->
+<div class="flex items-center space-x-4">
+<div class="flex-shrink-0 w-8 h-8 flex items-center justify-center">
+<!-- Placeholder for Support Icon -->
+<svg class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
+</div>
+<p class="text-gray-800 font-medium text-lg">Dedicated Support for Partners</p>
+</div>
+<!-- Item 3 -->
+<div class="flex items-center space-x-4">
+<div class="flex-shrink-0 w-8 h-8 flex items-center justify-center">
+<!-- Placeholder for Referral Icon -->
+<svg class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
+</div>
+<p class="text-gray-800 font-medium text-lg">Earn on Every Service Referral</p>
+</div>
+<p class="text-gray-500 italic mt-8 text-center w-full">and more..</p>
+</div>
+</section>
+<!-- END: Left Illustration Section -->
+<!-- BEGIN: Right Form Section -->
+<section class="w-full md:w-1/2 bg-white p-8 md:p-16 flex flex-col items-center" data-purpose="auth-form-section">
+<!-- Account Type Toggle -->
+<div class="bg-gray-100 p-1.5 rounded-full flex items-center w-full max-w-sm mb-12" data-purpose="account-toggle">
+<button class="flex-1 py-3 px-4 text-gray-500 font-semibold rounded-full hover:bg-gray-200 transition-colors">
+          Personal Account
+        </button>
+<button class="flex-1 py-3 px-4 bg-brand-blue text-white font-semibold rounded-full shadow-md">
+          Partner Account
+        </button>
+</div>
+<div class="w-full max-w-sm">
+<h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-8" data-purpose="form-heading">
+          Login or Create a Partner Account
+        </h2>
+<!-- Login Form -->
+<form action="#" class="space-y-6" data-purpose="login-form" method="POST">
+<div class="space-y-2">
+<label class="block text-sm font-semibold text-gray-700" for="email-mobile">
+              Email Id / Mobile Number
+            </label>
+<input class="w-full px-4 py-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all" id="email-mobile" name="email-mobile" placeholder="Email Id / Mobile Number" required="" type="text"/>
+</div>
+<button class="w-full bg-brand-blue text-white font-bold py-4 rounded-lg hover:bg-blue-700 transition-colors text-lg" type="submit">
+            Login
+          </button>
+</form>
+<!-- Terms & Privacy -->
+<p class="text-sm text-gray-500 mt-6 leading-relaxed text-center md:text-left">
+          By proceeding, you agree with our 
+          <a class="text-brand-blue font-medium hover:underline" href="#">Terms of Service</a>, 
+          <a class="text-brand-blue font-medium hover:underline" href="#">Privacy Policy</a> &amp; 
+          <a class="text-brand-blue font-medium hover:underline" href="#">Master User Agreement</a>.
+        </p>
+<!-- Divider -->
+<div class="relative my-10" data-purpose="divider">
+<div aria-hidden="true" class="absolute inset-0 flex items-center">
+<div class="w-full border-t border-gray-300"></div>
+</div>
+<div class="relative flex justify-center text-sm">
+<span class="px-4 bg-white text-gray-500 font-medium">Or</span>
+</div>
+</div>
+<!-- Google Sign-in -->
+<button class="w-full flex items-center justify-center space-x-3 border border-gray-300 py-4 rounded-lg hover:bg-gray-50 transition-colors" data-purpose="google-login-button" type="button">
+<svg class="w-6 h-6" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"></path><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"></path><path d="M1 1h22v22H1z" fill="none"></path></svg>
+<span class="text-gray-700 font-semibold text-lg">Sign in with Google</span>
+</button>
+</div>
+</section>
+<!-- END: Right Form Section -->
+</main>
+<!-- END: Modal Container -->
+</body></html>
