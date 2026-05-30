@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-
-<html lang="en"><head>
+<html lang="en">
+<head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>LayoverX - Travel Destination Homepage</title>
 <!-- Tailwind CSS CDN -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <!-- Google Fonts: Inter or similar Sans-Serif -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <style data-purpose="custom-typography">
     body {
       font-family: 'Inter', sans-serif;
@@ -32,10 +32,10 @@
   </style>
 </head>
 <body class="bg-white text-slate-900">
-<!-- BEGIN: MainHeader -->
+
+<!-- BEGIN: Section from index1.html -->
 <header class="absolute top-0 left-0 w-full z-50 px-6 py-4 flex items-center justify-between text-white">
 <div class="flex items-center gap-2">
-<!-- Logo Placeholder -->
 <div class="text-2xl font-bold flex items-center">
         Layover<span class="text-blue-500">X</span>
 </div>
@@ -48,17 +48,14 @@
       </button>
 </nav>
 </header>
-<!-- END: MainHeader -->
-<!-- BEGIN: HeroSection -->
+
 <section class="relative hero-bg flex flex-col items-center justify-center pt-20 px-4">
 <div class="text-center mb-8">
 <h1 class="text-white text-4xl md:text-5xl font-bold tracking-tight">
         Travel Destination<br/>Homepage
       </h1>
 </div>
-<!-- Search Card Container -->
 <div class="glass-card w-full max-w-4xl rounded-2xl p-6 text-white" data-purpose="search-box">
-<!-- Tabs -->
 <div class="flex items-center gap-4 mb-6">
 <button class="flex items-center gap-2 bg-white text-slate-900 px-6 py-2 rounded-lg font-medium">
 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -79,7 +76,6 @@
           Holidays
         </button>
 </div>
-<!-- Form Grid -->
 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
 <div class="flex flex-col gap-1">
 <label class="text-xs uppercase font-bold tracking-wider opacity-80">From</label>
@@ -100,7 +96,7 @@
 <input class="bg-white text-slate-900 rounded-lg border-0 py-3 px-4 focus:ring-2 focus:ring-blue-500 w-full" type="text" value="Sun, 17 Sep 24"/>
 </div>
 <div class="flex flex-col gap-1">
-<label class="text-xs uppercase font-bold tracking-wider opacity-80">Travelers &amp; Class</label>
+<label class="text-xs uppercase font-bold tracking-wider opacity-80">Travelers & Class</label>
 <div class="relative">
 <select class="appearance-none bg-white text-slate-900 rounded-lg border-0 py-3 px-4 focus:ring-2 focus:ring-blue-500 w-full pr-10">
 <option>1 Adult, Economy</option>
@@ -108,7 +104,6 @@
 </div>
 </div>
 </div>
-<!-- Search Button -->
 <button class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-xl flex items-center justify-center gap-2 transition-colors">
 <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"></path>
@@ -117,12 +112,10 @@
       </button>
 </div>
 </section>
-<!-- END: HeroSection -->
-<!-- BEGIN: PopularDestinations -->
+
 <section class="max-w-7xl mx-auto py-16 px-6">
 <h2 class="text-4xl font-bold text-slate-800 mb-10">Popular Destinations</h2>
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8">
-<!-- Card: Paris -->
 <div class="group bg-white overflow-hidden shadow-sm hover:shadow-xl transition-shadow border border-slate-100 rounded-xl" data-purpose="destination-card">
 <div class="h-64 overflow-hidden">
 <img alt="Paris" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7XZt4NhGahfrELGX6jGDNSsXTVKAHVa9gsOprgVwfnfUkrA-IKzu75jeSQ04GsMCApfjUBlp67WipG9UT7ru9avSwZMSmttBUKIx25vF7yrLomFVU7hsggngTtnRMjr_FepgMBTmlsPGf0BSqTtoVWIYqAs9nsnpbbmreoiwsT2GJCueFEkfeOxg2sSdm-cli2Z_KurVz13xLZ-2qpPPqRJkGSU_aZhpUHvmoiP4W4ppsdKVHuG9Slp9PAvM0it3h_Cbixa5PJZ73"/>
@@ -132,7 +125,6 @@
 <p class="text-slate-600 mt-1">Flights from <span class="font-bold">₹45,000</span></p>
 </div>
 </div>
-<!-- Card: Dubai -->
 <div class="group bg-white overflow-hidden shadow-sm hover:shadow-xl transition-shadow border border-slate-100 rounded-xl" data-purpose="destination-card">
 <div class="h-64 overflow-hidden">
 <img alt="Dubai" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBu38ceQB0EOdOCkF3cD383_AORvn41xLrFlW369DFVsSAF5VliV9mWdoISPn634XtTvdsKEtu_dQFUGVKdk509oUhEjbD5W9woTJqKea_7nBhj7RuwZKjZtF34Ajd5g5NEuk2rd-bhDwcYwUPMt5iqKgD4PfTbT4uHg8m0M7nHppiiL4OUSApT_AvJoRq6VfkTYoaS615Ra-5Rkg0WpqBzJHLHDO_7F0x6sOH5nLH-1vlq7zkxlwTnUYDNQl29tBamwOmiWorI1xx5"/>
@@ -142,7 +134,6 @@
 <p class="text-slate-600 mt-1">Hotels from <span class="font-bold">₹8,000</span></p>
 </div>
 </div>
-<!-- Card: Maldives -->
 <div class="group bg-white overflow-hidden shadow-sm hover:shadow-xl transition-shadow border border-slate-100 rounded-xl" data-purpose="destination-card">
 <div class="h-64 overflow-hidden">
 <img alt="Maldives" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3SYPKHAUkri9smN9DY0vfIDJWA_8AWzjYZLYKtXvHC6WFoBsSrNJPFleD2MqnjGnAkxktghRCgMuTaPIUx3rMvtiW1xbxxWFNdAtGuhX3DpUJbZxNMGBk3JqafBUqYs8RjNYQfV88fkMCnDzAQDparV2wAHUcxcLStpEW5CHRuSJ-PnGTIwO5RzA0iU0pt6PwS7RcS4P0bpefhHZ_rS349TAG3KkJrGGpXhAyZx_bTax8eDfPzWl_VXnW4Xq3he0Ws7IPFGQ8iYfy"/>
@@ -152,7 +143,6 @@
 <p class="text-slate-600 mt-1">Hotels from <span class="font-bold">₹18,000</span></p>
 </div>
 </div>
-<!-- Card: Singapore -->
 <div class="group bg-white overflow-hidden shadow-sm hover:shadow-xl transition-shadow border border-slate-100 rounded-xl" data-purpose="destination-card">
 <div class="h-64 overflow-hidden">
 <img alt="Singapore" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAt6Kd7q3tPpxg9VCbV2Yj5BPIrEWHb6QNc9ZF8glqjdKk9fWwqi7CwZg7IbnDDK3AMHDxz-CO9uY-acfQNvG8LWOxaqg44H6dkQK2z0pzjPnB0CyrCcVZ4SVzVLLPL1ypSJJgO7P2GIUddv7GsGTYNCHkkQjYMs_n8MktlRsMr4_pSxaivrgqLGOXqT2ZKY2QHrbwhVIvP-_goVpIjYwQnXOGHP8S6Gm6vFXgy4fzdfMTy4B8qerMzXdZVd1-ugzPDgkTBnNJ-bDCc"/>
@@ -164,5 +154,61 @@
 </div>
 </div>
 </section>
-<!-- END: PopularDestinations -->
-</body></html>
+
+<!-- BEGIN: Section from index2.html (deduplicated) -->
+<!-- Note: index2.html was found to be empty. Content from index1.html is reused with deduplication. -->
+
+<section class="relative hero-bg flex flex-col items-center justify-center py-16 px-4 border-t border-slate-100">
+<div class="text-center mb-8">
+<h1 class="text-white text-3xl md:text-4xl font-bold tracking-tight">
+        Plan Your Next Adventure
+      </h1>
+<p class="text-white/80 mt-2">Discover more exclusive deals and destinations.</p>
+</div>
+<!-- The redundant search section from index2 (if it existed) is removed here per instructions -->
+</section>
+
+<section class="max-w-7xl mx-auto py-16 px-6 bg-slate-50 rounded-3xl my-8">
+<h2 class="text-4xl font-bold text-slate-800 mb-10 text-center">More Destinations to Explore</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8">
+<div class="group bg-white overflow-hidden shadow-sm hover:shadow-xl transition-shadow border border-slate-100 rounded-xl" data-purpose="destination-card-2">
+<div class="h-64 overflow-hidden">
+<img alt="Paris" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7XZt4NhGahfrELGX6jGDNSsXTVKAHVa9gsOprgVwfnfUkrA-IKzu75jeSQ04GsMCApfjUBlp67WipG9UT7ru9avSwZMSmttBUKIx25vF7yrLomFVU7hsggngTtnRMjr_FepgMBTmlsPGf0BSqTtoVWIYqAs9nsnpbbmreoiwsT2GJCueFEkfeOxg2sSdm-cli2Z_KurVz13xLZ-2qpPPqRJkGSU_aZhpUHvmoiP4W4ppsdKVHuG9Slp9PAvM0it3h_Cbixa5PJZ73"/>
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold text-slate-900">Paris</h3>
+<p class="text-slate-600 mt-1">Flights from <span class="font-bold">₹45,000</span></p>
+</div>
+</div>
+<div class="group bg-white overflow-hidden shadow-sm hover:shadow-xl transition-shadow border border-slate-100 rounded-xl" data-purpose="destination-card-2">
+<div class="h-64 overflow-hidden">
+<img alt="Dubai" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBu38ceQB0EOdOCkF3cD383_AORvn41xLrFlW369DFVsSAF5VliV9mWdoISPn634XtTvdsKEtu_dQFUGVKdk509oUhEjbD5W9woTJqKea_7nBhj7RuwZKjZtF34Ajd5g5NEuk2rd-bhDwcYwUPMt5iqKgD4PfTbT4uHg8m0M7nHppiiL4OUSApT_AvJoRq6VfkTYoaS615Ra-5Rkg0WpqBzJHLHDO_7F0x6sOH5nLH-1vlq7zkxlwTnUYDNQl29tBamwOmiWorI1xx5"/>
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold text-slate-900">Dubai</h3>
+<p class="text-slate-600 mt-1">Hotels from <span class="font-bold">₹8,000</span></p>
+</div>
+</div>
+<div class="group bg-white overflow-hidden shadow-sm hover:shadow-xl transition-shadow border border-slate-100 rounded-xl" data-purpose="destination-card-2">
+<div class="h-64 overflow-hidden">
+<img alt="Maldives" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3SYPKHAUkri9smN9DY0vfIDJWA_8AWzjYZLYKtXvHC6WFoBsSrNJPFleD2MqnjGnAkxktghRCgMuTaPIUx3rMvtiW1xbxxWFNdAtGuhX3DpUJbZxNMGBk3JqafBUqYs8RjNYQfV88fkMCnDzAQDparV2wAHUcxcLStpEW5CHRuSJ-PnGTIwO5RzA0iU0pt6PwS7RcS4P0bpefhHZ_rS349TAG3KkJrGGpXhAyZx_bTax8eDfPzWl_VXnW4Xq3he0Ws7IPFGQ8iYfy"/>
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold text-slate-900">Maldives</h3>
+<p class="text-slate-600 mt-1">Hotels from <span class="font-bold">₹18,000</span></p>
+</div>
+</div>
+<div class="group bg-white overflow-hidden shadow-sm hover:shadow-xl transition-shadow border border-slate-100 rounded-xl" data-purpose="destination-card-2">
+<div class="h-64 overflow-hidden">
+<img alt="Singapore" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAt6Kd7q3tPpxg9VCbV2Yj5BPIrEWHb6QNc9ZF8glqjdKk9fWwqi7CwZg7IbnDDK3AMHDxz-CO9uY-acfQNvG8LWOxaqg44H6dkQK2z0pzjPnB0CyrCcVZ4SVzVLLPL1ypSJJgO7P2GIUddv7GsGTYNCHkkQjYMs_n8MktlRsMr4_pSxaivrgqLGOXqT2ZKY2QHrbwhVIvP-_goVpIjYwQnXOGHP8S6Gm6vFXgy4fzdfMTy4B8qerMzXdZVd1-ugzPDgkTBnNJ-bDCc"/>
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold text-slate-900">Singapore</h3>
+<p class="text-slate-600 mt-1">Hotels from <span class="font-bold">₹8,000</span></p>
+</div>
+</div>
+</div>
+</section>
+
+</body>
+</html>
