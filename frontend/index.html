@@ -1,30 +1,71 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>LayoverX - Premium Travel Experiences Across India</title>
-  <meta content="Book flights, hotels, holiday packages, and local experiences across India with LayoverX." name="description"/>
-  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LayoverX - Mumbai Airport Layover Planning & Services</title>
+  <meta name="description" content="LayoverX helps travelers arriving at Chhatrapati Shivaji Maharaj International Airport plan and enjoy their Mumbai layover. Personalized itineraries, airport transfers, and curated Mumbai experiences."/>
+  <meta name="keywords" content="Mumbai layover, Mumbai airport layover, Chhatrapati Shivaji airport layover, things to do near Mumbai airport, Mumbai transit travel, layover services Mumbai"/>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="LayoverX - Mumbai Airport Layover Planning & Services"/>
+  <meta property="og:description" content="Personalized layover planning for travelers arriving at Chhatrapati Shivaji Maharaj International Airport. Discover Mumbai during your layover."/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://layoverx.com"/>
+  <meta property="og:image" content="https://layoverx.com/assets/photos/homepage.png"/>
+  <meta property="og:site_name" content="LayoverX"/>
+  <meta property="og:locale" content="en_IN"/>
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="LayoverX - Mumbai Airport Layover Planning"/>
+  <meta name="twitter:description" content="Personalized layover planning for travelers arriving at Chhatrapati Shivaji Maharaj International Airport."/>
+  <meta name="twitter:image" content="https://layoverx.com/assets/photos/homepage.png"/>
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://layoverx.com"/>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
-  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries" defer></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            primary: '#0EA5E9',
-            secondary: '#0284C7',
-            accent: '#F59E0B',
-            dark: '#0F172A',
-            light: '#F8FAFC',
+            brand: {
+              50:  '#f0f9ff',
+              100: '#e0f2fe',
+              200: '#bae6fd',
+              300: '#7dd3fc',
+              400: '#38bdf8',
+              500: '#0ea5e9',
+              600: '#0284c7',
+              700: '#0369a1',
+              800: '#075985',
+              900: '#0c4a6e'
+            },
+            muted: '#64748b',
+            light: '#f8fafc',
+            dark: '#0f172a'
           }
         }
       }
     }
   </script>
+
   <style>
-    * { font-family: 'Inter', sans-serif; }
+    /* Base */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    body { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-size: 16px; line-height: 1.6; color: #1e293b; background: #f8fafc; }
+    img { max-width: 100%; height: auto; display: block; }
+
+    /* Hero */
     .hero-bg {
       position: absolute;
       inset: 0;
@@ -32,264 +73,248 @@
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      transform: scale(1.1);
-      transition: transform 10s ease-out;
+      will-change: transform;
     }
-    .hero-bg.scale-in { transform: scale(1); }
+
+    /* Glass */
     .glass-card {
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.10);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.15);
     }
     .glass-light {
-      background: rgba(255, 255, 255, 0.7);
+      background: rgba(255, 255, 255, 0.80);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.60);
     }
-    .search-tab {
-      position: relative;
-      transition: all 0.3s ease;
-    }
-    .search-tab.active {
+
+    /* Form */
+    .form-field {
       background: white;
-      color: #0EA5E9;
-      box-shadow: 0 4px 12px rgba(14, 165, 233, 0.2);
+      border: 1px solid #e2e8f0;
+      border-radius: 0.75rem;
+      padding: 0.75rem 1rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
     }
-    .destination-card {
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    .form-field:focus-within {
+      border-color: #0ea5e9;
+      box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.12);
     }
-    .destination-card:hover {
-      transform: translateY(-8px) scale(1.02);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+
+    /* Cards */
+    .card-elevated {
+      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.35s;
     }
-    .package-card {
-      transition: all 0.3s ease;
-    }
-    .package-card:hover {
+    .card-elevated:hover {
       transform: translateY(-6px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+      box-shadow: 0 20px 40px -10px rgba(0,0,0,0.12);
     }
-    .testimonial-card {
-      transition: all 0.3s ease;
-    }
-    .testimonial-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 24px rgba(0,0,0,0.1);
-    }
-    .feature-icon {
-      transition: all 0.3s ease;
-    }
-    .feature-card:hover .feature-icon {
-      transform: scale(1.1) rotate(5deg);
-    }
-    .animate-fade-up {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .animate-fade-up.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .search-field {
-      transition: all 0.2s ease;
-    }
-    .search-field:focus-within {
-      border-color: #0EA5E9;
-      box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
-    }
-    .scroll-indicator {
-      animation: bounce 2s infinite;
-    }
-    @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-      40% { transform: translateY(-10px); }
-      60% { transform: translateY(-5px); }
-    }
+
     /* Animations */
-    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* Sticky CTA */
+    .sticky-cta {
+      transform: translateY(100%);
+      animation: slideUp 0.4s ease forwards;
+    }
+    @keyframes slideUp { to { transform: translateY(0); } }
+
+    /* Utilities */
+    .container-custom { width: 100%; max-width: 1280px; margin-left: auto; margin-right: auto; padding-left: 1rem; padding-right: 1rem; }
+    @media (min-width: 640px) { .container-custom { padding-left: 1.5rem; padding-right: 1.5rem; } }
+    @media (min-width: 1024px) { .container-custom { padding-left: 2rem; padding-right: 2rem; } }
+    @media (min-width: 1280px) { .container-custom { padding-left: 2.5rem; padding-right: 2.5rem; } }
+    .text-balance { text-wrap: balance; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-    .offer-gradient {
-      background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #0EA5E9 100%);
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+
+    /* Print */
+    @media print {
+      .no-print { display: none !important; }
+      body { background: #fff !important; color: #000 !important; }
     }
   </style>
-</head>
-<body class="bg-light text-gray-900 antialiased overflow-x-hidden">
 
-  <!-- Navigation -->
-  <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-500" id="navbar">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TravelAgency",
+    "name": "LayoverX",
+    "description": "Personalized layover planning and Mumbai travel services for travelers arriving at Chhatrapati Shivaji Maharaj International Airport.",
+    "url": "https://layoverx.com",
+    "logo": "https://layoverx.com/assets/logo.png",
+    "areaServed": {
+      "@type": "City",
+      "name": "Mumbai",
+      "containedInPlace": {
+        "@type": "Country",
+        "name": "India"
+      }
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Mumbai",
+      "addressRegion": "Maharashtra",
+      "addressCountry": "IN"
+    },
+    "sameAs": [
+      "https://twitter.com/layoverx",
+      "https://instagram.com/layoverx"
+    ]
+  }
+  </script>
+</head>
+
+<body class="antialiased overflow-x-hidden">
+
+  <!-- Skip Link -->
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg">Skip to main content</a>
+
+  <!-- ========================================== -->
+  <!-- NAVIGATION                                 -->
+  <!-- ========================================== -->
+  <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="container-custom">
       <div class="flex items-center justify-between h-16 sm:h-20">
-        <a class="flex items-center gap-2" href="#">
-          <div class="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center">
-            <svg class="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+        <a href="#" class="flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-brand-400 focus:ring-offset-2 focus:ring-offset-transparent rounded-lg" aria-label="LayoverX Home">
+          <div class="w-9 h-9 sm:w-10 sm:h-10 bg-gradient-to-br from-brand-500 to-brand-600 rounded-xl flex items-center justify-center shadow-lg shadow-brand-500/30">
+            <svg class="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/>
             </svg>
           </div>
           <span class="text-white text-xl sm:text-2xl font-bold tracking-tight">LayoverX</span>
         </a>
-        <div class="hidden md:flex items-center gap-8">
-          <a class="text-white/80 hover:text-white text-sm font-medium transition-colors" href="#destinations">Destinations</a>
-          <a class="text-white/80 hover:text-white text-sm font-medium transition-colors" href="#packages">Packages</a>
-          <a class="text-white/80 hover:text-white text-sm font-medium transition-colors" href="#offers">Offers</a>
-          <a class="text-white/80 hover:text-white text-sm font-medium transition-colors" href="#testimonials">Reviews</a>
-          <button class="px-5 py-2.5 bg-white text-sky-600 font-semibold rounded-xl hover:bg-white/90 transition-all text-sm">Login / Sign Up</button>
+
+        <div class="hidden md:flex items-center gap-7">
+          <a href="#services" class="text-white/80 hover:text-white text-sm font-medium transition-colors">Layover Services</a>
+          <a href="#experiences" class="text-white/80 hover:text-white text-sm font-medium transition-colors">Mumbai Experiences</a>
+          <a href="#transfers" class="text-white/80 hover:text-white text-sm font-medium transition-colors">Airport Transfers</a>
+          <a href="#testimonials" class="text-white/80 hover:text-white text-sm font-medium transition-colors">Reviews</a>
+          <a href="#contact" class="text-white/80 hover:text-white text-sm font-medium transition-colors">Contact</a>
+          <a href="#layover-planner" class="px-5 py-2.5 bg-white text-brand-600 font-semibold rounded-xl hover:bg-white/90 transition-all text-sm shadow-lg">Plan My Layover</a>
         </div>
-        <button class="md:hidden text-white p-2" id="mobile-menu-btn" aria-label="Menu">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+
+        <button class="md:hidden text-white p-2 rounded-lg hover:bg-white/10 transition-colors" id="mobile-menu-btn" aria-label="Open menu" aria-expanded="false">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" id="menu-icon-open">
             <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
+          </svg>
+          <svg class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" id="menu-icon-close">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
           </svg>
         </button>
       </div>
     </div>
+
     <!-- Mobile Menu -->
-    <div class="md:hidden hidden bg-white/95 backdrop-blur-xl rounded-2xl mt-2 p-4 shadow-xl" id="mobile-menu">
-      <div class="flex flex-col gap-3">
-        <a class="text-gray-800 hover:text-sky-600 py-2 px-3 rounded-lg hover:bg-gray-50 text-sm font-medium" href="#destinations">Destinations</a>
-        <a class="text-gray-800 hover:text-sky-600 py-2 px-3 rounded-lg hover:bg-gray-50 text-sm font-medium" href="#packages">Packages</a>
-        <a class="text-gray-800 hover:text-sky-600 py-2 px-3 rounded-lg hover:bg-gray-50 text-sm font-medium" href="#offers">Offers</a>
-        <a class="text-gray-800 hover:text-sky-600 py-2 px-3 rounded-lg hover:bg-gray-50 text-sm font-medium" href="#testimonials">Reviews</a>
-        <button class="w-full py-3 bg-sky-500 text-white font-semibold rounded-xl mt-2">Login / Sign Up</button>
+    <div class="md:hidden hidden bg-white/95 backdrop-blur-xl rounded-2xl mt-2 p-4 shadow-xl mx-4 border border-gray-100" id="mobile-menu" role="menu">
+      <div class="flex flex-col gap-1">
+        <a href="#services" class="text-gray-800 hover:text-brand-600 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium transition-colors">Layover Services</a>
+        <a href="#experiences" class="text-gray-800 hover:text-brand-600 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium transition-colors">Mumbai Experiences</a>
+        <a href="#transfers" class="text-gray-800 hover:text-brand-600 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium transition-colors">Airport Transfers</a>
+        <a href="#testimonials" class="text-gray-800 hover:text-brand-600 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium transition-colors">Reviews</a>
+        <a href="#contact" class="text-gray-800 hover:text-brand-600 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium transition-colors">Contact</a>
+        <a href="#layover-planner" class="mt-2 w-full text-center py-3 bg-brand-500 text-white font-semibold rounded-xl hover:bg-brand-600 transition-colors">Plan My Layover</a>
       </div>
     </div>
   </nav>
 
-  <!-- Hero Section -->
-  <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
-    <div class="hero-bg scale-in" id="hero-bg"></div>
-    <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70"></div>
+  <!-- ========================================== -->
+  <!-- HERO SECTION                               -->
+  <!-- ========================================== -->
+  <header class="relative min-h-[100dvh] flex items-center justify-center overflow-hidden" id="hero">
+    <div class="hero-bg" role="img" aria-label="Mumbai skyline at sunset"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" aria-hidden="true"></div>
 
-    <!-- Floating icons removed -->
-
-    <div class="relative z-10 text-center px-4 sm:px-6 pt-20 pb-16 max-w-5xl mx-auto">
-      <div class="animate-fade-up" data-delay="0">
+    <div class="relative z-10 text-center px-4 sm:px-6 pt-24 pb-20 max-w-5xl mx-auto" id="main-content">
+      <div class="reveal">
         <span class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white/90 px-4 py-2 rounded-full text-xs sm:text-sm font-medium mb-6">
-          &#9992;&#65039; Trusted by Thousands of Travelers
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+          Mumbai Airport Focused
         </span>
       </div>
 
-      <h1 class="animate-fade-up text-4xl sm:text-5xl md:text-7xl font-bold text-white mb-6 leading-tight" data-delay="100">
-        Explore India<br/>
-        <span class="bg-gradient-to-r from-sky-400 to-cyan-300 bg-clip-text text-transparent">Without Limits</span>
+      <h1 class="reveal text-4xl sm:text-5xl md:text-7xl font-extrabold text-white mb-6 leading-tight text-balance" data-delay="100">
+        Make Every Mumbai<br/>
+        <span class="bg-gradient-to-r from-brand-400 to-sky-300 bg-clip-text text-transparent">Layover Count</span>
       </h1>
 
-      <p class="animate-fade-up text-base sm:text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-8 leading-relaxed" data-delay="200">
-        Book flights, hotels, holiday packages, activities, and local experiences across India with one seamless platform.
+      <p class="reveal text-base sm:text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-10 leading-relaxed text-balance" data-delay="200">
+        LayoverX helps travelers arriving at Chhatrapati Shivaji Maharaj International Airport discover, plan and enjoy Mumbai during their layover.
       </p>
 
-      <div class="animate-fade-up flex flex-col sm:flex-row items-center justify-center gap-4 mb-12" data-delay="300">
-        <a class="w-full sm:w-auto px-8 py-4 bg-sky-500 hover:bg-sky-600 text-white font-bold rounded-xl transition-all duration-300 shadow-lg shadow-sky-500/30 hover:shadow-xl hover:shadow-sky-500/40 hover:-translate-y-0.5" href="#destinations">
-          Explore Destinations
+      <div class="reveal flex flex-col sm:flex-row items-center justify-center gap-4 mb-14" data-delay="300">
+        <a href="#layover-planner" class="w-full sm:w-auto px-8 py-4 bg-brand-500 hover:bg-brand-600 text-white font-bold rounded-xl transition-all shadow-lg shadow-brand-500/30 hover:shadow-xl hover:-translate-y-0.5 text-center">
+          Plan My Layover
         </a>
-        <a class="w-full sm:w-auto px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-bold rounded-xl backdrop-blur-sm border border-white/20 transition-all duration-300 hover:-translate-y-0.5" href="#search">
-          Plan My Trip
+        <a href="#experiences" class="w-full sm:w-auto px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-bold rounded-xl backdrop-blur-sm border border-white/20 transition-all hover:-translate-y-0.5 text-center">
+          Explore Mumbai
         </a>
       </div>
 
-      <!-- Statistics -->
-      <div class="animate-fade-up grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 max-w-3xl mx-auto" data-delay="400">
-        <div class="glass-card rounded-2xl p-4 sm:p-6">
-          <div class="text-2xl sm:text-3xl font-bold text-white mb-1">500+</div>
-          <div class="text-white/60 text-xs sm:text-sm">Destinations</div>
+      <!-- Trust Signals -->
+      <div class="reveal grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 max-w-3xl mx-auto" data-delay="400">
+        <div class="glass-card rounded-2xl p-4 sm:p-5 text-center">
+          <div class="text-2xl sm:text-3xl font-bold text-white mb-1">CSIA</div>
+          <div class="text-white/60 text-xs sm:text-sm">Airport Focused</div>
         </div>
-        <div class="glass-card rounded-2xl p-4 sm:p-6">
-          <div class="text-2xl sm:text-3xl font-bold text-white mb-1">10K+</div>
-          <div class="text-white/60 text-xs sm:text-sm">Happy Travelers</div>
+        <div class="glass-card rounded-2xl p-4 sm:p-5 text-center">
+          <div class="text-2xl sm:text-3xl font-bold text-white mb-1">24/7</div>
+          <div class="text-white/60 text-xs sm:text-sm">Pickup Support</div>
         </div>
-        <div class="glass-card rounded-2xl p-4 sm:p-6">
-          <div class="text-2xl sm:text-3xl font-bold text-white mb-1">50K+</div>
-          <div class="text-white/60 text-xs sm:text-sm">Bookings Made</div>
+        <div class="glass-card rounded-2xl p-4 sm:p-5 text-center">
+          <div class="text-2xl sm:text-3xl font-bold text-white mb-1">Local</div>
+          <div class="text-white/60 text-xs sm:text-sm">Expert Guidance</div>
         </div>
-        <div class="glass-card rounded-2xl p-4 sm:p-6">
-          <div class="text-2xl sm:text-3xl font-bold text-white mb-1">4.9</div>
-          <div class="text-white/60 text-xs sm:text-sm">User Rating</div>
+        <div class="glass-card rounded-2xl p-4 sm:p-5 text-center">
+          <div class="text-2xl sm:text-3xl font-bold text-white mb-1">Curated</div>
+          <div class="text-white/60 text-xs sm:text-sm">Experiences</div>
         </div>
       </div>
     </div>
 
     <!-- Scroll Indicator -->
-    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 scroll-indicator">
-      <svg class="w-6 h-6 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/>
-      </svg>
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce" aria-hidden="true">
+      <svg class="w-6 h-6 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
     </div>
-  </section>
+  </header>
 
-  <!-- Travel Search Box -->
-  <section class="relative z-20 -mt-20 sm:-mt-24 px-4 sm:px-6 mb-20" id="search">
-    <div class="max-w-5xl mx-auto">
-      <div class="glass-light rounded-3xl shadow-2xl shadow-sky-500/10 p-4 sm:p-6">
-        <!-- Search Tabs -->
-        <div class="flex items-center gap-1 sm:gap-2 mb-6 overflow-x-auto no-scrollbar pb-2 -mx-1">
-          <button class="search-tab active flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-medium whitespace-nowrap flex-shrink-0" data-tab="flights">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12z"/>
-            </svg>
-            Flights
-          </button>
-          <button class="search-tab flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-medium text-gray-600 hover:bg-gray-100 whitespace-nowrap flex-shrink-0" data-tab="hotels">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-9.5-16.5h.008v.008h-.008V4.5zm1.06 4.72l1.06-1.06a.75.75 0 011.06 0l1.06 1.06a.75.75 0 010 1.06l-1.06 1.06a.75.75 0 01-1.06 0l-1.06-1.06a.75.75 0 010-1.06zM6.75 21v-4.5a2.25 2.25 0 012.25-2.25h6a2.25 2.25 0 012.25 2.25V21"/>
-            </svg>
-            Hotels
-          </button>
-          <button class="search-tab flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-medium text-gray-600 hover:bg-gray-100 whitespace-nowrap flex-shrink-0" data-tab="holidays">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>
-              <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/>
-            </svg>
-            Holidays
-          </button>
-          <button class="search-tab flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-medium text-gray-600 hover:bg-gray-100 whitespace-nowrap flex-shrink-0" data-tab="cabs">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 14.25v2.25m0-2.25h-2.25m2.25 0v-2.25m0 2.25h2.25m-2.25 2.25h2.25m-7.5-4.5h15a2.25 2.25 0 012.25 2.25v7.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25v-7.5a2.25 2.25 0 012.25-2.25z"/>
-            </svg>
-            Cabs
-          </button>
-          <button class="search-tab flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-medium text-gray-600 hover:bg-gray-100 whitespace-nowrap flex-shrink-0" data-tab="activities">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.252 8.252 0 016.364 3.636a9.59 9.59 0 0021 0"/>
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 18a3.75 3.75 0 01.355-4.944"/>
-            </svg>
-            Activities
-          </button>
+  <!-- ========================================== -->
+  <!-- LAYOVER PLANNER                            -->
+  <!-- ========================================== -->
+  <section class="relative z-20 -mt-20 sm:-mt-24 px-4 sm:px-6 mb-20" id="layover-planner">
+    <div class="container-custom">
+      <div class="glass-light rounded-3xl shadow-2xl shadow-brand-500/10 p-5 sm:p-8">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 bg-brand-100 rounded-xl flex items-center justify-center">
+            <svg class="w-5 h-5 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"/></svg>
+          </div>
+          <div>
+            <h2 class="text-lg sm:text-xl font-bold text-gray-900">Layover Planner</h2>
+            <p class="text-sm text-gray-500">Customize your perfect Mumbai layover</p>
+          </div>
         </div>
 
-        <!-- Search Fields -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
-          <div class="search-field bg-white border border-gray-200 rounded-xl p-3 sm:p-4">
-            <label class="block text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-1">From</label>
-            <select class="w-full bg-transparent text-sm font-semibold text-gray-900 outline-none cursor-pointer">
-              <option>Delhi (DEL)</option>
-              <option>Mumbai (BOM)</option>
-              <option>Bangalore (BLR)</option>
-              <option>Chennai (MAA)</option>
-              <option>Kolkata (CCU)</option>
-            </select>
+          <div class="form-field">
+            <label class="block text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-1">Arrival Time</label>
+            <input type="datetime-local" class="w-full bg-transparent text-sm font-semibold text-gray-900 outline-none" aria-label="Arrival time"/>
           </div>
-          <div class="search-field bg-white border border-gray-200 rounded-xl p-3 sm:p-4">
-            <label class="block text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-1">To</label>
-            <select class="w-full bg-transparent text-sm font-semibold text-gray-900 outline-none cursor-pointer">
-              <option>Mumbai (BOM)</option>
-              <option>Delhi (DEL)</option>
-              <option>Goa (GOI)</option>
-              <option>Jaipur (JAI)</option>
-              <option>Kerala (COK)</option>
-            </select>
+          <div class="form-field">
+            <label class="block text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-1">Departure Time</label>
+            <input type="datetime-local" class="w-full bg-transparent text-sm font-semibold text-gray-900 outline-none" aria-label="Departure time"/>
           </div>
-          <div class="search-field bg-white border border-gray-200 rounded-xl p-3 sm:p-4">
-            <label class="block text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-1">Departure</label>
-            <input class="w-full bg-transparent text-sm font-semibold text-gray-900 outline-none cursor-pointer" type="date" value="2025-07-15"/>
-          </div>
-          <div class="search-field bg-white border border-gray-200 rounded-xl p-3 sm:p-4">
-            <label class="block text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-1">Return</label>
-            <input class="w-full bg-transparent text-sm font-semibold text-gray-900 outline-none cursor-pointer" type="date" value="2025-07-20"/>
-          </div>
-          <div class="search-field bg-white border border-gray-200 rounded-xl p-3 sm:p-4">
+          <div class="form-field">
             <label class="block text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-1">Travelers</label>
-            <select class="w-full bg-transparent text-sm font-semibold text-gray-900 outline-none cursor-pointer">
+            <select class="w-full bg-transparent text-sm font-semibold text-gray-900 outline-none cursor-pointer" aria-label="Number of travelers">
               <option>1 Traveler</option>
               <option>2 Travelers</option>
               <option>3 Travelers</option>
@@ -297,680 +322,101 @@
               <option>5+ Travelers</option>
             </select>
           </div>
+          <div class="form-field sm:col-span-2 lg:col-span-2">
+            <label class="block text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-1">Interests</label>
+            <div class="flex flex-wrap gap-2 pt-1">
+              <label class="flex items-center gap-1.5 px-3 py-1.5 bg-gray-50 hover:bg-brand-50 rounded-full text-xs font-medium text-gray-700 hover:text-brand-700 cursor-pointer transition-colors border border-gray-200 hover:border-brand-200">
+                <input type="checkbox" class="w-3.5 h-3.5 accent-brand-500" value="food"/> Food
+              </label>
+              <label class="flex items-center gap-1.5 px-3 py-1.5 bg-gray-50 hover:bg-brand-50 rounded-full text-xs font-medium text-gray-700 hover:text-brand-700 cursor-pointer transition-colors border border-gray-200 hover:border-brand-200">
+                <input type="checkbox" class="w-3.5 h-3.5 accent-brand-500" value="shopping"/> Shopping
+              </label>
+              <label class="flex items-center gap-1.5 px-3 py-1.5 bg-gray-50 hover:bg-brand-50 rounded-full text-xs font-medium text-gray-700 hover:text-brand-700 cursor-pointer transition-colors border border-gray-200 hover:border-brand-200">
+                <input type="checkbox" class="w-3.5 h-3.5 accent-brand-500" value="sightseeing"/> Sightseeing
+              </label>
+              <label class="flex items-center gap-1.5 px-3 py-1.5 bg-gray-50 hover:bg-brand-50 rounded-full text-xs font-medium text-gray-700 hover:text-brand-700 cursor-pointer transition-colors border border-gray-200 hover:border-brand-200">
+                <input type="checkbox" class="w-3.5 h-3.5 accent-brand-500" value="culture"/> Culture
+              </label>
+              <label class="flex items-center gap-1.5 px-3 py-1.5 bg-gray-50 hover:bg-brand-50 rounded-full text-xs font-medium text-gray-700 hover:text-brand-700 cursor-pointer transition-colors border border-gray-200 hover:border-brand-200">
+                <input type="checkbox" class="w-3.5 h-3.5 accent-brand-500" value="relaxation"/> Relaxation
+              </label>
+            </div>
+          </div>
         </div>
 
-        <button class="w-full mt-4 py-3.5 bg-gradient-to-r from-sky-500 to-sky-600 text-white font-bold rounded-xl shadow-lg shadow-sky-500/30 hover:shadow-xl hover:shadow-sky-500/40 transition-all duration-300 hover:-translate-y-0.5 flex items-center justify-center gap-2">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/>
-          </svg>
-          Search Trips
+        <button class="w-full mt-5 py-3.5 bg-gradient-to-r from-brand-500 to-brand-600 text-white font-bold rounded-xl shadow-lg shadow-brand-500/30 hover:shadow-xl hover:shadow-brand-500/40 transition-all hover:-translate-y-0.5 flex items-center justify-center gap-2" type="button">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg>
+          Get My Layover Plan
         </button>
       </div>
     </div>
   </section>
 
-  <!-- Popular Destinations -->
-  <section class="py-16 sm:py-24 px-4 sm:px-6" id="destinations">
-    <div class="max-w-7xl mx-auto">
-      <div class="text-center mb-12 sm:mb-16 animate-fade-up">
-        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">Popular Destinations</h2>
-        <p class="text-gray-500 text-base sm:text-lg max-w-2xl mx-auto">Discover the most loved destinations across India.</p>
+  <!-- ========================================== -->
+  <!-- MUMBAI EXPERIENCES                         -->
+  <!-- ========================================== -->
+  <section class="py-16 sm:py-24 bg-white" id="experiences" aria-labelledby="experiences-heading">
+    <div class="container-custom">
+      <div class="text-center mb-12 sm:mb-16 reveal">
+        <span class="inline-block text-brand-600 font-semibold text-sm uppercase tracking-wider mb-3">Mumbai Layover</span>
+        <h2 id="experiences-heading" class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">Explore Mumbai</h2>
+        <p class="text-gray-500 text-base sm:text-lg max-w-2xl mx-auto">Curated experiences within easy reach of Chhatrapati Shivaji Maharaj International Airport.</p>
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-        <!-- Goa -->
-        <div class="destination-card group rounded-3xl overflow-hidden bg-white shadow-lg cursor-pointer">
-          <div class="relative h-64 sm:h-72 overflow-hidden">
-            <img alt="Goa" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://images.unsplash.com/photo-1512343879784-a0bf00ea062f?w=600&h=400&fit=crop"/>
-            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-            <div class="absolute bottom-4 left-4 text-white">
-              <h3 class="text-xl sm:text-2xl font-bold">Goa</h3>
-              <p class="text-white/80 text-sm">Beaches & Nightlife</p>
+        <!-- Gateway of India -->
+        <article class="card-elevated rounded-3xl overflow-hidden bg-white shadow-md border border-gray-100">
+          <div class="relative h-56 sm:h-64 overflow-hidden">
+            <img alt="Gateway of India, Mumbai" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1605307066130-098b5f638948?w=600&h=400&fit=crop" decoding="async" sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 33vw"/>
+            <div class="absolute top-4 left-4 bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded-full text-xs font-semibold text-gray-800 flex items-center gap-1">
+              <svg class="w-3.5 h-3.5 text-brand-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+              26 km
             </div>
           </div>
           <div class="p-5 sm:p-6">
-            <p class="text-gray-600 text-sm mb-4">Sandy beaches, vibrant nightlife, and stunning Portuguese architecture.</p>
+            <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-2">Gateway of India</h3>
+            <p class="text-gray-500 text-sm mb-4">Iconic waterfront monument overlooking the Arabian Sea. Perfect photo spot with historic charm.</p>
             <div class="flex items-center justify-between">
-              <span class="text-sky-500 font-bold text-lg">&#8377;12,999 <span class="text-sm font-normal text-gray-400">onwards</span></span>
-              <span class="text-sky-500 text-sm font-semibold flex items-center gap-1">Explore <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg></span>
+              <span class="text-xs font-medium text-brand-600 bg-brand-50 px-2 py-1 rounded-full">2-3 hours</span>
+              <span class="text-sm font-semibold text-gray-900">Explorer Friendly</span>
             </div>
           </div>
-        </div>
-
-        <!-- Jaipur -->
-        <div class="destination-card group rounded-3xl overflow-hidden bg-white shadow-lg cursor-pointer">
-          <div class="relative h-64 sm:h-72 overflow-hidden">
-            <img alt="Jaipur" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://images.unsplash.com/photo-1599661046289-e31897846e40?w=600&h=400&fit=crop"/>
-            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-            <div class="absolute bottom-4 left-4 text-white">
-              <h3 class="text-xl sm:text-2xl font-bold">Jaipur</h3>
-              <p class="text-white/80 text-sm">Heritage & Culture</p>
-            </div>
-          </div>
-          <div class="p-5 sm:p-6">
-            <p class="text-gray-600 text-sm mb-4">The Pink City with grand palaces, forts, and rich royal history.</p>
-            <div class="flex items-center justify-between">
-              <span class="text-sky-500 font-bold text-lg">&#8377;9,499 <span class="text-sm font-normal text-gray-400">onwards</span></span>
-              <span class="text-sky-500 text-sm font-semibold flex items-center gap-1">Explore <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg></span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Udaipur -->
-        <div class="destination-card group rounded-3xl overflow-hidden bg-white shadow-lg cursor-pointer">
-          <div class="relative h-64 sm:h-72 overflow-hidden">
-            <img alt="Udaipur" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://images.unsplash.com/photo-1589808433021-99d13eafa331?w=600&h=400&fit=crop"/>
-            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-            <div class="absolute bottom-4 left-4 text-white">
-              <h3 class="text-xl sm:text-2xl font-bold">Udaipur</h3>
-              <p class="text-white/80 text-sm">Lakes & Palaces</p>
-            </div>
-          </div>
-          <div class="p-5 sm:p-6">
-            <p class="text-gray-600 text-sm mb-4">The City of Lakes, known for its romantic ambiance and royal palaces.</p>
-            <div class="flex items-center justify-between">
-              <span class="text-sky-500 font-bold text-lg">&#8377;11,999 <span class="text-sm font-normal text-gray-400">onwards</span></span>
-              <span class="text-sky-500 text-sm font-semibold flex items-center gap-1">Explore <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg></span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Manali -->
-        <div class="destination-card group rounded-3xl overflow-hidden bg-white shadow-lg cursor-pointer">
-          <div class="relative h-64 sm:h-72 overflow-hidden">
-            <img alt="Manali" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://images.unsplash.com/photo-1626010448981-5c58ff093b25?w=600&h=400&fit=crop"/>
-            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-            <div class="absolute bottom-4 left-4 text-white">
-              <h3 class="text-xl sm:text-2xl font-bold">Manali</h3>
-              <p class="text-white/80 text-sm">Mountains & Adventure</p>
-            </div>
-          </div>
-          <div class="p-5 sm:p-6">
-            <p class="text-gray-600 text-sm mb-4">Snow-capped peaks, thrilling adventures, and serene valleys.</p>
-            <div class="flex items-center justify-between">
-              <span class="text-sky-500 font-bold text-lg">&#8377;8,999 <span class="text-sm font-normal text-gray-400">onwards</span></span>
-              <span class="text-sky-500 text-sm font-semibold flex items-center gap-1">Explore <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg></span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Kerala -->
-        <div class="destination-card group rounded-3xl overflow-hidden bg-white shadow-lg cursor-pointer">
-          <div class="relative h-64 sm:h-72 overflow-hidden">
-            <img alt="Kerala" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://images.unsplash.com/photo-1606061836443-b2eff4d35064?w=600&h=400&fit=crop"/>
-            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-            <div class="absolute bottom-4 left-4 text-white">
-              <h3 class="text-xl sm:text-2xl font-bold">Kerala</h3>
-              <p class="text-white/80 text-sm">Backwaters & Nature</p>
-            </div>
-          </div>
-          <div class="p-5 sm:p-6">
-            <p class="text-gray-600 text-sm mb-4">Serene backwaters, lush greenery, and tranquil houseboat stays.</p>
-            <div class="flex items-center justify-between">
-              <span class="text-sky-500 font-bold text-lg">&#8377;14,499 <span class="text-sm font-normal text-gray-400">onwards</span></span>
-              <span class="text-sky-500 text-sm font-semibold flex items-center gap-1">Explore <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg></span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Kashmir -->
-        <div class="destination-card group rounded-3xl overflow-hidden bg-white shadow-lg cursor-pointer">
-          <div class="relative h-64 sm:h-72 overflow-hidden">
-            <img alt="Kashmir" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://images.unsplash.com/photo-1528164344705-47542687000d?w=600&h=400&fit=crop"/>
-            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-            <div class="absolute bottom-4 left-4 text-white">
-              <h3 class="text-xl sm:text-2xl font-bold">Kashmir</h3>
-              <p class="text-white/80 text-sm">Paradise on Earth</p>
-            </div>
-          </div>
-          <div class="p-5 sm:p-6">
-            <p class="text-gray-600 text-sm mb-4">Heavenly landscapes, pristine lakes, and breathtaking snow views.</p>
-            <div class="flex items-center justify-between">
-              <span class="text-sky-500 font-bold text-lg">&#8377;16,999 <span class="text-sm font-normal text-gray-400">onwards</span></span>
-              <span class="text-sky-500 text-sm font-semibold flex items-center gap-1">Explore <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg></span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Why Choose LayoverX -->
-  <section class="py-16 sm:py-24 bg-white" id="features">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6">
-      <div class="text-center mb-12 sm:mb-16 animate-fade-up">
-        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">Why Travelers Choose LayoverX</h2>
-        <p class="text-gray-500 text-base sm:text-lg max-w-2xl mx-auto">Experience the difference with our traveler-first approach.</p>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-        <div class="feature-card group p-6 sm:p-8 rounded-3xl bg-gray-50 hover:bg-white hover:shadow-xl hover:shadow-sky-500/5 transition-all duration-300 border border-gray-100">
-          <div class="feature-icon w-14 h-14 bg-gradient-to-br from-sky-500/20 to-sky-500/5 rounded-2xl flex items-center justify-center mb-6 group-hover:shadow-lg group-hover:shadow-sky-500/20">
-            <svg class="w-7 h-7 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12z"/>
-            </svg>
-          </div>
-          <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-3">Best Flight Deals</h3>
-          <p class="text-gray-500 text-sm leading-relaxed">Find unbeatable airfare offers with our smart search and price alerts.</p>
-        </div>
-
-        <div class="feature-card group p-6 sm:p-8 rounded-3xl bg-gray-50 hover:bg-white hover:shadow-xl hover:shadow-sky-500/5 transition-all duration-300 border border-gray-100">
-          <div class="feature-icon w-14 h-14 bg-gradient-to-br from-emerald-500/20 to-emerald-500/5 rounded-2xl flex items-center justify-center mb-6 group-hover:shadow-lg group-hover:shadow-emerald-500/20">
-            <svg class="w-7 h-7 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-9.5-16.5h.008v.008h-.008V4.5zm1.06 4.72l1.06-1.06a.75.75 0 011.06 0l1.06 1.06a.75.75 0 010 1.06l-1.06 1.06a.75.75 0 01-1.06 0l-1.06-1.06a.75.75 0 010-1.06zM6.75 21v-4.5a2.25 2.25 0 012.25-2.25h6a2.25 2.25 0 012.25 2.25V21"/>
-            </svg>
-          </div>
-          <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-3">Verified Hotels</h3>
-          <p class="text-gray-500 text-sm leading-relaxed">Stay at trusted and highly rated properties with genuine reviews.</p>
-        </div>
-
-        <div class="feature-card group p-6 sm:p-8 rounded-3xl bg-gray-50 hover:bg-white hover:shadow-xl hover:shadow-sky-500/5 transition-all duration-300 border border-gray-100">
-          <div class="feature-icon w-14 h-14 bg-gradient-to-br from-violet-500/20 to-violet-500/5 rounded-2xl flex items-center justify-center mb-6 group-hover:shadow-lg group-hover:shadow-violet-500/20">
-            <svg class="w-7 h-7 text-violet-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/>
-            </svg>
-          </div>
-          <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-3">Personalized Trips</h3>
-          <p class="text-gray-500 text-sm leading-relaxed">Trips customized to your preferences and travel style.</p>
-        </div>
-
-        <div class="feature-card group p-6 sm:p-8 rounded-3xl bg-gray-50 hover:bg-white hover:shadow-xl hover:shadow-sky-500/5 transition-all duration-300 border border-gray-100">
-          <div class="feature-icon w-14 h-14 bg-gradient-to-br from-amber-500/20 to-amber-500/5 rounded-2xl flex items-center justify-center mb-6 group-hover:shadow-lg group-hover:shadow-amber-500/20">
-            <svg class="w-7 h-7 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 2.632.87 5.062 2.338 7.021"/>
-            </svg>
-          </div>
-          <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-3">Secure Booking</h3>
-          <p class="text-gray-500 text-sm leading-relaxed">Safe and reliable booking experience with 24/7 support.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Top Holiday Packages -->
-  <section class="py-16 sm:py-24 px-4 sm:px-6 bg-gray-50" id="packages">
-    <div class="max-w-7xl mx-auto">
-      <div class="text-center mb-12 sm:mb-16 animate-fade-up">
-        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">Trending Holiday Packages</h2>
-        <p class="text-gray-500 text-base sm:text-lg max-w-2xl mx-auto">Handpicked packages for the perfect getaway.</p>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-        <div class="package-card bg-white rounded-3xl overflow-hidden shadow-lg">
-          <div class="relative h-48 sm:h-56 overflow-hidden">
-            <img alt="Goa Beach Escape" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" src="https://images.unsplash.com/photo-1512343879784-a0bf00ea062f?w=400&h=300&fit=crop"/>
-            <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-semibold text-gray-700">3 Nights / 4 Days</div>
-          </div>
-          <div class="p-5 sm:p-6">
-            <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-2">Goa Beach Escape</h3>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span class="px-2 py-1 bg-sky-500/10 text-sky-600 text-xs rounded-full font-medium">Beaches</span>
-              <span class="px-2 py-1 bg-sky-500/10 text-sky-600 text-xs rounded-full font-medium">Nightlife</span>
-            </div>
-            <div class="flex items-center justify-between">
-              <div>
-                <span class="text-2xl sm:text-3xl font-bold text-gray-900">&#8377;18,999</span>
-                <span class="text-gray-400 text-xs"> / person</span>
-              </div>
-              <button class="px-4 py-2 bg-sky-500 text-white text-sm font-semibold rounded-xl hover:bg-sky-600 transition-colors">View Details</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="package-card bg-white rounded-3xl overflow-hidden shadow-lg">
-          <div class="relative h-48 sm:h-56 overflow-hidden">
-            <img alt="Royal Rajasthan" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" src="https://images.unsplash.com/photo-1599661046289-e31897846e40?w=400&h=300&fit=crop"/>
-            <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-semibold text-gray-700">5 Nights / 6 Days</div>
-          </div>
-          <div class="p-5 sm:p-6">
-            <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-2">Royal Rajasthan</h3>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span class="px-2 py-1 bg-sky-500/10 text-sky-600 text-xs rounded-full font-medium">Heritage</span>
-              <span class="px-2 py-1 bg-sky-500/10 text-sky-600 text-xs rounded-full font-medium">Culture</span>
-            </div>
-            <div class="flex items-center justify-between">
-              <div>
-                <span class="text-2xl sm:text-3xl font-bold text-gray-900">&#8377;24,999</span>
-                <span class="text-gray-400 text-xs"> / person</span>
-              </div>
-              <button class="px-4 py-2 bg-sky-500 text-white text-sm font-semibold rounded-xl hover:bg-sky-600 transition-colors">View Details</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="package-card bg-white rounded-3xl overflow-hidden shadow-lg">
-          <div class="relative h-48 sm:h-56 overflow-hidden">
-            <img alt="Kerala Backwaters" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" src="https://images.unsplash.com/photo-1606061836443-b2eff4d35064?w=400&h=300&fit=crop"/>
-            <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-semibold text-gray-700">4 Nights / 5 Days</div>
-          </div>
-          <div class="p-5 sm:p-6">
-            <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-2">Kerala Backwaters</h3>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span class="px-2 py-1 bg-sky-500/10 text-sky-600 text-xs rounded-full font-medium">Nature</span>
-              <span class="px-2 py-1 bg-sky-500/10 text-sky-600 text-xs rounded-full font-medium">Relaxation</span>
-            </div>
-            <div class="flex items-center justify-between">
-              <div>
-                <span class="text-2xl sm:text-3xl font-bold text-gray-900">&#8377;22,499</span>
-                <span class="text-gray-400 text-xs"> / person</span>
-              </div>
-              <button class="px-4 py-2 bg-sky-500 text-white text-sm font-semibold rounded-xl hover:bg-sky-600 transition-colors">View Details</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="package-card bg-white rounded-3xl overflow-hidden shadow-lg">
-          <div class="relative h-48 sm:h-56 overflow-hidden Sandy beaches, vibrant nightlife, and stunning Portuguese architecture.</p> overflow-hidden">
-            <img alt="Kashmir Paradise" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" src="https://images.unsplash.com/photo-1528164344705-47542687000d?w=400&h=300&fit=crop"/>
-            <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-semibold text-gray-700">5 Nights / 6 Days</div>
-          </div>
-          <div class="p-5 sm:p-6">
-            <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-2">Kashmir Paradise</h3>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span class="px-2 py-1 bg-sky-500/10 text-sky-600 text-xs rounded-full font-medium">Mountains</span>
-              <span class="px-2 py-1 bg-sky-500/10 text-sky-600 text-xs rounded-full font-medium">Snow</span>
-            </div>
-            <div class="flex items-center justify-between">
-              <div>
-                <span class="text-2xl sm:text-3xl font-bold text-gray-900">&#8377;29,999</span>
-                <span class="text-gray-400 text-xs"> / person</span>
-              </div>
-              <button class="px-4 py-2 bg-sky-500 text-white text-sm font-semibold rounded-xl hover:bg-sky-600 transition-colors">View Details</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Special Offers Section -->
-  <section class="py-16 sm:py-24 px-4 sm:px-6" id="offers">
-    <div class="max-w-7xl mx-auto">
-      <div class="offer-gradient rounded-3xl sm:rounded-[2rem] overflow-hidden relative">
-        <div class="absolute inset-0 opacity-20">
-          <svg class="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-            <path d="M0 50 Q25 30 50 50 T100 50 V100 H0 Z" fill="rgba(255,255,255,0.05)"/>
-          </svg>
-        </div>
-        <div class="relative z-10 py-12 sm:py-16 px-6 sm:px-12 md:px-16 flex flex-col lg:flex-row items-center justify-between gap-8">
-          <div class="max-w-xl">
-            <span class="inline-block bg-sky-500/20 text-sky-300 px-3 py-1 rounded-full text-xs font-semibold mb-4">Limited Time Offer</span>
-            <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">Save More On Every Journey</h2>
-            <p class="text-gray-300 text-base sm:text-lg mb-6">Unlock exclusive travel deals, seasonal offers, and limited-time discounts on flights, hotels, and holiday packages.</p>
-            <button class="px-8 py-3.5 bg-white text-gray-900 font-bold rounded-xl hover:bg-gray-100 transition-all duration-300 hover:-translate-y-0.5 shadow-lg">
-              View Offers
-            </button>
-          </div>
-          <div class="hidden lg:flex items-center justify-center">
-            <div class="relative">
-              <div class="w-64 h-64 sm:w-80 sm:h-80 rounded-full bg-gradient-to-br from-sky-500/30 to-sky-600/20 flex items-center justify-center">
-                <div class="w-48 h-48 sm:w-56 sm:h-56 rounded-full bg-gradient-to-br from-sky-500/40 to-amber-500/20 flex items-center justify-center">
-                  <div class="text-center">
-                    <div class="text-5xl sm:text-6xl font-black text-white">UP TO</div>
-                    <div class="text-4xl sm:text-5xl font-black text-amber-400">50% OFF</div>
-                  </div>
-                </div>
-              </div>
-              <div class="absolute -top-4 -right-4 w-16 h-16 bg-amber-500 rounded-full flex items-center justify-center animate-bounce">
-                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18L9 11.25l4.306 4.306a11.95 11.95 0 015.814-5.519l1.285-1.285a.75.75 0 011.072 1.071l-1.285 1.285A11.95 11.95 0 0133.167 3.02a.75.75 0 01-1.071 1.072 10.45 10.45 0 00-5.103 5.52l-1.285 1.285L15 16.5l9.75-9.75"/>
-                </svg>
-              </div>
-            </div>
-          </div> 
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Customer Testimonials -->
-  <section class="py-16 sm:py-24 bg-white" id="testimonials">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6">
-      <div class="text-center mb-12 sm:mb-16 animate-fade-up">
-        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">What Travelers Say</h2>
-        <p class="text-gray-500 text-base sm:text-lg max-w-2xl mx-auto">Real experiences from real travelers who explored with LayoverX.</p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-        <!-- Testimonial 1 -->
-        <div class="testimonial-card bg-gray-50 rounded-3xl p-6 sm:p-8 border border-gray-100">
-          <div class="flex items-center gap-1 mb-4">
-            <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.88 1.18 6.88L12 17.77l-6.18 3.26L7 14.15 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.88 1.18 6.88L12 17.77l-6.18 3.26L7 14.15 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.88 1.18 6.88L12 17.77l-6.18 3.26L7 14.15 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.88 1.18 6.88L12 17.77l-6.18 3.26L7 14.15 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.88 1.18 6.88L12 17.77l-6.18 3.26L7 14.15 2 9.27l6.91-1.01L12 2z"/></svg>
-          </div>
-          <p class="text-gray-700 text-sm sm:text-base leading-relaxed mb-6">"LayoverX made my Goa trip absolutely seamless. The hotel was exactly as described, and the local experiences they recommended were incredible!"</p>
-          <div class="flex items-center gap-4">
-            <img alt="Priya Sharma" class="w-12 h-12 rounded-full object-cover" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop"/>
-            <div>
-              <div class="font-bold text-gray-900">Priya Sharma</div>
-              <div class="text-gray-500 text-sm">Mumbai, India</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Testimonial 2 -->
-        <div class="testimonial-card bg-gray-50 rounded-3xl p-6 sm:p-8 border border-gray-100">
-          <div class="flex items-center gap-1 mb-4">
-            <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.88 1.18 6.88L12 17.77l-6.18 3.26L7 14.15 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.88 1.18 6.88L12 17.77l-6.18 3.26L7 14.15 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.88 1.18 6.88L12 17.77l-6.18 3.26L7 14.15 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.88 1.18 6.88L12 17.77l-6.18 3.26L7 14.15 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.88 1.18 6.88L12 17.77l-6.18 3.26L7 14.15 2 9.27l6.91-1.01L12 2z"/></svg>
-          </div>
-          <p class="text-gray-700 text-sm sm:text-base leading-relaxed mb-6">"The best travel booking platform I have used. Found amazing deals for my family trip to Kerala. Customer support was exceptional throughout."</p>
-          <div class="flex items-center gap-4">
-            <img alt="Rahul Kapoor" class="w-12 h-12 rounded-full object-cover" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop"/>
-            <div>
-              <div class="font-bold text-gray-900">Rahul Kapoor</div>
-              <div class="text-gray-500 text-sm">Delhi, India</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Testimonial 3 -->
-        <div class="testimonial-card bg-gray-50 rounded-3xl p-6 sm:p-8 border border-gray-100">
-          <div class="flex items-center gap-1 mb-4">
-            <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.88 1.18 6.88L12 17.77l-6.18 3.26L7 14.15 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.88 1.18 6.88L12 17.77l-6.18 3.26L7 14.15 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.88 1.18 6.88L12 17.77l-6.18 3.26L7 14.15 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.88 1.18 6.88L12 17.77l-6.18 3.26L7 14.15 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.88 1.18 6.88L12 17.77l-6.18 3.26L7 14.15 2 9.27l6.91-1.01L12 2z"/></svg>
-          </div>
-          <p class="text-gray-700 text-sm sm:text-base leading-relaxed mb-6">"Booked a Rajasthan tour through LayoverX and it was magical. The heritage hotels and guided tours exceeded all expectations!"</p>
-          <div class="flex items-center gap-4">
-            <img alt="Ananya Patel" class="w-12 h-12 rounded-full object-cover" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop"/>
-            <div>
-              <div class="font-bold text-gray-900">Ananya Patel</div>
-              <div class="text-gray-500 text-sm">Bangalore, India</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Travel Inspiration -->
-  <section class="py-16 sm:py-24 bg-gray-50" id="inspiration">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6">
-      <div class="text-center mb-12 sm:mb-16 animate-fade-up">
-        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">Travel Inspiration</h2>
-        <p class="text-gray-500 text-base sm:text-lg max-w-2xl mx-auto">Stories, guides, and inspiration for your next adventure.</p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-        <article class="group cursor-pointer">
-          <div class="relative h-64 sm:h-72 rounded-3xl overflow-hidden mb-5">
-            <img alt="Best Places in India" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://images.unsplash.com/photo-1524492412937-b28074a5dca2?w=400&h=300&fit=crop"/>
-            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
-            <div class="absolute bottom-6 left-6 right-6">
-              <span class="inline-block bg-sky-500/90 text-white px-3 py-1 rounded-full text-xs font-semibold mb-3">Guide</span>
-              <h3 class="text-xl sm:text-2xl font-bold text-white leading-snug">Best Places To Visit In India</h3>
-            </div>
-          </div>
-          <p class="text-gray-600 text-sm mb-4 leading-relaxed">From the Himalayas to the backwaters, discover India's most breathtaking destinations.</p>
-          <button class="text-sky-600 font-semibold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
-            Read More <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
-          </button>
         </article>
 
-        <article class="group cursor-pointer">
-          <div class="relative h-64 sm:h-72 rounded-3xl overflow-hidden mb-5">
-            <img alt="Top Beach Destinations" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://images.unsplash.com/photo-1559827260-dc66d3928e0e5?w=400&h=300&fit=crop"/>
-            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
-            <div class="absolute bottom-6 left-6 right-6">
-              <span class="inline-block bg-sky-500/90 text-white px-3 py-1 rounded-full text-xs font-semibold mb-3">Beaches</span>
-              <h3 class="text-xl sm:text-2xl font-bold text-white leading-snug">Top Beach Destinations</h3>
+        <!-- Marine Drive -->
+        <article class="card-elevated rounded-3xl overflow-hidden bg-white shadow-md border border-gray-100">
+          <div class="relative h-56 sm:h-64 overflow-hidden">
+            <img alt="Marine Drive, Mumbai" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1567157577867-3c5d4b5e9a0e?w=600&h=400&fit=crop" decoding="async"/>
+            <div class="absolute top-4 left-4 bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded-full text-xs font-semibold text-gray-800 flex items-center gap-1">
+              <svg class="w-3.5 h-3.5 text-brand-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+              18 km
             </div>
           </div>
-          <p class="text-gray-600 text-sm mb-4 leading-relaxed">Sun, sand, and surf: the ultimate guide to India's most stunning coastal getaways.</p>
-          <button class="text-sky-600 font-semibold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
-            Read More <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
-          </button>
+          <div class="p-5 sm:p-6">
+            <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-2">Marine Drive</h3>
+            <p class="text-gray-500 text-sm mb-4">3.6km boulevard along the coast known as the Queen's Necklace. Best visited at sunset.</p>
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-medium text-brand-600 bg-brand-50 px-2 py-1 rounded-full">1-2 hours</span>
+              <span class="text-sm font-semibold text-gray-900">Relaxing</span>
+            </div>
+          </div>
         </article>
 
-        <article class="group cursor-pointer">
-          <div class="relative h-64 sm:h-72 rounded-3xl overflow-hidden mb-5">
-            <img alt="Hidden Gems of Rajasthan" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5d1?w=400&h=300&fit=crop"/>
-            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
-            <div class="absolute bottom-6 left-6 right-6">
-              <span class="inline-block bg-sky-500/90 text-white px-3 py-1 rounded-full text-xs font-semibold mb-3">Heritage</span>
-              <h3 class="text-xl sm:text-2xl font-bold text-white leading-snug">Hidden Gems Of Rajasthan</h3>
+        <!-- Colaba Causeway -->
+        <article class="card-elevated rounded-3xl overflow-hidden bg-white shadow-md border border-gray-100">
+          <div class="relative h-56 sm:h-64 overflow-hidden">
+            <img alt="Colaba Causeway, Mumbai" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-159565865曲sc-825d-4a3a-b77e-8f2a5c5b3e0e?w=600&h=400&fit=crop" decoding="async"/>
+            <div class="absolute top-4 left-4 bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded-full text-xs font-semibold text-gray-800 flex items-center gap-1">
+              <svg class="w-3.5 h-3.5 text-brand-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap周到" round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+              24 km
             </div>
           </div>
-          <p class="text-gray-600 text-sm mb-4 leading-relaxed">Beyond the forts: uncovering secret spots and royal retreats in the Land of Kings.</p>
-          <button class="text-sky-600 font-semibold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
-            Read More <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
-          </button>
+          <div class="p-5 sm:p-6aturing a world ...">The Colaba Cause</h3>
+            <p class="text-gray-500 text-sm mb-4">Vibrant street market with antiques, jewelry, and local crafts. A shopper's paradise.</p>
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-medium text-brand-600 bg-brand-50 px-2 py-1 rounded-full">2-3 hours</span>
+              <span class="text-sm font-semibold text-gray-900">Shopping</span>
+            </div>
+          </div>
         </article>
       </div>
-    </div>
-  </section>
-
-  <!-- App Download Section -->
-  <section class="py-16 sm:py-24 px-4 sm:px-6" id="app">
-    <div class="max-w-7xl mx-auto">
-      <div class="bg-gradient-to-br from-sky-500 to-sky-600 rounded-3xl sm:rounded-[2.5rem] overflow-hidden">
-        <div class="flex flex-col lg:flex-row items-center">
-          <div class="flex-1 p-8 sm:p-12 lg:p-16">
-            <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">Plan Trips On The Go</h2>
-            <p class="text-white/80 text-base sm:text-lg mb-8 max-w-lg">Book, manage, and track your trips from anywhere. Get exclusive app-only deals and a seamless travel experience.</p>
-
-            <div class="flex flex-col sm:flex-row gap-4">
-              <button class="flex items-center justify-center gap-3 bg-white text-gray-900 px-6 py-3.5 rounded-xl font-semibold hover:bg-gray-100 transition-colors">
-                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.104l2.807 1.626a1 1 0 010 1.734l-2.808 1.626L15.492 12l2.206-2.397zM5.864 2.082l8.637 8.637-2.303 2.302L3.473 3.088l2.39-.999zM14.813 11.177l2.302 2.302-2.302 2.302-2.302-2.302 2.302-2.302z"/>
-                </svg>
-                <div class="text-left">
-                  <div class="text-[10px] text-gray-500 uppercase tracking-wider">GET IT ON</div>
-                  <div class="text-sm font-bold -mt-0.5">Google Play</div>
-                </div>
-              </button>
-              <button class="flex items-center justify-center gap-3 bg-white/10 backdrop-blur-sm border border-white/20 text-white px-6 py-3.5 rounded-xl font-semibold hover:bg-white/20 transition-colors">
-                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.03c.87-1.38 2.38-2.3 3.98-2.32 1.14-.02 2.21.77 2.9.77.69 0 1.98-.95 3.34-.81 1.53.2 2.68.82 3.34 1.82-2.23 1.03-1.89 3.91.26 4.65-.52 1.73-1.83 3.46-2.97 4.06zM13 3.5c.73-.83.68-2.08-.19-3-.86-.92-2.13-.97-2.97-.34.76.88.71 2.12-.06 3-.87.83-2.13.88-2.86.35.52 1.53 2.03 2.08 3.42 1.88.23.02.46 0 .68-.04 1.48-.22 2.56-.94 3.08-2.05z"/>
-                </svg>
-                <div class="text-left">
-                  <div class="text-[10px] text-white/60 uppercase tracking-wider">Download on the</div>
-                  <div class="text-sm font-bold -mt-0.5">App Store</div>
-                </div>
-              </button>
-            </div>
-          </div>
-          <div class="hidden lg:flex flex-1 items-center justify-center p-12">
-            <div class="relative">
-              <div class="w-64 h-[400px] bg-white rounded-[2rem] shadow-2xl border-8 border-gray-800 overflow-hidden transform rotate-6">
-                <div class="h-full w-full bg-gradient-to-b from-gray-50 to-gray-100 p-4">
-                  <div class="flex items-center justify-between mb-4">
-                    <div class="w-8 h-8 bg-gradient-to-br from-sky-500 to-sky-600 rounded-lg flex items-center justify-center">
-                      <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/>
-                      </svg>
-                    </div>
-                    <div class="text-xs font-bold text-gray-900">LayoverX</div>
-                  </div>
-                  <div class="bg-white rounded-xl p-3 mb-3 shadow-sm">
-                    <div class="text-xs font-bold text-gray-900 mb-1">Goa Beach Escape</div>
-                    <div class="text-[10px] text-gray-500">3 Nights • Rs.18,999</div>
-                  </div>
-                  <div class="bg-white rounded-xl p-3 mb-3 shadow-sm">
-                    <div class="text-xs font-bold text-gray-900 mb-1">Rajasthan Tour</div>
-                    <div class="text-[10px] text-gray-500">5 Nights • Rs.24,999</div>
-                  </div>
-                </div>
-              </div>
-              <div class="absolute -bottom-4 -right-4 w-20 h-20 bg-amber-500 rounded-full flex items-center justify-center shadow-lg">
-                <span class="text-white text-xs font-bold">India</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Final CTA Section -->
-  <section class="py-16 sm:py-24 px-4 sm:px-6 bg-white" id="cta">
-    <div class="max-w-4xl mx-auto text-center">
-      <div class="animate-fade-up">
-        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6">Ready For Your Next Adventure?</h2>
-        <p class="text-gray-500 text-base sm:text-lg mb-8 max-w-xl mx-auto">Start planning unforgettable journeys with LayoverX today. Your dream destination is just a click away.</p>
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a class="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-sky-500 to-sky-600 text-white font-bold rounded-xl shadow-lg shadow-sky-500/30 hover:shadow-xl hover:shadow-sky-500/40 transition-all duration-300 hover:-translate-y-0.5" href="#destinations">
-            Explore Now
-          </a>
-          <a class="w-full sm:w-auto px-8 py-4 border-2 border-gray-200 text-gray-900 font-bold rounded-xl hover:border-sky-500 hover:text-sky-600 transition-all duration-300" href="#">
-            Contact Us
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="bg-gray-900 text-white pt-16 sm:pt-20 pb-8 px-4 sm:px-6">
-    <div class="max-w-7xl mx-auto">
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 sm:gap-12 mb-12 sm:mb-16">
-        <div>
-          <div class="flex items-center gap-2 mb-6">
-            <div class="w-10 h-10 bg-gradient-to-br from-sky-500 to-sky-600 rounded-xl flex items-center justify-center">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/>
-              </svg>
-            </div>
-            <span class="text-2xl font-bold">LayoverX</span>
-          </div>
-          <p class="text-gray-400 text-sm leading-relaxed mb-6">Your personal travel assistant. Be amazed by the ease of accessing premium travel services across India.</p>
-          <div class="flex gap-3">
-            <a class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-sky-500 transition-colors" href="#" aria-label="Twitter">
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-            </a>
-            <a class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-sky-500 transition-colors" href="#" aria-label="Instagram">
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a3.375 3.375 0 100 6.75 3.375 3.375 0 000-6.75zm0 8.25a4.875 4.875 0 100-9.75 4.875 4.875 0 000 9.75z"/></svg>
-            </a>
-            <a class="专科 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-sky-500 transition-colors" href="#" aria-label="YouTube">
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 11l-6.273 3.568z"/></svg>
-            </a>
-          </div>
-        </div>
-
-        <div>
-          <h4 class="font-bold mb-6">Company</h4>
-          <ul class="space-y-3">
-            <li><a class="text-gray-400 hover:text-white text-sm transition-colors" href="#">About Us</a></li>
-            <li><a class="text-gray-400 hover:text-white text-sm transition-colors" href="#">Careers</a></li>
-            <li><a class="text-gray-400 hover:text-white text-sm transition-colors" href="#">Press</a></li>
-            <li><a class="text-gray-400 hover:text-white text-sm transition-colors" href="#">Blog</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 class="font-bold mb-6">Support</h4>
-          <ul class="space-y-3">
-            <li><a class="text-gray-400 hover:text-white text-sm transition-colors" href="#">Help Center</a></li>
-            <li><a class="text-gray-400 hover:text-white text-sm transition-colors" href="#">Contact Us</a></li>
-            <li><a class="text-gray-400 hover:text-white text-sm transition-colors" href="#">Privacy Policy</a></li>
-            <li><a class="text-gray-400 hover:text-white text-sm transition-colors" href="#">Terms of Service</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 class="font-bold mb-6">Travel</h4>
-          <ul class="space-y-3">
-            <li><a class="text-gray-400 hover:text-white text-sm transition-colors" href="#">Flights</a></li>
-            <li><a class="text-gray-400 hover:text-white text-sm transition-colors" href="#">Hotels</a></li>
-            <li><a class="text-gray-400 hover:text-white text-sm transition-colors" href="#">Holiday Packages</a></li>
-            <li><a class="text-gray-400 hover:text-white text-sm transition-colors" href="#">Activities</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="border-t border-white/10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <p class="text-gray-500 text-xs sm:text-sm">&#169; 2025 LayoverX. All rights reserved.</p>
-        <div class="flex items-center gap-4">
-          <a class="text-gray-500 hover:text-white text-xs sm:text-sm transition-colors" href="#">Privacy</a>
-          <a class="text-gray-500 hover:text-white text-xs sm:text-sm transition-colors" href="#">Terms</a>
-          <a class="text-gray-500 hover:text-white text-xs sm:text-sm transition-colors" href="#">Cookies</a>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    // Mobile Menu Toggle
-    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-
-    if (mobileMenuBtn && mobileMenu) {
-      mobileMenuBtn.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-      });
-    }
-
-    // Sticky Navbar with color change
-    const navbar = document.getElementById('navbar');
-    const navLinks = navbar.querySelectorAll('a, span');
-    let isScrolled = false;
-
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) {
-        if (!isScrolled) {
-          navbar.classList.add('bg-white/90', 'backdrop-blur-xl', 'shadow-lg');
-          document.querySelectorAll('nav span.text-white').forEach(el => {
-            el.classList.remove('text-white');
-            el.classList.add('text-gray-900');
-          });
-          isScrolled = true;
-        }
-      } else {
-        if (isScrolled) {
-          navbar.classList.remove('bg-white/90', 'backdrop-blur-xl', 'shadow-lg');
-          document.querySelectorAll('nav span.text-gray-900').forEach(el => {
-            el.classList.remove('text-gray-900');
-            el.classList.add('text-white');
-          });
-          isScrolled = false;
-        }
-      }
-    });
-
-    // Search Tabs
-    document.querySelectorAll('.search-tab').forEach(tab => {
-      tab.addEventListener('click', () => {
-        document.querySelectorAll('.search-tab').forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-      });
-    });
-
-    // Scroll Animations using IntersectionObserver
-    const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const delay = entry.target.dataset.delay || 0;
-          setTimeout(() => {
-            entry.target.classList.add('visible');
-          }, delay);
-        }
-      });
-    }, observerOptions);
-
-    document.querySelectorAll('.animate-fade-up').forEach(el => {
-      observer.observe(el);
-    });
-
-    // Smooth Scroll
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      });
-    });
-  </script>
-</body>
-</html>
