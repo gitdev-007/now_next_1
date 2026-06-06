@@ -1,11 +1,25 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>LayoverX - Mumbai Airport Layover Planning</title>
-<meta name="description" content="Personalized layover planning for travelers at Chhatrapati Shivaji Maharaj International Airport."/>
+<title>LayoverX - Mumbai Travel & Layover Experience Platform | Hotels, Restaurants, Tours & Transfers</title>
+<meta name="description" content="Discover hotels, restaurants, spas, city tours, airport transfers and curated experiences around Mumbai Airport. Your Mumbai travel companion."/>
+<meta name="keywords" content="Mumbai Airport Hotel, Mumbai Airport Restaurants, Mumbai Airport Spa, Mumbai Airport Transfers, Mumbai Layover Activities, Things To Do Near Mumbai Airport"/>
 <link rel="canonical" href="https://layoverx.com"/>
+<meta property="og:title" content="LayoverX - Mumbai Travel & Layover Experience Platform"/>
+<meta property="og:description" content="Discover hotels, restaurants, spas, city tours, airport transfers and curated experiences around Mumbai Airport."/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://layoverx.com"/>
+<meta property="og:image" content="https://layoverx.com/assets/photos/homepage.png"/>
+<meta property="og:site_name" content="LayoverX"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="LayoverX - Mumbai Travel Platform"/>
+<meta name="twitter:description" content="Hotels, restaurants, spas, tours & transfers around Mumbai Airport."/>
+<meta name="robots" content="index, follow"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com" defer></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -14,455 +28,573 @@ body{font-family:'Inter',system-ui,sans-serif;color:#1e293b;background:#f8fafc;-
 img{max-width:100%;height:auto;display:block}
 a{text-decoration:none;color:inherit}
 ul{list-style:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
 
-/* Hero */
-.hero{position:relative;min-height:100dvh;display:flex;align-items:center;justify-content:center;overflow:hidden}
-.hero-bg{position:absolute;inset:0;background:url('assets/photos/homepage.png') center/cover no-repeat}
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.55),rgba(0,0,0,.35) 50%,rgba(0,0,0,.65))}
-
-/* Cards */
-.card{background:#fff;border-radius:1.5rem;overflow:hidden;box-shadow:0 4px 6px -1px rgba(0,0,0,.05),0 2px 4px -1px rgba(0,0,0,.03);transition:transform .3s,box-shadow .3s}
-.card:hover{transform:translateY(-6px);box-shadow:0 20px 25px -5px rgba(0,0,0,.08)}
-
-/* Reveal */
-.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s,transform .6s}
-.reveal.visible{opacity:1;transform:translateY(0)}
-
-/* Inputs */
-input,select,textarea{font-family:inherit}input[type="datetime-local"]{appearance:none;-webkit-appearance:none}
-input:focus,select:focus{outline:none;border-color:#0ea5e9;box-shadow:0 0 0 3px rgba(14,165,233,.1)}
-
-/* Utilities */
+/* Container */
 .container{width:100%;max-width:80rem;margin-left:auto;margin-right:auto;padding-left:1rem;padding-right:1rem}
 @media(min-width:640px){.container{padding-left:1.5rem;padding-right:1.5rem}}
 @media(min-width:1024px){.container{padding-left:2rem;padding-right:2rem}}
+
+/* Section spacing */
+.section{padding-top:4rem;padding-bottom:4rem}
+@media(min-width:768px){.section{padding-top:5rem;padding-bottom:5rem}}
+@media(min-width:1024px){.section{padding-top:6rem;padding-bottom:6rem}}
+
+/* Cards */
+.card{background:#fff;border-radius:1.25rem;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.06);transition:transform .3s,box-shadow .3s}
+.card:hover{transform:translateY(-4px);box-shadow:0 12px 24px -4px rgba(0,0,0,.1)}
+
+/* Reveal */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .5s,transform .5s}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* Form */
+input,select,textarea{font-family:inherit;font-size:14px}
+input[type="datetime-local"],input[type="date"],input[type="text"],input[type="email"],input[type="number"],select{appearance:none;-webkit-appearance:none;-moz-appearance:none}
+input:focus,select:focus,textarea:focus{outline:none;border-color:#0ea5e9;box-shadow:0 0 0 3px rgba(14,165,233,.12)}
+
+/* Search tab */
+.search-tab{transition:all .2s}
+.search-tab.active{background:#0ea5e9;color:#fff;box-shadow:0 4px 8px rgba(14,165,233,.25)}
+
+/* Smooth */
+a,button{transition:all .2s}
 </style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"TravelService","name":"LayoverX","description":"Mumbai Travel & Layover Experience Platform offering hotels, restaurants, spas, tours and airport transfers near Chhatrapati Shivaji Maharaj International Airport.","url":"https://layoverx.com","areaServed":{"@type":"City","name":"Mumbai","containedInPlace":{"@type":"Country","name":"India"}},"address":{"@type":"PostalAddress","addressLocality":"Mumbai","addressRegion":"Maharashtra","addressCountry":"IN"},"priceRange":"$$"}
+</script>
 </head>
 <body class="overflow-x-hidden">
 
-<!-- Skip Link -->
-<a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg">Skip to main content</a>
+<a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg">Skip to main content</a>
 
-<!-- Navigation -->
-<nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="navbar">
+<!-- NAVBAR - Fixed, z-1000, always visible -->
+<nav class="fixed top-0 left-0 right-0 z-[1000] transition-all duration-300" id="navbar">
 <div class="container">
 <div class="flex items-center justify-between h-16 sm:h-20">
 <a href="/" class="flex items-center gap-2" aria-label="LayoverX Home">
 <div class="w-9 h-9 bg-gradient-to-br from-sky-500 to-sky-600 rounded-xl flex items-center justify-center">
 <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>
 </div>
-<span class="text-white text-xl font-bold tracking-tight">LayoverX</span>
+<span class="text-white text-xl font-bold tracking-tight" id="logo-text">LayoverX</span>
 </a>
-<div class="hidden md:flex items-center gap-7">
-<a class="text-white/80 hover:text-white text-sm font-medium transition-colors" href="#experiences">Mumbai Experiences</a>
-<a class="text-white/80 hover:text-white text-sm font-medium transition-colors" href="#how-it-works">How It Works</a>
-<a class="text-white/80 hover:text-white text-sm font-medium transition-colors" href="#services">Services</a>
-<a class="text-white/80 hover:text-white text-sm font-medium transition-colors" href="#contact">Contact</a>
-<a href="#planner" class="px-5 py-2.5 bg-white text-sky-600 font-semibold rounded-xl hover:bg-white/90 transition-all text-sm shadow-lg">Plan My Layover</a>
+<div class="hidden lg:flex items-center gap-7">
+<a class="nav-link text-white/90 hover:text-white text-sm font-medium" href="#hotels">Hotels</a>
+<a class="nav-link text-white/90 hover:text-white text-sm font-medium" href="#restaurants">Restaurants</a>
+<a class="nav-link text-white/90 hover:text-white text-sm font-medium" href="#experiences">Experiences</a>
+<a class="nav-link text-white/90 hover:text-white text-sm font-medium" href="#transfers">Airport Transfers</a>
+<a class="nav-link text-white/90 hover:text-white text-sm font-medium" href="#how-it-works">How It Works</a>
+<a class="nav-link text-white/90 hover:text-white text-sm font-medium" href="#contact">Contact</a>
+<a href="#search" class="px-5 py-2.5 bg-white text-sky-600 font-semibold rounded-xl hover:bg-white/90 text-sm shadow-lg">Plan My Layover</a>
 </div>
-<button class="md:hidden text-white p-2 rounded-lg hover:bg-white/10" id="menu-btn" aria-label="Menu" aria-expanded="false">
+<button class="lg:hidden text-white p-2 rounded-lg hover:bg-white/10" id="menu-btn" aria-label="Menu" aria-expanded="false">
 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
 </button>
 </div>
 </div>
-<div class="md:hidden hidden bg-white/95 backdrop-blur-xl rounded-2xl mt-2 p-4 shadow-xl mx-4 border border-gray-100" id="mobile-menu">
-<a class="block text-gray-800 hover:text-sky-600 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium" href="#experiences">Mumbai Experiences</a>
-<a class="block text-gray-800 hover:text-sky-600 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium" href="#how-it-works">How It Works</a>
-<a class="block text-gray-800 hover:text-sky-600 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium" href="#services">Services</a>
-<a class="block text-gray-800 hover:text-sky-600 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium" href="#contact">Contact</a>
-<a href="#planner" class="mt-2 block w-full text-center py-3 bg-sky-500 text-white font-semibold rounded-xl">Plan My Layover</a>
+<div class="lg:hidden hidden bg-white/95 backdrop-blur-xl rounded-2xl mt-2 p-4 shadow-xl mx-4 border border-gray-100" id="mobile-menu">
+<a class="block text-gray-800 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium" href="#hotels">Hotels</a>
+<a class="block text-gray-800 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium" href="#restaurants">Restaurants</a>
+<a class="block text-gray-800 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium" href="#experiences">Experiences</a>
+<a class="block text-gray-800 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium" href="#transfers">Airport Transfers</a>
+<a class="block text-gray-800 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium" href="#how-it-works">How It Works</a>
+<a class="block text-gray-800 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium" href="#contact">Contact</a>
+<a href="#search" class="mt-2 block w-full text-center py-3 bg-sky-500 text-white font-semibold rounded-xl">Plan My Layover</a>
 </div>
 </nav>
 
-<!-- Hero -->
-<header class="hero" id="main">
-<div class="hero-bg" role="img" aria-label="Mumbai skyline at sunset"></div>
-<div class="hero-overlay" aria-hidden="true"></div>
-<div class="relative z-10 text-center px-4 pt-24 pb-16 max-w-4xl mx-auto">
+<!-- HERO -->
+<header class="relative min-h-[100dvh] flex items-center justify-center overflow-hidden pt-16" id="main">
+<div class="absolute inset-0 bg-cover bg-center" style="background-image:url('assets/photos/homepage.png')" role="img" aria-label="Mumbai skyline at sunset"></div>
+<div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/70" aria-hidden="true"></div>
+<div class="relative z-10 text-center px-4 py-20 max-w-4xl mx-auto">
 <div class="reveal">
 <span class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white/90 px-4 py-2 rounded-full text-sm font-medium mb-6">
-<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
-Mumbai Airport Focused
+Mumbai Travel & Layover Experiences
 </span>
 </div>
-<h1 class="reveal text-4xl sm:text-5xl md:text-7xl font-extrabold text-white mb-6 leading-tight">Make Every Mumbai<br/><span class="text-sky-400">Layover Count</span></h1>
-<p class="reveal text-lg text-white/80 max-w-2xl mx-auto mb-10 leading-relaxed">LayoverX helps travelers arriving at Chhatrapati Shivaji Maharaj International Airport discover, plan and enjoy Mumbai during their layover.</p>
-<div class="reveal flex flex-col sm:flex-row items-center justify-center gap-4 mb-14">
-<a href="#planner" class="w-full sm:w-auto px-8 py-4 bg-sky-500 hover:bg-sky-600 text-white font-bold rounded-xl transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 text-center">Plan My Layover</a>
-<a href="#experiences" class="w-full sm:w-auto px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-bold rounded-xl border border-white/20 transition-all hover:-translate-y-0.5 text-center">Explore Mumbai</a>
+<h1 class="reveal text-4xl sm:text-5xl md:text-7xl font-extrabold text-white mb-6 leading-tight">Experience Mumbai<br/><span class="text-sky-400">Beyond The Airport</span></h1>
+<p class="reveal text-base sm:text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-10 leading-relaxed">Discover hotels, restaurants, spas, city tours, airport transfers and curated experiences around Mumbai Airport.</p>
+<div class="reveal flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
+<a href="#categories" class="w-full sm:w-auto px-8 py-4 bg-sky-500 hover:bg-sky-600 text-white font-bold rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 text-center">Explore Experiences</a>
+<a href="#search" class="w-full sm:w-auto px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-bold rounded-xl border border-white/20 hover:-translate-y-0.5 text-center">Plan My Layover</a>
 </div>
 <div class="reveal grid grid-cols-2 md:grid-cols-4 gap-3 max-w-3xl mx-auto">
-<div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-4 sm:p-5 text-center">
-<div class="text-2xl sm:text-3xl font-bold text-white mb-1">CSIA</div>
-<div class="text-white/60 text-xs sm:text-sm">Airport Focused</div>
+<div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-4 text-center"><div class="text-2xl sm:text-3xl font-bold text-white mb-1">6+</div><div class="text-white/60 text-xs sm:text-sm">Categories</div></div>
+<div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-4 text-center"><div class="text-2xl sm:text-3xl font-bold text-white mb-1">CSIA</div><div class="text-white/60 text-xs sm:text-sm">Airport Focused</div></div>
+<div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-4 text-center"><div class="text-2xl sm:text-3xl font-bold text-white mb-1">24/7</div><div class="text-white/60 text-xs sm:text-sm">Support</div></div>
+<div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-4 text-center"><div class="text-2xl sm:text-3xl font-bold text-white mb-1">Mumbai</div><div class="text-white/60 text-xs sm:text-sm">Local Experts</div></div>
 </div>
-<div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-4 sm:p-5 text-center">
-<div class="text-2xl sm:text-3xl font-bold text-white mb-1">24/7</div>
-<div class="text-white/60 text-xs sm:text-sm">Pickup Support</div>
-</div>
-<div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-4 sm:p-5 text-center">
-<div class="text-2xl sm:text-3xl font-bold text-white mb-1">Local</div>
-<div class="text-white/60 text-xs sm:text-sm">Expert Guidance</div>
-</div>
-<div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-4 sm:p-5 text-center">
-<div class="text-2xl sm:text-3xl font-bold text-white mb-1">Curated</div>
-<div class="text-white/60 text-xs sm:text-sm">Experiences</div>
-</div>
-</div>
-</div>
-<div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce" aria-hidden="true">
-<svg class="w-6 h-6 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
 </div>
 </header>
 
-<!-- Layover Planner -->
-<section class="relative z-20 -mt-20 sm:-mt-24 px-4 sm:px-6 mb-20" id="planner">
+<!-- QUICK SEARCH -->
+<section class="relative z-20 -mt-16 sm:-mt-20 px-4 sm:px-6 mb-16" id="search">
 <div class="container">
-<div class="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl shadow-sky-500/10 p-5 sm:p-8 border border-white/60">
-<div class="flex items-center gap-3 mb-6">
-<div class="w-10 h-10 bg-sky-50 rounded-xl flex items-center justify-center">
-<svg class="w-5 h-5 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"/></svg>
+<div class="bg-white rounded-3xl shadow-2xl shadow-sky-500/10 p-5 sm:p-8 border border-gray-100">
+<div class="flex items-center gap-2 sm:gap-3 mb-6 overflow-x-auto no-scrollbar -mx-1 pb-2" id="search-tabs">
+<button class="search-tab active flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium whitespace-nowrap flex-shrink-0" data-tab="hotels"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-9.5-16.5h.008v.008h-.008V4.5zm1.06 4.72l1.06-1.06a.75.75 0 011.06 0l1.06 1.06a.75.75 0 010 1.06l-1.06 1.06a.75.75 0 01-1.06 0l-1.06-1.06a.75.75 0 010-1.06zM6.75 21v-4.5a2.25 2.25 0 012.25-2.25h6a2.25 2.25 0 012.25 2.25V21"/></svg>Hotels</button>
+<button class="search-tab flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium text-gray-600 hover:bg-gray-100 whitespace-nowrap flex-shrink-0" data-tab="restaurants"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8.25v-1.5m0 1.5c-2.485 0-4.5 4.03-4.5 9s2.015 9 4.5 9 4.5-4.03 4.5-9-2.015-9-4.5-9z"/></svg>Restaurants</button>
+<button class="search-tab flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium text-gray-600 hover:bg-gray-100 whitespace-nowrap flex-shrink-0" data-tab="spa"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/></svg>Spa</button>
+<button class="search-tab flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium text-gray-600 hover:bg-gray-100 whitespace-nowrap flex-shrink-0" data-tab="entertainment"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14.25 6.087c0-.355.186-.676.401-.959.221-.29.349-.634.349-1.003 0-1.036-1.007-1.875-2.25-1.875s-2.25.84-2.25 1.875c0 .369.128.713.349 1.003.215.283.401.604.401.959v0a.64.64 0 01-.657.643 48.39 48.39 0 01-4.163-.3c.186 1.613.293 3.25.315 4.907a.656.656 0 01-.658.663v0c-.355 0-.676-.186-.959-.401a1.647 1.647 0 00-1.003-.349c-1.036 0-1.875 1.007-1.875 2.25s.84 2.25 1.875 2.25c.369 0 .713-.128 1.003-.349.283-.215.604-.401.959-.401v0c.31 0 .555.26.532.57a48.039 48.039 0 01-.642 5.056c1.518.19 3.058.309 4.616.354a.64.64 0 00.657-.643v0c0-.355-.186-.676-.401-.959a1.647 1.647 0 01-.349-1.003c0-1.035 1.008-1.875 2.25-1.875 1.243 0 2.25.84 2.25 1.875 0 .369-.128.713-.349 1.003-.215.283-.4.604-.4.959v0c0 .333.277.599.61.58a48.1 48.1 0 005.427-.63 48.05 48.05 0 00.582-4.717.532.532 0 00-.533-.57v0c-.355 0-.676.186-.959.401-.29.221-.634.349-1.003.349-1.035 0-1.875-1.007-1.875-2.25s.84-2.25 1.875-2.25c.37 0 .713.128 1.003.349.283.215.604.401.96.401v0a.656.656 0 00.658-.663 48.422 48.422 0 00-.37-5.36c-1.886.342-3.81.574-5.766.689a.578.578 0 01-.61-.58v0z"/></svg>Entertainment</button>
+<button class="search-tab flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium text-gray-600 hover:bg-gray-100 whitespace-nowrap flex-shrink-0" data-tab="tours"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>Tours</button>
+<button class="search-tab flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium text-gray-600 hover:bg-gray-100 whitespace-nowrap flex-shrink-0" data-tab="transfers"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.5m-3 0H21M3.375 14.25h17.25M3.375 14.25L5.625 7.5h12.75l2.25 6.75"/></svg>Transfers</button>
 </div>
-<div>
-<h2 class="text-lg sm:text-xl font-bold text-gray-900">Layover Planner</h2>
-<p class="text-sm text-gray-500">Customize your perfect Mumbai layover</p>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3" id="search-fields">
+<div class="bg-gray-50 border border-gray-200 rounded-xl p-3"><label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Location</label><select class="w-full bg-transparent text-sm font-semibold text-gray-900"><option>Near Mumbai Airport</option><option>South Mumbai</option><option>Bandra</option><option>Andheri</option></select></div>
+<div class="bg-gray-50 border border-gray-200 rounded-xl p-3"><label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Date</label><input type="date" class="w-full bg-transparent text-sm font-semibold text-gray-900" value="2025-07-15"/></div>
+<div class="bg-gray-50 border border-gray-200 rounded-xl p-3"><label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Travelers</label><select class="w-full bg-transparent text-sm font-semibold text-gray-900"><option>1 Traveler</option><option>2 Travelers</option><option>3 Travelers</option><option>4+ Travelers</option></select></div>
+<div class="bg-gray-50 border border-gray-200 rounded-xl p-3"><label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Time</label><select class="w-full bg-transparent text-sm font-semibold text-gray-900"><option>Morning</option><option>Afternoon</option><option>Evening</option><option>Flexible</option></select></div>
 </div>
-</div>
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-<div class="bg-white border border-gray-200 rounded-xl p-3">
-<label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Arrival Time</label>
-<input type="datetime-local" class="w-full bg-transparent text-sm font-semibold text-gray-900" aria-label="Arrival time"/>
-</div>
-<div class="bg-white border border-gray-200 rounded-xl p-3">
-<label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Departure Time</label>
-<input type="datetime-local" class="w-full bg-transparent text-sm font-semibold text-gray-900" aria-label="Departure time"/>
-</div>
-<div class="bg-white border border-gray-200 rounded-xl p-3">
-<label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Travelers</label>
-<select class="w-full bg-transparent text-sm font-semibold text-gray-900" aria-label="Number of travelers"
-><option>1 Traveler</option><option>2 Travelers</option><option>3 Travelers</option><option>4+ Travelers</option></select>
-</div>
-<div class="bg-white border border-gray-200 rounded-xl p-3">
-<label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Interests</label>
-<div class="flex flex-wrap gap-2 pt-1">
-<label class="flex items-center gap-1.5 px-3 py-1.5 bg-gray-50 hover:bg-sky-50 rounded-full text-xs font-medium text-gray-700 hover:text-sky-700 cursor-pointer transition-colors border border-gray-200 hover:border-sky-200"><input type="checkbox" class="w-3.5 h-3.5 accent-sky-500"/> Food</label>
-<label class="flex items-center gap-1.5 px-3 py-1.5 bg-gray-50 hover:bg-sky-50 rounded-full text-xs font-medium text-gray-700 hover:text-sky-700 cursor-pointer transition-colors border border-gray-200 hover:border-sky-200"><input type="checkbox" class="w-3.5 h-3.5 accent-sky-500"/> Shopping</label>
-<label class="flex items-center gap-1.5 px-3 py-1.5 bg-gray-50 hover:bg-sky-50 rounded-full text-xs font-medium text-gray-700 hover:text-sky-700 cursor-pointer transition-colors border border-gray-200 hover:border-sky-200"><input type="checkbox" class="w-3.5 h-3.5 accent-sky-500"/> Sightseeing</label>
-<label class="flex items-center gap-1.5 px-3 py-1.5 bg-gray-50 hover:bg-sky-50 rounded-full text-xs font-medium text-gray-700 hover:text-sky-700 cursor-pointer transition-colors border border-gray-200 hover:border-sky-200"><input type="checkbox" class="w-3.5 h-3.5 accent-sky-500"/> Culture</label>
-</div>
-</div>
-</div>
-<button class="w-full mt-5 py-3.5 bg-gradient-to-r from-sky-500 to-sky-600 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-0.5" type="button">Get My Layover Plan</button>
+<button class="w-full mt-5 py-3.5 bg-gradient-to-r from-sky-500 to-sky-600 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-0.5" type="button">Search Now</button>
 </div>
 </div>
 </section>
 
-<!-- Mumbai Experiences -->
-<section class="py-16 sm:py-24 bg-white" id="experiences">
+<!-- POPULAR CATEGORIES -->
+<section class="section bg-white" id="categories">
 <div class="container">
-<div class="text-center mb-12 reveal">
-<span class="inline-block text-sky-600 font-semibold text-sm uppercase tracking-wider mb-3">Mumbai Layover</span>
-<h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">Explore Mumbai</h2>
-<p class="text-gray-500 max-w-2xl mx-auto">Curated experiences within easy reach of Chhatrapati Shivaji Maharaj International Airport.</p>
+<div class="text-center mb-10 sm:mb-12 reveal">
+<span class="inline-block text-sky-600 font-semibold text-sm uppercase tracking-wider mb-3">Categories</span>
+<h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-3">Popular Categories</h2>
+<p class="text-gray-500 max-w-xl mx-auto">Discover what Mumbai has to offer during your visit.</p>
 </div>
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-<div class="card">
-<div class="relative h-56 sm:h-64 overflow-hidden">
-<img alt="Gateway of India Mumbai" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1605307066130-098b5f638948?w=600&h=400&fit=crop"/>
-<div class="absolute top-4 left-4 bg-white/95 px-3 py-1.5 rounded-full text-xs font-semibold text-gray-800 flex items-center gap-1">
-<svg class="w-3.5 h-3.5 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
-26 km
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+<a href="#hotels" class="card group reveal">
+<div class="relative h-48 overflow-hidden"><img alt="Luxury hotel near Mumbai Airport" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&h=400&fit=crop"/><div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div><div class="absolute top-4 left-4 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-xl flex items-center justify-center"><svg class="w-5 h-5 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-9.5-16.5h.008v.008h-.008V4.5z"/></svg></div></div>
+<div class="p-5"><h3 class="text-lg font-bold text-gray-900 mb-1">Hotels</h3><p class="text-gray-500 text-sm">Premium stays near Mumbai Airport with 24/7 check-in and shuttle support.</p></div>
+</a>
+<a href="#restaurants" class="card group reveal">
+<div class="relative h-48 overflow-hidden"><img alt="Mumbai restaurants and dining" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&h=400&fit=crop"/><div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div><div class="absolute top-4 left-4 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-xl flex items-center justify-center"><svg class="w-5 h-5 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8.25v-1.5m0 1.5c-2.485 0-4.5 4.03-4.5 9"/></svg></div></div>
+<div class="p-5"><h3 class="text-lg font-bold text-gray-900 mb-1">Restaurants</h3><p class="text-gray-500 text-sm">From street food to fine dining, explore Mumbai's vibrant culinary scene.</p></div>
+</a>
+<a href="#spa" class="card group reveal">
+<div class="relative h-48 overflow-hidden"><img alt="Spa and wellness in Mumbai" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=600&h=400&fit=crop"/><div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div><div class="absolute top-4 left-4 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-xl flex items-center justify-center"><svg class="w-5 h-5 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5"/></svg></div></div>
+<div class="p-5"><h3 class="text-lg font-bold text-gray-900 mb-1">Spa & Wellness</h3><p class="text-gray-500 text-sm">Relax and rejuvenate with premium spa treatments between flights.</p></div>
+</a>
+<a href="#entertainment" class="card group reveal">
+<div class="relative h-48 overflow-hidden"><img alt="Gaming and entertainment lounge" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&h=400&fit=crop"/><div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div><div class="absolute top-4 left-4 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-xl flex items-center justify-center"><svg class="w-5 h-5 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14.25 6.087"/></svg></div></div>
+<div class="p-5"><h3 class="text-lg font-bold text-gray-900 mb-1">Gaming & Entertainment</h3><p class="text-gray-500 text-sm">Game lounges, VR zones, and entertainment for all ages near the airport.</p></div>
+</a>
+<a href="#tours" class="card group reveal">
+<div class="relative h-48 overflow-hidden"><img alt="Mumbai city tour" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" src="https://images.unsplash.com/photo-1567157577867-3c5d4b5e9a0e?w=600&h=400&fit=crop"/><div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div><div class="absolute top-4 left-4 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-xl flex items-center justify-center"><svg class="w-5 h-5 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0"/></svg></div></div>
+<div class="p-5"><h3 class="text-lg font-bold text-gray-900 mb-1">City Tours</h3><p class="text-gray-500 text-sm">Time-optimized tours perfect for layover travelers wanting to explore Mumbai.</p></div>
+</a>
+<a href="#transfers" class="card group reveal">
+<div class="relative h-48 overflow-hidden"><img alt="Airport transfer car service" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" src="https://images.unsplash.com/photo-1559416523-140ddc3d238c?w=600&h=400&fit=crop"/><div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div><div class="absolute top-4 left-4 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-xl flex items-center justify-center"><svg class="w-5 h-5 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0"/></svg></div></div>
+<div class="p-5"><h3 class="text-lg font-bold text-gray-900 mb-1">Airport Transfers</h3><p class="text-gray-500 text-sm">Reliable pickup and drop services with fixed pricing and professional drivers.</p></div>
+</a>
 </div>
 </div>
+</section>
+
+<!-- FEATURED EXPERIENCES -->
+<section class="section bg-gray-50" id="experiences">
+<div class="container">
+<div class="text-center mb-10 sm:mb-12 reveal">
+<span class="inline-block text-sky-600 font-semibold text-sm uppercase tracking-wider mb-3">Featured</span>
+<h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-3">Featured Experiences</h2>
+<p class="text-gray-500 max-w-xl mx-auto">Handpicked experiences for every kind of traveler.</p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+<div class="card reveal">
+<div class="relative h-52 overflow-hidden"><img alt="Luxury Airport Hotel" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=600&h=400&fit=crop"/><div class="absolute top-4 right-4 bg-sky-500 text-white text-xs font-bold px-3 py-1 rounded-full">Popular</div></div>
 <div class="p-5">
-<h3 class="text-lg font-bold text-gray-900 mb-2">Gateway of India</h3>
-<p class="text-gray-500 text-sm mb-4">Iconic waterfront monument overlooking the Arabian Sea. Perfect photo spot with historic charm.</p>
-<div class="flex items-center justify-between">
-<span class="text-xs font-medium text-sky-600 bg-sky-50 px-2 py-1 rounded-full">2-3 hours</span>
-<span class="text-sm font-semibold text-gray-900">Explorer Friendly</span>
+<div class="flex items-center gap-3 text-xs text-gray-500 mb-3"><span class="flex items-center gap-1"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5"/></svg>24h access</span><span class="flex items-center gap-1"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0"/></svg>2 km</span></div>
+<h3 class="text-lg font-bold text-gray-900 mb-1">Luxury Airport Hotel</h3>
+<p class="text-gray-500 text-sm mb-4">Day-use rooms and shower facilities steps from CSIA terminals.</p>
+<div class="flex items-center justify-between"><div><span class="text-xs text-gray-400">Starting from</span><div class="text-lg font-bold text-sky-600">&#8377;2,999</div></div><a href="#contact" class="text-sm font-semibold text-sky-600 hover:text-sky-700">Book Now &rarr;</a></div>
 </div>
 </div>
-</div>
-<div class="card">
-<div class="relative h-56 sm:h-64 overflow-hidden">
-<img alt="Marine Drive Mumbai" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1529253355930-ddbe997a010d?w=600&h=400&fit=crop"/>
-<div class="absolute top-4 left-4 bg-white/95 px-3 py-1.5 rounded-full text-xs font-semibold text-gray-800 flex items-center gap-1">
-<svg class="w-3.5 h-3.5 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
-18 km
-</div>
-</div>
+<div class="card reveal">
+<div class="relative h-52 overflow-hidden"><img alt="Mumbai Food Trail" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=600&h=400&fit=crop"/></div>
 <div class="p-5">
-<h3 class="text-lg font-bold text-gray-900 mb-2">Marine Drive</h3>
-<p class="text-gray-500 text-sm mb-4">3.6km boulevard along the coast known as the Queen's Necklace. Best visited at sunset.</p>
-<div class="flex items-center justify-between">
-<span class="text-xs font-medium text-sky-600 bg-sky-50 px-2 py-1 rounded-full">1-2 hours</span>
-<span class="text-sm font-semibold text-gray-900">Relaxing</span>
+<div class="flex items-center gap-3 text-xs text-gray-500 mb-3"><span class="flex items-center gap-1"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5"/></svg>3 hours</span><span class="flex items-center gap-1"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0"/></svg>8 km</span></div>
+<h3 class="text-lg font-bold text-gray-900 mb-1">Mumbai Food Trail</h3>
+<p class="text-gray-500 text-sm mb-4">Taste iconic Mumbai street food and local favorites with a guide.</p>
+<div class="flex items-center justify-between"><div><span class="text-xs text-gray-400">Starting from</span><div class="text-lg font-bold text-sky-600">&#8377;1,499</div></div><a href="#contact" class="text-sm font-semibold text-sky-600 hover:text-sky-700">Book Now &rarr;</a></div>
 </div>
 </div>
-</div>
-<div class="card">
-<div class="relative h-56 sm:h-64 overflow-hidden">
-<img alt="Colaba Causeway Mumbai" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1570168007205-dfb528c69538?w=600&h=400&fit=crop"/>
-<div class="absolute top-4 left-4 bg-white/95 px-3 py-1.5 rounded-full text-xs font-semibold text-gray-800 flex items-center gap-1">
-<svg class="w-3.5 h-3.5 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
-24 km
-</div>
-</div>
+<div class="card reveal">
+<div class="relative h-52 overflow-hidden"><img alt="Marine Drive Evening Tour" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1570168007205-dfb528c69538?w=600&h=400&fit=crop"/></div>
 <div class="p-5">
-<h3 class="text-lg font-bold text-gray-900 mb-2">Colaba Causeway</h3>
-<p class="text-gray-500 text-sm mb-4">Vibrant street market with antiques, jewelry, and local crafts. A shopper's paradise.</p>
-<div class="flex items-center justify-between">
-<span class="text-xs font-medium text-sky-600 bg-sky-50 px-2 py-1 rounded-full">2-3 hours</span>
-<span class="text-sm font-semibold text-gray-900">Shopping</span>
+<div class="flex items-center gap-3 text-xs text-gray-500 mb-3"><span class="flex items-center gap-1"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5"/></svg>2 hours</span><span class="flex items-center gap-1"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0"/></svg>18 km</span></div>
+<h3 class="text-lg font-bold text-gray-900 mb-1">Marine Drive Evening Tour</h3>
+<p class="text-gray-500 text-sm mb-4">Sunset views at the Queen's Necklace with curated stops along the way.</p>
+<div class="flex items-center justify-between"><div><span class="text-xs text-gray-400">Starting from</span><div class="text-lg font-bold text-sky-600">&#8377;1,999</div></div><a href="#contact" class="text-sm font-semibold text-sky-600 hover:text-sky-700">Book Now &rarr;</a></div>
 </div>
 </div>
-</div>
-<div class="card">
-<div class="relative h-56 sm:h-64 overflow-hidden">
-<img alt="Bandra Mumbai" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1582510003544-4d80b8977699?w=600&h=400&fit=crop"/>
-<div class="absolute top-4 left-4 bg-white/95 px-3 py-1.5 rounded-full text-xs font-semibold text-gray-800 flex items-center gap-1">
-<svg class="w-3.5 h-3.5 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
-12 km
-</div>
-</div>
+<div class="card reveal">
+<div class="relative h-52 overflow-hidden"><img alt="Premium Spa Session" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&h=400&fit=crop"/><div class="absolute top-4 right-4 bg-emerald-500 text-white text-xs font-bold px-3 py-1 rounded-full">New</div></div>
 <div class="p-5">
-<h3 class="text-lg font-bold text-gray-900 mb-2">Bandra</h3>
-<p class="text-gray-500 text-sm mb-4">Trendy neighborhood with art murals, cafes, and the iconic Bandra-Worli Sea Link views.</p>
-<div class="flex items-center justify-between">
-<span class="text-xs font-medium text-sky-600 bg-sky-50 px-2 py-1 rounded-full">2-4 hours</span>
-<span class="text-sm font-semibold text-gray-900">Trendy</span>
+<div class="flex items-center gap-3 text-xs text-gray-500 mb-3"><span class="flex items-center gap-1"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5"/></svg>90 mins</span><span class="flex items-center gap-1"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0"/></svg>3 km</span></div>
+<h3 class="text-lg font-bold text-gray-900 mb-1">Premium Spa Session</h3>
+<p class="text-gray-500 text-sm mb-4">60-min deep tissue massage and relaxation therapy near the airport.</p>
+<div class="flex items-center justify-between"><div><span class="text-xs text-gray-400">Starting from</span><div class="text-lg font-bold text-sky-600">&#8377;2,499</div></div><a href="#contact" class="text-sm font-semibold text-sky-600 hover:text-sky-700">Book Now &rarr;</a></div>
 </div>
 </div>
-</div>
-<div class="card">
-<div class="relative h-56 sm:h-64 overflow-hidden">
-<img alt="Juhu Beach Mumbai" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1605307066130-098b5f638948?w=600&h=400&fit=crop"/>
-<div class="absolute top-4 left-4 bg-white/95 px-3 py-1.5 rounded-full text-xs font-semibold text-gray-800 flex items-center gap-1">
-<svg class="w-3.5 h-3.5 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
-8 km
-</div>
-</div>
+<div class="card reveal">
+<div class="relative h-52 overflow-hidden"><img alt="Gaming Lounge Access" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600&h=400&fit=crop"/></div>
 <div class="p-5">
-<h3 class="text-lg font-bold text-gray-900 mb-2">Juhu Beach</h3>
-<p class="text-gray-500 text-sm mb-4">Popular beach near the airport, famous for street food and evening walks.</p>
-<div class="flex items-center justify-between">
-<span class="text-xs font-medium text-sky-600 bg-sky-50 px-2 py-1 rounded-full">1-2 hours</span>
-<span class="text-sm font-semibold text-gray-900">Beach</span>
+<div class="flex items-center gap-3 text-xs text-gray-500 mb-3"><span class="flex items-center gap-1"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5"/></svg>2 hours</span><span class="flex items-center gap-1"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0"/></svg>2 km</span></div>
+<h3 class="text-lg font-bold text-gray-900 mb-1">Gaming Lounge Access</h3>
+<p class="text-gray-500 text-sm mb-4">Premium gaming lounge with console games, VR, and refreshments.</p>
+<div class="flex items-center justify-between"><div><span class="text-xs text-gray-400">Starting from</span><div class="text-lg font-bold text-sky-600">&#8377;999</div></div><a href="#contact" class="text-sm font-semibold text-sky-600 hover:text-sky-700">Book Now &rarr;</a></div>
 </div>
 </div>
-</div>
-<div class="card">
-<div class="relative h-56 sm:h-64 overflow-hidden">
-<img alt="Siddhivinayak Temple Mumbai" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1605307066130-098b5f638948?w=600&h=400&fit=crop"/>
-<div class="absolute top-4 left-4 bg-white/95 px-3 py-1.5 rounded-full text-xs font-semibold text-gray-800 flex items-center gap-1">
-<svg class="w-3.5 h-3.5 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
-22 km
-</div>
-</div>
+<div class="card reveal">
+<div class="relative h-52 overflow-hidden"><img alt="Gateway of India Tour" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1605307066130-098b5f638948?w=600&h=400&fit=crop"/></div>
 <div class="p-5">
-<h3 class="text-lg font-bold text-gray-900 mb-2">Siddhivinayak Temple</h3>
-<p class="text-gray-500 text-sm mb-4">Historic Hindu temple dedicated to Lord Ganesha. Spiritual experience with beautiful architecture.</p>
-<div class="flex items-center justify-between">
-<span class="text-xs font-medium text-sky-600 bg-sky-50 px-2 py-1 rounded-full">1-2 hours</span>
-<span class="text-sm font-semibold text-gray-900">Spiritual</span>
-</div>
+<div class="flex items-center gap-3 text-xs text-gray-500 mb-3"><span class="flex items-center gap-1"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5"/></svg>4 hours</span><span class="flex items-center gap-1"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0"/></svg>26 km</span></div>
+<h3 class="text-lg font-bold text-gray-900 mb-1">Gateway Of India Tour</h3>
+<p class="text-gray-500 text-sm mb-4">Iconic monument with photo stops and Taj Hotel views.</p>
+<div class="flex items-center justify-between"><div><span class="text-xs text-gray-400">Starting from</span><div class="text-lg font-bold text-sky-600">&#8377;2,299</div></div><a href="#contact" class="text-sm font-semibold text-sky-600 hover:text-sky-700">Book Now &rarr;</a></div>
 </div>
 </div>
 </div>
 </div>
 </section>
 
-<!-- How It Works -->
-<section class="py-16 sm:py-24 bg-gray-50" id="how-it-works">
+<!-- MUMBAI HIGHLIGHTS -->
+<section class="section bg-white" id="highlights">
 <div class="container">
-<div class="text-center mb-12 reveal">
-<h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">How It Works</h2>
-<p class="text-gray-500 max-w-2xl mx-auto">Three simple steps to your perfect Mumbai layover.</p>
+<div class="text-center mb-10 sm:mb-12 reveal">
+<span class="inline-block text-sky-600 font-semibold text-sm uppercase tracking-wider mb-3">Mumbai</span>
+<h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-3">Mumbai Highlights</h2>
+<p class="text-gray-500 max-w-xl mx-auto">Must-visit spots and how they fit your layover timeline.</p>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+<div class="card reveal">
+<div class="relative h-48 overflow-hidden"><img alt="Gateway of India" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1605307066130-098b5f638948?w=600&h=400&fit=crop"/><div class="absolute top-4 left-4 bg-white/95 px-3 py-1 rounded-full text-xs font-semibold text-gray-800">26 km from airport</div></div>
+<div class="p-5"><h3 class="text-lg font-bold text-gray-900 mb-2">Gateway of India</h3><p class="text-gray-500 text-sm mb-3">Iconic waterfront monument with stunning architecture and sea views.</p><div class="flex items-center gap-2 text-xs"><span class="bg-sky-50 text-sky-700 px-2 py-1 rounded-full font-medium">2-3 hours</span><span class="bg-emerald-50 text-emerald-700 px-2 py-1 rounded-full font-medium">6h+ layover</span></div></div>
+</div>
+<div class="card reveal">
+<div class="relative h-48 overflow-hidden"><img alt="Marine Drive" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1570168007205-dfb528c69538?w=600&h=400&fit=crop"/><div class="absolute top-4 left-4 bg-white/95 px-3 py-1 rounded-full text-xs font-semibold text-gray-800">18 km from airport</div></div>
+<div class="p-5"><h3 class="text-lg font-bold text-gray-900 mb-2">Marine Drive</h3><p class="text-gray-500 text-sm mb-3">3.6 km boulevard with sunset views and Art Deco architecture.</p><div class="flex items-center gap-2 text-xs"><span class="bg-sky-50 text-sky-700 px-2 py-1 rounded-full font-medium">1-2 hours</span><span class="bg-emerald-50 text-emerald-700 px-2 py-1 rounded-full font-medium">4h+ layover</span></div></div>
+</div>
+<div class="card reveal">
+<div class="relative h-48 overflow-hidden"><img alt="Juhu Beach" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1582510003544-4d80b8977699?w=600&h=400&fit=crop"/><div class="absolute top-4 left-4 bg-white/95 px-3 py-1 rounded-full text-xs font-semibold text-gray-800">8 km from airport</div></div>
+<div class="p-5"><h3 class="text-lg font-bold text-gray-900 mb-2">Juhu Beach</h3><p class="text-gray-500 text-sm mb-3">Popular beach famous for street food and evening walks.</p><div class="flex items-center gap-2 text-xs"><span class="bg-sky-50 text-sky-700 px-2 py-1 rounded-full font-medium">1-2 hours</span><span class="bg-emerald-50 text-emerald-700 px-2 py-1 rounded-full font-medium">3h+ layover</span></div></div>
+</div>
+<div class="card reveal">
+<div class="relative h-48 overflow-hidden"><img alt="Bandra" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1529253355930-ddbe997a010d?w=600&h=400&fit=crop"/><div class="absolute top-4 left-4 bg-white/95 px-3 py-1 rounded-full text-xs font-semibold text-gray-800">12 km from airport</div></div>
+<div class="p-5"><h3 class="text-lg font-bold text-gray-900 mb-2">Bandra</h3><p class="text-gray-500 text-sm mb-3">Trendy neighborhood with cafes, art murals, and sea link views.</p><div class="flex items-center gap-2 text-xs"><span class="bg-sky-50 text-sky-700 px-2 py-1 rounded-full font-medium">2-3 hours</span><span class="bg-emerald-50 text-emerald-700 px-2 py-1 rounded-full font-medium">5h+ layover</span></div></div>
+</div>
+<div class="card reveal">
+<div class="relative h-48 overflow-hidden"><img alt="Colaba Causeway" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&h=400&fit=crop"/><div class="absolute top-4 left-4 bg-white/95 px-3 py-1 rounded-full text-xs font-semibold text-gray-800">24 km from airport</div></div>
+<div class="p-5"><h3 class="text-lg font-bold text-gray-900 mb-2">Colaba Causeway</h3><p class="text-gray-500 text-sm mb-3">Vibrant street market with antiques, jewelry, and local crafts.</p><div class="flex items-center gap-2 text-xs"><span class="bg-sky-50 text-sky-700 px-2 py-1 rounded-full font-medium">2-3 hours</span><span class="bg-emerald-50 text-emerald-700 px-2 py-1 rounded-full font-medium">6h+ layover</span></div></div>
+</div>
+<div class="card reveal">
+<div class="relative h-48 overflow-hidden"><img alt="Siddhivinayak Temple" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1609947017136-9daf32a5b7e7?w=600&h=400&fit=crop"/><div class="absolute top-4 left-4 bg-white/95 px-3 py-1 rounded-full text-xs font-semibold text-gray-800">22 km from airport</div></div>
+<div class="p-5"><h3 class="text-lg font-bold text-gray-900 mb-2">Siddhivinayak Temple</h3><p class="text-gray-500 text-sm mb-3">Historic temple with spiritual experience and beautiful architecture.</p><div class="flex items-center gap-2 text-xs"><span class="bg-sky-50 text-sky-700 px-2 py-1 rounded-full font-medium">1-2 hours</span><span class="bg-emerald-50 text-emerald-700 px-2 py-1 rounded-full font-medium">4h+ layover</span></div></div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- AIRPORT TRANSFERS -->
+<section class="section bg-gradient-to-br from-sky-50 to-white" id="transfers">
+<div class="container">
+<div class="text-center mb-10 sm:mb-12 reveal">
+<span class="inline-block text-sky-600 font-semibold text-sm uppercase tracking-wider mb-3">Transfers</span>
+<h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-3">Airport Transfers</h2>
+<p class="text-gray-500 max-w-xl mx-auto">Reliable rides to and from Chhatrapati Shivaji Maharaj International Airport.</p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 mb-10">
+<div class="card p-6 reveal">
+<div class="w-12 h-12 bg-sky-50 rounded-xl flex items-center justify-center mb-4"><svg class="w-6 h-6 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375"/></svg></div>
+<h3 class="text-lg font-bold text-gray-900 mb-1">Airport Pickup</h3>
+<p class="text-gray-500 text-sm">Driver meets you at arrivals with name sign.</p>
+</div>
+<div class="card p-6 reveal">
+<div class="w-12 h-12 bg-sky-50 rounded-xl flex items-center justify-center mb-4"><svg class="w-6 h-6 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"/></svg></div>
+<h3 class="text-lg font-bold text-gray-900 mb-1">Chauffeur Service</h3>
+<p class="text-gray-500 text-sm">Premium vehicles with professional chauffeurs.</p>
+</div>
+<div class="card p-6 reveal">
+<div class="w-12 h-12 bg-sky-50 rounded-xl flex items-center justify-center mb-4"><svg class="w-6 h-6 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72"/></svg></div>
+<h3 class="text-lg font-bold text-gray-900 mb-1">Shared Transfers</h3>
+<p class="text-gray-500 text-sm">Cost-effective rides with other travelers.</p>
+</div>
+<div class="card p-6 reveal">
+<div class="w-12 h-12 bg-sky-50 rounded-xl flex items-center justify-center mb-4"><svg class="w-6 h-6 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375"/></svg></div>
+<h3 class="text-lg font-bold text-gray-900 mb-1">Private Taxi</h3>
+<p class="text-gray-500 text-sm">Dedicated vehicle for your group, fixed pricing.</p>
+</div>
+</div>
+<div class="bg-white rounded-2xl p-6 sm:p-8 border border-gray-100 shadow-sm reveal">
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+<div class="flex items-start gap-3"><div class="w-8 h-8 bg-emerald-50 rounded-lg flex items-center justify-center flex-shrink-0"><svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg></div><div><h4 class="font-bold text-gray-900 text-sm">Fixed Pricing</h4><p class="text-gray-500 text-xs">No surge, no hidden fees</p></div></div>
+<div class="flex items-start gap-3"><div class="w-8 h-8 bg-emerald-50 rounded-lg flex items-center justify-center flex-shrink-0"><svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg></div><div><h4 class="font-bold text-gray-900 text-sm">Reliable Drivers</h4><p class="text-gray-500 text-xs">Verified, trained, on-time</p></div></div>
+<div class="flex items-start gap-3"><div class="w-8 h-8 bg-emerald-50 rounded-lg flex items-center justify-center flex-shrink-0"><svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg></div><div><h4 class="font-bold text-gray-900 text-sm">Airport Pickup</h4><p class="text-gray-500 text-xs">Flight tracking included</p></div></div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section bg-gray-50" id="how-it-works">
+<div class="container">
+<div class="text-center mb-10 sm:mb-12 reveal">
+<span class="inline-block text-sky-600 font-semibold text-sm uppercase tracking-wider mb-3">Process</span>
+<h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-3">How It Works</h2>
+<p class="text-gray-500 max-w-xl mx-auto">Three simple steps to your perfect Mumbai experience.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
 <div class="text-center reveal">
-<div class="w-16 h-16 bg-sky-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
-<svg class="w-8 h-8 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"/></svg>
-</div>
-<h3 class="text-xl font-bold text-gray-900 mb-2">Share Your Times</h3>
-<p class="text-gray-500 text-sm">Enter your arrival and departure times at Chhatrapati Shivaji Maharaj International Airport.</p>
+<div class="w-16 h-16 bg-sky-500 text-white rounded-2xl flex items-center justify-center mx-auto mb-5 text-2xl font-bold shadow-lg shadow-sky-500/30">1</div>
+<h3 class="text-xl font-bold text-gray-900 mb-2">Search &amp; Discover</h3>
+<p class="text-gray-500 text-sm max-w-xs mx-auto">Browse hotels, restaurants, tours and experiences near Mumbai Airport.</p>
 </div>
 <div class="text-center reveal">
-<div class="w-16 h-16 bg-sky-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
-<svg class="w-8 h-8 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.252 8.252 0 016.364 3.636a9.59 9.59 0 0021 0"/></svg>
-</div>
-<h3 class="text-xl font-bold text-gray-900 mb-2">Choose Interests</h3>
-<p class="text-gray-500 text-sm">Select what you'd like to do: food, shopping, sightseeing, or culture during your layover.</p>
+<div class="w-16 h-16 bg-sky-500 text-white rounded-2xl flex items-center justify-center mx-auto mb-5 text-2xl font-bold shadow-lg shadow-sky-500/30">2</div>
+<h3 class="text-xl font-bold text-gray-900 mb-2">Pick What You Love</h3>
+<p class="text-gray-500 text-sm max-w-xs mx-auto">Filter by your layover time, interests, and budget.</p>
 </div>
 <div class="text-center reveal">
-<div class="w-16 h-16 bg-sky-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
-<svg class="w-8 h-8 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-</div>
-<h3 class="text-xl font-bold text-gray-900 mb-2">Get Your Plan</h3>
-<p class="text-gray-500 text-sm">Receive a personalized, time-optimized layover itinerary for your Mumbai adventure.</p>
+<div class="w-16 h-16 bg-sky-500 text-white rounded-2xl flex items-center justify-center mx-auto mb-5 text-2xl font-bold shadow-lg shadow-sky-500/30">3</div>
+<h3 class="text-xl font-bold text-gray-900 mb-2">Book &amp; Enjoy</h3>
+<p class="text-gray-500 text-sm max-w-xs mx-auto">Confirm instantly and enjoy a seamless Mumbai experience.</p>
 </div>
 </div>
 </div>
 </section>
 
-<!-- Services -->
-<section class="py-16 sm:py-24 bg-white" id="services">
+<!-- WHY CHOOSE -->
+<section class="section bg-white" id="why">
 <div class="container">
-<div class="text-center mb-12 reveal">
-<span class="inline-block text-sky-600 font-semibold text-sm uppercase tracking-wider mb-3">What We Offer</span>
-<h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">Layover Services</h2>
-<p class="text-gray-500 max-w-2xl mx-auto">Everything you need for a smooth Mumbai layover.</p>
+<div class="text-center mb-10 sm:mb-12 reveal">
+<span class="inline-block text-sky-600 font-semibold text-sm uppercase tracking-wider mb-3">Why Us</span>
+<h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-3">Why Choose LayoverX</h2>
+<p class="text-gray-500 max-w-xl mx-auto">Built for travelers who want more from their layover.</p>
 </div>
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-<div class="card p-6 sm:p-8">
-<div class="w-12 h-12 bg-sky-50 rounded-xl flex items-center justify-center mb-4">
-<svg class="w-6 h-6 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
+<div class="card p-6 reveal">
+<div class="w-12 h-12 bg-sky-50 rounded-xl flex items-center justify-center mb-4"><svg class="w-6 h-6 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div>
+<h3 class="text-lg font-bold text-gray-900 mb-2">Mumbai Local Experts</h3>
+<p class="text-gray-500 text-sm">Curated by people who know the city inside out.</p>
 </div>
-<h3 class="text-lg font-bold text-gray-900 mb-2">Airport-Focused Planning</h3>
-<p class="text-gray-500 text-sm">Personalized itineraries designed around your flight schedule and terminal location.</p>
+<div class="card p-6 reveal">
+<div class="w-12 h-12 bg-sky-50 rounded-xl flex items-center justify-center mb-4"><svg class="w-6 h-6 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+<h3 class="text-lg font-bold text-gray-900 mb-2">Time-Optimized</h3>
+<p class="text-gray-500 text-sm">Itineraries built around your flight schedule.</p>
 </div>
-<div class="card p-6 sm:p-8">
-<div class="w-12 h-12 bg-sky-50 rounded-xl flex items-center justify-center mb-4">
-<svg class="w-6 h-6 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+<div class="card p-6 reveal">
+<div class="w-12 h-12 bg-sky-50 rounded-xl flex items-center justify-center mb-4"><svg class="w-6 h-6 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6"/></svg></div>
+<h3 class="text-lg font-bold text-gray-900 mb-2">Reliable &amp; Safe</h3>
+<p class="text-gray-500 text-sm">Verified partners, secure payments, 24/7 support.</p>
 </div>
-<h3 class="text-lg font-bold text-gray-900 mb-2">Time-Optimized Itineraries</h3>
-<p class="text-gray-500 text-sm">Maximize your layover with efficient routes and realistic time estimates for each stop.</p>
-</div>
-<div class="card p-6 sm:p-8">
-<div class="w-12 h-12 bg-sky-50 rounded-xl flex items-center justify-center mb-4">
-<svg class="w-6 h-6 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
-</div>
-<h3 class="text-lg font-bold text-gray-900 mb-2">Local Recommendations</h3>
-<p class="text-gray-500 text-sm">Insider tips on the best food, shopping, and hidden gems near the airport.</p>
-</div>
-<div class="card p-6 sm:p-8">
-<div class="w-12 h-12 bg-sky-50 rounded-xl flex items-center justify-center mb-4">
-<svg class="w-6 h-6 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 2.632.87 5.062 2.338 7.021"/></svg>
-</div>
-<h3 class="text-lg font-bold text-gray-900 mb-2">Reliable Assistance</h3>
-<p class="text-gray-500 text-sm">Local representatives to help with unexpected changes and support 24/7.</p>
+<div class="card p-6 reveal">
+<div class="w-12 h-12 bg-sky-50 rounded-xl flex items-center justify-center mb-4"><svg class="w-6 h-6 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z"/></svg></div>
+<h3 class="text-lg font-bold text-gray-900 mb-2">Transparent Pricing</h3>
+<p class="text-gray-500 text-sm">No hidden fees. What you see is what you pay.</p>
 </div>
 </div>
 </div>
 </section>
 
-<!-- CTA -->
-<section class="py-16 sm:py-24 px-4 sm:px-6 bg-gray-50" id="contact">
+<!-- TESTIMONIALS -->
+<section class="section bg-gray-50" id="testimonials">
 <div class="container">
-<div class="max-w-4xl mx-auto text-center reveal">
-<h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 mb-6">Ready For Your Mumbai Layover?</h2>
-<p class="text-gray-500 mb-8 max-w-xl mx-auto">Start planning your perfect Mumbai layover with LayoverX today.</p>
+<div class="text-center mb-10 sm:mb-12 reveal">
+<span class="inline-block text-sky-600 font-semibold text-sm uppercase tracking-wider mb-3">Reviews</span>
+<h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-3">What Travelers Say</h2>
+<p class="text-gray-500 max-w-xl mx-auto">Real feedback from travelers who used LayoverX.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
+<div class="card p-6 reveal">
+<div class="flex items-center gap-1 mb-3">
+<svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.88 1.18 6.88L12 17.77l-6.18 3.26L7 14.15 2 9.27l6.91-1.01L12 2z"/></svg>
+<svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.88 1.18 6.88L12 17.77l-6.18 3.26L7 14.15 2 9.27l6.91-1.01L12 2z"/></svg>
+<svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.88 1.18 6.88L12 17.77l-6.18 3.26L7 14.15 2 9.27l6.91-1.01L12 2z"/></svg>
+<svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.88 1.18 6.88L12 17.77l-6.18 3.26L7 14.15 2 9.27l6.91-1.01L12 2z"/></svg>
+<svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.88 1.18 6.88L12 17.77l-6.18 3.26L7 14.15 2 9.27l6.91-1.01L12 2z"/></svg>
+</div>
+<p class="text-gray-700 text-sm mb-4">"Made my 6-hour Mumbai layover unforgettable. The food tour was incredible and the driver was on time."</p>
+<div class="flex items-center gap-3"><div class="w-10 h-10 bg-gradient-to-br from-sky-400 to-sky-600 rounded-full flex items-center justify-center text-white font-bold text-sm">RA</div><div><div class="font-bold text-gray-900 text-sm">Rahul A.</div><div class="text-gray-500 text-xs">Bangalore</div></div></div>
+</div>
+<div class="card p-6 reveal">
+<div class="flex items-center gap-1 mb-3">
+<svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.88 1.18 6.88L12 17.77l-6.18 3.26L7 14.15 2 9.27l6.91-1.01L12 2z"/></svg>
+<svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.88 1.18 6.88L12 17.77l-6.18 3.26L7 14.15 2 9.27l6.91-1.01L12 2z"/></svg>
+<svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.88 1.18 6.88L12 17.77l-6.18 3.26L7 14.15 2 9.27l6.91-1.01L12 2z"/></svg>
+<svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.88 1.18 6.88L12 17.77l-6.18 3.26L7 14.15 2 9.27l6.91-1.01L12 2z"/></svg>
+<svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.88 1.18 6.88L12 17.77l-6.18 3.26L7 14.15 2 9.27l6.91-1.01L12 2z"/></svg>
+</div>
+<p class="text-gray-700 text-sm mb-4">"Booked a spa session and airport transfer. Both were smooth and saved me a lot of time."</p>
+<div class="flex items-center gap-3"><div class="w-10 h-10 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-full flex items-center justify-center text-white font-bold text-sm">PS</div><div><div class="font-bold text-gray-900 text-sm">Priya S.</div><div class="text-gray-500 text-xs">Mumbai</div></div></div>
+</div>
+<div class="card p-6 reveal">
+<div class="flex items-center gap-1 mb-3">
+<svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.88 1.18 6.88L12 17.77l-6.18 3.26L7 14.15 2 9.27l6.91-1.01L12 2z"/></svg>
+<svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.88 1.18 6.88L12 17.77l-6.18 3.26L7 14.15 2 9.27l6.91-1.01L12 2z"/></svg>
+<svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.88 1.18 6.88L12 17.77l-6.18 3.26L7 14.15 2 9.27l6.91-1.01L12 2z"/></svg>
+<svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.88 1.18 6.88L12 17.77l-6.18 3.26L7 14.15 2 9.27l6.91-1.01L12 2z"/></svg>
+<svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.88 1.18 6.88L12 17.77l-6.18 3.26L7 14.15 2 9.27l6.91-1.01L12 2z"/></svg>
+</div>
+<p class="text-gray-700 text-sm mb-4">"The Marine Drive sunset tour was the highlight of my trip. Great planning and local insights."</p>
+<div class="flex items-center gap-3"><div class="w-10 h-10 bg-gradient-to-br from-purple-400 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-sm">DK</div><div><div class="font-bold text-gray-900 text-sm">David K.</div><div class="text-gray-500 text-xs">Delhi</div></div></div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="section bg-white" id="contact">
+<div class="container">
+<div class="bg-gradient-to-br from-sky-500 to-sky-700 rounded-3xl p-8 sm:p-12 text-center text-white reveal">
+<h2 class="text-3xl sm:text-4xl font-extrabold mb-4">Ready For Your Mumbai Layover?</h2>
+<p class="text-white/90 mb-8 max-w-xl mx-auto">Start exploring and booking hotels, restaurants, tours and transfers around Mumbai Airport.</p>
 <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-<a href="#planner" class="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-sky-500 to-sky-600 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-0.5 text-center">Plan My Layover</a>
-<a href="mailto:hello@layoverx.com" class="w-full sm:w-auto px-8 py-4 border-2 border-gray-200 text-gray-900 font-bold rounded-xl hover:border-sky-500 hover:text-sky-600 transition-all text-center">Contact Us</a>
+<a href="#search" class="w-full sm:w-auto px-8 py-4 bg-white text-sky-600 font-bold rounded-xl hover:bg-white/90 transition-all hover:-translate-y-0.5">Explore Experiences</a>
+<a href="mailto:hello@layoverx.com" class="w-full sm:w-auto px-8 py-4 bg-white/10 border border-white/30 text-white font-bold rounded-xl hover:bg-white/20 transition-all">Contact Us</a>
 </div>
 </div>
 </div>
 </section>
 
-<!-- Footer -->
-<footer class="bg-gray-900 text-white pt-16 sm:pt-20 pb-8 px-4 sm:px-6">
+<!-- FOOTER -->
+<footer class="bg-gray-900 text-white py-12 sm:py-16 px-4 sm:px-6">
 <div class="container">
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 mb-10">
 <div>
-<div class="flex items-center gap-2 mb-6">
-<div class="w-10 h-10 bg-gradient-to-br from-sky-500 to-sky-600 rounded-xl flex items-center justify-center">
-<svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>
+<div class="flex items-center gap-2 mb-4">
+<div class="w-9 h-9 bg-gradient-to-br from-sky-500 to-sky-600 rounded-xl flex items-center justify-center">
+<svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>
 </div>
-<span class="text-2xl font-bold">LayoverX</span>
+<span class="text-xl font-bold">LayoverX</span>
 </div>
-<p class="text-gray-400 text-sm leading-relaxed mb-6">Your personal layover assistant at Chhatrapati Shivaji Maharaj International Airport. Mumbai travel, simplified.</p>
+<p class="text-gray-400 text-sm leading-relaxed">Mumbai Travel & Layover Experience Platform. Discover hotels, restaurants, tours and transfers around Mumbai Airport.</p>
 </div>
 <div>
-<h4 class="font-bold mb-6">Company</h4>
-<ul class="space-y-3">
-<li><a class="text-gray-400 hover:text-white text-sm transition-colors" href="#">About</a></li>
-<li><a class="text-gray-400 hover:text-white text-sm transition-colors" href="#contact">Contact</a></li>
-<li><a class="text-gray-400 hover:text-white text-sm transition-colors" href="#">Privacy Policy</a></li>
-<li><a class="text-gray-400 hover:text-white text-sm transition-colors" href="#">Terms of Service</a></li>
+<h4 class="font-bold mb-4 text-sm">Explore</h4>
+<ul class="space-y-2">
+<li><a class="text-gray-400 hover:text-white text-sm" href="#hotels">Hotels</a></li>
+<li><a class="text-gray-400 hover:text-white text-sm" href="#restaurants">Restaurants</a></li>
+<li><a class="text-gray-400 hover:text-white text-sm" href="#experiences">Experiences</a></li>
+<li><a class="text-gray-400 hover:text-white text-sm" href="#transfers">Airport Transfers</a></li>
 </ul>
 </div>
 <div>
-<h4 class="font-bold mb-6">Services</h4>
-<ul class="space-y-3">
-<li><a class="text-gray-400 hover:text-white text-sm transition-colors" href="#planner">Layover Planning</a></li>
-<li><a class="text-gray-400 hover:text-white text-sm transition-colors" href="#services">Airport Transfers</a></li>
-<li><a class="text-gray-400 hover:text-white text-sm transition-colors" href="#experiences">Mumbai Experiences</a></li>
+<h4 class="font-bold mb-4 text-sm">Company</h4>
+<ul class="space-y-2">
+<li><a class="text-gray-400 hover:text-white text-sm" href="#contact">Contact</a></li>
+<li><a class="text-gray-400 hover:text-white text-sm" href="#">About</a></li>
+<li><a class="text-gray-400 hover:text-white text-sm" href="#">Privacy Policy</a></li>
+<li><a class="text-gray-400 hover:text-white text-sm" href="#">Terms of Service</a></li>
 </ul>
 </div>
 <div>
-<h4 class="font-bold mb-6">Contact</h4>
-<ul class="space-y-3">
-<li><a class="text-gray-400 hover:text-white text-sm transition-colors" href="mailto:hello@layoverx.com">hello@layoverx.com</a></li>
-<li><a class="text-gray-400 hover:text-white text-sm transition-colors" href="tel:+912212345678">+91 22 1234 5678</a></li>
-<li><span class="text-gray-500 text-sm">Chhatrapati Shivaji Maharaj<br/>International Airport<br/>Mumbai, India</span></li>
+<h4 class="font-bold mb-4 text-sm">Get In Touch</h4>
+<ul class="space-y-2">
+<li><a class="text-gray-400 hover:text-white text-sm" href="mailto:hello@layoverx.com">hello@layoverx.com</a></li>
+<li><a class="text-gray-400 hover:text-white text-sm" href="tel:+912212345678">+91 22 1234 5678</a></li>
+<li class="text-gray-500 text-sm">Mumbai, India</li>
 </ul>
 </div>
 </div>
-<div class="border-t border-white/10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-<p class="text-gray-500 text-sm">&copy; 2025 LayoverX. All rights reserved.</p>
+<div class="border-t border-gray-800 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+<p class="text-gray-500 text-xs">&copy; 2025 LayoverX. All rights reserved.</p>
 <div class="flex items-center gap-4">
-<a class="text-gray-500 hover:text-white text-sm transition-colors" href="#">Privacy</a>
-<a class="text-gray-500 hover:text-white text-sm transition-colors" href="#">Terms</a>
+<a class="text-gray-500 hover:text-white text-xs" href="#">Privacy</a>
+<a class="text-gray-500 hover:text-white text-xs" href="#">Terms</a>
+<a class="text-gray-500 hover:text-white text-xs" href="#">Cookies</a>
 </div>
 </div>
 </div>
 </footer>
 
 <!-- Sticky Mobile CTA -->
-<div class="fixed bottom-0 left-0 right-0 z-50 md:hidden" id="sticky-cta">
-<div class="bg-white/95 backdrop-blur-xl border-t border-gray-200 p-3 shadow-lg">
-<a href="#planner" class="block w-full py-3.5 bg-gradient-to-r from-sky-500 to-sky-600 text-white font-bold rounded-xl text-center shadow-lg">Plan My Layover</a>
+<div class="fixed bottom-0 left-0 right-0 z-40 lg:hidden" id="sticky-cta">
+<div class="bg-white border-t border-gray-200 p-3 shadow-lg">
+<a href="#search" class="block w-full py-3 bg-sky-500 text-white font-bold rounded-xl text-center">Plan My Layover</a>
 </div>
 </div>
+
+<style>
+.no-scrollbar::-webkit-scrollbar{display:none}
+.no-scrollbar{-ms-overflow-style:none;scrollbar-width:none}
+</style>
 
 <script>
 // Mobile menu toggle
-const menuBtn=document.getElementById('menu-btn');
-const mobileMenu=document.getElementById('mobile-menu');
-if(menuBtn&&mobileMenu){
-menuBtn.addEventListener('click',()=>{
-mobileMenu.classList.toggle('hidden');
+document.getElementById('menu-btn').addEventListener('click',function(){
+var m=document.getElementById('mobile-menu');
+m.classList.toggle('hidden');
+this.setAttribute('aria-expanded',m.classList.contains('hidden')?'false':'true');
 });
-}
 
-// Sticky navbar
-const navbar=document.getElementById('navbar');
-let isScrolled=false;
-window.addEventListener('scroll',()=>{
+// Search tab switching
+document.querySelectorAll('.search-tab').forEach(function(tab){
+tab.addEventListener('click',function(){
+document.querySelectorAll('.search-tab').forEach(function(t){t.classList.remove('active')});
+tab.classList.add('active');
+});
+});
+
+// Sticky navbar with background change on scroll
+var navbar=document.getElementById('navbar');
+var logoText=document.getElementById('logo-text');
+var navLinks=document.querySelectorAll('.nav-link');
+var scrolled=false;
+
+window.addEventListener('scroll',function(){
 if(window.scrollY>50){
-if(!isScrolled){
-navbar.classList.add('bg-white/90','backdrop-blur-xl','shadow-lg');
-isScrolled=true;
+if(!scrolled){
+navbar.classList.add('bg-white/95','backdrop-blur-xl','shadow-lg');
+navbar.classList.remove('bg-transparent');
+logoText.classList.remove('text-white');
+logoText.classList.add('text-gray-900');
+navLinks.forEach(function(l){l.classList.remove('text-white/90');l.classList.add('text-gray-700')});
+scrolled=true;
 }
 }else{
-if(isScrolled){
-navbar.classList.remove('bg-white/90','backdrop-blur-xl','shadow-lg');
-isScrolled=false;
+if(scrolled){
+navbar.classList.remove('bg-white/95','backdrop-blur-xl','shadow-lg');
+navbar.classList.add('bg-transparent');
+logoText.classList.add('text-white');
+logoText.classList.remove('text-gray-900');
+navLinks.forEach(function(l){l.classList.add('text-white/90');l.classList.remove('text-gray-700')});
+scrolled=false;
 }
 }
 });
 
-// Scroll animations
-const observerOptions={threshold:0.1,rootMargin:'0px 0px -50px 0px'};
-const observer=new IntersectionObserver((entries)=>{
-entries.forEach(entry=>{
-if(entry.isIntersecting)entry.target.classList.add('visible');
+// Scroll reveal animations
+var observer=new IntersectionObserver(function(entries){
+entries.forEach(function(entry){
+if(entry.isIntersecting){entry.target.classList.add('visible')}
 });
-},observerOptions);
-document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
 
-// Hide sticky CTA when footer is visible
-const stickyCta=document.getElementById('sticky-cta');
-const footer=document.querySelector('footer');
+document.querySelectorAll('.reveal').forEach(function(el){observer.observe(el)});
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(function(a){
+a.addEventListener('click',function(e){
+var href=this.getAttribute('href');
+if(href.length>1){
+var t=document.querySelector(href);
+if(t){
+e.preventDefault();
+t.scrollIntoView({behavior:'smooth',block:'start'});
+var m=document.getElementById('mobile-menu');
+if(m&&!m.classList.contains('hidden')){m.classList.add('hidden')}
+}
+}
+});
+});
+
+// Hide sticky CTA near footer
+var stickyCta=document.getElementById('sticky-cta');
+var footer=document.querySelector('footer');
 if(stickyCta&&footer){
-const footerObserver=new IntersectionObserver((entries)=>{
-entries.forEach(entry=>{
-if(entry.isIntersecting)stickyCta.classList.add('hidden');
-else stickyCta.classList.remove('hidden');
+var fo=new IntersectionObserver(function(entries){
+entries.forEach(function(e){
+if(e.isIntersecting){stickyCta.style.display='none'}else{stickyCta.style.display='block'}
 });
 },{threshold:0.01});
-footerObserver.observe(footer);
+fo.observe(footer);
 }
 </script>
 </body>
