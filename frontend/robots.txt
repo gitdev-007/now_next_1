@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /fix_auth.py
+Disallow: /fix_mobile_menu.py
+Disallow: /build.py
+
+# Sitemap
+Sitemap: https://layoverx.com/sitemap.xml

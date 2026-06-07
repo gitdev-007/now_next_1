@@ -32,6 +32,12 @@
   const $$ = (s) => document.querySelectorAll(s);
   const on = (el, evt, fn) => el && el.addEventListener(evt, fn);
 
+  /* Convert a Date to 'YYYY-MM-DDTHH:MM' for datetime-local inputs */
+  function toLocalISO(d) {
+    const pad = (n) => String(n).padStart(2, '0');
+    return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
+  }
+
   /* ===== MOCK DATA ===== */
   const HOTELS = {
     1: { id: 1, name: "Niranta Airport Transit Hotel & Lounge", stars: 5, rating: 4.8, reviews: 2400, distance: 0.0, price: 3499, amenities: ["24/7 Check-in", "Free WiFi", "Shower Room", "Massage Spa"], image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&h=400&fit=crop", desc: "Located directly inside Terminal 2 Arrivals area. No transit visa required. Express spa, restaurant, clean sleeping pods, and shower suites." },
@@ -281,6 +287,12 @@
       applyFilters();
     });
 
+    // Also expose as global for the empty state "Reset Filters" button
+    window.layoverx.resetFilters = function() {
+      $$('input[name^="filter-"]').forEach(el => el.checked = false);
+      applyFilters();
+    };
+
     on($('#hotel-sort'), 'change', function() {
       const order = this.value;
       const container = $('#hotel-list');
@@ -291,11 +303,16 @@
         if (order === 'price-high') return parseInt(b.getAttribute('data-price')) - parseInt(a.getAttribute('data-price'));
         if (order === 'rating') return parseFloat(b.getAttribute('data-rating')) - parseFloat(a.getAttribute('data-rating'));
         if (order === 'distance') return parseFloat(a.getAttribute('data-distance')) - parseFloat(b.getAttribute('data-distance'));
-        return 0; // Default or popularity
+        return 0;
       });
 
       items.forEach(el => container.appendChild(el));
     });
+
+    // Initialize hotel count to match actual visible items
+    const initialCount = $$('.hotel-item:not(.hidden)').length;
+    const countEl = $('#hotel-count');
+    if (countEl) countEl.textContent = initialCount || $$('.hotel-item').length;
   }
 
   // Dining filter
@@ -715,7 +732,7 @@
     addTimelineNode(formatTime(returnCabTime), "🚖 Airport Dropoff", "Driver drops you directly at departure ramp T2.", "sky");
 
     // Node 5: Takeoff
-    addTimelineNode(formatTime(dep), "🛫 Takeoff & Departure", "Security queue check-in cleared. Flight boarding boarding gate gates.", "red");
+    addTimelineNode(formatTime(dep), "🛫 Takeoff & Departure", "Security cleared. Boarding at assigned gate. Safe travels!", "red");
   }
 
   function addTimelineNode(time, title, desc, color) {
@@ -893,6 +910,54 @@
     }
   });
 
+  /* ===== HOMEPAGE SEARCH INTEGRATION ===== */
+  function initHomepageSearch() {
+    const btn = $('#search-btn');
+    const arrivalEl = $('#search-arrival');
+    const departureEl = $('#search-departure');
+    if (!btn) return;
+
+    // Live duration calculator
+    function updateDuration() {
+      const a = arrivalEl?.value;
+      const d = departureEl?.value;
+      const durEl = $('#layover-duration');
+      const validMsg = $('#validation-message');
+      if (!a || !d || !durEl) return;
+      const diff = new Date(d) - new Date(a);
+      if (diff <= 0) {
+        if (validMsg) { validMsg.textContent = '⚠️ Departure must be after arrival'; validMsg.classList.remove('hidden'); }
+        durEl.textContent = '--';
+        return;
+      }
+      if (validMsg) validMsg.classList.add('hidden');
+      const h = Math.floor(diff / 3600000);
+      const m = Math.floor((diff % 3600000) / 60000);
+      durEl.textContent = `${h}h ${m}m`;
+    }
+
+    if (arrivalEl) arrivalEl.addEventListener('input', updateDuration);
+    if (departureEl) departureEl.addEventListener('input', updateDuration);
+
+    btn.addEventListener('click', () => {
+      const arrival = arrivalEl?.value;
+      const departure = departureEl?.value;
+      const location = $('#search-location')?.value || 'near-airport';
+      const travelers = $('#search-travelers')?.value || '2';
+      
+      if (!arrival || !departure) {
+        showToast('Please enter your arrival and departure times first.');
+        return;
+      }
+      if (new Date(departure) <= new Date(arrival)) {
+        showToast('Departure time must be after arrival time.');
+        return;
+      }
+      const params = new URLSearchParams({ arrivalDateTime: arrival, departureDateTime: departure, location, travelers });
+      window.location.href = `plan-my-layover.html?${params.toString()}`;
+    });
+  }
+
   /* ===== MAIN APPLICATION BOOT STRAP ===== */
   function init() {
     Auth.init();
@@ -907,8 +972,9 @@
     initExperiencesFilter();
     initPlanner();
     loadSavedPlans();
+    initHomepageSearch();
 
-    console.log('%c LayoverX Premium Portal Activated ', 'background:#0ea5e9;color:#fff;font-weight:bold;padding:4px 8px;border-radius:4px');
+    console.log('%c LayoverX Premium Portal Activated ✈️ ', 'background:#0ea5e9;color:#fff;font-weight:bold;padding:4px 8px;border-radius:4px');
   }
 
   if (document.readyState === 'loading') {
