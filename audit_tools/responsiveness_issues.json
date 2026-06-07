@@ -1,0 +1,986 @@
+[
+  {
+    "page": "/",
+    "width": 320,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  },
+  {
+    "page": "/",
+    "width": 375,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  },
+  {
+    "page": "/",
+    "width": 390,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  },
+  {
+    "page": "/",
+    "width": 414,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  },
+  {
+    "page": "/",
+    "width": 768,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  },
+  {
+    "page": "/",
+    "width": 1024,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  },
+  {
+    "page": "/",
+    "width": 1280,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  },
+  {
+    "page": "/",
+    "width": 1440,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  },
+  {
+    "page": "/",
+    "width": 1920,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  },
+  {
+    "page": "/hotels.html",
+    "width": 320,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      },
+      {
+        "text": "Ideal for quick transits. No visa check needed if remaining in international area. Features express spa sessions, dining counters, and luxury beds.",
+        "parent": "P",
+        "classes": "text-gray-700 text-sm mb-4 leading-relaxed line-clamp-2"
+      },
+      {
+        "text": "Ultra-luxury stays with high-speed lounge setups, award-winning spa, resort pool, and 24/7 airport pick and drop shuttles included.",
+        "parent": "P",
+        "classes": "text-gray-700 text-sm mb-4 leading-relaxed line-clamp-2"
+      },
+      {
+        "text": "Cozy, ergonomic rooms designed for short-stay transits. Excellent continental breakfast, business desk, and hourly check-in.",
+        "parent": "P",
+        "classes": "text-gray-700 text-sm mb-4 leading-relaxed line-clamp-2"
+      },
+      {
+        "text": "Asia's first certified 5-star ecofriendly hotel. Features a rooftop swimming pool with runway view, airport lounge, and spa treatments.",
+        "parent": "P",
+        "classes": "text-gray-700 text-sm mb-4 leading-relaxed line-clamp-2"
+      }
+    ]
+  },
+  {
+    "page": "/hotels.html",
+    "width": 375,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      },
+      {
+        "text": "Ideal for quick transits. No visa check needed if remaining in international area. Features express spa sessions, dining counters, and luxury beds.",
+        "parent": "P",
+        "classes": "text-gray-700 text-sm mb-4 leading-relaxed line-clamp-2"
+      },
+      {
+        "text": "Ultra-luxury stays with high-speed lounge setups, award-winning spa, resort pool, and 24/7 airport pick and drop shuttles included.",
+        "parent": "P",
+        "classes": "text-gray-700 text-sm mb-4 leading-relaxed line-clamp-2"
+      },
+      {
+        "text": "Cozy, ergonomic rooms designed for short-stay transits. Excellent continental breakfast, business desk, and hourly check-in.",
+        "parent": "P",
+        "classes": "text-gray-700 text-sm mb-4 leading-relaxed line-clamp-2"
+      },
+      {
+        "text": "Asia's first certified 5-star ecofriendly hotel. Features a rooftop swimming pool with runway view, airport lounge, and spa treatments.",
+        "parent": "P",
+        "classes": "text-gray-700 text-sm mb-4 leading-relaxed line-clamp-2"
+      }
+    ]
+  },
+  {
+    "page": "/hotels.html",
+    "width": 390,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      },
+      {
+        "text": "Ideal for quick transits. No visa check needed if remaining in international area. Features express spa sessions, dining counters, and luxury beds.",
+        "parent": "P",
+        "classes": "text-gray-700 text-sm mb-4 leading-relaxed line-clamp-2"
+      },
+      {
+        "text": "Ultra-luxury stays with high-speed lounge setups, award-winning spa, resort pool, and 24/7 airport pick and drop shuttles included.",
+        "parent": "P",
+        "classes": "text-gray-700 text-sm mb-4 leading-relaxed line-clamp-2"
+      },
+      {
+        "text": "Cozy, ergonomic rooms designed for short-stay transits. Excellent continental breakfast, business desk, and hourly check-in.",
+        "parent": "P",
+        "classes": "text-gray-700 text-sm mb-4 leading-relaxed line-clamp-2"
+      },
+      {
+        "text": "Asia's first certified 5-star ecofriendly hotel. Features a rooftop swimming pool with runway view, airport lounge, and spa treatments.",
+        "parent": "P",
+        "classes": "text-gray-700 text-sm mb-4 leading-relaxed line-clamp-2"
+      }
+    ]
+  },
+  {
+    "page": "/hotels.html",
+    "width": 414,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      },
+      {
+        "text": "Ideal for quick transits. No visa check needed if remaining in international area. Features express spa sessions, dining counters, and luxury beds.",
+        "parent": "P",
+        "classes": "text-gray-700 text-sm mb-4 leading-relaxed line-clamp-2"
+      },
+      {
+        "text": "Ultra-luxury stays with high-speed lounge setups, award-winning spa, resort pool, and 24/7 airport pick and drop shuttles included.",
+        "parent": "P",
+        "classes": "text-gray-700 text-sm mb-4 leading-relaxed line-clamp-2"
+      },
+      {
+        "text": "Cozy, ergonomic rooms designed for short-stay transits. Excellent continental breakfast, business desk, and hourly check-in.",
+        "parent": "P",
+        "classes": "text-gray-700 text-sm mb-4 leading-relaxed line-clamp-2"
+      },
+      {
+        "text": "Asia's first certified 5-star ecofriendly hotel. Features a rooftop swimming pool with runway view, airport lounge, and spa treatments.",
+        "parent": "P",
+        "classes": "text-gray-700 text-sm mb-4 leading-relaxed line-clamp-2"
+      }
+    ]
+  },
+  {
+    "page": "/hotels.html",
+    "width": 768,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      },
+      {
+        "text": "Ideal for quick transits. No visa check needed if remaining in international area. Features express spa sessions, dining counters, and luxury beds.",
+        "parent": "P",
+        "classes": "text-gray-700 text-sm mb-4 leading-relaxed line-clamp-2"
+      },
+      {
+        "text": "Ultra-luxury stays with high-speed lounge setups, award-winning spa, resort pool, and 24/7 airport pick and drop shuttles included.",
+        "parent": "P",
+        "classes": "text-gray-700 text-sm mb-4 leading-relaxed line-clamp-2"
+      },
+      {
+        "text": "Cozy, ergonomic rooms designed for short-stay transits. Excellent continental breakfast, business desk, and hourly check-in.",
+        "parent": "P",
+        "classes": "text-gray-700 text-sm mb-4 leading-relaxed line-clamp-2"
+      },
+      {
+        "text": "Asia's first certified 5-star ecofriendly hotel. Features a rooftop swimming pool with runway view, airport lounge, and spa treatments.",
+        "parent": "P",
+        "classes": "text-gray-700 text-sm mb-4 leading-relaxed line-clamp-2"
+      }
+    ]
+  },
+  {
+    "page": "/hotels.html",
+    "width": 1024,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      },
+      {
+        "text": "Ideal for quick transits. No visa check needed if remaining in international area. Features express spa sessions, dining counters, and luxury beds.",
+        "parent": "P",
+        "classes": "text-gray-700 text-sm mb-4 leading-relaxed line-clamp-2"
+      },
+      {
+        "text": "Ultra-luxury stays with high-speed lounge setups, award-winning spa, resort pool, and 24/7 airport pick and drop shuttles included.",
+        "parent": "P",
+        "classes": "text-gray-700 text-sm mb-4 leading-relaxed line-clamp-2"
+      },
+      {
+        "text": "Cozy, ergonomic rooms designed for short-stay transits. Excellent continental breakfast, business desk, and hourly check-in.",
+        "parent": "P",
+        "classes": "text-gray-700 text-sm mb-4 leading-relaxed line-clamp-2"
+      },
+      {
+        "text": "Asia's first certified 5-star ecofriendly hotel. Features a rooftop swimming pool with runway view, airport lounge, and spa treatments.",
+        "parent": "P",
+        "classes": "text-gray-700 text-sm mb-4 leading-relaxed line-clamp-2"
+      }
+    ]
+  },
+  {
+    "page": "/hotels.html",
+    "width": 1280,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  },
+  {
+    "page": "/hotels.html",
+    "width": 1440,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  },
+  {
+    "page": "/hotels.html",
+    "width": 1920,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  },
+  {
+    "page": "/restaurants.html",
+    "width": 320,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  },
+  {
+    "page": "/restaurants.html",
+    "width": 375,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  },
+  {
+    "page": "/restaurants.html",
+    "width": 390,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  },
+  {
+    "page": "/restaurants.html",
+    "width": 414,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  },
+  {
+    "page": "/restaurants.html",
+    "width": 768,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  },
+  {
+    "page": "/restaurants.html",
+    "width": 1024,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  },
+  {
+    "page": "/restaurants.html",
+    "width": 1280,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  },
+  {
+    "page": "/restaurants.html",
+    "width": 1440,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  },
+  {
+    "page": "/restaurants.html",
+    "width": 1920,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  },
+  {
+    "page": "/experiences.html",
+    "width": 320,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  },
+  {
+    "page": "/experiences.html",
+    "width": 375,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  },
+  {
+    "page": "/experiences.html",
+    "width": 390,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  },
+  {
+    "page": "/experiences.html",
+    "width": 414,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  },
+  {
+    "page": "/experiences.html",
+    "width": 768,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  },
+  {
+    "page": "/experiences.html",
+    "width": 1024,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  },
+  {
+    "page": "/experiences.html",
+    "width": 1280,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  },
+  {
+    "page": "/experiences.html",
+    "width": 1440,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  },
+  {
+    "page": "/experiences.html",
+    "width": 1920,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  },
+  {
+    "page": "/airport-transfers.html",
+    "width": 320,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  },
+  {
+    "page": "/airport-transfers.html",
+    "width": 375,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  },
+  {
+    "page": "/airport-transfers.html",
+    "width": 390,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  },
+  {
+    "page": "/airport-transfers.html",
+    "width": 414,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  },
+  {
+    "page": "/airport-transfers.html",
+    "width": 768,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  },
+  {
+    "page": "/airport-transfers.html",
+    "width": 1024,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  },
+  {
+    "page": "/airport-transfers.html",
+    "width": 1280,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  },
+  {
+    "page": "/airport-transfers.html",
+    "width": 1440,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  },
+  {
+    "page": "/airport-transfers.html",
+    "width": 1920,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  },
+  {
+    "page": "/how-it-works.html",
+    "width": 320,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  },
+  {
+    "page": "/how-it-works.html",
+    "width": 375,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  },
+  {
+    "page": "/how-it-works.html",
+    "width": 390,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  },
+  {
+    "page": "/how-it-works.html",
+    "width": 414,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  },
+  {
+    "page": "/how-it-works.html",
+    "width": 768,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  },
+  {
+    "page": "/how-it-works.html",
+    "width": 1024,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  },
+  {
+    "page": "/how-it-works.html",
+    "width": 1280,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  },
+  {
+    "page": "/how-it-works.html",
+    "width": 1440,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  },
+  {
+    "page": "/how-it-works.html",
+    "width": 1920,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  },
+  {
+    "page": "/contact.html",
+    "width": 320,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  },
+  {
+    "page": "/contact.html",
+    "width": 375,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  },
+  {
+    "page": "/contact.html",
+    "width": 390,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  },
+  {
+    "page": "/contact.html",
+    "width": 414,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  },
+  {
+    "page": "/contact.html",
+    "width": 768,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  },
+  {
+    "page": "/contact.html",
+    "width": 1024,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  },
+  {
+    "page": "/contact.html",
+    "width": 1280,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  },
+  {
+    "page": "/contact.html",
+    "width": 1440,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  },
+  {
+    "page": "/contact.html",
+    "width": 1920,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  },
+  {
+    "page": "/plan-my-layover.html",
+    "width": 320,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  },
+  {
+    "page": "/plan-my-layover.html",
+    "width": 375,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  },
+  {
+    "page": "/plan-my-layover.html",
+    "width": 390,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  },
+  {
+    "page": "/plan-my-layover.html",
+    "width": 414,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  },
+  {
+    "page": "/plan-my-layover.html",
+    "width": 768,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  },
+  {
+    "page": "/plan-my-layover.html",
+    "width": 1024,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  },
+  {
+    "page": "/plan-my-layover.html",
+    "width": 1280,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  },
+  {
+    "page": "/plan-my-layover.html",
+    "width": 1440,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  },
+  {
+    "page": "/plan-my-layover.html",
+    "width": 1920,
+    "type": "clipped_text",
+    "elements": [
+      {
+        "text": "Skip to main content",
+        "parent": "A",
+        "classes": "sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg"
+      }
+    ]
+  }
+]
