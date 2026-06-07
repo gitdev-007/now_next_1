@@ -3,7 +3,7 @@
   <div class="absolute inset-0 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
   <div class="container relative z-10">
     <div class="max-w-3xl">
-      <nav class="flex items-center gap-2 text-xs text-amber-250/80 mb-4" aria-label="Breadcrumb">
+      <nav class="flex items-center gap-2 text-xs text-amber-300/80 mb-4" aria-label="Breadcrumb">
         <a href="index.html" class="hover:text-white">Home</a>
         <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
         <span class="text-white font-medium">Experiences</span>
@@ -15,7 +15,7 @@
 </section>
 
 <!-- CATEGORY TABS -->
-<section class="bg-white border-b border-gray-150 py-4 sticky top-16 sm:top-20 z-40 shadow-sm">
+<section class="bg-white border-b border-gray-200 py-4 sticky top-16 sm:top-20 z-40 shadow-sm">
   <div class="container">
     <div class="flex items-center gap-3 overflow-x-auto no-scrollbar" id="experience-tabs">
       <button class="exp-tab active bg-amber-700 text-white px-4 py-2 rounded-xl text-xs sm:text-sm font-bold flex-shrink-0" onclick="layoverx.filterExp('all')">All Activities</button>
@@ -35,7 +35,7 @@
       
       <!-- FILTER PANEL -->
       <aside class="w-full lg:w-1/4 flex-shrink-0" aria-label="Experience Filters">
-        <div class="bg-white rounded-2xl border border-gray-150 p-6 sticky top-52">
+        <div class="bg-white rounded-2xl border border-gray-200 p-6 sticky top-52">
           <div class="flex items-center justify-between pb-4 border-b border-gray-100 mb-6">
             <h2 class="text-base font-bold text-gray-900">Filters</h2>
             <button type="button" onclick="layoverx.clearExpFilters()" class="text-xs text-amber-700 hover:text-amber-700 font-bold hover:underline">Clear All</button>
@@ -45,15 +45,15 @@
           <div class="mb-6">
             <h3 class="text-xs font-bold text-gray-700 uppercase tracking-wider mb-3">Layover Fit</h3>
             <div class="space-y-2">
-              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-650 cursor-pointer">
+              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-600 cursor-pointer">
                 <input type="checkbox" name="exp-fit" value="under-4h" class="rounded border-gray-300 text-amber-700 focus:ring-amber-500"/>
                 Quick stops (Under 4h)
               </label>
-              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-650 cursor-pointer">
+              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-600 cursor-pointer">
                 <input type="checkbox" name="exp-fit" value="4-8h" class="rounded border-gray-300 text-amber-700 focus:ring-amber-500"/>
                 Standard stays (4h - 8h)
               </label>
-              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-650 cursor-pointer">
+              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-600 cursor-pointer">
                 <input type="checkbox" name="exp-fit" value="above-8h" class="rounded border-gray-300 text-amber-700 focus:ring-amber-500"/>
                 Long transits (8h+)
               </label>
@@ -64,15 +64,15 @@
           <div>
             <h3 class="text-xs font-bold text-gray-700 uppercase tracking-wider mb-3">Price Per Person</h3>
             <div class="space-y-2">
-              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-650 cursor-pointer">
+              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-600 cursor-pointer">
                 <input type="checkbox" name="exp-price" value="under-1500" class="rounded border-gray-300 text-amber-700 focus:ring-amber-500"/>
                 Under ₹1,500
               </label>
-              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-650 cursor-pointer">
+              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-600 cursor-pointer">
                 <input type="checkbox" name="exp-price" value="1500-3000" class="rounded border-gray-300 text-amber-700 focus:ring-amber-500"/>
                 ₹1,500 - ₹3,000
               </label>
-              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-650 cursor-pointer">
+              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-600 cursor-pointer">
                 <input type="checkbox" name="exp-price" value="above-3000" class="rounded border-gray-300 text-amber-700 focus:ring-amber-500"/>
                 Above ₹3,000
               </label>
@@ -87,7 +87,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="exp-list">
           
           <!-- Card 1 -->
-          <article class="bg-white rounded-2xl border border-gray-150 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col justify-between exp-item" 
+          <article class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col justify-between exp-item" 
                    data-category="sightseeing" data-duration="5" data-price="2899">
             <div>
               <div class="relative h-48 overflow-hidden">
@@ -105,7 +105,7 @@
                   <span>⏱️ 5h Duration • Private AC Taxi + Guide Included</span>
                 </div>
                 <p class="text-gray-700 text-sm mb-4">Visit the iconic Gateway of India, drive along Marine Drive, view the Taj Mahal Palace, and explore Art Deco structures.</p>
-                <div class="text-xs font-bold text-gray-650 flex items-center gap-4">
+                <div class="text-xs font-bold text-gray-600 flex items-center gap-4">
                   <span>₹2,899 / traveler</span>
                   <span class="text-emerald-700">• Best for 8h+ Layovers</span>
                 </div>
@@ -117,7 +117,7 @@
           </article>
 
           <!-- Card 2 -->
-          <article class="bg-white rounded-2xl border border-gray-150 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col justify-between exp-item" 
+          <article class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col justify-between exp-item" 
                    data-category="food" data-duration="3" data-price="1299">
             <div>
               <div class="relative h-48 overflow-hidden">
@@ -135,7 +135,7 @@
                   <span>⏱️ 3h Duration • Hygienic Tastings + Escort Guide</span>
                 </div>
                 <p class="text-gray-700 text-sm mb-4">Taste classic Mumbai Vada Pav, butter seekh kebabs, and ice-cold mineral water Pani Puri in trendy Bandra West.</p>
-                <div class="text-xs font-bold text-gray-650 flex items-center gap-4">
+                <div class="text-xs font-bold text-gray-600 flex items-center gap-4">
                   <span>₹1,299 / traveler</span>
                   <span class="text-emerald-700">• Best for 5h+ Layovers</span>
                 </div>
@@ -147,7 +147,7 @@
           </article>
 
           <!-- Card 3 -->
-          <article class="bg-white rounded-2xl border border-gray-150 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col justify-between exp-item" 
+          <article class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col justify-between exp-item" 
                    data-category="culture" data-duration="4" data-price="1999">
             <div>
               <div class="relative h-48 overflow-hidden">
@@ -161,11 +161,11 @@
                   </h3>
                   <span class="bg-amber-50 text-amber-700 px-2 py-0.5 rounded-lg text-xs font-bold">4.7★</span>
                 </div>
-                <div class="text-xs text-gray-550 flex items-center gap-1.5 mb-3">
+                <div class="text-xs text-gray-500 flex items-center gap-1.5 mb-3">
                   <span>⏱️ 4h Duration • Ferry Tickets + Guide Included</span>
                 </div>
                 <p class="text-gray-700 text-sm mb-4">Fast-track ferry ride to Elephanta Island. Tour the UNESCO-listed 5th-century rock-cut cave temples of Lord Shiva.</p>
-                <div class="text-xs font-bold text-gray-650 flex items-center gap-4">
+                <div class="text-xs font-bold text-gray-600 flex items-center gap-4">
                   <span>₹1,999 / traveler</span>
                   <span class="text-emerald-700">• Best for 8h+ Layovers</span>
                 </div>
@@ -177,7 +177,7 @@
           </article>
 
           <!-- Card 4 -->
-          <article class="bg-white rounded-2xl border border-gray-150 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col justify-between exp-item" 
+          <article class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col justify-between exp-item" 
                    data-category="shopping" data-duration="3.5" data-price="1500">
             <div>
               <div class="relative h-48 overflow-hidden">
@@ -195,7 +195,7 @@
                   <span>⏱️ 3.5h Duration • Private AC Car + Porter Support</span>
                 </div>
                 <p class="text-gray-700 text-sm mb-4">Shop authentic cottons, Indian silks, brass antiques, and spices in Colaba Causeway and Crawford Market.</p>
-                <div class="text-xs font-bold text-gray-650 flex items-center gap-4">
+                <div class="text-xs font-bold text-gray-600 flex items-center gap-4">
                   <span>₹1,500 / traveler</span>
                   <span class="text-emerald-700">• Best for 6h+ Layovers</span>
                 </div>
@@ -208,7 +208,7 @@
           
         </div>
 
-        <div id="exp-empty" class="bg-white rounded-2xl border border-gray-150 p-12 text-center hidden">
+        <div id="exp-empty" class="bg-white rounded-2xl border border-gray-200 p-12 text-center hidden">
           <h3 class="text-base font-bold text-gray-900 mb-1">No Activities Found</h3>
           <p class="text-gray-700 text-sm mb-4">No matching experiences fit your selected filters. Try broadening your layover window options.</p>
           <button type="button" onclick="layoverx.clearExpFilters()" class="px-4 py-2 bg-amber-700 text-white text-xs font-bold rounded-xl shadow-md">Reset Filters</button>
@@ -228,17 +228,17 @@
       <h2 class="text-3xl font-extrabold text-gray-900">What Transit Guests Say</h2>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <div class="bg-gray-50 p-6 rounded-2xl border border-gray-150">
+      <div class="bg-gray-50 p-6 rounded-2xl border border-gray-200">
         <div class="text-amber-400 mb-3">★★★★★</div>
         <p class="text-gray-800 text-sm italic mb-4">"The heritage tour was spectacular. Driver met us at CSMIA exit gate 2 holding our name banner. Saw Marine Drive and Gateway in a few hours. Super stress free."</p>
         <div class="text-xs font-bold text-gray-800">Liam W., New Zealand Transit</div>
       </div>
-      <div class="bg-gray-50 p-6 rounded-2xl border border-gray-150">
+      <div class="bg-gray-50 p-6 rounded-2xl border border-gray-200">
         <div class="text-amber-400 mb-3">★★★★★</div>
         <p class="text-gray-800 text-sm italic mb-4">"Best local food crawl. The guide was extremely knowledgeable and only took us to high-hygiene restaurants. Dal vada and vada pav were superb."</p>
         <div class="text-xs font-bold text-gray-800">Yuki H., Japan Transit</div>
       </div>
-      <div class="bg-gray-50 p-6 rounded-2xl border border-gray-150">
+      <div class="bg-gray-50 p-6 rounded-2xl border border-gray-200">
         <div class="text-amber-400 mb-3">★★★★★</div>
         <p class="text-gray-800 text-sm italic mb-4">"Crawford market shopping tour was highly efficient. Guide helped us bargain and porter carried all bags to our airport-bound cab. Simply brilliant."</p>
         <div class="text-xs font-bold text-gray-800">Meera S., US Transit</div>
@@ -255,7 +255,7 @@
       <h2 class="text-3xl font-extrabold text-gray-900">Experiences FAQ</h2>
     </div>
     <div class="space-y-6">
-      <details class="group bg-white rounded-2xl border border-gray-150 p-5 cursor-pointer">
+      <details class="group bg-white rounded-2xl border border-gray-200 p-5 cursor-pointer">
         <summary class="flex items-center justify-between text-base font-bold text-gray-900 list-none">
           What happens if my flight is delayed?
           <span class="text-amber-500 group-open:rotate-180 transition-transform duration-200">▼</span>
@@ -264,7 +264,7 @@
           Don't worry! We monitor flight arrivals in real-time. If your flight is delayed, we automatically shift your guide and private pickup schedule. If the delay makes the tour impossible, we offer a 100% immediate refund.
         </p>
       </details>
-      <details class="group bg-white rounded-2xl border border-gray-150 p-5 cursor-pointer">
+      <details class="group bg-white rounded-2xl border border-gray-200 p-5 cursor-pointer">
         <summary class="flex items-center justify-between text-base font-bold text-gray-900 list-none">
           Where does the driver pick me up?
           <span class="text-amber-500 group-open:rotate-180 transition-transform duration-200">▼</span>

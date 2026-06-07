@@ -134,7 +134,7 @@
       <form id="planner-form" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 bg-gray-800 p-4 rounded-2xl border border-gray-700">
         <div>
           <label for="plan-location" class="block text-[10px] font-bold text-gray-700 uppercase tracking-wider mb-1">Destination Area</label>
-          <select id="plan-location" class="w-full bg-gray-900 border border-gray-750 rounded-xl p-2.5 text-xs sm:text-sm font-semibold text-white focus:ring-1 focus:ring-sky-500 cursor-pointer">
+          <select id="plan-location" class="w-full bg-gray-900 border border-gray-700 rounded-xl p-2.5 text-xs sm:text-sm font-semibold text-white focus:ring-1 focus:ring-sky-500 cursor-pointer">
             <option value="near-airport">Near Mumbai Airport</option>
             <option value="bandra">Bandra (Sea Link District)</option>
             <option value="colaba">Colaba (South Mumbai Heritage)</option>
@@ -142,15 +142,15 @@
         </div>
         <div>
           <label for="plan-arrival" class="block text-[10px] font-bold text-gray-700 uppercase tracking-wider mb-1">Landing Flight Arrival</label>
-          <input type="datetime-local" id="plan-arrival" class="w-full bg-gray-900 border border-gray-750 rounded-xl p-2.5 text-xs sm:text-sm font-semibold text-white focus:ring-1 focus:ring-sky-500"/>
+          <input type="datetime-local" id="plan-arrival" class="w-full bg-gray-900 border border-gray-700 rounded-xl p-2.5 text-xs sm:text-sm font-semibold text-white focus:ring-1 focus:ring-sky-500"/>
         </div>
         <div>
           <label for="plan-departure" class="block text-[10px] font-bold text-gray-700 uppercase tracking-wider mb-1">Boarding Flight Departure</label>
-          <input type="datetime-local" id="plan-departure" class="w-full bg-gray-900 border border-gray-750 rounded-xl p-2.5 text-xs sm:text-sm font-semibold text-white focus:ring-1 focus:ring-sky-500"/>
+          <input type="datetime-local" id="plan-departure" class="w-full bg-gray-900 border border-gray-700 rounded-xl p-2.5 text-xs sm:text-sm font-semibold text-white focus:ring-1 focus:ring-sky-500"/>
         </div>
         <div>
           <label for="plan-travelers" class="block text-[10px] font-bold text-gray-700 uppercase tracking-wider mb-1">Travelers Count</label>
-          <select id="plan-travelers" class="w-full bg-gray-900 border border-gray-750 rounded-xl p-2.5 text-xs sm:text-sm font-semibold text-white focus:ring-1 focus:ring-sky-500 cursor-pointer">
+          <select id="plan-travelers" class="w-full bg-gray-900 border border-gray-700 rounded-xl p-2.5 text-xs sm:text-sm font-semibold text-white focus:ring-1 focus:ring-sky-500 cursor-pointer">
             <option value="1">1 Traveler</option>
             <option value="2" selected>2 Travelers</option>
             <option value="3">3 Travelers</option>
@@ -183,7 +183,7 @@
       <div class="w-full lg:w-3/5 space-y-8">
         
         <!-- Step 1: Airport Cabs Transfers selection -->
-        <div class="bg-white rounded-2xl border border-gray-150 p-6 shadow-sm">
+        <div class="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
           <div class="flex items-center justify-between pb-4 border-b border-gray-100 mb-6">
             <div class="flex items-center gap-3">
               <span class="w-7 h-7 rounded-lg bg-sky-100 text-sky-700 font-bold flex items-center justify-center text-xs">1</span>
@@ -193,7 +193,7 @@
           </div>
           
           <div class="space-y-4">
-            <label class="relative border border-gray-150 rounded-xl p-4 flex items-center justify-between hover:border-sky-300 transition cursor-pointer select-card block">
+            <label class="relative border border-gray-200 rounded-xl p-4 flex items-center justify-between hover:border-sky-300 transition cursor-pointer select-card block">
               <div class="flex items-center gap-4">
                 <input type="radio" name="plan-cab" value="sedan" checked class="text-sky-700 focus:ring-sky-500 h-4 w-4 border-gray-300"/>
                 <div>
@@ -204,7 +204,7 @@
               <strong class="text-gray-900 text-sm">₹899 <span class="text-gray-700 text-xs font-normal">flat</span></strong>
             </label>
             
-            <label class="relative border border-gray-150 rounded-xl p-4 flex items-center justify-between hover:border-sky-300 transition cursor-pointer select-card block">
+            <label class="relative border border-gray-200 rounded-xl p-4 flex items-center justify-between hover:border-sky-300 transition cursor-pointer select-card block">
               <div class="flex items-center gap-4">
                 <input type="radio" name="plan-cab" value="suv" class="text-sky-700 focus:ring-sky-500 h-4 w-4 border-gray-300"/>
                 <div>
@@ -218,7 +218,7 @@
         </div>
 
         <!-- Step 2: Add Transit Hotels slot -->
-        <div class="bg-white rounded-2xl border border-gray-150 p-6 shadow-sm">
+        <div class="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
           <div class="flex items-center justify-between pb-4 border-b border-gray-100 mb-6">
             <div class="flex items-center gap-3">
               <span class="w-7 h-7 rounded-lg bg-sky-100 text-sky-700 font-bold flex items-center justify-center text-xs">2</span>
@@ -230,7 +230,7 @@
           <div class="space-y-4" id="plan-hotels-options">
             
             <!-- Niranta Option -->
-            <label class="relative border border-gray-150 rounded-xl p-4 flex flex-col sm:flex-row sm:items-center justify-between hover:border-sky-300 transition cursor-pointer select-card block">
+            <label class="relative border border-gray-200 rounded-xl p-4 flex flex-col sm:flex-row sm:items-center justify-between hover:border-sky-300 transition cursor-pointer select-card block">
               <div class="flex items-start gap-4">
                 <input type="checkbox" id="chk-hotel-1" class="rounded border-gray-300 text-sky-700 focus:ring-sky-500 mt-1 h-4 w-4"/>
                 <div>
@@ -247,7 +247,7 @@
             </label>
             
             <!-- JW Marriott Option -->
-            <label class="relative border border-gray-150 rounded-xl p-4 flex flex-col sm:flex-row sm:items-center justify-between hover:border-sky-300 transition cursor-pointer select-card block">
+            <label class="relative border border-gray-200 rounded-xl p-4 flex flex-col sm:flex-row sm:items-center justify-between hover:border-sky-300 transition cursor-pointer select-card block">
               <div class="flex items-start gap-4">
                 <input type="checkbox" id="chk-hotel-2" class="rounded border-gray-300 text-sky-700 focus:ring-sky-500 mt-1 h-4 w-4"/>
                 <div>
@@ -267,7 +267,7 @@
         </div>
 
         <!-- Step 3: Add Dining reservations -->
-        <div class="bg-white rounded-2xl border border-gray-150 p-6 shadow-sm">
+        <div class="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
           <div class="flex items-center justify-between pb-4 border-b border-gray-100 mb-6">
             <div class="flex items-center gap-3">
               <span class="w-7 h-7 rounded-lg bg-sky-100 text-sky-700 font-bold flex items-center justify-center text-xs">3</span>
@@ -279,7 +279,7 @@
           <div class="space-y-4" id="plan-dining-options">
             
             <!-- Gajalee -->
-            <label class="relative border border-gray-150 rounded-xl p-4 flex flex-col sm:flex-row sm:items-center justify-between hover:border-sky-300 transition cursor-pointer select-card block">
+            <label class="relative border border-gray-200 rounded-xl p-4 flex flex-col sm:flex-row sm:items-center justify-between hover:border-sky-300 transition cursor-pointer select-card block">
               <div class="flex items-start gap-4">
                 <input type="checkbox" id="chk-dining-1" class="rounded border-gray-300 text-sky-700 focus:ring-sky-500 mt-1 h-4 w-4"/>
                 <div>
@@ -293,7 +293,7 @@
             </label>
             
             <!-- Peshawri -->
-            <label class="relative border border-gray-150 rounded-xl p-4 flex flex-col sm:flex-row sm:items-center justify-between hover:border-sky-300 transition cursor-pointer select-card block">
+            <label class="relative border border-gray-200 rounded-xl p-4 flex flex-col sm:flex-row sm:items-center justify-between hover:border-sky-300 transition cursor-pointer select-card block">
               <div class="flex items-start gap-4">
                 <input type="checkbox" id="chk-dining-2" class="rounded border-gray-300 text-sky-700 focus:ring-sky-500 mt-1 h-4 w-4"/>
                 <div>
@@ -310,7 +310,7 @@
         </div>
 
         <!-- Step 4: Add City Activities -->
-        <div class="bg-white rounded-2xl border border-gray-150 p-6 shadow-sm">
+        <div class="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
           <div class="flex items-center justify-between pb-4 border-b border-gray-100 mb-6">
             <div class="flex items-center gap-3">
               <span class="w-7 h-7 rounded-lg bg-sky-100 text-sky-700 font-bold flex items-center justify-center text-xs">4</span>
@@ -322,7 +322,7 @@
           <div class="space-y-4" id="plan-activities-options">
             
             <!-- Heritage Tour -->
-            <label class="relative border border-gray-150 rounded-xl p-4 flex flex-col sm:flex-row sm:items-center justify-between hover:border-sky-300 transition cursor-pointer select-card block">
+            <label class="relative border border-gray-200 rounded-xl p-4 flex flex-col sm:flex-row sm:items-center justify-between hover:border-sky-300 transition cursor-pointer select-card block">
               <div class="flex items-start gap-4">
                 <input type="checkbox" id="chk-activity-1" class="rounded border-gray-300 text-sky-700 focus:ring-sky-500 mt-1 h-4 w-4"/>
                 <div>
@@ -336,7 +336,7 @@
             </label>
 
             <!-- Food Trail -->
-            <label class="relative border border-gray-150 rounded-xl p-4 flex flex-col sm:flex-row sm:items-center justify-between hover:border-sky-300 transition cursor-pointer select-card block">
+            <label class="relative border border-gray-200 rounded-xl p-4 flex flex-col sm:flex-row sm:items-center justify-between hover:border-sky-300 transition cursor-pointer select-card block">
               <div class="flex items-start gap-4">
                 <input type="checkbox" id="chk-activity-2" class="rounded border-gray-300 text-sky-700 focus:ring-sky-500 mt-1 h-4 w-4"/>
                 <div>
@@ -358,18 +358,18 @@
       <aside class="w-full lg:w-2/5 space-y-8" aria-label="Timeline and Cost Estimator">
         
         <!-- COST ESTIMATOR & SAVE/SHARE -->
-        <div class="bg-white rounded-2xl border border-gray-150 p-6 shadow-sm sticky top-52">
+        <div class="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm sticky top-52">
           <h2 class="text-lg font-bold text-gray-900 pb-4 border-b border-gray-100 mb-6 flex items-center justify-between">
             <span>Summary & Cost Estimator</span>
             <span class="bg-gray-100 text-gray-700 text-xs px-2.5 py-1 rounded-full text-right" id="travelers-badge">2 Guests</span>
           </h2>
           
           <!-- Selected Items Summary -->
-          <ul class="space-y-3 text-sm mb-6 text-gray-750" id="summary-items-list">
+          <ul class="space-y-3 text-sm mb-6 text-gray-700" id="summary-items-list">
             <!-- Dynamic summary entries inserted by JS -->
           </ul>
           
-          <div class="flex items-center justify-between pt-4 border-t border-gray-150 mb-6">
+          <div class="flex items-center justify-between pt-4 border-t border-gray-200 mb-6">
             <span class="text-gray-700 font-semibold">Total Estimated Cost:</span>
             <div class="text-2xl font-black text-sky-700" id="total-cost">₹0</div>
           </div>
@@ -382,7 +382,7 @@
         </div>
         
         <!-- SMART AI TIMELINE -->
-        <div class="bg-white rounded-2xl border border-gray-150 p-6 shadow-sm">
+        <div class="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
           <h2 class="text-lg font-bold text-gray-900 pb-4 border-b border-gray-100 mb-6 flex items-center justify-between">
             <span>Your Smart AI Timeline</span>
             <span class="bg-emerald-50 text-emerald-700 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded">Checked</span>
@@ -395,13 +395,13 @@
         </div>
 
         <!-- MOCK MAP ROUTE -->
-        <div class="bg-white rounded-2xl border border-gray-150 overflow-hidden shadow-sm">
+        <div class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm">
           <div class="p-4 border-b border-gray-100"><h3 class="font-bold text-sm text-gray-900">Estimated Travel Route Map</h3></div>
           <div class="h-44 bg-cover bg-center" style="background-image:url('https://images.unsplash.com/photo-1524661135-423995f22d0b?w=400&h=200&fit=crop')" role="img" aria-label="Route map"></div>
         </div>
 
         <!-- SAVED PLANS SECTION -->
-        <div class="bg-white rounded-2xl border border-gray-150 p-6 shadow-sm" id="saved-plans-section">
+        <div class="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm" id="saved-plans-section">
           <h2 class="text-base font-bold text-gray-900 pb-4 border-b border-gray-100 mb-4 flex items-center justify-between">
             <span>My Saved Itineraries</span>
             <span class="w-5 h-5 bg-sky-50 text-sky-700 rounded-full flex items-center justify-center text-xs font-bold" id="saved-plans-count">0</span>

@@ -15,7 +15,7 @@
 </section>
 
 <!-- CUISINE QUICK CATEGORIES -->
-<section class="bg-white border-b border-gray-150 py-4 sticky top-16 sm:top-20 z-40 shadow-sm">
+<section class="bg-white border-b border-gray-200 py-4 sticky top-16 sm:top-20 z-40 shadow-sm">
   <div class="container">
     <div class="flex items-center gap-3 overflow-x-auto no-scrollbar" id="cuisine-tabs">
       <button class="cuisine-tab active bg-emerald-700 text-white px-4 py-2 rounded-xl text-xs sm:text-sm font-bold flex-shrink-0" onclick="layoverx.filterCuisine('all')">All Cuisines</button>
@@ -35,7 +35,7 @@
       
       <!-- FILTERS PANEL -->
       <aside class="w-full lg:w-1/4 flex-shrink-0" aria-label="Restaurant Filters">
-        <div class="bg-white rounded-2xl border border-gray-150 p-6 sticky top-52">
+        <div class="bg-white rounded-2xl border border-gray-200 p-6 sticky top-52">
           <div class="flex items-center justify-between pb-4 border-b border-gray-100 mb-6">
             <h2 class="text-base font-bold text-gray-900">Filters</h2>
             <button type="button" onclick="layoverx.clearRestFilters()" class="text-xs text-emerald-700 hover:text-emerald-700 font-bold hover:underline">Clear All</button>
@@ -45,15 +45,15 @@
           <div class="mb-6">
             <h3 class="text-xs font-bold text-gray-700 uppercase tracking-wider mb-3">Cost For Two</h3>
             <div class="space-y-2">
-              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-650 cursor-pointer">
+              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-600 cursor-pointer">
                 <input type="checkbox" name="rest-price" value="under-1000" class="rounded border-gray-300 text-emerald-700 focus:ring-emerald-500"/>
                 Under ₹1,000
               </label>
-              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-650 cursor-pointer">
+              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-600 cursor-pointer">
                 <input type="checkbox" name="rest-price" value="1000-2500" class="rounded border-gray-300 text-emerald-700 focus:ring-emerald-500"/>
                 ₹1,000 - ₹2,500
               </label>
-              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-650 cursor-pointer">
+              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-600 cursor-pointer">
                 <input type="checkbox" name="rest-price" value="above-2500" class="rounded border-gray-300 text-emerald-700 focus:ring-emerald-500"/>
                 Above ₹2,500
               </label>
@@ -64,15 +64,15 @@
           <div class="mb-6">
             <h3 class="text-xs font-bold text-gray-700 uppercase tracking-wider mb-3">Distance From CSMIA</h3>
             <div class="space-y-2">
-              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-650 cursor-pointer">
+              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-600 cursor-pointer">
                 <input type="checkbox" name="rest-distance" value="under-2km" class="rounded border-gray-300 text-emerald-700 focus:ring-emerald-500"/>
                 Under 2 km
               </label>
-              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-650 cursor-pointer">
+              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-600 cursor-pointer">
                 <input type="checkbox" name="rest-distance" value="2-6km" class="rounded border-gray-300 text-emerald-700 focus:ring-emerald-500"/>
                 2 km to 6 km
               </label>
-              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-650 cursor-pointer">
+              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-600 cursor-pointer">
                 <input type="checkbox" name="rest-distance" value="above-6km" class="rounded border-gray-300 text-emerald-700 focus:ring-emerald-500"/>
                 Above 6 km
               </label>
@@ -83,15 +83,15 @@
           <div>
             <h3 class="text-xs font-bold text-gray-700 uppercase tracking-wider mb-3">Guest Review Rating</h3>
             <div class="space-y-2">
-              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-650 cursor-pointer">
+              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-600 cursor-pointer">
                 <input type="radio" name="rest-rating" value="4.5" class="border-gray-300 text-emerald-700 focus:ring-emerald-500"/>
                 Excellent: 4.5+ ★
               </label>
-              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-650 cursor-pointer">
+              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-600 cursor-pointer">
                 <input type="radio" name="rest-rating" value="4.0" class="border-gray-300 text-emerald-700 focus:ring-emerald-500"/>
                 Very Good: 4.0+ ★
               </label>
-              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-650 cursor-pointer">
+              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-600 cursor-pointer">
                 <input type="radio" name="rest-rating" value="all" checked class="border-gray-300 text-emerald-700 focus:ring-emerald-500"/>
                 Show All Ratings
               </label>
@@ -106,7 +106,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6" id="restaurant-list">
           
           <!-- Rest Card 1 -->
-          <article class="bg-white rounded-2xl border border-gray-150 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col justify-between rest-item" 
+          <article class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col justify-between rest-item" 
                    data-cuisine="seafood" data-price="1800" data-rating="4.8" data-distance="3.5">
             <div>
               <div class="relative h-48 overflow-hidden">
@@ -136,7 +136,7 @@
           </article>
 
           <!-- Rest Card 2 -->
-          <article class="bg-white rounded-2xl border border-gray-150 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col justify-between rest-item" 
+          <article class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col justify-between rest-item" 
                    data-cuisine="fine-dining" data-price="4500" data-rating="4.9" data-distance="1.1">
             <div>
               <div class="relative h-48 overflow-hidden">
@@ -166,7 +166,7 @@
           </article>
 
           <!-- Rest Card 3 -->
-          <article class="bg-white rounded-2xl border border-gray-150 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col justify-between rest-item" 
+          <article class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col justify-between rest-item" 
                    data-cuisine="local" data-price="800" data-rating="4.5" data-distance="2.2">
             <div>
               <div class="relative h-48 overflow-hidden">
@@ -196,7 +196,7 @@
           </article>
 
           <!-- Rest Card 4 -->
-          <article class="bg-white rounded-2xl border border-gray-150 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col justify-between rest-item" 
+          <article class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col justify-between rest-item" 
                    data-cuisine="street-food" data-price="400" data-rating="4.4" data-distance="4.2">
             <div>
               <div class="relative h-48 overflow-hidden">
@@ -228,7 +228,7 @@
         </div>
 
         <!-- Empty state -->
-        <div id="rest-empty" class="bg-white rounded-2xl border border-gray-150 p-12 text-center hidden">
+        <div id="rest-empty" class="bg-white rounded-2xl border border-gray-200 p-12 text-center hidden">
           <h3 class="text-base font-bold text-gray-900 mb-1">No Restaurants Found</h3>
           <p class="text-gray-700 text-sm mb-4">No matching dining options found. Try clearing price filters or broadening your distance parameters.</p>
           <button type="button" onclick="layoverx.clearRestFilters()" class="px-4 py-2 bg-emerald-700 text-white text-xs font-bold rounded-xl shadow-md">Reset Filters</button>
@@ -248,17 +248,17 @@
       <h2 class="text-3xl font-extrabold text-gray-900">Loved by Global Travelers</h2>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <div class="bg-gray-50 p-6 rounded-2xl border border-gray-150">
+      <div class="bg-gray-50 p-6 rounded-2xl border border-gray-200">
         <div class="text-amber-400 mb-3">★★★★★</div>
         <p class="text-gray-800 text-sm italic mb-4">"The Butter Garlic Crabs at Gajalee were incredible! We had a 6 hour transit, the driver took us there and back in less than 2 hours. Best layover meal ever."</p>
         <div class="text-xs font-bold text-gray-800">Samantha T., London transit</div>
       </div>
-      <div class="bg-gray-50 p-6 rounded-2xl border border-gray-150">
+      <div class="bg-gray-50 p-6 rounded-2xl border border-gray-200">
         <div class="text-amber-400 mb-3">★★★★★</div>
         <p class="text-gray-800 text-sm italic mb-4">"Dal Bukhara at Peshawri is worth leaving the airport alone. LayoverX table reservation was instant and worked flawlessly. Driver waited for us outside."</p>
         <div class="text-xs font-bold text-gray-800">Akash M., Singapore Transit</div>
       </div>
-      <div class="bg-gray-50 p-6 rounded-2xl border border-gray-150">
+      <div class="bg-gray-50 p-6 rounded-2xl border border-gray-200">
         <div class="text-amber-400 mb-3">★★★★★</div>
         <p class="text-gray-800 text-sm italic mb-4">"Super safe and hygienic street food. Tried Pani Puri and Pav Bhaji at Elco. Tasted amazing and no stomach issues at all. A must-do transit stop."</p>
         <div class="text-xs font-bold text-gray-800">Chloe L., France transit</div>
@@ -275,7 +275,7 @@
       <h2 class="text-3xl font-extrabold text-gray-900">Dining FAQ</h2>
     </div>
     <div class="space-y-6">
-      <details class="group bg-white rounded-2xl border border-gray-150 p-5 cursor-pointer">
+      <details class="group bg-white rounded-2xl border border-gray-200 p-5 cursor-pointer">
         <summary class="flex items-center justify-between text-base font-bold text-gray-900 list-none">
           How much time do I need for a dining transit?
           <span class="text-emerald-500 group-open:rotate-180 transition-transform duration-200">▼</span>
@@ -284,7 +284,7 @@
           We recommend a minimum layover of <strong>4 hours</strong> to clear immigration, take a cab to nearby dining spots (1-3 km), enjoy your meal, and return for the mandatory 2-hour security check-in buffer.
         </p>
       </details>
-      <details class="group bg-white rounded-2xl border border-gray-150 p-5 cursor-pointer">
+      <details class="group bg-white rounded-2xl border border-gray-200 p-5 cursor-pointer">
         <summary class="flex items-center justify-between text-base font-bold text-gray-900 list-none">
           Is the street food safe for international transit flyers?
           <span class="text-emerald-500 group-open:rotate-180 transition-transform duration-200">▼</span>

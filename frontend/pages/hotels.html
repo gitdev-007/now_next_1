@@ -15,7 +15,7 @@
 </section>
 
 <!-- SEARCH & FILTER BAR -->
-<section class="bg-white border-b border-gray-150 py-6 sticky top-16 sm:top-20 z-40 shadow-sm">
+<section class="bg-white border-b border-gray-200 py-6 sticky top-16 sm:top-20 z-40 shadow-sm">
   <div class="container">
     <form id="hotel-search-form" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-end">
       <div>
@@ -29,7 +29,7 @@
       </div>
       <div>
         <label for="hotel-checkin" class="block text-xs font-bold text-gray-700 uppercase mb-1">Check-in Date & Time</label>
-        <input type="datetime-local" id="hotel-checkin" class="w-full bg-gray-50 border border-gray-200 rounded-xl p-3 text-sm font-semibold text-gray-850 focus:ring-2 focus:ring-sky-500"/>
+        <input type="datetime-local" id="hotel-checkin" class="w-full bg-gray-50 border border-gray-200 rounded-xl p-3 text-sm font-semibold text-gray-800 focus:ring-2 focus:ring-sky-500"/>
       </div>
       <div>
         <label for="hotel-duration" class="block text-xs font-bold text-gray-700 uppercase mb-1">Stay Duration</label>
@@ -55,7 +55,7 @@
       
       <!-- FILTER SIDEBAR -->
       <aside class="w-full lg:w-1/4 flex-shrink-0" aria-label="Filters Panel">
-        <div class="bg-white rounded-2xl border border-gray-150 p-6 sticky top-52">
+        <div class="bg-white rounded-2xl border border-gray-200 p-6 sticky top-52">
           <div class="flex items-center justify-between pb-4 border-b border-gray-100 mb-6">
             <h2 class="text-base font-bold text-gray-900">Filters</h2>
             <button type="button" id="clear-filters" class="text-xs text-sky-700 hover:text-sky-700 font-bold hover:underline">Clear All</button>
@@ -65,19 +65,19 @@
           <div class="mb-6">
             <h3 class="text-xs font-bold text-gray-700 uppercase tracking-wider mb-3">Price Range (INR)</h3>
             <div class="space-y-2">
-              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-650 cursor-pointer">
+              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-600 cursor-pointer">
                 <input type="checkbox" name="filter-price" value="under-2500" class="rounded border-gray-300 text-sky-700 focus:ring-sky-500"/>
                 Under ₹2,500
               </label>
-              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-650 cursor-pointer">
+              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-600 cursor-pointer">
                 <input type="checkbox" name="filter-price" value="2500-5000" class="rounded border-gray-300 text-sky-700 focus:ring-sky-500"/>
                 ₹2,500 - ₹5,000
               </label>
-              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-650 cursor-pointer">
+              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-600 cursor-pointer">
                 <input type="checkbox" name="filter-price" value="5000-7500" class="rounded border-gray-300 text-sky-700 focus:ring-sky-500"/>
                 ₹5,000 - ₹7,500
               </label>
-              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-650 cursor-pointer">
+              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-600 cursor-pointer">
                 <input type="checkbox" name="filter-price" value="above-7500" class="rounded border-gray-300 text-sky-700 focus:ring-sky-500"/>
                 Above ₹7,500
               </label>
@@ -88,15 +88,15 @@
           <div class="mb-6">
             <h3 class="text-xs font-bold text-gray-700 uppercase tracking-wider mb-3">Distance From Terminal</h3>
             <div class="space-y-2">
-              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-650 cursor-pointer">
+              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-600 cursor-pointer">
                 <input type="checkbox" name="filter-distance" value="in-terminal" class="rounded border-gray-300 text-sky-700 focus:ring-sky-500"/>
                 Inside Terminal (0 km)
               </label>
-              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-650 cursor-pointer">
+              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-600 cursor-pointer">
                 <input type="checkbox" name="filter-distance" value="under-2km" class="rounded border-gray-300 text-sky-700 focus:ring-sky-500"/>
                 Under 2 km
               </label>
-              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-650 cursor-pointer">
+              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-600 cursor-pointer">
                 <input type="checkbox" name="filter-distance" value="2-5km" class="rounded border-gray-300 text-sky-700 focus:ring-sky-500"/>
                 2 km to 5 km
               </label>
@@ -107,15 +107,15 @@
           <div class="mb-6">
             <h3 class="text-xs font-bold text-gray-700 uppercase tracking-wider mb-3">Star Rating</h3>
             <div class="space-y-2">
-              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-650 cursor-pointer">
+              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-600 cursor-pointer">
                 <input type="checkbox" name="filter-stars" value="5" class="rounded border-gray-300 text-sky-700 focus:ring-sky-500"/>
                 ⭐⭐⭐⭐⭐ 5 Star Luxury
               </label>
-              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-650 cursor-pointer">
+              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-600 cursor-pointer">
                 <input type="checkbox" name="filter-stars" value="4" class="rounded border-gray-300 text-sky-700 focus:ring-sky-500"/>
                 ⭐⭐⭐⭐ 4 Star Premium
               </label>
-              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-650 cursor-pointer">
+              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-600 cursor-pointer">
                 <input type="checkbox" name="filter-stars" value="3" class="rounded border-gray-300 text-sky-700 focus:ring-sky-500"/>
                 ⭐⭐⭐ 3 Star Standard
               </label>
@@ -126,19 +126,19 @@
           <div>
             <h3 class="text-xs font-bold text-gray-700 uppercase tracking-wider mb-3">Transit Amenities</h3>
             <div class="space-y-2">
-              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-650 cursor-pointer">
+              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-600 cursor-pointer">
                 <input type="checkbox" name="filter-amenity" value="shuttle" class="rounded border-gray-300 text-sky-700 focus:ring-sky-500"/>
                 Free Airport Shuttle
               </label>
-              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-650 cursor-pointer">
+              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-600 cursor-pointer">
                 <input type="checkbox" name="filter-amenity" value="24h" class="rounded border-gray-300 text-sky-700 focus:ring-sky-500"/>
                 24/7 Check-in
               </label>
-              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-650 cursor-pointer">
+              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-600 cursor-pointer">
                 <input type="checkbox" name="filter-amenity" value="spa" class="rounded border-gray-300 text-sky-700 focus:ring-sky-500"/>
                 Spa & Massage
               </label>
-              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-650 cursor-pointer">
+              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-600 cursor-pointer">
                 <input type="checkbox" name="filter-amenity" value="pool" class="rounded border-gray-300 text-sky-700 focus:ring-sky-500"/>
                 Swimming Pool
               </label>
@@ -151,7 +151,7 @@
       <div class="w-full lg:w-3/4">
         
         <!-- Sorting and Count header -->
-        <div class="bg-white rounded-2xl border border-gray-150 p-4 mb-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="bg-white rounded-2xl border border-gray-200 p-4 mb-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div class="text-sm text-gray-800">
             Showing <strong class="text-gray-900" id="hotel-count">6</strong> verified transit hotels near Mumbai Airport
           </div>
@@ -171,7 +171,7 @@
         <div class="space-y-6" id="hotel-list">
           
           <!-- Hotel Card 1 -->
-          <article class="bg-white rounded-2xl border border-gray-150 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col md:flex-row hotel-item" 
+          <article class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col md:flex-row hotel-item" 
                    data-price="3499" data-rating="4.8" data-distance="0.1" data-stars="5" data-amenities="shuttle,24h,spa,pool" data-location="near-t2">
             <div class="relative w-full md:w-80 h-52 md:h-auto flex-shrink-0">
               <img alt="Niranta Airport Transit Hotel" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&h=400&fit=crop"/>
@@ -211,7 +211,7 @@
           </article>
           
           <!-- Hotel Card 2 -->
-          <article class="bg-white rounded-2xl border border-gray-150 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col md:flex-row hotel-item" 
+          <article class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col md:flex-row hotel-item" 
                    data-price="5499" data-rating="4.7" data-distance="1.2" data-stars="5" data-amenities="shuttle,24h,spa,pool" data-location="near-t2">
             <div class="relative w-full md:w-80 h-52 md:h-auto flex-shrink-0">
               <img alt="JW Marriott Mumbai Sahar" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=600&h=400&fit=crop"/>
@@ -251,7 +251,7 @@
           </article>
 
           <!-- Hotel Card 3 -->
-          <article class="bg-white rounded-2xl border border-gray-150 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col md:flex-row hotel-item" 
+          <article class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col md:flex-row hotel-item" 
                    data-price="2200" data-rating="4.2" data-distance="2.4" data-stars="3" data-amenities="shuttle,24h" data-location="near-t1">
             <div class="relative w-full md:w-80 h-52 md:h-auto flex-shrink-0">
               <img alt="Ibis Mumbai Airport" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=600&h=400&fit=crop"/>
@@ -291,7 +291,7 @@
           
           <!-- Additional Hotels generated statically but hidden if filtered -->
           <!-- Hotel Card 4 -->
-          <article class="bg-white rounded-2xl border border-gray-150 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col md:flex-row hotel-item" 
+          <article class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col md:flex-row hotel-item" 
                    data-price="4500" data-rating="4.6" data-distance="2.1" data-stars="4" data-amenities="shuttle,24h,spa" data-location="near-t2">
             <div class="relative w-full md:w-80 h-52 md:h-auto flex-shrink-0">
               <img alt="The Orchid Hotel" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=600&h=400&fit=crop"/>
@@ -333,7 +333,7 @@
 
         <!-- Skeleton Loading State (hidden by default) -->
         <div id="hotel-skeleton" class="space-y-6 hidden" aria-hidden="true">
-          <div class="bg-white rounded-2xl border border-gray-150 p-6 flex flex-col md:flex-row gap-6 animate-pulse">
+          <div class="bg-white rounded-2xl border border-gray-200 p-6 flex flex-col md:flex-row gap-6 animate-pulse">
             <div class="w-full md:w-80 h-48 bg-gray-200 rounded-xl"></div>
             <div class="flex-grow space-y-4">
               <div class="h-6 bg-gray-200 rounded-md w-3/4"></div>
@@ -348,7 +348,7 @@
         </div>
 
         <!-- Empty State (hidden by default) -->
-        <div id="hotel-empty" class="bg-white rounded-2xl border border-gray-150 p-12 text-center hidden">
+        <div id="hotel-empty" class="bg-white rounded-2xl border border-gray-200 p-12 text-center hidden">
           <div class="w-16 h-16 bg-gray-50 text-gray-700 rounded-full flex items-center justify-center mx-auto mb-4">
             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
           </div>
@@ -392,17 +392,17 @@
       <h2 class="text-3xl font-extrabold text-gray-900">What Transit Guests Say</h2>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <div class="bg-white border border-gray-150 p-6 rounded-2xl">
+      <div class="bg-white border border-gray-200 p-6 rounded-2xl">
         <div class="text-amber-400 text-sm mb-3">★★★★★</div>
         <p class="text-gray-800 text-sm italic mb-4">"Niranta was perfect. My flight landed at 3 AM and I had a connecting flight at 9 AM. I slept for 4 solid hours, took a hot shower, and went straight to my next gate. Absolute lifesaver."</p>
         <div class="text-xs font-bold text-gray-800">Elena R., Transit to Sydney</div>
       </div>
-      <div class="bg-white border border-gray-150 p-6 rounded-2xl">
+      <div class="bg-white border border-gray-200 p-6 rounded-2xl">
         <div class="text-amber-400 text-sm mb-3">★★★★★</div>
         <p class="text-gray-800 text-sm italic mb-4">"Booked JW Marriott Sahar day slot for a 12-hour layover. The free shuttle took 10 minutes. Spent the day working by the pool and enjoying the spa. Highly recommend!"</p>
         <div class="text-xs font-bold text-gray-800">Devansh J., Delhi Business Transit</div>
       </div>
-      <div class="bg-white border border-gray-150 p-6 rounded-2xl">
+      <div class="bg-white border border-gray-200 p-6 rounded-2xl">
         <div class="text-amber-400 text-sm mb-3">★★★★☆</div>
         <p class="text-gray-800 text-sm italic mb-4">"Super convenient pricing. Ibis airport was clean, modern, and reasonably priced for a 6-hour stay. Free high speed internet allowed me to complete all my meetings."</p>
         <div class="text-xs font-bold text-gray-800">Hiroshi T., Tokyo Transit</div>
@@ -419,7 +419,7 @@
       <h2 class="text-3xl font-extrabold text-gray-900">Airport Hotels FAQ</h2>
     </div>
     <div class="space-y-6">
-      <details class="group bg-gray-50 rounded-2xl border border-gray-150 p-5 cursor-pointer">
+      <details class="group bg-gray-50 rounded-2xl border border-gray-200 p-5 cursor-pointer">
         <summary class="flex items-center justify-between text-base font-bold text-gray-900 list-none">
           Do I need an Indian Visa to stay at these hotels?
           <span class="text-sky-700 group-open:rotate-180 transition-transform duration-200">▼</span>
@@ -428,7 +428,7 @@
           If you book a hotel <strong>inside</strong> the airport terminal (like Niranta inside T2 Transit area), you do <strong>not</strong> need an Indian visa. If you book an external hotel (even 1 km away), you will need to clear immigration, which requires a valid Indian Transit Visa or e-Tourist Visa.
         </p>
       </details>
-      <details class="group bg-gray-50 rounded-2xl border border-gray-150 p-5 cursor-pointer">
+      <details class="group bg-gray-50 rounded-2xl border border-gray-200 p-5 cursor-pointer">
         <summary class="flex items-center justify-between text-base font-bold text-gray-900 list-none">
           How do hourly transit check-ins work?
           <span class="text-sky-700 group-open:rotate-180 transition-transform duration-200">▼</span>
@@ -437,7 +437,7 @@
           Unlike standard hotel check-ins (usually 12 PM or 2 PM), transit hotels support check-ins at any hour of the day or night. Your booking duration (3h, 6h, or 12h) starts the moment you check in at the front desk.
         </p>
       </details>
-      <details class="group bg-gray-50 rounded-2xl border border-gray-150 p-5 cursor-pointer">
+      <details class="group bg-gray-50 rounded-2xl border border-gray-200 p-5 cursor-pointer">
         <summary class="flex items-center justify-between text-base font-bold text-gray-900 list-none">
           Are airport shuttles free?
           <span class="text-sky-700 group-open:rotate-180 transition-transform duration-200">▼</span>
