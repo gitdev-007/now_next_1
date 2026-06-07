@@ -57,6 +57,18 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#0ea5e9;box-sh
 
 /* Smooth */
 a,button{transition:all .2s}
+
+/* Navbar Links */
+.nav-link{color:rgba(255,255,255,.9);transition:color .3s ease}
+.nav-link:hover,.nav-link:focus{color:#fff}
+#navbar.scrolled .nav-link{color:#374151}
+#navbar.scrolled .nav-link:hover,#navbar.scrolled .nav-link:focus{color:#0ea5e9}
+
+/* Mobile Menu Button */
+#menu-btn { color: #ffffff; transition: all 0.3s ease; }
+#menu-btn:hover { background: rgba(255,255,255,0.1); }
+#navbar.scrolled #menu-btn { color: #111827; }
+#navbar.scrolled #menu-btn:hover { background: rgba(0,0,0,0.05); }
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"TravelService","name":"LayoverX","description":"Mumbai Travel & Layover Experience Platform offering hotels, restaurants, spas, tours and airport transfers near Chhatrapati Shivaji Maharaj International Airport.","url":"https://layoverx.com","areaServed":{"@type":"City","name":"Mumbai","containedInPlace":{"@type":"Country","name":"India"}},"address":{"@type":"PostalAddress","addressLocality":"Mumbai","addressRegion":"Maharashtra","addressCountry":"IN"},"priceRange":"$$"}
@@ -77,17 +89,17 @@ a,button{transition:all .2s}
 <span class="text-white text-xl font-bold tracking-tight" id="logo-text">LayoverX</span>
 </a>
 <div class="hidden lg:flex items-center gap-7">
-<a class="nav-link text-white/90 hover:text-white text-sm font-medium" href="#hotels">Hotels</a>
-<a class="nav-link text-white/90 hover:text-white text-sm font-medium" href="#restaurants">Restaurants</a>
-<a class="nav-link text-white/90 hover:text-white text-sm font-medium" href="#experiences">Experiences</a>
-<a class="nav-link text-white/90 hover:text-white text-sm font-medium" href="#transfers">Airport Transfers</a>
-<a class="nav-link text-white/90 hover:text-white text-sm font-medium" href="#how-it-works">How It Works</a>
-<a class="nav-link text-white/90 hover:text-white text-sm font-medium" href="#contact">Contact</a>
+<a class="nav-link text-sm font-medium" href="#hotels">Hotels</a>
+<a class="nav-link text-sm font-medium" href="#restaurants">Restaurants</a>
+<a class="nav-link text-sm font-medium" href="#experiences">Experiences</a>
+<a class="nav-link text-sm font-medium" href="#transfers">Airport Transfers</a>
+<a class="nav-link text-sm font-medium" href="#how-it-works">How It Works</a>
+<a class="nav-link text-sm font-medium" href="#contact">Contact</a>
 <a href="#search" class="px-5 py-2.5 bg-white text-sky-600 font-semibold rounded-xl hover:bg-white/90 text-sm shadow-lg">Plan My Layover</a>
-<a href="#" class="text-white/90 hover:text-white text-sm font-medium transition" onclick="openAuthModal('login');return false;">Login</a>
+<a href="#" class="nav-link text-sm font-medium" onclick="openAuthModal('login');return false;">Login</a>
 <a href="#" class="px-4 py-2 bg-sky-500 text-white text-sm font-semibold rounded-xl hover:bg-sky-600 transition" onclick="openAuthModal('signup');return false;">Sign Up</a>
 </div>
-<button class="lg:hidden text-white p-2 rounded-lg hover:bg-white/10" id="menu-btn" aria-label="Menu" aria-expanded="false">
+<button class="lg:hidden p-2 rounded-lg" id="menu-btn" aria-label="Menu" aria-expanded="false">
 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
 </button>
 </div>
@@ -560,26 +572,23 @@ tab.classList.add('active');
 // Sticky navbar with background change on scroll
 var navbar=document.getElementById('navbar');
 var logoText=document.getElementById('logo-text');
-var navLinks=document.querySelectorAll('.nav-link');
 var scrolled=false;
 
 window.addEventListener('scroll',function(){
 if(window.scrollY>50){
 if(!scrolled){
-navbar.classList.add('bg-white/95','backdrop-blur-xl','shadow-lg');
+navbar.classList.add('bg-white/95','backdrop-blur-xl','shadow-lg','scrolled');
 navbar.classList.remove('bg-transparent');
 logoText.classList.remove('text-white');
 logoText.classList.add('text-gray-900');
-navLinks.forEach(function(l){l.classList.remove('text-white/90');l.classList.add('text-gray-700')});
 scrolled=true;
 }
 }else{
 if(scrolled){
-navbar.classList.remove('bg-white/95','backdrop-blur-xl','shadow-lg');
+navbar.classList.remove('bg-white/95','backdrop-blur-xl','shadow-lg','scrolled');
 navbar.classList.add('bg-transparent');
 logoText.classList.add('text-white');
 logoText.classList.remove('text-gray-900');
-navLinks.forEach(function(l){l.classList.add('text-white/90');l.classList.remove('text-gray-700')});
 scrolled=false;
 }
 }
