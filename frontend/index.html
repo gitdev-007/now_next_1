@@ -35,6 +35,15 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 @media(min-width:640px){.container{padding-left:1.5rem;padding-right:1.5rem}}
 @media(min-width:1024px){.container{padding-left:2rem;padding-right:2rem}}
 
+/* FOUC Prevention (Tailwind CDN) */
+.sr-only:not(:focus){position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0}
+.sr-only:focus{position:absolute;top:1rem;left:1rem;z-index:1001;background-color:#fff;color:#111827;padding:.5rem 1rem;border-radius:.5rem;outline:none}
+.w-9{width:2.25rem}.h-9{height:2.25rem}.w-5{width:1.25rem}.h-5{height:1.25rem}
+.w-6{width:1.5rem}.h-6{height:1.5rem}
+svg{max-width:100%;height:auto}
+.hidden{display:none !important}
+@media (min-width: 1024px) { .lg\:hidden { display: none !important; } .lg\:flex { display: flex !important; } }
+
 /* Section spacing */
 .section{padding-top:4rem;padding-bottom:4rem}
 @media(min-width:768px){.section{padding-top:5rem;padding-bottom:5rem}}
@@ -44,7 +53,10 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .card{background:#fff;border-radius:1.25rem;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.06);transition:transform .3s,box-shadow .3s}
 .card:hover{transform:translateY(-4px);box-shadow:0 12px 24px -4px rgba(0,0,0,.1)}
 
-/* Reveal - NO_FCP FIX: content visible by default */\n.reveal{opacity:1;transform:translateY(0);transition:opacity .5s,transform .5s}\n.reveal.animate{opacity:0;transform:translateY(16px)}\n.reveal.animate.visible{opacity:1;transform:translateY(0)}
+/* Reveal - NO_FCP FIX: content visible by default */
+.reveal{opacity:1;transform:translateY(0);transition:opacity .5s,transform .5s}
+.reveal.animate{opacity:0;transform:translateY(16px)}
+.reveal.animate.visible{opacity:1;transform:translateY(0)}
 
 /* Form */
 input,select,textarea{font-family:inherit;font-size:14px}
