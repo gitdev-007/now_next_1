@@ -18,7 +18,7 @@
 <section class="bg-white border-b border-gray-150 py-4 sticky top-16 sm:top-20 z-40 shadow-sm">
   <div class="container">
     <div class="flex items-center gap-3 overflow-x-auto no-scrollbar" id="cuisine-tabs">
-      <button class="cuisine-tab active bg-emerald-600 text-white px-4 py-2 rounded-xl text-xs sm:text-sm font-bold flex-shrink-0" onclick="layoverx.filterCuisine('all')">All Cuisines</button>
+      <button class="cuisine-tab active bg-emerald-700 text-white px-4 py-2 rounded-xl text-xs sm:text-sm font-bold flex-shrink-0" onclick="layoverx.filterCuisine('all')">All Cuisines</button>
       <button class="cuisine-tab bg-gray-55 text-gray-700 hover:bg-gray-100 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold flex-shrink-0" onclick="layoverx.filterCuisine('seafood')">🦀 Coastal Seafood</button>
       <button class="cuisine-tab bg-gray-55 text-gray-700 hover:bg-gray-100 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold flex-shrink-0" onclick="layoverx.filterCuisine('local')">🥘 Local Maharashtrian</button>
       <button class="cuisine-tab bg-gray-55 text-gray-700 hover:bg-gray-100 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold flex-shrink-0" onclick="layoverx.filterCuisine('north-indian')">🍢 North Indian</button>
@@ -38,7 +38,7 @@
         <div class="bg-white rounded-2xl border border-gray-150 p-6 sticky top-52">
           <div class="flex items-center justify-between pb-4 border-b border-gray-100 mb-6">
             <h2 class="text-base font-bold text-gray-900">Filters</h2>
-            <button type="button" onclick="layoverx.clearRestFilters()" class="text-xs text-emerald-600 hover:text-emerald-700 font-bold hover:underline">Clear All</button>
+            <button type="button" onclick="layoverx.clearRestFilters()" class="text-xs text-emerald-700 hover:text-emerald-700 font-bold hover:underline">Clear All</button>
           </div>
           
           <!-- Price Range -->
@@ -46,15 +46,15 @@
             <h3 class="text-xs font-bold text-gray-700 uppercase tracking-wider mb-3">Cost For Two</h3>
             <div class="space-y-2">
               <label class="flex items-center gap-2.5 text-sm font-medium text-gray-650 cursor-pointer">
-                <input type="checkbox" name="rest-price" value="under-1000" class="rounded border-gray-300 text-emerald-600 focus:ring-emerald-500"/>
+                <input type="checkbox" name="rest-price" value="under-1000" class="rounded border-gray-300 text-emerald-700 focus:ring-emerald-500"/>
                 Under ₹1,000
               </label>
               <label class="flex items-center gap-2.5 text-sm font-medium text-gray-650 cursor-pointer">
-                <input type="checkbox" name="rest-price" value="1000-2500" class="rounded border-gray-300 text-emerald-600 focus:ring-emerald-500"/>
+                <input type="checkbox" name="rest-price" value="1000-2500" class="rounded border-gray-300 text-emerald-700 focus:ring-emerald-500"/>
                 ₹1,000 - ₹2,500
               </label>
               <label class="flex items-center gap-2.5 text-sm font-medium text-gray-650 cursor-pointer">
-                <input type="checkbox" name="rest-price" value="above-2500" class="rounded border-gray-300 text-emerald-600 focus:ring-emerald-500"/>
+                <input type="checkbox" name="rest-price" value="above-2500" class="rounded border-gray-300 text-emerald-700 focus:ring-emerald-500"/>
                 Above ₹2,500
               </label>
             </div>
@@ -65,15 +65,15 @@
             <h3 class="text-xs font-bold text-gray-700 uppercase tracking-wider mb-3">Distance From CSMIA</h3>
             <div class="space-y-2">
               <label class="flex items-center gap-2.5 text-sm font-medium text-gray-650 cursor-pointer">
-                <input type="checkbox" name="rest-distance" value="under-2km" class="rounded border-gray-300 text-emerald-600 focus:ring-emerald-500"/>
+                <input type="checkbox" name="rest-distance" value="under-2km" class="rounded border-gray-300 text-emerald-700 focus:ring-emerald-500"/>
                 Under 2 km
               </label>
               <label class="flex items-center gap-2.5 text-sm font-medium text-gray-650 cursor-pointer">
-                <input type="checkbox" name="rest-distance" value="2-6km" class="rounded border-gray-300 text-emerald-600 focus:ring-emerald-500"/>
+                <input type="checkbox" name="rest-distance" value="2-6km" class="rounded border-gray-300 text-emerald-700 focus:ring-emerald-500"/>
                 2 km to 6 km
               </label>
               <label class="flex items-center gap-2.5 text-sm font-medium text-gray-650 cursor-pointer">
-                <input type="checkbox" name="rest-distance" value="above-6km" class="rounded border-gray-300 text-emerald-600 focus:ring-emerald-500"/>
+                <input type="checkbox" name="rest-distance" value="above-6km" class="rounded border-gray-300 text-emerald-700 focus:ring-emerald-500"/>
                 Above 6 km
               </label>
             </div>
@@ -84,15 +84,15 @@
             <h3 class="text-xs font-bold text-gray-700 uppercase tracking-wider mb-3">Guest Review Rating</h3>
             <div class="space-y-2">
               <label class="flex items-center gap-2.5 text-sm font-medium text-gray-650 cursor-pointer">
-                <input type="radio" name="rest-rating" value="4.5" class="border-gray-300 text-emerald-600 focus:ring-emerald-500"/>
+                <input type="radio" name="rest-rating" value="4.5" class="border-gray-300 text-emerald-700 focus:ring-emerald-500"/>
                 Excellent: 4.5+ ★
               </label>
               <label class="flex items-center gap-2.5 text-sm font-medium text-gray-650 cursor-pointer">
-                <input type="radio" name="rest-rating" value="4.0" class="border-gray-300 text-emerald-600 focus:ring-emerald-500"/>
+                <input type="radio" name="rest-rating" value="4.0" class="border-gray-300 text-emerald-700 focus:ring-emerald-500"/>
                 Very Good: 4.0+ ★
               </label>
               <label class="flex items-center gap-2.5 text-sm font-medium text-gray-650 cursor-pointer">
-                <input type="radio" name="rest-rating" value="all" checked class="border-gray-300 text-emerald-600 focus:ring-emerald-500"/>
+                <input type="radio" name="rest-rating" value="all" checked class="border-gray-300 text-emerald-700 focus:ring-emerald-500"/>
                 Show All Ratings
               </label>
             </div>
@@ -101,7 +101,7 @@
       </aside>
 
       <!-- RESTAURANT LISTING GRID -->
-      <main class="w-full lg:w-3/4">
+      <div class="w-full lg:w-3/4">
         
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6" id="restaurant-list">
           
@@ -111,11 +111,11 @@
             <div>
               <div class="relative h-48 overflow-hidden">
                 <img alt="Gajalee Seafood" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&h=400&fit=crop"/>
-                <span class="absolute top-4 left-4 bg-emerald-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-md">🦀 Seafood</span>
+                <span class="absolute top-4 left-4 bg-emerald-700 text-white text-[10px] font-bold px-2.5 py-1 rounded-md">🦀 Seafood</span>
               </div>
               <div class="p-5">
                 <div class="flex items-center justify-between gap-2 mb-1">
-                  <h3 class="font-bold text-gray-900 text-base hover:text-emerald-600 transition-colors">
+                  <h3 class="font-bold text-gray-900 text-base hover:text-emerald-700 transition-colors">
                     <a href="#" onclick="layoverx.openRestDetail(1);return false;">Gajalee Coastal Seafood Restaurant</a>
                   </h3>
                   <span class="bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-lg text-xs font-bold">4.8★</span>
@@ -131,7 +131,7 @@
               </div>
             </div>
             <div class="p-5 pt-0">
-              <button type="button" onclick="layoverx.reserveRest(1)" class="w-full py-2.5 bg-emerald-650 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl transition shadow-md">Reserve Transit Table</button>
+              <button type="button" onclick="layoverx.reserveRest(1)" class="w-full py-2.5 bg-emerald-700 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl transition shadow-md">Reserve Transit Table</button>
             </div>
           </article>
 
@@ -141,11 +141,11 @@
             <div>
               <div class="relative h-48 overflow-hidden">
                 <img alt="Peshawri ITC Maratha" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1544025162-d76694265947?w=600&h=400&fit=crop"/>
-                <span class="absolute top-4 left-4 bg-emerald-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-md">✨ Luxury</span>
+                <span class="absolute top-4 left-4 bg-emerald-700 text-white text-[10px] font-bold px-2.5 py-1 rounded-md">✨ Luxury</span>
               </div>
               <div class="p-5">
                 <div class="flex items-center justify-between gap-2 mb-1">
-                  <h3 class="font-bold text-gray-900 text-base hover:text-emerald-600 transition-colors">
+                  <h3 class="font-bold text-gray-900 text-base hover:text-emerald-700 transition-colors">
                     <a href="#" onclick="layoverx.openRestDetail(2);return false;">Peshawri - ITC Maratha</a>
                   </h3>
                   <span class="bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-lg text-xs font-bold">4.9★</span>
@@ -161,7 +161,7 @@
               </div>
             </div>
             <div class="p-5 pt-0">
-              <button type="button" onclick="layoverx.reserveRest(2)" class="w-full py-2.5 bg-emerald-650 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl transition shadow-md">Reserve Transit Table</button>
+              <button type="button" onclick="layoverx.reserveRest(2)" class="w-full py-2.5 bg-emerald-700 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl transition shadow-md">Reserve Transit Table</button>
             </div>
           </article>
 
@@ -171,11 +171,11 @@
             <div>
               <div class="relative h-48 overflow-hidden">
                 <img alt="Highway Gomantak" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=600&h=400&fit=crop"/>
-                <span class="absolute top-4 left-4 bg-emerald-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-md">🥘 Local food</span>
+                <span class="absolute top-4 left-4 bg-emerald-700 text-white text-[10px] font-bold px-2.5 py-1 rounded-md">🥘 Local food</span>
               </div>
               <div class="p-5">
                 <div class="flex items-center justify-between gap-2 mb-1">
-                  <h3 class="font-bold text-gray-900 text-base hover:text-emerald-600 transition-colors">
+                  <h3 class="font-bold text-gray-900 text-base hover:text-emerald-700 transition-colors">
                     <a href="#" onclick="layoverx.openRestDetail(3);return false;">Highway Gomantak</a>
                   </h3>
                   <span class="bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-lg text-xs font-bold">4.5★</span>
@@ -191,7 +191,7 @@
               </div>
             </div>
             <div class="p-5 pt-0">
-              <button type="button" onclick="layoverx.reserveRest(3)" class="w-full py-2.5 bg-emerald-650 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl transition shadow-md">Reserve Transit Table</button>
+              <button type="button" onclick="layoverx.reserveRest(3)" class="w-full py-2.5 bg-emerald-700 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl transition shadow-md">Reserve Transit Table</button>
             </div>
           </article>
 
@@ -201,11 +201,11 @@
             <div>
               <div class="relative h-48 overflow-hidden">
                 <img alt="Elco Pani Puri" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1601050690597-df056fb4ce78?w=600&h=400&fit=crop"/>
-                <span class="absolute top-4 left-4 bg-emerald-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-md">🌶️ Street Food</span>
+                <span class="absolute top-4 left-4 bg-emerald-700 text-white text-[10px] font-bold px-2.5 py-1 rounded-md">🌶️ Street Food</span>
               </div>
               <div class="p-5">
                 <div class="flex items-center justify-between gap-2 mb-1">
-                  <h3 class="font-bold text-gray-900 text-base hover:text-emerald-600 transition-colors">
+                  <h3 class="font-bold text-gray-900 text-base hover:text-emerald-700 transition-colors">
                     <a href="#" onclick="layoverx.openRestDetail(4);return false;">Elco Pani Puri Center</a>
                   </h3>
                   <span class="bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-lg text-xs font-bold">4.4★</span>
@@ -221,7 +221,7 @@
               </div>
             </div>
             <div class="p-5 pt-0">
-              <button type="button" onclick="layoverx.reserveRest(4)" class="w-full py-2.5 bg-emerald-650 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl transition shadow-md">Reserve Transit Table</button>
+              <button type="button" onclick="layoverx.reserveRest(4)" class="w-full py-2.5 bg-emerald-700 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl transition shadow-md">Reserve Transit Table</button>
             </div>
           </article>
           
@@ -231,7 +231,7 @@
         <div id="rest-empty" class="bg-white rounded-2xl border border-gray-150 p-12 text-center hidden">
           <h3 class="text-base font-bold text-gray-900 mb-1">No Restaurants Found</h3>
           <p class="text-gray-700 text-sm mb-4">No matching dining options found. Try clearing price filters or broadening your distance parameters.</p>
-          <button type="button" onclick="layoverx.clearRestFilters()" class="px-4 py-2 bg-emerald-600 text-white text-xs font-bold rounded-xl shadow-md">Reset Filters</button>
+          <button type="button" onclick="layoverx.clearRestFilters()" class="px-4 py-2 bg-emerald-700 text-white text-xs font-bold rounded-xl shadow-md">Reset Filters</button>
         </div>
 
       </main>
@@ -244,7 +244,7 @@
 <section class="section bg-white border-t border-gray-100">
   <div class="container">
     <div class="text-center mb-12">
-      <span class="inline-block text-emerald-600 font-bold text-sm uppercase tracking-wider mb-2">Foodie feedback</span>
+      <span class="inline-block text-emerald-700 font-bold text-sm uppercase tracking-wider mb-2">Foodie feedback</span>
       <h2 class="text-3xl font-extrabold text-gray-900">Loved by Global Travelers</h2>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -271,7 +271,7 @@
 <section class="section bg-gray-50 border-t border-gray-100">
   <div class="container max-w-4xl">
     <div class="text-center mb-12">
-      <span class="inline-block text-emerald-600 font-bold text-sm uppercase tracking-wider mb-2">Transit Dining Info</span>
+      <span class="inline-block text-emerald-700 font-bold text-sm uppercase tracking-wider mb-2">Transit Dining Info</span>
       <h2 class="text-3xl font-extrabold text-gray-900">Dining FAQ</h2>
     </div>
     <div class="space-y-6">
@@ -303,15 +303,15 @@
     <button class="modal-close font-semibold text-2xl" aria-label="Close Dining Modal" onclick="layoverx.closeRestDetail()">&times;</button>
     <div class="p-6">
       <div class="relative h-60 rounded-xl overflow-hidden mb-6">
-        <img id="detail-rest-image" alt="Restaurant main view" class="w-full h-full object-cover" src=""/>
+        <img id="detail-rest-image" alt="Restaurant main view" class="w-full h-full object-cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"/>
       </div>
       <h2 id="rest-detail-title" class="text-2xl font-bold text-gray-900 mb-1">Restaurant Name</h2>
       <div id="detail-rest-location" class="text-xs text-gray-700 flex items-center gap-1.5 mb-4">Location</div>
       
       <div class="grid grid-cols-3 gap-3 text-center mb-6">
-        <div class="bg-gray-50 p-3 rounded-xl"><div class="text-[10px] text-gray-700 font-bold uppercase">Rating</div><div id="detail-rest-rating" class="text-sm font-black text-emerald-600">4.8★</div></div>
+        <div class="bg-gray-50 p-3 rounded-xl"><div class="text-[10px] text-gray-700 font-bold uppercase">Rating</div><div id="detail-rest-rating" class="text-sm font-black text-emerald-700">4.8★</div></div>
         <div class="bg-gray-50 p-3 rounded-xl"><div class="text-[10px] text-gray-700 font-bold uppercase">Cuisine</div><div id="detail-rest-cuisine" class="text-sm font-bold text-gray-800">Seafood</div></div>
-        <div class="bg-gray-50 p-3 rounded-xl"><div class="text-[10px] text-gray-700 font-bold uppercase">Cost for Two</div><div id="detail-rest-price" class="text-sm font-extrabold text-emerald-650">₹1,800</div></div>
+        <div class="bg-gray-50 p-3 rounded-xl"><div class="text-[10px] text-gray-700 font-bold uppercase">Cost for Two</div><div id="detail-rest-price" class="text-sm font-extrabold text-emerald-800">₹1,800</div></div>
       </div>
       
       <h3 class="text-sm font-bold text-gray-900 mb-2">Description</h3>
@@ -319,8 +319,9 @@
       
       <div class="flex items-center justify-end gap-3 pt-4 border-t border-gray-100">
         <button type="button" onclick="layoverx.closeRestDetail()" class="px-5 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold text-sm rounded-xl">Cancel</button>
-        <button type="button" id="detail-rest-reserve-btn" class="px-6 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm rounded-xl shadow-md">Reserve Transit Table</button>
+        <button type="button" id="detail-rest-reserve-btn" class="px-6 py-2.5 bg-emerald-700 hover:bg-emerald-700 text-white font-bold text-sm rounded-xl shadow-md">Reserve Transit Table</button>
       </div>
     </div>
   </div>
+</div>
 </div>

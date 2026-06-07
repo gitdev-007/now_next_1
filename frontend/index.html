@@ -53,7 +53,7 @@
 
   <!-- Header Section -->
   <!-- NAVBAR - Fixed, z-1000, always visible -->
-<nav class="fixed top-0 left-0 right-0 z-[1000] transition-all duration-300 bg-transparent" id="navbar">
+<nav class="fixed top-0 left-0 right-0 z-[1000] transition-all duration-300 bg-transparent" id="navbar" aria-label="Main Navigation">
   <div class="container">
     <div class="flex items-center justify-between h-16 sm:h-20">
       <a href="index.html" class="flex items-center gap-2" aria-label="LayoverX Home">
@@ -73,12 +73,12 @@
         <a class="nav-link text-sm font-medium transition-colors duration-200 " href="airport-transfers.html">Airport Transfers</a>
         <a class="nav-link text-sm font-medium transition-colors duration-200 " href="how-it-works.html">How It Works</a>
         <a class="nav-link text-sm font-medium transition-colors duration-200 " href="contact.html">Contact</a>
-        <a href="plan-my-layover.html" class="px-5 py-2.5 bg-white text-sky-600 font-semibold rounded-xl hover:bg-sky-50 transition text-sm shadow-md hover:-translate-y-0.5 transform ">Plan My Layover</a>
+        <a href="plan-my-layover.html" class="px-5 py-2.5 bg-white text-sky-700 font-semibold rounded-xl hover:bg-sky-50 transition text-sm shadow-md hover:-translate-y-0.5 transform ">Plan My Layover</a>
         
         <!-- Auth Guest View -->
         <div class="auth-guest flex items-center gap-5">
           <a href="#login" class="nav-link text-sm font-medium cursor-pointer" onclick="openAuthModal('login');return false;">Login</a>
-          <a href="#signup" class="px-4 py-2 bg-sky-500 text-white text-sm font-semibold rounded-xl hover:bg-sky-600 hover:shadow-lg hover:shadow-sky-500/20 transition hover:-translate-y-0.5 transform" onclick="openAuthModal('signup');return false;">Sign Up</a>
+          <a href="#signup" class="px-4 py-2 bg-sky-700 text-white text-sm font-semibold rounded-xl hover:bg-sky-700 hover:shadow-lg hover:shadow-sky-500/20 transition hover:-translate-y-0.5 transform" onclick="openAuthModal('signup');return false;">Sign Up</a>
         </div>
 
         <!-- Auth User View -->
@@ -108,12 +108,12 @@
     <a class="block text-gray-800 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium " href="airport-transfers.html">Airport Transfers</a>
     <a class="block text-gray-800 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium " href="how-it-works.html">How It Works</a>
     <a class="block text-gray-800 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium " href="contact.html">Contact</a>
-    <a href="plan-my-layover.html" class="mt-2 block w-full text-center py-3 bg-sky-500 text-white font-semibold rounded-xl hover:bg-sky-600 transition shadow-md shadow-sky-500/10">Plan My Layover</a>
+    <a href="plan-my-layover.html" class="mt-2 block w-full text-center py-3 bg-sky-700 text-white font-semibold rounded-xl hover:bg-sky-700 transition shadow-md shadow-sky-500/10">Plan My Layover</a>
     
     <!-- Auth Guest View (Mobile) -->
     <div class="auth-guest flex flex-col gap-2 mt-4 pt-4 border-t border-gray-100">
       <a href="#login" class="block text-center py-2.5 text-gray-700 text-sm font-medium rounded-xl hover:bg-gray-50 border border-gray-200" onclick="openAuthModal('login');return false;">Login</a>
-      <a href="#signup" class="block text-center py-2.5 bg-sky-500 text-white text-sm font-semibold rounded-xl hover:bg-sky-600 transition" onclick="openAuthModal('signup');return false;">Sign Up</a>
+      <a href="#signup" class="block text-center py-2.5 bg-sky-700 text-white text-sm font-semibold rounded-xl hover:bg-sky-700 transition" onclick="openAuthModal('signup');return false;">Sign Up</a>
     </div>
 
     <!-- Auth User View (Mobile) -->
@@ -150,7 +150,7 @@
       Maximize your stopover. Discover hotels, restaurants, spas, local sightseeing tours, and fixed-price transfers near CSMIA terminals.
     </p>
     <div class="reveal flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
-      <a href="experiences.html" class="w-full sm:w-auto px-8 py-4 bg-sky-500 hover:bg-sky-600 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition transform hover:-translate-y-0.5 text-center">Explore Tours</a>
+      <a href="experiences.html" class="w-full sm:w-auto px-8 py-4 bg-sky-700 hover:bg-sky-700 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition transform hover:-translate-y-0.5 text-center">Explore Tours</a>
       <a href="plan-my-layover.html" class="w-full sm:w-auto px-8 py-4 bg-white/15 hover:bg-white/25 text-white font-bold rounded-xl border border-white/30 transition transform hover:-translate-y-0.5 text-center backdrop-blur-md">Plan My Layover</a>
     </div>
     <div class="reveal grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
@@ -218,7 +218,7 @@
       <!-- Duration Display -->
       <div class="mt-4 flex items-center justify-between flex-wrap gap-3">
         <div class="flex items-center gap-2 text-sm text-gray-800" id="duration-display" aria-live="polite">
-          <svg class="w-4 h-4 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <svg class="w-4 h-4 text-sky-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
           <span>Calculated Layover window: <strong class="text-gray-900 font-bold" id="layover-duration">6h 00m</strong></span>
         </div>
         <div id="validation-message" class="text-sm text-red-500 font-medium hidden" role="alert" aria-live="assertive"></div>
@@ -236,7 +236,7 @@
 <section class="section bg-white" id="categories">
   <div class="container">
     <div class="text-center mb-12 reveal">
-      <span class="inline-block text-sky-600 font-bold text-sm uppercase tracking-wider mb-2">Explore Options</span>
+      <span class="inline-block text-sky-700 font-bold text-sm uppercase tracking-wider mb-2">Explore Options</span>
       <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-3">Optimize Every Stopover Hour</h2>
       <p class="text-gray-700 max-w-xl mx-auto">Browse through our specialized transit services tailored specifically to fit flight schedules.</p>
     </div>
@@ -246,11 +246,11 @@
           <img alt="Luxury hotel near Mumbai Airport" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&h=400&fit=crop"/>
           <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
           <div class="absolute top-4 left-4 w-10 h-10 bg-white/90 backdrop-blur-md rounded-xl flex items-center justify-center shadow-md">
-            <svg class="w-5 h-5 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-9.5-16.5h.008v.008h-.008V4.5z"/></svg>
+            <svg class="w-5 h-5 text-sky-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-9.5-16.5h.008v.008h-.008V4.5z"/></svg>
           </div>
         </div>
         <div class="p-6">
-          <h3 class="text-lg font-bold text-gray-900 mb-1.5 group-hover:text-sky-600 transition-colors">Transit Hotels</h3>
+          <h3 class="text-lg font-bold text-gray-900 mb-1.5 group-hover:text-sky-700 transition-colors">Transit Hotels</h3>
           <p class="text-gray-700 text-sm">Flexible stays near CSMIA with 24/7 check-in, direct airport shuttles, and hourly day-use rates.</p>
         </div>
       </a>
@@ -259,11 +259,11 @@
           <img alt="Mumbai restaurants and dining" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&h=400&fit=crop"/>
           <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
           <div class="absolute top-4 left-4 w-10 h-10 bg-white/90 backdrop-blur-md rounded-xl flex items-center justify-center shadow-md">
-            <svg class="w-5 h-5 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.25c-1.096 0-1.984.777-1.984 1.75v1.25h3.968V8c0-.973-.888-1.75-1.984-1.75zM12 2.25a3.75 3.75 0 00-3.75 3.75v4.5A3.75 3.75 0 0012 14.25a3.75 3.75 0 003.75-3.75v-4.5A3.75 3.75 0 0012 2.25z"/></svg>
+            <svg class="w-5 h-5 text-sky-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.25c-1.096 0-1.984.777-1.984 1.75v1.25h3.968V8c0-.973-.888-1.75-1.984-1.75zM12 2.25a3.75 3.75 0 00-3.75 3.75v4.5A3.75 3.75 0 0012 14.25a3.75 3.75 0 003.75-3.75v-4.5A3.75 3.75 0 0012 2.25z"/></svg>
           </div>
         </div>
         <div class="p-6">
-          <h3 class="text-lg font-bold text-gray-900 mb-1.5 group-hover:text-sky-600 transition-colors">Transit Dining</h3>
+          <h3 class="text-lg font-bold text-gray-900 mb-1.5 group-hover:text-sky-700 transition-colors">Transit Dining</h3>
           <p class="text-gray-700 text-sm">From five-star fine dining to local street food crawl guides, explore the culinary capital of India.</p>
         </div>
       </a>
@@ -272,11 +272,11 @@
           <img alt="Mumbai city tour" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" src="https://images.unsplash.com/photo-1567157577867-3c5d4b5e9a0e?w=600&h=400&fit=crop"/>
           <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
           <div class="absolute top-4 left-4 w-10 h-10 bg-white/90 backdrop-blur-md rounded-xl flex items-center justify-center shadow-md">
-            <svg class="w-5 h-5 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5A7.5 7.5 0 1119.5 10.5z"/></svg>
+            <svg class="w-5 h-5 text-sky-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5A7.5 7.5 0 1119.5 10.5z"/></svg>
           </div>
         </div>
         <div class="p-6">
-          <h3 class="text-lg font-bold text-gray-900 mb-1.5 group-hover:text-sky-600 transition-colors">Tours & Experiences</h3>
+          <h3 class="text-lg font-bold text-gray-900 mb-1.5 group-hover:text-sky-700 transition-colors">Tours & Experiences</h3>
           <p class="text-gray-700 text-sm">Time-optimized private tours with dedicated vehicle and guide to fit your exact layover window.</p>
         </div>
       </a>
@@ -288,7 +288,7 @@
 <section class="section bg-gray-50" id="experiences">
   <div class="container">
     <div class="text-center mb-12 reveal">
-      <span class="inline-block text-sky-600 font-bold text-sm uppercase tracking-wider mb-2">High Demand Bookings</span>
+      <span class="inline-block text-sky-700 font-bold text-sm uppercase tracking-wider mb-2">High Demand Bookings</span>
       <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-3">Popular Transit Experiences</h2>
       <p class="text-gray-700 max-w-xl mx-auto">Verified, top-reviewed partners, and close to the airport for secure departure timing.</p>
     </div>
@@ -297,11 +297,11 @@
         <div>
           <div class="relative h-52 overflow-hidden">
             <img alt="The Leela Mumbai near CSIA" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=600&h=400&fit=crop"/>
-            <div class="absolute top-4 right-4 bg-sky-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md">2.2 km from CSIA</div>
+            <div class="absolute top-4 right-4 bg-sky-700 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md">2.2 km from CSIA</div>
           </div>
           <div class="p-6">
             <div class="flex items-center gap-3 text-xs text-gray-700 mb-2">
-              <span class="flex items-center gap-1 font-semibold text-emerald-600 bg-emerald-50 px-2 py-1 rounded-lg">⭐ 4.8 (1.2k Reviews)</span>
+              <span class="flex items-center gap-1 font-semibold text-emerald-700 bg-emerald-50 px-2 py-1 rounded-lg">⭐ 4.8 (1.2k Reviews)</span>
               <span class="flex items-center gap-1 font-semibold bg-gray-100 text-gray-800 px-2 py-1 rounded-lg">⏰ 6h / 12h Slots</span>
             </div>
             <h3 class="text-lg font-bold text-gray-900 mb-2">The Leela Hotel Transit Stay</h3>
@@ -311,9 +311,9 @@
         <div class="px-6 pb-6 pt-2 border-t border-gray-50 flex items-center justify-between">
           <div>
             <span class="text-[10px] text-gray-700 font-bold uppercase tracking-wider">Day-Use Starting from</span>
-            <div class="text-lg font-extrabold text-sky-600">₹3,499</div>
+            <div class="text-lg font-extrabold text-sky-700">₹3,499</div>
           </div>
-          <a href="hotels.html" class="px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white font-bold text-xs rounded-xl shadow-md transition hover:-translate-y-0.5 transform">Book Day Room</a>
+          <a href="hotels.html" class="px-4 py-2 bg-sky-700 hover:bg-sky-700 text-white font-bold text-xs rounded-xl shadow-md transition hover:-translate-y-0.5 transform">Book Day Room</a>
         </div>
       </div>
       
@@ -321,11 +321,11 @@
         <div>
           <div class="relative h-52 overflow-hidden">
             <img alt="Heritage South Mumbai Tour" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1570168007205-dfb528c69538?w=600&h=400&fit=crop"/>
-            <div class="absolute top-4 right-4 bg-sky-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md">Pickup Included</div>
+            <div class="absolute top-4 right-4 bg-sky-700 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md">Pickup Included</div>
           </div>
           <div class="p-6">
             <div class="flex items-center gap-3 text-xs text-gray-700 mb-2">
-              <span class="flex items-center gap-1 font-semibold text-emerald-600 bg-emerald-50 px-2 py-1 rounded-lg">⭐ 4.9 (840 Reviews)</span>
+              <span class="flex items-center gap-1 font-semibold text-emerald-700 bg-emerald-50 px-2 py-1 rounded-lg">⭐ 4.9 (840 Reviews)</span>
               <span class="flex items-center gap-1 font-semibold bg-gray-100 text-gray-800 px-2 py-1 rounded-lg">⏰ 5h Duration</span>
             </div>
             <h3 class="text-lg font-bold text-gray-900 mb-2">South Mumbai Heritage Tour</h3>
@@ -335,9 +335,9 @@
         <div class="px-6 pb-6 pt-2 border-t border-gray-50 flex items-center justify-between">
           <div>
             <span class="text-[10px] text-gray-700 font-bold uppercase tracking-wider">Private Tour for 2</span>
-            <div class="text-lg font-extrabold text-sky-600">₹2,899</div>
+            <div class="text-lg font-extrabold text-sky-700">₹2,899</div>
           </div>
-          <a href="experiences.html" class="px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white font-bold text-xs rounded-xl shadow-md transition hover:-translate-y-0.5 transform">Book Tour</a>
+          <a href="experiences.html" class="px-4 py-2 bg-sky-700 hover:bg-sky-700 text-white font-bold text-xs rounded-xl shadow-md transition hover:-translate-y-0.5 transform">Book Tour</a>
         </div>
       </div>
 
@@ -345,11 +345,11 @@
         <div>
           <div class="relative h-52 overflow-hidden">
             <img alt="Mumbai street food trail" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=600&h=400&fit=crop"/>
-            <div class="absolute top-4 right-4 bg-sky-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md">Guided Tour</div>
+            <div class="absolute top-4 right-4 bg-sky-700 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md">Guided Tour</div>
           </div>
           <div class="p-6">
             <div class="flex items-center gap-3 text-xs text-gray-700 mb-2">
-              <span class="flex items-center gap-1 font-semibold text-emerald-600 bg-emerald-50 px-2 py-1 rounded-lg">⭐ 4.7 (920 Reviews)</span>
+              <span class="flex items-center gap-1 font-semibold text-emerald-700 bg-emerald-50 px-2 py-1 rounded-lg">⭐ 4.7 (920 Reviews)</span>
               <span class="flex items-center gap-1 font-semibold bg-gray-100 text-gray-800 px-2 py-1 rounded-lg">⏰ 3h Duration</span>
             </div>
             <h3 class="text-lg font-bold text-gray-900 mb-2">Bandra Street Food Trail</h3>
@@ -359,9 +359,9 @@
         <div class="px-6 pb-6 pt-2 border-t border-gray-50 flex items-center justify-between">
           <div>
             <span class="text-[10px] text-gray-700 font-bold uppercase tracking-wider">Per Person Rate</span>
-            <div class="text-lg font-extrabold text-sky-600">₹1,299</div>
+            <div class="text-lg font-extrabold text-sky-700">₹1,299</div>
           </div>
-          <a href="experiences.html" class="px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white font-bold text-xs rounded-xl shadow-md transition hover:-translate-y-0.5 transform">Book Trail</a>
+          <a href="experiences.html" class="px-4 py-2 bg-sky-700 hover:bg-sky-700 text-white font-bold text-xs rounded-xl shadow-md transition hover:-translate-y-0.5 transform">Book Trail</a>
         </div>
       </div>
     </div>
@@ -372,31 +372,31 @@
 <section class="section bg-white" id="how-it-works">
   <div class="container">
     <div class="text-center mb-16 reveal">
-      <span class="inline-block text-sky-600 font-bold text-sm uppercase tracking-wider mb-2">Seamless Planning</span>
+      <span class="inline-block text-sky-700 font-bold text-sm uppercase tracking-wider mb-2">Seamless Planning</span>
       <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-3">Layover Booking in 3 Simple Steps</h2>
       <p class="text-gray-700 max-w-xl mx-auto">We synchronize your airport exit, visa guidance, and transfer timings so you never miss a connection.</p>
     </div>
     
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
       <div class="text-center reveal relative z-10">
-        <div class="w-16 h-16 bg-sky-500 text-white rounded-2xl flex items-center justify-center mx-auto mb-6 text-2xl font-black shadow-lg shadow-sky-500/20">1</div>
+        <div class="w-16 h-16 bg-sky-700 text-white rounded-2xl flex items-center justify-center mx-auto mb-6 text-2xl font-black shadow-lg shadow-sky-500/20">1</div>
         <h3 class="text-xl font-bold text-gray-900 mb-2">Enter Layover Window</h3>
         <p class="text-gray-700 text-sm max-w-xs mx-auto">Input your landing and boarding times. We calculate buffer hours for customs and security checks.</p>
       </div>
       <div class="text-center reveal relative z-10">
-        <div class="w-16 h-16 bg-sky-500 text-white rounded-2xl flex items-center justify-center mx-auto mb-6 text-2xl font-black shadow-lg shadow-sky-500/20">2</div>
+        <div class="w-16 h-16 bg-sky-700 text-white rounded-2xl flex items-center justify-center mx-auto mb-6 text-2xl font-black shadow-lg shadow-sky-500/20">2</div>
         <h3 class="text-xl font-bold text-gray-900 mb-2">Select Services</h3>
         <p class="text-gray-700 text-sm max-w-xs mx-auto">Customize your timeline. Select day-rooms, restaurant tables, activities, and cabs with verified travel agents.</p>
       </div>
       <div class="text-center reveal relative z-10">
-        <div class="w-16 h-16 bg-sky-500 text-white rounded-2xl flex items-center justify-center mx-auto mb-6 text-2xl font-black shadow-lg shadow-sky-500/20">3</div>
+        <div class="w-16 h-16 bg-sky-700 text-white rounded-2xl flex items-center justify-center mx-auto mb-6 text-2xl font-black shadow-lg shadow-sky-500/20">3</div>
         <h3 class="text-xl font-bold text-gray-900 mb-2">Enjoy Transit Safely</h3>
         <p class="text-gray-700 text-sm max-w-xs mx-auto">Follow your smart timeline, keep tracked by your private chauffeur, and return to CSMIA refreshed and on time.</p>
       </div>
     </div>
     
     <div class="mt-16 text-center reveal">
-      <a href="how-it-works.html" class="inline-flex items-center gap-2 text-sky-600 hover:text-sky-700 font-bold hover:underline">
+      <a href="how-it-works.html" class="inline-flex items-center gap-2 text-sky-700 hover:text-sky-700 font-bold hover:underline">
         Read Airport exit guidelines & transit visa requirements 
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
       </a>
@@ -408,7 +408,7 @@
 <section class="section bg-gray-50" id="testimonials">
   <div class="container">
     <div class="text-center mb-12 reveal">
-      <span class="inline-block text-sky-600 font-bold text-sm uppercase tracking-wider mb-2">Trusted Reviews</span>
+      <span class="inline-block text-sky-700 font-bold text-sm uppercase tracking-wider mb-2">Trusted Reviews</span>
       <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-3">Loved by Transit Travelers</h2>
       <p class="text-gray-700 max-w-xl mx-auto">Read real reviews from global transit flyers who escaped the terminal lounges.</p>
     </div>
@@ -422,7 +422,7 @@
           <p class="text-gray-700 text-sm italic mb-6">"I had an 8-hour layover en route to London. LayoverX booked me a private driver who met me at CSIA T2 arrivals and a 3-hour heritage tour. Everything was on schedule, returning me 2 hours prior to my flight!"</p>
         </div>
         <div class="flex items-center gap-3">
-          <div class="w-10 h-10 bg-sky-500 rounded-full flex items-center justify-center text-white font-bold text-sm">MB</div>
+          <div class="w-10 h-10 bg-sky-700 rounded-full flex items-center justify-center text-white font-bold text-sm">MB</div>
           <div>
             <div class="font-bold text-gray-900 text-sm">Marcus B.</div>
             <div class="text-gray-700 text-xs font-medium">Transit from Munich</div>
@@ -473,7 +473,7 @@
         <h2 class="text-3xl sm:text-4xl font-extrabold mb-4">Don't Waste Your Mumbai Layover</h2>
         <p class="text-white mb-8 text-base sm:text-lg">Escape the airport gates. Book verified hotels, transport, and dining spots on the only dedicated transit platform.</p>
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a href="plan-my-layover.html" class="w-full sm:w-auto px-8 py-4 bg-white text-sky-600 font-bold rounded-xl hover:bg-gray-50 transition transform hover:-translate-y-0.5">Plan My Layover Now</a>
+          <a href="plan-my-layover.html" class="w-full sm:w-auto px-8 py-4 bg-white text-sky-700 font-bold rounded-xl hover:bg-gray-50 transition transform hover:-translate-y-0.5">Plan My Layover Now</a>
           <a href="contact.html" class="w-full sm:w-auto px-8 py-4 bg-white/20 border border-white/30 text-white font-bold rounded-xl hover:bg-white/20 transition backdrop-blur-md">Speak with Transit Expert</a>
         </div>
       </div>
@@ -497,51 +497,51 @@
           </div>
           <span class="text-xl font-bold tracking-tight text-white">LayoverX</span>
         </a>
-        <p class="text-gray-700 text-sm leading-relaxed mb-6">
+        <p class="text-gray-400 text-sm leading-relaxed mb-6">
           Mumbai Travel & Layover Experience Platform. Transform your transit hours into memorable journeys with premium hotels, fine dining, curated city tours, and airport transfers near CSIA.
         </p>
         <div class="flex items-center gap-3">
-          <a href="#" aria-label="Facebook" class="w-8 h-8 rounded-lg bg-gray-800 hover:bg-sky-500 transition-colors flex items-center justify-center text-gray-700 hover:text-white">
+          <a href="#" aria-label="Facebook" class="w-8 h-8 rounded-lg bg-gray-800 hover:bg-sky-500 transition-colors flex items-center justify-center text-gray-400 hover:text-white">
             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M9 8H7v3h2v9h4v-9h3.6l.4-3h-4V6.5c0-.8.2-1.1 1-1.1h3V2h-4.3C12.3 2 10 3.8 10 7.5V8z"/></svg>
           </a>
-          <a href="#" aria-label="Twitter" class="w-8 h-8 rounded-lg bg-gray-800 hover:bg-sky-500 transition-colors flex items-center justify-center text-gray-700 hover:text-white">
+          <a href="#" aria-label="Twitter" class="w-8 h-8 rounded-lg bg-gray-800 hover:bg-sky-500 transition-colors flex items-center justify-center text-gray-400 hover:text-white">
             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M23.95 4.57a10 10 0 01-2.82.78 4.9 4.9 0 002.16-2.72 9.9 9.9 0 01-3.12 1.19 4.92 4.92 0 00-8.38 4.48A14 14 0 011.64 3.16a4.92 4.92 0 001.52 6.57 4.9 4.9 0 01-2.23-.62v.06a4.93 4.93 0 003.95 4.83 4.9 4.9 0 01-2.22.08 4.93 4.93 0 004.6 3.42A9.9 9.9 0 010 19.54a13.9 13.9 0 007.55 2.21c9.05 0 14-7.5 14-14v-.64a10 10 0 002.4-2.54z"/></svg>
           </a>
-          <a href="#" aria-label="Instagram" class="w-8 h-8 rounded-lg bg-gray-800 hover:bg-sky-500 transition-colors flex items-center justify-center text-gray-700 hover:text-white">
+          <a href="#" aria-label="Instagram" class="w-8 h-8 rounded-lg bg-gray-800 hover:bg-sky-500 transition-colors flex items-center justify-center text-gray-400 hover:text-white">
             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
           </a>
         </div>
       </div>
       <div>
-        <h4 class="font-bold mb-4 text-sm text-sky-400 uppercase tracking-wider">Explore Services</h4>
+        <h3 class="font-bold mb-4 text-sm text-sky-400 uppercase tracking-wider">Explore Services</h3>
         <ul class="space-y-2">
-          <li><a class="text-gray-700 hover:text-white text-sm transition-colors" href="hotels.html">Airport Hotels</a></li>
-          <li><a class="text-gray-700 hover:text-white text-sm transition-colors" href="restaurants.html">Restaurants & Dining</a></li>
-          <li><a class="text-gray-700 hover:text-white text-sm transition-colors" href="experiences.html">Tours & Experiences</a></li>
-          <li><a class="text-gray-700 hover:text-white text-sm transition-colors" href="airport-transfers.html">Airport Taxi & Transfers</a></li>
+          <li><a class="text-gray-400 hover:text-white text-sm transition-colors" href="hotels.html">Airport Hotels</a></li>
+          <li><a class="text-gray-400 hover:text-white text-sm transition-colors" href="restaurants.html">Restaurants & Dining</a></li>
+          <li><a class="text-gray-400 hover:text-white text-sm transition-colors" href="experiences.html">Tours & Experiences</a></li>
+          <li><a class="text-gray-400 hover:text-white text-sm transition-colors" href="airport-transfers.html">Airport Taxi & Transfers</a></li>
         </ul>
       </div>
       <div>
-        <h4 class="font-bold mb-4 text-sm text-sky-400 uppercase tracking-wider">Company</h4>
+        <h3 class="font-bold mb-4 text-sm text-sky-400 uppercase tracking-wider">Company</h3>
         <ul class="space-y-2">
-          <li><a class="text-gray-700 hover:text-white text-sm transition-colors" href="how-it-works.html">How It Works</a></li>
-          <li><a class="text-gray-700 hover:text-white text-sm transition-colors" href="contact.html">Contact Us</a></li>
-          <li><a class="text-gray-700 hover:text-white text-sm transition-colors" href="contact.html#partner">Partner With Us</a></li>
-          <li><a class="text-gray-700 hover:text-white text-sm transition-colors" href="how-it-works.html#faq">FAQs</a></li>
+          <li><a class="text-gray-400 hover:text-white text-sm transition-colors" href="how-it-works.html">How It Works</a></li>
+          <li><a class="text-gray-400 hover:text-white text-sm transition-colors" href="contact.html">Contact Us</a></li>
+          <li><a class="text-gray-400 hover:text-white text-sm transition-colors" href="contact.html#partner">Partner With Us</a></li>
+          <li><a class="text-gray-400 hover:text-white text-sm transition-colors" href="how-it-works.html#faq">FAQs</a></li>
         </ul>
       </div>
       <div>
-        <h4 class="font-bold mb-4 text-sm text-sky-400 uppercase tracking-wider">Get In Touch</h4>
+        <h3 class="font-bold mb-4 text-sm text-sky-400 uppercase tracking-wider">Get In Touch</h3>
         <ul class="space-y-3">
-          <li class="flex items-center gap-2.5 text-gray-700 text-sm">
+          <li class="flex items-center gap-2.5 text-gray-400 text-sm">
             <svg class="w-4 h-4 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
             <a href="mailto:hello@layoverx.com" class="hover:text-white transition-colors">hello@layoverx.com</a>
           </li>
-          <li class="flex items-center gap-2.5 text-gray-700 text-sm">
+          <li class="flex items-center gap-2.5 text-gray-400 text-sm">
             <svg class="w-4 h-4 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-2.824-1.47-5.112-3.758-6.58-6.58l1.293-.97c.362-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/></svg>
             <a href="tel:+912212345678" class="hover:text-white transition-colors">+91 22 1234 5678</a>
           </li>
-          <li class="flex items-start gap-2.5 text-gray-700 text-sm">
+          <li class="flex items-start gap-2.5 text-gray-400 text-sm">
             <svg class="w-4 h-4 text-sky-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
             <span>Andheri East, Near CSMIA Terminal 2,<br/>Mumbai, MH 400099, India</span>
           </li>
@@ -549,11 +549,11 @@
       </div>
     </div>
     <div class="border-t border-gray-800 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <p class="text-gray-700 text-xs">&copy; 2026 LayoverX. All rights reserved. Realized with high-performance standards.</p>
+      <p class="text-gray-400 text-xs">&copy; 2026 LayoverX. All rights reserved. Realized with high-performance standards.</p>
       <div class="flex items-center gap-6">
-        <a class="text-gray-700 hover:text-white text-xs transition-colors" href="#">Privacy Policy</a>
-        <a class="text-gray-700 hover:text-white text-xs transition-colors" href="#">Terms of Service</a>
-        <a class="text-gray-700 hover:text-white text-xs transition-colors" href="#">Cookie Policy</a>
+        <a class="text-gray-400 hover:text-white text-xs transition-colors" href="#">Privacy Policy</a>
+        <a class="text-gray-400 hover:text-white text-xs transition-colors" href="#">Terms of Service</a>
+        <a class="text-gray-400 hover:text-white text-xs transition-colors" href="#">Cookie Policy</a>
       </div>
     </div>
   </div>
@@ -580,11 +580,11 @@
         </div>
         <div class="flex items-center justify-between text-xs sm:text-sm pt-1">
           <label class="form-checkbox text-gray-700 flex items-center gap-1.5 cursor-pointer">
-            <input type="checkbox" class="rounded border-gray-300 text-sky-600 focus:ring-sky-500"/> Remember me
+            <input type="checkbox" class="rounded border-gray-300 text-sky-700 focus:ring-sky-500"/> Remember me
           </label>
-          <a href="#" class="auth-link text-sky-600 hover:text-sky-700 font-semibold" onclick="layoverx.switchModal('login', 'forgot');return false;">Forgot Password?</a>
+          <a href="#" class="auth-link text-sky-700 hover:text-sky-700 font-semibold" onclick="layoverx.switchModal('login', 'forgot');return false;">Forgot Password?</a>
         </div>
-        <button type="submit" class="btn btn-primary w-full mt-2 py-3 bg-sky-500 hover:bg-sky-600 text-white font-bold rounded-xl shadow-lg transition">Sign In</button>
+        <button type="submit" class="btn btn-primary w-full mt-2 py-3 bg-sky-700 hover:bg-sky-700 text-white font-bold rounded-xl shadow-lg transition">Sign In</button>
       </form>
       
       <div class="divider text-gray-700 text-xs">OR</div>
@@ -602,7 +602,7 @@
       
       <p class="text-sm text-gray-700 mt-2">
         Don't have an account? 
-        <a href="#" class="auth-link text-sky-600 hover:text-sky-700 font-semibold" onclick="layoverx.switchModal('login', 'signup');return false;">Create Account</a>
+        <a href="#" class="auth-link text-sky-700 hover:text-sky-700 font-semibold" onclick="layoverx.switchModal('login', 'signup');return false;">Create Account</a>
       </p>
     </div>
   </div>
@@ -628,7 +628,7 @@
           <label class="form-label text-xs font-semibold text-gray-800 uppercase tracking-wider mb-1" for="signup-password">Password</label>
           <input id="signup-password" type="password" class="form-input border border-gray-200 focus:border-sky-500 rounded-xl" placeholder="Create a password" required/>
         </div>
-        <button type="submit" class="btn btn-primary w-full mt-2 py-3 bg-sky-500 hover:bg-sky-600 text-white font-bold rounded-xl shadow-lg transition">Create Account</button>
+        <button type="submit" class="btn btn-primary w-full mt-2 py-3 bg-sky-700 hover:bg-sky-700 text-white font-bold rounded-xl shadow-lg transition">Create Account</button>
       </form>
       
       <div class="divider text-gray-700 text-xs">OR</div>
@@ -642,7 +642,7 @@
       
       <p class="text-sm text-gray-700 mt-2">
         Already have an account? 
-        <a href="#" class="auth-link text-sky-600 hover:text-sky-700 font-semibold" onclick="layoverx.switchModal('signup', 'login');return false;">Sign In</a>
+        <a href="#" class="auth-link text-sky-700 hover:text-sky-700 font-semibold" onclick="layoverx.switchModal('signup', 'login');return false;">Sign In</a>
       </p>
     </div>
   </div>
@@ -659,10 +659,10 @@
         <label class="form-label text-xs font-semibold text-gray-800 uppercase tracking-wider" for="forgot-email">Email Address</label>
         <input id="forgot-email" type="email" class="form-input border border-gray-200 focus:border-sky-500 rounded-xl" placeholder="you@example.com" required/>
       </div>
-      <button class="btn btn-primary w-full mt-4 py-3 bg-sky-500 hover:bg-sky-600 text-white font-bold rounded-xl shadow-lg transition" onclick="layoverx.handleForgot()">Send Reset Link</button>
+      <button class="btn btn-primary w-full mt-4 py-3 bg-sky-700 hover:bg-sky-700 text-white font-bold rounded-xl shadow-lg transition" onclick="layoverx.handleForgot()">Send Reset Link</button>
       
       <p class="text-sm text-gray-700 mt-2">
-        <a href="#" class="auth-link text-sky-600 hover:text-sky-700 font-semibold" onclick="layoverx.switchModal('forgot', 'login');return false;">Back to Login</a>
+        <a href="#" class="auth-link text-sky-700 hover:text-sky-700 font-semibold" onclick="layoverx.switchModal('forgot', 'login');return false;">Back to Login</a>
       </p>
     </div>
   </div>

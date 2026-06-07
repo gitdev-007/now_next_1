@@ -18,7 +18,7 @@
 <section class="bg-white border-b border-gray-150 py-4 sticky top-16 sm:top-20 z-40 shadow-sm">
   <div class="container">
     <div class="flex items-center gap-3 overflow-x-auto no-scrollbar" id="experience-tabs">
-      <button class="exp-tab active bg-amber-600 text-white px-4 py-2 rounded-xl text-xs sm:text-sm font-bold flex-shrink-0" onclick="layoverx.filterExp('all')">All Activities</button>
+      <button class="exp-tab active bg-amber-700 text-white px-4 py-2 rounded-xl text-xs sm:text-sm font-bold flex-shrink-0" onclick="layoverx.filterExp('all')">All Activities</button>
       <button class="exp-tab bg-gray-55 text-gray-700 hover:bg-gray-100 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold flex-shrink-0" onclick="layoverx.filterExp('sightseeing')">📸 Sightseeing</button>
       <button class="exp-tab bg-gray-55 text-gray-700 hover:bg-gray-100 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold flex-shrink-0" onclick="layoverx.filterExp('culture')">🕌 Culture & Heritage</button>
       <button class="exp-tab bg-gray-55 text-gray-700 hover:bg-gray-100 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold flex-shrink-0" onclick="layoverx.filterExp('shopping')">🛍️ Shopping Tours</button>
@@ -38,7 +38,7 @@
         <div class="bg-white rounded-2xl border border-gray-150 p-6 sticky top-52">
           <div class="flex items-center justify-between pb-4 border-b border-gray-100 mb-6">
             <h2 class="text-base font-bold text-gray-900">Filters</h2>
-            <button type="button" onclick="layoverx.clearExpFilters()" class="text-xs text-amber-600 hover:text-amber-700 font-bold hover:underline">Clear All</button>
+            <button type="button" onclick="layoverx.clearExpFilters()" class="text-xs text-amber-700 hover:text-amber-700 font-bold hover:underline">Clear All</button>
           </div>
           
           <!-- Layover duration match -->
@@ -46,15 +46,15 @@
             <h3 class="text-xs font-bold text-gray-700 uppercase tracking-wider mb-3">Layover Fit</h3>
             <div class="space-y-2">
               <label class="flex items-center gap-2.5 text-sm font-medium text-gray-650 cursor-pointer">
-                <input type="checkbox" name="exp-fit" value="under-4h" class="rounded border-gray-300 text-amber-600 focus:ring-amber-500"/>
+                <input type="checkbox" name="exp-fit" value="under-4h" class="rounded border-gray-300 text-amber-700 focus:ring-amber-500"/>
                 Quick stops (Under 4h)
               </label>
               <label class="flex items-center gap-2.5 text-sm font-medium text-gray-650 cursor-pointer">
-                <input type="checkbox" name="exp-fit" value="4-8h" class="rounded border-gray-300 text-amber-600 focus:ring-amber-500"/>
+                <input type="checkbox" name="exp-fit" value="4-8h" class="rounded border-gray-300 text-amber-700 focus:ring-amber-500"/>
                 Standard stays (4h - 8h)
               </label>
               <label class="flex items-center gap-2.5 text-sm font-medium text-gray-650 cursor-pointer">
-                <input type="checkbox" name="exp-fit" value="above-8h" class="rounded border-gray-300 text-amber-600 focus:ring-amber-500"/>
+                <input type="checkbox" name="exp-fit" value="above-8h" class="rounded border-gray-300 text-amber-700 focus:ring-amber-500"/>
                 Long transits (8h+)
               </label>
             </div>
@@ -65,15 +65,15 @@
             <h3 class="text-xs font-bold text-gray-700 uppercase tracking-wider mb-3">Price Per Person</h3>
             <div class="space-y-2">
               <label class="flex items-center gap-2.5 text-sm font-medium text-gray-650 cursor-pointer">
-                <input type="checkbox" name="exp-price" value="under-1500" class="rounded border-gray-300 text-amber-600 focus:ring-amber-500"/>
+                <input type="checkbox" name="exp-price" value="under-1500" class="rounded border-gray-300 text-amber-700 focus:ring-amber-500"/>
                 Under ₹1,500
               </label>
               <label class="flex items-center gap-2.5 text-sm font-medium text-gray-650 cursor-pointer">
-                <input type="checkbox" name="exp-price" value="1500-3000" class="rounded border-gray-300 text-amber-600 focus:ring-amber-500"/>
+                <input type="checkbox" name="exp-price" value="1500-3000" class="rounded border-gray-300 text-amber-700 focus:ring-amber-500"/>
                 ₹1,500 - ₹3,000
               </label>
               <label class="flex items-center gap-2.5 text-sm font-medium text-gray-650 cursor-pointer">
-                <input type="checkbox" name="exp-price" value="above-3000" class="rounded border-gray-300 text-amber-600 focus:ring-amber-500"/>
+                <input type="checkbox" name="exp-price" value="above-3000" class="rounded border-gray-300 text-amber-700 focus:ring-amber-500"/>
                 Above ₹3,000
               </label>
             </div>
@@ -82,7 +82,7 @@
       </aside>
 
       <!-- EXPERIENCES LIST -->
-      <main class="w-full lg:w-3/4">
+      <div class="w-full lg:w-3/4">
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="exp-list">
           
@@ -92,11 +92,11 @@
             <div>
               <div class="relative h-48 overflow-hidden">
                 <img alt="Gateway of India Tour" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1605307066130-098b5f638948?w=600&h=400&fit=crop"/>
-                <span class="absolute top-4 left-4 bg-amber-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-md">📸 Sightseeing</span>
+                <span class="absolute top-4 left-4 bg-amber-700 text-white text-[10px] font-bold px-2.5 py-1 rounded-md">📸 Sightseeing</span>
               </div>
               <div class="p-5">
                 <div class="flex items-center justify-between gap-2 mb-1">
-                  <h3 class="font-bold text-gray-900 text-base hover:text-amber-600 transition-colors">
+                  <h3 class="font-bold text-gray-900 text-base hover:text-amber-700 transition-colors">
                     <a href="#" onclick="layoverx.openExpDetail(1);return false;">South Mumbai Gateway Heritage Tour</a>
                   </h3>
                   <span class="bg-amber-50 text-amber-700 px-2 py-0.5 rounded-lg text-xs font-bold">4.9★</span>
@@ -107,12 +107,12 @@
                 <p class="text-gray-700 text-sm mb-4">Visit the iconic Gateway of India, drive along Marine Drive, view the Taj Mahal Palace, and explore Art Deco structures.</p>
                 <div class="text-xs font-bold text-gray-650 flex items-center gap-4">
                   <span>₹2,899 / traveler</span>
-                  <span class="text-emerald-600">• Best for 8h+ Layovers</span>
+                  <span class="text-emerald-700">• Best for 8h+ Layovers</span>
                 </div>
               </div>
             </div>
             <div class="p-5 pt-0">
-              <button type="button" onclick="layoverx.bookExp(1)" class="w-full py-2.5 bg-amber-650 hover:bg-amber-700 text-white font-bold text-xs rounded-xl transition shadow-md">Book Experience</button>
+              <button type="button" onclick="layoverx.bookExp(1)" class="w-full py-2.5 bg-amber-700 hover:bg-amber-700 text-white font-bold text-xs rounded-xl transition shadow-md">Book Experience</button>
             </div>
           </article>
 
@@ -122,11 +122,11 @@
             <div>
               <div class="relative h-48 overflow-hidden">
                 <img alt="Bandra Street Food" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=600&h=400&fit=crop"/>
-                <span class="absolute top-4 left-4 bg-amber-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-md">🍲 Food Tour</span>
+                <span class="absolute top-4 left-4 bg-amber-700 text-white text-[10px] font-bold px-2.5 py-1 rounded-md">🍲 Food Tour</span>
               </div>
               <div class="p-5">
                 <div class="flex items-center justify-between gap-2 mb-1">
-                  <h3 class="font-bold text-gray-900 text-base hover:text-amber-600 transition-colors">
+                  <h3 class="font-bold text-gray-900 text-base hover:text-amber-700 transition-colors">
                     <a href="#" onclick="layoverx.openExpDetail(2);return false;">Guided Bandra Street Food Trail</a>
                   </h3>
                   <span class="bg-amber-50 text-amber-700 px-2 py-0.5 rounded-lg text-xs font-bold">4.8★</span>
@@ -137,12 +137,12 @@
                 <p class="text-gray-700 text-sm mb-4">Taste classic Mumbai Vada Pav, butter seekh kebabs, and ice-cold mineral water Pani Puri in trendy Bandra West.</p>
                 <div class="text-xs font-bold text-gray-650 flex items-center gap-4">
                   <span>₹1,299 / traveler</span>
-                  <span class="text-emerald-600">• Best for 5h+ Layovers</span>
+                  <span class="text-emerald-700">• Best for 5h+ Layovers</span>
                 </div>
               </div>
             </div>
             <div class="p-5 pt-0">
-              <button type="button" onclick="layoverx.bookExp(2)" class="w-full py-2.5 bg-amber-650 hover:bg-amber-700 text-white font-bold text-xs rounded-xl transition shadow-md">Book Experience</button>
+              <button type="button" onclick="layoverx.bookExp(2)" class="w-full py-2.5 bg-amber-700 hover:bg-amber-700 text-white font-bold text-xs rounded-xl transition shadow-md">Book Experience</button>
             </div>
           </article>
 
@@ -152,11 +152,11 @@
             <div>
               <div class="relative h-48 overflow-hidden">
                 <img alt="Elephanta Caves Tour" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1598977123418-45f04b616a0e?w=600&h=400&fit=crop"/>
-                <span class="absolute top-4 left-4 bg-amber-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-md">🕌 Culture</span>
+                <span class="absolute top-4 left-4 bg-amber-700 text-white text-[10px] font-bold px-2.5 py-1 rounded-md">🕌 Culture</span>
               </div>
               <div class="p-5">
                 <div class="flex items-center justify-between gap-2 mb-1">
-                  <h3 class="font-bold text-gray-900 text-base hover:text-amber-600 transition-colors">
+                  <h3 class="font-bold text-gray-900 text-base hover:text-amber-700 transition-colors">
                     <a href="#" onclick="layoverx.openExpDetail(3);return false;">Elephanta Caves Fast-Track Excursion</a>
                   </h3>
                   <span class="bg-amber-50 text-amber-700 px-2 py-0.5 rounded-lg text-xs font-bold">4.7★</span>
@@ -167,12 +167,12 @@
                 <p class="text-gray-700 text-sm mb-4">Fast-track ferry ride to Elephanta Island. Tour the UNESCO-listed 5th-century rock-cut cave temples of Lord Shiva.</p>
                 <div class="text-xs font-bold text-gray-650 flex items-center gap-4">
                   <span>₹1,999 / traveler</span>
-                  <span class="text-emerald-600">• Best for 8h+ Layovers</span>
+                  <span class="text-emerald-700">• Best for 8h+ Layovers</span>
                 </div>
               </div>
             </div>
             <div class="p-5 pt-0">
-              <button type="button" onclick="layoverx.bookExp(3)" class="w-full py-2.5 bg-amber-650 hover:bg-amber-700 text-white font-bold text-xs rounded-xl transition shadow-md">Book Experience</button>
+              <button type="button" onclick="layoverx.bookExp(3)" class="w-full py-2.5 bg-amber-700 hover:bg-amber-700 text-white font-bold text-xs rounded-xl transition shadow-md">Book Experience</button>
             </div>
           </article>
 
@@ -182,11 +182,11 @@
             <div>
               <div class="relative h-48 overflow-hidden">
                 <img alt="Shopping Tour" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600&h=400&fit=crop"/>
-                <span class="absolute top-4 left-4 bg-amber-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-md">🛍️ Shopping</span>
+                <span class="absolute top-4 left-4 bg-amber-700 text-white text-[10px] font-bold px-2.5 py-1 rounded-md">🛍️ Shopping</span>
               </div>
               <div class="p-5">
                 <div class="flex items-center justify-between gap-2 mb-1">
-                  <h3 class="font-bold text-gray-900 text-base hover:text-amber-600 transition-colors">
+                  <h3 class="font-bold text-gray-900 text-base hover:text-amber-700 transition-colors">
                     <a href="#" onclick="layoverx.openExpDetail(4);return false;">Bazaar & Boutique Shopping Expedition</a>
                   </h3>
                   <span class="bg-amber-50 text-amber-700 px-2 py-0.5 rounded-lg text-xs font-bold">4.6★</span>
@@ -197,12 +197,12 @@
                 <p class="text-gray-700 text-sm mb-4">Shop authentic cottons, Indian silks, brass antiques, and spices in Colaba Causeway and Crawford Market.</p>
                 <div class="text-xs font-bold text-gray-650 flex items-center gap-4">
                   <span>₹1,500 / traveler</span>
-                  <span class="text-emerald-600">• Best for 6h+ Layovers</span>
+                  <span class="text-emerald-700">• Best for 6h+ Layovers</span>
                 </div>
               </div>
             </div>
             <div class="p-5 pt-0">
-              <button type="button" onclick="layoverx.bookExp(4)" class="w-full py-2.5 bg-amber-650 hover:bg-amber-700 text-white font-bold text-xs rounded-xl transition shadow-md">Book Experience</button>
+              <button type="button" onclick="layoverx.bookExp(4)" class="w-full py-2.5 bg-amber-700 hover:bg-amber-700 text-white font-bold text-xs rounded-xl transition shadow-md">Book Experience</button>
             </div>
           </article>
           
@@ -211,7 +211,7 @@
         <div id="exp-empty" class="bg-white rounded-2xl border border-gray-150 p-12 text-center hidden">
           <h3 class="text-base font-bold text-gray-900 mb-1">No Activities Found</h3>
           <p class="text-gray-700 text-sm mb-4">No matching experiences fit your selected filters. Try broadening your layover window options.</p>
-          <button type="button" onclick="layoverx.clearExpFilters()" class="px-4 py-2 bg-amber-600 text-white text-xs font-bold rounded-xl shadow-md">Reset Filters</button>
+          <button type="button" onclick="layoverx.clearExpFilters()" class="px-4 py-2 bg-amber-700 text-white text-xs font-bold rounded-xl shadow-md">Reset Filters</button>
         </div>
 
       </main>
@@ -224,7 +224,7 @@
 <section class="section bg-white border-t border-gray-100">
   <div class="container">
     <div class="text-center mb-12">
-      <span class="inline-block text-amber-600 font-bold text-sm uppercase tracking-wider mb-2">Traveler Logs</span>
+      <span class="inline-block text-amber-700 font-bold text-sm uppercase tracking-wider mb-2">Traveler Logs</span>
       <h2 class="text-3xl font-extrabold text-gray-900">What Transit Guests Say</h2>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -251,7 +251,7 @@
 <section class="section bg-gray-50 border-t border-gray-100">
   <div class="container max-w-4xl">
     <div class="text-center mb-12">
-      <span class="inline-block text-amber-600 font-bold text-sm uppercase tracking-wider mb-2">Transit Guidelines</span>
+      <span class="inline-block text-amber-700 font-bold text-sm uppercase tracking-wider mb-2">Transit Guidelines</span>
       <h2 class="text-3xl font-extrabold text-gray-900">Experiences FAQ</h2>
     </div>
     <div class="space-y-6">
@@ -283,15 +283,15 @@
     <button class="modal-close font-semibold text-2xl" aria-label="Close Activity Modal" onclick="layoverx.closeExpDetail()">&times;</button>
     <div class="p-6">
       <div class="relative h-60 rounded-xl overflow-hidden mb-6">
-        <img id="detail-exp-image" alt="Activity main view" class="w-full h-full object-cover" src=""/>
+        <img id="detail-exp-image" alt="Activity main view" class="w-full h-full object-cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"/>
       </div>
       <h2 id="exp-detail-title" class="text-2xl font-bold text-gray-900 mb-1">Activity Name</h2>
       <div id="detail-exp-duration" class="text-xs text-gray-700 flex items-center gap-1.5 mb-4">Duration</div>
       
       <div class="grid grid-cols-3 gap-3 text-center mb-6">
-        <div class="bg-gray-50 p-3 rounded-xl"><div class="text-[10px] text-gray-700 font-bold uppercase">Rating</div><div id="detail-exp-rating" class="text-sm font-black text-emerald-600">4.9★</div></div>
+        <div class="bg-gray-50 p-3 rounded-xl"><div class="text-[10px] text-gray-700 font-bold uppercase">Rating</div><div id="detail-exp-rating" class="text-sm font-black text-emerald-700">4.9★</div></div>
         <div class="bg-gray-50 p-3 rounded-xl"><div class="text-[10px] text-gray-700 font-bold uppercase">Duration</div><div id="detail-exp-dur-val" class="text-sm font-bold text-gray-800">5h</div></div>
-        <div class="bg-gray-50 p-3 rounded-xl"><div class="text-[10px] text-gray-700 font-bold uppercase">Price/Guest</div><div id="detail-exp-price" class="text-sm font-extrabold text-amber-600">₹2,899</div></div>
+        <div class="bg-gray-50 p-3 rounded-xl"><div class="text-[10px] text-gray-700 font-bold uppercase">Price/Guest</div><div id="detail-exp-price" class="text-sm font-extrabold text-amber-700">₹2,899</div></div>
       </div>
       
       <h3 class="text-sm font-bold text-gray-900 mb-2">Description</h3>
@@ -299,7 +299,13 @@
       
       <div class="flex items-center justify-end gap-3 pt-4 border-t border-gray-100">
         <button type="button" onclick="layoverx.closeExpDetail()" class="px-5 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold text-sm rounded-xl">Cancel</button>
-        <button type="button" id="detail-exp-book-btn" class="px-6 py-2.5 bg-amber-600 hover:bg-amber-700 text-white font-bold text-sm rounded-xl shadow-md">Book Experience</button>
+        <button type="button" id="detail-exp-book-btn" class="px-6 py-2.5 bg-amber-700 hover:bg-amber-700 text-white font-bold text-sm rounded-xl shadow-md">Book Experience</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+utton>
       </div>
     </div>
   </div>
