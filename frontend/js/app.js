@@ -818,41 +818,65 @@
     // 1. Cab pricing
     const cabPrice = cab === 'suv' ? 1499 : 899;
     total += cabPrice;
-    summaryList.innerHTML += `<li class="flex items-center justify-between"><span>🚖 Airport Cabs (Return)</span><strong>₹${cabPrice}</strong></li>`;
+    summaryList.innerHTML += `
+      <li class="flex items-start justify-between gap-4">
+        <span class="flex items-center gap-2"><span class="text-base">🚖</span> Airport Cabs (Return)</span>
+        <strong class="font-bold text-gray-900 flex-shrink-0">₹${cabPrice}</strong>
+      </li>`;
 
     // 2. Hotel pricing
     if (hotelId) {
       const hPrice = HOTELS[hotelId].price;
       total += hPrice;
-      summaryList.innerHTML += `<li class="flex items-center justify-between"><span>🏨 Transit Room (${HOTELS[hotelId].name.split(' ')[0]})</span><strong>₹${hPrice}</strong></li>`;
+      summaryList.innerHTML += `
+        <li class="flex items-start justify-between gap-4">
+          <span class="flex items-center gap-2"><span class="text-base">🏨</span> Transit Room (${HOTELS[hotelId].name.split(' ')[0]})</span>
+          <strong class="font-bold text-gray-900 flex-shrink-0">₹${hPrice}</strong>
+        </li>`;
     }
 
     // 3. Dining pricing
     if (diningId) {
       const dPrice = DINING[diningId].price;
       total += dPrice;
-      summaryList.innerHTML += `<li class="flex items-center justify-between"><span>🍽️ Table booking (${DINING[diningId].name.split(' ')[0]})</span><strong>₹${dPrice}</strong></li>`;
+      summaryList.innerHTML += `
+        <li class="flex items-start justify-between gap-4">
+          <span class="flex items-center gap-2"><span class="text-base">🍽️</span> Table (${DINING[diningId].name.split(' ')[0]})</span>
+          <strong class="font-bold text-gray-900 flex-shrink-0">₹${dPrice}</strong>
+        </li>`;
     }
 
     // 4. Activity pricing
     if (activityId) {
       const aPrice = EXPERIENCES[activityId].price * travelersCount;
       total += aPrice;
-      summaryList.innerHTML += `<li class="flex items-center justify-between"><span>📸 Tours (${EXPERIENCES[activityId].name.slice(0, 15)}...)</span><strong>₹${aPrice}</strong></li>`;
+      summaryList.innerHTML += `
+        <li class="flex items-start justify-between gap-4">
+          <span class="flex items-center gap-2"><span class="text-base">📸</span> Tours (${EXPERIENCES[activityId].name.slice(0, 12)}...)</span>
+          <strong class="font-bold text-gray-900 flex-shrink-0">₹${aPrice}</strong>
+        </li>`;
     }
 
     // 5. Spa pricing
     if (spaId) {
       const sPrice = SPA_WELLNESS[spaId].price * travelersCount;
       total += sPrice;
-      summaryList.innerHTML += `<li class="flex items-center justify-between"><span>💆 Spa & Wellness (${SPA_WELLNESS[spaId].name.split(' ')[0]}...)</span><strong>₹${sPrice}</strong></li>`;
+      summaryList.innerHTML += `
+        <li class="flex items-start justify-between gap-4">
+          <span class="flex items-center gap-2"><span class="text-base">💆</span> Spa (${SPA_WELLNESS[spaId].name.split(' ')[0]})</span>
+          <strong class="font-bold text-gray-900 flex-shrink-0">₹${sPrice}</strong>
+        </li>`;
     }
 
     // 6. Gaming pricing
     if (gamingId) {
       const gPrice = GAMING_ENTERTAINMENT[gamingId].price * travelersCount;
       total += gPrice;
-      summaryList.innerHTML += `<li class="flex items-center justify-between"><span>🎮 Gaming & Fun (${GAMING_ENTERTAINMENT[gamingId].name.split(' ')[0]}...)</span><strong>₹${gPrice}</strong></li>`;
+      summaryList.innerHTML += `
+        <li class="flex items-start justify-between gap-4">
+          <span class="flex items-center gap-2"><span class="text-base">🎮</span> Gaming (${GAMING_ENTERTAINMENT[gamingId].name.split(' ')[0]})</span>
+          <strong class="font-bold text-gray-900 flex-shrink-0">₹${gPrice}</strong>
+        </li>`;
     }
 
     $('#total-cost').textContent = `₹${total.toLocaleString()}`;
