@@ -190,8 +190,8 @@ def compile_page(filename):
     head_compiled = head_compiled.replace('{{JSON_LD}}', meta['json_ld'])
     
     # Highlight Active Link in Navbar
-    active_class = "active-nav-link text-sky-500 font-bold"
-    inactive_class = "text-white/95"
+    active_class = "active-nav-link"
+    inactive_class = ""
     
     header_compiled = header_tpl
     header_compiled = header_compiled.replace('{{ACTIVE_HOTELS}}', active_class if filename == 'hotels.html' else inactive_class)

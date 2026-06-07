@@ -186,15 +186,7 @@
       navbar.classList.toggle('backdrop-blur-xl', scrolled);
       navbar.classList.toggle('shadow-md', scrolled);
       navbar.classList.toggle('scrolled', scrolled);
-      
-      if (logoText) {
-        logoText.classList.toggle('text-white', !scrolled);
-        logoText.classList.toggle('text-gray-900', scrolled);
-      }
-      if (menuBtn) {
-        menuBtn.classList.toggle('text-white', !scrolled);
-        menuBtn.classList.toggle('text-gray-900', scrolled);
-      }
+      // Colors are now handled purely by CSS variables and .scrolled class in design-system.css
     }
     
     window.addEventListener('scroll', handleScroll);

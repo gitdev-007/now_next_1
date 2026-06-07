@@ -20,31 +20,31 @@
       <!-- CONTACT FORM -->
       <div class="w-full lg:w-3/5">
         <h2 class="text-2xl font-bold text-gray-900 mb-2">Send Us a Message</h2>
-        <p class="text-gray-500 text-sm mb-6">Our transit coordinators usually respond within 15 minutes.</p>
+        <p class="text-gray-700 text-sm mb-6">Our transit coordinators usually respond within 15 minutes.</p>
         
         <form id="contact-form" class="space-y-4" onsubmit="event.preventDefault(); alert('Message sent successfully!'); this.reset();">
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div class="form-group">
-              <label for="contact-name" class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">Full Name</label>
+              <label for="contact-name" class="text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Full Name</label>
               <input type="text" id="contact-name" class="form-input border border-gray-200 focus:border-sky-500 rounded-xl py-3 px-4" placeholder="John Doe" required/>
             </div>
             <div class="form-group">
-              <label for="contact-email" class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">Email Address</label>
+              <label for="contact-email" class="text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Email Address</label>
               <input type="email" id="contact-email" class="form-input border border-gray-200 focus:border-sky-500 rounded-xl py-3 px-4" placeholder="you@example.com" required/>
             </div>
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div class="form-group">
-              <label for="contact-phone" class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">WhatsApp / Phone Number</label>
+              <label for="contact-phone" class="text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">WhatsApp / Phone Number</label>
               <input type="tel" id="contact-phone" class="form-input border border-gray-200 focus:border-sky-500 rounded-xl py-3 px-4" placeholder="+1 123 456 7890" required/>
             </div>
             <div class="form-group">
-              <label for="contact-date" class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">Layover Date</label>
+              <label for="contact-date" class="text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Layover Date</label>
               <input type="date" id="contact-date" class="form-input border border-gray-200 focus:border-sky-500 rounded-xl py-3 px-4" required/>
             </div>
           </div>
           <div class="form-group">
-            <label for="contact-message" class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">Tell us about your flight timings & layover details</label>
+            <label for="contact-message" class="text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Tell us about your flight timings & layover details</label>
             <textarea id="contact-message" rows="5" class="form-input border border-gray-200 focus:border-sky-500 rounded-xl py-3 px-4" placeholder="Write landing times, airlines, and specific help needed..." required></textarea>
           </div>
           <button type="submit" class="px-6 py-3.5 bg-sky-500 hover:bg-sky-600 text-white font-bold rounded-xl shadow-md transition transform hover:-translate-y-0.5 w-full">Send Message</button>
@@ -61,7 +61,7 @@
               <div>
                 <strong class="text-gray-800">Urgent Support Hotline</strong>
                 <div class="text-sky-600 font-bold mt-0.5"><a href="tel:+912212345678">+91 22 1234 5678</a></div>
-                <p class="text-gray-400 text-xs mt-0.5">Available 24/7 for active transit passenger coordination.</p>
+                <p class="text-gray-700 text-xs mt-0.5">Available 24/7 for active transit passenger coordination.</p>
               </div>
             </li>
             <li class="flex items-start gap-3">
@@ -69,7 +69,7 @@
               <div>
                 <strong class="text-gray-800">WhatsApp Dispatch Chat</strong>
                 <div class="text-emerald-600 font-bold mt-0.5"><a href="https://wa.me/912212345678" target="_blank" rel="noopener">+91 22 1234 5678</a></div>
-                <p class="text-gray-400 text-xs mt-0.5">Quickest channel for live coordinates updates.</p>
+                <p class="text-gray-700 text-xs mt-0.5">Quickest channel for live coordinates updates.</p>
               </div>
             </li>
             <li class="flex items-start gap-3">
@@ -84,7 +84,7 @@
         
         <div class="bg-gradient-to-br from-sky-500 to-indigo-600 text-white rounded-2xl p-6 shadow-md" id="partner">
           <h3 class="font-bold text-lg mb-2">Partner with LayoverX</h3>
-          <p class="text-white/80 text-xs leading-relaxed mb-4">Are you a fleet manager, hotel owner near CSMIA, or a tourist guide? Register as an official LayoverX supplier to earn premium rates from global transit flyers.</p>
+          <p class="text-white text-xs leading-relaxed mb-4">Are you a fleet manager, hotel owner near CSMIA, or a tourist guide? Register as an official LayoverX supplier to earn premium rates from global transit flyers.</p>
           <a href="#partner-form" onclick="alert('Partner registration form coming soon!');" class="inline-block px-4 py-2 bg-white text-sky-600 font-bold text-xs rounded-xl shadow-md hover:bg-gray-50 transition">Register as Supplier</a>
         </div>
       </aside>
@@ -96,10 +96,10 @@
 <!-- GOOGLE MAP PLACEHOLDER -->
 <section class="w-full bg-gray-100 border-t border-b border-gray-150 h-96 relative">
   <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('https://images.unsplash.com/photo-1524661135-423995f22d0b?w=1200&h=400&fit=crop')" role="img" aria-label="Map showing Mumbai Airport location"></div>
-  <div class="absolute inset-0 bg-black/30 flex items-center justify-center">
+  <div class="absolute inset-0 bg-black/60 flex items-center justify-center">
     <div class="bg-white/95 backdrop-blur-md rounded-2xl p-6 border border-gray-200 shadow-xl max-w-sm text-center">
       <h3 class="font-bold text-gray-900 text-base mb-1.5">CSMIA Dispatch Office</h3>
-      <p class="text-gray-500 text-xs mb-3">Conveniently situated inside Hotel District, Andheri East, just 5 minutes from Terminal 2.</p>
+      <p class="text-gray-700 text-xs mb-3">Conveniently situated inside Hotel District, Andheri East, just 5 minutes from Terminal 2.</p>
       <a href="https://maps.google.com" target="_blank" rel="noopener" class="inline-block px-4 py-2 bg-sky-500 text-white font-bold text-xs rounded-lg hover:bg-sky-600 transition shadow-md">Open in Google Maps</a>
     </div>
   </div>
@@ -118,7 +118,7 @@
           Can I cancel my transit booking if my flight path changes?
           <span class="text-sky-500 group-open:rotate-180 transition-transform duration-200">▼</span>
         </summary>
-        <p class="text-gray-600 text-sm mt-3 leading-relaxed">
+        <p class="text-gray-800 text-sm mt-3 leading-relaxed">
           Yes! We support <strong>100% free cancellations up to 2 hours</strong> prior to your scheduled flight landing. Simply send us your booking confirmation ID via WhatsApp or Email support to trigger an immediate refund.
         </p>
       </details>
@@ -127,7 +127,7 @@
           How do I register a corporate travel partnership?
           <span class="text-sky-500 group-open:rotate-180 transition-transform duration-200">▼</span>
         </summary>
-        <p class="text-gray-600 text-sm mt-3 leading-relaxed">
+        <p class="text-gray-800 text-sm mt-3 leading-relaxed">
           Please reach out directly to our business desk at <a href="mailto:partners@layoverx.com" class="text-sky-600 hover:underline font-bold">partners@layoverx.com</a>. We offer corporate discount APIs, custom billing, and VIP meet-and-greets for executive transit groups.
         </p>
       </details>
