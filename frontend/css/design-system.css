@@ -182,7 +182,8 @@ input[type="radio"]:checked + div h3 {
 
 /* Active Nav Link Custom Styling */
 .active-nav-link {
-  color: var(--primary) !important;
-  border-bottom: 2px solid var(--primary);
+  color: #0284c7 !important; /* Sky 600 */
+  font-weight: 600 !important;
+  border-bottom: 2px solid #0284c7;
 }
 
