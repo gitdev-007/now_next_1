@@ -23,7 +23,9 @@
       cabType: 'sedan',
       hotelId: null,
       diningId: null,
-      activityId: null
+      activityId: null,
+      spaId: null,
+      gamingId: null
     }
   };
 
@@ -58,6 +60,18 @@
     2: { id: 2, name: "Guided Bandra Street Food Trail", category: "food", rating: 4.8, duration: 3, price: 1299, image: "https://images.unsplash.com/photo-1559339352-11d035aa65de?w=600&h=400&fit=crop", desc: "Hygienic culinary walk through Bandra West. Sample local snacks, sweet rolls, seekh kebabs, and vada pav." },
     3: { id: 3, name: "Elephanta Caves Fast-Track Excursion", category: "culture", rating: 4.7, duration: 4, price: 1999, image: "https://images.unsplash.com/photo-1598977123418-45f04b616a0e?w=600&h=400&fit=crop", desc: "Ferry tickets and professional guides to explore the historic rock-cut cave temples on Elephanta Island." },
     4: { id: 4, name: "Bazaar & Boutique Shopping Expedition", category: "shopping", rating: 4.6, duration: 3.5, price: 1500, image: "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600&h=400&fit=crop", desc: "Accompanied market tour to buy Indian cottons, silks, spices, and souvenirs with secure baggage drop back in cab." }
+  };
+
+  const SPA_WELLNESS = {
+    1: { id: 1, name: "Heavenly Spa by Westin", category: "massage", rating: 4.9, duration: 1.5, price: 4500, image: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&h=400&fit=crop", desc: "Full-body Swedish massage, steam room access, and luxury aromatherapy in a tranquil airport-adjacent setting." },
+    2: { id: 2, name: "O2 Spa - Terminal 2", category: "express", rating: 4.7, duration: 0.5, price: 1800, image: "https://images.unsplash.com/photo-1611077544192-332e67500366?w=600&h=400&fit=crop", desc: "Convenient express foot reflexology and head-neck-shoulder massage located right at the T2 arrivals lounge." },
+    3: { id: 3, name: "Six Senses Wellness Circuit", category: "full-day", rating: 4.8, duration: 3, price: 8500, image: "https://images.unsplash.com/photo-1540555700478-4be289fbece8?w=600&h=400&fit=crop", desc: "Holistic wellness journey including detox juices, meditation session, deep tissue massage, and facial treatment." }
+  };
+
+  const GAMING_ENTERTAINMENT = {
+    1: { id: 1, name: "Smaaash Entertainment Hub", category: "gaming", rating: 4.6, duration: 2, price: 1200, image: "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&h=400&fit=crop", desc: "Virtual reality games, bowling, cricket simulators, and arcade fun. Perfect for high-energy transit breaks." },
+    2: { id: 2, name: "PVR Directors Cut Luxury Cinema", category: "movie", rating: 4.9, duration: 3, price: 2500, image: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=600&h=400&fit=crop", desc: "Ultra-premium movie watching with recliner seats, butler service, and fine dining at the airport mall." },
+    3: { id: 3, name: "The Game Palacio - Casino Style Arcade", category: "gaming", rating: 4.7, duration: 2.5, price: 1800, image: "https://images.unsplash.com/photo-1511886929837-354d827aae26?w=600&h=400&fit=crop", desc: "Boutique bowling, high-end retro arcade games, and mechanical bull rides with a premium lounge bar." }
   };
 
   /* ===== AUTH ===== */
@@ -455,6 +469,80 @@
     };
   }
 
+  // Spa filter
+  function initSpaFilter() {
+    const list = $('#spa-list');
+    if (!list) return;
+
+    let selectedCat = 'all';
+    window.layoverx.filterSpa = function(cat) {
+      selectedCat = cat;
+      $$('#spa-tabs button').forEach(el => {
+        el.classList.remove('bg-sky-700', 'text-white');
+        el.classList.add('bg-gray-55', 'text-gray-700');
+      });
+      const activeTab = Array.from($$('#spa-tabs button')).find(el => el.textContent.toLowerCase().includes(cat) || (cat === 'all' && el.textContent.includes('All')));
+      if (activeTab) {
+        activeTab.classList.remove('bg-gray-55', 'text-gray-700');
+        activeTab.classList.add('bg-sky-700', 'text-white');
+      }
+      applySpaFilters();
+    };
+
+    function applySpaFilters() {
+      const items = $$('.spa-item');
+      let visibleCount = 0;
+      items.forEach(item => {
+        const itemCat = item.getAttribute('data-category');
+        let matchCat = selectedCat === 'all' || itemCat === selectedCat;
+        if (matchCat) {
+          item.classList.remove('hidden');
+          visibleCount++;
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+      $('#spa-empty').classList.toggle('hidden', visibleCount > 0);
+    }
+  }
+
+  // Gaming filter
+  function initGamingFilter() {
+    const list = $('#gaming-list');
+    if (!list) return;
+
+    let selectedCat = 'all';
+    window.layoverx.filterGaming = function(cat) {
+      selectedCat = cat;
+      $$('#gaming-tabs button').forEach(el => {
+        el.classList.remove('bg-purple-700', 'text-white');
+        el.classList.add('bg-gray-55', 'text-gray-700');
+      });
+      const activeTab = Array.from($$('#gaming-tabs button')).find(el => el.textContent.toLowerCase().includes(cat) || (cat === 'all' && el.textContent.includes('All')));
+      if (activeTab) {
+        activeTab.classList.remove('bg-gray-55', 'text-gray-700');
+        activeTab.classList.add('bg-purple-700', 'text-white');
+      }
+      applyGamingFilters();
+    };
+
+    function applyGamingFilters() {
+      const items = $$('.gaming-item');
+      let visibleCount = 0;
+      items.forEach(item => {
+        const itemCat = item.getAttribute('data-category');
+        let matchCat = selectedCat === 'all' || itemCat === selectedCat;
+        if (matchCat) {
+          item.classList.remove('hidden');
+          visibleCount++;
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+      $('#gaming-empty').classList.toggle('hidden', visibleCount > 0);
+    }
+  }
+
   /* ===== MARKETPLACE ACTIONS & DETAILS MODALS ===== */
   window.layoverx.openHotelDetail = function(id) {
     const h = HOTELS[id];
@@ -522,19 +610,60 @@
     $('#detail-exp-dur-val').textContent = `${e.duration}h`;
     $('#detail-exp-price').textContent = `₹${e.price.toLocaleString()}`;
     $('#detail-exp-description').textContent = e.desc;
-    
+
     $('#detail-exp-book-btn').onclick = () => {
       window.layoverx.bookExp(id);
       window.layoverx.closeExpDetail();
     };
-    
+
     Modal.open('exp-detail');
   };
   window.layoverx.closeExpDetail = function() {
     Modal.close('exp-detail');
   };
+
+  window.layoverx.openSpaDetail = function(id) {
+    const e = SPA_WELLNESS[id];
+    if (!e) return;
+    $('#detail-spa-image').src = e.image;
+    $('#spa-detail-title').textContent = e.name;
+    $('#detail-spa-duration').textContent = `${e.duration} Hour Session`;
+    $('#detail-spa-description').textContent = e.desc;
+    $('#detail-spa-book-btn').onclick = () => {
+      window.layoverx.bookSpa(id);
+      window.layoverx.closeSpaDetail();
+    };
+    Modal.open('spa-detail');
+  };
+  window.layoverx.closeSpaDetail = function() {
+    Modal.close('spa-detail');
+  };
+
+  window.layoverx.openGamingDetail = function(id) {
+    const e = GAMING_ENTERTAINMENT[id];
+    if (!e) return;
+    $('#detail-gaming-image').src = e.image;
+    $('#gaming-detail-title').textContent = e.name;
+    $('#detail-gaming-duration').textContent = `${e.duration} Hour Session`;
+    $('#detail-gaming-description').textContent = e.desc;
+    $('#detail-gaming-book-btn').onclick = () => {
+      window.layoverx.bookGaming(id);
+      window.layoverx.closeGamingDetail();
+    };
+    Modal.open('gaming-detail');
+  };
+  window.layoverx.closeGamingDetail = function() {
+    Modal.close('gaming-detail');
+  };
+
   window.layoverx.bookExp = function(id) {
     showToast(`Experience "${EXPERIENCES[id].name}" added! Private guide assigned.`);
+  };
+  window.layoverx.bookSpa = function(id) {
+    showToast(`Spa Session "${SPA_WELLNESS[id].name}" reserved!`);
+  };
+  window.layoverx.bookGaming = function(id) {
+    showToast(`Entertainment "${GAMING_ENTERTAINMENT[id].name}" reserved!`);
   };
 
   window.layoverx.bookCab = function(type) {
@@ -600,6 +729,30 @@
       });
     });
 
+    $$('#plan-spa-options input[type="checkbox"]').forEach((el, index) => {
+      el.addEventListener('change', () => {
+        if (el.checked) {
+          $$('#plan-spa-options input[type="checkbox"]').forEach(c => { if(c!==el) c.checked = false });
+          state.currentPlan.spaId = index + 1;
+        } else {
+          state.currentPlan.spaId = null;
+        }
+        recalculateItinerary();
+      });
+    });
+
+    $$('#plan-gaming-options input[type="checkbox"]').forEach((el, index) => {
+      el.addEventListener('change', () => {
+        if (el.checked) {
+          $$('#plan-gaming-options input[type="checkbox"]').forEach(c => { if(c!==el) c.checked = false });
+          state.currentPlan.gamingId = index + 1;
+        } else {
+          state.currentPlan.gamingId = null;
+        }
+        recalculateItinerary();
+      });
+    });
+
     $$('input[name="plan-cab"]').forEach(el => {
       el.addEventListener('change', () => {
         state.currentPlan.cabType = el.value;
@@ -652,6 +805,8 @@
     const hotelId = state.currentPlan.hotelId;
     const diningId = state.currentPlan.diningId;
     const activityId = state.currentPlan.activityId;
+    const spaId = state.currentPlan.spaId;
+    const gamingId = state.currentPlan.gamingId;
 
     let total = 0;
     const summaryList = $('#summary-items-list');
@@ -686,6 +841,20 @@
       summaryList.innerHTML += `<li class="flex items-center justify-between"><span>📸 Tours (${EXPERIENCES[activityId].name.slice(0, 15)}...)</span><strong>₹${aPrice}</strong></li>`;
     }
 
+    // 5. Spa pricing
+    if (spaId) {
+      const sPrice = SPA_WELLNESS[spaId].price * travelersCount;
+      total += sPrice;
+      summaryList.innerHTML += `<li class="flex items-center justify-between"><span>💆 Spa & Wellness (${SPA_WELLNESS[spaId].name.split(' ')[0]}...)</span><strong>₹${sPrice}</strong></li>`;
+    }
+
+    // 6. Gaming pricing
+    if (gamingId) {
+      const gPrice = GAMING_ENTERTAINMENT[gamingId].price * travelersCount;
+      total += gPrice;
+      summaryList.innerHTML += `<li class="flex items-center justify-between"><span>🎮 Gaming & Fun (${GAMING_ENTERTAINMENT[gamingId].name.split(' ')[0]}...)</span><strong>₹${gPrice}</strong></li>`;
+    }
+
     $('#total-cost').textContent = `₹${total.toLocaleString()}`;
 
     // Render Timeline Graphical Nodes
@@ -707,6 +876,16 @@
     if (hotelId) {
       addTimelineNode(formatTime(current), `🏨 Check-in: ${HOTELS[hotelId].name}`, "Day-use room ready. Enjoy showers and pool access.", "emerald");
       current = new Date(current.getTime() + 3 * 60 * 60 * 1000); // 3 hours rest
+    }
+
+    if (spaId) {
+      addTimelineNode(formatTime(current), `💆 Wellness Session: ${SPA_WELLNESS[spaId].name}`, "Express therapy session to refresh after flight.", "sky");
+      current = new Date(current.getTime() + SPA_WELLNESS[spaId].duration * 60 * 60 * 1000);
+    }
+
+    if (gamingId) {
+      addTimelineNode(formatTime(current), `🎮 Gaming & Fun: ${GAMING_ENTERTAINMENT[gamingId].name}`, "Interactive gaming break for transit energy.", "amber");
+      current = new Date(current.getTime() + GAMING_ENTERTAINMENT[gamingId].duration * 60 * 60 * 1000);
     }
 
     if (activityId) {
@@ -962,6 +1141,8 @@
     initHotelsFilter();
     initDiningFilter();
     initExperiencesFilter();
+    initSpaFilter();
+    initGamingFilter();
     initPlanner();
     loadSavedPlans();
     initHomepageSearch();

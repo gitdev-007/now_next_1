@@ -1,0 +1,146 @@
+<!-- HERO SECTION -->
+<section class="bg-gradient-to-r from-sky-700 to-sky-950 text-white pt-20 sm:pt-28 pb-12 relative overflow-hidden">
+  <div class="absolute inset-0 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+  <div class="container relative z-10">
+    <div class="max-w-3xl">
+      <nav class="flex items-center gap-2 text-xs text-sky-300/80 mb-4" aria-label="Breadcrumb">
+        <a href="index.html" class="hover:text-white">Home</a>
+        <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+        <span class="text-white font-medium">Spa & Wellness</span>
+      </nav>
+      <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-3">Premium Airport Spa & Wellness</h1>
+      <p class="text-sky-100 text-sm sm:text-base leading-relaxed">Refresh your transit with luxury spa treatments. From express foot massages inside Terminal 2 to full-day wellness circuits at five-star hotels near the airport.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORY TABS -->
+<section class="bg-white border-b border-gray-200 py-4 sticky top-16 sm:top-20 z-40 shadow-sm">
+  <div class="container">
+    <div class="flex items-center gap-3 overflow-x-auto no-scrollbar" id="spa-tabs">
+      <button class="spa-tab active bg-sky-700 text-white px-4 py-2 rounded-xl text-xs sm:text-sm font-bold flex-shrink-0" onclick="layoverx.filterSpa('all')">All Treatments</button>
+      <button class="spa-tab bg-gray-55 text-gray-700 hover:bg-gray-100 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold flex-shrink-0" onclick="layoverx.filterSpa('massage')">💆 Massages</button>
+      <button class="spa-tab bg-gray-55 text-gray-700 hover:bg-gray-100 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold flex-shrink-0" onclick="layoverx.filterSpa('express')">⚡ Express Services</button>
+      <button class="spa-tab bg-gray-55 text-gray-700 hover:bg-gray-100 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold flex-shrink-0" onclick="layoverx.filterSpa('full-day')">🛁 Full Wellness</button>
+    </div>
+  </div>
+</section>
+
+<!-- SPA LIST -->
+<section class="section bg-gray-50">
+  <div class="container">
+    <div class="flex flex-col lg:flex-row gap-8">
+      
+      <!-- FILTER PANEL -->
+      <aside class="w-full lg:w-1/4 flex-shrink-0" aria-label="Spa Filters">
+        <div class="bg-white rounded-2xl border border-gray-200 p-6 sticky top-52">
+          <div class="flex items-center justify-between pb-4 border-b border-gray-100 mb-6">
+            <h2 class="text-base font-bold text-gray-900">Filters</h2>
+            <button type="button" onclick="layoverx.clearSpaFilters()" class="text-xs text-sky-700 hover:text-sky-700 font-bold hover:underline">Clear All</button>
+          </div>
+          
+          <div class="mb-6">
+            <h3 class="text-xs font-bold text-gray-700 uppercase tracking-wider mb-3">Duration</h3>
+            <div class="space-y-2">
+              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-600 cursor-pointer">
+                <input type="checkbox" name="spa-duration" value="under-1h" class="rounded border-gray-300 text-sky-700 focus:ring-sky-500"/>
+                Under 1 Hour
+              </label>
+              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-600 cursor-pointer">
+                <input type="checkbox" name="spa-duration" value="1-2h" class="rounded border-gray-300 text-sky-700 focus:ring-sky-500"/>
+                1 - 2 Hours
+              </label>
+              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-600 cursor-pointer">
+                <input type="checkbox" name="spa-duration" value="above-2h" class="rounded border-gray-300 text-sky-700 focus:ring-sky-500"/>
+                Deep Wellness (2h+)
+              </label>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <div class="w-full lg:w-3/4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="spa-list">
+          <!-- Card 1 -->
+          <article class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col justify-between spa-item" 
+                   data-category="massage" data-duration="1.5" data-price="4500">
+            <div>
+              <div class="relative h-48 overflow-hidden">
+                <img alt="Spa Treatment" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&h=400&fit=crop"/>
+                <span class="absolute top-4 left-4 bg-sky-700 text-white text-[10px] font-bold px-2.5 py-1 rounded-md">💆 Massage</span>
+              </div>
+              <div class="p-5">
+                <div class="flex items-center justify-between gap-2 mb-1">
+                  <h3 class="font-bold text-gray-900 text-base hover:text-sky-700 transition-colors">
+                    <a href="#" onclick="layoverx.openSpaDetail(1);return false;">Heavenly Spa by Westin</a>
+                  </h3>
+                  <span class="bg-sky-50 text-sky-700 px-2 py-0.5 rounded-lg text-xs font-bold">4.9★</span>
+                </div>
+                <div class="text-xs text-gray-700 flex items-center gap-1.5 mb-3">
+                  <span>⏱️ 1.5h Session • Airport Adjacent</span>
+                </div>
+                <p class="text-gray-700 text-sm mb-4">Full-body Swedish massage, steam room access, and luxury aromatherapy in a tranquil setting.</p>
+                <div class="text-xs font-bold text-gray-600">₹4,500 / session</div>
+              </div>
+            </div>
+            <div class="p-5 pt-0">
+              <button type="button" onclick="layoverx.bookSpa(1)" class="w-full py-2.5 bg-sky-700 hover:bg-sky-700 text-white font-bold text-xs rounded-xl transition shadow-md">Book Spa</button>
+            </div>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col justify-between spa-item" 
+                   data-category="express" data-duration="0.5" data-price="1800">
+            <div>
+              <div class="relative h-48 overflow-hidden">
+                <img alt="Express Spa" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1611077544192-332e67500366?w=600&h=400&fit=crop"/>
+                <span class="absolute top-4 left-4 bg-sky-700 text-white text-[10px] font-bold px-2.5 py-1 rounded-md">⚡ Express</span>
+              </div>
+              <div class="p-5">
+                <div class="flex items-center justify-between gap-2 mb-1">
+                  <h3 class="font-bold text-gray-900 text-base hover:text-sky-700 transition-colors">
+                    <a href="#" onclick="layoverx.openSpaDetail(2);return false;">O2 Spa - Terminal 2</a>
+                  </h3>
+                  <span class="bg-sky-50 text-sky-700 px-2 py-0.5 rounded-lg text-xs font-bold">4.7★</span>
+                </div>
+                <div class="text-xs text-gray-700 flex items-center gap-1.5 mb-3">
+                  <span>⏱️ 30m Session • Inside Terminal</span>
+                </div>
+                <p class="text-gray-700 text-sm mb-4">Express foot reflexology and head-neck-shoulder massage located at T2 arrivals.</p>
+                <div class="text-xs font-bold text-gray-600">₹1,800 / session</div>
+              </div>
+            </div>
+            <div class="p-5 pt-0">
+              <button type="button" onclick="layoverx.bookSpa(2)" class="w-full py-2.5 bg-sky-700 hover:bg-sky-700 text-white font-bold text-xs rounded-xl transition shadow-md">Book Spa</button>
+            </div>
+          </article>
+        </div>
+
+        <div id="spa-empty" class="bg-white rounded-2xl border border-gray-200 p-12 text-center hidden">
+          <h3 class="text-base font-bold text-gray-900 mb-1">No Services Found</h3>
+          <p class="text-gray-700 text-sm mb-4">Try different filters.</p>
+          <button type="button" onclick="layoverx.clearSpaFilters()" class="px-4 py-2 bg-sky-700 text-white text-xs font-bold rounded-xl shadow-md">Reset Filters</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DETAILS MODAL -->
+<div id="modal-spa-detail" class="modal-overlay" data-modal="spa-detail" role="dialog" aria-modal="true" aria-labelledby="spa-detail-title">
+  <div class="modal-content !max-w-2xl">
+    <button class="modal-close font-semibold text-2xl" aria-label="Close Spa Modal" onclick="layoverx.closeSpaDetail()">&times;</button>
+    <div class="p-6">
+      <div class="relative h-60 rounded-xl overflow-hidden mb-6">
+        <img id="detail-spa-image" alt="Spa main view" class="w-full h-full object-cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"/>
+      </div>
+      <h2 id="spa-detail-title" class="text-2xl font-bold text-gray-900 mb-1">Spa Name</h2>
+      <div id="detail-spa-duration" class="text-xs text-gray-700 mb-4">Duration</div>
+      <p id="detail-spa-description" class="text-gray-800 text-sm leading-relaxed mb-6"></p>
+      <div class="flex items-center justify-end gap-3 pt-4 border-t border-gray-100">
+        <button type="button" onclick="layoverx.closeSpaDetail()" class="px-5 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold text-sm rounded-xl">Cancel</button>
+        <button type="button" id="detail-spa-book-btn" class="px-6 py-2.5 bg-sky-700 hover:bg-sky-700 text-white font-bold text-sm rounded-xl shadow-md">Book Spa</button>
+      </div>
+    </div>
+  </div>
+</div>

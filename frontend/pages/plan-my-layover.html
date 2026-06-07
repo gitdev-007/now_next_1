@@ -231,30 +231,106 @@
           </div>
         </div>
 
+        <!-- Step 5: Spa & Wellness -->
+        <div class="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
+          <div class="flex items-center justify-between pb-4 border-b border-gray-100 mb-6">
+            <div class="flex items-center gap-3">
+              <span class="w-7 h-7 rounded-lg bg-sky-100 text-sky-700 font-bold flex items-center justify-center text-xs">5</span>
+              <h2 class="text-lg font-bold text-gray-900">Add Spa & Wellness (Optional)</h2>
+            </div>
+            <span class="text-xs text-sky-700 font-bold bg-sky-50 px-2 py-0.5 rounded-lg">Express Sessions</span>
+          </div>
+          
+          <div class="space-y-4" id="plan-spa-options">
+            <label class="relative border border-gray-200 rounded-xl p-4 flex flex-col sm:flex-row sm:items-center justify-between hover:border-sky-300 transition cursor-pointer select-card block">
+              <div class="flex items-start gap-4">
+                <input type="checkbox" id="chk-spa-1" class="rounded border-gray-300 text-sky-700 focus:ring-sky-500 mt-1 h-4 w-4"/>
+                <div>
+                  <h3 class="font-bold text-gray-800 text-sm">Heavenly Spa by Westin</h3>
+                  <p class="text-gray-700 text-xs mt-0.5">⭐ 4.9 | Full-body Swedish massage. (1.5 Hours)</p>
+                </div>
+              </div>
+              <div class="text-right mt-2 sm:mt-0 flex-shrink-0">
+                <strong class="text-sky-700 text-sm block">₹4,500 <span class="text-gray-700 text-xs font-normal">/ session</span></strong>
+              </div>
+            </label>
+            <label class="relative border border-gray-200 rounded-xl p-4 flex flex-col sm:flex-row sm:items-center justify-between hover:border-sky-300 transition cursor-pointer select-card block">
+              <div class="flex items-start gap-4">
+                <input type="checkbox" id="chk-spa-2" class="rounded border-gray-300 text-sky-700 focus:ring-sky-500 mt-1 h-4 w-4"/>
+                <div>
+                  <h3 class="font-bold text-gray-800 text-sm">O2 Spa - Terminal 2</h3>
+                  <p class="text-gray-700 text-xs mt-0.5">⭐ 4.7 | Express foot reflexology. (30 Mins)</p>
+                </div>
+              </div>
+              <div class="text-right mt-2 sm:mt-0 flex-shrink-0">
+                <strong class="text-sky-700 text-sm block">₹1,800 <span class="text-gray-700 text-xs font-normal">/ session</span></strong>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Step 6: Gaming & Entertainment -->
+        <div class="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
+          <div class="flex items-center justify-between pb-4 border-b border-gray-100 mb-6">
+            <div class="flex items-center gap-3">
+              <span class="w-7 h-7 rounded-lg bg-sky-100 text-sky-700 font-bold flex items-center justify-center text-xs">6</span>
+              <h2 class="text-lg font-bold text-gray-900">Add Gaming & Entertainment (Optional)</h2>
+            </div>
+            <span class="text-xs text-amber-700 font-bold bg-amber-50 px-2 py-0.5 rounded-lg">High Energy fun</span>
+          </div>
+          
+          <div class="space-y-4" id="plan-gaming-options">
+            <label class="relative border border-gray-200 rounded-xl p-4 flex flex-col sm:flex-row sm:items-center justify-between hover:border-sky-300 transition cursor-pointer select-card block">
+              <div class="flex items-start gap-4">
+                <input type="checkbox" id="chk-gaming-1" class="rounded border-gray-300 text-sky-700 focus:ring-sky-500 mt-1 h-4 w-4"/>
+                <div>
+                  <h3 class="font-bold text-gray-800 text-sm">Smaaash Entertainment Hub</h3>
+                  <p class="text-gray-700 text-xs mt-0.5">⭐ 4.6 | VR games, bowling & arcade fun. (2 Hours)</p>
+                </div>
+              </div>
+              <div class="text-right mt-2 sm:mt-0 flex-shrink-0">
+                <strong class="text-sky-700 text-sm block">₹1,200 <span class="text-gray-700 text-xs font-normal">/ person</span></strong>
+              </div>
+            </label>
+            <label class="relative border border-gray-200 rounded-xl p-4 flex flex-col sm:flex-row sm:items-center justify-between hover:border-sky-300 transition cursor-pointer select-card block">
+              <div class="flex items-start gap-4">
+                <input type="checkbox" id="chk-gaming-2" class="rounded border-gray-300 text-sky-700 focus:ring-sky-500 mt-1 h-4 w-4"/>
+                <div>
+                  <h3 class="font-bold text-gray-800 text-sm">PVR Directors Cut Cinema</h3>
+                  <p class="text-gray-700 text-xs mt-0.5">⭐ 4.9 | Luxury cinema with butler service. (3 Hours)</p>
+                </div>
+              </div>
+              <div class="text-right mt-2 sm:mt-0 flex-shrink-0">
+                <strong class="text-sky-700 text-sm block">₹2,500 <span class="text-gray-700 text-xs font-normal">/ person</span></strong>
+              </div>
+            </label>
+          </div>
+        </div>
+
       </div>
 
       <!-- RIGHT COLUMN: DYNAMIC TIMELINE, ESTIMATOR & SAVED PLANS -->
       <aside class="w-full lg:w-2/5 space-y-8" aria-label="Timeline and Cost Estimator">
         
         <!-- COST ESTIMATOR & SAVE/SHARE -->
-        <div class="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm sticky top-52">
-          <h2 class="text-lg font-bold text-gray-900 pb-4 border-b border-gray-100 mb-6 flex items-center justify-between">
+        <div class="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm sticky top-20 sm:top-24 z-[50] max-h-[calc(100vh-120px)] flex flex-col">
+          <h2 class="text-lg font-bold text-gray-900 pb-4 border-b border-gray-100 mb-6 flex items-center justify-between flex-shrink-0">
             <span>Summary & Cost Estimator</span>
             <span class="bg-gray-100 text-gray-700 text-xs px-2.5 py-1 rounded-full text-right" id="travelers-badge">2 Guests</span>
           </h2>
           
           <!-- Selected Items Summary -->
-          <ul class="space-y-3 text-sm mb-6 text-gray-700" id="summary-items-list">
+          <ul class="space-y-3 text-sm mb-6 text-gray-700 overflow-y-auto flex-grow pr-2 no-scrollbar" id="summary-items-list">
             <!-- Dynamic summary entries inserted by JS -->
           </ul>
           
-          <div class="flex items-center justify-between pt-4 border-t border-gray-200 mb-6">
+          <div class="flex items-center justify-between pt-4 border-t border-gray-200 mb-6 flex-shrink-0">
             <span class="text-gray-700 font-semibold">Total Estimated Cost:</span>
             <div class="text-2xl font-black text-sky-700" id="total-cost">₹0</div>
           </div>
           
           <!-- Actions Buttons -->
-          <div class="grid grid-cols-2 gap-3 mb-4">
+          <div class="grid grid-cols-2 gap-3 mb-4 flex-shrink-0">
             <button type="button" onclick="layoverx.saveCurrentPlan()" class="py-3 bg-sky-700 hover:bg-sky-700 text-white font-bold text-xs sm:text-sm rounded-xl shadow-md transition transform hover:-translate-y-0.5">💾 Save Plan</button>
             <button type="button" onclick="layoverx.shareCurrentPlan()" class="py-3 bg-sky-50 hover:bg-sky-700 hover:text-white text-sky-700 font-bold text-xs sm:text-sm rounded-xl border border-sky-200 transition">🔗 Share Plan</button>
           </div>
