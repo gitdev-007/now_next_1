@@ -44,9 +44,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .card{background:#fff;border-radius:1.25rem;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.06);transition:transform .3s,box-shadow .3s}
 .card:hover{transform:translateY(-4px);box-shadow:0 12px 24px -4px rgba(0,0,0,.1)}
 
-/* Reveal */
-.reveal{opacity:0;transform:translateY(16px);transition:opacity .5s,transform .5s}
-.reveal.visible{opacity:1;transform:translateY(0)}
+/* Reveal - NO_FCP FIX: content visible by default */\n.reveal{opacity:1;transform:translateY(0);transition:opacity .5s,transform .5s}\n.reveal.animate{opacity:0;transform:translateY(16px)}\n.reveal.animate.visible{opacity:1;transform:translateY(0)}
 
 /* Form */
 input,select,textarea{font-family:inherit;font-size:14px}
@@ -86,6 +84,8 @@ a,button{transition:all .2s}
 <a class="nav-link text-white/90 hover:text-white text-sm font-medium" href="#how-it-works">How It Works</a>
 <a class="nav-link text-white/90 hover:text-white text-sm font-medium" href="#contact">Contact</a>
 <a href="#search" class="px-5 py-2.5 bg-white text-sky-600 font-semibold rounded-xl hover:bg-white/90 text-sm shadow-lg">Plan My Layover</a>
+<a href="#" class="text-white/90 hover:text-white text-sm font-medium transition" onclick="openAuthModal('login');return false;">Login</a>
+<a href="#" class="px-4 py-2 bg-sky-500 text-white text-sm font-semibold rounded-xl hover:bg-sky-600 transition" onclick="openAuthModal('signup');return false;">Sign Up</a>
 </div>
 <button class="lg:hidden text-white p-2 rounded-lg hover:bg-white/10" id="menu-btn" aria-label="Menu" aria-expanded="false">
 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
@@ -100,6 +100,8 @@ a,button{transition:all .2s}
 <a class="block text-gray-800 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium" href="#how-it-works">How It Works</a>
 <a class="block text-gray-800 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium" href="#contact">Contact</a>
 <a href="#search" class="mt-2 block w-full text-center py-3 bg-sky-500 text-white font-semibold rounded-xl">Plan My Layover</a>
+<a href="#" class="mt-2 block text-center py-3 text-gray-600 text-sm font-medium rounded-xl hover:bg-gray-50" onclick="openAuthModal('login');return false;">Login</a>
+<a href="#" class="mt-2 block text-center py-3 bg-sky-500 text-white text-sm font-semibold rounded-xl hover:bg-sky-600 transition" onclick="openAuthModal('signup');return false;">Sign Up</a>
 </div>
 </nav>
 
@@ -133,20 +135,50 @@ Mumbai Travel & Layover Experiences
 <div class="container">
 <div class="bg-white rounded-3xl shadow-2xl shadow-sky-500/10 p-5 sm:p-8 border border-gray-100">
 <div class="flex items-center gap-2 sm:gap-3 mb-6 overflow-x-auto no-scrollbar -mx-1 pb-2" id="search-tabs">
-<button class="search-tab active flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium whitespace-nowrap flex-shrink-0" data-tab="hotels"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-9.5-16.5h.008v.008h-.008V4.5zm1.06 4.72l1.06-1.06a.75.75 0 011.06 0l1.06 1.06a.75.75 0 010 1.06l-1.06 1.06a.75.75 0 01-1.06 0l-1.06-1.06a.75.75 0 010-1.06zM6.75 21v-4.5a2.25 2.25 0 012.25-2.25h6a2.25 2.25 0 012.25 2.25V21"/></svg>Hotels</button>
-<button class="search-tab flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium text-gray-600 hover:bg-gray-100 whitespace-nowrap flex-shrink-0" data-tab="restaurants"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8.25v-1.5m0 1.5c-2.485 0-4.5 4.03-4.5 9s2.015 9 4.5 9 4.5-4.03 4.5-9-2.015-9-4.5-9z"/></svg>Restaurants</button>
-<button class="search-tab flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium text-gray-600 hover:bg-gray-100 whitespace-nowrap flex-shrink-0" data-tab="spa"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/></svg>Spa</button>
-<button class="search-tab flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium text-gray-600 hover:bg-gray-100 whitespace-nowrap flex-shrink-0" data-tab="entertainment"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14.25 6.087c0-.355.186-.676.401-.959.221-.29.349-.634.349-1.003 0-1.036-1.007-1.875-2.25-1.875s-2.25.84-2.25 1.875c0 .369.128.713.349 1.003.215.283.401.604.401.959v0a.64.64 0 01-.657.643 48.39 48.39 0 01-4.163-.3c.186 1.613.293 3.25.315 4.907a.656.656 0 01-.658.663v0c-.355 0-.676-.186-.959-.401a1.647 1.647 0 00-1.003-.349c-1.036 0-1.875 1.007-1.875 2.25s.84 2.25 1.875 2.25c.369 0 .713-.128 1.003-.349.283-.215.604-.401.959-.401v0c.31 0 .555.26.532.57a48.039 48.039 0 01-.642 5.056c1.518.19 3.058.309 4.616.354a.64.64 0 00.657-.643v0c0-.355-.186-.676-.401-.959a1.647 1.647 0 01-.349-1.003c0-1.035 1.008-1.875 2.25-1.875 1.243 0 2.25.84 2.25 1.875 0 .369-.128.713-.349 1.003-.215.283-.4.604-.4.959v0c0 .333.277.599.61.58a48.1 48.1 0 005.427-.63 48.05 48.05 0 00.582-4.717.532.532 0 00-.533-.57v0c-.355 0-.676.186-.959.401-.29.221-.634.349-1.003.349-1.035 0-1.875-1.007-1.875-2.25s.84-2.25 1.875-2.25c.37 0 .713.128 1.003.349.283.215.604.401.96.401v0a.656.656 0 00.658-.663 48.422 48.422 0 00-.37-5.36c-1.886.342-3.81.574-5.766.689a.578.578 0 01-.61-.58v0z"/></svg>Entertainment</button>
-<button class="search-tab flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium text-gray-600 hover:bg-gray-100 whitespace-nowrap flex-shrink-0" data-tab="tours"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>Tours</button>
-<button class="search-tab flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium text-gray-600 hover:bg-gray-100 whitespace-nowrap flex-shrink-0" data-tab="transfers"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.5m-3 0H21M3.375 14.25h17.25M3.375 14.25L5.625 7.5h12.75l2.25 6.75"/></svg>Transfers</button>
+<button class="search-tab active flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium whitespace-nowrap flex-shrink-0" data-tab="hotels"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22V10.5a2 2 0 012-2h1a2 2 0 012 2V22"/><path d="M14 22V10.5a2 2 0 012-2h1a2 2 0 012 2V22"/><path d="M2 22h20"/><path d="M4 8.5V5a2 2 0 012-2h12a2 2 0 012 2v3.5"/></svg>Hotels</button>
+<button class="search-tab flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium text-gray-600 hover:bg-gray-100 whitespace-nowrap flex-shrink-0" data-tab="restaurants"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v12a5 5 0 005 5h1a5 5 0 005-5V2"/><path d="M15 2v12a5 5 0 005 5h0a5 5 0 005-5V2"/><path d="M3 2h12"/><path d="M15 2h6"/></svg>Restaurants</button>
+<button class="search-tab flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium text-gray-600 hover:bg-gray-100 whitespace-nowrap flex-shrink-0" data-tab="spa"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c4.97 0 9-4.03 9-9s-4.03-9-9-9-9 4.03-9 9 4.03 9 9 9z"/><path d="M12 4c0 2.76-2.24 5-5 5s-5-2.24-5-5 2.24-5 5-5 5 2.24 5 5z"/><path d="M12 4c0 2.76 2.24 5 5 5s5-2.24 5-5-2.24-5-5-5-5 2.24-5 5z"/><path d="M12 22c0-2.76-2.24-5-5-5s-5 2.24-5 5"/><path d="M12 22c0-2.76 2.24-5 5-5s5 2.24 5 5"/></svg>Spa</button>
+<button class="search-tab flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium text-gray-600 hover:bg-gray-100 whitespace-nowrap flex-shrink-0" data-tab="entertainment"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/><path d="M6 10h12"/></svg>Entertainment</button>
+<button class="search-tab flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium text-gray-600 hover:bg-gray-100 whitespace-nowrap flex-shrink-0" data-tab="tours"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c4.97 0 9-4.03 9-9s-4.03-9-9-9-9 4.03-9 9 4.03 9 9 9z"/><path d="M12 2v20"/><path d="M12 12l4-4"/><path d="M12 12l-4-4"/></svg>Tours</button>
+<button class="search-tab flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium text-gray-600 hover:bg-gray-100 whitespace-nowrap flex-shrink-0" data-tab="transfers"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.657 16.657L14.121 13.12M14.121 13.12A4.5 4.5 0 0012.001 4.5a4.5 4.5 0 00-4.5 4.5m0 0a4.5 4.5 0 004.121 4.371m4.243 6.864a9 9 0 1112-12"/></svg>Transfers</button>
 </div>
+<!-- Search Form -->
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3" id="search-fields">
-<div class="bg-gray-50 border border-gray-200 rounded-xl p-3"><label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Location</label><select class="w-full bg-transparent text-sm font-semibold text-gray-900"><option>Near Mumbai Airport</option><option>South Mumbai</option><option>Bandra</option><option>Andheri</option></select></div>
-<div class="bg-gray-50 border border-gray-200 rounded-xl p-3"><label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Date</label><input type="date" class="w-full bg-transparent text-sm font-semibold text-gray-900" value="2025-07-15"/></div>
-<div class="bg-gray-50 border border-gray-200 rounded-xl p-3"><label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Travelers</label><select class="w-full bg-transparent text-sm font-semibold text-gray-900"><option>1 Traveler</option><option>2 Travelers</option><option>3 Travelers</option><option>4+ Travelers</option></select></div>
-<div class="bg-gray-50 border border-gray-200 rounded-xl p-3"><label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Time</label><select class="w-full bg-transparent text-sm font-semibold text-gray-900"><option>Morning</option><option>Afternoon</option><option>Evening</option><option>Flexible</option></select></div>
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-3">
+    <label for="search-location" class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Location</label>
+    <select id="search-location" class="w-full bg-transparent text-sm font-semibold text-gray-900">
+      <option>Near Mumbai Airport</option>
+      <option>South Mumbai</option>
+      <option>Bandra</option>
+      <option>Andheri</option>
+    </select>
+  </div>
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-3">
+    <label for="search-arrival" class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Arrival</label>
+    <input type="datetime-local" id="search-arrival" class="w-full bg-transparent text-sm font-semibold text-gray-900" aria-label="Arrival date and time" aria-required="true" required/>
+  </div>
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-3">
+    <label for="search-departure" class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Departure</label>
+    <input type="datetime-local" id="search-departure" class="w-full bg-transparent text-sm font-semibold text-gray-900" aria-label="Departure date and time" aria-required="true" required/>
+  </div>
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-3">
+    <label for="search-travelers" class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Travelers</label>
+    <select id="search-travelers" class="w-full bg-transparent text-sm font-semibold text-gray-900">
+      <option>1 Traveler</option>
+      <option>2 Travelers</option>
+      <option>3 Travelers</option>
+      <option>4+ Travelers</option>
+    </select>
+  </div>
 </div>
-<button class="w-full mt-5 py-3.5 bg-gradient-to-r from-sky-500 to-sky-600 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-0.5" type="button">Search Now</button>
+<!-- Duration Display -->
+<div class="mt-3 flex items-center gap-2 text-sm text-gray-600" id="duration-display" aria-live="polite">
+  <svg class="w-4 h-4 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+  <span>Layover Duration: <strong class="text-gray-900" id="layover-duration">--</strong></span>
+</div>
+<!-- Validation Message -->
+<div id="validation-message" class="mt-2 text-sm text-red-600 hidden" role="alert" aria-live="assertive"></div>
+<button id="search-btn" class="w-full mt-5 py-3.5 bg-gradient-to-r from-sky-500 to-sky-600 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed" type="button" disabled>Search Now</button>
 </div>
 </div>
 </section>
@@ -504,13 +536,6 @@ Mumbai Travel & Layover Experiences
 </div>
 </footer>
 
-<!-- Sticky Mobile CTA -->
-<div class="fixed bottom-0 left-0 right-0 z-40 lg:hidden" id="sticky-cta">
-<div class="bg-white border-t border-gray-200 p-3 shadow-lg">
-<a href="#search" class="block w-full py-3 bg-sky-500 text-white font-bold rounded-xl text-center">Plan My Layover</a>
-</div>
-</div>
-
 <style>
 .no-scrollbar::-webkit-scrollbar{display:none}
 .no-scrollbar{-ms-overflow-style:none;scrollbar-width:none}
@@ -585,17 +610,68 @@ if(m&&!m.classList.contains('hidden')){m.classList.add('hidden')}
 });
 });
 
-// Hide sticky CTA near footer
-var stickyCta=document.getElementById('sticky-cta');
-var footer=document.querySelector('footer');
-if(stickyCta&&footer){
-var fo=new IntersectionObserver(function(entries){
-entries.forEach(function(e){
-if(e.isIntersecting){stickyCta.style.display='none'}else{stickyCta.style.display='block'}
-});
-},{threshold:0.01});
-fo.observe(footer);
+
+// ===== DATETIME PICKER LOGIC =====
+var arrivalInput=document.getElementById('search-arrival');
+var departureInput=document.getElementById('search-departure');
+var searchBtn=document.getElementById('search-btn');
+var durationDisplay=document.getElementById('layover-duration');
+var validationMsg=document.getElementById('validation-message');
+
+// Set default values: Arrival = now, Departure = now + 6h
+var now=new Date();
+var sixHoursLater=new Date(now.getTime()+6*60*60*1000);
+function toLocalISO(d){
+  return new Date(d.getTime()-d.getTimezoneOffset()*60*1000).toISOString().slice(0,16);
 }
+arrivalInput.value=toLocalISO(now);
+departureInput.value=toLocalISO(sixHoursLater);
+
+function formatDuration(ms){
+  if(ms<=0)return null;
+  var h=Math.floor(ms/(1000*60*60));
+  var m=Math.floor((ms%(1000*60*60))/(1000*60));
+  return h+'h '+m+'m';
+}
+
+function validateAndUpdate(){
+  var arrVal=arrivalInput.value;
+  var depVal=departureInput.value;
+  if(!arrVal||!depVal)return;
+  var arr=new Date(arrVal);
+  var dep=new Date(depVal);
+  var diff=dep-arr;
+  if(diff<=0){
+    validationMsg.textContent='Departure must be later than Arrival.';
+    validationMsg.classList.remove('hidden');
+    searchBtn.disabled=true;
+    durationDisplay.textContent='--';
+  }else{
+    validationMsg.classList.add('hidden');
+    searchBtn.disabled=false;
+    durationDisplay.textContent=formatDuration(diff);
+  }
+}
+
+if(arrivalInput&&departureInput){
+  arrivalInput.addEventListener('input',validateAndUpdate);
+  departureInput.addEventListener('input',validateAndUpdate);
+  validateAndUpdate();
+}
+
+// Search button click
+if(searchBtn){
+  searchBtn.addEventListener('click',function(){
+    if(searchBtn.disabled)return;
+    var location=document.getElementById('search-location').value;
+    var arrival=arrivalInput.value;
+    var departure=departureInput.value;
+    var travelers=document.getElementById('search-travelers').value;
+    var params=new URLSearchParams({location:location,arrivalDateTime:arrival,departureDateTime:departure,travelers:travelers});
+    window.location.href='plan-layover.html?'+params.toString();
+  });
+}
+
 </script>
 </body>
 </html>
