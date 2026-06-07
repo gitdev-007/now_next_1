@@ -1,166 +1,253 @@
 #!/usr/bin/env python3
 """
-LayoverX Complete Build Script
-Generates all pages, components, and assets with proper architecture.
+LayoverX Static Site Compiler
+Generates production-ready, high-fidelity travel marketplace pages.
 """
 
-import os, shutil
+import os
 
 BASE = 'frontend'
 
+# Ensure directories exist
 os.makedirs(f'{BASE}/pages', exist_ok=True)
+os.makedirs(f'{BASE}/components', exist_ok=True)
 os.makedirs(f'{BASE}/css', exist_ok=True)
 os.makedirs(f'{BASE}/js', exist_ok=True)
-os.makedirs(f'{BASE}/components', exist_ok=True)
 
-# Shared design tokens
-LINKED_CSS = '<link rel="stylesheet" href="css/design-system.css"/>'
-LINKED_JS   = '<script src="js/app.js" defer></script>'
+# Page Metadata definition
+PAGES_METADATA = {
+    'index.html': {
+        'title': 'Mumbai Travel & Layover Experience Platform | Hotels, Restaurants, Tours & Transfers',
+        'description': 'Discover luxury transit hotels, authentic restaurants, spas, local city tours, and airport transfers near CSM International Airport Mumbai. Plan your perfect stopover.',
+        'canonical': 'https://layoverx.com/index.html',
+        'json_ld': """<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TravelService",
+  "name": "LayoverX",
+  "description": "Mumbai Airport Transit Travel Marketplace",
+  "url": "https://layoverx.com",
+  "areaServed": {
+    "@type": "City",
+    "name": "Mumbai",
+    "containedInPlace": {
+      "@type": "Country",
+      "name": "India"
+    }
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "LayoverX",
+    "url": "https://layoverx.com"
+  }
+}
+</script>"""
+    },
+    'hotels.html': {
+        'title': 'Transit Hotels Near Mumbai Airport (CSIA) | Hourly Day-Use Rooms & Stays',
+        'description': 'Book luxury and budget airport hotels near Mumbai Airport CSMIA. Offers 24/7 check-in, free terminal shuttles, pool/spa access, and day-use rooms starting from 3-hour layovers.',
+        'canonical': 'https://layoverx.com/hotels.html',
+        'json_ld': """<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LodgingBusiness",
+  "name": "LayoverX Transit Hotels",
+  "description": "Book hourly day-use transit hotels near Chhatrapati Shivaji Maharaj International Airport Mumbai",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Mumbai",
+    "addressRegion": "Maharashtra",
+    "addressCountry": "IN"
+  }
+}
+</script>"""
+    },
+    'restaurants.html': {
+        'title': 'Best Restaurants Near Mumbai Airport | Authentic Local Cuisines & Lounges',
+        'description': 'Discover popular dining spots, local street food trails, fine dining, and transit cafes near Mumbai Airport. Filter by cuisine type, price, and distance from CSMIA terminals.',
+        'canonical': 'https://layoverx.com/restaurants.html',
+        'json_ld': """<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FoodEstablishment",
+  "name": "LayoverX Dining Marketplace",
+  "description": "Explore and reserve tables at top transit restaurants near Mumbai Airport"
+}
+</script>"""
+    },
+    'experiences.html': {
+        'title': 'Tours & Layover Experiences in Mumbai | Sightseeing, Culture & Food Trails',
+        'description': 'Book curated city sightseeing tours, shopping guides, heritage walks, and food tours optimized for layover durations from 4 to 12+ hours with airport pickup.',
+        'canonical': 'https://layoverx.com/experiences.html',
+        'json_ld': """<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TouristInformationCenter",
+  "name": "LayoverX City Experiences",
+  "description": "Time-optimized private city tours and experiences near Mumbai Airport"
+}
+</script>"""
+    },
+    'airport-transfers.html': {
+        'title': 'Airport Transfers Mumbai CSMIA | Fixed Price Taxis & Chauffeur Cabs',
+        'description': 'Book reliable airport pickup & drop transfers at Mumbai Airport. Fixed pricing, flight tracking, and verified local drivers. Sedan, SUV, and luxury cars available.',
+        'canonical': 'https://layoverx.com/airport-transfers.html',
+        'json_ld': """<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TaxiService",
+  "name": "LayoverX Airport Cabs",
+  "description": "Premium fixed-rate taxi transfers to and from Mumbai International Airport"
+}
+</script>"""
+    },
+    'how-it-works.html': {
+        'title': 'How It Works | Exit Mumbai Airport, Transit Visas & Luggage Lockers',
+        'description': 'Learn how to maximize your Mumbai airport layover. Read step-by-step guidance on transit visa requirements, luggage storage facilities, and optimized time itineraries.',
+        'canonical': 'https://layoverx.com/how-it-works.html',
+        'json_ld': """<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [{
+    "@type": "Question",
+    "name": "How do I exit the Mumbai Airport during a layover?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Ensure you have a transit visa or e-tourist visa. Head to immigration, clear passport check, store large luggage at the T2 Left Luggage facility, and proceed to exit."
+    }
+  }]
+}
+</script>"""
+    },
+    'contact.html': {
+        'title': 'Contact Us & Partner Support | LayoverX Travel Marketplace',
+        'description': 'Get 24/7 customer support for transit bookings, or register as a partner hotel, restaurant, tour operator, or taxi fleet operator near Mumbai Airport.',
+        'canonical': 'https://layoverx.com/contact.html',
+        'json_ld': """<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": "LayoverX Customer Support",
+  "url": "https://layoverx.com/contact.html"
+}
+</script>"""
+    },
+    'plan-my-layover.html': {
+        'title': 'AI Layover Itinerary Planner Mumbai | Flight Schedule Optimizer',
+        'description': 'Use our flagship smart planner to generate custom, time-optimized itineraries for Mumbai layovers. Custom match hotels, transfers, and city attractions instantly.',
+        'canonical': 'https://layoverx.com/plan-my-layover.html',
+        'json_ld': """<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TravelAction",
+  "name": "LayoverX AI Flight Layover Planner",
+  "description": "Optimize transit stopovers with custom activity and lodging scheduling"
+}
+</script>"""
+    }
+}
 
-NAV_LINKS = """<div class="hidden lg:flex items-center gap-7">
-  <a class="nav-link text-white/90 hover:text-white text-sm font-medium" href="hotels.html">Hotels</a>
-  <a class="nav-link text-white/90 hover:text-white text-sm font-medium" href="restaurants.html">Restaurants</a>
-  <a class="nav-link text-white/90 hover:text-white text-sm font-medium" href="experiences.html">Experiences</a>
-  <a class="nav-link text-white/90 hover:text-white text-sm font-medium" href="airport-transfers.html">Airport Transfers</a>
-  <a class="nav-link text-white/90 hover:text-white text-sm font-medium" href="how-it-works.html">How It Works</a>
-  <a class="nav-link text-white/90 hover:text-white text-sm font-medium" href="contact.html">Contact</a>
-  <a href="plan-my-layover.html" class="px-5 py-2.5 bg-white text-sky-600 font-semibold rounded-xl hover:bg-white/90 text-sm shadow-lg">Plan My Layover</a>
-</div>
+def load_component(name):
+    path = os.path.join(BASE, 'components', f'{name}.html')
+    if not os.path.exists(path):
+        print(f"Warning: Component '{name}' not found at {path}")
+        return ""
+    with open(path, 'r', encoding='utf-8') as f:
+        return f.read()
+
+def compile_page(filename):
+    page_path = os.path.join(BASE, 'pages', filename)
+    if not os.path.exists(page_path):
+        print(f"Error: Page source file '{filename}' not found at {page_path}")
+        return
+        
+    print(f"Compiling {filename}...")
+    
+    # Load core components
+    head_tpl = load_component('head')
+    header_tpl = load_component('header')
+    footer_tpl = load_component('footer')
+    modals_tpl = load_component('auth-modals')
+    
+    # Read page content
+    with open(page_path, 'r', encoding='utf-8') as f:
+        page_content = f.read()
+        
+    # Get metadata
+    meta = PAGES_METADATA.get(filename, {
+        'title': 'LayoverX - Mumbai Airport Layover Experience',
+        'description': 'Explore hotels, restaurants, tours near Mumbai Airport.',
+        'canonical': f'https://layoverx.com/{filename}',
+        'json_ld': ''
+    })
+    
+    # Compile Head
+    head_compiled = head_tpl
+    head_compiled = head_compiled.replace('{{TITLE}}', meta['title'])
+    head_compiled = head_compiled.replace('{{DESCRIPTION}}', meta['description'])
+    head_compiled = head_compiled.replace('{{CANONICAL}}', meta['canonical'])
+    head_compiled = head_compiled.replace('{{JSON_LD}}', meta['json_ld'])
+    
+    # Highlight Active Link in Navbar
+    active_class = "active-nav-link text-sky-500 font-bold"
+    inactive_class = "text-white/95"
+    
+    header_compiled = header_tpl
+    header_compiled = header_compiled.replace('{{ACTIVE_HOTELS}}', active_class if filename == 'hotels.html' else inactive_class)
+    header_compiled = header_compiled.replace('{{ACTIVE_RESTAURANTS}}', active_class if filename == 'restaurants.html' else inactive_class)
+    header_compiled = header_compiled.replace('{{ACTIVE_EXPERIENCES}}', active_class if filename == 'experiences.html' else inactive_class)
+    header_compiled = header_compiled.replace('{{ACTIVE_TRANSFERS}}', active_class if filename == 'airport-transfers.html' else inactive_class)
+    header_compiled = header_compiled.replace('{{ACTIVE_HOW_IT_WORKS}}', active_class if filename == 'how-it-works.html' else inactive_class)
+    header_compiled = header_compiled.replace('{{ACTIVE_CONTACT}}', active_class if filename == 'contact.html' else inactive_class)
+    header_compiled = header_compiled.replace('{{ACTIVE_PLAN_MY_LAYOVER_BTN}}', "bg-sky-500 text-white font-bold" if filename == 'plan-my-layover.html' else "")
+
+    # Combine into a final HTML structure
+    html = f"""<!DOCTYPE html>
+<html lang="en">
+{head_compiled}
+<body class="overflow-x-hidden pt-16 sm:pt-20 bg-surface">
+
+  <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg">Skip to main content</a>
+
+  <!-- Header Section -->
+  {header_compiled}
+
+  <!-- Page Content -->
+  <main id="main">
+    {page_content}
+  </main>
+
+  <!-- Footer Section -->
+  {footer_tpl}
+
+  <!-- Modals Section -->
+  {modals_tpl}
+
+</body>
+</html>
 """
+    
+    # Save compiled file to the root of BASE
+    output_path = os.path.join(BASE, filename)
+    with open(output_path, 'w', encoding='utf-8') as f:
+        f.write(html)
+    print(f"Successfully generated {output_path}")
 
-MOBILE_MENU = """<div class="lg:hidden hidden bg-white/95 backdrop-blur-xl rounded-2xl mt-2 p-4 shadow-xl mx-4 border border-gray-100" id="mobile-menu">
-  <a class="block text-gray-800 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium" href="hotels.html">Hotels</a>
-  <a class="block text-gray-800 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium" href="restaurants.html">Restaurants</a>
-  <a class="block text-gray-800 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium" href="experiences.html">Experiences</a>
-  <a class="block text-gray-800 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium" href="airport-transfers.html">Airport Transfers</a>
-  <a class="block text-gray-800 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium" href="how-it-works.html">How It Works</a>
-  <a class="block text-gray-800 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium" href="contact.html">Contact</a>
-  <a href="plan-my-layover.html" class="mt-2 block w-full text-center py-3 bg-sky-500 text-white font-semibold rounded-xl">Plan My Layover</a>
-</div>
-"""
+def build_all():
+    pages = [
+        'index.html',
+        'hotels.html',
+        'restaurants.html',
+        'experiences.html',
+        'airport-transfers.html',
+        'how-it-works.html',
+        'contact.html',
+        'plan-my-layover.html'
+    ]
+    for p in pages:
+        compile_page(p)
+    print("Build complete!")
 
-FOOTER = """<footer class="bg-gray-900 text-white pt-16 pb-8">
-  <div class="container">
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
-      <div class="md:col-span-1">
-        <a href="/" class="flex items-center gap-2 mb-4">
-          <div class="w-9 h-9 bg-gradient-to-br from-sky-500 to-sky-600 rounded-xl flex items-center justify-center">
-            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>
-          </div>
-          <span class="text-xl font-bold">LayoverX</span>
-        </a>
-        <p class="text-gray-400 text-sm leading-relaxed">Transform your Mumbai layover into an adventure. Premium hotels, restaurants, spas, tours & transfers.</p>
-      </div>
-      <div>
-        <h4 class="font-semibold mb-4">Explore</h4>
-        <ul class="space-y-2">
-          <li><a class="text-gray-400 hover:text-white text-sm" href="hotels.html">Hotels</a></li>
-          <li><a class="text-gray-400 hover:text-white text-sm" href="restaurants.html">Restaurants</a></li>
-          <li><a class="text-gray-400 hover:text-white text-sm" href="experiences.html">Experiences</a></li>
-          <li><a class="text-gray-400 hover:text-white text-sm" href="airport-transfers.html">Airport Transfers</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="font-semibold mb-4">Company</h4>
-        <ul class="space-y-2">
-          <li><a class="text-gray-400 hover:text-white text-sm" href="how-it-works.html">How It Works</a></li>
-          <li><a class="text-gray-400 hover:text-white text-sm" href="contact.html">Contact</a></li>
-          <li><a class="text-gray-400 hover:text-white text-sm" href="faq.html">FAQ</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="font-semibold mb-4">Legal</h4>
-        <ul class="space-y-2">
-          <li><a class="text-gray-400 hover:text-white text-sm" href="privacy.html">Privacy</a></li>
-          <li><a class="text-gray-400 hover:text-white text-sm" href="terms.html">Terms</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="border-t border-gray-800 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
-      <p class="text-gray-500 text-xs">&copy; 2025 LayoverX. All rights reserved.</p>
-      <div class="flex items-center gap-4">
-        <a class="text-gray-500 hover:text-white text-xs" href="privacy.html">Privacy</a>
-        <a class="text-gray-500 hover:text-white text-xs" href="terms.html">Terms</a>
-      </div>
-    </div>
-  </div>
-</footer>
-"""
-
-AUTH_MODALS = """<!-- Auth Modals -->
-<div id="modal-login" class="modal-overlay" data-modal="login" role="dialog" aria-modal="true" aria-labelledby="login-title">
-  <div class="modal-content">
-    <button class="modal-close" aria-label="Close" onclick="layoverx.closeModal('login')">&times;</button>
-    <div class="auth-form">
-      <h2 id="login-title">Welcome Back</h2>
-      <p>Sign in to save and manage your layover plans</p>
-      <form id="form-login" onsubmit="layoverx.handleLogin(event)">
-        <div class="form-group">
-          <label class="form-label" for="login-email">Email</label>
-          <input id="login-email" type="email" class="form-input" placeholder="you@example.com" required/>
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="login-password">Password</label>
-          <input id="login-password" type="password" class="form-input" placeholder="Password" required/>
-        </div>
-        <div class="flex items-center justify-between">
-          <label class="form-checkbox"><input type="checkbox"/> Remember me</label>
-          <a href="#" class="auth-link text-sm" onclick="layoverx.openModal('forgot');return false;">Forgot Password?</a>
-        </div>
-        <button type="submit" class="btn btn-primary w-full">Continue</button>
-      </form>
-      <div class="divider">OR</div>
-      <button class="social-btn" onclick="layoverx.socialLogin('google')">Continue with Google</button>
-      <button class="social-btn mt-2" onclick="layoverx.socialLogin('apple')">Continue with Apple</button>
-      <p class="text-sm">Don't have an account? <a href="#" class="auth-link" onclick="layoverx.switchModal('login','signup');return false;">Create Account</a></p>
-    </div>
-  </div>
-</div>
-
-<div id="modal-signup" class="modal-overlay" data-modal="signup" role="dialog" aria-modal="true" aria-labelledby="signup-title">
-  <div class="modal-content">
-    <button class="modal-close" aria-label="Close" onclick="layoverx.closeModal('signup')">&times;</button>
-    <div class="auth-form">
-      <h2 id="signup-title">Create Your Account</h2>
-      <p>Save plans, bookmarks and personalized itineraries</p>
-      <form id="form-signup" onsubmit="layoverx.handleSignup(event)">
-        <div class="form-group">
-          <label class="form-label" for="signup-name">Full Name</label>
-          <input id="signup-name" type="text" class="form-input" placeholder="John Doe" required/>
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="signup-email">Email</label>
-          <input id="signup-email" type="email" class="form-input" placeholder="you@example.com" required/>
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="signup-password">Password</label>
-          <input id="signup-password" type="password" class="form-input" placeholder="Create a password" required/>
-        </div>
-        <button type="submit" class="btn btn-primary w-full">Create Account</button>
-      </form>
-      <div class="divider">OR</div>
-      <button class="social-btn" onclick="layoverx.socialLogin('google')">Continue with Google</button>
-      <button class="social-btn mt-2" onclick="layoverx.socialLogin('apple')">Continue with Apple</button>
-      <p class="text-sm">Already have an account? <a href="#" class="auth-link" onclick="layoverx.switchModal('signup','login');return false;">Sign In</a></p>
-    </div>
-  </div>
-</div>
-
-<div id="modal-forgot" class="modal-overlay" data-modal="forgot" role="dialog" aria-modal="true">
-  <div class="modal-content">
-    <button class="modal-close" aria-label="Close" onclick="layoverx.closeModal('forgot')">&times;</button>
-    <div class="auth-form">
-      <h2>Reset Password</h2>
-      <p>Enter your email and we'll send you reset instructions</p>
-      <div class="form-group">
-        <label class="form-label" for="forgot-email">Email</label>
-        <input id="forgot-email" type="email" class="form-input" placeholder="you@example.com"/>
-      </div>
-      <button class="btn btn-primary w-full" onclick="layoverx.handleForgot()">Send Reset Link</button>
-      <p class="text-sm"><a href="#" class="auth-link" onclick="layoverx.switchModal('forgot','login');return false;">Back to login</a></p>
-    </div>
-  </div>
-</div>
-"""
-
-print("Build script ready")
+if __name__ == '__main__':
+    build_all()

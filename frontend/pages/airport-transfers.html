@@ -1,0 +1,188 @@
+<!-- HERO SECTION -->
+<section class="bg-gradient-to-r from-sky-850 to-sky-950 text-white py-12 relative overflow-hidden">
+  <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+  <div class="container relative z-10">
+    <div class="max-w-3xl">
+      <nav class="flex items-center gap-2 text-xs text-sky-250/80 mb-4" aria-label="Breadcrumb">
+        <a href="index.html" class="hover:text-white">Home</a>
+        <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+        <span class="text-white font-medium">Airport Transfers</span>
+      </nav>
+      <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-3">Fixed-Rate Airport Cabs & Transfers</h1>
+      <p class="text-sky-100 text-sm sm:text-base leading-relaxed">Book a professional, verified private taxi to escape CSMIA gates without transit surges. Free flight tracking, 45-minute terminal gate wait buffer, and professional English-speaking drivers.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CAB BOOKING SEARCH -->
+<section class="bg-white border-b border-gray-150 py-6 sticky top-16 sm:top-20 z-40 shadow-sm">
+  <div class="container">
+    <form id="transfer-search-form" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-end">
+      <div>
+        <label for="cab-pickup" class="block text-xs font-bold text-gray-400 uppercase mb-1">Pickup Location</label>
+        <select id="cab-pickup" class="w-full bg-gray-50 border border-gray-200 rounded-xl p-3 text-sm font-semibold text-gray-800 focus:ring-2 focus:ring-sky-500 cursor-pointer">
+          <option value="t2">Mumbai Airport T2 (International)</option>
+          <option value="t1">Mumbai Airport T1 (Domestic)</option>
+          <option value="hotel">Nearby Hotel / Other</option>
+        </select>
+      </div>
+      <div>
+        <label for="cab-drop" class="block text-xs font-bold text-gray-400 uppercase mb-1">Drop Location</label>
+        <select id="cab-drop" class="w-full bg-gray-50 border border-gray-200 rounded-xl p-3 text-sm font-semibold text-gray-800 focus:ring-2 focus:ring-sky-500 cursor-pointer">
+          <option value="bandra">Bandra (Cafe Street / Sea Link)</option>
+          <option value="colaba">Colaba (Gateway of India / South Bombay)</option>
+          <option value="juhu">Juhu Beach (Seaside Hotels)</option>
+          <option value="andheri">Andheri East (Airport Hotels District)</option>
+        </select>
+      </div>
+      <div>
+        <label for="cab-time" class="block text-xs font-bold text-gray-400 uppercase mb-1">Pickup Date & Time</label>
+        <input type="datetime-local" id="cab-time" class="w-full bg-gray-50 border border-gray-200 rounded-xl p-3 text-sm font-semibold text-gray-850 focus:ring-2 focus:ring-sky-500"/>
+      </div>
+      <button type="submit" class="py-3 bg-sky-500 hover:bg-sky-600 text-white font-bold rounded-xl shadow-md transition transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+        Check Vehicles
+      </button>
+    </form>
+  </div>
+</section>
+
+<!-- VEHICLE LISTINGS -->
+<section class="section bg-gray-50">
+  <div class="container">
+    <div class="max-w-4xl mx-auto space-y-6">
+      
+      <div class="text-sm text-gray-600 pb-2">
+        Select your vehicle category. Prices shown are <strong>fixed and inclusive of toll/parking fees</strong>.
+      </div>
+
+      <!-- Vehicle Card 1 -->
+      <article class="bg-white rounded-2xl border border-gray-150 p-6 flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm hover:shadow-md transition">
+        <div class="flex items-center gap-6 flex-col md:flex-row text-center md:text-left">
+          <div class="w-24 h-16 bg-gray-100 rounded-xl flex items-center justify-center flex-shrink-0">
+            🚕
+          </div>
+          <div>
+            <h3 class="font-bold text-gray-900 text-lg">Compact Sedan (Toyota Etios or similar)</h3>
+            <p class="text-gray-500 text-sm mb-2">Ideal for 1-3 passengers with standard luggage. AC, GPS tracking.</p>
+            <div class="flex flex-wrap gap-4 text-xs font-semibold text-gray-500 justify-center md:justify-start">
+              <span>👤 4 Passengers</span>
+              <span>🧳 2 Large Bags</span>
+              <span class="text-sky-600">⚡ Instant Confirmation</span>
+            </div>
+          </div>
+        </div>
+        <div class="text-center md:text-right flex-shrink-0 border-t md:border-t-0 md:border-l border-gray-100 pt-4 md:pt-0 md:pl-6 w-full md:w-auto">
+          <div class="text-gray-400 text-xs uppercase font-bold mb-1">Fixed Quote</div>
+          <div class="text-2xl font-black text-sky-600 mb-3">₹899</div>
+          <button type="button" onclick="layoverx.bookCab('sedan')" class="px-6 py-2.5 bg-sky-500 hover:bg-sky-600 text-white font-bold text-xs rounded-xl shadow-md transition">Book Cab Now</button>
+        </div>
+      </article>
+
+      <!-- Vehicle Card 2 -->
+      <article class="bg-white rounded-2xl border border-gray-150 p-6 flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm hover:shadow-md transition">
+        <div class="flex items-center gap-6 flex-col md:flex-row text-center md:text-left">
+          <div class="w-24 h-16 bg-gray-100 rounded-xl flex items-center justify-center flex-shrink-0">
+            🚙
+          </div>
+          <div>
+            <h3 class="font-bold text-gray-900 text-lg">Premium SUV (Toyota Innova Crysta)</h3>
+            <p class="text-gray-500 text-sm mb-2">Extra room, premium comfort, great for families. AC, high luggage capacity.</p>
+            <div class="flex flex-wrap gap-4 text-xs font-semibold text-gray-500 justify-center md:justify-start">
+              <span>👤 6 Passengers</span>
+              <span>🧳 4 Large Bags</span>
+              <span class="text-sky-600">⚡ Popular Choice</span>
+            </div>
+          </div>
+        </div>
+        <div class="text-center md:text-right flex-shrink-0 border-t md:border-t-0 md:border-l border-gray-100 pt-4 md:pt-0 md:pl-6 w-full md:w-auto">
+          <div class="text-gray-400 text-xs uppercase font-bold mb-1">Fixed Quote</div>
+          <div class="text-2xl font-black text-sky-600 mb-3">₹1,499</div>
+          <button type="button" onclick="layoverx.bookCab('suv')" class="px-6 py-2.5 bg-sky-50 hover:bg-sky-500 hover:text-white text-sky-600 font-bold text-xs rounded-xl shadow-md border border-sky-200 transition">Book Cab Now</button>
+        </div>
+      </article>
+
+      <!-- Vehicle Card 3 -->
+      <article class="bg-white rounded-2xl border border-gray-150 p-6 flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm hover:shadow-md transition">
+        <div class="flex items-center gap-6 flex-col md:flex-row text-center md:text-left">
+          <div class="w-24 h-16 bg-gray-100 rounded-xl flex items-center justify-center flex-shrink-0">
+            ✨
+          </div>
+          <div>
+            <h3 class="font-bold text-gray-900 text-lg">Luxury Executive (Mercedes C-Class or Audi A4)</h3>
+            <p class="text-gray-500 text-sm mb-2">Chauffeur-driven executive class vehicle. Leather seats, airport exit gate placard meet.</p>
+            <div class="flex flex-wrap gap-4 text-xs font-semibold text-gray-500 justify-center md:justify-start">
+              <span>👤 4 Passengers</span>
+              <span>🧳 2 Large Bags</span>
+              <span class="text-amber-600 font-bold">✨ Premium Chauffeur</span>
+            </div>
+          </div>
+        </div>
+        <div class="text-center md:text-right flex-shrink-0 border-t md:border-t-0 md:border-l border-gray-100 pt-4 md:pt-0 md:pl-6 w-full md:w-auto">
+          <div class="text-gray-400 text-xs uppercase font-bold mb-1">Fixed Quote</div>
+          <div class="text-2xl font-black text-sky-600 mb-3">₹3,499</div>
+          <button type="button" onclick="layoverx.bookCab('luxury')" class="px-6 py-2.5 bg-sky-50 hover:bg-sky-500 hover:text-white text-sky-600 font-bold text-xs rounded-xl shadow-md border border-sky-200 transition">Book Cab Now</button>
+        </div>
+      </article>
+      
+    </div>
+  </div>
+</section>
+
+<!-- AIRPORT PICKUP INFORMATION -->
+<section class="section bg-white border-t border-gray-100" id="pickup-info">
+  <div class="container max-w-4xl">
+    <div class="text-center mb-12">
+      <span class="inline-block text-sky-600 font-bold text-sm uppercase tracking-wider mb-2">Important Guide</span>
+      <h2 class="text-3xl font-extrabold text-gray-900">How to Meet Your Driver at CSMIA T2</h2>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+      <div class="bg-gray-50 p-6 rounded-2xl border border-gray-150">
+        <div class="w-12 h-12 bg-sky-500 text-white rounded-xl flex items-center justify-center mx-auto mb-4 text-lg font-bold">1</div>
+        <h3 class="font-bold text-gray-900 mb-1.5 text-sm">Clear Immigration</h3>
+        <p class="text-gray-500 text-xs leading-relaxed">Proceed to immigration. Clear passport control using your transit visa (approx. 20-30 mins wait time).</p>
+      </div>
+      <div class="bg-gray-50 p-6 rounded-2xl border border-gray-150">
+        <div class="w-12 h-12 bg-sky-500 text-white rounded-xl flex items-center justify-center mx-auto mb-4 text-lg font-bold">2</div>
+        <h3 class="font-bold text-gray-900 mb-1.5 text-sm">Exit Gate 2</h3>
+        <p class="text-gray-500 text-xs leading-relaxed">Collect baggage if checked in, then exit the arrival hall and head straight toward Exit Gate 2.</p>
+      </div>
+      <div class="bg-gray-50 p-6 rounded-2xl border border-gray-150">
+        <div class="w-12 h-12 bg-sky-500 text-white rounded-xl flex items-center justify-center mx-auto mb-4 text-lg font-bold">3</div>
+        <h3 class="font-bold text-gray-900 mb-1.5 text-sm">Spot Name Placard</h3>
+        <p class="text-gray-500 text-xs leading-relaxed">Your driver will be waiting in the arrivals placard zone with a LayoverX banner showing your name.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section bg-gray-50 border-t border-gray-100">
+  <div class="container max-w-4xl">
+    <div class="text-center mb-12">
+      <span class="inline-block text-sky-600 font-bold text-sm uppercase tracking-wider mb-2">Transit Cab Info</span>
+      <h2 class="text-3xl font-extrabold text-gray-900">Airport Taxi FAQ</h2>
+    </div>
+    <div class="space-y-6">
+      <details class="group bg-white rounded-2xl border border-gray-150 p-5 cursor-pointer">
+        <summary class="flex items-center justify-between text-base font-bold text-gray-900 list-none">
+          What happens if my landing flight is delayed?
+          <span class="text-sky-500 group-open:rotate-180 transition-transform duration-200">▼</span>
+        </summary>
+        <p class="text-gray-600 text-sm mt-3 leading-relaxed">
+          We track your flight number in real-time. If your flight is delayed or reaches early, our pickup schedule adjusts automatically. There are zero extra charges for flight delays.
+        </p>
+      </details>
+      <details class="group bg-white rounded-2xl border border-gray-150 p-5 cursor-pointer">
+        <summary class="flex items-center justify-between text-base font-bold text-gray-900 list-none">
+          Do these quotes include Bandra-Worli Sea Link tolls?
+          <span class="text-sky-500 group-open:rotate-180 transition-transform duration-200">▼</span>
+        </summary>
+        <p class="text-gray-600 text-sm mt-3 leading-relaxed">
+          Yes! All taxi quotes shown are flat-rate and include highway tolls, airport terminal entry park fees, and driver allowances. The price you book is the final price.
+        </p>
+      </details>
+    </div>
+  </div>
+</section>

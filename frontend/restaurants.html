@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Best Restaurants Near Mumbai Airport | Authentic Local Cuisines & Lounges - LayoverX</title>
+  <meta name="description" content="Discover popular dining spots, local street food trails, fine dining, and transit cafes near Mumbai Airport. Filter by cuisine type, price, and distance from CSMIA terminals."/>
+  <meta name="keywords" content="Mumbai Airport Hotels, Mumbai Airport Restaurants, Mumbai Transit Tours, Mumbai Airport Cabs, Layover Itinerary Planner, LayoverX"/>
+  <link rel="canonical" href="https://layoverx.com/restaurants.html"/>
+  <meta property="og:title" content="Best Restaurants Near Mumbai Airport | Authentic Local Cuisines & Lounges - LayoverX"/>
+  <meta property="og:description" content="Discover popular dining spots, local street food trails, fine dining, and transit cafes near Mumbai Airport. Filter by cuisine type, price, and distance from CSMIA terminals."/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://layoverx.com/restaurants.html"/>
+  <meta property="og:image" content="https://layoverx.com/assets/photos/homepage.png"/>
+  <meta property="og:site_name" content="LayoverX"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Best Restaurants Near Mumbai Airport | Authentic Local Cuisines & Lounges - LayoverX"/>
+  <meta name="twitter:description" content="Discover popular dining spots, local street food trails, fine dining, and transit cafes near Mumbai Airport. Filter by cuisine type, price, and distance from CSMIA terminals."/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com" defer></script>
+  <link rel="stylesheet" href="css/design-system.css"/>
+  <script src="js/app.js" defer></script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FoodEstablishment",
+  "name": "LayoverX Dining Marketplace",
+  "description": "Explore and reserve tables at top transit restaurants near Mumbai Airport"
+}
+</script>
+</head>
+
+<body class="overflow-x-hidden pt-16 sm:pt-20 bg-surface">
+
+  <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg">Skip to main content</a>
+
+  <!-- Header Section -->
+  <!-- NAVBAR - Fixed, z-1000, always visible -->
+<nav class="fixed top-0 left-0 right-0 z-[1000] transition-all duration-300 bg-transparent" id="navbar">
+  <div class="container">
+    <div class="flex items-center justify-between h-16 sm:h-20">
+      <a href="index.html" class="flex items-center gap-2" aria-label="LayoverX Home">
+        <div class="w-9 h-9 bg-gradient-to-br from-sky-500 to-sky-600 rounded-xl flex items-center justify-center">
+          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/>
+          </svg>
+        </div>
+        <span class="text-white text-xl font-bold tracking-tight" id="logo-text">LayoverX</span>
+      </a>
+
+      <!-- Desktop Links -->
+      <div class="hidden lg:flex items-center gap-7">
+        <a class="nav-link text-sm font-medium transition-colors duration-200 text-white/95" href="hotels.html">Hotels</a>
+        <a class="nav-link text-sm font-medium transition-colors duration-200 active-nav-link text-sky-500 font-bold" href="restaurants.html">Restaurants</a>
+        <a class="nav-link text-sm font-medium transition-colors duration-200 text-white/95" href="experiences.html">Experiences</a>
+        <a class="nav-link text-sm font-medium transition-colors duration-200 text-white/95" href="airport-transfers.html">Airport Transfers</a>
+        <a class="nav-link text-sm font-medium transition-colors duration-200 text-white/95" href="how-it-works.html">How It Works</a>
+        <a class="nav-link text-sm font-medium transition-colors duration-200 text-white/95" href="contact.html">Contact</a>
+        <a href="plan-my-layover.html" class="px-5 py-2.5 bg-white text-sky-600 font-semibold rounded-xl hover:bg-sky-50 transition text-sm shadow-md hover:-translate-y-0.5 transform ">Plan My Layover</a>
+        
+        <!-- Auth Guest View -->
+        <div class="auth-guest flex items-center gap-5">
+          <a href="#login" class="nav-link text-sm font-medium cursor-pointer" onclick="openAuthModal('login');return false;">Login</a>
+          <a href="#signup" class="px-4 py-2 bg-sky-500 text-white text-sm font-semibold rounded-xl hover:bg-sky-600 hover:shadow-lg hover:shadow-sky-500/20 transition hover:-translate-y-0.5 transform" onclick="openAuthModal('signup');return false;">Sign Up</a>
+        </div>
+
+        <!-- Auth User View -->
+        <div class="auth-user hidden items-center gap-4 user-menu">
+          <div class="flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 px-3 py-1.5 rounded-xl">
+            <div class="w-6 h-6 bg-gradient-to-br from-sky-400 to-sky-600 rounded-full flex items-center justify-center text-[10px] font-bold text-white uppercase user-avatar-letter">U</div>
+            <span class="text-sm font-medium text-white user-name">Traveler</span>
+          </div>
+          <button class="text-sm font-medium text-red-400 hover:text-red-500 hover:underline cursor-pointer" onclick="layoverx.logout()">Logout</button>
+        </div>
+      </div>
+
+      <!-- Mobile Hamburger Menu Button -->
+      <button class="lg:hidden p-2 rounded-lg text-white" id="menu-btn" aria-label="Toggle Menu" aria-expanded="false">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Dropdown Menu -->
+  <div class="lg:hidden hidden bg-white/95 backdrop-blur-xl rounded-2xl mt-2 p-4 shadow-xl mx-4 border border-gray-100" id="mobile-menu">
+    <a class="block text-gray-800 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium text-white/95" href="hotels.html">Hotels</a>
+    <a class="block text-gray-800 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium active-nav-link text-sky-500 font-bold" href="restaurants.html">Restaurants</a>
+    <a class="block text-gray-800 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium text-white/95" href="experiences.html">Experiences</a>
+    <a class="block text-gray-800 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium text-white/95" href="airport-transfers.html">Airport Transfers</a>
+    <a class="block text-gray-800 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium text-white/95" href="how-it-works.html">How It Works</a>
+    <a class="block text-gray-800 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium text-white/95" href="contact.html">Contact</a>
+    <a href="plan-my-layover.html" class="mt-2 block w-full text-center py-3 bg-sky-500 text-white font-semibold rounded-xl hover:bg-sky-600 transition shadow-md shadow-sky-500/10">Plan My Layover</a>
+    
+    <!-- Auth Guest View (Mobile) -->
+    <div class="auth-guest flex flex-col gap-2 mt-4 pt-4 border-t border-gray-100">
+      <a href="#login" class="block text-center py-2.5 text-gray-700 text-sm font-medium rounded-xl hover:bg-gray-50 border border-gray-200" onclick="openAuthModal('login');return false;">Login</a>
+      <a href="#signup" class="block text-center py-2.5 bg-sky-500 text-white text-sm font-semibold rounded-xl hover:bg-sky-600 transition" onclick="openAuthModal('signup');return false;">Sign Up</a>
+    </div>
+
+    <!-- Auth User View (Mobile) -->
+    <div class="auth-user hidden flex-col gap-2 mt-4 pt-4 border-t border-gray-100">
+      <div class="flex items-center gap-3 px-4 py-2 bg-gray-50 rounded-xl">
+        <div class="w-8 h-8 bg-gradient-to-br from-sky-400 to-sky-600 rounded-full flex items-center justify-center text-xs font-bold text-white uppercase user-avatar-letter">U</div>
+        <div>
+          <div class="text-xs text-gray-400 font-medium">Signed in as</div>
+          <div class="text-sm font-bold text-gray-900 user-name">Traveler</div>
+        </div>
+      </div>
+      <button class="mt-2 w-full text-center py-2.5 bg-red-50 text-red-600 hover:bg-red-100 text-sm font-semibold rounded-xl transition" onclick="layoverx.logout()">Logout</button>
+    </div>
+  </div>
+</nav>
+
+
+  <!-- Page Content -->
+  <main id="main">
+    <!-- HERO SECTION -->
+<section class="bg-gradient-to-r from-emerald-800 to-emerald-950 text-white py-12 relative overflow-hidden">
+  <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+  <div class="container relative z-10">
+    <div class="max-w-3xl">
+      <nav class="flex items-center gap-2 text-xs text-emerald-200/80 mb-4" aria-label="Breadcrumb">
+        <a href="index.html" class="hover:text-white">Home</a>
+        <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+        <span class="text-white font-medium">Restaurants</span>
+      </nav>
+      <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-3">Transit Dining & Restaurants Near Mumbai Airport</h1>
+      <p class="text-emerald-100 text-sm sm:text-base leading-relaxed">Discover Mumbai's vibrant food scene during your layover. Escape the terminal gates to eat authentic coastal seafood, traditional street food, or fine dining within minutes of CSMIA.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CUISINE QUICK CATEGORIES -->
+<section class="bg-white border-b border-gray-150 py-4 sticky top-16 sm:top-20 z-40 shadow-sm">
+  <div class="container">
+    <div class="flex items-center gap-3 overflow-x-auto no-scrollbar" id="cuisine-tabs">
+      <button class="cuisine-tab active bg-emerald-600 text-white px-4 py-2 rounded-xl text-xs sm:text-sm font-bold flex-shrink-0" onclick="layoverx.filterCuisine('all')">All Cuisines</button>
+      <button class="cuisine-tab bg-gray-55 text-gray-700 hover:bg-gray-100 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold flex-shrink-0" onclick="layoverx.filterCuisine('seafood')">🦀 Coastal Seafood</button>
+      <button class="cuisine-tab bg-gray-55 text-gray-700 hover:bg-gray-100 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold flex-shrink-0" onclick="layoverx.filterCuisine('local')">🥘 Local Maharashtrian</button>
+      <button class="cuisine-tab bg-gray-55 text-gray-700 hover:bg-gray-100 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold flex-shrink-0" onclick="layoverx.filterCuisine('north-indian')">🍢 North Indian</button>
+      <button class="cuisine-tab bg-gray-55 text-gray-700 hover:bg-gray-100 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold flex-shrink-0" onclick="layoverx.filterCuisine('street-food')">🌶️ Mumbai Street Food</button>
+      <button class="cuisine-tab bg-gray-55 text-gray-700 hover:bg-gray-100 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold flex-shrink-0" onclick="layoverx.filterCuisine('fine-dining')">✨ Fine Dining</button>
+    </div>
+  </div>
+</section>
+
+<!-- MAIN MARKETPLACE LAYOUT -->
+<section class="section bg-gray-50">
+  <div class="container">
+    <div class="flex flex-col lg:flex-row gap-8">
+      
+      <!-- FILTERS PANEL -->
+      <aside class="w-full lg:w-1/4 flex-shrink-0" aria-label="Restaurant Filters">
+        <div class="bg-white rounded-2xl border border-gray-150 p-6 sticky top-52">
+          <div class="flex items-center justify-between pb-4 border-b border-gray-100 mb-6">
+            <h2 class="text-base font-bold text-gray-900">Filters</h2>
+            <button type="button" onclick="layoverx.clearRestFilters()" class="text-xs text-emerald-600 hover:text-emerald-700 font-bold hover:underline">Clear All</button>
+          </div>
+          
+          <!-- Price Range -->
+          <div class="mb-6">
+            <h3 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">Cost For Two</h3>
+            <div class="space-y-2">
+              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-650 cursor-pointer">
+                <input type="checkbox" name="rest-price" value="under-1000" class="rounded border-gray-300 text-emerald-600 focus:ring-emerald-500"/>
+                Under ₹1,000
+              </label>
+              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-650 cursor-pointer">
+                <input type="checkbox" name="rest-price" value="1000-2500" class="rounded border-gray-300 text-emerald-600 focus:ring-emerald-500"/>
+                ₹1,000 - ₹2,500
+              </label>
+              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-650 cursor-pointer">
+                <input type="checkbox" name="rest-price" value="above-2500" class="rounded border-gray-300 text-emerald-600 focus:ring-emerald-500"/>
+                Above ₹2,500
+              </label>
+            </div>
+          </div>
+          
+          <!-- Distance -->
+          <div class="mb-6">
+            <h3 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">Distance From CSMIA</h3>
+            <div class="space-y-2">
+              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-650 cursor-pointer">
+                <input type="checkbox" name="rest-distance" value="under-2km" class="rounded border-gray-300 text-emerald-600 focus:ring-emerald-500"/>
+                Under 2 km
+              </label>
+              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-650 cursor-pointer">
+                <input type="checkbox" name="rest-distance" value="2-6km" class="rounded border-gray-300 text-emerald-600 focus:ring-emerald-500"/>
+                2 km to 6 km
+              </label>
+              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-650 cursor-pointer">
+                <input type="checkbox" name="rest-distance" value="above-6km" class="rounded border-gray-300 text-emerald-600 focus:ring-emerald-500"/>
+                Above 6 km
+              </label>
+            </div>
+          </div>
+
+          <!-- Star Rating -->
+          <div>
+            <h3 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">Guest Review Rating</h3>
+            <div class="space-y-2">
+              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-650 cursor-pointer">
+                <input type="radio" name="rest-rating" value="4.5" class="border-gray-300 text-emerald-600 focus:ring-emerald-500"/>
+                Excellent: 4.5+ ★
+              </label>
+              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-650 cursor-pointer">
+                <input type="radio" name="rest-rating" value="4.0" class="border-gray-300 text-emerald-600 focus:ring-emerald-500"/>
+                Very Good: 4.0+ ★
+              </label>
+              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-650 cursor-pointer">
+                <input type="radio" name="rest-rating" value="all" checked class="border-gray-300 text-emerald-600 focus:ring-emerald-500"/>
+                Show All Ratings
+              </label>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- RESTAURANT LISTING GRID -->
+      <main class="w-full lg:w-3/4">
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6" id="restaurant-list">
+          
+          <!-- Rest Card 1 -->
+          <article class="bg-white rounded-2xl border border-gray-150 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col justify-between rest-item" 
+                   data-cuisine="seafood" data-price="1800" data-rating="4.8" data-distance="3.5">
+            <div>
+              <div class="relative h-48 overflow-hidden">
+                <img alt="Gajalee Seafood" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&h=400&fit=crop"/>
+                <span class="absolute top-4 left-4 bg-emerald-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-md">🦀 Seafood</span>
+              </div>
+              <div class="p-5">
+                <div class="flex items-center justify-between gap-2 mb-1">
+                  <h3 class="font-bold text-gray-900 text-base hover:text-emerald-600 transition-colors">
+                    <a href="#" onclick="layoverx.openRestDetail(1);return false;">Gajalee Coastal Seafood Restaurant</a>
+                  </h3>
+                  <span class="bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-lg text-xs font-bold">4.8★</span>
+                </div>
+                <div class="text-xs text-gray-500 flex items-center gap-1 mb-3">
+                  <span>Vile Parle East, Mumbai • 3.5 km from CSMIA</span>
+                </div>
+                <p class="text-gray-500 text-sm mb-4">World-famous coastal dining. Indulge in authentic Butter Garlic Pepper Crab, Tandoori Pomfret, and Sol Kadhi.</p>
+                <div class="flex items-center gap-4 text-xs font-bold text-gray-600">
+                  <span>💰 ₹1,800 for two</span>
+                  <span>⏱️ 15 mins taxi ride</span>
+                </div>
+              </div>
+            </div>
+            <div class="p-5 pt-0">
+              <button type="button" onclick="layoverx.reserveRest(1)" class="w-full py-2.5 bg-emerald-650 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl transition shadow-md">Reserve Transit Table</button>
+            </div>
+          </article>
+
+          <!-- Rest Card 2 -->
+          <article class="bg-white rounded-2xl border border-gray-150 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col justify-between rest-item" 
+                   data-cuisine="fine-dining" data-price="4500" data-rating="4.9" data-distance="1.1">
+            <div>
+              <div class="relative h-48 overflow-hidden">
+                <img alt="Peshawri ITC Maratha" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1544025162-d76694265947?w=600&h=400&fit=crop"/>
+                <span class="absolute top-4 left-4 bg-emerald-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-md">✨ Luxury</span>
+              </div>
+              <div class="p-5">
+                <div class="flex items-center justify-between gap-2 mb-1">
+                  <h3 class="font-bold text-gray-900 text-base hover:text-emerald-600 transition-colors">
+                    <a href="#" onclick="layoverx.openRestDetail(2);return false;">Peshawri - ITC Maratha</a>
+                  </h3>
+                  <span class="bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-lg text-xs font-bold">4.9★</span>
+                </div>
+                <div class="text-xs text-gray-500 flex items-center gap-1 mb-3">
+                  <span>Sahar Road, Andheri East • 1.1 km from T2</span>
+                </div>
+                <p class="text-gray-500 text-sm mb-4">Five-star Northwest Frontier luxury. Famous for Dal Bukhara (simmered for 18 hours) and Sikandari Raan.</p>
+                <div class="flex items-center gap-4 text-xs font-bold text-gray-600">
+                  <span>💰 ₹4,500 for two</span>
+                  <span>⏱️ 5 mins taxi ride</span>
+                </div>
+              </div>
+            </div>
+            <div class="p-5 pt-0">
+              <button type="button" onclick="layoverx.reserveRest(2)" class="w-full py-2.5 bg-emerald-650 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl transition shadow-md">Reserve Transit Table</button>
+            </div>
+          </article>
+
+          <!-- Rest Card 3 -->
+          <article class="bg-white rounded-2xl border border-gray-150 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col justify-between rest-item" 
+                   data-cuisine="local" data-price="800" data-rating="4.5" data-distance="2.2">
+            <div>
+              <div class="relative h-48 overflow-hidden">
+                <img alt="Highway Gomantak" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=600&h=400&fit=crop"/>
+                <span class="absolute top-4 left-4 bg-emerald-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-md">🥘 Local food</span>
+              </div>
+              <div class="p-5">
+                <div class="flex items-center justify-between gap-2 mb-1">
+                  <h3 class="font-bold text-gray-900 text-base hover:text-emerald-600 transition-colors">
+                    <a href="#" onclick="layoverx.openRestDetail(3);return false;">Highway Gomantak</a>
+                  </h3>
+                  <span class="bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-lg text-xs font-bold">4.5★</span>
+                </div>
+                <div class="text-xs text-gray-500 flex items-center gap-1 mb-3">
+                  <span>Bandra East, Mumbai • 2.2 km from domestic T1</span>
+                </div>
+                <p class="text-gray-500 text-sm mb-4">Legendary 30-year-old Goan-Maharashtrian local kitchen. Indulge in Surmai thali and mutton sukka masala.</p>
+                <div class="flex items-center gap-4 text-xs font-bold text-gray-600">
+                  <span>💰 ₹800 for two</span>
+                  <span>⏱️ 10 mins taxi ride</span>
+                </div>
+              </div>
+            </div>
+            <div class="p-5 pt-0">
+              <button type="button" onclick="layoverx.reserveRest(3)" class="w-full py-2.5 bg-emerald-650 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl transition shadow-md">Reserve Transit Table</button>
+            </div>
+          </article>
+
+          <!-- Rest Card 4 -->
+          <article class="bg-white rounded-2xl border border-gray-150 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col justify-between rest-item" 
+                   data-cuisine="street-food" data-price="400" data-rating="4.4" data-distance="4.2">
+            <div>
+              <div class="relative h-48 overflow-hidden">
+                <img alt="Elco Pani Puri" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1601050690597-df056fb4ce78?w=600&h=400&fit=crop"/>
+                <span class="absolute top-4 left-4 bg-emerald-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-md">🌶️ Street Food</span>
+              </div>
+              <div class="p-5">
+                <div class="flex items-center justify-between gap-2 mb-1">
+                  <h3 class="font-bold text-gray-900 text-base hover:text-emerald-600 transition-colors">
+                    <a href="#" onclick="layoverx.openRestDetail(4);return false;">Elco Pani Puri Center</a>
+                  </h3>
+                  <span class="bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-lg text-xs font-bold">4.4★</span>
+                </div>
+                <div class="text-xs text-gray-500 flex items-center gap-1 mb-3">
+                  <span>Hill Road, Bandra West • 4.2 km from CSMIA</span>
+                </div>
+                <p class="text-gray-500 text-sm mb-4">Hygienic local street food experience. Famous for ice-cold mineral water Pani Puri, Dahi Puri, and Pav Bhaji.</p>
+                <div class="flex items-center gap-4 text-xs font-bold text-gray-600">
+                  <span>💰 ₹400 for two</span>
+                  <span>⏱️ 18 mins taxi ride</span>
+                </div>
+              </div>
+            </div>
+            <div class="p-5 pt-0">
+              <button type="button" onclick="layoverx.reserveRest(4)" class="w-full py-2.5 bg-emerald-650 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl transition shadow-md">Reserve Transit Table</button>
+            </div>
+          </article>
+          
+        </div>
+
+        <!-- Empty state -->
+        <div id="rest-empty" class="bg-white rounded-2xl border border-gray-150 p-12 text-center hidden">
+          <h3 class="text-base font-bold text-gray-900 mb-1">No Restaurants Found</h3>
+          <p class="text-gray-500 text-sm mb-4">No matching dining options found. Try clearing price filters or broadening your distance parameters.</p>
+          <button type="button" onclick="layoverx.clearRestFilters()" class="px-4 py-2 bg-emerald-600 text-white text-xs font-bold rounded-xl shadow-md">Reset Filters</button>
+        </div>
+
+      </main>
+
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="section bg-white border-t border-gray-100">
+  <div class="container">
+    <div class="text-center mb-12">
+      <span class="inline-block text-emerald-600 font-bold text-sm uppercase tracking-wider mb-2">Foodie feedback</span>
+      <h2 class="text-3xl font-extrabold text-gray-900">Loved by Global Travelers</h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="bg-gray-50 p-6 rounded-2xl border border-gray-150">
+        <div class="text-amber-400 mb-3">★★★★★</div>
+        <p class="text-gray-600 text-sm italic mb-4">"The Butter Garlic Crabs at Gajalee were incredible! We had a 6 hour transit, the driver took us there and back in less than 2 hours. Best layover meal ever."</p>
+        <div class="text-xs font-bold text-gray-800">Samantha T., London transit</div>
+      </div>
+      <div class="bg-gray-50 p-6 rounded-2xl border border-gray-150">
+        <div class="text-amber-400 mb-3">★★★★★</div>
+        <p class="text-gray-600 text-sm italic mb-4">"Dal Bukhara at Peshawri is worth leaving the airport alone. LayoverX table reservation was instant and worked flawlessly. Driver waited for us outside."</p>
+        <div class="text-xs font-bold text-gray-800">Akash M., Singapore Transit</div>
+      </div>
+      <div class="bg-gray-50 p-6 rounded-2xl border border-gray-150">
+        <div class="text-amber-400 mb-3">★★★★★</div>
+        <p class="text-gray-600 text-sm italic mb-4">"Super safe and hygienic street food. Tried Pani Puri and Pav Bhaji at Elco. Tasted amazing and no stomach issues at all. A must-do transit stop."</p>
+        <div class="text-xs font-bold text-gray-800">Chloe L., France transit</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section bg-gray-50 border-t border-gray-100">
+  <div class="container max-w-4xl">
+    <div class="text-center mb-12">
+      <span class="inline-block text-emerald-600 font-bold text-sm uppercase tracking-wider mb-2">Transit Dining Info</span>
+      <h2 class="text-3xl font-extrabold text-gray-900">Dining FAQ</h2>
+    </div>
+    <div class="space-y-6">
+      <details class="group bg-white rounded-2xl border border-gray-150 p-5 cursor-pointer">
+        <summary class="flex items-center justify-between text-base font-bold text-gray-900 list-none">
+          How much time do I need for a dining transit?
+          <span class="text-emerald-500 group-open:rotate-180 transition-transform duration-200">▼</span>
+        </summary>
+        <p class="text-gray-600 text-sm mt-3 leading-relaxed">
+          We recommend a minimum layover of <strong>4 hours</strong> to clear immigration, take a cab to nearby dining spots (1-3 km), enjoy your meal, and return for the mandatory 2-hour security check-in buffer.
+        </p>
+      </details>
+      <details class="group bg-white rounded-2xl border border-gray-150 p-5 cursor-pointer">
+        <summary class="flex items-center justify-between text-base font-bold text-gray-900 list-none">
+          Is the street food safe for international transit flyers?
+          <span class="text-emerald-500 group-open:rotate-180 transition-transform duration-200">▼</span>
+        </summary>
+        <p class="text-gray-600 text-sm mt-3 leading-relaxed">
+          Yes! We only partner with and list highly hygienic, corporate-rated local dining centers (like Elco and Highway Gomantak) that use purified mineral water for preparations, ensuring zero health risks prior to long flights.
+        </p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- DINING DETAILS MODAL TEMPLATE -->
+<div id="modal-rest-detail" class="modal-overlay" data-modal="rest-detail" role="dialog" aria-modal="true" aria-labelledby="rest-detail-title">
+  <div class="modal-content !max-w-2xl">
+    <button class="modal-close font-semibold text-2xl" aria-label="Close Dining Modal" onclick="layoverx.closeRestDetail()">&times;</button>
+    <div class="p-6">
+      <div class="relative h-60 rounded-xl overflow-hidden mb-6">
+        <img id="detail-rest-image" alt="Restaurant main view" class="w-full h-full object-cover" src=""/>
+      </div>
+      <h2 id="rest-detail-title" class="text-2xl font-bold text-gray-900 mb-1">Restaurant Name</h2>
+      <div id="detail-rest-location" class="text-xs text-gray-500 flex items-center gap-1.5 mb-4">Location</div>
+      
+      <div class="grid grid-cols-3 gap-3 text-center mb-6">
+        <div class="bg-gray-50 p-3 rounded-xl"><div class="text-[10px] text-gray-400 font-bold uppercase">Rating</div><div id="detail-rest-rating" class="text-sm font-black text-emerald-600">4.8★</div></div>
+        <div class="bg-gray-50 p-3 rounded-xl"><div class="text-[10px] text-gray-400 font-bold uppercase">Cuisine</div><div id="detail-rest-cuisine" class="text-sm font-bold text-gray-800">Seafood</div></div>
+        <div class="bg-gray-50 p-3 rounded-xl"><div class="text-[10px] text-gray-400 font-bold uppercase">Cost for Two</div><div id="detail-rest-price" class="text-sm font-extrabold text-emerald-650">₹1,800</div></div>
+      </div>
+      
+      <h3 class="text-sm font-bold text-gray-900 mb-2">Description</h3>
+      <p id="detail-rest-description" class="text-gray-600 text-sm leading-relaxed mb-6">Description goes here.</p>
+      
+      <div class="flex items-center justify-end gap-3 pt-4 border-t border-gray-100">
+        <button type="button" onclick="layoverx.closeRestDetail()" class="px-5 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-600 font-bold text-sm rounded-xl">Cancel</button>
+        <button type="button" id="detail-rest-reserve-btn" class="px-6 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm rounded-xl shadow-md">Reserve Transit Table</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  </main>
+
+  <!-- Footer Section -->
+  <!-- FOOTER -->
+<footer class="bg-gray-900 text-white pt-16 pb-12">
+  <div class="container">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+      <div>
+        <a href="index.html" class="flex items-center gap-2 mb-4">
+          <div class="w-9 h-9 bg-gradient-to-br from-sky-500 to-sky-600 rounded-xl flex items-center justify-center">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/>
+            </svg>
+          </div>
+          <span class="text-xl font-bold tracking-tight text-white">LayoverX</span>
+        </a>
+        <p class="text-gray-400 text-sm leading-relaxed mb-6">
+          Mumbai Travel & Layover Experience Platform. Transform your transit hours into memorable journeys with premium hotels, fine dining, curated city tours, and airport transfers near CSIA.
+        </p>
+        <div class="flex items-center gap-3">
+          <a href="#" aria-label="Facebook" class="w-8 h-8 rounded-lg bg-gray-800 hover:bg-sky-500 transition-colors flex items-center justify-center text-gray-400 hover:text-white">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M9 8H7v3h2v9h4v-9h3.6l.4-3h-4V6.5c0-.8.2-1.1 1-1.1h3V2h-4.3C12.3 2 10 3.8 10 7.5V8z"/></svg>
+          </a>
+          <a href="#" aria-label="Twitter" class="w-8 h-8 rounded-lg bg-gray-800 hover:bg-sky-500 transition-colors flex items-center justify-center text-gray-400 hover:text-white">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M23.95 4.57a10 10 0 01-2.82.78 4.9 4.9 0 002.16-2.72 9.9 9.9 0 01-3.12 1.19 4.92 4.92 0 00-8.38 4.48A14 14 0 011.64 3.16a4.92 4.92 0 001.52 6.57 4.9 4.9 0 01-2.23-.62v.06a4.93 4.93 0 003.95 4.83 4.9 4.9 0 01-2.22.08 4.93 4.93 0 004.6 3.42A9.9 9.9 0 010 19.54a13.9 13.9 0 007.55 2.21c9.05 0 14-7.5 14-14v-.64a10 10 0 002.4-2.54z"/></svg>
+          </a>
+          <a href="#" aria-label="Instagram" class="w-8 h-8 rounded-lg bg-gray-800 hover:bg-sky-500 transition-colors flex items-center justify-center text-gray-400 hover:text-white">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h4 class="font-bold mb-4 text-sm text-sky-400 uppercase tracking-wider">Explore Services</h4>
+        <ul class="space-y-2">
+          <li><a class="text-gray-400 hover:text-white text-sm transition-colors" href="hotels.html">Airport Hotels</a></li>
+          <li><a class="text-gray-400 hover:text-white text-sm transition-colors" href="restaurants.html">Restaurants & Dining</a></li>
+          <li><a class="text-gray-400 hover:text-white text-sm transition-colors" href="experiences.html">Tours & Experiences</a></li>
+          <li><a class="text-gray-400 hover:text-white text-sm transition-colors" href="airport-transfers.html">Airport Taxi & Transfers</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-bold mb-4 text-sm text-sky-400 uppercase tracking-wider">Company</h4>
+        <ul class="space-y-2">
+          <li><a class="text-gray-400 hover:text-white text-sm transition-colors" href="how-it-works.html">How It Works</a></li>
+          <li><a class="text-gray-400 hover:text-white text-sm transition-colors" href="contact.html">Contact Us</a></li>
+          <li><a class="text-gray-400 hover:text-white text-sm transition-colors" href="contact.html#partner">Partner With Us</a></li>
+          <li><a class="text-gray-400 hover:text-white text-sm transition-colors" href="how-it-works.html#faq">FAQs</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-bold mb-4 text-sm text-sky-400 uppercase tracking-wider">Get In Touch</h4>
+        <ul class="space-y-3">
+          <li class="flex items-center gap-2.5 text-gray-400 text-sm">
+            <svg class="w-4 h-4 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
+            <a href="mailto:hello@layoverx.com" class="hover:text-white transition-colors">hello@layoverx.com</a>
+          </li>
+          <li class="flex items-center gap-2.5 text-gray-400 text-sm">
+            <svg class="w-4 h-4 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-2.824-1.47-5.112-3.758-6.58-6.58l1.293-.97c.362-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/></svg>
+            <a href="tel:+912212345678" class="hover:text-white transition-colors">+91 22 1234 5678</a>
+          </li>
+          <li class="flex items-start gap-2.5 text-gray-400 text-sm">
+            <svg class="w-4 h-4 text-sky-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+            <span>Andheri East, Near CSMIA Terminal 2,<br/>Mumbai, MH 400099, India</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-gray-800 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="text-gray-500 text-xs">&copy; 2026 LayoverX. All rights reserved. Realized with high-performance standards.</p>
+      <div class="flex items-center gap-6">
+        <a class="text-gray-500 hover:text-white text-xs transition-colors" href="#">Privacy Policy</a>
+        <a class="text-gray-500 hover:text-white text-xs transition-colors" href="#">Terms of Service</a>
+        <a class="text-gray-500 hover:text-white text-xs transition-colors" href="#">Cookie Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  <!-- Modals Section -->
+  <!-- Auth Modals -->
+<div id="modal-login" class="modal-overlay" data-modal="login" role="dialog" aria-modal="true" aria-labelledby="login-title">
+  <div class="modal-content">
+    <button class="modal-close font-semibold text-2xl" aria-label="Close Login Modal" onclick="layoverx.closeModal('login')">&times;</button>
+    <div class="auth-form">
+      <h2 id="login-title" class="text-gray-900 text-2xl font-bold">Welcome Back</h2>
+      <p class="text-sm text-gray-500">Sign in to save and manage your custom layover itineraries.</p>
+      
+      <form id="form-login" onsubmit="layoverx.handleLogin(event)" class="space-y-4">
+        <div class="form-group text-left">
+          <label class="form-label text-xs font-semibold text-gray-600 uppercase tracking-wider mb-1" for="login-email">Email Address</label>
+          <input id="login-email" type="email" class="form-input border border-gray-200 focus:border-sky-500 rounded-xl" placeholder="you@example.com" required/>
+        </div>
+        <div class="form-group text-left">
+          <label class="form-label text-xs font-semibold text-gray-600 uppercase tracking-wider mb-1" for="login-password">Password</label>
+          <input id="login-password" type="password" class="form-input border border-gray-200 focus:border-sky-500 rounded-xl" placeholder="••••••••" required/>
+        </div>
+        <div class="flex items-center justify-between text-xs sm:text-sm pt-1">
+          <label class="form-checkbox text-gray-500 flex items-center gap-1.5 cursor-pointer">
+            <input type="checkbox" class="rounded border-gray-300 text-sky-600 focus:ring-sky-500"/> Remember me
+          </label>
+          <a href="#" class="auth-link text-sky-600 hover:text-sky-700 font-semibold" onclick="layoverx.switchModal('login', 'forgot');return false;">Forgot Password?</a>
+        </div>
+        <button type="submit" class="btn btn-primary w-full mt-2 py-3 bg-sky-500 hover:bg-sky-600 text-white font-bold rounded-xl shadow-lg transition">Sign In</button>
+      </form>
+      
+      <div class="divider text-gray-400 text-xs">OR</div>
+      
+      <div class="space-y-2">
+        <button class="social-btn border border-gray-200 hover:bg-gray-50 transition w-full py-2.5 rounded-xl flex items-center justify-center gap-2" onclick="layoverx.socialLogin('google')">
+          <svg class="w-4 h-4" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v3.9h6.6c-.28 1.5-1.12 2.76-2.38 3.61v3h3.84c2.25-2.07 3.68-5.12 3.68-8.44z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.84-3c-1.07.72-2.44 1.15-4.09 1.15-3.15 0-5.82-2.13-6.77-5H1.28v3.1c1.98 3.94 6.06 6.66 10.72 6.66z"/><path fill="#FBBC05" d="M5.23 14.24a7.17 7.17 0 010-4.48v-3.1H1.28a11.96 11.96 0 000 10.68l3.95-3.1z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.43-3.43C17.95 1.19 15.24 0 12 0 7.34 0 3.26 2.72 1.28 6.66l3.95 3.1c.95-2.87 3.62-5 6.77-5z"/></svg>
+          Continue with Google
+        </button>
+        <button class="social-btn border border-gray-200 hover:bg-gray-50 transition w-full py-2.5 rounded-xl flex items-center justify-center gap-2" onclick="layoverx.socialLogin('apple')">
+          <svg class="w-4 h-4 fill-current text-gray-900" viewBox="0 0 24 24"><path d="M17.05 20.28c-.98.95-2.05 1.88-3.08 1.9-1.03.02-1.36-.62-2.54-.62-1.19 0-1.56.6-2.55.64-1.01.03-2.2-.97-3.2-1.93-2.03-1.95-3.59-5.5-3.59-8.83 0-5.28 3.44-8.08 6.82-8.08 1.07 0 2.07.66 2.73.66.66 0 1.9-.8 3.18-.66 1.35.06 2.41.55 3.12 1.58-2.88 1.73-2.42 5.56.24 6.64-1.07 2.7-2.3 5.4-3.13 6.7M15.47 3.38c.55-.66.92-1.58.82-2.5-.78.03-1.73.52-2.29 1.18-.49.56-.92 1.5-.8 2.4.87.07 1.73-.42 2.27-1.08"/></svg>
+          Continue with Apple
+        </button>
+      </div>
+      
+      <p class="text-sm text-gray-500 mt-2">
+        Don't have an account? 
+        <a href="#" class="auth-link text-sky-600 hover:text-sky-700 font-semibold" onclick="layoverx.switchModal('login', 'signup');return false;">Create Account</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<div id="modal-signup" class="modal-overlay" data-modal="signup" role="dialog" aria-modal="true" aria-labelledby="signup-title">
+  <div class="modal-content">
+    <button class="modal-close font-semibold text-2xl" aria-label="Close Signup Modal" onclick="layoverx.closeModal('signup')">&times;</button>
+    <div class="auth-form">
+      <h2 id="signup-title" class="text-gray-900 text-2xl font-bold">Create Your Account</h2>
+      <p class="text-sm text-gray-500">Save plans, book services, and unlock personalized recommendations.</p>
+      
+      <form id="form-signup" onsubmit="layoverx.handleSignup(event)" class="space-y-4">
+        <div class="form-group text-left">
+          <label class="form-label text-xs font-semibold text-gray-600 uppercase tracking-wider mb-1" for="signup-name">Full Name</label>
+          <input id="signup-name" type="text" class="form-input border border-gray-200 focus:border-sky-500 rounded-xl" placeholder="John Doe" required/>
+        </div>
+        <div class="form-group text-left">
+          <label class="form-label text-xs font-semibold text-gray-600 uppercase tracking-wider mb-1" for="signup-email">Email Address</label>
+          <input id="signup-email" type="email" class="form-input border border-gray-200 focus:border-sky-500 rounded-xl" placeholder="you@example.com" required/>
+        </div>
+        <div class="form-group text-left">
+          <label class="form-label text-xs font-semibold text-gray-600 uppercase tracking-wider mb-1" for="signup-password">Password</label>
+          <input id="signup-password" type="password" class="form-input border border-gray-200 focus:border-sky-500 rounded-xl" placeholder="Create a password" required/>
+        </div>
+        <button type="submit" class="btn btn-primary w-full mt-2 py-3 bg-sky-500 hover:bg-sky-600 text-white font-bold rounded-xl shadow-lg transition">Create Account</button>
+      </form>
+      
+      <div class="divider text-gray-400 text-xs">OR</div>
+      
+      <div class="space-y-2">
+        <button class="social-btn border border-gray-200 hover:bg-gray-50 transition w-full py-2.5 rounded-xl flex items-center justify-center gap-2" onclick="layoverx.socialLogin('google')">
+          <svg class="w-4 h-4" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v3.9h6.6c-.28 1.5-1.12 2.76-2.38 3.61v3h3.84c2.25-2.07 3.68-5.12 3.68-8.44z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.84-3c-1.07.72-2.44 1.15-4.09 1.15-3.15 0-5.82-2.13-6.77-5H1.28v3.1c1.98 3.94 6.06 6.66 10.72 6.66z"/><path fill="#FBBC05" d="M5.23 14.24a7.17 7.17 0 010-4.48v-3.1H1.28a11.96 11.96 0 000 10.68l3.95-3.1z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.43-3.43C17.95 1.19 15.24 0 12 0 7.34 0 3.26 2.72 1.28 6.66l3.95 3.1c.95-2.87 3.62-5 6.77-5z"/></svg>
+          Continue with Google
+        </button>
+      </div>
+      
+      <p class="text-sm text-gray-500 mt-2">
+        Already have an account? 
+        <a href="#" class="auth-link text-sky-600 hover:text-sky-700 font-semibold" onclick="layoverx.switchModal('signup', 'login');return false;">Sign In</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<div id="modal-forgot" class="modal-overlay" data-modal="forgot" role="dialog" aria-modal="true" aria-labelledby="forgot-title">
+  <div class="modal-content">
+    <button class="modal-close font-semibold text-2xl" aria-label="Close Forgot Modal" onclick="layoverx.closeModal('forgot')">&times;</button>
+    <div class="auth-form">
+      <h2 id="forgot-title" class="text-gray-900 text-2xl font-bold">Reset Password</h2>
+      <p class="text-sm text-gray-500">Enter your email and we'll send you recovery instructions.</p>
+      
+      <div class="form-group text-left space-y-2">
+        <label class="form-label text-xs font-semibold text-gray-600 uppercase tracking-wider" for="forgot-email">Email Address</label>
+        <input id="forgot-email" type="email" class="form-input border border-gray-200 focus:border-sky-500 rounded-xl" placeholder="you@example.com" required/>
+      </div>
+      <button class="btn btn-primary w-full mt-4 py-3 bg-sky-500 hover:bg-sky-600 text-white font-bold rounded-xl shadow-lg transition" onclick="layoverx.handleForgot()">Send Reset Link</button>
+      
+      <p class="text-sm text-gray-500 mt-2">
+        <a href="#" class="auth-link text-sky-600 hover:text-sky-700 font-semibold" onclick="layoverx.switchModal('forgot', 'login');return false;">Back to Login</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>
