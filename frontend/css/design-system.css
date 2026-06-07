@@ -125,6 +125,7 @@ input[type="datetime-local"],input[type="date"]{appearance:none;-webkit-appearan
 #navbar{position:fixed;top:0;left:0;right:0;z-index:1000;transition:var(--transition)}
 #navbar .nav-link{color:rgba(255,255,255,.95);transition:color .3s ease}
 #navbar .nav-link:hover,#navbar .nav-link:focus{color:#fff}
+#navbar:not(.scrolled) #logo-text{color:#fff}
 #navbar.scrolled{background:rgba(255,255,255,.97);backdrop-filter:blur(20px);box-shadow:var(--shadow-sm)}
 #navbar.scrolled .nav-link{color:var(--text-primary)}
 #navbar.scrolled .nav-link:hover,#navbar.scrolled .nav-link:focus{color:var(--primary)}
