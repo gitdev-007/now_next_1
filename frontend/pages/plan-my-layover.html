@@ -12,24 +12,25 @@
       <!-- Interactive Inputs Bar -->
       <form id="planner-form" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 bg-gray-800 p-4 rounded-2xl border border-gray-700">
         <div>
-          <label for="plan-location" class="block text-[10px] font-bold text-gray-700 uppercase tracking-wider mb-1">Destination Area</label>
-          <select id="plan-location" class="w-full bg-gray-900 border border-gray-700 rounded-xl p-2.5 text-xs sm:text-sm font-semibold text-white focus:ring-1 focus:ring-sky-500 cursor-pointer">
+          <label for="plan-location" class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Destination Area</label>
+          <select id="plan-location" class="w-full bg-gray-900 border border-gray-600 rounded-xl p-3 text-sm font-semibold text-white focus:ring-2 focus:ring-sky-500 focus:border-sky-500 cursor-pointer transition">
             <option value="near-airport">Near Mumbai Airport</option>
             <option value="bandra">Bandra (Sea Link District)</option>
             <option value="colaba">Colaba (South Mumbai Heritage)</option>
+            <option value="juhu">Juhu Beach Area</option>
           </select>
         </div>
         <div>
-          <label for="plan-arrival" class="block text-[10px] font-bold text-gray-700 uppercase tracking-wider mb-1">Landing Flight Arrival</label>
-          <input type="datetime-local" id="plan-arrival" class="w-full bg-gray-900 border border-gray-700 rounded-xl p-2.5 text-xs sm:text-sm font-semibold text-white focus:ring-1 focus:ring-sky-500"/>
+          <label for="plan-arrival" class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Landing Flight Arrival</label>
+          <input type="datetime-local" id="plan-arrival" class="w-full bg-gray-900 border border-gray-600 rounded-xl p-3 text-sm font-semibold text-white focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition"/>
         </div>
         <div>
-          <label for="plan-departure" class="block text-[10px] font-bold text-gray-700 uppercase tracking-wider mb-1">Boarding Flight Departure</label>
-          <input type="datetime-local" id="plan-departure" class="w-full bg-gray-900 border border-gray-700 rounded-xl p-2.5 text-xs sm:text-sm font-semibold text-white focus:ring-1 focus:ring-sky-500"/>
+          <label for="plan-departure" class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Boarding Flight Departure</label>
+          <input type="datetime-local" id="plan-departure" class="w-full bg-gray-900 border border-gray-600 rounded-xl p-3 text-sm font-semibold text-white focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition"/>
         </div>
         <div>
-          <label for="plan-travelers" class="block text-[10px] font-bold text-gray-700 uppercase tracking-wider mb-1">Travelers Count</label>
-          <select id="plan-travelers" class="w-full bg-gray-900 border border-gray-700 rounded-xl p-2.5 text-xs sm:text-sm font-semibold text-white focus:ring-1 focus:ring-sky-500 cursor-pointer">
+          <label for="plan-travelers" class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Travelers Count</label>
+          <select id="plan-travelers" class="w-full bg-gray-900 border border-gray-600 rounded-xl p-3 text-sm font-semibold text-white focus:ring-2 focus:ring-sky-500 focus:border-sky-500 cursor-pointer transition">
             <option value="1">1 Traveler</option>
             <option value="2" selected>2 Travelers</option>
             <option value="3">3 Travelers</option>
@@ -47,6 +48,95 @@
         </div>
         <div class="text-emerald-400 font-bold flex items-center gap-1">
           🟢 Safe Window for Exits: <span id="plan-exit-hours">2.5 Hours</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PREMIUM SERVICES CAROUSEL -->
+<section class="bg-white border-b border-gray-100 py-10 overflow-hidden">
+  <div class="container relative">
+    <div class="flex items-center justify-between mb-8 px-1">
+      <div>
+        <h2 class="text-xl font-extrabold text-gray-900 tracking-tight">Premium Service Marketplace</h2>
+        <p class="text-gray-700 text-sm">Add luxury to your transit window</p>
+      </div>
+      <div class="flex items-center gap-2">
+        <button class="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center hover:bg-gray-50 transition" id="planner-prev" aria-label="Previous">
+          <svg class="w-4 h-4 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+        </button>
+        <button class="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center hover:bg-gray-50 transition" id="planner-next" aria-label="Next">
+          <svg class="w-4 h-4 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="carousel-container gap-6 pb-4 px-1" id="planner-services-carousel">
+      <!-- Item 1 -->
+      <div class="carousel-item">
+        <div class="bg-gray-50 rounded-2xl p-4 border border-gray-200 h-full flex flex-col hover:border-sky-300 transition duration-300 group">
+          <div class="h-40 rounded-xl overflow-hidden mb-4">
+            <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&h=300&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Hotels"/>
+          </div>
+          <h3 class="font-bold text-gray-900 mb-1">Transit Hotels</h3>
+          <p class="text-gray-700 text-xs mb-4 flex-grow">Luxury day-rooms inside T2 or minutes away.</p>
+          <a href="hotels.html" class="text-sky-700 text-xs font-bold flex items-center gap-1 hover:underline">Explore Hotels <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+      <!-- Item 2 -->
+      <div class="carousel-item">
+        <div class="bg-gray-50 rounded-2xl p-4 border border-gray-200 h-full flex flex-col hover:border-sky-300 transition duration-300 group">
+          <div class="h-40 rounded-xl overflow-hidden mb-4">
+            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&h=300&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Dining"/>
+          </div>
+          <h3 class="font-bold text-gray-900 mb-1">Transit Dining</h3>
+          <p class="text-gray-700 text-xs mb-4 flex-grow">Gourmet seafood and local fine dining guides.</p>
+          <a href="restaurants.html" class="text-sky-700 text-xs font-bold flex items-center gap-1 hover:underline">Explore Dining <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+      <!-- Item 3 -->
+      <div class="carousel-item">
+        <div class="bg-gray-50 rounded-2xl p-4 border border-gray-200 h-full flex flex-col hover:border-sky-300 transition duration-300 group">
+          <div class="h-40 rounded-xl overflow-hidden mb-4">
+            <img src="https://images.unsplash.com/photo-1540555700478-4be289fbece8?w=400&h=300&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Spa"/>
+          </div>
+          <h3 class="font-bold text-gray-900 mb-1">Spa & Wellness</h3>
+          <p class="text-gray-700 text-xs mb-4 flex-grow">Express massages to melt away travel fatigue.</p>
+          <a href="spa-wellness.html" class="text-sky-700 text-xs font-bold flex items-center gap-1 hover:underline">Explore Spa <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+      <!-- Item 4 -->
+      <div class="carousel-item">
+        <div class="bg-gray-50 rounded-2xl p-4 border border-gray-200 h-full flex flex-col hover:border-sky-300 transition duration-300 group">
+          <div class="h-40 rounded-xl overflow-hidden mb-4">
+            <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400&h=300&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Gaming"/>
+          </div>
+          <h3 class="font-bold text-gray-900 mb-1">Gaming & Fun</h3>
+          <p class="text-gray-700 text-xs mb-4 flex-grow">VR zones and entertainment hubs near terminal.</p>
+          <a href="gaming-entertainment.html" class="text-sky-700 text-xs font-bold flex items-center gap-1 hover:underline">Explore Gaming <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+      <!-- Item 5 -->
+      <div class="carousel-item">
+        <div class="bg-gray-50 rounded-2xl p-4 border border-gray-200 h-full flex flex-col hover:border-sky-300 transition duration-300 group">
+          <div class="h-40 rounded-xl overflow-hidden mb-4">
+            <img src="https://images.unsplash.com/photo-1567157577867-3c5d4b5e9a0e?w=400&h=300&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Tours"/>
+          </div>
+          <h3 class="font-bold text-gray-900 mb-1">City Tours</h3>
+          <p class="text-gray-700 text-xs mb-4 flex-grow">Guided private tours to iconic Mumbai landmarks.</p>
+          <a href="experiences.html" class="text-sky-700 text-xs font-bold flex items-center gap-1 hover:underline">Explore Tours <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+      <!-- Item 6 -->
+      <div class="carousel-item">
+        <div class="bg-gray-50 rounded-2xl p-4 border border-gray-200 h-full flex flex-col hover:border-sky-300 transition duration-300 group">
+          <div class="h-40 rounded-xl overflow-hidden mb-4">
+            <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=400&h=300&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Transfers"/>
+          </div>
+          <h3 class="font-bold text-gray-900 mb-1">Airport Transfers</h3>
+          <p class="text-gray-700 text-xs mb-4 flex-grow">Reliable pickup and return to Terminal 1 or 2.</p>
+          <a href="airport-transfers.html" class="text-sky-700 text-xs font-bold flex items-center gap-1 hover:underline">Explore Transfers <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></a>
         </div>
       </div>
     </div>

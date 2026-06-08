@@ -192,11 +192,22 @@ def compile_page(filename):
     header_compiled = header_compiled.replace('{{ACTIVE_CONTACT}}', active_class if filename == 'contact.html' else inactive_class)
     header_compiled = header_compiled.replace('{{ACTIVE_PLAN_MY_LAYOVER_BTN}}', "bg-sky-700 text-white font-bold" if filename == 'plan-my-layover.html' else "")
 
+    # Determine Theme Class
+    theme_map = {
+        'hotels.html': 'theme-hotels',
+        'restaurants.html': 'theme-restaurants',
+        'spa-wellness.html': 'theme-spa',
+        'gaming-entertainment.html': 'theme-gaming',
+        'experiences.html': 'theme-tours',
+        'airport-transfers.html': 'theme-transfers'
+    }
+    theme_class = theme_map.get(filename, '')
+
     # Combine into a final HTML structure
     html = f"""<!DOCTYPE html>
 <html lang="en">
 {head_compiled}
-<body class="overflow-x-hidden bg-surface">
+<body class="overflow-x-hidden bg-surface {theme_class}">
 
   <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg">Skip to main content</a>
 

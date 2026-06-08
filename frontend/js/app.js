@@ -137,7 +137,11 @@
       if (!modal) return;
       modal.classList.remove('flex');
       modal.classList.add('hidden');
-      document.body.style.overflow = '';
+      // Prevent scroll state bugs by only restoring scroll when no other modal is open
+      const anyOpen = Array.from(document.querySelectorAll('.modal-overlay')).some(el => el.classList.contains('flex'));
+      if (!anyOpen) {
+        document.body.style.overflow = '';
+      }
     },
     closeAll() {
       $$('.modal-overlay').forEach((el) => {
@@ -224,6 +228,20 @@
     // Esc key closing modals
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') Modal.closeAll();
+    });
+
+    // Close modal on close button click or overlay click (outside modal content)
+    document.addEventListener('click', (e) => {
+      // If click target is overlay
+      if (e.target.classList.contains('modal-overlay')) {
+        Modal.closeAll();
+        return;
+      }
+      // If click target is close button or inside it
+      const closeBtn = e.target.closest('.modal-close');
+      if (closeBtn) {
+        Modal.closeAll();
+      }
     });
   }
 
@@ -671,16 +689,91 @@
   };
 
   /* ===== FLAGSHIP AI PLANNER TIMELINE & ESTIMATOR ===== */
+  // Helper to add or replace single-select items in state
+  function setSingleSelectItineraryItem(type, id, duration) {
+    if (!state.currentPlan.items) state.currentPlan.items = [];
+    state.currentPlan.items = state.currentPlan.items.filter(item => item.type !== type);
+    if (id !== null) {
+      state.currentPlan.items.push({ type, id, duration });
+    }
+    recalculateItinerary();
+  }
+
+  // Reorder, remove and edit timing event listeners exposed globally
+  window.layoverx.moveItineraryItem = function(idx, direction) {
+    const items = state.currentPlan.items || [];
+    if (direction === 'up' && idx > 0) {
+      const temp = items[idx];
+      items[idx] = items[idx - 1];
+      items[idx - 1] = temp;
+    } else if (direction === 'down' && idx < items.length - 1) {
+      const temp = items[idx];
+      items[idx] = items[idx + 1];
+      items[idx + 1] = temp;
+    }
+    recalculateItinerary();
+  };
+
+  window.layoverx.removeItineraryItem = function(idx) {
+    const items = state.currentPlan.items || [];
+    const item = items[idx];
+    if (item) {
+      // Uncheck corresponding checkbox
+      let chk = null;
+      if (item.type === 'hotel') chk = $(`#chk-hotel-${item.id}`);
+      if (item.type === 'dining') chk = $(`#chk-dining-${item.id}`);
+      if (item.type === 'activity') chk = $(`#chk-activity-${item.id}`);
+      if (item.type === 'spa') chk = $(`#chk-spa-${item.id}`);
+      if (item.type === 'gaming') chk = $(`#chk-gaming-${item.id}`);
+      if (chk) chk.checked = false;
+
+      // Reset fallback IDs
+      if (item.type === 'hotel') state.currentPlan.hotelId = null;
+      if (item.type === 'dining') state.currentPlan.diningId = null;
+      if (item.type === 'spa') state.currentPlan.spaId = null;
+      if (item.type === 'gaming') state.currentPlan.gamingId = null;
+      if (item.type === 'activity') {
+        const remaining = items.filter(x => x.type === 'activity' && x.id !== item.id);
+        state.currentPlan.activityId = remaining.length > 0 ? remaining[0].id : null;
+      }
+
+      // Remove from array
+      items.splice(idx, 1);
+    }
+    recalculateItinerary();
+  };
+
+  window.layoverx.updateItemDuration = function(idx, duration) {
+    const items = state.currentPlan.items || [];
+    if (items[idx]) {
+      items[idx].duration = parseFloat(duration);
+    }
+    recalculateItinerary();
+  };
+
   function initPlanner() {
     const form = $('#planner-form');
     if (!form) return;
 
     // Load URL params if any
     const params = new URLSearchParams(window.location.search);
-    const landing = params.get('arrivalDateTime');
-    const boarding = params.get('departureDateTime');
-    const loc = params.get('location');
-    const travelers = params.get('travelers');
+    let landing = params.get('arrivalDateTime');
+    let boarding = params.get('departureDateTime');
+    let loc = params.get('location');
+    let travelers = params.get('travelers');
+
+    // Fallback to localStorage
+    if (!landing || !boarding || !loc || !travelers) {
+      try {
+        const saved = JSON.parse(localStorage.getItem('layoverx_search_params'));
+        if (saved) {
+          landing = landing || saved.arrivalDateTime;
+          boarding = boarding || saved.departureDateTime;
+          loc = loc || saved.location;
+          travelers = travelers || saved.travelers;
+        }
+      } catch(e) { console.error(e); }
+    }
 
     // Default dates
     const now = new Date();
@@ -691,39 +784,67 @@
     if (loc) $('#plan-location').value = loc;
     if (travelers) $('#plan-travelers').value = travelers;
 
+    // Save planner search criteria to localStorage
+    const savePlannerParams = () => {
+      const arr = $('#plan-arrival').value;
+      const dep = $('#plan-departure').value;
+      const l = $('#plan-location').value;
+      const t = $('#plan-travelers').value;
+      try {
+        localStorage.setItem('layoverx_search_params', JSON.stringify({
+          arrivalDateTime: arr,
+          departureDateTime: dep,
+          location: l,
+          travelers: t
+        }));
+      } catch(e) { console.error(e); }
+    };
+
     // Setup bindings
     $$('#plan-hotels-options input[type="checkbox"]').forEach((el, index) => {
       el.addEventListener('change', () => {
+        const id = index + 1;
         if (el.checked) {
-          // Uncheck others in group
           $$('#plan-hotels-options input[type="checkbox"]').forEach(c => { if(c!==el) c.checked = false });
-          state.currentPlan.hotelId = index + 1;
+          state.currentPlan.hotelId = id;
+          setSingleSelectItineraryItem('hotel', id, 6.0); // default stay duration: 6h
         } else {
           state.currentPlan.hotelId = null;
+          setSingleSelectItineraryItem('hotel', null);
         }
-        recalculateItinerary();
       });
     });
 
     $$('#plan-dining-options input[type="checkbox"]').forEach((el, index) => {
       el.addEventListener('change', () => {
+        const id = index + 1;
         if (el.checked) {
           $$('#plan-dining-options input[type="checkbox"]').forEach(c => { if(c!==el) c.checked = false });
-          state.currentPlan.diningId = index + 1;
+          state.currentPlan.diningId = id;
+          setSingleSelectItineraryItem('dining', id, 1.5); // default dining: 1.5h
         } else {
           state.currentPlan.diningId = null;
+          setSingleSelectItineraryItem('dining', null);
         }
-        recalculateItinerary();
       });
     });
 
     $$('#plan-activities-options input[type="checkbox"]').forEach((el, index) => {
       el.addEventListener('change', () => {
+        const id = index + 1;
+        const e = EXPERIENCES[id];
         if (el.checked) {
-          $$('#plan-activities-options input[type="checkbox"]').forEach(c => { if(c!==el) c.checked = false });
-          state.currentPlan.activityId = index + 1;
+          if (!state.currentPlan.items) state.currentPlan.items = [];
+          if (!state.currentPlan.items.some(x => x.type === 'activity' && x.id === id)) {
+            state.currentPlan.items.push({ type: 'activity', id, duration: e ? e.duration : 3.0 });
+          }
+          state.currentPlan.activityId = id;
         } else {
-          state.currentPlan.activityId = null;
+          if (state.currentPlan.items) {
+            state.currentPlan.items = state.currentPlan.items.filter(x => !(x.type === 'activity' && x.id === id));
+          }
+          const remaining = (state.currentPlan.items || []).filter(x => x.type === 'activity');
+          state.currentPlan.activityId = remaining.length > 0 ? remaining[0].id : null;
         }
         recalculateItinerary();
       });
@@ -731,25 +852,31 @@
 
     $$('#plan-spa-options input[type="checkbox"]').forEach((el, index) => {
       el.addEventListener('change', () => {
+        const id = index + 1;
+        const s = SPA_WELLNESS[id];
         if (el.checked) {
           $$('#plan-spa-options input[type="checkbox"]').forEach(c => { if(c!==el) c.checked = false });
-          state.currentPlan.spaId = index + 1;
+          state.currentPlan.spaId = id;
+          setSingleSelectItineraryItem('spa', id, s ? s.duration : 1.0);
         } else {
           state.currentPlan.spaId = null;
+          setSingleSelectItineraryItem('spa', null);
         }
-        recalculateItinerary();
       });
     });
 
     $$('#plan-gaming-options input[type="checkbox"]').forEach((el, index) => {
       el.addEventListener('change', () => {
+        const id = index + 1;
+        const g = GAMING_ENTERTAINMENT[id];
         if (el.checked) {
           $$('#plan-gaming-options input[type="checkbox"]').forEach(c => { if(c!==el) c.checked = false });
-          state.currentPlan.gamingId = index + 1;
+          state.currentPlan.gamingId = id;
+          setSingleSelectItineraryItem('gaming', id, g ? g.duration : 2.0);
         } else {
           state.currentPlan.gamingId = null;
+          setSingleSelectItineraryItem('gaming', null);
         }
-        recalculateItinerary();
       });
     });
 
@@ -760,10 +887,10 @@
       });
     });
 
-    on($('#plan-arrival'), 'input', recalculateItinerary);
-    on($('#plan-departure'), 'input', recalculateItinerary);
-    on($('#plan-location'), 'change', recalculateItinerary);
-    on($('#plan-travelers'), 'change', recalculateItinerary);
+    on($('#plan-arrival'), 'input', () => { savePlannerParams(); recalculateItinerary(); });
+    on($('#plan-departure'), 'input', () => { savePlannerParams(); recalculateItinerary(); });
+    on($('#plan-location'), 'change', () => { savePlannerParams(); recalculateItinerary(); });
+    on($('#plan-travelers'), 'change', () => { savePlannerParams(); recalculateItinerary(); });
 
     // Initial run
     recalculateItinerary();
@@ -797,89 +924,88 @@
     const safeWindow = Math.max(0, hrs - 3.5);
     $('#plan-exit-hours').textContent = safeWindow.toFixed(1) + ' Hours';
     
-    const travelersCount = parseInt($('#plan-travelers').value);
+    const travelersCount = parseInt($('#plan-travelers').value) || 2;
     $('#travelers-badge').textContent = `${travelersCount} ${travelersCount === 1 ? 'Guest' : 'Guests'}`;
 
     // Read selected entities
     const cab = $('input[name="plan-cab"]:checked')?.value || 'sedan';
-    const hotelId = state.currentPlan.hotelId;
-    const diningId = state.currentPlan.diningId;
-    const activityId = state.currentPlan.activityId;
-    const spaId = state.currentPlan.spaId;
-    const gamingId = state.currentPlan.gamingId;
+    const items = state.currentPlan.items || [];
 
     let total = 0;
     const summaryList = $('#summary-items-list');
     const timelineList = $('#timeline-list');
     
-    summaryList.innerHTML = '';
-    timelineList.innerHTML = '';
+    if (summaryList) summaryList.innerHTML = '';
+    if (timelineList) timelineList.innerHTML = '';
 
     // 1. Cab pricing
     const cabPrice = cab === 'suv' ? 1499 : 899;
     total += cabPrice;
-    summaryList.innerHTML += `
-      <li class="flex items-start justify-between gap-4">
-        <span class="flex items-center gap-2"><span class="text-base">🚖</span> Airport Cabs (Return)</span>
-        <strong class="font-bold text-gray-900 flex-shrink-0">₹${cabPrice}</strong>
-      </li>`;
-
-    // 2. Hotel pricing
-    if (hotelId) {
-      const hPrice = HOTELS[hotelId].price;
-      total += hPrice;
+    if (summaryList) {
       summaryList.innerHTML += `
         <li class="flex items-start justify-between gap-4">
-          <span class="flex items-center gap-2"><span class="text-base">🏨</span> Transit Room (${HOTELS[hotelId].name.split(' ')[0]})</span>
-          <strong class="font-bold text-gray-900 flex-shrink-0">₹${hPrice}</strong>
+          <span class="flex items-center gap-2"><span class="text-base">🚖</span> Airport Cabs (Return)</span>
+          <strong class="font-bold text-gray-900 flex-shrink-0">₹${cabPrice}</strong>
         </li>`;
     }
 
-    // 3. Dining pricing
-    if (diningId) {
-      const dPrice = DINING[diningId].price;
-      total += dPrice;
-      summaryList.innerHTML += `
-        <li class="flex items-start justify-between gap-4">
-          <span class="flex items-center gap-2"><span class="text-base">🍽️</span> Table (${DINING[diningId].name.split(' ')[0]})</span>
-          <strong class="font-bold text-gray-900 flex-shrink-0">₹${dPrice}</strong>
-        </li>`;
-    }
+    // 2. Loop over currentPlan.items for pricing
+    items.forEach(item => {
+      if (item.type === 'hotel') {
+        const hPrice = HOTELS[item.id].price;
+        total += hPrice;
+        if (summaryList) {
+          summaryList.innerHTML += `
+            <li class="flex items-start justify-between gap-4">
+              <span class="flex items-center gap-2"><span class="text-base">🏨</span> Transit Room (${HOTELS[item.id].name.split(' ')[0]})</span>
+              <strong class="font-bold text-gray-900 flex-shrink-0">₹${hPrice}</strong>
+            </li>`;
+        }
+      } else if (item.type === 'dining') {
+        const dPrice = DINING[item.id].price;
+        total += dPrice;
+        if (summaryList) {
+          summaryList.innerHTML += `
+            <li class="flex items-start justify-between gap-4">
+              <span class="flex items-center gap-2"><span class="text-base">🍽️</span> Table (${DINING[item.id].name.split(' ')[0]})</span>
+              <strong class="font-bold text-gray-900 flex-shrink-0">₹${dPrice}</strong>
+            </li>`;
+        }
+      } else if (item.type === 'activity') {
+        const aPrice = EXPERIENCES[item.id].price * travelersCount;
+        total += aPrice;
+        if (summaryList) {
+          summaryList.innerHTML += `
+            <li class="flex items-start justify-between gap-4">
+              <span class="flex items-center gap-2"><span class="text-base">📸</span> Tours (${EXPERIENCES[item.id].name.slice(0, 12)}...)</span>
+              <strong class="font-bold text-gray-900 flex-shrink-0">₹${aPrice}</strong>
+            </li>`;
+        }
+      } else if (item.type === 'spa') {
+        const sPrice = SPA_WELLNESS[item.id].price * travelersCount;
+        total += sPrice;
+        if (summaryList) {
+          summaryList.innerHTML += `
+            <li class="flex items-start justify-between gap-4">
+              <span class="flex items-center gap-2"><span class="text-base">💆</span> Spa (${SPA_WELLNESS[item.id].name.split(' ')[0]})</span>
+              <strong class="font-bold text-gray-900 flex-shrink-0">₹${sPrice}</strong>
+            </li>`;
+        }
+      } else if (item.type === 'gaming') {
+        const gPrice = GAMING_ENTERTAINMENT[item.id].price * travelersCount;
+        total += gPrice;
+        if (summaryList) {
+          summaryList.innerHTML += `
+            <li class="flex items-start justify-between gap-4">
+              <span class="flex items-center gap-2"><span class="text-base">🎮</span> Gaming (${GAMING_ENTERTAINMENT[item.id].name.split(' ')[0]})</span>
+              <strong class="font-bold text-gray-900 flex-shrink-0">₹${gPrice}</strong>
+            </li>`;
+        }
+      }
+    });
 
-    // 4. Activity pricing
-    if (activityId) {
-      const aPrice = EXPERIENCES[activityId].price * travelersCount;
-      total += aPrice;
-      summaryList.innerHTML += `
-        <li class="flex items-start justify-between gap-4">
-          <span class="flex items-center gap-2"><span class="text-base">📸</span> Tours (${EXPERIENCES[activityId].name.slice(0, 12)}...)</span>
-          <strong class="font-bold text-gray-900 flex-shrink-0">₹${aPrice}</strong>
-        </li>`;
-    }
-
-    // 5. Spa pricing
-    if (spaId) {
-      const sPrice = SPA_WELLNESS[spaId].price * travelersCount;
-      total += sPrice;
-      summaryList.innerHTML += `
-        <li class="flex items-start justify-between gap-4">
-          <span class="flex items-center gap-2"><span class="text-base">💆</span> Spa (${SPA_WELLNESS[spaId].name.split(' ')[0]})</span>
-          <strong class="font-bold text-gray-900 flex-shrink-0">₹${sPrice}</strong>
-        </li>`;
-    }
-
-    // 6. Gaming pricing
-    if (gamingId) {
-      const gPrice = GAMING_ENTERTAINMENT[gamingId].price * travelersCount;
-      total += gPrice;
-      summaryList.innerHTML += `
-        <li class="flex items-start justify-between gap-4">
-          <span class="flex items-center gap-2"><span class="text-base">🎮</span> Gaming (${GAMING_ENTERTAINMENT[gamingId].name.split(' ')[0]})</span>
-          <strong class="font-bold text-gray-900 flex-shrink-0">₹${gPrice}</strong>
-        </li>`;
-    }
-
-    $('#total-cost').textContent = `₹${total.toLocaleString()}`;
+    const totalCostEl = $('#total-cost');
+    if (totalCostEl) totalCostEl.textContent = `₹${total.toLocaleString()}`;
 
     // Render Timeline Graphical Nodes
     // Time offsets
@@ -896,31 +1022,54 @@
     
     current = new Date(current.getTime() + 30 * 60 * 1000); // 30 min transit
 
-    // Node 3: Custom selected items
-    if (hotelId) {
-      addTimelineNode(formatTime(current), `🏨 Check-in: ${HOTELS[hotelId].name}`, "Day-use room ready. Enjoy showers and pool access.", "emerald");
-      current = new Date(current.getTime() + 3 * 60 * 60 * 1000); // 3 hours rest
-    }
+    // Node 3: Custom selected items (ordered dynamically)
+    items.forEach((item, idx) => {
+      let color = "sky";
+      let icon = "🎯";
+      let text = "";
+      let desc = "";
+      let priceText = "";
 
-    if (spaId) {
-      addTimelineNode(formatTime(current), `💆 Wellness Session: ${SPA_WELLNESS[spaId].name}`, "Express therapy session to refresh after flight.", "sky");
-      current = new Date(current.getTime() + SPA_WELLNESS[spaId].duration * 60 * 60 * 1000);
-    }
+      if (item.type === 'hotel') {
+        const h = HOTELS[item.id];
+        color = "emerald";
+        icon = "🏨";
+        text = `Stay: ${h.name}`;
+        desc = `Day-use room slot. Showers & amenities included.`;
+        priceText = `₹${h.price}`;
+      } else if (item.type === 'dining') {
+        const r = DINING[item.id];
+        color = "emerald";
+        icon = "🍽️";
+        text = `Dining: ${r.name}`;
+        desc = `Table reserved. Enjoy local culinary delights.`;
+        priceText = `₹${r.price}`;
+      } else if (item.type === 'activity') {
+        const e = EXPERIENCES[item.id];
+        color = "amber";
+        icon = "📸";
+        text = `Tour: ${e.name}`;
+        desc = `Guided city sightseeing optimized for layovers.`;
+        priceText = `₹${e.price * travelersCount} (${travelersCount} Guests)`;
+      } else if (item.type === 'spa') {
+        const s = SPA_WELLNESS[item.id];
+        color = "sky";
+        icon = "💆";
+        text = `Spa: ${s.name}`;
+        desc = `Relaxing express massage treatment.`;
+        priceText = `₹${s.price * travelersCount} (${travelersCount} Guests)`;
+      } else if (item.type === 'gaming') {
+        const g = GAMING_ENTERTAINMENT[item.id];
+        color = "purple";
+        icon = "🎮";
+        text = `Entertainment: ${g.name}`;
+        desc = `High-energy VR and arcade gaming break.`;
+        priceText = `₹${g.price * travelersCount} (${travelersCount} Guests)`;
+      }
 
-    if (gamingId) {
-      addTimelineNode(formatTime(current), `🎮 Gaming & Fun: ${GAMING_ENTERTAINMENT[gamingId].name}`, "Interactive gaming break for transit energy.", "amber");
-      current = new Date(current.getTime() + GAMING_ENTERTAINMENT[gamingId].duration * 60 * 60 * 1000);
-    }
-
-    if (activityId) {
-      addTimelineNode(formatTime(current), `📸 Tour Starts: ${EXPERIENCES[activityId].name}`, `Private guide tour window for ${travelersCount} travelers.`, "amber");
-      current = new Date(current.getTime() + EXPERIENCES[activityId].duration * 60 * 60 * 1000);
-    }
-
-    if (diningId) {
-      addTimelineNode(formatTime(current), `🍽️ Table Reserved: ${DINING[diningId].name}`, "Savor hot local coastal delicacies. Table confirmed.", "emerald");
-      current = new Date(current.getTime() + 1.5 * 60 * 60 * 1000); // 1.5h dining
-    }
+      addTimelineNodeWithControls(idx, formatTime(current), text, desc, color, icon, priceText, item.duration, item.type, items.length);
+      current = new Date(current.getTime() + item.duration * 60 * 60 * 1000);
+    });
 
     // Node 4: Return Cab
     const returnCabTime = new Date(dep.getTime() - 2 * 60 * 60 * 1000); // boarding - 2h
@@ -928,6 +1077,30 @@
 
     // Node 5: Takeoff
     addTimelineNode(formatTime(dep), "🛫 Takeoff & Departure", "Security cleared. Boarding at assigned gate. Safe travels!", "red");
+
+    // Dynamic warning if total hours exceed safe exit hours
+    let selectedDuration = 0;
+    items.forEach(item => {
+      selectedDuration += item.duration;
+    });
+
+    const durationWarningEl = $('#timeline-warning');
+    if (selectedDuration > safeWindow) {
+      if (!durationWarningEl) {
+        const warning = document.createElement('div');
+        warning.id = 'timeline-warning';
+        warning.className = 'bg-red-50 border border-red-200 text-red-700 text-xs p-3.5 rounded-xl mb-4 font-semibold flex items-center gap-2 animate-pulse';
+        warning.innerHTML = `
+          <span>⚠️ Total activities duration (${selectedDuration.toFixed(1)}h) exceeds safe layover exit window (${safeWindow.toFixed(1)}h). Please remove some items or reduce timings.</span>
+        `;
+        if (timelineList) timelineList.parentNode.insertBefore(warning, timelineList);
+      } else {
+        durationWarningEl.innerHTML = `<span>⚠️ Total activities duration (${selectedDuration.toFixed(1)}h) exceeds safe layover exit window (${safeWindow.toFixed(1)}h). Please remove some items or reduce timings.</span>`;
+        durationWarningEl.classList.remove('hidden');
+      }
+    } else {
+      if (durationWarningEl) durationWarningEl.classList.add('hidden');
+    }
   }
 
   function addTimelineNode(time, title, desc, color) {
@@ -940,10 +1113,84 @@
     if (color === "red") colorClass = "bg-red-500";
 
     list.innerHTML += `
-      <div class="relative">
-        <div class="absolute -left-[31px] top-1 w-3.5 h-3.5 rounded-full ${colorClass} border-2 border-white shadow-sm"></div>
+      <div class="relative bg-gray-50 border border-dashed border-gray-200 p-4 rounded-xl">
+        <div class="absolute -left-[32px] top-4 w-4 h-4 rounded-full ${colorClass} border-2 border-white shadow-sm"></div>
         <strong class="text-gray-900 block text-xs sm:text-sm font-extrabold">${time} • ${title}</strong>
         <p class="text-gray-500 text-xs mt-0.5 leading-relaxed">${desc}</p>
+      </div>
+    `;
+  }
+
+  function addTimelineNodeWithControls(idx, time, title, desc, color, icon, priceText, durationVal, itemType, totalItems) {
+    const list = $('#timeline-list');
+    if (!list) return;
+
+    let colorClass = "bg-sky-500";
+    if (color === "emerald") colorClass = "bg-emerald-500";
+    if (color === "amber") colorClass = "bg-amber-500";
+    if (color === "purple") colorClass = "bg-purple-500";
+
+    // Generate duration options
+    let durationOptionsHtml = '';
+    if (itemType === 'hotel') {
+      const opts = [3, 6, 12];
+      durationOptionsHtml = opts.map(o => `<option value="${o}" ${durationVal === o ? 'selected' : ''}>${o} Hours stay</option>`).join('');
+    } else if (itemType === 'dining') {
+      const opts = [1, 1.5, 2];
+      durationOptionsHtml = opts.map(o => `<option value="${o}" ${durationVal === o ? 'selected' : ''}>${o} Hours dining</option>`).join('');
+    } else if (itemType === 'spa') {
+      const opts = [0.5, 1, 1.5, 2];
+      durationOptionsHtml = opts.map(o => `<option value="${o}" ${durationVal === o ? 'selected' : ''}>${o === 0.5 ? '30 Mins session' : o + ' Hours session'}</option>`).join('');
+    } else if (itemType === 'gaming') {
+      const opts = [1, 2, 3];
+      durationOptionsHtml = opts.map(o => `<option value="${o}" ${durationVal === o ? 'selected' : ''}>${o} Hours fun</option>`).join('');
+    } else if (itemType === 'activity') {
+      const opts = [2, 3, 4, 5, 6];
+      durationOptionsHtml = opts.map(o => `<option value="${o}" ${durationVal === o ? 'selected' : ''}>${o} Hours tour</option>`).join('');
+    }
+
+    list.innerHTML += `
+      <div class="relative bg-white border border-gray-200 p-4 rounded-xl shadow-sm hover:shadow-md transition">
+        <div class="absolute -left-[36px] top-4 w-6 h-6 rounded-full ${colorClass} border-2 border-white shadow-sm flex items-center justify-center text-xs text-white">${icon}</div>
+        
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="text-sky-700 text-xs font-bold">${time}</span>
+              <span class="bg-gray-100 text-gray-700 text-[10px] font-bold px-1.5 py-0.5 rounded">${priceText}</span>
+            </div>
+            <strong class="text-gray-900 block text-sm font-extrabold mt-1">${title}</strong>
+            <p class="text-gray-500 text-xs mt-1 leading-relaxed">${desc}</p>
+          </div>
+          
+          <!-- Controls Panel -->
+          <div class="flex items-center gap-1.5 flex-shrink-0">
+            <!-- Reorder Controls -->
+            <div class="flex flex-col gap-1">
+              <button onclick="layoverx.moveItineraryItem(${idx}, 'up')" class="p-1 hover:bg-gray-100 rounded text-gray-500 hover:text-sky-700 disabled:opacity-20 disabled:hover:bg-transparent" title="Move Up" ${idx === 0 ? 'disabled' : ''}>
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/></svg>
+              </button>
+              <button onclick="layoverx.moveItineraryItem(${idx}, 'down')" class="p-1 hover:bg-gray-100 rounded text-gray-500 hover:text-sky-700 disabled:opacity-20 disabled:hover:bg-transparent" title="Move Down" ${idx === totalItems - 1 ? 'disabled' : ''}>
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </button>
+            </div>
+            
+            <!-- Remove Control -->
+            <button onclick="layoverx.removeItineraryItem(${idx})" class="p-1.5 hover:bg-red-50 rounded text-gray-400 hover:text-red-500 transition" title="Remove Item">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+            </button>
+          </div>
+        </div>
+        
+        <!-- Duration selector -->
+        <div class="mt-3 pt-3 border-t border-gray-100 flex items-center justify-between">
+          <div class="flex items-center gap-1.5">
+            <span class="text-[10px] text-gray-500 font-bold uppercase whitespace-nowrap">Timing Duration:</span>
+            <select onchange="layoverx.updateItemDuration(${idx}, this.value)" class="bg-gray-50 border border-gray-200 rounded py-0.5 px-1.5 text-[10px] font-bold text-gray-800 focus:ring-1 focus:ring-sky-500 cursor-pointer">
+              ${durationOptionsHtml}
+            </select>
+          </div>
+        </div>
       </div>
     `;
   }
@@ -1041,18 +1288,38 @@
         $('#plan-travelers').value = plan.travelers;
         state.currentPlan = plan.details || state.currentPlan;
         
+        // Populate items array if not present (legacy migration)
+        if (!state.currentPlan.items) {
+          state.currentPlan.items = [];
+          if (state.currentPlan.hotelId) state.currentPlan.items.push({ type: 'hotel', id: state.currentPlan.hotelId, duration: 6.0 });
+          if (state.currentPlan.diningId) state.currentPlan.items.push({ type: 'dining', id: state.currentPlan.diningId, duration: 1.5 });
+          if (state.currentPlan.activityId) state.currentPlan.items.push({ type: 'activity', id: state.currentPlan.activityId, duration: 3.0 });
+          if (state.currentPlan.spaId) state.currentPlan.items.push({ type: 'spa', id: state.currentPlan.spaId, duration: 1.0 });
+          if (state.currentPlan.gamingId) state.currentPlan.items.push({ type: 'gaming', id: state.currentPlan.gamingId, duration: 2.0 });
+        }
+
+        // Uncheck all first
+        $$('#plan-hotels-options input[type="checkbox"]').forEach(c => c.checked = false);
+        $$('#plan-dining-options input[type="checkbox"]').forEach(c => c.checked = false);
+        $$('#plan-activities-options input[type="checkbox"]').forEach(c => c.checked = false);
+        $$('#plan-spa-options input[type="checkbox"]').forEach(c => c.checked = false);
+        $$('#plan-gaming-options input[type="checkbox"]').forEach(c => c.checked = false);
+        
         // Restore checklists
-        if (state.currentPlan.hotelId) {
-          const chk = $(`#chk-hotel-${state.currentPlan.hotelId}`);
+        state.currentPlan.items.forEach(item => {
+          let chk = null;
+          if (item.type === 'hotel') chk = $(`#chk-hotel-${item.id}`);
+          if (item.type === 'dining') chk = $(`#chk-dining-${item.id}`);
+          if (item.type === 'activity') chk = $(`#chk-activity-${item.id}`);
+          if (item.type === 'spa') chk = $(`#chk-spa-${item.id}`);
+          if (item.type === 'gaming') chk = $(`#chk-gaming-${item.id}`);
           if (chk) chk.checked = true;
-        }
-        if (state.currentPlan.diningId) {
-          const chk = $(`#chk-dining-${state.currentPlan.diningId}`);
-          if (chk) chk.checked = true;
-        }
-        if (state.currentPlan.activityId) {
-          const chk = $(`#chk-activity-${state.currentPlan.activityId}`);
-          if (chk) chk.checked = true;
+        });
+
+        // Restore cab selection
+        if (state.currentPlan.cabType) {
+          const radio = $(`input[name="plan-cab"][value="${state.currentPlan.cabType}"]`);
+          if (radio) radio.checked = true;
         }
         
         recalculateItinerary();
@@ -1134,6 +1401,18 @@
     if (arrivalEl) arrivalEl.addEventListener('input', updateDuration);
     if (departureEl) departureEl.addEventListener('input', updateDuration);
 
+    // Auto-populate from localStorage on homepage load
+    try {
+      const saved = JSON.parse(localStorage.getItem('layoverx_search_params'));
+      if (saved) {
+        if (saved.arrivalDateTime && arrivalEl) arrivalEl.value = saved.arrivalDateTime;
+        if (saved.departureDateTime && departureEl) departureEl.value = saved.departureDateTime;
+        if (saved.location && $('#search-location')) $('#search-location').value = saved.location;
+        if (saved.travelers && $('#search-travelers')) $('#search-travelers').value = saved.travelers;
+        updateDuration();
+      }
+    } catch(e) { console.error(e); }
+
     btn.addEventListener('click', () => {
       const arrival = arrivalEl?.value;
       const departure = departureEl?.value;
@@ -1148,16 +1427,27 @@
         showToast('Departure time must be after arrival time.');
         return;
       }
+      
+      // Save search parameters to localStorage
+      try {
+        localStorage.setItem('layoverx_search_params', JSON.stringify({
+          arrivalDateTime: arrival,
+          departureDateTime: departure,
+          location,
+          travelers
+        }));
+      } catch(e) { console.error(e); }
+
       const params = new URLSearchParams({ arrivalDateTime: arrival, departureDateTime: departure, location, travelers });
       window.location.href = `plan-my-layover.html?${params.toString()}`;
     });
   }
 
   /* ===== MAIN APPLICATION BOOT STRAP ===== */
-  function initServicesCarousel() {
-    const carousel = $('#services-carousel');
-    const prevBtn = $('#prev-service');
-    const nextBtn = $('#next-service');
+  function initCarousel(carouselId, prevId, nextId) {
+    const carousel = $(carouselId);
+    const prevBtn = $(prevId);
+    const nextBtn = $(nextId);
     if (!carousel || !prevBtn || !nextBtn) return;
 
     const scrollAmount = () => carousel.offsetWidth;
@@ -1170,7 +1460,6 @@
       carousel.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
     });
 
-    // Optional: Hide buttons if not scrollable or update states
     const updateButtons = () => {
         prevBtn.disabled = carousel.scrollLeft <= 0;
         nextBtn.disabled = carousel.scrollLeft + carousel.offsetWidth >= carousel.scrollWidth - 10;
@@ -1182,6 +1471,23 @@
   }
 
   function init() {
+    // Global Image Error Handling
+    document.addEventListener('error', (e) => {
+      if (e.target.tagName === 'IMG') {
+        console.warn('Handling broken image:', e.target.src);
+        e.target.src = 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&h=400&fit=crop'; // Stable Hotel Fallback
+        e.target.classList.add('image-fallback');
+      }
+    }, true);
+
+    // Image Loading States
+    $$('img').forEach(img => {
+      if (!img.complete) {
+        img.classList.add('loading-image');
+        img.onload = () => img.classList.remove('loading-image');
+      }
+    });
+
     Auth.init();
     initHashRouting();
     decorateNavbar();
@@ -1195,7 +1501,8 @@
     initSpaFilter();
     initGamingFilter();
     initPlanner();
-    initServicesCarousel();
+    initCarousel('#services-carousel', '#prev-service', '#next-service');
+    initCarousel('#planner-services-carousel', '#planner-prev', '#planner-next');
     loadSavedPlans();
     initHomepageSearch();
 
