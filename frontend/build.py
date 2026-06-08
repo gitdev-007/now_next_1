@@ -190,7 +190,7 @@ def compile_page(filename):
     header_compiled = header_compiled.replace('{{ACTIVE_TRANSFERS}}', active_class if filename == 'airport-transfers.html' else inactive_class)
     header_compiled = header_compiled.replace('{{ACTIVE_HOW_IT_WORKS}}', active_class if filename == 'how-it-works.html' else inactive_class)
     header_compiled = header_compiled.replace('{{ACTIVE_CONTACT}}', active_class if filename == 'contact.html' else inactive_class)
-    header_compiled = header_compiled.replace('{{ACTIVE_PLAN_MY_LAYOVER_BTN}}', "bg-sky-700 text-white font-bold" if filename == 'plan-my-layover.html' else "")
+    header_compiled = header_compiled.replace('{{PLAN_MY_LAYOVER_CLASS}}', "plan-my-layover-btn active" if filename == 'plan-my-layover.html' else "plan-my-layover-btn")
 
     # Determine Theme Class
     theme_map = {

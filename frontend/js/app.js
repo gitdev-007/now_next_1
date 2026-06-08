@@ -259,14 +259,40 @@
       const stars = Array.from($$('input[name="filter-stars"]:checked')).map(el => el.value);
       const amenities = Array.from($$('input[name="filter-amenity"]:checked')).map(el => el.value);
 
+      // Search values
+      const selectedArea = $('#hotel-location')?.value || 'all';
+      const durationVal = parseInt($('#hotel-duration')?.value || '6');
+
+      // Price multiplier definition
+      let multiplier = 1.0;
+      if (durationVal === 3) multiplier = 0.6;
+      if (durationVal === 6) multiplier = 1.0;
+      if (durationVal === 12) multiplier = 1.5;
+      if (durationVal === 24) multiplier = 2.2;
+
       const items = $$('.hotel-item');
       let visibleCount = 0;
 
       items.forEach(item => {
-        const price = parseInt(item.getAttribute('data-price'));
+        const basePrice = parseInt(item.getAttribute('data-price'));
+        const price = Math.round(basePrice * multiplier);
         const distance = parseFloat(item.getAttribute('data-distance'));
         const itemStars = item.getAttribute('data-stars');
         const itemAmenities = item.getAttribute('data-amenities').split(',');
+        const itemLocation = item.getAttribute('data-location');
+
+        // Update card price displays
+        const priceDisplay = item.querySelector('.hotel-price-display');
+        if (priceDisplay) {
+          priceDisplay.textContent = `₹${price.toLocaleString()}`;
+        }
+        const durationLabel = item.querySelector('.hotel-duration-label');
+        if (durationLabel) {
+          durationLabel.textContent = durationVal === 24 ? 'Overnight stay' : `Day-Use (${durationVal}h slot)`;
+        }
+
+        // Apply filters
+        let matchArea = selectedArea === 'all' || itemLocation === selectedArea;
 
         let matchPrice = prices.length === 0;
         prices.forEach(val => {
@@ -290,7 +316,7 @@
           if (!itemAmenities.includes(val)) matchAmenity = false;
         });
 
-        if (matchPrice && matchDistance && matchStars && matchAmenity) {
+        if (matchArea && matchPrice && matchDistance && matchStars && matchAmenity) {
           item.classList.remove('hidden');
           visibleCount++;
         } else {
@@ -298,8 +324,50 @@
         }
       });
 
-      $('#hotel-count').textContent = visibleCount;
-      $('#hotel-empty').classList.toggle('hidden', visibleCount > 0);
+      const countEl = $('#hotel-count');
+      if (countEl) countEl.textContent = visibleCount;
+      const emptyEl = $('#hotel-empty');
+      if (emptyEl) emptyEl.classList.toggle('hidden', visibleCount > 0);
+    }
+
+    // Handle Search Form Submission
+    const searchForm = $('#hotel-search-form');
+    if (searchForm) {
+      searchForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Validate check-in date
+        const checkinVal = $('#hotel-checkin').value;
+        const errorEl = $('#hotel-checkin-error');
+        
+        if (checkinVal) {
+          const checkinDate = new Date(checkinVal);
+          const now = new Date();
+          if (checkinDate.getTime() < now.getTime() - 60000) {
+            if (errorEl) {
+              errorEl.classList.remove('hidden');
+              errorEl.textContent = 'Check-in date cannot be in the past';
+            }
+            showToast('Error: Check-in date cannot be in the past');
+            return;
+          }
+        }
+        
+        if (errorEl) errorEl.classList.add('hidden');
+        
+        // Simulated loading state
+        const skeleton = $('#hotel-skeleton');
+        const emptyState = $('#hotel-empty');
+        if (skeleton) skeleton.classList.remove('hidden');
+        if (list) list.classList.add('hidden');
+        if (emptyState) emptyState.classList.add('hidden');
+        
+        setTimeout(() => {
+          applyFilters();
+          if (skeleton) skeleton.classList.add('hidden');
+          if (list) list.classList.remove('hidden');
+        }, 600);
+      });
     }
 
     $$('input[name^="filter-"]').forEach(el => {
@@ -308,12 +376,20 @@
 
     on($('#clear-filters'), 'click', () => {
       $$('input[name^="filter-"]').forEach(el => el.checked = false);
+      const locSelect = $('#hotel-location');
+      const durSelect = $('#hotel-duration');
+      if (locSelect) locSelect.value = 'all';
+      if (durSelect) durSelect.value = '6';
       applyFilters();
     });
 
     // Also expose as global for the empty state "Reset Filters" button
     window.layoverx.resetFilters = function() {
       $$('input[name^="filter-"]').forEach(el => el.checked = false);
+      const locSelect = $('#hotel-location');
+      const durSelect = $('#hotel-duration');
+      if (locSelect) locSelect.value = 'all';
+      if (durSelect) durSelect.value = '6';
       applyFilters();
     };
 
@@ -321,10 +397,21 @@
       const order = this.value;
       const container = $('#hotel-list');
       const items = Array.from($$('.hotel-item'));
+      const durationVal = parseInt($('#hotel-duration')?.value || '6');
+      
+      let multiplier = 1.0;
+      if (durationVal === 3) multiplier = 0.6;
+      if (durationVal === 6) multiplier = 1.0;
+      if (durationVal === 12) multiplier = 1.5;
+      if (durationVal === 24) multiplier = 2.2;
       
       items.sort((a, b) => {
-        if (order === 'price-low') return parseInt(a.getAttribute('data-price')) - parseInt(b.getAttribute('data-price'));
-        if (order === 'price-high') return parseInt(b.getAttribute('data-price')) - parseInt(a.getAttribute('data-price'));
+        if (order === 'price-low') {
+          return Math.round(parseInt(a.getAttribute('data-price')) * multiplier) - Math.round(parseInt(b.getAttribute('data-price')) * multiplier);
+        }
+        if (order === 'price-high') {
+          return Math.round(parseInt(b.getAttribute('data-price')) * multiplier) - Math.round(parseInt(a.getAttribute('data-price')) * multiplier);
+        }
         if (order === 'rating') return parseFloat(b.getAttribute('data-rating')) - parseFloat(a.getAttribute('data-rating'));
         if (order === 'distance') return parseFloat(a.getAttribute('data-distance')) - parseFloat(b.getAttribute('data-distance'));
         return 0;
@@ -334,9 +421,7 @@
     });
 
     // Initialize hotel count to match actual visible items
-    const initialCount = $$('.hotel-item:not(.hidden)').length;
-    const countEl = $('#hotel-count');
-    if (countEl) countEl.textContent = initialCount || $$('.hotel-item').length;
+    applyFilters();
   }
 
   // Dining filter
@@ -508,12 +593,24 @@
     };
 
     function applySpaFilters() {
+      const durations = Array.from($$('input[name="spa-duration"]:checked')).map(el => el.value);
       const items = $$('.spa-item');
       let visibleCount = 0;
+      
       items.forEach(item => {
         const itemCat = item.getAttribute('data-category');
+        const duration = parseFloat(item.getAttribute('data-duration'));
+        
         let matchCat = selectedCat === 'all' || itemCat === selectedCat;
-        if (matchCat) {
+        
+        let matchDuration = durations.length === 0;
+        durations.forEach(val => {
+          if (val === 'under-1h' && duration < 1.0) matchDuration = true;
+          if (val === '1-2h' && duration >= 1.0 && duration <= 2.0) matchDuration = true;
+          if (val === 'above-2h' && duration > 2.0) matchDuration = true;
+        });
+
+        if (matchCat && matchDuration) {
           item.classList.remove('hidden');
           visibleCount++;
         } else {
@@ -522,6 +619,15 @@
       });
       $('#spa-empty').classList.toggle('hidden', visibleCount > 0);
     }
+
+    $$('input[name="spa-duration"]').forEach(el => {
+      el.addEventListener('change', applySpaFilters);
+    });
+
+    window.layoverx.clearSpaFilters = function() {
+      $$('input[name="spa-duration"]').forEach(el => el.checked = false);
+      window.layoverx.filterSpa('all');
+    };
   }
 
   // Gaming filter
@@ -545,12 +651,22 @@
     };
 
     function applyGamingFilters() {
+      const intensities = Array.from($$('input[name="gaming-intensity"]:checked')).map(el => el.value);
       const items = $$('.gaming-item');
       let visibleCount = 0;
+      
       items.forEach(item => {
         const itemCat = item.getAttribute('data-category');
+        
         let matchCat = selectedCat === 'all' || itemCat === selectedCat;
-        if (matchCat) {
+        
+        let matchIntensity = intensities.length === 0;
+        intensities.forEach(val => {
+          if (val === 'high' && itemCat === 'gaming') matchIntensity = true;
+          if (val === 'low' && itemCat === 'movie') matchIntensity = true;
+        });
+
+        if (matchCat && matchIntensity) {
           item.classList.remove('hidden');
           visibleCount++;
         } else {
@@ -558,6 +674,74 @@
         }
       });
       $('#gaming-empty').classList.toggle('hidden', visibleCount > 0);
+    }
+
+    $$('input[name="gaming-intensity"]').forEach(el => {
+      el.addEventListener('change', applyGamingFilters);
+    });
+
+    window.layoverx.clearGamingFilters = function() {
+      $$('input[name="gaming-intensity"]').forEach(el => el.checked = false);
+      window.layoverx.filterGaming('all');
+    };
+  }
+
+  // Transfers/Cab filter
+  function initTransfersFilter() {
+    const list = $('#cab-list');
+    if (!list) return;
+
+    function applyCabFilters() {
+      const types = Array.from($$('input[name="cab-type"]:checked')).map(el => el.value);
+      const capacities = Array.from($$('input[name="cab-capacity"]:checked')).map(el => el.value);
+      const items = $$('.cab-item');
+      let visibleCount = 0;
+
+      items.forEach(item => {
+        const itemType = item.getAttribute('data-type');
+        const itemCapacity = item.getAttribute('data-capacity');
+
+        let matchType = types.length === 0 || types.includes(itemType);
+        let matchCapacity = capacities.length === 0 || capacities.includes(itemCapacity);
+
+        if (matchType && matchCapacity) {
+          item.classList.remove('hidden');
+          visibleCount++;
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+
+      const emptyEl = $('#cab-empty');
+      if (emptyEl) emptyEl.classList.toggle('hidden', visibleCount > 0);
+    }
+
+    $$('input[name="cab-type"], input[name="cab-capacity"]').forEach(el => {
+      el.addEventListener('change', applyCabFilters);
+    });
+
+    window.layoverx.clearCabFilters = function() {
+      $$('input[name="cab-type"], input[name="cab-capacity"]').forEach(el => el.checked = false);
+      applyCabFilters();
+    };
+
+    // Form validation and loading
+    const form = $('#transfer-search-form');
+    if (form) {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const cabTimeVal = $('#cab-time')?.value;
+        if (cabTimeVal) {
+          const cabTime = new Date(cabTimeVal);
+          const now = new Date();
+          if (cabTime.getTime() < now.getTime() - 60000) {
+            showToast('Error: Pickup date/time cannot be in the past');
+            return;
+          }
+        }
+        showToast('Searching for verified airport transfer vehicles...');
+        applyCabFilters();
+      });
     }
   }
 
@@ -580,7 +764,7 @@
     });
     
     $('#detail-book-btn').onclick = () => {
-      window.layoverx.bookHotel(id);
+      window.layoverx.openHotelBooking(id);
       window.layoverx.closeHotelDetail();
     };
     
@@ -590,7 +774,98 @@
     Modal.close('hotel-detail');
   };
   window.layoverx.bookHotel = function(id) {
-    showToast(`Hotel "${HOTELS[id].name}" day room selected!`);
+    window.layoverx.openHotelBooking(id);
+  };
+
+  window.layoverx.openHotelBooking = function(id) {
+    const h = HOTELS[id];
+    if (!h) return;
+    
+    const durationVal = parseInt($('#hotel-duration')?.value || '6');
+    let multiplier = 1.0;
+    if (durationVal === 3) multiplier = 0.6;
+    if (durationVal === 6) multiplier = 1.0;
+    if (durationVal === 12) multiplier = 1.5;
+    if (durationVal === 24) multiplier = 2.2;
+    
+    const basePrice = h.price;
+    const standardPrice = Math.round(basePrice * multiplier * 0.6);
+    const premiumPrice = Math.round(basePrice * multiplier);
+    
+    // Set text in modal
+    const nameEl = $('#booking-hotel-name');
+    const durEl = $('#booking-hotel-duration');
+    const priceStdEl = $('#booking-price-standard');
+    const pricePremEl = $('#booking-price-premium');
+    
+    if (nameEl) nameEl.textContent = h.name;
+    if (durEl) durEl.textContent = durationVal === 24 ? 'Overnight' : `${durationVal} Hours`;
+    if (priceStdEl) priceStdEl.textContent = `₹${standardPrice.toLocaleString()}`;
+    if (pricePremEl) pricePremEl.textContent = `₹${premiumPrice.toLocaleString()}`;
+    
+    // Store active booking data in modal context
+    const bookingForm = $('#hotel-booking-form');
+    if (bookingForm) {
+      bookingForm.dataset.hotelId = id;
+      bookingForm.dataset.hotelName = h.name;
+      bookingForm.dataset.duration = durationVal === 24 ? 'Overnight' : `${durationVal} Hours`;
+      bookingForm.dataset.standardPrice = standardPrice;
+      bookingForm.dataset.premiumPrice = premiumPrice;
+      bookingForm.reset();
+    }
+    
+    const formSlide = $('#hotel-booking-form-slide');
+    const successSlide = $('#hotel-booking-success-slide');
+    if (formSlide) formSlide.classList.remove('hidden');
+    if (successSlide) successSlide.classList.add('hidden');
+    
+    Modal.open('hotel-booking');
+  };
+  
+  window.layoverx.closeHotelBooking = function() {
+    Modal.close('hotel-booking');
+  };
+  
+  window.layoverx.confirmHotelBooking = function(e) {
+    e.preventDefault();
+    
+    const form = $('#hotel-booking-form');
+    if (!form) return;
+    
+    const hotelId = form.dataset.hotelId;
+    const hotelName = form.dataset.hotelName;
+    const duration = form.dataset.duration;
+    
+    const checkedRoom = form.querySelector('input[name="hotel-room-type"]:checked');
+    const roomTypeVal = checkedRoom ? checkedRoom.value : 'standard';
+    const price = roomTypeVal === 'standard' ? form.dataset.standardPrice : form.dataset.premiumPrice;
+    const roomTypeLabel = roomTypeVal === 'standard' ? 'Standard Pod / Cabin' : 'Premium Double Suite';
+    
+    const refCode = `LHX-${Math.floor(Math.random() * 90000 + 10000)}-MUM`;
+    
+    // Populate success screen fields
+    const successRef = $('#success-booking-ref');
+    const successName = $('#success-hotel-name');
+    const successType = $('#success-room-type');
+    const successCheckin = $('#success-checkin-time');
+    const successDurCost = $('#success-duration-cost');
+    
+    if (successRef) successRef.textContent = refCode;
+    if (successName) successName.textContent = hotelName;
+    if (successType) successType.textContent = roomTypeLabel;
+    
+    const checkinTimeInput = $('#hotel-checkin')?.value;
+    const checkinLabel = checkinTimeInput ? new Date(checkinTimeInput).toLocaleString([], { dateStyle: 'medium', timeStyle: 'short' }) : 'Immediate (flexible)';
+    if (successCheckin) successCheckin.textContent = checkinLabel;
+    if (successDurCost) successDurCost.textContent = `${duration} - ₹${parseInt(price).toLocaleString()}`;
+    
+    // Transition slides
+    const formSlide = $('#hotel-booking-form-slide');
+    const successSlide = $('#hotel-booking-success-slide');
+    if (formSlide) formSlide.classList.add('hidden');
+    if (successSlide) successSlide.classList.remove('hidden');
+    
+    showToast(`Transit Room booked successfully! Ref: ${refCode}`);
   };
 
   window.layoverx.openRestDetail = function(id) {
@@ -1468,6 +1743,18 @@
     carousel.addEventListener('scroll', updateButtons);
     window.addEventListener('resize', updateButtons);
     updateButtons();
+
+    // Keyboard support when focused
+    carousel.setAttribute('tabindex', '0');
+    carousel.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        carousel.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        carousel.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
+      }
+    });
   }
 
   function init() {
@@ -1500,8 +1787,10 @@
     initExperiencesFilter();
     initSpaFilter();
     initGamingFilter();
+    initTransfersFilter();
     initPlanner();
     initCarousel('#services-carousel', '#prev-service', '#next-service');
+    initCarousel('#experiences-carousel', '#prev-experience', '#next-experience');
     initCarousel('#planner-services-carousel', '#planner-prev', '#planner-next');
     loadSavedPlans();
     initHomepageSearch();

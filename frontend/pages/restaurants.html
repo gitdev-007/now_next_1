@@ -148,128 +148,159 @@
       <!-- RESTAURANT LISTING GRID -->
       <div class="w-full lg:w-3/4">
         
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6" id="restaurant-list">
+        <div class="space-y-6" id="restaurant-list">
           
           <!-- Rest Card 1 -->
-          <article class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col justify-between rest-item" 
+          <article class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col md:flex-row rest-item" 
                    data-cuisine="seafood" data-price="1800" data-rating="4.8" data-distance="3.5">
-            <div>
-              <div class="relative h-48 overflow-hidden">
-                <img alt="Gajalee Seafood" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&h=400&fit=crop"/>
-                <span class="absolute top-4 left-4 bg-theme-primary text-white text-[10px] font-bold px-2.5 py-1 rounded-md">🦀 Seafood</span>
-              </div>
-              <div class="p-5">
+            <div class="relative w-full md:w-80 h-52 md:h-auto flex-shrink-0">
+              <img alt="Gajalee Seafood" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&h=400&fit=crop"/>
+              <span class="absolute top-4 left-4 bg-theme-primary text-white text-[10px] font-bold px-2.5 py-1 rounded-md">🦀 Seafood</span>
+            </div>
+            <div class="p-6 flex-grow flex flex-col justify-between">
+              <div>
                 <div class="flex items-center justify-between gap-2 mb-1">
-                  <h3 class="font-bold text-gray-900 text-base hover:text-theme-primary transition-colors">
+                  <h3 class="font-bold text-gray-900 text-lg hover:text-theme-primary transition-colors">
                     <a href="#" onclick="layoverx.openRestDetail(1);return false;">Gajalee Coastal Seafood Restaurant</a>
                   </h3>
-                  <span class="bg-gray-50 text-theme-primary px-2 py-0.5 rounded-lg text-xs font-bold">4.8★</span>
+                  <div class="flex items-center gap-1.5 bg-gray-50 text-theme-primary px-2 py-1 rounded-lg text-xs font-bold flex-shrink-0">
+                    ⭐ 4.8 <span class="text-theme-primary font-medium">(940 reviews)</span>
+                  </div>
                 </div>
-                <div class="text-xs text-theme-primary flex items-center gap-1 mb-3">
+                <div class="text-xs text-theme-primary flex items-center gap-1.5 mb-3">
+                  <svg class="w-3.5 h-3.5 text-theme-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5A7.5 7.5 0 1119.5 10.5z"/></svg>
                   <span>Vile Parle East, Mumbai • 3.5 km from CSMIA</span>
                 </div>
-                <p class="text-theme-primary text-sm mb-4">World-famous coastal dining. Indulge in authentic Butter Garlic Pepper Crab, Tandoori Pomfret, and Sol Kadhi.</p>
-                <div class="flex items-center gap-4 text-xs font-bold text-gray-800">
-                  <span>💰 ₹1,800 for two</span>
-                  <span>⏱️ 15 mins taxi ride</span>
+                <p class="text-theme-primary text-sm mb-4 leading-relaxed line-clamp-2">World-famous coastal dining near airport. Indulge in authentic Butter Garlic Pepper Crab, Tandoori Pomfret, and Sol Kadhi.</p>
+                <div class="flex flex-wrap gap-1.5 mb-4">
+                  <span class="text-[10px] bg-gray-100 text-gray-800 font-bold px-2 py-1 rounded-md">🦀 Fresh Coastal</span>
+                  <span class="text-[10px] bg-gray-100 text-gray-800 font-bold px-2 py-1 rounded-md">🍷 Premium Lounge</span>
+                  <span class="text-[10px] bg-gray-100 text-gray-800 font-bold px-2 py-1 rounded-md">⚡ High Hygiene</span>
                 </div>
               </div>
-            </div>
-            <div class="p-5 pt-0">
-              <button type="button" onclick="layoverx.reserveRest(1)" class="w-full py-2.5 bg-theme-primary hover:bg-theme-primary text-white font-bold text-xs rounded-xl transition shadow-md">Reserve Transit Table</button>
+              <div class="pt-4 border-t border-gray-100 flex flex-wrap items-center justify-between gap-4">
+                <div class="flex items-center gap-2">
+                  <div class="text-theme-primary text-xs">Cost for Two<br/><span class="text-lg font-black text-theme-primary">₹1,800</span></div>
+                  <div class="text-theme-primary text-xs border-l border-gray-200 pl-2">Est. Transit Time<br/><span class="text-theme-primary font-bold">15 mins taxi</span></div>
+                </div>
+                <button type="button" onclick="layoverx.reserveRest(1)" class="px-5 py-2.5 bg-theme-primary hover:bg-theme-primary text-white font-bold text-sm rounded-xl shadow-md transition transform hover:-translate-y-0.5">Reserve Table</button>
+              </div>
             </div>
           </article>
 
           <!-- Rest Card 2 -->
-          <article class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col justify-between rest-item" 
+          <article class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col md:flex-row rest-item" 
                    data-cuisine="fine-dining" data-price="4500" data-rating="4.9" data-distance="1.1">
-            <div>
-              <div class="relative h-48 overflow-hidden">
-                <img alt="Peshawri ITC Maratha" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1544025162-d76694265947?w=600&h=400&fit=crop"/>
-                <span class="absolute top-4 left-4 bg-theme-primary text-white text-[10px] font-bold px-2.5 py-1 rounded-md">✨ Luxury</span>
-              </div>
-              <div class="p-5">
+            <div class="relative w-full md:w-80 h-52 md:h-auto flex-shrink-0">
+              <img alt="Peshawri" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1544025162-d76694265947?w=600&h=400&fit=crop"/>
+              <span class="absolute top-4 left-4 bg-theme-primary text-white text-[10px] font-bold px-2.5 py-1 rounded-md">✨ Luxury</span>
+            </div>
+            <div class="p-6 flex-grow flex flex-col justify-between">
+              <div>
                 <div class="flex items-center justify-between gap-2 mb-1">
-                  <h3 class="font-bold text-gray-900 text-base hover:text-theme-primary transition-colors">
+                  <h3 class="font-bold text-gray-900 text-lg hover:text-theme-primary transition-colors">
                     <a href="#" onclick="layoverx.openRestDetail(2);return false;">Peshawri - ITC Maratha</a>
                   </h3>
-                  <span class="bg-gray-50 text-theme-primary px-2 py-0.5 rounded-lg text-xs font-bold">4.9★</span>
+                  <div class="flex items-center gap-1.5 bg-gray-50 text-theme-primary px-2 py-1 rounded-lg text-xs font-bold flex-shrink-0">
+                    ⭐ 4.9 <span class="text-theme-primary font-medium">(1.2k reviews)</span>
+                  </div>
                 </div>
-                <div class="text-xs text-theme-primary flex items-center gap-1 mb-3">
+                <div class="text-xs text-theme-primary flex items-center gap-1.5 mb-3">
+                  <svg class="w-3.5 h-3.5 text-theme-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5A7.5 7.5 0 1119.5 10.5z"/></svg>
                   <span>Sahar Road, Andheri East • 1.1 km from T2</span>
                 </div>
-                <p class="text-theme-primary text-sm mb-4">Five-star Northwest Frontier luxury. Famous for Dal Bukhara (simmered for 18 hours) and Sikandari Raan.</p>
-                <div class="flex items-center gap-4 text-xs font-bold text-gray-800">
-                  <span>💰 ₹4,500 for two</span>
-                  <span>⏱️ 5 mins taxi ride</span>
+                <p class="text-theme-primary text-sm mb-4 leading-relaxed line-clamp-2">Five-star Northwest Frontier luxury dining. Famous for Dal Bukhara (simmered for 18 hours), paneer tikka, and slow cooked lamb.</p>
+                <div class="flex flex-wrap gap-1.5 mb-4">
+                  <span class="text-[10px] bg-gray-100 text-gray-800 font-bold px-2 py-1 rounded-md">🍲 Traditional Clay Oven</span>
+                  <span class="text-[10px] bg-gray-100 text-gray-800 font-bold px-2 py-1 rounded-md">✨ Luxury Ambience</span>
+                  <span class="text-[10px] bg-gray-100 text-gray-800 font-bold px-2 py-1 rounded-md">🥩 Sikandari Raan</span>
                 </div>
               </div>
-            </div>
-            <div class="p-5 pt-0">
-              <button type="button" onclick="layoverx.reserveRest(2)" class="w-full py-2.5 bg-theme-primary hover:bg-theme-primary text-white font-bold text-xs rounded-xl transition shadow-md">Reserve Transit Table</button>
+              <div class="pt-4 border-t border-gray-100 flex flex-wrap items-center justify-between gap-4">
+                <div class="flex items-center gap-2">
+                  <div class="text-theme-primary text-xs">Cost for Two<br/><span class="text-lg font-black text-theme-primary">₹4,500</span></div>
+                  <div class="text-theme-primary text-xs border-l border-gray-200 pl-2">Est. Transit Time<br/><span class="text-theme-primary font-bold">5 mins taxi</span></div>
+                </div>
+                <button type="button" onclick="layoverx.reserveRest(2)" class="px-5 py-2.5 bg-theme-primary hover:bg-theme-primary text-white font-bold text-sm rounded-xl shadow-md transition transform hover:-translate-y-0.5">Reserve Table</button>
+              </div>
             </div>
           </article>
 
           <!-- Rest Card 3 -->
-          <article class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col justify-between rest-item" 
+          <article class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col md:flex-row rest-item" 
                    data-cuisine="local" data-price="800" data-rating="4.5" data-distance="2.2">
-            <div>
-              <div class="relative h-48 overflow-hidden">
-                <img alt="Highway Gomantak" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=600&h=400&fit=crop"/>
-                <span class="absolute top-4 left-4 bg-theme-primary text-white text-[10px] font-bold px-2.5 py-1 rounded-md">🥘 Local food</span>
-              </div>
-              <div class="p-5">
+            <div class="relative w-full md:w-80 h-52 md:h-auto flex-shrink-0">
+              <img alt="Highway Gomantak" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=600&h=400&fit=crop"/>
+              <span class="absolute top-4 left-4 bg-theme-primary text-white text-[10px] font-bold px-2.5 py-1 rounded-md">🥘 Local food</span>
+            </div>
+            <div class="p-6 flex-grow flex flex-col justify-between">
+              <div>
                 <div class="flex items-center justify-between gap-2 mb-1">
-                  <h3 class="font-bold text-gray-900 text-base hover:text-theme-primary transition-colors">
+                  <h3 class="font-bold text-gray-900 text-lg hover:text-theme-primary transition-colors">
                     <a href="#" onclick="layoverx.openRestDetail(3);return false;">Highway Gomantak</a>
                   </h3>
-                  <span class="bg-gray-50 text-theme-primary px-2 py-0.5 rounded-lg text-xs font-bold">4.5★</span>
+                  <div class="flex items-center gap-1.5 bg-gray-50 text-theme-primary px-2 py-1 rounded-lg text-xs font-bold flex-shrink-0">
+                    ⭐ 4.5 <span class="text-theme-primary font-medium">(560 reviews)</span>
+                  </div>
                 </div>
-                <div class="text-xs text-theme-primary flex items-center gap-1 mb-3">
+                <div class="text-xs text-theme-primary flex items-center gap-1.5 mb-3">
+                  <svg class="w-3.5 h-3.5 text-theme-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5A7.5 7.5 0 1119.5 10.5z"/></svg>
                   <span>Bandra East, Mumbai • 2.2 km from domestic T1</span>
                 </div>
-                <p class="text-theme-primary text-sm mb-4">Legendary 30-year-old Goan-Maharashtrian local kitchen. Indulge in Surmai thali and mutton sukka masala.</p>
-                <div class="flex items-center gap-4 text-xs font-bold text-gray-800">
-                  <span>💰 ₹800 for two</span>
-                  <span>⏱️ 10 mins taxi ride</span>
+                <p class="text-theme-primary text-sm mb-4 leading-relaxed line-clamp-2">Legendary 30-year-old local Maharashtrian diner. Famous for crispy Bombil fry, Surmai fish thali, and special sol kadhi.</p>
+                <div class="flex flex-wrap gap-1.5 mb-4">
+                  <span class="text-[10px] bg-gray-100 text-gray-800 font-bold px-2 py-1 rounded-md">🥘 Konkani Thalis</span>
+                  <span class="text-[10px] bg-gray-100 text-gray-800 font-bold px-2 py-1 rounded-md">🐟 Bombay Duck Fry</span>
+                  <span class="text-[10px] bg-gray-100 text-gray-800 font-bold px-2 py-1 rounded-md">🍛 Spicy Mutton Sukka</span>
                 </div>
               </div>
-            </div>
-            <div class="p-5 pt-0">
-              <button type="button" onclick="layoverx.reserveRest(3)" class="w-full py-2.5 bg-theme-primary hover:bg-theme-primary text-white font-bold text-xs rounded-xl transition shadow-md">Reserve Transit Table</button>
+              <div class="pt-4 border-t border-gray-100 flex flex-wrap items-center justify-between gap-4">
+                <div class="flex items-center gap-2">
+                  <div class="text-theme-primary text-xs">Cost for Two<br/><span class="text-lg font-black text-theme-primary">₹800</span></div>
+                  <div class="text-theme-primary text-xs border-l border-gray-200 pl-2">Est. Transit Time<br/><span class="text-theme-primary font-bold">10 mins taxi</span></div>
+                </div>
+                <button type="button" onclick="layoverx.reserveRest(3)" class="px-5 py-2.5 bg-theme-primary hover:bg-theme-primary text-white font-bold text-sm rounded-xl shadow-md transition transform hover:-translate-y-0.5">Reserve Table</button>
+              </div>
             </div>
           </article>
 
           <!-- Rest Card 4 -->
-          <article class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col justify-between rest-item" 
+          <article class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col md:flex-row rest-item" 
                    data-cuisine="street-food" data-price="400" data-rating="4.4" data-distance="4.2">
-            <div>
-              <div class="relative h-48 overflow-hidden">
-                <img alt="Elco Pani Puri" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=600&h=400&fit=crop"/>
-                <span class="absolute top-4 left-4 bg-theme-primary text-white text-[10px] font-bold px-2.5 py-1 rounded-md">🌶️ Street Food</span>
-              </div>
-              <div class="p-5">
+            <div class="relative w-full md:w-80 h-52 md:h-auto flex-shrink-0">
+              <img alt="Elco Pani Puri" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1601050690597-df056fb4ce78?w=600&h=400&fit=crop"/>
+              <span class="absolute top-4 left-4 bg-theme-primary text-white text-[10px] font-bold px-2.5 py-1 rounded-md">🌶️ Street Food</span>
+            </div>
+            <div class="p-6 flex-grow flex flex-col justify-between">
+              <div>
                 <div class="flex items-center justify-between gap-2 mb-1">
-                  <h3 class="font-bold text-gray-900 text-base hover:text-theme-primary transition-colors">
+                  <h3 class="font-bold text-gray-900 text-lg hover:text-theme-primary transition-colors">
                     <a href="#" onclick="layoverx.openRestDetail(4);return false;">Elco Pani Puri Center</a>
                   </h3>
-                  <span class="bg-gray-50 text-theme-primary px-2 py-0.5 rounded-lg text-xs font-bold">4.4★</span>
+                  <div class="flex items-center gap-1.5 bg-gray-50 text-theme-primary px-2 py-1 rounded-lg text-xs font-bold flex-shrink-0">
+                    ⭐ 4.4 <span class="text-theme-primary font-medium">(1.8k reviews)</span>
+                  </div>
                 </div>
-                <div class="text-xs text-theme-primary flex items-center gap-1 mb-3">
+                <div class="text-xs text-theme-primary flex items-center gap-1.5 mb-3">
+                  <svg class="w-3.5 h-3.5 text-theme-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5A7.5 7.5 0 1119.5 10.5z"/></svg>
                   <span>Hill Road, Bandra West • 4.2 km from CSMIA</span>
                 </div>
-                <p class="text-theme-primary text-sm mb-4">Hygienic local street food experience. Famous for ice-cold mineral water Pani Puri, Dahi Puri, and Pav Bhaji.</p>
-                <div class="flex items-center gap-4 text-xs font-bold text-gray-800">
-                  <span>💰 ₹400 for two</span>
-                  <span>⏱️ 18 mins taxi ride</span>
+                <p class="text-theme-primary text-sm mb-4 leading-relaxed line-clamp-2">High-hygiene local street food experience. Famous for ice-cold purified mineral water Pani Puri, Dahi Puri, Pav Bhaji, and ragda pattice.</p>
+                <div class="flex flex-wrap gap-1.5 mb-4">
+                  <span class="text-[10px] bg-gray-100 text-gray-800 font-bold px-2 py-1 rounded-md">🌶️ Mineral Water Chaat</span>
+                  <span class="text-[10px] bg-gray-100 text-gray-800 font-bold px-2 py-1 rounded-md">🧈 Butter Pav Bhaji</span>
+                  <span class="text-[10px] bg-gray-100 text-gray-800 font-bold px-2 py-1 rounded-md">🥛 Fresh Lassi & Juices</span>
                 </div>
               </div>
-            </div>
-            <div class="p-5 pt-0">
-              <button type="button" onclick="layoverx.reserveRest(4)" class="w-full py-2.5 bg-theme-primary hover:bg-theme-primary text-white font-bold text-xs rounded-xl transition shadow-md">Reserve Transit Table</button>
+              <div class="pt-4 border-t border-gray-100 flex flex-wrap items-center justify-between gap-4">
+                <div class="flex items-center gap-2">
+                  <div class="text-theme-primary text-xs">Cost for Two<br/><span class="text-lg font-black text-theme-primary">₹400</span></div>
+                  <div class="text-theme-primary text-xs border-l border-gray-200 pl-2">Est. Transit Time<br/><span class="text-theme-primary font-bold">18 mins taxi</span></div>
+                </div>
+                <button type="button" onclick="layoverx.reserveRest(4)" class="px-5 py-2.5 bg-theme-primary hover:bg-theme-primary text-white font-bold text-sm rounded-xl shadow-md transition transform hover:-translate-y-0.5">Reserve Table</button>
+              </div>
             </div>
           </article>
-          
         </div>
 
         <!-- Empty state -->

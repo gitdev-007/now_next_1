@@ -232,3 +232,49 @@ input[type="radio"]:checked + div h3 {
   border-bottom: 2px solid #0284c7;
 }
 
+.plan-my-layover-btn {
+  display: inline-block;
+  text-align: center;
+  padding: 0.625rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 0.75rem;
+  transition: all .2s cubic-bezier(.4,0,.2,1);
+  box-shadow: var(--shadow-sm);
+}
+.plan-my-layover-btn:hover {
+  transform: translateY(-2px);
+}
+
+/* Default state on transparent navbar */
+#navbar:not(.scrolled) .plan-my-layover-btn:not(.active) {
+  background: #ffffff;
+  color: #0284c7;
+}
+#navbar:not(.scrolled) .plan-my-layover-btn:not(.active):hover {
+  background: #f0f9ff;
+  color: #0369a1;
+}
+
+/* Default state on scrolled white navbar */
+#navbar.scrolled .plan-my-layover-btn:not(.active) {
+  background: transparent;
+  color: #0284c7;
+  border: 1.5px solid #0284c7;
+}
+#navbar.scrolled .plan-my-layover-btn:not(.active):hover {
+  background: #0284c7;
+  color: #ffffff;
+}
+
+/* Active page solid contrast style */
+.plan-my-layover-btn.active {
+  background: #0284c7;
+  color: #ffffff;
+  border: 1.5px solid #0284c7;
+}
+.plan-my-layover-btn.active:hover {
+  background: #0369a1;
+  border-color: #0369a1;
+}
+

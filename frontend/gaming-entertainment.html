@@ -58,7 +58,7 @@
         <a class="nav-link text-sm font-medium transition-colors duration-200 active-nav-link" href="gaming-entertainment.html">Gaming</a>
         <a class="nav-link text-sm font-medium transition-colors duration-200 " href="experiences.html">Tours</a>
         <a class="nav-link text-sm font-medium transition-colors duration-200 " href="airport-transfers.html">Transfers</a>
-        <a href="plan-my-layover.html" class="px-5 py-2.5 bg-white text-sky-700 font-semibold rounded-xl hover:bg-sky-50 transition text-sm shadow-md hover:-translate-y-0.5 transform ">Plan My Layover</a>
+        <a href="plan-my-layover.html" class="plan-my-layover-btn">Plan My Layover</a>
         
         <!-- Auth Guest View -->
         <div class="auth-guest flex items-center gap-5">
@@ -222,58 +222,119 @@
       </aside>
 
       <div class="w-full lg:w-3/4">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="gaming-list">
+      <div class="w-full lg:w-3/4">
+        <div class="space-y-6" id="gaming-list">
           <!-- Card 1 -->
-          <article class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col justify-between gaming-item" 
+          <article class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col md:flex-row gaming-item" 
                    data-category="gaming" data-duration="2" data-price="1200">
-            <div>
-              <div class="relative h-48 overflow-hidden">
-                <img alt="Gaming Hub" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&h=400&fit=crop"/>
-                <span class="absolute top-4 left-4 bg-theme-primary text-white text-[10px] font-bold px-2.5 py-1 rounded-md">🎮 Gaming</span>
-              </div>
-              <div class="p-5">
+            <div class="relative w-full md:w-80 h-52 md:h-auto flex-shrink-0">
+              <img alt="Gaming Hub" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&h=400&fit=crop"/>
+              <span class="absolute top-4 left-4 bg-theme-primary text-white text-[10px] font-bold px-2.5 py-1 rounded-md">🎮 Gaming</span>
+            </div>
+            <div class="p-6 flex-grow flex flex-col justify-between">
+              <div>
                 <div class="flex items-center justify-between gap-2 mb-1">
-                  <h3 class="font-bold text-gray-900 text-base hover:text-theme-primary transition-colors">
+                  <h3 class="font-bold text-gray-900 text-lg hover:text-theme-primary transition-colors">
                     <a href="#" onclick="layoverx.openGamingDetail(1);return false;">Smaaash Entertainment Hub</a>
                   </h3>
-                  <span class="bg-gray-50 text-theme-primary px-2 py-0.5 rounded-lg text-xs font-bold">4.6★</span>
+                  <div class="flex items-center gap-1.5 bg-gray-50 text-theme-primary px-2 py-1 rounded-lg text-xs font-bold flex-shrink-0">
+                    ⭐ 4.6 <span class="text-theme-primary font-medium">(420 reviews)</span>
+                  </div>
                 </div>
                 <div class="text-xs text-theme-primary flex items-center gap-1.5 mb-3">
-                  <span>⏱️ 2h Session • AC Arcade</span>
+                  <svg class="w-3.5 h-3.5 text-theme-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5A7.5 7.5 0 1119.5 10.5z"/></svg>
+                  <span>Kurla West • Near T2 Airport Mall</span>
                 </div>
-                <p class="text-theme-primary text-sm mb-4">Virtual reality games, bowling, cricket simulators, and arcade fun. Perfect for transit breaks.</p>
-                <div class="text-xs font-bold text-gray-600">₹1,200 / person</div>
+                <p class="text-theme-primary text-sm mb-4 leading-relaxed line-clamp-2">Virtual reality games, bowling, cricket simulators, and arcade fun. Perfect for high-energy transit breaks.</p>
+                <div class="flex flex-wrap gap-1.5 mb-4">
+                  <span class="text-[10px] bg-gray-100 text-gray-800 font-bold px-2 py-1 rounded-md">🎮 Virtual Reality</span>
+                  <span class="text-[10px] bg-gray-100 text-gray-800 font-bold px-2 py-1 rounded-md">🎳 Bowling Lanes</span>
+                  <span class="text-[10px] bg-gray-100 text-gray-800 font-bold px-2 py-1 rounded-md">🍔 Food & Drinks</span>
+                </div>
               </div>
-            </div>
-            <div class="p-5 pt-0">
-              <button type="button" onclick="layoverx.bookGaming(1)" class="w-full py-2.5 bg-theme-primary hover:bg-theme-primary text-white font-bold text-xs rounded-xl transition shadow-md">Book Gaming</button>
+              <div class="pt-4 border-t border-gray-100 flex flex-wrap items-center justify-between gap-4">
+                <div class="flex items-center gap-2">
+                  <div class="text-theme-primary text-xs">Starting Price<br/><span class="text-lg font-black text-theme-primary">₹1,200</span></div>
+                  <div class="text-theme-primary text-xs border-l border-gray-200 pl-2">Session Duration<br/><span class="text-theme-primary font-bold">2 Hours</span></div>
+                </div>
+                <button type="button" onclick="layoverx.bookGaming(1)" class="px-5 py-2.5 bg-theme-primary hover:bg-theme-primary text-white font-bold text-sm rounded-xl shadow-md transition transform hover:-translate-y-0.5">Book Session</button>
+              </div>
             </div>
           </article>
 
           <!-- Card 2 -->
-          <article class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col justify-between gaming-item" 
+          <article class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col md:flex-row gaming-item" 
                    data-category="movie" data-duration="3" data-price="2500">
-            <div>
-              <div class="relative h-48 overflow-hidden">
-                <img alt="Luxury Cinema" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=600&h=400&fit=crop"/>
-                <span class="absolute top-4 left-4 bg-theme-primary text-white text-[10px] font-bold px-2.5 py-1 rounded-md">🍿 Cinema</span>
-              </div>
-              <div class="p-5">
+            <div class="relative w-full md:w-80 h-52 md:h-auto flex-shrink-0">
+              <img alt="Luxury Cinema" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=600&h=400&fit=crop"/>
+              <span class="absolute top-4 left-4 bg-theme-primary text-white text-[10px] font-bold px-2.5 py-1 rounded-md">🍿 Cinema</span>
+            </div>
+            <div class="p-6 flex-grow flex flex-col justify-between">
+              <div>
                 <div class="flex items-center justify-between gap-2 mb-1">
-                  <h3 class="font-bold text-gray-900 text-base hover:text-theme-primary transition-colors">
+                  <h3 class="font-bold text-gray-900 text-lg hover:text-theme-primary transition-colors">
                     <a href="#" onclick="layoverx.openGamingDetail(2);return false;">PVR Directors Cut Cinema</a>
                   </h3>
-                  <span class="bg-gray-50 text-theme-primary px-2 py-0.5 rounded-lg text-xs font-bold">4.9★</span>
+                  <div class="flex items-center gap-1.5 bg-gray-50 text-theme-primary px-2 py-1 rounded-lg text-xs font-bold flex-shrink-0">
+                    ⭐ 4.9 <span class="text-theme-primary font-medium">(650 reviews)</span>
+                  </div>
                 </div>
                 <div class="text-xs text-theme-primary flex items-center gap-1.5 mb-3">
-                  <span>⏱️ 3h Duration • Luxury Seating</span>
+                  <svg class="w-3.5 h-3.5 text-theme-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5A7.5 7.5 0 1119.5 10.5z"/></svg>
+                  <span>Phoenix Mall • 2.5 km from CSMIA</span>
                 </div>
-                <p class="text-theme-primary text-sm mb-4">Ultra-premium movie watching with recliner seats, butler service, and fine dining.</p>
-                <div class="text-xs font-bold text-gray-600">₹2,500 / person</div>
+                <p class="text-theme-primary text-sm mb-4 leading-relaxed line-clamp-2">Ultra-premium movie watching with recliner seats, butler service, and fine dining at the airport mall.</p>
+                <div class="flex flex-wrap gap-1.5 mb-4">
+                  <span class="text-[10px] bg-gray-100 text-gray-800 font-bold px-2 py-1 rounded-md">🛋️ Recliner Seats</span>
+                  <span class="text-[10px] bg-gray-100 text-gray-800 font-bold px-2 py-1 rounded-md">🍽️ Butler Dining</span>
+                  <span class="text-[10px] bg-gray-100 text-gray-800 font-bold px-2 py-1 rounded-md">🍿 Dolby Atmos</span>
+                </div>
+              </div>
+              <div class="pt-4 border-t border-gray-100 flex flex-wrap items-center justify-between gap-4">
+                <div class="flex items-center gap-2">
+                  <div class="text-theme-primary text-xs">Starting Price<br/><span class="text-lg font-black text-theme-primary">₹2,500</span></div>
+                  <div class="text-theme-primary text-xs border-l border-gray-200 pl-2">Session Duration<br/><span class="text-theme-primary font-bold">3 Hours</span></div>
+                </div>
+                <button type="button" onclick="layoverx.bookGaming(2)" class="px-5 py-2.5 bg-theme-primary hover:bg-theme-primary text-white font-bold text-sm rounded-xl shadow-md transition transform hover:-translate-y-0.5">Book Session</button>
               </div>
             </div>
-            <div class="p-5 pt-0">
-              <button type="button" onclick="layoverx.bookGaming(2)" class="w-full py-2.5 bg-theme-primary hover:bg-theme-primary text-white font-bold text-xs rounded-xl transition shadow-md">Book Cinema</button>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col md:flex-row gaming-item" 
+                   data-category="gaming" data-duration="2.5" data-price="1800">
+            <div class="relative w-full md:w-80 h-52 md:h-auto flex-shrink-0">
+              <img alt="Palacio Arcade" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1511886929837-354d827aae26?w=600&h=400&fit=crop"/>
+              <span class="absolute top-4 left-4 bg-theme-primary text-white text-[10px] font-bold px-2.5 py-1 rounded-md">🎮 Gaming Lounge</span>
+            </div>
+            <div class="p-6 flex-grow flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between gap-2 mb-1">
+                  <h3 class="font-bold text-gray-900 text-lg hover:text-theme-primary transition-colors">
+                    <a href="#" onclick="layoverx.openGamingDetail(3);return false;">The Game Palacio - Casino Style Arcade</a>
+                  </h3>
+                  <div class="flex items-center gap-1.5 bg-gray-50 text-theme-primary px-2 py-1 rounded-lg text-xs font-bold flex-shrink-0">
+                    ⭐ 4.7 <span class="text-theme-primary font-medium">(180 reviews)</span>
+                  </div>
+                </div>
+                <div class="text-xs text-theme-primary flex items-center gap-1.5 mb-3">
+                  <svg class="w-3.5 h-3.5 text-theme-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5A7.5 7.5 0 1119.5 10.5z"/></svg>
+                  <span>Bandra West • 4.5 km from CSMIA</span>
+                </div>
+                <p class="text-theme-primary text-sm mb-4 leading-relaxed line-clamp-2">Boutique bowling, high-end retro arcade games, and mechanical bull rides with a premium lounge bar.</p>
+                <div class="flex flex-wrap gap-1.5 mb-4">
+                  <span class="text-[10px] bg-gray-100 text-gray-800 font-bold px-2 py-1 rounded-md">🎳 Retro Bowling</span>
+                  <span class="text-[10px] bg-gray-100 text-gray-800 font-bold px-2 py-1 rounded-md">🎲 Casino Arcade</span>
+                  <span class="text-[10px] bg-gray-100 text-gray-800 font-bold px-2 py-1 rounded-md">🍹 Premium Lounge Bar</span>
+                </div>
+              </div>
+              <div class="pt-4 border-t border-gray-100 flex flex-wrap items-center justify-between gap-4">
+                <div class="flex items-center gap-2">
+                  <div class="text-theme-primary text-xs">Starting Price<br/><span class="text-lg font-black text-theme-primary">₹1,800</span></div>
+                  <div class="text-theme-primary text-xs border-l border-gray-200 pl-2">Session Duration<br/><span class="text-theme-primary font-bold">2.5 Hours</span></div>
+                </div>
+                <button type="button" onclick="layoverx.bookGaming(3)" class="px-5 py-2.5 bg-theme-primary hover:bg-theme-primary text-white font-bold text-sm rounded-xl shadow-md transition transform hover:-translate-y-0.5">Book Session</button>
+              </div>
             </div>
           </article>
         </div>

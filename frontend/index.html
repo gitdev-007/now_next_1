@@ -73,7 +73,7 @@
         <a class="nav-link text-sm font-medium transition-colors duration-200 " href="gaming-entertainment.html">Gaming</a>
         <a class="nav-link text-sm font-medium transition-colors duration-200 " href="experiences.html">Tours</a>
         <a class="nav-link text-sm font-medium transition-colors duration-200 " href="airport-transfers.html">Transfers</a>
-        <a href="plan-my-layover.html" class="px-5 py-2.5 bg-white text-sky-700 font-semibold rounded-xl hover:bg-sky-50 transition text-sm shadow-md hover:-translate-y-0.5 transform ">Plan My Layover</a>
+        <a href="plan-my-layover.html" class="plan-my-layover-btn">Plan My Layover</a>
         
         <!-- Auth Guest View -->
         <div class="auth-guest flex items-center gap-5">
@@ -403,85 +403,191 @@
 </section>
 
 <!-- FEATURED EXPERIENCES -->
-<section class="section bg-gray-50" id="experiences">
-  <div class="container">
+<section class="section bg-gray-50 overflow-hidden" id="experiences">
+  <div class="container relative">
     <div class="text-center mb-12 reveal">
       <span class="inline-block text-sky-700 font-bold text-sm uppercase tracking-wider mb-2">High Demand Bookings</span>
       <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-3">Popular Transit Experiences</h2>
       <p class="text-gray-700 max-w-xl mx-auto">Verified, top-reviewed partners, and close to the airport for secure departure timing.</p>
     </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div class="card reveal flex flex-col justify-between">
-        <div>
-          <div class="relative h-52 overflow-hidden">
-            <img alt="The Leela Mumbai near CSIA" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=600&h=400&fit=crop"/>
-            <div class="absolute top-4 right-4 bg-sky-700 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md">2.2 km from CSIA</div>
-          </div>
-          <div class="p-6">
-            <div class="flex items-center gap-3 text-xs text-gray-700 mb-2">
-              <span class="flex items-center gap-1 font-semibold text-emerald-700 bg-emerald-50 px-2 py-1 rounded-lg">⭐ 4.8 (1.2k Reviews)</span>
-              <span class="flex items-center gap-1 font-semibold bg-gray-100 text-gray-800 px-2 py-1 rounded-lg">⏰ 6h / 12h Slots</span>
-            </div>
-            <h3 class="text-lg font-bold text-gray-900 mb-2">The Leela Hotel Transit Stay</h3>
-            <p class="text-gray-700 text-sm">Luxury oasis featuring pool access, dynamic check-in schedules, and free pickup/drop shuttles.</p>
-          </div>
-        </div>
-        <div class="px-6 pb-6 pt-2 border-t border-gray-50 flex items-center justify-between">
-          <div>
-            <span class="text-[10px] text-gray-700 font-bold uppercase tracking-wider">Day-Use Starting from</span>
-            <div class="text-lg font-extrabold text-sky-700">₹3,499</div>
-          </div>
-          <a href="hotels.html" class="px-4 py-2 bg-sky-700 hover:bg-sky-700 text-white font-bold text-xs rounded-xl shadow-md transition hover:-translate-y-0.5 transform">Book Day Room</a>
-        </div>
-      </div>
+
+    <!-- Carousel Controls -->
+    <div class="absolute top-1/2 -left-4 sm:left-0 -translate-y-1/2 z-20 hidden md:block">
+      <button class="carousel-nav-btn" id="prev-experience" aria-label="Previous experience">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+      </button>
+    </div>
+    <div class="absolute top-1/2 -right-4 sm:right-0 -translate-y-1/2 z-20 hidden md:block">
+      <button class="carousel-nav-btn" id="next-experience" aria-label="Next experience">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+
+    <!-- Carousel Container -->
+    <div class="carousel-container gap-6 pb-8 px-1" id="experiences-carousel">
       
-      <div class="card reveal flex flex-col justify-between">
-        <div>
-          <div class="relative h-52 overflow-hidden">
-            <img alt="Heritage South Mumbai Tour" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1567157577867-3c5d4b5e9a0e?w=600&h=400&fit=crop"/>
-            <div class="absolute top-4 right-4 bg-sky-700 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md">Pickup Included</div>
-          </div>
-          <div class="p-6">
-            <div class="flex items-center gap-3 text-xs text-gray-700 mb-2">
-              <span class="flex items-center gap-1 font-semibold text-emerald-700 bg-emerald-50 px-2 py-1 rounded-lg">⭐ 4.9 (840 Reviews)</span>
-              <span class="flex items-center gap-1 font-semibold bg-gray-100 text-gray-800 px-2 py-1 rounded-lg">⏰ 5h Duration</span>
-            </div>
-            <h3 class="text-lg font-bold text-gray-900 mb-2">South Mumbai Heritage Tour</h3>
-            <p class="text-gray-700 text-sm">Gateway of India, Marine Drive (Queen's Necklace), and Chhatrapati Shivaji Terminus in an AC private car.</p>
-          </div>
-        </div>
-        <div class="px-6 pb-6 pt-2 border-t border-gray-50 flex items-center justify-between">
+      <!-- Card 1: Hotels -->
+      <div class="carousel-item">
+        <div class="card h-full flex flex-col justify-between">
           <div>
-            <span class="text-[10px] text-gray-700 font-bold uppercase tracking-wider">Private Tour for 2</span>
-            <div class="text-lg font-extrabold text-sky-700">₹2,899</div>
+            <div class="relative h-52 overflow-hidden">
+              <img alt="Niranta Airport Transit Hotel" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&h=400&fit=crop"/>
+              <span class="absolute top-4 right-4 bg-sky-700 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md">Inside T2</span>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-3 text-xs text-gray-700 mb-2">
+                <span class="flex items-center gap-1 font-semibold text-emerald-700 bg-emerald-50 px-2 py-1 rounded-lg">⭐ 4.8 (2.4k Reviews)</span>
+                <span class="flex items-center gap-1 font-semibold bg-gray-100 text-gray-800 px-2 py-1 rounded-lg">⏰ Hourly Slots</span>
+              </div>
+              <h3 class="text-lg font-bold text-gray-900 mb-2">Transit Hotel Stays</h3>
+              <p class="text-gray-700 text-sm">Flexible day-use transit rooms inside Terminal 2 with 24/7 check-in and free terminal shuttles.</p>
+            </div>
           </div>
-          <a href="experiences.html" class="px-4 py-2 bg-sky-700 hover:bg-sky-700 text-white font-bold text-xs rounded-xl shadow-md transition hover:-translate-y-0.5 transform">Book Tour</a>
+          <div class="px-6 pb-6 pt-2 border-t border-gray-50 flex items-center justify-between">
+            <div>
+              <span class="text-[10px] text-gray-700 font-bold uppercase tracking-wider">Starting from</span>
+              <div class="text-lg font-extrabold text-sky-700">₹3,499</div>
+            </div>
+            <a href="hotels.html" class="px-4 py-2 bg-sky-700 hover:bg-sky-700 text-white font-bold text-xs rounded-xl shadow-md transition hover:-translate-y-0.5 transform">Book Day Room</a>
+          </div>
         </div>
       </div>
 
-      <div class="card reveal flex flex-col justify-between">
-        <div>
-          <div class="relative h-52 overflow-hidden">
-            <img alt="Mumbai street food trail" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=600&h=400&fit=crop"/>
-            <div class="absolute top-4 right-4 bg-sky-700 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md">Guided Tour</div>
-          </div>
-          <div class="p-6">
-            <div class="flex items-center gap-3 text-xs text-gray-700 mb-2">
-              <span class="flex items-center gap-1 font-semibold text-emerald-700 bg-emerald-50 px-2 py-1 rounded-lg">⭐ 4.7 (920 Reviews)</span>
-              <span class="flex items-center gap-1 font-semibold bg-gray-100 text-gray-800 px-2 py-1 rounded-lg">⏰ 3h Duration</span>
-            </div>
-            <h3 class="text-lg font-bold text-gray-900 mb-2">Bandra Street Food Trail</h3>
-            <p class="text-gray-700 text-sm">Taste iconic Vada Pav, Sev Puri, Butter Garlic Crabs, and local sweets with a verified culinarian expert.</p>
-          </div>
-        </div>
-        <div class="px-6 pb-6 pt-2 border-t border-gray-50 flex items-center justify-between">
+      <!-- Card 2: Restaurants -->
+      <div class="carousel-item">
+        <div class="card h-full flex flex-col justify-between">
           <div>
-            <span class="text-[10px] text-gray-700 font-bold uppercase tracking-wider">Per Person Rate</span>
-            <div class="text-lg font-extrabold text-sky-700">₹1,299</div>
+            <div class="relative h-52 overflow-hidden">
+              <img alt="Peshawri Dining" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&h=400&fit=crop"/>
+              <span class="absolute top-4 right-4 bg-sky-700 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md">Premium Dining</span>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-3 text-xs text-gray-700 mb-2">
+                <span class="flex items-center gap-1 font-semibold text-emerald-700 bg-emerald-50 px-2 py-1 rounded-lg">⭐ 4.9 (1.2k Reviews)</span>
+                <span class="flex items-center gap-1 font-semibold bg-gray-100 text-gray-800 px-2 py-1 rounded-lg">⏰ Near CSMIA</span>
+              </div>
+              <h3 class="text-lg font-bold text-gray-900 mb-2">Transit Food Experiences</h3>
+              <p class="text-gray-700 text-sm">Savor authentic coastal seafood, Maharashtrian thalis, and luxury five-star fine dining near the airport.</p>
+            </div>
           </div>
-          <a href="experiences.html" class="px-4 py-2 bg-sky-700 hover:bg-sky-700 text-white font-bold text-xs rounded-xl shadow-md transition hover:-translate-y-0.5 transform">Book Trail</a>
+          <div class="px-6 pb-6 pt-2 border-t border-gray-50 flex items-center justify-between">
+            <div>
+              <span class="text-[10px] text-gray-700 font-bold uppercase tracking-wider">Starting from</span>
+              <div class="text-lg font-extrabold text-sky-700">₹400</div>
+            </div>
+            <a href="restaurants.html" class="px-4 py-2 bg-sky-700 hover:bg-sky-700 text-white font-bold text-xs rounded-xl shadow-md transition hover:-translate-y-0.5 transform">Book Table</a>
+          </div>
         </div>
       </div>
+
+      <!-- Card 3: Spa & Wellness -->
+      <div class="carousel-item">
+        <div class="card h-full flex flex-col justify-between">
+          <div>
+            <div class="relative h-52 overflow-hidden">
+              <img alt="Spa and wellness massage" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&h=400&fit=crop"/>
+              <span class="absolute top-4 right-4 bg-sky-700 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md">Relaxation Lounge</span>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-3 text-xs text-gray-700 mb-2">
+                <span class="flex items-center gap-1 font-semibold text-emerald-700 bg-emerald-50 px-2 py-1 rounded-lg">⭐ 4.8 (850 Reviews)</span>
+                <span class="flex items-center gap-1 font-semibold bg-gray-100 text-gray-800 px-2 py-1 rounded-lg">⏰ Express Slots</span>
+              </div>
+              <h3 class="text-lg font-bold text-gray-900 mb-2">Spa & Wellness Sessions</h3>
+              <p class="text-gray-700 text-sm">Refresh with express foot reflexology, deep tissue massage, and hotel wellness circuits near terminal gates.</p>
+            </div>
+          </div>
+          <div class="px-6 pb-6 pt-2 border-t border-gray-50 flex items-center justify-between">
+            <div>
+              <span class="text-[10px] text-gray-700 font-bold uppercase tracking-wider">Starting from</span>
+              <div class="text-lg font-extrabold text-sky-700">₹1,800</div>
+            </div>
+            <a href="spa-wellness.html" class="px-4 py-2 bg-sky-700 hover:bg-sky-700 text-white font-bold text-xs rounded-xl shadow-md transition hover:-translate-y-0.5 transform">Book Spa</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4: Gaming & Entertainment -->
+      <div class="carousel-item">
+        <div class="card h-full flex flex-col justify-between">
+          <div>
+            <div class="relative h-52 overflow-hidden">
+              <img alt="High-tech gaming lounge" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&h=400&fit=crop"/>
+              <span class="absolute top-4 right-4 bg-sky-700 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md">VR & Bowling</span>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-3 text-xs text-gray-700 mb-2">
+                <span class="flex items-center gap-1 font-semibold text-emerald-700 bg-emerald-50 px-2 py-1 rounded-lg">⭐ 4.7 (980 Reviews)</span>
+                <span class="flex items-center gap-1 font-semibold bg-gray-100 text-gray-800 px-2 py-1 rounded-lg">⏰ Near Terminal</span>
+              </div>
+              <h3 class="text-lg font-bold text-gray-900 mb-2">Gaming & Entertainment</h3>
+              <p class="text-gray-700 text-sm">Escape airport boredom. Explore virtual reality zones, bowling, and retro arcade simulators near CSMIA.</p>
+            </div>
+          </div>
+          <div class="px-6 pb-6 pt-2 border-t border-gray-50 flex items-center justify-between">
+            <div>
+              <span class="text-[10px] text-gray-700 font-bold uppercase tracking-wider">Starting from</span>
+              <div class="text-lg font-extrabold text-sky-700">₹1,200</div>
+            </div>
+            <a href="gaming-entertainment.html" class="px-4 py-2 bg-sky-700 hover:bg-sky-700 text-white font-bold text-xs rounded-xl shadow-md transition hover:-translate-y-0.5 transform">Book Gaming</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 5: City Tours -->
+      <div class="carousel-item">
+        <div class="card h-full flex flex-col justify-between">
+          <div>
+            <div class="relative h-52 overflow-hidden">
+              <img alt="Gateway of India tour" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1567157577867-3c5d4b5e9a0e?w=600&h=400&fit=crop"/>
+              <span class="absolute top-4 right-4 bg-sky-700 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md">Private Cab + Guide</span>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-3 text-xs text-gray-700 mb-2">
+                <span class="flex items-center gap-1 font-semibold text-emerald-700 bg-emerald-50 px-2 py-1 rounded-lg">⭐ 4.9 (840 Reviews)</span>
+                <span class="flex items-center gap-1 font-semibold bg-gray-100 text-gray-800 px-2 py-1 rounded-lg">⏰ 3h - 8h Stays</span>
+              </div>
+              <h3 class="text-lg font-bold text-gray-900 mb-2">Time-Optimized City Tours</h3>
+              <p class="text-gray-700 text-sm">Guided heritage, food crawls, and boutique shopping tours structured exactly inside layover hours.</p>
+            </div>
+          </div>
+          <div class="px-6 pb-6 pt-2 border-t border-gray-50 flex items-center justify-between">
+            <div>
+              <span class="text-[10px] text-gray-700 font-bold uppercase tracking-wider">Starting from</span>
+              <div class="text-lg font-extrabold text-sky-700">₹1,299</div>
+            </div>
+            <a href="experiences.html" class="px-4 py-2 bg-sky-700 hover:bg-sky-700 text-white font-bold text-xs rounded-xl shadow-md transition hover:-translate-y-0.5 transform">Book Tour</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 6: Transfers -->
+      <div class="carousel-item">
+        <div class="card h-full flex flex-col justify-between">
+          <div>
+            <div class="relative h-52 overflow-hidden">
+              <img alt="Luxury executive sedan cab" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1610647752706-3bb12232b3cd?w=600&h=400&fit=crop"/>
+              <span class="absolute top-4 right-4 bg-sky-700 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md">Tolls & Parking Incl.</span>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-3 text-xs text-gray-700 mb-2">
+                <span class="flex items-center gap-1 font-semibold text-emerald-700 bg-emerald-50 px-2 py-1 rounded-lg">⭐ 4.8 (1.5k Reviews)</span>
+                <span class="flex items-center gap-1 font-semibold bg-gray-100 text-gray-800 px-2 py-1 rounded-lg">⏰ Surge Free</span>
+              </div>
+              <h3 class="text-lg font-bold text-gray-900 mb-2">Fixed-Rate Airport Cabs</h3>
+              <p class="text-gray-700 text-sm">Surge-free flat rate airport pickups, drop-offs, tolls-inclusive, and chauffeur-driven rides inside AC Sedans/SUVs.</p>
+            </div>
+          </div>
+          <div class="px-6 pb-6 pt-2 border-t border-gray-50 flex items-center justify-between">
+            <div>
+              <span class="text-[10px] text-gray-700 font-bold uppercase tracking-wider">Starting from</span>
+              <div class="text-lg font-extrabold text-sky-700">₹899</div>
+            </div>
+            <a href="airport-transfers.html" class="px-4 py-2 bg-sky-700 hover:bg-sky-700 text-white font-bold text-xs rounded-xl shadow-md transition hover:-translate-y-0.5 transform">Book Cab</a>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
