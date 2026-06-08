@@ -143,6 +143,16 @@ input[type="datetime-local"],input[type="date"]{appearance:none;-webkit-appearan
 
 /* Sticky bottom CTA removed */
 
+/* Carousel Utilities */
+.carousel-container { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; -ms-overflow-style: none; scrollbar-width: none; }
+.carousel-container::-webkit-scrollbar { display: none; }
+.carousel-item { flex: 0 0 100%; scroll-snap-align: center; }
+@media (min-width: 768px) { .carousel-item { flex: 0 0 50%; } }
+@media (min-width: 1024px) { .carousel-item { flex: 0 0 33.333333%; } }
+.carousel-nav-btn { width: 3rem; height: 3rem; border-radius: 9999px; background: #fff; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-lg); border: 1px solid var(--border); transition: var(--transition); z-index: 10; }
+.carousel-nav-btn:hover { background: var(--surface); transform: scale(1.1); color: var(--primary); }
+.carousel-nav-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
 .toast{position:fixed;bottom:1.5rem;right:1.5rem;padding:1rem 1.5rem;background:var(--secondary);color:#fff;border-radius:var(--radius);box-shadow:var(--shadow-xl);display:none;align-items:center;gap:.75rem;z-index:999}
 .toast.show{display:flex}
 

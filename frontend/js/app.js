@@ -1154,6 +1154,33 @@
   }
 
   /* ===== MAIN APPLICATION BOOT STRAP ===== */
+  function initServicesCarousel() {
+    const carousel = $('#services-carousel');
+    const prevBtn = $('#prev-service');
+    const nextBtn = $('#next-service');
+    if (!carousel || !prevBtn || !nextBtn) return;
+
+    const scrollAmount = () => carousel.offsetWidth;
+
+    prevBtn.addEventListener('click', () => {
+      carousel.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
+    });
+
+    nextBtn.addEventListener('click', () => {
+      carousel.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
+    });
+
+    // Optional: Hide buttons if not scrollable or update states
+    const updateButtons = () => {
+        prevBtn.disabled = carousel.scrollLeft <= 0;
+        nextBtn.disabled = carousel.scrollLeft + carousel.offsetWidth >= carousel.scrollWidth - 10;
+    };
+
+    carousel.addEventListener('scroll', updateButtons);
+    window.addEventListener('resize', updateButtons);
+    updateButtons();
+  }
+
   function init() {
     Auth.init();
     initHashRouting();
@@ -1168,6 +1195,7 @@
     initSpaFilter();
     initGamingFilter();
     initPlanner();
+    initServicesCarousel();
     loadSavedPlans();
     initHomepageSearch();
 
