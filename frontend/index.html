@@ -796,11 +796,11 @@
       <form id="form-login" onsubmit="layoverx.handleLogin(event)" class="space-y-4">
         <div class="form-group text-left">
           <label class="form-label text-xs font-semibold text-gray-800 uppercase tracking-wider mb-1" for="login-email">Email Address</label>
-          <input id="login-email" type="email" class="form-input border border-gray-200 focus:border-sky-500 rounded-xl" placeholder="you@example.com" required/>
+          <input id="login-email" type="email" class="form-input border border-gray-200 focus:border-sky-500 rounded-xl" required/>
         </div>
         <div class="form-group text-left">
           <label class="form-label text-xs font-semibold text-gray-800 uppercase tracking-wider mb-1" for="login-password">Password</label>
-          <input id="login-password" type="password" class="form-input border border-gray-200 focus:border-sky-500 rounded-xl" placeholder="••••••••" required/>
+          <input id="login-password" type="password" class="form-input border border-gray-200 focus:border-sky-500 rounded-xl" required/>
         </div>
         <div class="flex items-center justify-between text-xs sm:text-sm pt-1">
           <label class="form-checkbox text-gray-700 flex items-center gap-1.5 cursor-pointer">
@@ -817,10 +817,6 @@
         <button class="social-btn border border-gray-200 hover:bg-gray-50 transition w-full py-2.5 rounded-xl flex items-center justify-center gap-2" onclick="layoverx.socialLogin('google')">
           <svg class="w-4 h-4" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v3.9h6.6c-.28 1.5-1.12 2.76-2.38 3.61v3h3.84c2.25-2.07 3.68-5.12 3.68-8.44z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.84-3c-1.07.72-2.44 1.15-4.09 1.15-3.15 0-5.82-2.13-6.77-5H1.28v3.1c1.98 3.94 6.06 6.66 10.72 6.66z"/><path fill="#FBBC05" d="M5.23 14.24a7.17 7.17 0 010-4.48v-3.1H1.28a11.96 11.96 0 000 10.68l3.95-3.1z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.43-3.43C17.95 1.19 15.24 0 12 0 7.34 0 3.26 2.72 1.28 6.66l3.95 3.1c.95-2.87 3.62-5 6.77-5z"/></svg>
           Continue with Google
-        </button>
-        <button class="social-btn border border-gray-200 hover:bg-gray-50 transition w-full py-2.5 rounded-xl flex items-center justify-center gap-2" onclick="layoverx.socialLogin('apple')">
-          <svg class="w-4 h-4 fill-current text-gray-900" viewBox="0 0 24 24"><path d="M17.05 20.28c-.98.95-2.05 1.88-3.08 1.9-1.03.02-1.36-.62-2.54-.62-1.19 0-1.56.6-2.55.64-1.01.03-2.2-.97-3.2-1.93-2.03-1.95-3.59-5.5-3.59-8.83 0-5.28 3.44-8.08 6.82-8.08 1.07 0 2.07.66 2.73.66.66 0 1.9-.8 3.18-.66 1.35.06 2.41.55 3.12 1.58-2.88 1.73-2.42 5.56.24 6.64-1.07 2.7-2.3 5.4-3.13 6.7M15.47 3.38c.55-.66.92-1.58.82-2.5-.78.03-1.73.52-2.29 1.18-.49.56-.92 1.5-.8 2.4.87.07 1.73-.42 2.27-1.08"/></svg>
-          Continue with Apple
         </button>
       </div>
       
@@ -842,15 +838,15 @@
       <form id="form-signup" onsubmit="layoverx.handleSignup(event)" class="space-y-4">
         <div class="form-group text-left">
           <label class="form-label text-xs font-semibold text-gray-800 uppercase tracking-wider mb-1" for="signup-name">Full Name</label>
-          <input id="signup-name" type="text" class="form-input border border-gray-200 focus:border-sky-500 rounded-xl" placeholder="John Doe" required/>
+          <input id="signup-name" type="text" class="form-input border border-gray-200 focus:border-sky-500 rounded-xl" required/>
         </div>
         <div class="form-group text-left">
           <label class="form-label text-xs font-semibold text-gray-800 uppercase tracking-wider mb-1" for="signup-email">Email Address</label>
-          <input id="signup-email" type="email" class="form-input border border-gray-200 focus:border-sky-500 rounded-xl" placeholder="you@example.com" required/>
+          <input id="signup-email" type="email" class="form-input border border-gray-200 focus:border-sky-500 rounded-xl" required/>
         </div>
         <div class="form-group text-left">
           <label class="form-label text-xs font-semibold text-gray-800 uppercase tracking-wider mb-1" for="signup-password">Password</label>
-          <input id="signup-password" type="password" class="form-input border border-gray-200 focus:border-sky-500 rounded-xl" placeholder="Create a password" required/>
+          <input id="signup-password" type="password" class="form-input border border-gray-200 focus:border-sky-500 rounded-xl" required/>
         </div>
         <button type="submit" class="btn btn-primary w-full mt-2 py-3 bg-sky-700 hover:bg-sky-700 text-white font-bold rounded-xl shadow-lg transition">Create Account</button>
       </form>
@@ -881,7 +877,7 @@
       
       <div class="form-group text-left space-y-2">
         <label class="form-label text-xs font-semibold text-gray-800 uppercase tracking-wider" for="forgot-email">Email Address</label>
-        <input id="forgot-email" type="email" class="form-input border border-gray-200 focus:border-sky-500 rounded-xl" placeholder="you@example.com" required/>
+        <input id="forgot-email" type="email" class="form-input border border-gray-200 focus:border-sky-500 rounded-xl" required/>
       </div>
       <button class="btn btn-primary w-full mt-4 py-3 bg-sky-700 hover:bg-sky-700 text-white font-bold rounded-xl shadow-lg transition" onclick="layoverx.handleForgot()">Send Reset Link</button>
       
