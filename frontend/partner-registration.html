@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Register as a Supplier | LayoverX Partner Program - LayoverX</title>
+  <meta name="description" content="Register your airport transit hotel, dining experience, spa center, tour packages, or airport transfers near CSMIA Mumbai."/>
+  <meta name="keywords" content="Mumbai Airport Hotels, Mumbai Airport Restaurants, Mumbai Transit Tours, Mumbai Airport Cabs, Layover Itinerary Planner, LayoverX"/>
+  <link rel="canonical" href="https://layoverx.com/partner-registration.html"/>
+  <meta property="og:title" content="Register as a Supplier | LayoverX Partner Program - LayoverX"/>
+  <meta property="og:description" content="Register your airport transit hotel, dining experience, spa center, tour packages, or airport transfers near CSMIA Mumbai."/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://layoverx.com/partner-registration.html"/>
+  <meta property="og:image" content="https://layoverx.com/assets/photos/homepage.png"/>
+  <meta property="og:site_name" content="LayoverX"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Register as a Supplier | LayoverX Partner Program - LayoverX"/>
+  <meta name="twitter:description" content="Register your airport transit hotel, dining experience, spa center, tour packages, or airport transfers near CSMIA Mumbai."/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Firebase App (the core Firebase SDK) -->
+  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app-compat.js"></script>
+  <!-- Firebase Products -->
+  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-storage-compat.js"></script>
+  
+  <script src="js/firebase-config.js"></script>
+  <link rel="stylesheet" href="css/design-system.css"/>
+  <script src="js/app.js" defer></script>
+  
+</head>
+
+<body class="overflow-x-hidden bg-surface ">
+
+  <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg">Skip to main content</a>
+
+  <!-- Header Section -->
+  <!-- NAVBAR - Fixed, z-1000, always visible -->
+<nav class="fixed top-0 left-0 right-0 z-[1000] transition-all duration-300 bg-transparent" id="navbar" aria-label="Main Navigation">
+  <div class="container">
+    <div class="flex items-center justify-between h-16 sm:h-20">
+      <a href="index.html" class="flex items-center gap-2" aria-label="LayoverX Home">
+        <div class="w-9 h-9 bg-gradient-to-br from-sky-500 to-sky-600 rounded-xl flex items-center justify-center">
+          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/>
+          </svg>
+        </div>
+        <span class="text-xl font-bold tracking-tight" id="logo-text">LayoverX</span>
+      </a>
+
+      <!-- Desktop Links -->
+      <div class="hidden lg:flex items-center gap-6">
+        <a class="nav-link text-sm font-medium transition-colors duration-200 " href="hotels.html">Hotels</a>
+        <a class="nav-link text-sm font-medium transition-colors duration-200 " href="restaurants.html">Restaurants</a>
+        <a class="nav-link text-sm font-medium transition-colors duration-200 " href="spa-wellness.html">Spa</a>
+        <a class="nav-link text-sm font-medium transition-colors duration-200 " href="gaming-entertainment.html">Gaming</a>
+        <a class="nav-link text-sm font-medium transition-colors duration-200 " href="experiences.html">Tours</a>
+        <a class="nav-link text-sm font-medium transition-colors duration-200 " href="airport-transfers.html">Transfers</a>
+        <a href="plan-my-layover.html" class="plan-my-layover-btn">Plan My Layover</a>
+        
+        <!-- Auth Guest View -->
+        <div class="auth-guest flex items-center gap-5">
+          <a href="#login" class="nav-link text-sm font-medium cursor-pointer" onclick="openAuthModal('login');return false;">Login</a>
+          <a href="#signup" class="px-4 py-2 bg-sky-700 text-white text-sm font-semibold rounded-xl hover:bg-sky-700 hover:shadow-lg hover:shadow-sky-500/20 transition hover:-translate-y-0.5 transform" onclick="openAuthModal('signup');return false;">Sign Up</a>
+        </div>
+
+        <!-- Auth User View -->
+        <div class="auth-user hidden items-center gap-4 user-menu">
+          <a href="supplier-dashboard.html" class="text-sm font-medium text-sky-300 hover:text-sky-400 hover:underline">Supplier Hub</a>
+          <div class="flex items-center gap-2 bg-white/20 backdrop-blur-md border border-white/20 px-3 py-1.5 rounded-xl">
+            <div class="w-6 h-6 bg-gradient-to-br from-sky-400 to-sky-600 rounded-full flex items-center justify-center text-[10px] font-bold text-white uppercase user-avatar-letter">U</div>
+            <span class="text-sm font-medium text-white user-name">Traveler</span>
+          </div>
+          <button class="text-sm font-medium text-red-400 hover:text-red-500 hover:underline cursor-pointer" onclick="layoverx.logout()">Logout</button>
+        </div>
+      </div>
+
+      <!-- Mobile Hamburger Menu Button -->
+      <button class="lg:hidden p-2 rounded-lg" id="menu-btn" aria-label="Toggle Menu" aria-expanded="false">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Dropdown Menu -->
+  <div class="lg:hidden hidden bg-white/95 backdrop-blur-xl rounded-2xl mt-2 p-4 shadow-xl mx-4 border border-gray-100" id="mobile-menu">
+    <a class="block text-gray-800 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium " href="hotels.html">Hotels</a>
+    <a class="block text-gray-800 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium " href="restaurants.html">Restaurants</a>
+    <a class="block text-gray-800 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium " href="spa-wellness.html">Spa & Wellness</a>
+    <a class="block text-gray-800 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium " href="gaming-entertainment.html">Gaming & Fun</a>
+    <a class="block text-gray-800 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium " href="experiences.html">Tours</a>
+    <a class="block text-gray-800 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium " href="airport-transfers.html">Transfers</a>
+    <a class="block text-gray-800 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium " href="how-it-works.html">How It Works</a>
+    <a class="block text-gray-800 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium " href="contact.html">Contact</a>
+    <a href="plan-my-layover.html" class="mt-2 block w-full text-center py-3 bg-sky-700 text-white font-semibold rounded-xl hover:bg-sky-700 transition shadow-md shadow-sky-500/10">Plan My Layover</a>
+    
+    <!-- Auth Guest View (Mobile) -->
+    <div class="auth-guest flex flex-col gap-2 mt-4 pt-4 border-t border-gray-100">
+      <a href="#login" class="block text-center py-2.5 text-gray-700 text-sm font-medium rounded-xl hover:bg-gray-50 border border-gray-200" onclick="openAuthModal('login');return false;">Login</a>
+      <a href="#signup" class="block text-center py-2.5 bg-sky-700 text-white text-sm font-semibold rounded-xl hover:bg-sky-700 transition" onclick="openAuthModal('signup');return false;">Sign Up</a>
+    </div>
+
+    <!-- Auth User View (Mobile) -->
+    <div class="auth-user hidden flex-col gap-2 mt-4 pt-4 border-t border-gray-100">
+      <div class="flex items-center gap-3 px-4 py-2 bg-gray-50 rounded-xl">
+        <div class="w-8 h-8 bg-gradient-to-br from-sky-400 to-sky-600 rounded-full flex items-center justify-center text-xs font-bold text-white uppercase user-avatar-letter">U</div>
+        <div>
+          <div class="text-xs text-gray-700 font-medium">Signed in as</div>
+          <div class="text-sm font-bold text-gray-900 user-name">Traveler</div>
+        </div>
+      </div>
+      <a href="supplier-dashboard.html" class="w-full text-center py-2.5 bg-indigo-50 text-indigo-700 font-semibold rounded-xl text-sm transition">Supplier Hub</a>
+      <button class="mt-2 w-full text-center py-2.5 bg-red-50 text-red-600 hover:bg-red-100 text-sm font-semibold rounded-xl transition" onclick="layoverx.logout()">Logout</button>
+    </div>
+  </div>
+</nav>
+
+
+  <!-- Page Content -->
+  <main id="main">
+    <!-- PARTNER REGISTRATION HERO -->
+<section class="relative bg-gradient-to-b from-slate-900 to-slate-950 text-white pt-24 pb-12 overflow-hidden">
+  <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+  <div class="absolute -top-40 -right-40 w-96 h-96 bg-sky-500/10 rounded-full blur-3xl"></div>
+  
+  <div class="container relative z-10 text-center max-w-3xl">
+    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-sky-500/20 text-sky-300 border border-sky-500/30 mb-4">
+      🚀 LAYOVERX PARTNER PROGRAM
+    </span>
+    <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-tight mb-4">
+      Onboard Your Business on <br/>
+      <span class="bg-gradient-to-r from-sky-400 to-sky-200 bg-clip-text text-transparent">LayoverX Marketplace</span>
+    </h1>
+    <p class="text-gray-300 text-sm sm:text-base max-w-2xl mx-auto">
+      Connect with premium international transit flyers who have 3 to 12 hour layovers near your airport. List your hotels, dining, spas, entertainment centers, or taxi services.
+    </p>
+  </div>
+</section>
+
+<!-- MULTI-STEP WIZARD SECTION -->
+<section class="py-12 bg-gray-50 min-h-[600px]">
+  <div class="container max-w-4xl">
+    
+    <!-- AUTHENTICATION CHECK OVERLAY -->
+    <div id="auth-required-panel" class="bg-white border border-gray-200 rounded-3xl shadow-xl p-8 text-center max-w-md mx-auto hidden animate-fade-in">
+      <div class="w-16 h-16 bg-sky-50 rounded-2xl flex items-center justify-center mx-auto mb-6">
+        <span class="text-3xl">🔒</span>
+      </div>
+      <h2 class="text-xl font-bold text-gray-900 mb-2">Partner Account Required</h2>
+      <p class="text-sm text-gray-600 mb-8 leading-relaxed">
+        To submit a supplier application and manage your business listing, please log in or create an account.
+      </p>
+      <div class="flex flex-col gap-3">
+        <button onclick="window.openAuthModal('login')" class="px-6 py-3 bg-gray-900 hover:bg-black text-white font-bold rounded-xl shadow-md transition-all">
+          Sign In / Log In
+        </button>
+        <button onclick="window.openAuthModal('signup')" class="px-6 py-3 border border-gray-300 hover:bg-gray-50 text-gray-800 font-bold rounded-xl transition-all">
+          Create New Account
+        </button>
+      </div>
+    </div>
+
+    <!-- MAIN ONBOARDING WIZARD (Visible when authed) -->
+    <div id="partner-wizard-panel" class="hidden">
+      <!-- Progress Stepper -->
+      <div class="mb-10 px-4">
+        <div class="flex items-center justify-between relative max-w-3xl mx-auto">
+          <!-- Stepper Background Line -->
+          <div class="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-0.5 bg-gray-200 z-0"></div>
+          <div id="stepper-progress-line" class="absolute left-0 top-1/2 -translate-y-1/2 h-0.5 bg-sky-600 z-0 transition-all duration-300" style="width: 0%;"></div>
+
+          <!-- Step Indicators -->
+          <div class="step-indicator z-10 flex flex-col items-center gap-1.5 active" data-step="1">
+            <div class="w-8 h-8 rounded-full bg-sky-600 text-white font-bold text-sm flex items-center justify-center transition-all shadow-md shadow-sky-500/20 ring-4 ring-sky-50">1</div>
+            <span class="text-[10px] sm:text-xs font-bold text-gray-800">Owner</span>
+          </div>
+          <div class="step-indicator z-10 flex flex-col items-center gap-1.5" data-step="2">
+            <div class="w-8 h-8 rounded-full bg-white text-gray-400 border border-gray-300 font-bold text-sm flex items-center justify-center transition-all">2</div>
+            <span class="text-[10px] sm:text-xs font-medium text-gray-400">Business</span>
+          </div>
+          <div class="step-indicator z-10 flex flex-col items-center gap-1.5" data-step="3">
+            <div class="w-8 h-8 rounded-full bg-white text-gray-400 border border-gray-300 font-bold text-sm flex items-center justify-center transition-all">3</div>
+            <span class="text-[10px] sm:text-xs font-medium text-gray-400">Location</span>
+          </div>
+          <div class="step-indicator z-10 flex flex-col items-center gap-1.5" data-step="4">
+            <div class="w-8 h-8 rounded-full bg-white text-gray-400 border border-gray-300 font-bold text-sm flex items-center justify-center transition-all">4</div>
+            <span class="text-[10px] sm:text-xs font-medium text-gray-400">Details</span>
+          </div>
+          <div class="step-indicator z-10 flex flex-col items-center gap-1.5" data-step="5">
+            <div class="w-8 h-8 rounded-full bg-white text-gray-400 border border-gray-300 font-bold text-sm flex items-center justify-center transition-all">5</div>
+            <span class="text-[10px] sm:text-xs font-medium text-gray-400">Uploads</span>
+          </div>
+          <div class="step-indicator z-10 flex flex-col items-center gap-1.5" data-step="6">
+            <div class="w-8 h-8 rounded-full bg-white text-gray-400 border border-gray-300 font-bold text-sm flex items-center justify-center transition-all">6</div>
+            <span class="text-[10px] sm:text-xs font-medium text-gray-400">Review</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form Card -->
+      <div class="bg-white border border-gray-200 rounded-3xl shadow-xl p-8 sm:p-10 relative">
+        <form id="onboarding-form" onsubmit="event.preventDefault();" class="space-y-6">
+          
+          <!-- STEP 1: OWNER INFO -->
+          <div class="wizard-step" data-step="1">
+            <div class="mb-6">
+              <h2 class="text-xl sm:text-2xl font-extrabold text-gray-900 mb-1">Owner Information</h2>
+              <p class="text-sm text-gray-500 font-medium">Verify your direct contact details. We will use these for verification call.</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div class="form-group">
+                <label for="owner-name" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Full Name <span class="text-red-500">*</span></label>
+                <input type="text" id="owner-name" class="w-full border border-gray-300 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all" placeholder="Enter owner full name" required/>
+              </div>
+              <div class="form-group">
+                <label for="owner-email" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Email Address <span class="text-red-500">*</span></label>
+                <input type="email" id="owner-email" class="w-full border border-gray-300 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all bg-gray-50" readonly required/>
+              </div>
+              <div class="form-group sm:col-span-2">
+                <label for="owner-phone" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Mobile / WhatsApp Number <span class="text-red-500">*</span></label>
+                <input type="tel" id="owner-phone" class="w-full border border-gray-300 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all" placeholder="e.g. +91 98765 43210" required/>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 2: BUSINESS & CATEGORY -->
+          <div class="wizard-step hidden" data-step="2">
+            <div class="mb-6">
+              <h2 class="text-xl sm:text-2xl font-extrabold text-gray-900 mb-1">Business details</h2>
+              <p class="text-sm text-gray-500 font-medium">Tell us about your brand name and marketplace category.</p>
+            </div>
+            <div class="space-y-5">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div class="form-group">
+                  <label for="biz-name" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Registered Business Name <span class="text-red-500">*</span></label>
+                  <input type="text" id="biz-name" class="w-full border border-gray-300 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all" placeholder="e.g. Grand Transit Inn Sahar" required/>
+                </div>
+                <div class="form-group">
+                  <label for="biz-category" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Business Category <span class="text-red-500">*</span></label>
+                  <select id="biz-category" class="w-full border border-gray-300 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all" required>
+                    <option value="" disabled selected>Select category...</option>
+                    <option value="Hotel">Transit Hotel</option>
+                    <option value="Restaurant">Premium Dining / Restaurant</option>
+                    <option value="Spa">Spa & Wellness Lounge</option>
+                    <option value="Gaming">Gaming & Cinema Lounge</option>
+                    <option value="Tours">Sightseeing & Tours Operator</option>
+                    <option value="Transfers">Airport Pickup & Cabs Operator</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="biz-desc" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Business Description <span class="text-red-500">*</span></label>
+                <textarea id="biz-desc" rows="4" class="w-full border border-gray-300 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all" placeholder="Briefly describe your transit services, hourly slots, proximity to terminals, or specialty options..." required></textarea>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 3: LOCATION INFO -->
+          <div class="wizard-step hidden" data-step="3">
+            <div class="mb-6">
+              <h2 class="text-xl sm:text-2xl font-extrabold text-gray-900 mb-1">Location details</h2>
+              <p class="text-sm text-gray-500 font-medium">Specify the primary international airport you service.</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div class="form-group">
+                <label for="location-airport" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Airport Served <span class="text-red-500">*</span></label>
+                <input type="text" id="location-airport" class="w-full border border-gray-300 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all" placeholder="e.g. Mumbai Airport CSMIA (BOM)" required/>
+              </div>
+              <div class="form-group">
+                <label for="location-city" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">City <span class="text-red-500">*</span></label>
+                <input type="text" id="location-city" class="w-full border border-gray-300 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all" placeholder="e.g. Mumbai" required/>
+              </div>
+              <div class="form-group">
+                <label for="location-state" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">State / Region <span class="text-red-500">*</span></label>
+                <input type="text" id="location-state" class="w-full border border-gray-300 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all" placeholder="e.g. Maharashtra" required/>
+              </div>
+              <div class="form-group">
+                <label for="location-country" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Country <span class="text-red-500">*</span></label>
+                <input type="text" id="location-country" class="w-full border border-gray-300 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all" placeholder="e.g. India" required/>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 4: BUSINESS DETAILS -->
+          <div class="wizard-step hidden" data-step="4">
+            <div class="mb-6">
+              <h2 class="text-xl sm:text-2xl font-extrabold text-gray-900 mb-1">Operational details</h2>
+              <p class="text-sm text-gray-500 font-medium">Additional information to complete your online storefront metadata profile.</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div class="form-group">
+                <label for="biz-website" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Website URL</label>
+                <input type="url" id="biz-website" class="w-full border border-gray-300 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all" placeholder="e.g. https://myhotel.com"/>
+              </div>
+              <div class="form-group">
+                <label for="biz-maps-link" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Google Maps Location Link <span class="text-red-500">*</span></label>
+                <input type="url" id="biz-maps-link" class="w-full border border-gray-300 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all" placeholder="e.g. https://goo.gl/maps/..." required/>
+              </div>
+              <div class="form-group">
+                <label for="biz-years" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Years in Operation <span class="text-red-500">*</span></label>
+                <input type="number" id="biz-years" min="0" class="w-full border border-gray-300 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all" placeholder="e.g. 5" required/>
+              </div>
+              <div class="form-group">
+                <label for="biz-staff" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Number of Full-Time Staff <span class="text-red-500">*</span></label>
+                <input type="number" id="biz-staff" min="1" class="w-full border border-gray-300 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all" placeholder="e.g. 15" required/>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 5: DOCUMENT UPLOADS -->
+          <div class="wizard-step hidden" data-step="5">
+            <div class="mb-6">
+              <h2 class="text-xl sm:text-2xl font-extrabold text-gray-900 mb-1">Verify business documents</h2>
+              <p class="text-sm text-gray-500 font-medium">Upload verification files. Supported formats: JPEG, PNG, PDF. Max 5MB.</p>
+            </div>
+            <div class="space-y-6">
+              <!-- Logo Upload -->
+              <div class="border border-dashed border-gray-300 hover:border-sky-500 rounded-2xl p-5 transition-colors relative">
+                <div class="flex items-center gap-4">
+                  <div class="w-12 h-12 bg-sky-50 rounded-xl flex items-center justify-center text-xl text-sky-600">🖼️</div>
+                  <div class="flex-grow">
+                    <h4 class="font-bold text-gray-900 text-sm">Business Logo / Profile Banner <span class="text-red-500">*</span></h4>
+                    <p class="text-xs text-gray-500 mt-0.5">High-quality image of logo or entrance storefront.</p>
+                  </div>
+                  <label class="cursor-pointer px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-800 text-xs font-bold rounded-xl transition">
+                    Browse
+                    <input type="file" id="upload-logo" accept="image/*,.pdf" class="hidden" required onchange="partnerOnboarding.handleFileSelected(this, 'logo')"/>
+                  </label>
+                </div>
+                <div id="file-logo-status" class="hidden mt-3 text-xs font-medium text-emerald-600 flex items-center gap-1.5">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                  <span>Selected: <strong class="file-name text-gray-800"></strong></span>
+                </div>
+              </div>
+
+              <!-- License Upload -->
+              <div class="border border-dashed border-gray-300 hover:border-sky-500 rounded-2xl p-5 transition-colors relative">
+                <div class="flex items-center gap-4">
+                  <div class="w-12 h-12 bg-sky-50 rounded-xl flex items-center justify-center text-xl text-sky-600">📜</div>
+                  <div class="flex-grow">
+                    <h4 class="font-bold text-gray-900 text-sm">Business Registration Certificate / Trade License <span class="text-red-500">*</span></h4>
+                    <p class="text-xs text-gray-500 mt-0.5">Official registration license or GST registration.</p>
+                  </div>
+                  <label class="cursor-pointer px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-800 text-xs font-bold rounded-xl transition">
+                    Browse
+                    <input type="file" id="upload-license" accept="image/*,.pdf" class="hidden" required onchange="partnerOnboarding.handleFileSelected(this, 'license')"/>
+                  </label>
+                </div>
+                <div id="file-license-status" class="hidden mt-3 text-xs font-medium text-emerald-600 flex items-center gap-1.5">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                  <span>Selected: <strong class="file-name text-gray-800"></strong></span>
+                </div>
+              </div>
+
+              <!-- Identity Verification Document -->
+              <div class="border border-dashed border-gray-300 hover:border-sky-500 rounded-2xl p-5 transition-colors relative">
+                <div class="flex items-center gap-4">
+                  <div class="w-12 h-12 bg-sky-50 rounded-xl flex items-center justify-center text-xl text-sky-600">🆔</div>
+                  <div class="flex-grow">
+                    <h4 class="font-bold text-gray-900 text-sm">Owner Identity Verification Document <span class="text-red-500">*</span></h4>
+                    <p class="text-xs text-gray-500 mt-0.5">Government ID, Passport, or Aadhaar Card scan.</p>
+                  </div>
+                  <label class="cursor-pointer px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-800 text-xs font-bold rounded-xl transition">
+                    Browse
+                    <input type="file" id="upload-id" accept="image/*,.pdf" class="hidden" required onchange="partnerOnboarding.handleFileSelected(this, 'id')"/>
+                  </label>
+                </div>
+                <div id="file-id-status" class="hidden mt-3 text-xs font-medium text-emerald-600 flex items-center gap-1.5">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                  <span>Selected: <strong class="file-name text-gray-800"></strong></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 6: REVIEW DETAILS -->
+          <div class="wizard-step hidden" data-step="6">
+            <div class="mb-6">
+              <h2 class="text-xl sm:text-2xl font-extrabold text-gray-900 mb-1">Confirm application details</h2>
+              <p class="text-sm text-gray-500 font-medium">Verify your profile summary. Submitting locks your application under review.</p>
+            </div>
+            
+            <div class="border border-gray-100 rounded-2xl overflow-hidden divide-y divide-gray-100 bg-gray-50/50">
+              <div class="p-5 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-0.5">Owner Full Name</h4>
+                  <p id="review-owner-name" class="text-sm font-semibold text-gray-900">--</p>
+                </div>
+                <div>
+                  <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-0.5">Email & Phone</h4>
+                  <p id="review-owner-contact" class="text-sm font-semibold text-gray-900">--</p>
+                </div>
+              </div>
+              <div class="p-5 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-0.5">Business & Category</h4>
+                  <p id="review-biz-name" class="text-sm font-semibold text-gray-900">--</p>
+                </div>
+                <div>
+                  <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-0.5">Airport Proximity</h4>
+                  <p id="review-biz-airport" class="text-sm font-semibold text-gray-900">--</p>
+                </div>
+              </div>
+              <div class="p-5">
+                <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-0.5">Listing Description</h4>
+                <p id="review-biz-desc" class="text-sm text-gray-700 leading-relaxed">--</p>
+              </div>
+              <div class="p-5 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-0.5">Website & Staff Count</h4>
+                  <p id="review-biz-details" class="text-sm font-semibold text-gray-900">--</p>
+                </div>
+                <div>
+                  <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-0.5">Uploaded Documents</h4>
+                  <p id="review-biz-files" class="text-sm text-emerald-600 font-semibold flex items-center gap-1">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    <span>All 3 certificates selected</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Operational statement -->
+            <p class="text-xs text-gray-500 leading-relaxed mt-4">
+              By submitting this application, you declare under penalty of perjury that the uploaded trade licensing documents represent your active legal incorporation credentials, and agree to the LayoverX supplier terms and SLA policies.
+            </p>
+          </div>
+
+          <!-- SUBMIT SUCCESS PAGE -->
+          <div id="wizard-success-panel" class="hidden text-center py-6 animate-scale-up">
+            <div class="w-20 h-20 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl shadow-xl shadow-emerald-500/10">
+              ✓
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900 mb-2">Application Submitted Successfully</h2>
+            <p class="text-sm text-gray-500 max-w-md mx-auto mb-8 font-medium">
+              Thank you for onboarding with us. Your application has been logged on Firestore and is queued for verification review.
+            </p>
+            
+            <div class="max-w-md mx-auto bg-gray-50 border border-gray-200 rounded-2xl p-6 text-left mb-8 space-y-4">
+              <div class="flex justify-between items-center text-sm">
+                <span class="text-gray-500 font-medium">Application Reference ID:</span>
+                <strong id="success-app-id" class="text-gray-900 font-extrabold uppercase">APP-9A2SDF90</strong>
+              </div>
+              <div class="flex justify-between items-center text-sm">
+                <span class="text-gray-500 font-medium">Submission Date:</span>
+                <span id="success-app-date" class="text-gray-900 font-semibold">June 9, 2026</span>
+              </div>
+              <div class="flex justify-between items-center text-sm">
+                <span class="text-gray-500 font-medium">Review Verification Status:</span>
+                <span class="px-2.5 py-1 text-xs font-bold text-amber-700 bg-amber-100 rounded-full flex items-center gap-1.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>
+                  Pending Review
+                </span>
+              </div>
+              <div class="flex justify-between items-center text-sm">
+                <span class="text-gray-500 font-medium">Expected Response SLA Time:</span>
+                <strong class="text-sky-700 font-bold">24-48 Hours</strong>
+              </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
+              <a href="supplier-dashboard.html" class="flex-grow px-6 py-3.5 bg-gray-900 hover:bg-black text-white text-sm font-bold rounded-xl shadow-md transition-all">
+                Go to Supplier Dashboard
+              </a>
+              <a href="index.html" class="px-6 py-3.5 border border-gray-300 hover:bg-gray-50 text-gray-800 text-sm font-semibold rounded-xl transition-all">
+                Return Home
+              </a>
+            </div>
+          </div>
+
+          <!-- Navigation buttons -->
+          <div id="wizard-navigation-panel" class="flex justify-between items-center border-t border-gray-150 pt-8 mt-6">
+            <button type="button" id="prev-btn" onclick="partnerOnboarding.moveStep(-1)" class="px-6 py-3 border border-gray-300 text-gray-700 font-bold rounded-xl text-sm hover:bg-gray-50 transition invisible">
+              Back
+            </button>
+            <button type="button" id="next-btn" onclick="partnerOnboarding.moveStep(1)" class="px-7 py-3 bg-sky-700 hover:bg-sky-700 text-white font-bold rounded-xl text-sm shadow-md transition transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
+              <span>Next Step</span>
+              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+            </button>
+            <button type="button" id="submit-btn" onclick="partnerOnboarding.submitApplication()" class="px-7 py-3 bg-emerald-600 hover:bg-emerald-600 text-white font-bold rounded-xl text-sm shadow-md transition transform hover:-translate-y-0.5 flex items-center justify-center gap-2 hidden">
+              <span>Submit Application</span>
+              <svg class="w-4 h-4 text-white hidden spinner animate-spin" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+            </button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- WIZARD PAGE SPECIFIC SCRIPTS -->
+<script>
+  const partnerOnboarding = {
+    currentStep: 1,
+    totalSteps: 6,
+    uploadedFiles: {
+      logo: null,
+      license: null,
+      id: null
+    },
+    
+    init() {
+      // Monitor firebase auth state
+      window.layoverxAuth.onAuthStateChanged(user => {
+        const authPanel = document.getElementById('auth-required-panel');
+        const wizardPanel = document.getElementById('partner-wizard-panel');
+        if (!authPanel || !wizardPanel) return;
+
+        if (user) {
+          authPanel.classList.add('hidden');
+          wizardPanel.classList.remove('hidden');
+          
+          // Pre-fill owner step fields
+          const nameInput = document.getElementById('owner-name');
+          const emailInput = document.getElementById('owner-email');
+          if (nameInput) nameInput.value = user.displayName || '';
+          if (emailInput) emailInput.value = user.email || '';
+          
+          this.updateStepper();
+        } else {
+          authPanel.classList.remove('hidden');
+          wizardPanel.classList.add('hidden');
+        }
+      });
+    },
+
+    updateStepper() {
+      // Toggle progress bars and steps highlight
+      const percent = ((this.currentStep - 1) / (this.totalSteps - 1)) * 100;
+      const progressLine = document.getElementById('stepper-progress-line');
+      if (progressLine) progressLine.style.width = `${percent}%`;
+
+      document.querySelectorAll('.step-indicator').forEach(indicator => {
+        const step = parseInt(indicator.dataset.step);
+        const ring = indicator.querySelector('.rounded-full');
+        if (step < this.currentStep) {
+          // Completed steps
+          ring.className = "w-8 h-8 rounded-full bg-emerald-600 text-white font-bold text-sm flex items-center justify-center shadow-md shadow-emerald-500/10 transition-all";
+          ring.innerHTML = '✓';
+          indicator.querySelector('span').className = "text-[10px] sm:text-xs font-bold text-emerald-600";
+        } else if (step === this.currentStep) {
+          // Active step
+          ring.className = "w-8 h-8 rounded-full bg-sky-600 text-white font-bold text-sm flex items-center justify-center shadow-md shadow-sky-500/20 ring-4 ring-sky-50 transition-all";
+          ring.innerHTML = step;
+          indicator.querySelector('span').className = "text-[10px] sm:text-xs font-bold text-gray-800";
+        } else {
+          // Inactive step
+          ring.className = "w-8 h-8 rounded-full bg-white text-gray-400 border border-gray-300 font-bold text-sm flex items-center justify-center transition-all";
+          ring.innerHTML = step;
+          indicator.querySelector('span').className = "text-[10px] sm:text-xs font-medium text-gray-400";
+        }
+      });
+    },
+
+    moveStep(dir) {
+      if (dir === 1 && !this.validateCurrentStep()) {
+        return; // Halt if current step has empty inputs
+      }
+
+      this.currentStep += dir;
+      if (this.currentStep < 1) this.currentStep = 1;
+      if (this.currentStep > this.totalSteps) this.currentStep = this.totalSteps;
+
+      // Toggle display
+      document.querySelectorAll('.wizard-step').forEach(stepEl => {
+        const stepNum = parseInt(stepEl.dataset.step);
+        if (stepNum === this.currentStep) {
+          stepEl.classList.remove('hidden');
+        } else {
+          stepEl.classList.add('hidden');
+        }
+      });
+
+      // Update review contents on step 6
+      if (this.currentStep === 6) {
+        this.populateReviewData();
+      }
+
+      // Hide or show action buttons
+      const prevBtn = document.getElementById('prev-btn');
+      const nextBtn = document.getElementById('next-btn');
+      const submitBtn = document.getElementById('submit-btn');
+
+      if (prevBtn) {
+        if (this.currentStep === 1) {
+          prevBtn.classList.add('invisible');
+        } else {
+          prevBtn.classList.remove('invisible');
+        }
+      }
+
+      if (nextBtn && submitBtn) {
+        if (this.currentStep === this.totalSteps) {
+          nextBtn.classList.add('hidden');
+          submitBtn.classList.remove('hidden');
+        } else {
+          nextBtn.classList.remove('hidden');
+          submitBtn.classList.add('hidden');
+        }
+      }
+
+      this.updateStepper();
+      
+      // Smooth scroll back to top of form
+      document.getElementById('partner-wizard-panel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    },
+
+    validateCurrentStep() {
+      const activeEl = document.querySelector(`.wizard-step[data-step="${this.currentStep}"]`);
+      if (!activeEl) return true;
+      const inputs = activeEl.querySelectorAll('input[required], select[required], textarea[required]');
+      let valid = true;
+      inputs.forEach(input => {
+        // Clear previous outline errors
+        input.classList.remove('border-red-500', 'focus:ring-red-500/20');
+        if (!input.value.trim() || (input.type === 'file' && !input.files.length && !this.uploadedFiles[input.id.replace('upload-', '')])) {
+          input.classList.add('border-red-500', 'focus:ring-red-500/20');
+          valid = false;
+        }
+      });
+
+      if (!valid) {
+        // Expose native validator alert message if standard form submit is bypassed
+        const errToast = document.querySelector('#toast-container') ? true : false;
+        if (typeof window.layoverx.showToast === 'function') {
+          window.layoverx.showToast("Please complete all required fields before proceeding.");
+        } else {
+          alert("Please complete all required fields before proceeding.");
+        }
+      }
+      return valid;
+    },
+
+    handleFileSelected(inputEl, docType) {
+      if (inputEl.files.length) {
+        const file = inputEl.files[0];
+        const statusPanel = document.getElementById(`file-${docType}-status`);
+        if (statusPanel) {
+          statusPanel.classList.remove('hidden');
+          statusPanel.querySelector('.file-name').textContent = file.name;
+        }
+        this.uploadedFiles[docType] = file;
+        inputEl.classList.remove('border-red-500');
+      }
+    },
+
+    populateReviewData() {
+      const getVal = (id) => document.getElementById(id)?.value || '--';
+      
+      document.getElementById('review-owner-name').textContent = getVal('owner-name');
+      document.getElementById('review-owner-contact').textContent = `${getVal('owner-email')} | ${getVal('owner-phone')}`;
+      
+      const bizCat = document.getElementById('biz-category');
+      const catText = bizCat?.options[bizCat.selectedIndex]?.text || '--';
+      document.getElementById('review-biz-name').textContent = `${getVal('biz-name')} (${catText})`;
+      
+      document.getElementById('review-biz-airport').textContent = `${getVal('location-airport')} (${getVal('location-city')}, ${getVal('location-country')})`;
+      document.getElementById('review-biz-desc').textContent = getVal('biz-desc');
+      
+      const web = getVal('biz-website');
+      const staff = getVal('biz-staff');
+      document.getElementById('review-biz-details').textContent = `${web !== '--' && web ? web : 'No Website'} | ${staff} Employees`;
+    },
+
+    async submitApplication() {
+      if (!this.validateCurrentStep()) return;
+      
+      const submitBtn = document.getElementById('submit-btn');
+      const spinner = submitBtn.querySelector('.spinner');
+      
+      submitBtn.disabled = true;
+      if (spinner) spinner.classList.remove('hidden');
+
+      try {
+        const user = window.layoverxAuth.currentUser;
+        if (!user) throw new Error("User must be logged in.");
+
+        const getVal = (id) => document.getElementById(id)?.value || '';
+        const appId = 'APP_' + Math.random().toString(36).substring(2, 11).toUpperCase();
+        
+        // Upload documents helper
+        const docUrls = { logoUrl: '', licenseUrl: '', idUrl: '' };
+        const storage = window.layoverxStorage;
+        const db = window.layoverxDb;
+
+        const uploadPromises = Object.entries(this.uploadedFiles).map(async ([type, file]) => {
+          if (file) {
+            const ext = file.name.split('.').pop();
+            const refPath = `suppliers/${user.uid}/${type}_${Date.now()}.${ext}`;
+            const ref = storage.ref().child(refPath);
+            await ref.put(file);
+            const downloadUrl = await ref.getDownloadURL();
+            docUrls[`${type}Url`] = downloadUrl;
+          }
+        });
+
+        await Promise.all(uploadPromises);
+
+        // Save application to firestore
+        const docData = {
+          applicationId: appId,
+          userId: user.uid,
+          businessName: getVal('biz-name'),
+          businessCategory: getVal('biz-category'),
+          ownerName: getVal('owner-name'),
+          email: getVal('owner-email'),
+          phone: getVal('owner-phone'),
+          airportServed: getVal('location-airport'),
+          city: getVal('location-city'),
+          country: getVal('location-country'),
+          website: getVal('biz-website'),
+          description: getVal('biz-desc'),
+          documents: docUrls,
+          status: 'pending_review',
+          createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+          approvedBy: null,
+          approvedAt: null,
+          reviewNotes: ''
+        };
+
+        await db.collection("supplier_applications").doc(appId).set(docData);
+
+        // Hide navigation and steps, show success state
+        document.querySelector(`.wizard-step[data-step="6"]`).classList.add('hidden');
+        document.getElementById('wizard-navigation-panel').classList.add('hidden');
+        
+        document.getElementById('success-app-id').textContent = appId;
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById('success-app-date').textContent = new Date().toLocaleDateString(undefined, options);
+        
+        document.getElementById('wizard-success-panel').classList.remove('hidden');
+        
+      } catch (err) {
+        console.error("Submission Error:", err);
+        alert(`Application submission failed: ${err.message}`);
+        submitBtn.disabled = false;
+        if (spinner) spinner.classList.add('hidden');
+      }
+    }
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => partnerOnboarding.init());
+  } else {
+    partnerOnboarding.init();
+  }
+</script>
+
+  </main>
+
+  <!-- Footer Section -->
+  <!-- FOOTER -->
+<footer class="bg-gray-900 text-white pt-16 pb-12">
+  <div class="container">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+      <div>
+        <a href="index.html" class="flex items-center gap-2 mb-4">
+          <div class="w-9 h-9 bg-gradient-to-br from-sky-500 to-sky-600 rounded-xl flex items-center justify-center">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/>
+            </svg>
+          </div>
+          <span class="text-xl font-bold tracking-tight text-white">LayoverX</span>
+        </a>
+        <p class="text-gray-400 text-sm leading-relaxed mb-6">
+          Mumbai Travel & Layover Experience Platform. Transform your transit hours into memorable journeys with premium hotels, fine dining, curated city tours, and airport transfers near CSIA.
+        </p>
+        <div class="flex items-center gap-3">
+          <a href="#" aria-label="Facebook" class="w-8 h-8 rounded-lg bg-gray-800 hover:bg-sky-500 transition-colors flex items-center justify-center text-gray-400 hover:text-white">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M9 8H7v3h2v9h4v-9h3.6l.4-3h-4V6.5c0-.8.2-1.1 1-1.1h3V2h-4.3C12.3 2 10 3.8 10 7.5V8z"/></svg>
+          </a>
+          <a href="#" aria-label="Twitter" class="w-8 h-8 rounded-lg bg-gray-800 hover:bg-sky-500 transition-colors flex items-center justify-center text-gray-400 hover:text-white">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M23.95 4.57a10 10 0 01-2.82.78 4.9 4.9 0 002.16-2.72 9.9 9.9 0 01-3.12 1.19 4.92 4.92 0 00-8.38 4.48A14 14 0 011.64 3.16a4.92 4.92 0 001.52 6.57 4.9 4.9 0 01-2.23-.62v.06a4.93 4.93 0 003.95 4.83 4.9 4.9 0 01-2.22.08 4.93 4.93 0 004.6 3.42A9.9 9.9 0 010 19.54a13.9 13.9 0 007.55 2.21c9.05 0 14-7.5 14-14v-.64a10 10 0 002.4-2.54z"/></svg>
+          </a>
+          <a href="#" aria-label="Instagram" class="w-8 h-8 rounded-lg bg-gray-800 hover:bg-sky-500 transition-colors flex items-center justify-center text-gray-400 hover:text-white">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h3 class="font-bold mb-4 text-sm text-sky-400 uppercase tracking-wider">Explore Services</h3>
+        <ul class="space-y-2">
+          <li><a class="text-gray-400 hover:text-white text-sm transition-colors" href="hotels.html">Airport Hotels</a></li>
+          <li><a class="text-gray-400 hover:text-white text-sm transition-colors" href="restaurants.html">Restaurants & Dining</a></li>
+          <li><a class="text-gray-400 hover:text-white text-sm transition-colors" href="experiences.html">Tours & Experiences</a></li>
+          <li><a class="text-gray-400 hover:text-white text-sm transition-colors" href="airport-transfers.html">Airport Taxi & Transfers</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="font-bold mb-4 text-sm text-sky-400 uppercase tracking-wider">Company</h3>
+        <ul class="space-y-2">
+          <li><a class="text-gray-400 hover:text-white text-sm transition-colors" href="how-it-works.html">How It Works</a></li>
+          <li><a class="text-gray-400 hover:text-white text-sm transition-colors" href="contact.html">Contact Us</a></li>
+          <li><a class="text-gray-400 hover:text-white text-sm transition-colors" href="contact.html#partner">Partner With Us</a></li>
+          <li><a class="text-gray-400 hover:text-white text-sm transition-colors" href="how-it-works.html#faq">FAQs</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="font-bold mb-4 text-sm text-sky-400 uppercase tracking-wider">Get In Touch</h3>
+        <ul class="space-y-3">
+          <li class="flex items-center gap-2.5 text-gray-400 text-sm">
+            <svg class="w-4 h-4 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
+            <a href="mailto:hello@layoverx.com" class="hover:text-white transition-colors">hello@layoverx.com</a>
+          </li>
+          <li class="flex items-center gap-2.5 text-gray-400 text-sm">
+            <svg class="w-4 h-4 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-2.824-1.47-5.112-3.758-6.58-6.58l1.293-.97c.362-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/></svg>
+            <a href="tel:+912212345678" class="hover:text-white transition-colors">+91 22 1234 5678</a>
+          </li>
+          <li class="flex items-start gap-2.5 text-gray-400 text-sm">
+            <svg class="w-4 h-4 text-sky-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+            <span>Andheri East, Near CSMIA Terminal 2,<br/>Mumbai, MH 400099, India</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-gray-800 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="text-gray-400 text-xs">&copy; 2026 LayoverX. All rights reserved. Realized with high-performance standards.</p>
+      <div class="flex items-center gap-6">
+        <a class="text-gray-400 hover:text-white text-xs transition-colors" href="#">Privacy Policy</a>
+        <a class="text-gray-400 hover:text-white text-xs transition-colors" href="#">Terms of Service</a>
+        <a class="text-gray-400 hover:text-white text-xs transition-colors" href="#">Cookie Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  <!-- Modals Section -->
+  <!-- Auth Modals -->
+<div id="modal-login" class="modal-overlay opacity-0 transition-opacity duration-300" data-modal="login" role="dialog" aria-modal="true" aria-labelledby="login-title">
+  <div class="modal-content transform scale-95 transition-transform duration-300 p-8 sm:p-10 !max-w-md">
+    <button class="modal-close font-semibold text-2xl" aria-label="Close Login Modal" onclick="layoverx.closeModal('login')">&times;</button>
+    <div class="auth-form">
+      <div class="mb-8 text-center">
+        <h2 id="login-title" class="text-gray-900 text-2xl sm:text-3xl font-extrabold tracking-tight mb-2">Welcome Back</h2>
+        <p class="text-sm text-gray-500 font-medium">Log in to manage your LayoverX bookings.</p>
+      </div>
+      
+      <form id="form-login" onsubmit="layoverx.handleLogin(event)" class="space-y-5">
+        <div class="form-group text-left relative">
+          <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5" for="login-email">Email</label>
+          <input id="login-email" type="email" class="form-input w-full border border-gray-300 focus:border-sky-600 focus:ring-2 focus:ring-sky-600/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all shadow-sm" required autocomplete="email"/>
+        </div>
+        <div class="form-group text-left relative">
+          <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5" for="login-password">Password</label>
+          <div class="relative">
+            <input id="login-password" type="password" class="form-input w-full border border-gray-300 focus:border-sky-600 focus:ring-2 focus:ring-sky-600/20 rounded-xl px-4 py-3 pr-12 text-sm text-gray-900 transition-all shadow-sm" required autocomplete="current-password"/>
+            <button type="button" class="absolute inset-y-0 right-0 px-4 text-gray-400 hover:text-gray-600 flex items-center transition-colors focus:outline-none" onclick="layoverx.togglePassword('login-password')">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="flex items-center justify-between text-sm mt-2">
+          <a href="#" class="auth-link text-sky-700 hover:text-sky-800 font-semibold transition-colors" onclick="layoverx.switchModal('login', 'forgot');return false;">Forgot Password?</a>
+        </div>
+        <button id="btn-login-submit" type="submit" class="btn btn-primary w-full mt-2 py-3.5 bg-gray-900 hover:bg-black text-white font-bold rounded-xl shadow-lg transition-all transform hover:-translate-y-0.5 flex justify-center items-center gap-2">
+          <span>Sign In</span>
+          <svg class="w-5 h-5 hidden loading-spinner animate-spin" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+        </button>
+      </form>
+      
+      <div class="flex items-center my-6">
+        <div class="flex-grow border-t border-gray-200"></div>
+        <span class="px-3 text-xs font-semibold text-gray-400 uppercase tracking-widest">Or</span>
+        <div class="flex-grow border-t border-gray-200"></div>
+      </div>
+      
+      <div class="space-y-3">
+        <button id="btn-google-login" class="social-btn border border-gray-300 hover:bg-gray-50 hover:border-gray-400 text-gray-700 font-semibold transition-all w-full py-3 rounded-xl flex items-center justify-center gap-3 shadow-sm" onclick="layoverx.socialLogin('google')">
+          <svg class="w-5 h-5" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v3.9h6.6c-.28 1.5-1.12 2.76-2.38 3.61v3h3.84c2.25-2.07 3.68-5.12 3.68-8.44z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.84-3c-1.07.72-2.44 1.15-4.09 1.15-3.15 0-5.82-2.13-6.77-5H1.28v3.1c1.98 3.94 6.06 6.66 10.72 6.66z"/><path fill="#FBBC05" d="M5.23 14.24a7.17 7.17 0 010-4.48v-3.1H1.28a11.96 11.96 0 000 10.68l3.95-3.1z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.43-3.43C17.95 1.19 15.24 0 12 0 7.34 0 3.26 2.72 1.28 6.66l3.95 3.1c.95-2.87 3.62-5 6.77-5z"/></svg>
+          Continue with Google
+          <svg class="w-5 h-5 hidden loading-spinner animate-spin ml-2" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+        </button>
+      </div>
+      
+      <p class="text-sm text-center text-gray-600 mt-8">
+        Don't have an account? 
+        <a href="#" class="auth-link text-sky-700 hover:text-sky-800 font-bold transition-colors" onclick="layoverx.switchModal('login', 'signup');return false;">Sign Up</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<div id="modal-signup" class="modal-overlay opacity-0 transition-opacity duration-300" data-modal="signup" role="dialog" aria-modal="true" aria-labelledby="signup-title">
+  <div class="modal-content transform scale-95 transition-transform duration-300 p-8 sm:p-10 !max-w-md">
+    <button class="modal-close font-semibold text-2xl" aria-label="Close Signup Modal" onclick="layoverx.closeModal('signup')">&times;</button>
+    <div class="auth-form">
+      <div class="mb-8 text-center">
+        <h2 id="signup-title" class="text-gray-900 text-2xl sm:text-3xl font-extrabold tracking-tight mb-2">Create Account</h2>
+        <p class="text-sm text-gray-500 font-medium">Join LayoverX to unlock exclusive layover plans.</p>
+      </div>
+      
+      <form id="form-signup" onsubmit="layoverx.handleSignup(event)" class="space-y-4">
+        <div class="form-group text-left">
+          <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5" for="signup-name">Full Name</label>
+          <input id="signup-name" type="text" class="form-input w-full border border-gray-300 focus:border-sky-600 focus:ring-2 focus:ring-sky-600/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all shadow-sm" required autocomplete="name"/>
+        </div>
+        <div class="form-group text-left">
+          <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5" for="signup-email">Email</label>
+          <input id="signup-email" type="email" class="form-input w-full border border-gray-300 focus:border-sky-600 focus:ring-2 focus:ring-sky-600/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all shadow-sm" required autocomplete="email"/>
+        </div>
+        <div class="form-group text-left relative">
+          <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5" for="signup-password">Password</label>
+          <div class="relative">
+            <input id="signup-password" type="password" class="form-input w-full border border-gray-300 focus:border-sky-600 focus:ring-2 focus:ring-sky-600/20 rounded-xl px-4 py-3 pr-12 text-sm text-gray-900 transition-all shadow-sm" required autocomplete="new-password" oninput="layoverx.checkPasswordStrength(this.value)"/>
+            <button type="button" class="absolute inset-y-0 right-0 px-4 text-gray-400 hover:text-gray-600 flex items-center transition-colors focus:outline-none" onclick="layoverx.togglePassword('signup-password')">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+            </button>
+          </div>
+          <!-- Password Strength Indicator -->
+          <div class="mt-2 hidden" id="pwd-strength-container">
+            <div class="flex gap-1 h-1.5 w-full rounded-full overflow-hidden bg-gray-100">
+              <div class="h-full transition-all duration-300" id="pwd-strength-bar"></div>
+            </div>
+            <p class="text-[10px] text-gray-500 mt-1 font-medium" id="pwd-strength-text">Must be at least 8 characters</p>
+          </div>
+        </div>
+        <button id="btn-signup-submit" type="submit" class="btn btn-primary w-full mt-4 py-3.5 bg-gray-900 hover:bg-black text-white font-bold rounded-xl shadow-lg transition-all transform hover:-translate-y-0.5 flex justify-center items-center gap-2">
+          <span>Create Account</span>
+          <svg class="w-5 h-5 hidden loading-spinner animate-spin" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+        </button>
+      </form>
+      
+      <div class="flex items-center my-6">
+        <div class="flex-grow border-t border-gray-200"></div>
+        <span class="px-3 text-xs font-semibold text-gray-400 uppercase tracking-widest">Or</span>
+        <div class="flex-grow border-t border-gray-200"></div>
+      </div>
+      
+      <div class="space-y-3">
+        <button id="btn-google-signup" class="social-btn border border-gray-300 hover:bg-gray-50 hover:border-gray-400 text-gray-700 font-semibold transition-all w-full py-3 rounded-xl flex items-center justify-center gap-3 shadow-sm" onclick="layoverx.socialLogin('google')">
+          <svg class="w-5 h-5" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v3.9h6.6c-.28 1.5-1.12 2.76-2.38 3.61v3h3.84c2.25-2.07 3.68-5.12 3.68-8.44z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.84-3c-1.07.72-2.44 1.15-4.09 1.15-3.15 0-5.82-2.13-6.77-5H1.28v3.1c1.98 3.94 6.06 6.66 10.72 6.66z"/><path fill="#FBBC05" d="M5.23 14.24a7.17 7.17 0 010-4.48v-3.1H1.28a11.96 11.96 0 000 10.68l3.95-3.1z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.43-3.43C17.95 1.19 15.24 0 12 0 7.34 0 3.26 2.72 1.28 6.66l3.95 3.1c.95-2.87 3.62-5 6.77-5z"/></svg>
+          Continue with Google
+          <svg class="w-5 h-5 hidden loading-spinner animate-spin ml-2" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+        </button>
+      </div>
+      
+      <p class="text-sm text-center text-gray-600 mt-8">
+        Already have an account? 
+        <a href="#" class="auth-link text-sky-700 hover:text-sky-800 font-bold transition-colors" onclick="layoverx.switchModal('signup', 'login');return false;">Sign In</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<div id="modal-forgot" class="modal-overlay opacity-0 transition-opacity duration-300" data-modal="forgot" role="dialog" aria-modal="true" aria-labelledby="forgot-title">
+  <div class="modal-content transform scale-95 transition-transform duration-300 p-8 sm:p-10 !max-w-md">
+    <button class="modal-close font-semibold text-2xl" aria-label="Close Forgot Modal" onclick="layoverx.closeModal('forgot')">&times;</button>
+    <div class="auth-form">
+      <div class="mb-8 text-center">
+        <h2 id="forgot-title" class="text-gray-900 text-2xl sm:text-3xl font-extrabold tracking-tight mb-2">Reset Password</h2>
+        <p class="text-sm text-gray-500 font-medium">Enter your email and we'll send you recovery instructions.</p>
+      </div>
+      
+      <div class="form-group text-left space-y-2">
+        <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5" for="forgot-email">Email</label>
+        <input id="forgot-email" type="email" class="form-input w-full border border-gray-300 focus:border-sky-600 focus:ring-2 focus:ring-sky-600/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all shadow-sm" required autocomplete="email"/>
+      </div>
+      <button id="btn-forgot-submit" class="btn btn-primary w-full mt-6 py-3.5 bg-gray-900 hover:bg-black text-white font-bold rounded-xl shadow-lg transition-all transform hover:-translate-y-0.5 flex justify-center items-center gap-2" onclick="layoverx.handleForgot()">
+        <span>Send Reset Link</span>
+        <svg class="w-5 h-5 hidden loading-spinner animate-spin" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+      </button>
+      
+      <p class="text-sm text-center text-gray-600 mt-6">
+        <a href="#" class="auth-link text-sky-700 hover:text-sky-800 font-bold transition-colors" onclick="layoverx.switchModal('forgot', 'login');return false;">Back to Login</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>

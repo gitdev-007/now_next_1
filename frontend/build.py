@@ -133,6 +133,18 @@ PAGES_METADATA = {
         'description': 'Use our flagship smart planner to generate custom, time-optimized itineraries for Mumbai layovers.',
         'canonical': 'https://layoverx.com/plan-my-layover.html',
         'json_ld': ''
+    },
+    'partner-registration.html': {
+        'title': 'Register as a Supplier | LayoverX Partner Program',
+        'description': 'Register your airport transit hotel, dining experience, spa center, tour packages, or airport transfers near CSMIA Mumbai.',
+        'canonical': 'https://layoverx.com/partner-registration.html',
+        'json_ld': ''
+    },
+    'supplier-dashboard.html': {
+        'title': 'Supplier Dashboard | Onboarding Review Hub',
+        'description': 'Track your LayoverX supplier partner applications and review status updates.',
+        'canonical': 'https://layoverx.com/supplier-dashboard.html',
+        'json_ld': ''
     }
 }
 

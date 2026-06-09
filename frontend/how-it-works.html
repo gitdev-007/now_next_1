@@ -27,6 +27,7 @@
   <!-- Firebase Products -->
   <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-storage-compat.js"></script>
   
   <script src="js/firebase-config.js"></script>
   <link rel="stylesheet" href="css/design-system.css"/>
@@ -70,6 +71,7 @@
 
         <!-- Auth User View -->
         <div class="auth-user hidden items-center gap-4 user-menu">
+          <a href="supplier-dashboard.html" class="text-sm font-medium text-sky-300 hover:text-sky-400 hover:underline">Supplier Hub</a>
           <div class="flex items-center gap-2 bg-white/20 backdrop-blur-md border border-white/20 px-3 py-1.5 rounded-xl">
             <div class="w-6 h-6 bg-gradient-to-br from-sky-400 to-sky-600 rounded-full flex items-center justify-center text-[10px] font-bold text-white uppercase user-avatar-letter">U</div>
             <span class="text-sm font-medium text-white user-name">Traveler</span>
@@ -114,6 +116,7 @@
           <div class="text-sm font-bold text-gray-900 user-name">Traveler</div>
         </div>
       </div>
+      <a href="supplier-dashboard.html" class="w-full text-center py-2.5 bg-indigo-50 text-indigo-700 font-semibold rounded-xl text-sm transition">Supplier Hub</a>
       <button class="mt-2 w-full text-center py-2.5 bg-red-50 text-red-600 hover:bg-red-100 text-sm font-semibold rounded-xl transition" onclick="layoverx.logout()">Logout</button>
     </div>
   </div>
@@ -438,103 +441,142 @@
 
   <!-- Modals Section -->
   <!-- Auth Modals -->
-<div id="modal-login" class="modal-overlay" data-modal="login" role="dialog" aria-modal="true" aria-labelledby="login-title">
-  <div class="modal-content">
+<div id="modal-login" class="modal-overlay opacity-0 transition-opacity duration-300" data-modal="login" role="dialog" aria-modal="true" aria-labelledby="login-title">
+  <div class="modal-content transform scale-95 transition-transform duration-300 p-8 sm:p-10 !max-w-md">
     <button class="modal-close font-semibold text-2xl" aria-label="Close Login Modal" onclick="layoverx.closeModal('login')">&times;</button>
     <div class="auth-form">
-      <h2 id="login-title" class="text-gray-900 text-2xl font-bold">Welcome Back</h2>
-      <p class="text-sm text-gray-700">Sign in to save and manage your custom layover itineraries.</p>
+      <div class="mb-8 text-center">
+        <h2 id="login-title" class="text-gray-900 text-2xl sm:text-3xl font-extrabold tracking-tight mb-2">Welcome Back</h2>
+        <p class="text-sm text-gray-500 font-medium">Log in to manage your LayoverX bookings.</p>
+      </div>
       
-      <form id="form-login" onsubmit="layoverx.handleLogin(event)" class="space-y-4">
-        <div class="form-group text-left">
-          <label class="form-label text-xs font-semibold text-gray-800 uppercase tracking-wider mb-1" for="login-email">Email Address</label>
-          <input id="login-email" type="email" class="form-input border border-gray-200 focus:border-sky-500 rounded-xl" required/>
+      <form id="form-login" onsubmit="layoverx.handleLogin(event)" class="space-y-5">
+        <div class="form-group text-left relative">
+          <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5" for="login-email">Email</label>
+          <input id="login-email" type="email" class="form-input w-full border border-gray-300 focus:border-sky-600 focus:ring-2 focus:ring-sky-600/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all shadow-sm" required autocomplete="email"/>
         </div>
-        <div class="form-group text-left">
-          <label class="form-label text-xs font-semibold text-gray-800 uppercase tracking-wider mb-1" for="login-password">Password</label>
-          <input id="login-password" type="password" class="form-input border border-gray-200 focus:border-sky-500 rounded-xl" required/>
+        <div class="form-group text-left relative">
+          <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5" for="login-password">Password</label>
+          <div class="relative">
+            <input id="login-password" type="password" class="form-input w-full border border-gray-300 focus:border-sky-600 focus:ring-2 focus:ring-sky-600/20 rounded-xl px-4 py-3 pr-12 text-sm text-gray-900 transition-all shadow-sm" required autocomplete="current-password"/>
+            <button type="button" class="absolute inset-y-0 right-0 px-4 text-gray-400 hover:text-gray-600 flex items-center transition-colors focus:outline-none" onclick="layoverx.togglePassword('login-password')">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+            </button>
+          </div>
         </div>
-        <div class="flex items-center justify-between text-xs sm:text-sm pt-1">
-          <label class="form-checkbox text-gray-700 flex items-center gap-1.5 cursor-pointer">
-            <input type="checkbox" class="rounded border-gray-300 text-sky-700 focus:ring-sky-500"/> Remember me
-          </label>
-          <a href="#" class="auth-link text-sky-700 hover:text-sky-700 font-semibold" onclick="layoverx.switchModal('login', 'forgot');return false;">Forgot Password?</a>
+        <div class="flex items-center justify-between text-sm mt-2">
+          <a href="#" class="auth-link text-sky-700 hover:text-sky-800 font-semibold transition-colors" onclick="layoverx.switchModal('login', 'forgot');return false;">Forgot Password?</a>
         </div>
-        <button type="submit" class="btn btn-primary w-full mt-2 py-3 bg-sky-700 hover:bg-sky-700 text-white font-bold rounded-xl shadow-lg transition">Sign In</button>
+        <button id="btn-login-submit" type="submit" class="btn btn-primary w-full mt-2 py-3.5 bg-gray-900 hover:bg-black text-white font-bold rounded-xl shadow-lg transition-all transform hover:-translate-y-0.5 flex justify-center items-center gap-2">
+          <span>Sign In</span>
+          <svg class="w-5 h-5 hidden loading-spinner animate-spin" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+        </button>
       </form>
       
-      <div class="divider text-gray-700 text-xs">OR</div>
+      <div class="flex items-center my-6">
+        <div class="flex-grow border-t border-gray-200"></div>
+        <span class="px-3 text-xs font-semibold text-gray-400 uppercase tracking-widest">Or</span>
+        <div class="flex-grow border-t border-gray-200"></div>
+      </div>
       
-      <div class="space-y-2">
-        <button class="social-btn border border-gray-200 hover:bg-gray-50 transition w-full py-2.5 rounded-xl flex items-center justify-center gap-2" onclick="layoverx.socialLogin('google')">
-          <svg class="w-4 h-4" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v3.9h6.6c-.28 1.5-1.12 2.76-2.38 3.61v3h3.84c2.25-2.07 3.68-5.12 3.68-8.44z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.84-3c-1.07.72-2.44 1.15-4.09 1.15-3.15 0-5.82-2.13-6.77-5H1.28v3.1c1.98 3.94 6.06 6.66 10.72 6.66z"/><path fill="#FBBC05" d="M5.23 14.24a7.17 7.17 0 010-4.48v-3.1H1.28a11.96 11.96 0 000 10.68l3.95-3.1z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.43-3.43C17.95 1.19 15.24 0 12 0 7.34 0 3.26 2.72 1.28 6.66l3.95 3.1c.95-2.87 3.62-5 6.77-5z"/></svg>
+      <div class="space-y-3">
+        <button id="btn-google-login" class="social-btn border border-gray-300 hover:bg-gray-50 hover:border-gray-400 text-gray-700 font-semibold transition-all w-full py-3 rounded-xl flex items-center justify-center gap-3 shadow-sm" onclick="layoverx.socialLogin('google')">
+          <svg class="w-5 h-5" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v3.9h6.6c-.28 1.5-1.12 2.76-2.38 3.61v3h3.84c2.25-2.07 3.68-5.12 3.68-8.44z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.84-3c-1.07.72-2.44 1.15-4.09 1.15-3.15 0-5.82-2.13-6.77-5H1.28v3.1c1.98 3.94 6.06 6.66 10.72 6.66z"/><path fill="#FBBC05" d="M5.23 14.24a7.17 7.17 0 010-4.48v-3.1H1.28a11.96 11.96 0 000 10.68l3.95-3.1z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.43-3.43C17.95 1.19 15.24 0 12 0 7.34 0 3.26 2.72 1.28 6.66l3.95 3.1c.95-2.87 3.62-5 6.77-5z"/></svg>
           Continue with Google
+          <svg class="w-5 h-5 hidden loading-spinner animate-spin ml-2" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
         </button>
       </div>
       
-      <p class="text-sm text-gray-700 mt-2">
+      <p class="text-sm text-center text-gray-600 mt-8">
         Don't have an account? 
-        <a href="#" class="auth-link text-sky-700 hover:text-sky-700 font-semibold" onclick="layoverx.switchModal('login', 'signup');return false;">Create Account</a>
+        <a href="#" class="auth-link text-sky-700 hover:text-sky-800 font-bold transition-colors" onclick="layoverx.switchModal('login', 'signup');return false;">Sign Up</a>
       </p>
     </div>
   </div>
 </div>
 
-<div id="modal-signup" class="modal-overlay" data-modal="signup" role="dialog" aria-modal="true" aria-labelledby="signup-title">
-  <div class="modal-content">
+<div id="modal-signup" class="modal-overlay opacity-0 transition-opacity duration-300" data-modal="signup" role="dialog" aria-modal="true" aria-labelledby="signup-title">
+  <div class="modal-content transform scale-95 transition-transform duration-300 p-8 sm:p-10 !max-w-md">
     <button class="modal-close font-semibold text-2xl" aria-label="Close Signup Modal" onclick="layoverx.closeModal('signup')">&times;</button>
     <div class="auth-form">
-      <h2 id="signup-title" class="text-gray-900 text-2xl font-bold">Create Your Account</h2>
-      <p class="text-sm text-gray-700">Save plans, book services, and unlock personalized recommendations.</p>
+      <div class="mb-8 text-center">
+        <h2 id="signup-title" class="text-gray-900 text-2xl sm:text-3xl font-extrabold tracking-tight mb-2">Create Account</h2>
+        <p class="text-sm text-gray-500 font-medium">Join LayoverX to unlock exclusive layover plans.</p>
+      </div>
       
       <form id="form-signup" onsubmit="layoverx.handleSignup(event)" class="space-y-4">
         <div class="form-group text-left">
-          <label class="form-label text-xs font-semibold text-gray-800 uppercase tracking-wider mb-1" for="signup-name">Full Name</label>
-          <input id="signup-name" type="text" class="form-input border border-gray-200 focus:border-sky-500 rounded-xl" required/>
+          <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5" for="signup-name">Full Name</label>
+          <input id="signup-name" type="text" class="form-input w-full border border-gray-300 focus:border-sky-600 focus:ring-2 focus:ring-sky-600/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all shadow-sm" required autocomplete="name"/>
         </div>
         <div class="form-group text-left">
-          <label class="form-label text-xs font-semibold text-gray-800 uppercase tracking-wider mb-1" for="signup-email">Email Address</label>
-          <input id="signup-email" type="email" class="form-input border border-gray-200 focus:border-sky-500 rounded-xl" required/>
+          <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5" for="signup-email">Email</label>
+          <input id="signup-email" type="email" class="form-input w-full border border-gray-300 focus:border-sky-600 focus:ring-2 focus:ring-sky-600/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all shadow-sm" required autocomplete="email"/>
         </div>
-        <div class="form-group text-left">
-          <label class="form-label text-xs font-semibold text-gray-800 uppercase tracking-wider mb-1" for="signup-password">Password</label>
-          <input id="signup-password" type="password" class="form-input border border-gray-200 focus:border-sky-500 rounded-xl" required/>
+        <div class="form-group text-left relative">
+          <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5" for="signup-password">Password</label>
+          <div class="relative">
+            <input id="signup-password" type="password" class="form-input w-full border border-gray-300 focus:border-sky-600 focus:ring-2 focus:ring-sky-600/20 rounded-xl px-4 py-3 pr-12 text-sm text-gray-900 transition-all shadow-sm" required autocomplete="new-password" oninput="layoverx.checkPasswordStrength(this.value)"/>
+            <button type="button" class="absolute inset-y-0 right-0 px-4 text-gray-400 hover:text-gray-600 flex items-center transition-colors focus:outline-none" onclick="layoverx.togglePassword('signup-password')">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+            </button>
+          </div>
+          <!-- Password Strength Indicator -->
+          <div class="mt-2 hidden" id="pwd-strength-container">
+            <div class="flex gap-1 h-1.5 w-full rounded-full overflow-hidden bg-gray-100">
+              <div class="h-full transition-all duration-300" id="pwd-strength-bar"></div>
+            </div>
+            <p class="text-[10px] text-gray-500 mt-1 font-medium" id="pwd-strength-text">Must be at least 8 characters</p>
+          </div>
         </div>
-        <button type="submit" class="btn btn-primary w-full mt-2 py-3 bg-sky-700 hover:bg-sky-700 text-white font-bold rounded-xl shadow-lg transition">Create Account</button>
+        <button id="btn-signup-submit" type="submit" class="btn btn-primary w-full mt-4 py-3.5 bg-gray-900 hover:bg-black text-white font-bold rounded-xl shadow-lg transition-all transform hover:-translate-y-0.5 flex justify-center items-center gap-2">
+          <span>Create Account</span>
+          <svg class="w-5 h-5 hidden loading-spinner animate-spin" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+        </button>
       </form>
       
-      <div class="divider text-gray-700 text-xs">OR</div>
+      <div class="flex items-center my-6">
+        <div class="flex-grow border-t border-gray-200"></div>
+        <span class="px-3 text-xs font-semibold text-gray-400 uppercase tracking-widest">Or</span>
+        <div class="flex-grow border-t border-gray-200"></div>
+      </div>
       
-      <div class="space-y-2">
-        <button class="social-btn border border-gray-200 hover:bg-gray-50 transition w-full py-2.5 rounded-xl flex items-center justify-center gap-2" onclick="layoverx.socialLogin('google')">
-          <svg class="w-4 h-4" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v3.9h6.6c-.28 1.5-1.12 2.76-2.38 3.61v3h3.84c2.25-2.07 3.68-5.12 3.68-8.44z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.84-3c-1.07.72-2.44 1.15-4.09 1.15-3.15 0-5.82-2.13-6.77-5H1.28v3.1c1.98 3.94 6.06 6.66 10.72 6.66z"/><path fill="#FBBC05" d="M5.23 14.24a7.17 7.17 0 010-4.48v-3.1H1.28a11.96 11.96 0 000 10.68l3.95-3.1z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.43-3.43C17.95 1.19 15.24 0 12 0 7.34 0 3.26 2.72 1.28 6.66l3.95 3.1c.95-2.87 3.62-5 6.77-5z"/></svg>
+      <div class="space-y-3">
+        <button id="btn-google-signup" class="social-btn border border-gray-300 hover:bg-gray-50 hover:border-gray-400 text-gray-700 font-semibold transition-all w-full py-3 rounded-xl flex items-center justify-center gap-3 shadow-sm" onclick="layoverx.socialLogin('google')">
+          <svg class="w-5 h-5" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v3.9h6.6c-.28 1.5-1.12 2.76-2.38 3.61v3h3.84c2.25-2.07 3.68-5.12 3.68-8.44z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.84-3c-1.07.72-2.44 1.15-4.09 1.15-3.15 0-5.82-2.13-6.77-5H1.28v3.1c1.98 3.94 6.06 6.66 10.72 6.66z"/><path fill="#FBBC05" d="M5.23 14.24a7.17 7.17 0 010-4.48v-3.1H1.28a11.96 11.96 0 000 10.68l3.95-3.1z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.43-3.43C17.95 1.19 15.24 0 12 0 7.34 0 3.26 2.72 1.28 6.66l3.95 3.1c.95-2.87 3.62-5 6.77-5z"/></svg>
           Continue with Google
+          <svg class="w-5 h-5 hidden loading-spinner animate-spin ml-2" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
         </button>
       </div>
       
-      <p class="text-sm text-gray-700 mt-2">
+      <p class="text-sm text-center text-gray-600 mt-8">
         Already have an account? 
-        <a href="#" class="auth-link text-sky-700 hover:text-sky-700 font-semibold" onclick="layoverx.switchModal('signup', 'login');return false;">Sign In</a>
+        <a href="#" class="auth-link text-sky-700 hover:text-sky-800 font-bold transition-colors" onclick="layoverx.switchModal('signup', 'login');return false;">Sign In</a>
       </p>
     </div>
   </div>
 </div>
 
-<div id="modal-forgot" class="modal-overlay" data-modal="forgot" role="dialog" aria-modal="true" aria-labelledby="forgot-title">
-  <div class="modal-content">
+<div id="modal-forgot" class="modal-overlay opacity-0 transition-opacity duration-300" data-modal="forgot" role="dialog" aria-modal="true" aria-labelledby="forgot-title">
+  <div class="modal-content transform scale-95 transition-transform duration-300 p-8 sm:p-10 !max-w-md">
     <button class="modal-close font-semibold text-2xl" aria-label="Close Forgot Modal" onclick="layoverx.closeModal('forgot')">&times;</button>
     <div class="auth-form">
-      <h2 id="forgot-title" class="text-gray-900 text-2xl font-bold">Reset Password</h2>
-      <p class="text-sm text-gray-700">Enter your email and we'll send you recovery instructions.</p>
+      <div class="mb-8 text-center">
+        <h2 id="forgot-title" class="text-gray-900 text-2xl sm:text-3xl font-extrabold tracking-tight mb-2">Reset Password</h2>
+        <p class="text-sm text-gray-500 font-medium">Enter your email and we'll send you recovery instructions.</p>
+      </div>
       
       <div class="form-group text-left space-y-2">
-        <label class="form-label text-xs font-semibold text-gray-800 uppercase tracking-wider" for="forgot-email">Email Address</label>
-        <input id="forgot-email" type="email" class="form-input border border-gray-200 focus:border-sky-500 rounded-xl" required/>
+        <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5" for="forgot-email">Email</label>
+        <input id="forgot-email" type="email" class="form-input w-full border border-gray-300 focus:border-sky-600 focus:ring-2 focus:ring-sky-600/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all shadow-sm" required autocomplete="email"/>
       </div>
-      <button class="btn btn-primary w-full mt-4 py-3 bg-sky-700 hover:bg-sky-700 text-white font-bold rounded-xl shadow-lg transition" onclick="layoverx.handleForgot()">Send Reset Link</button>
+      <button id="btn-forgot-submit" class="btn btn-primary w-full mt-6 py-3.5 bg-gray-900 hover:bg-black text-white font-bold rounded-xl shadow-lg transition-all transform hover:-translate-y-0.5 flex justify-center items-center gap-2" onclick="layoverx.handleForgot()">
+        <span>Send Reset Link</span>
+        <svg class="w-5 h-5 hidden loading-spinner animate-spin" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+      </button>
       
-      <p class="text-sm text-gray-700 mt-2">
-        <a href="#" class="auth-link text-sky-700 hover:text-sky-700 font-semibold" onclick="layoverx.switchModal('forgot', 'login');return false;">Back to Login</a>
+      <p class="text-sm text-center text-gray-600 mt-6">
+        <a href="#" class="auth-link text-sky-700 hover:text-sky-800 font-bold transition-colors" onclick="layoverx.switchModal('forgot', 'login');return false;">Back to Login</a>
       </p>
     </div>
   </div>

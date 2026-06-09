@@ -105,10 +105,14 @@
       try {
         await auth.signInWithEmailAndPassword(email, password);
         Modal.closeAll();
-        showToast(`Welcome back!`);
+        showToast(`Welcome back!`, 'success');
       } catch (error) {
         console.error("Login Error:", error);
-        showToast(`Login failed: ${error.message}`);
+        let msg = 'Invalid email or password.';
+        if (error.code === 'auth/user-not-found') msg = 'No account found with this email.';
+        if (error.code === 'auth/too-many-requests') msg = 'Too many attempts. Please try again later.';
+        showToast(msg, 'error');
+        throw error;
       }
     },
     async signup(name, email, password) {
@@ -130,20 +134,24 @@
         });
         
         Modal.closeAll();
-        showToast(`Account created! Welcome, ${name}.`);
+        showToast(`Account created! Welcome, ${name}.`, 'success');
       } catch (error) {
         console.error("Signup Error:", error);
-        showToast(`Signup failed: ${error.message}`);
+        let msg = error.message;
+        if (error.code === 'auth/email-already-in-use') msg = 'This email is already registered.';
+        if (error.code === 'auth/weak-password') msg = 'Password is too weak. Must be at least 6 characters.';
+        showToast(msg, 'error');
+        throw error;
       }
     },
     async logout() {
       try {
         await auth.signOut();
-        showToast("Signed out successfully.");
+        showToast("Signed out successfully.", 'info');
         setTimeout(() => window.location.reload(), 800);
       } catch (error) {
         console.error("Logout Error:", error);
-        showToast(`Logout failed: ${error.message}`);
+        showToast(`Logout failed: ${error.message}`, 'error');
       }
     },
     updateUI() {
@@ -160,27 +168,41 @@
     open(name) {
       const modal = $(`#modal-${name}`);
       if (!modal) return;
-      modal.classList.add('flex');
       modal.classList.remove('hidden');
+      // trigger reflow
+      void modal.offsetWidth;
+      modal.classList.add('flex', 'opacity-100');
+      const content = modal.querySelector('.modal-content');
+      if (content) content.classList.add('scale-100');
       document.body.style.overflow = 'hidden';
-      const focusable = modal.querySelectorAll('input, button, a');
-      if (focusable.length) focusable[0].focus();
+      setTimeout(() => {
+        const focusable = modal.querySelectorAll('input:not([type="hidden"]), button:not(.modal-close)');
+        if (focusable.length) focusable[0].focus();
+      }, 100);
     },
     close(name) {
       const modal = $(`#modal-${name}`);
       if (!modal) return;
-      modal.classList.remove('flex');
-      modal.classList.add('hidden');
-      // Prevent scroll state bugs by only restoring scroll when no other modal is open
-      const anyOpen = Array.from(document.querySelectorAll('.modal-overlay')).some(el => el.classList.contains('flex'));
-      if (!anyOpen) {
-        document.body.style.overflow = '';
-      }
+      modal.classList.remove('opacity-100');
+      const content = modal.querySelector('.modal-content');
+      if (content) content.classList.remove('scale-100');
+      
+      setTimeout(() => {
+        modal.classList.remove('flex');
+        modal.classList.add('hidden');
+        const anyOpen = Array.from(document.querySelectorAll('.modal-overlay')).some(el => el.classList.contains('flex'));
+        if (!anyOpen) document.body.style.overflow = '';
+      }, 300); // match transition duration
     },
     closeAll() {
-      $$('.modal-overlay').forEach((el) => {
-        el.classList.remove('flex');
-        el.classList.add('hidden');
+      $$('.modal-overlay').forEach((modal) => {
+        modal.classList.remove('opacity-100');
+        const content = modal.querySelector('.modal-content');
+        if (content) content.classList.remove('scale-100');
+        setTimeout(() => {
+          modal.classList.remove('flex');
+          modal.classList.add('hidden');
+        }, 300);
       });
       document.body.style.overflow = '';
     }
@@ -203,26 +225,38 @@
   }
 
   /* ===== TOAST SYSTEM ===== */
-  function showToast(msg) {
+  window.layoverx.showToast = function(msg, type = 'info') {
     let container = $('#toast-container');
     if (!container) {
       container = document.createElement('div');
       container.id = 'toast-container';
-      container.className = 'fixed bottom-6 right-6 z-[2000] flex flex-col gap-3';
       document.body.appendChild(container);
     }
+    
     const toast = document.createElement('div');
-    toast.className = 'bg-gray-900 text-white px-5 py-3.5 rounded-xl shadow-2xl flex items-center gap-3 animate-fade-in border border-gray-800 text-sm font-semibold';
-    toast.innerHTML = `
-      <svg class="w-4 h-4 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-      <span>${msg}</span>
-    `;
+    toast.className = `toast toast-${type}`;
+    
+    let iconSvg = '';
+    if (type === 'success') {
+      iconSvg = '<svg class="w-5 h-5 toast-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>';
+    } else if (type === 'error') {
+      iconSvg = '<svg class="w-5 h-5 toast-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>';
+    } else {
+      iconSvg = '<svg class="w-5 h-5 toast-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>';
+    }
+
+    toast.innerHTML = `${iconSvg}<span>${msg}</span>`;
     container.appendChild(toast);
+    
+    // Trigger animation
+    requestAnimationFrame(() => toast.classList.add('toast-show'));
+
     setTimeout(() => {
-      toast.classList.add('opacity-0', 'transition-all', 'duration-500');
-      setTimeout(() => toast.remove(), 500);
-    }, 3000);
-  }
+      toast.classList.remove('toast-show');
+      setTimeout(() => toast.remove(), 300);
+    }, 4000);
+  };
+  const showToast = window.layoverx.showToast;
 
   /* ===== NAVBAR DECORATOR ===== */
   function decorateNavbar() {
@@ -1505,12 +1539,30 @@
   }
 
   /* ===== LOCAL STORAGE SAVE & SHARE PLAN ===== */
-  window.layoverx.saveCurrentPlan = function() {
+  window.layoverx.saveCurrentPlan = async function() {
+    const btn = document.getElementById('btn-save-plan');
+    if (btn && btn.disabled) return;
+    
     const arr = $('#plan-arrival').value;
     const dep = $('#plan-departure').value;
     const loc = $('#plan-location').value;
     const travelers = $('#plan-travelers').value;
     const cost = $('#total-cost').textContent;
+
+    if (!arr || !dep) {
+      showToast("Please enter arrival and departure times before saving.", "error");
+      return;
+    }
+
+    if (btn) {
+      btn.disabled = true;
+      btn.classList.add('opacity-80', 'cursor-not-allowed');
+      const span = btn.querySelector('span');
+      if (span) span.textContent = 'Saving...';
+    }
+
+    // Simulate network delay for premium feel
+    await new Promise(r => setTimeout(r, 800));
 
     const plan = {
       id: Date.now(),
@@ -1520,7 +1572,7 @@
       travelers,
       cost,
       dateSaved: new Date().toLocaleDateString(),
-      details: state.currentPlan
+      details: JSON.parse(JSON.stringify(state.currentPlan))
     };
 
     let list = [];
@@ -1531,8 +1583,44 @@
 
     list.push(plan);
     localStorage.setItem('layoverx_saved_plans', JSON.stringify(list));
-    showToast("Layover itinerary successfully saved!");
+    
     loadSavedPlans();
+    
+    showToast("Your itinerary has been saved successfully. Scrolling to your saved itineraries.", "success");
+
+    if (btn) {
+      const span = btn.querySelector('span');
+      if (span) span.textContent = 'Plan Saved ✓';
+      btn.classList.remove('bg-gray-900', 'hover:bg-black');
+      btn.classList.add('bg-emerald-600', 'hover:bg-emerald-700');
+    }
+
+    // Smooth scroll to the saved plans section
+    const savedSection = document.getElementById('saved-plans-section');
+    if (savedSection) {
+      savedSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      // Apply highlight animation to the newest item
+      setTimeout(() => {
+        const items = document.querySelectorAll('#saved-plans-list li');
+        if (items.length > 0) {
+          const newest = items[items.length - 1];
+          newest.classList.add('ring-4', 'ring-sky-400', 'ring-opacity-50', 'transition-all', 'duration-500');
+          setTimeout(() => {
+            newest.classList.remove('ring-4', 'ring-sky-400', 'ring-opacity-50');
+          }, 3000);
+        }
+      }, 500);
+    }
+
+    if (btn) {
+      setTimeout(() => {
+        btn.disabled = false;
+        btn.classList.remove('opacity-80', 'cursor-not-allowed', 'bg-emerald-600', 'hover:bg-emerald-700');
+        btn.classList.add('bg-gray-900', 'hover:bg-black');
+        const span = btn.querySelector('span');
+        if (span) span.textContent = '💾 Save Plan';
+      }, 2000);
+    }
   };
 
   window.layoverx.shareCurrentPlan = function() {
@@ -1546,8 +1634,8 @@
     const shareUrl = `${url}?${params.toString()}`;
     
     navigator.clipboard.writeText(shareUrl)
-      .then(() => showToast("Shareable link copied to clipboard!"))
-      .catch(() => showToast("Could not copy link automatically."));
+      .then(() => showToast("Shareable link copied to clipboard!", "success"))
+      .catch(() => showToast("Could not copy link automatically.", "error"));
   };
 
   function loadSavedPlans() {
@@ -1572,19 +1660,84 @@
     saved.forEach((p, idx) => {
       const hours = ((new Date(p.departure) - new Date(p.arrival)) / 3600000).toFixed(1);
       listEl.innerHTML += `
-        <li class="bg-gray-50 border border-gray-150 p-4 rounded-xl flex items-center justify-between text-xs sm:text-sm">
+        <li class="bg-white border border-gray-200 shadow-sm p-4 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs sm:text-sm transition-all duration-300">
           <div>
-            <strong class="text-gray-900 block font-bold">${p.location.toUpperCase()} (${hours}h Layover)</strong>
-            <span class="text-gray-400 text-xs">Saved on ${p.dateSaved} • ${p.cost}</span>
+            <strong class="text-gray-900 block font-extrabold text-base">${p.location === 'near-airport' ? 'Near Mumbai Airport' : p.location.toUpperCase()} (${hours}h Layover)</strong>
+            <span class="text-gray-500 text-xs mt-1 block">Saved on ${p.dateSaved} • <span class="font-bold text-sky-700">${p.cost}</span></span>
           </div>
-          <div class="flex gap-2">
-            <button onclick="layoverx.loadPlan(${idx})" class="text-sky-600 font-bold hover:underline">Load</button>
-            <button onclick="layoverx.deletePlan(${idx})" class="text-red-500 font-bold hover:underline">Delete</button>
+          <div class="flex flex-wrap gap-2 sm:justify-end">
+            <button onclick="layoverx.viewPlanDetails(${idx})" class="px-3 py-1.5 bg-gray-50 hover:bg-gray-100 text-gray-700 border border-gray-200 rounded-lg font-bold transition">View Details</button>
+            <button onclick="layoverx.loadPlan(${idx})" class="px-3 py-1.5 bg-sky-50 hover:bg-sky-100 text-sky-700 border border-sky-100 rounded-lg font-bold transition">Load</button>
+            <button onclick="layoverx.deletePlan(${idx})" class="px-3 py-1.5 bg-red-50 hover:bg-red-100 text-red-600 border border-red-100 rounded-lg font-bold transition">Delete</button>
           </div>
         </li>
       `;
     });
   }
+
+  window.layoverx.viewPlanDetails = function(idx) {
+    try {
+      const data = JSON.parse(localStorage.getItem('layoverx_saved_plans'));
+      const plan = data[idx];
+      if (!plan) return;
+
+      const hours = ((new Date(plan.departure) - new Date(plan.arrival)) / 3600000).toFixed(1);
+      
+      $('#itinerary-details-title').textContent = `${plan.location === 'near-airport' ? 'Near Mumbai Airport' : plan.location.toUpperCase()}`;
+      $('#itinerary-details-meta').textContent = `Saved on ${plan.dateSaved}`;
+      $('#itinerary-details-cost').textContent = plan.cost;
+      $('#itinerary-details-duration').textContent = `${hours} Hours`;
+      $('#itinerary-details-travelers').textContent = `${plan.travelers} Guests`;
+      
+      const formatDt = (iso) => {
+        const d = new Date(iso);
+        return d.toLocaleDateString() + ' ' + d.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+      };
+      
+      $('#itinerary-details-arrival').textContent = formatDt(plan.arrival);
+      $('#itinerary-details-departure').textContent = formatDt(plan.departure);
+
+      const servicesContainer = $('#itinerary-details-services');
+      servicesContainer.innerHTML = '';
+      
+      const d = plan.details;
+      let count = 0;
+
+      const addService = (name, price, desc) => {
+        count++;
+        servicesContainer.innerHTML += `
+          <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-center justify-between gap-4">
+            <div>
+              <h4 class="font-bold text-gray-900 text-sm">${name}</h4>
+              <p class="text-xs text-gray-500 mt-1">${desc}</p>
+            </div>
+            <div class="font-black text-sky-700 whitespace-nowrap">₹${price.toLocaleString()}</div>
+          </div>
+        `;
+      };
+
+      if (d.cabType) {
+        const price = d.cabType === 'suv' ? 1499 : 899;
+        addService('Airport Transfer (Return)', price, `AC ${d.cabType.toUpperCase()} with driver.`);
+      }
+      if (d.hotelId && HOTELS[d.hotelId]) addService(`Hotel: ${HOTELS[d.hotelId].name}`, HOTELS[d.hotelId].price, 'Day-use transit room.');
+      if (d.diningId && DINING[d.diningId]) addService(`Dining: ${DINING[d.diningId].name}`, DINING[d.diningId].price, 'Reserved table.');
+      if (d.activityId && EXPERIENCES[d.activityId]) addService(`Tour: ${EXPERIENCES[d.activityId].name}`, EXPERIENCES[d.activityId].price * plan.travelers, `${EXPERIENCES[d.activityId].duration}h guided experience.`);
+      if (d.spaId && SPA_WELLNESS[d.spaId]) addService(`Spa: ${SPA_WELLNESS[d.spaId].name}`, SPA_WELLNESS[d.spaId].price * plan.travelers, `${SPA_WELLNESS[d.spaId].duration}h wellness session.`);
+      if (d.gamingId && GAMING_ENTERTAINMENT[d.gamingId]) addService(`Gaming: ${GAMING_ENTERTAINMENT[d.gamingId].name}`, GAMING_ENTERTAINMENT[d.gamingId].price * plan.travelers, 'Entertainment pass.');
+
+      if (count === 0) {
+        servicesContainer.innerHTML = '<p class="text-sm text-gray-500 italic">No services selected in this itinerary.</p>';
+      }
+
+      $('#itinerary-details-load-btn').onclick = () => {
+        Modal.close('itinerary-details');
+        window.layoverx.loadPlan(idx);
+      };
+
+      Modal.open('itinerary-details');
+    } catch(e) { console.error(e); }
+  };
 
   window.layoverx.loadPlan = function(idx) {
     try {
@@ -1693,24 +1846,120 @@
         setTimeout(() => Auth.login(`${p}@layoverx.com`, "123456"), 1000);
       }
     },
-    handleLogin: (e) => {
+    togglePassword: (id) => {
+      const input = document.getElementById(id);
+      if (input) {
+        input.type = input.type === 'password' ? 'text' : 'password';
+      }
+    },
+    handleLogin: async (e) => {
       e.preventDefault();
+      const btn = document.getElementById('btn-login-submit');
+      if (btn.disabled) return;
       const email = $('#login-email')?.value;
       const pass = $('#login-password')?.value;
-      if (email && pass) Auth.login(email, pass);
+      if (email && pass) {
+        try {
+          btn.disabled = true;
+          btn.classList.add('opacity-80', 'cursor-not-allowed');
+          btn.querySelector('span').textContent = 'Signing In...';
+          btn.querySelector('.loading-spinner').classList.remove('hidden');
+          await Auth.login(email, pass);
+        } finally {
+          btn.disabled = false;
+          btn.classList.remove('opacity-80', 'cursor-not-allowed');
+          btn.querySelector('span').textContent = 'Sign In';
+          btn.querySelector('.loading-spinner').classList.add('hidden');
+        }
+      }
     },
-    handleSignup: (e) => {
+    handleSignup: async (e) => {
       e.preventDefault();
+      const btn = document.getElementById('btn-signup-submit');
+      if (btn.disabled) return;
       const name = $('#signup-name')?.value;
       const email = $('#signup-email')?.value;
       const pass = $('#signup-password')?.value;
-      if (name && email && pass) Auth.signup(name, email, pass);
+      if (name && email && pass) {
+        try {
+          btn.disabled = true;
+          btn.classList.add('opacity-80', 'cursor-not-allowed');
+          btn.querySelector('span').textContent = 'Creating Account...';
+          btn.querySelector('.loading-spinner').classList.remove('hidden');
+          await Auth.signup(name, email, pass);
+        } finally {
+          btn.disabled = false;
+          btn.classList.remove('opacity-80', 'cursor-not-allowed');
+          btn.querySelector('span').textContent = 'Create Account';
+          btn.querySelector('.loading-spinner').classList.add('hidden');
+        }
+      }
     },
-    handleForgot: () => {
+    checkPasswordStrength: (val) => {
+      const container = document.getElementById('pwd-strength-container');
+      const bar = document.getElementById('pwd-strength-bar');
+      const text = document.getElementById('pwd-strength-text');
+      if (!container || !bar || !text) return;
+      
+      if (!val) {
+        container.classList.add('hidden');
+        return;
+      }
+      
+      container.classList.remove('hidden');
+      
+      let score = 0;
+      if (val.length >= 8) score++;
+      if (/[A-Z]/.test(val)) score++;
+      if (/[0-9]/.test(val)) score++;
+      if (/[^A-Za-z0-9]/.test(val)) score++;
+      
+      let width = "25%";
+      let color = "bg-red-500";
+      let msg = "Weak (add capital, number, or symbol)";
+      
+      if (score === 2) {
+        width = "50%";
+        color = "bg-amber-500";
+        msg = "Medium (add number or symbol)";
+      } else if (score === 3) {
+        width = "75%";
+        color = "bg-blue-500";
+        msg = "Strong";
+      } else if (score >= 4) {
+        width = "100%";
+        color = "bg-emerald-500";
+        msg = "Very Strong";
+      }
+      
+      bar.style.width = width;
+      bar.className = `h-full transition-all duration-300 ${color}`;
+      text.textContent = msg;
+    },
+    handleForgot: async () => {
+      const btn = document.getElementById('btn-forgot-submit');
+      if (btn && btn.disabled) return;
       const email = $('#forgot-email')?.value;
       if (email) {
-        showToast(`Reset code successfully sent to ${email}`);
+        if (btn) {
+          btn.disabled = true;
+          btn.classList.add('opacity-80', 'cursor-not-allowed');
+          btn.querySelector('span').textContent = 'Sending...';
+          btn.querySelector('.loading-spinner').classList.remove('hidden');
+        }
+        
+        // Simulate network request
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        
+        showToast(`Reset code successfully sent to ${email}`, 'success');
         Modal.close('forgot');
+        
+        if (btn) {
+          btn.disabled = false;
+          btn.classList.remove('opacity-80', 'cursor-not-allowed');
+          btn.querySelector('span').textContent = 'Send Reset Link';
+          btn.querySelector('.loading-spinner').classList.add('hidden');
+        }
       }
     }
   });

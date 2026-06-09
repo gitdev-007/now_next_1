@@ -20,3 +20,4 @@ firebase.initializeApp(firebaseConfig);
 // Expose services globally for app.js to use
 window.layoverxDb = firebase.firestore();
 window.layoverxAuth = firebase.auth();
+window.layoverxStorage = firebase.storage();
