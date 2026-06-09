@@ -74,66 +74,77 @@
     3: { id: 3, name: "The Game Palacio - Casino Style Arcade", category: "gaming", rating: 4.7, duration: 2.5, price: 1800, image: "https://images.unsplash.com/photo-1511886929837-354d827aae26?w=600&h=400&fit=crop", desc: "Boutique bowling, high-end retro arcade games, and mechanical bull rides with a premium lounge bar." }
   };
 
-  /* ===== FIREBASE INIT PLACEHOLDER ===== */
-  // TODO: Import and initialize Firebase from firebase-config.js
-  // import { auth, db } from './firebase-config.js';
+  /* ===== FIREBASE INTEGRATION ===== */
+  // The global firebase objects are initialized in firebase-config.js
+  const auth = window.layoverxAuth;
+  const db = window.layoverxDb;
 
   /* ===== AUTH ===== */
   const Auth = {
-    async init() {
-      // TODO: Implement Firebase onAuthStateChanged
-      // auth.onAuthStateChanged(user => { ... })
-      
-      // Temporary stub for UI preservation
-      const saved = localStorage.getItem('layoverx_user');
-      if (saved) {
-        try {
-          state.user = JSON.parse(saved);
+    init() {
+      // Listen for Firebase auth state changes
+      auth.onAuthStateChanged(user => {
+        if (user) {
+          // User is signed in.
+          state.user = { 
+            email: user.email, 
+            name: user.displayName || user.email.split('@')[0], 
+            avatar: (user.displayName || user.email)[0].toUpperCase(),
+            uid: user.uid
+          };
           state.isAuthenticated = true;
-        } catch (e) {}
-      }
-      this.updateUI();
+        } else {
+          // User is signed out.
+          state.user = null;
+          state.isAuthenticated = false;
+        }
+        this.updateUI();
+      });
     },
     async login(email, password) {
-      // TODO: Implement Firebase signInWithEmailAndPassword
-      // await signInWithEmailAndPassword(auth, email, password);
-      
-      // Temporary stub
-      const name = email.split('@')[0];
-      state.user = { email, name, avatar: name[0].toUpperCase() };
-      state.isAuthenticated = true;
-      localStorage.setItem('layoverx_user', JSON.stringify(state.user));
-      
-      Modal.closeAll();
-      this.updateUI();
-      showToast(`Welcome back, ${name}!`);
+      try {
+        await auth.signInWithEmailAndPassword(email, password);
+        Modal.closeAll();
+        showToast(`Welcome back!`);
+      } catch (error) {
+        console.error("Login Error:", error);
+        showToast(`Login failed: ${error.message}`);
+      }
     },
     async signup(name, email, password) {
-      // TODO: Implement Firebase createUserWithEmailAndPassword
-      // const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      // TODO: Save user profile to Firestore
-      // await setDoc(doc(db, "users", userCredential.user.uid), { full_name: name, email });
-      
-      // Temporary stub
-      state.user = { email, name, avatar: name[0].toUpperCase() };
-      state.isAuthenticated = true;
-      localStorage.setItem('layoverx_user', JSON.stringify(state.user));
-      
-      Modal.closeAll();
-      this.updateUI();
-      showToast(`Account created! Welcome, ${name}.`);
+      try {
+        const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+        const user = userCredential.user;
+        
+        // Update Firebase profile with display name
+        await user.updateProfile({
+          displayName: name
+        });
+        
+        // Save user profile to Firestore users collection
+        await db.collection("users").doc(user.uid).set({
+          uid: user.uid,
+          fullName: name,
+          email: email,
+          createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        });
+        
+        Modal.closeAll();
+        showToast(`Account created! Welcome, ${name}.`);
+      } catch (error) {
+        console.error("Signup Error:", error);
+        showToast(`Signup failed: ${error.message}`);
+      }
     },
     async logout() {
-      // TODO: Implement Firebase signOut
-      // await signOut(auth);
-      
-      // Temporary stub
-      state.user = null;
-      state.isAuthenticated = false;
-      localStorage.removeItem('layoverx_user');
-      this.updateUI();
-      showToast("Signed out successfully.");
-      setTimeout(() => window.location.reload(), 800);
+      try {
+        await auth.signOut();
+        showToast("Signed out successfully.");
+        setTimeout(() => window.location.reload(), 800);
+      } catch (error) {
+        console.error("Logout Error:", error);
+        showToast(`Logout failed: ${error.message}`);
+      }
     },
     updateUI() {
       const isAuth = state.isAuthenticated;
