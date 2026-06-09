@@ -145,6 +145,30 @@ PAGES_METADATA = {
         'description': 'Track your LayoverX supplier partner applications and review status updates.',
         'canonical': 'https://layoverx.com/supplier-dashboard.html',
         'json_ld': ''
+    },
+    'service-details.html': {
+        'title': 'Service Details | LayoverX Premium Experience',
+        'description': 'Detailed view of LayoverX travel marketplace amenities, pricing, reviews, and bookings.',
+        'canonical': 'https://layoverx.com/service-details.html',
+        'json_ld': ''
+    },
+    'my-itinerary.html': {
+        'title': 'My Layover Itinerary Workspace | LayoverX Smart Planner',
+        'description': 'Manage, reorder, and refine your custom transit itinerary with our AI co-pilot.',
+        'canonical': 'https://layoverx.com/my-itinerary.html',
+        'json_ld': ''
+    },
+    'checkout.html': {
+        'title': 'Secure Checkout | Finalize Layover Experience',
+        'description': 'Finalize your booking details and secure payment for your transit itinerary.',
+        'canonical': 'https://layoverx.com/checkout.html',
+        'json_ld': ''
+    },
+    'my-trips.html': {
+        'title': 'My Trips Dashboard | LayoverX Traveler Portal',
+        'description': 'Access your upcoming, past, and draft transit itineraries.',
+        'canonical': 'https://layoverx.com/my-trips.html',
+        'json_ld': ''
     }
 }
 

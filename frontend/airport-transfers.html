@@ -67,6 +67,8 @@
         <a class="nav-link text-sm font-medium transition-colors duration-200 " href="gaming-entertainment.html">Gaming</a>
         <a class="nav-link text-sm font-medium transition-colors duration-200 " href="experiences.html">Tours</a>
         <a class="nav-link text-sm font-medium transition-colors duration-200 active-nav-link" href="airport-transfers.html">Transfers</a>
+        <button onclick="openAuthModal('trip-context')" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold bg-sky-500/20 hover:bg-sky-500/35 text-sky-300 border border-sky-500/30 transition-all hover:scale-105 cursor-pointer" id="global-trip-badge">✈️ Configure Trip</button>
+        <a class="nav-link text-sm font-medium transition-colors duration-200" href="my-itinerary.html" id="nav-itinerary-link">My Itinerary <span id="itinerary-badge" class="hidden ml-1 px-1.5 py-0.5 text-[10px] font-extrabold bg-rose-500 text-white rounded-full">0</span></a>
         <a href="plan-my-layover.html" class="plan-my-layover-btn">Plan My Layover</a>
         
         <!-- Auth Guest View -->
@@ -74,9 +76,10 @@
           <a href="#login" class="nav-link text-sm font-medium cursor-pointer" onclick="openAuthModal('login');return false;">Login</a>
           <a href="#signup" class="px-4 py-2 bg-sky-700 text-white text-sm font-semibold rounded-xl hover:bg-sky-700 hover:shadow-lg hover:shadow-sky-500/20 transition hover:-translate-y-0.5 transform" onclick="openAuthModal('signup');return false;">Sign Up</a>
         </div>
-
+ 
         <!-- Auth User View -->
         <div class="auth-user hidden items-center gap-4 user-menu">
+          <a href="my-trips.html" class="text-sm font-medium text-sky-300 hover:text-sky-400 hover:underline">My Trips</a>
           <a href="supplier-dashboard.html" class="text-sm font-medium text-sky-300 hover:text-sky-400 hover:underline">Supplier Hub</a>
           <div class="flex items-center gap-2 bg-white/20 backdrop-blur-md border border-white/20 px-3 py-1.5 rounded-xl">
             <div class="w-6 h-6 bg-gradient-to-br from-sky-400 to-sky-600 rounded-full flex items-center justify-center text-[10px] font-bold text-white uppercase user-avatar-letter">U</div>
@@ -97,6 +100,8 @@
 
   <!-- Mobile Dropdown Menu -->
   <div class="lg:hidden hidden bg-white/95 backdrop-blur-xl rounded-2xl mt-2 p-4 shadow-xl mx-4 border border-gray-100" id="mobile-menu">
+    <button onclick="openAuthModal('trip-context')" class="mb-3 w-full flex items-center justify-center gap-1.5 px-4 py-3 rounded-xl text-xs font-extrabold bg-sky-50 text-sky-700 border border-sky-100 transition-all cursor-pointer" id="global-trip-badge-mobile">✈️ Configure Trip</button>
+    <a class="block text-gray-800 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium" href="my-itinerary.html">My Itinerary <span id="itinerary-badge-mobile" class="hidden ml-1 px-1.5 py-0.5 text-[10px] font-extrabold bg-rose-500 text-white rounded-full">0</span></a>
     <a class="block text-gray-800 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium " href="hotels.html">Hotels</a>
     <a class="block text-gray-800 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium " href="restaurants.html">Restaurants</a>
     <a class="block text-gray-800 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium " href="spa-wellness.html">Spa & Wellness</a>
@@ -122,6 +127,7 @@
           <div class="text-sm font-bold text-gray-900 user-name">Traveler</div>
         </div>
       </div>
+      <a href="my-trips.html" class="w-full text-center py-2.5 bg-sky-50 text-sky-700 font-semibold rounded-xl text-sm transition">My Trips</a>
       <a href="supplier-dashboard.html" class="w-full text-center py-2.5 bg-indigo-50 text-indigo-700 font-semibold rounded-xl text-sm transition">Supplier Hub</a>
       <button class="mt-2 w-full text-center py-2.5 bg-red-50 text-red-600 hover:bg-red-100 text-sm font-semibold rounded-xl transition" onclick="layoverx.logout()">Logout</button>
     </div>
@@ -312,7 +318,10 @@
                   <div class="text-theme-primary text-xs">Fixed Quote<br/><span class="text-lg font-black text-theme-primary">₹899</span></div>
                   <div class="text-theme-primary text-xs border-l border-gray-200 pl-2">Wait Buffer<br/><span class="text-theme-primary font-bold">45 Mins Free</span></div>
                 </div>
-                <button type="button" onclick="layoverx.bookCab('sedan')" class="px-5 py-2.5 bg-theme-primary hover:bg-theme-primary text-white font-bold text-sm rounded-xl shadow-md transition transform hover:-translate-y-0.5">Book Cab Now</button>
+                <div class="flex items-center gap-2">
+                  <a href="service-details.html?type=transfer&id=sedan" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold text-xs rounded-xl transition">View Details</a>
+                  <button type="button" onclick="layoverx.addToItinerary('transfer', 'sedan')" class="px-4 py-2 bg-theme-primary hover:bg-theme-primary text-white font-bold text-xs rounded-xl shadow-md transition transform hover:-translate-y-0.5">Add to Itinerary</button>
+                </div>
               </div>
             </div>
           </article>
@@ -346,7 +355,10 @@
                   <div class="text-theme-primary text-xs">Fixed Quote<br/><span class="text-lg font-black text-theme-primary">₹1,499</span></div>
                   <div class="text-theme-primary text-xs border-l border-gray-200 pl-2">Wait Buffer<br/><span class="text-theme-primary font-bold">45 Mins Free</span></div>
                 </div>
-                <button type="button" onclick="layoverx.bookCab('suv')" class="px-5 py-2.5 bg-theme-primary hover:bg-theme-primary text-white font-bold text-sm rounded-xl shadow-md transition transform hover:-translate-y-0.5">Book Cab Now</button>
+                <div class="flex items-center gap-2">
+                  <a href="service-details.html?type=transfer&id=suv" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold text-xs rounded-xl transition">View Details</a>
+                  <button type="button" onclick="layoverx.addToItinerary('transfer', 'suv')" class="px-4 py-2 bg-theme-primary hover:bg-theme-primary text-white font-bold text-xs rounded-xl shadow-md transition transform hover:-translate-y-0.5">Add to Itinerary</button>
+                </div>
               </div>
             </div>
           </article>
@@ -380,7 +392,10 @@
                   <div class="text-theme-primary text-xs">Fixed Quote<br/><span class="text-lg font-black text-theme-primary">₹3,499</span></div>
                   <div class="text-theme-primary text-xs border-l border-gray-200 pl-2">Wait Buffer<br/><span class="text-theme-primary font-bold">45 Mins Free</span></div>
                 </div>
-                <button type="button" onclick="layoverx.bookCab('luxury')" class="px-5 py-2.5 bg-theme-primary hover:bg-theme-primary text-white font-bold text-sm rounded-xl shadow-md transition transform hover:-translate-y-0.5">Book Cab Now</button>
+                <div class="flex items-center gap-2">
+                  <a href="service-details.html?type=transfer&id=luxury" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold text-xs rounded-xl transition">View Details</a>
+                  <button type="button" onclick="layoverx.addToItinerary('transfer', 'luxury')" class="px-4 py-2 bg-theme-primary hover:bg-theme-primary text-white font-bold text-xs rounded-xl shadow-md transition transform hover:-translate-y-0.5">Add to Itinerary</button>
+                </div>
               </div>
             </div>
           </article>
@@ -673,6 +688,57 @@
       <p class="text-sm text-center text-gray-600 mt-6">
         <a href="#" class="auth-link text-sky-700 hover:text-sky-800 font-bold transition-colors" onclick="layoverx.switchModal('forgot', 'login');return false;">Back to Login</a>
       </p>
+    </div>
+  </div>
+</div>
+
+<div id="modal-trip-context" class="modal-overlay opacity-0 transition-opacity duration-300 hidden" data-modal="trip-context" role="dialog" aria-modal="true" aria-labelledby="trip-context-title">
+  <div class="modal-content transform scale-95 transition-transform duration-300 p-8 sm:p-10 !max-w-md">
+    <button class="modal-close font-semibold text-2xl" aria-label="Close Trip Modal" onclick="layoverx.closeModal('trip-context')">&times;</button>
+    <div class="auth-form">
+      <div class="mb-6 text-center">
+        <h2 id="trip-context-title" class="text-gray-900 text-2xl font-extrabold tracking-tight mb-2">Update Trip Details</h2>
+        <p class="text-sm text-gray-500 font-medium">Define your layover timings to filter available services.</p>
+      </div>
+      
+      <form id="form-trip-context" onsubmit="layoverx.handleTripContextSubmit(event)" class="space-y-4">
+        <div class="form-group text-left">
+          <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5" for="context-location">Airport Area</label>
+          <select id="context-location" class="form-input w-full border border-gray-300 focus:border-sky-600 focus:ring-2 focus:ring-sky-600/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all shadow-sm" required>
+            <option value="near-airport">Mumbai Airport (CSMIA) Area</option>
+            <option value="bandra">Bandra West (Shopping & Dining)</option>
+            <option value="south-mumbai">South Mumbai (Sightseeing & Heritage)</option>
+          </select>
+        </div>
+        <div class="form-group text-left">
+          <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5" for="context-arrival">Arrival Date & Time</label>
+          <input id="context-arrival" type="datetime-local" class="form-input w-full border border-gray-300 focus:border-sky-600 focus:ring-2 focus:ring-sky-600/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all shadow-sm" required oninput="layoverx.calculateContextDuration()"/>
+        </div>
+        <div class="form-group text-left">
+          <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5" for="context-departure">Departure Date & Time</label>
+          <input id="context-departure" type="datetime-local" class="form-input w-full border border-gray-300 focus:border-sky-600 focus:ring-2 focus:ring-sky-600/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all shadow-sm" required oninput="layoverx.calculateContextDuration()"/>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="form-group text-left">
+            <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5" for="context-travelers">Travelers</label>
+            <select id="context-travelers" class="form-input w-full border border-gray-300 focus:border-sky-600 focus:ring-2 focus:ring-sky-600/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all shadow-sm" required>
+              <option value="1">1 Traveler</option>
+              <option value="2">2 Travelers</option>
+              <option value="3">3 Travelers</option>
+              <option value="4">4 Travelers</option>
+              <option value="5">5+ Travelers</option>
+            </select>
+          </div>
+          <div class="form-group text-left">
+            <span class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5">Layover Hours</span>
+            <div id="context-duration-display" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-700 font-bold text-center">--</div>
+          </div>
+        </div>
+        <div id="context-validation-message" class="text-xs text-red-500 font-medium hidden"></div>
+        <button id="btn-context-submit" type="submit" class="btn btn-primary w-full mt-4 py-3.5 bg-gray-900 hover:bg-black text-white font-bold rounded-xl shadow-lg transition-all transform hover:-translate-y-0.5 flex justify-center items-center gap-2">
+          <span>Apply Trip Details</span>
+        </button>
+      </form>
     </div>
   </div>
 </div>

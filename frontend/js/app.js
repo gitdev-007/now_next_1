@@ -168,6 +168,44 @@
     open(name) {
       const modal = $(`#modal-${name}`);
       if (!modal) return;
+
+      if (name === 'trip-context') {
+        try {
+          const saved = JSON.parse(localStorage.getItem('layoverx_search_params'));
+          if (saved) {
+            const locInput = $('#context-location');
+            const arrInput = $('#context-arrival');
+            const depInput = $('#context-departure');
+            const travInput = $('#context-travelers');
+            if (locInput) locInput.value = saved.location || 'near-airport';
+            if (arrInput) arrInput.value = saved.arrivalDateTime || '';
+            if (depInput) depInput.value = saved.departureDateTime || '';
+            if (travInput) travInput.value = saved.travelers || '2';
+            
+            // Also update context duration display instantly
+            const disp = $('#context-duration-display');
+            const msg = $('#context-validation-message');
+            const btn = $('#btn-context-submit');
+            if (saved.arrivalDateTime && saved.departureDateTime) {
+              const diff = new Date(saved.departureDateTime) - new Date(saved.arrivalDateTime);
+              if (diff > 0) {
+                const hours = diff / (1000 * 60 * 60);
+                if (disp) disp.textContent = `${hours.toFixed(1)}h`;
+                if (msg) msg.classList.add('hidden');
+                if (btn) btn.disabled = false;
+              } else {
+                if (disp) disp.textContent = '--';
+                if (msg) {
+                  msg.textContent = '⚠️ Departure must be after arrival.';
+                  msg.classList.remove('hidden');
+                }
+                if (btn) btn.disabled = true;
+              }
+            }
+          }
+        } catch(e) { console.error(e); }
+      }
+
       modal.classList.remove('hidden');
       // trigger reflow
       void modal.offsetWidth;
@@ -1133,12 +1171,14 @@
       const dep = $('#plan-departure').value;
       const l = $('#plan-location').value;
       const t = $('#plan-travelers').value;
+      const hours = (new Date(dep) - new Date(arr)) / 3600000;
       try {
         localStorage.setItem('layoverx_search_params', JSON.stringify({
           arrivalDateTime: arr,
           departureDateTime: dep,
           location: l,
-          travelers: t
+          travelers: t,
+          layoverDuration: hours
         }));
       } catch(e) { console.error(e); }
     };
@@ -2020,17 +2060,20 @@
         return;
       }
       
+      const hours = (new Date(departure) - new Date(arrival)) / 3600000;
+      
       // Save search parameters to localStorage
       try {
         localStorage.setItem('layoverx_search_params', JSON.stringify({
           arrivalDateTime: arrival,
           departureDateTime: departure,
           location,
-          travelers
+          travelers,
+          layoverDuration: hours
         }));
       } catch(e) { console.error(e); }
 
-      const params = new URLSearchParams({ arrivalDateTime: arrival, departureDateTime: departure, location, travelers });
+      const params = new URLSearchParams({ arrivalDateTime: arrival, departureDateTime: departure, location, travelers, layoverDuration: hours });
       window.location.href = `plan-my-layover.html?${params.toString()}`;
     });
   }
@@ -2111,13 +2154,1456 @@
     initCarousel('#planner-services-carousel', '#planner-prev', '#planner-next');
     loadSavedPlans();
     initHomepageSearch();
+    
+    // Add new marketplace initializers
+    initGlobalTravelContext();
+    initServiceDetailsPage();
+    initItineraryWorkspacePage();
+    initCheckoutPage();
+    initMyTripsPage();
+    updateItineraryBadges();
 
     console.log('%c LayoverX Premium Portal Activated ✈️ ', 'background:#0ea5e9;color:#fff;font-weight:bold;padding:4px 8px;border-radius:4px');
   }
+
+  /* ===== EXTENDED MARKETPLACE ENGINE ===== */
+  
+  const TRANSFERS = {
+    'sedan': { id: 'sedan', name: "Compact Sedan (Toyota Etios or similar)", type: "sedan", rating: 4.8, reviews: 2100, price: 899, image: "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=600&h=400&fit=crop", desc: "Ideal for 1-3 passengers with standard luggage. AC, GPS tracking, and verified high hygiene standards.", amenities: ["4 Passengers", "2 Large Bags", "Instant Confirmation"] },
+    'suv': { id: 'suv', name: "Premium SUV (Toyota Innova Crysta)", type: "suv", rating: 4.9, reviews: 1800, price: 1499, image: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=600&h=400&fit=crop", desc: "Extra room, premium comfort, great for families. AC, high luggage capacity, and professional English-speaking drivers.", amenities: ["6 Passengers", "4 Large Bags", "Popular Choice"] },
+    'luxury': { id: 'luxury', name: "Luxury Executive (Mercedes C-Class or Audi A4)", type: "luxury", rating: 4.9, reviews: 840, price: 3499, image: "https://images.unsplash.com/photo-1563720223185-11003d516935?w=600&h=400&fit=crop", desc: "Chauffeur-driven luxury class vehicle. Leather seats, airport exit gate placard meet and greet service included.", amenities: ["4 Passengers", "2 Large Bags", "Premium Chauffeur"] }
+  };
+
+  function initGlobalTravelContext() {
+    let params = null;
+    try {
+      params = JSON.parse(localStorage.getItem('layoverx_search_params'));
+    } catch(e) { console.error(e); }
+
+    if (!params) {
+      const now = new Date();
+      const sixHoursLater = new Date(now.getTime() + 6.5 * 60 * 60 * 1000);
+      params = {
+        location: 'near-airport',
+        arrivalDateTime: toLocalISO(now),
+        departureDateTime: toLocalISO(sixHoursLater),
+        travelers: '2',
+        layoverDuration: 6.5
+      };
+      try {
+        localStorage.setItem('layoverx_search_params', JSON.stringify(params));
+      } catch(e) { console.error(e); }
+    }
+
+    if (params && (params.layoverDuration === undefined || params.layoverDuration === null)) {
+      const arr = params.arrivalDateTime;
+      const dep = params.departureDateTime;
+      if (arr && dep) {
+        params.layoverDuration = (new Date(dep) - new Date(arr)) / 3600000;
+      } else {
+        params.layoverDuration = 6.5;
+      }
+    }
+
+    state.currentPlan.location = params.location;
+    state.currentPlan.arrivalDateTime = params.arrivalDateTime;
+    state.currentPlan.departureDateTime = params.departureDateTime;
+    state.currentPlan.travelers = parseInt(params.travelers) || 2;
+
+    updateGlobalTripBadges(params);
+    syncPageInputsWithGlobalContext(params);
+  }
+
+  function updateGlobalTripBadges(params) {
+    const hours = parseFloat(params.layoverDuration) || 0;
+    const travelers = params.travelers || '2';
+    const locName = params.location === 'near-airport' ? 'BOM' : (params.location === 'bandra' ? 'Bandra' : 'SoMu');
+    const label = `✏️ Trip Details: ${locName} (${hours.toFixed(1)}h, ${travelers} Guests)`;
+
+    const badge = $('#global-trip-badge');
+    const badgeMobile = $('#global-trip-badge-mobile');
+    if (badge) badge.textContent = label;
+    if (badgeMobile) badgeMobile.textContent = label;
+  }
+
+  function calculateContextDuration() {
+    const arrVal = $('#context-arrival')?.value;
+    const depVal = $('#context-departure')?.value;
+    const disp = $('#context-duration-display');
+    const msg = $('#context-validation-message');
+    const btn = $('#btn-context-submit');
+
+    if (!arrVal || !depVal) return;
+
+    const arr = new Date(arrVal);
+    const dep = new Date(depVal);
+    const diff = dep - arr;
+
+    if (diff <= 0) {
+      if (disp) disp.textContent = '--';
+      if (msg) {
+        msg.textContent = '⚠️ Departure must be after arrival.';
+        msg.classList.remove('hidden');
+      }
+      if (btn) btn.disabled = true;
+      return;
+    }
+
+    const hours = diff / (1000 * 60 * 60);
+    if (disp) disp.textContent = `${hours.toFixed(1)}h`;
+    if (msg) msg.classList.add('hidden');
+    if (btn) btn.disabled = false;
+  }
+
+  function handleTripContextSubmit(e) {
+    e.preventDefault();
+    const loc = $('#context-location').value;
+    const arr = $('#context-arrival').value;
+    const dep = $('#context-departure').value;
+    const trav = $('#context-travelers').value;
+
+    const hours = (new Date(dep) - new Date(arr)) / 3600000;
+
+    const params = {
+      location: loc,
+      arrivalDateTime: arr,
+      departureDateTime: dep,
+      travelers: trav,
+      layoverDuration: hours
+    };
+
+    try {
+      localStorage.setItem('layoverx_search_params', JSON.stringify(params));
+    } catch(err) { console.error(err); }
+
+    state.currentPlan.location = loc;
+    state.currentPlan.arrivalDateTime = arr;
+    state.currentPlan.departureDateTime = dep;
+    state.currentPlan.travelers = parseInt(trav) || 2;
+
+    updateGlobalTripBadges(params);
+    Modal.close('trip-context');
+    showToast("Trip details updated successfully!", "success");
+
+    syncPageInputsWithGlobalContext(params);
+    
+    if (window.location.pathname.includes('my-itinerary')) {
+      renderWorkspaceItinerary();
+    }
+  }
+
+  function syncPageInputsWithGlobalContext(params) {
+    const hotelLoc = $('#hotel-location');
+    const hotelCheckin = $('#hotel-checkin');
+    const hotelDur = $('#hotel-duration');
+    if (hotelLoc && hotelCheckin && hotelDur) {
+      hotelLoc.value = 'all';
+      hotelCheckin.value = params.arrivalDateTime;
+      const hours = params.layoverDuration;
+      if (hours <= 4) hotelDur.value = "3";
+      else if (hours <= 9) hotelDur.value = "6";
+      else if (hours <= 18) hotelDur.value = "12";
+      else hotelDur.value = "24";
+      
+      const form = $('#hotel-search-form');
+      if (form) form.dispatchEvent(new Event('submit'));
+    }
+
+    const searchArrival = $('#search-arrival');
+    const searchDeparture = $('#search-departure');
+    const searchLoc = $('#search-location');
+    const searchTrav = $('#search-travelers');
+    if (searchArrival && searchDeparture) {
+      searchArrival.value = params.arrivalDateTime;
+      searchDeparture.value = params.departureDateTime;
+      if (searchLoc) searchLoc.value = params.location;
+      if (searchTrav) searchTrav.value = params.travelers;
+      
+      const durEl = $('#layover-duration');
+      if (durEl) {
+        const diff = new Date(params.departureDateTime) - new Date(params.arrivalDateTime);
+        const h = Math.floor(diff / 3600000);
+        const m = Math.floor((diff % 3600000) / 60000);
+        durEl.textContent = `${h}h ${m}m`;
+      }
+    }
+
+    const cabTime = $('#cab-time');
+    const cabLoc = $('#cab-location');
+    if (cabTime) {
+      cabTime.value = params.arrivalDateTime;
+      if (cabLoc) cabLoc.value = params.location;
+      const form = $('#transfer-search-form');
+      if (form) form.dispatchEvent(new Event('submit'));
+    }
+  }
+
+  function updateItineraryBadges() {
+    let itinerary = [];
+    try {
+      const stored = localStorage.getItem('layoverx_current_itinerary');
+      if (stored) itinerary = JSON.parse(stored);
+    } catch(e) { console.error(e); }
+    
+    const count = itinerary.length;
+    const badge = $('#itinerary-badge');
+    const badgeMobile = $('#itinerary-badge-mobile');
+    if (badge) {
+      badge.textContent = count;
+      badge.classList.toggle('hidden', count === 0);
+    }
+    if (badgeMobile) {
+      badgeMobile.textContent = count;
+      badgeMobile.classList.toggle('hidden', count === 0);
+    }
+  }
+
+  function initServiceDetailsPage() {
+    if (!window.location.pathname.includes('service-details')) return;
+
+    const params = new URLSearchParams(window.location.search);
+    const type = params.get('type');
+    const id = params.get('id');
+
+    if (!type || !id) {
+      showToast("Invalid service ID or category.", "error");
+      setTimeout(() => window.location.href = 'index.html', 1500);
+      return;
+    }
+
+    let dict = null;
+    if (type === 'hotel') dict = HOTELS;
+    else if (type === 'dining') dict = DINING;
+    else if (type === 'spa') dict = SPA_WELLNESS;
+    else if (type === 'gaming') dict = GAMING_ENTERTAINMENT;
+    else if (type === 'activity') dict = EXPERIENCES;
+    else if (type === 'transfer') dict = TRANSFERS;
+
+    const item = dict ? dict[id] : null;
+
+    if (!item) {
+      showToast("Service details not found.", "error");
+      setTimeout(() => window.location.href = 'index.html', 1500);
+      return;
+    }
+
+    const skeleton = $('#details-skeleton');
+    if (skeleton) skeleton.classList.add('hidden');
+    const content = $('#details-content');
+    if (content) content.classList.remove('hidden');
+
+    const heroBg = $('#details-hero-bg');
+    if (heroBg) heroBg.style.backgroundImage = `url('${item.image}')`;
+    
+    const catEl = $('#details-breadcrumb-category');
+    if (catEl) catEl.textContent = type;
+    
+    const breadTitle = $('#details-breadcrumb-title');
+    if (breadTitle) breadTitle.textContent = item.name;
+    
+    const titleEl = $('#details-title');
+    if (titleEl) titleEl.textContent = item.name;
+
+    const starsDisp = $('#details-stars-display');
+    if (starsDisp) {
+      const starsCount = item.stars || (item.rating >= 4.7 ? 5 : 4);
+      starsDisp.textContent = '⭐'.repeat(starsCount);
+    }
+
+    const ratingDisp = $('#details-rating-display');
+    if (ratingDisp) {
+      const reviewsCount = item.reviews || 240;
+      ratingDisp.textContent = `★ ${item.rating} (${reviewsCount} reviews)`;
+    }
+
+    const locText = $('#details-location-text');
+    if (locText) {
+      const distText = item.distance !== undefined ? ` • ${item.distance} km from airport` : '';
+      locText.textContent = `📍 CSMIA Airport Area${distText}`;
+    }
+
+    const mainImg = $('#details-main-img');
+    if (mainImg) mainImg.src = item.image;
+
+    const descEl = $('#details-description');
+    if (descEl) descEl.textContent = item.desc || "Experience premium service and flexible timings customized for international transit passengers at Chhatrapati Shivaji Maharaj International Airport (CSMIA). Clean facilities, high hygiene standards, and verified operators.";
+
+    const cardPrice = $('#details-card-price');
+    if (cardPrice) cardPrice.textContent = `₹${item.price.toLocaleString()}`;
+    const priceUnit = $('#details-price-unit');
+    if (priceUnit) {
+      if (type === 'hotel') priceUnit.textContent = '/ stay slot';
+      else if (type === 'dining') priceUnit.textContent = '/ table';
+      else priceUnit.textContent = '/ guest';
+    }
+
+    let searchParams = { travelers: '2', layoverDuration: 6.5, location: 'near-airport', arrivalDateTime: '' };
+    try {
+      const stored = localStorage.getItem('layoverx_search_params');
+      if (stored) searchParams = JSON.parse(stored);
+    } catch(e) { console.error(e); }
+
+    const activeLoc = $('#details-active-loc');
+    if (activeLoc) activeLoc.textContent = searchParams.location === 'near-airport' ? 'Near Mumbai Airport' : searchParams.location.toUpperCase();
+    const activeGuests = $('#details-active-guests');
+    if (activeGuests) activeGuests.textContent = `${searchParams.travelers} Guests`;
+    
+    const activeDurRow = $('#details-active-duration-row');
+    const activeDur = $('#details-active-duration');
+    if (type === 'hotel') {
+      if (activeDur) {
+        const hrs = parseFloat(searchParams.layoverDuration) || 6.5;
+        activeDur.textContent = `${hrs.toFixed(1)} hours`;
+      }
+    } else {
+      if (activeDurRow) activeDurRow.classList.add('hidden');
+    }
+
+    const activeTime = $('#details-active-time');
+    if (activeTime && searchParams.arrivalDateTime) {
+      const landingTime = new Date(searchParams.arrivalDateTime);
+      activeTime.textContent = landingTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    }
+
+    const amenList = $('#details-amenities-list');
+    if (amenList) {
+      amenList.innerHTML = '';
+      const list = item.amenities || ["Free high-speed WiFi", "Air Conditioning", "Baggage drop", "Flexible timing", "Verified host"];
+      list.forEach(a => {
+        amenList.innerHTML += `
+          <li class="flex items-center gap-2 bg-slate-50 border border-slate-200/60 px-3 py-2.5 rounded-xl text-xs font-semibold text-slate-700">
+            <span class="text-emerald-500 text-sm">✅</span> ${a}
+          </li>
+        `;
+      });
+    }
+
+    const highlights = $('#details-highlights');
+    if (highlights) {
+      highlights.innerHTML = `
+        <div class="flex items-start gap-3 bg-sky-50/50 border border-sky-100/50 p-4 rounded-2xl">
+          <span class="text-xl">⚡</span>
+          <div>
+            <h4 class="font-bold text-slate-900 text-xs">Transit Friendly</h4>
+            <p class="text-[10px] text-slate-500 mt-0.5 leading-relaxed">No overnight booking constraint. Optimized hourly rates.</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3 bg-emerald-50/50 border border-emerald-100/50 p-4 rounded-2xl">
+          <span class="text-xl">🛡️</span>
+          <div>
+            <h4 class="font-bold text-slate-900 text-xs">Safe Exit Certified</h4>
+            <p class="text-[10px] text-slate-500 mt-0.5 leading-relaxed">Operator assists with express security lines & transfer timings.</p>
+          </div>
+        </div>
+      `;
+    }
+
+    const reviewsList = $('#details-reviews-list');
+    if (reviewsList) {
+      reviewsList.innerHTML = '';
+      const reviews = [
+        { author: "Markus S.", country: "Germany", rating: 5, date: "June 2026", text: "Extremely convenient during my 8-hour flight transfer. The operator was prompt and helped me calculate exact boarding timing buffers. High quality!" },
+        { author: "Priya Patel", country: "India", rating: 4, date: "May 2026", text: "Clean and quiet room. Very close to Terminal 2, shuttle was ready at exit gate 2. Perfect stopover solution." },
+        { author: "David L.", country: "Australia", rating: 5, date: "April 2026", text: "Outstanding service. The food was delicious and the spa massage rejuvenated me completely. Highly recommend this transit choice." }
+      ];
+      reviews.forEach(r => {
+        reviewsList.innerHTML += `
+          <div class="border-b border-gray-55 pb-4 last:border-b-0 space-y-2">
+            <div class="flex justify-between items-center gap-2">
+              <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-full bg-slate-100 text-xs font-bold text-slate-700 flex items-center justify-center uppercase">${r.author[0]}</div>
+                <div>
+                  <strong class="text-xs font-extrabold text-slate-900">${r.author}</strong>
+                  <span class="text-[10px] text-slate-400 block">${r.country} • ${r.date}</span>
+                </div>
+              </div>
+              <span class="text-xs font-bold text-amber-500">${'★'.repeat(r.rating)}</span>
+            </div>
+            <p class="text-xs text-slate-650 leading-relaxed">${r.text}</p>
+          </div>
+        `;
+      });
+    }
+
+    const addBtn = $('#details-add-itinerary');
+    if (addBtn) {
+      addBtn.onclick = () => {
+        layoverx.addToItinerary(type, id);
+      };
+    }
+
+    const bookBtn = $('#details-book-instant');
+    if (bookBtn) {
+      bookBtn.onclick = () => {
+        layoverx.addToItinerary(type, id);
+        setTimeout(() => window.location.href = 'my-itinerary.html', 800);
+      };
+    }
+  }
+
+  function initItineraryWorkspacePage() {
+    if (!window.location.pathname.includes('my-itinerary')) return;
+
+    renderWorkspaceItinerary();
+    loadWorkspaceDraftsSelect();
+  }
+
+  function renderWorkspaceItinerary() {
+    const timelineList = $('#workspace-timeline-list');
+    const emptyState = $('#workspace-empty');
+    const usedHrsEl = $('#workspace-used-hours');
+    const totalHrsEl = $('#workspace-total-hours');
+    const remainingHrsEl = $('#workspace-remaining-hours');
+    const barUsed = $('#workspace-bar-used');
+    const barBuffer = $('#workspace-bar-buffer');
+    const warningEl = $('#workspace-warning');
+    const countEl = $('#workspace-items-count');
+    const summaryPrices = $('#workspace-summary-prices');
+    const totalPriceEl = $('#workspace-total-price');
+
+    if (!timelineList) return;
+
+    let itinerary = [];
+    try {
+      const stored = localStorage.getItem('layoverx_current_itinerary');
+      if (stored) itinerary = JSON.parse(stored);
+    } catch(e) { console.error(e); }
+
+    let searchParams = { travelers: '2', layoverDuration: 6.5, location: 'near-airport', arrivalDateTime: '' };
+    try {
+      const stored = localStorage.getItem('layoverx_search_params');
+      if (stored) searchParams = JSON.parse(stored);
+    } catch(e) { console.error(e); }
+
+    const totalHours = searchParams.layoverDuration || 6.5;
+    const safeWindow = Math.max(0, totalHours - 3.5);
+
+    if (totalHrsEl) totalHrsEl.textContent = `${totalHours.toFixed(1)} Hours`;
+
+    if (itinerary.length === 0) {
+      if (emptyState) emptyState.classList.remove('hidden');
+      if (timelineList) timelineList.classList.add('hidden');
+      if (usedHrsEl) usedHrsEl.textContent = `0.0h`;
+      if (remainingHrsEl) remainingHrsEl.textContent = `${safeWindow.toFixed(1)}h`;
+      if (barUsed) barUsed.style.width = `0%`;
+      if (barBuffer) barBuffer.style.width = `${(3.5 / totalHours * 100).toFixed(1)}%`;
+      if (warningEl) warningEl.classList.add('hidden');
+      if (countEl) countEl.textContent = `0 items`;
+      if (summaryPrices) summaryPrices.innerHTML = `<li class="text-slate-400 italic">No items selected</li>`;
+      if (totalPriceEl) totalPriceEl.textContent = `₹0`;
+      
+      const chkBtn = $('#btn-checkout');
+      if (chkBtn) {
+        chkBtn.disabled = true;
+        chkBtn.classList.add('opacity-50', 'cursor-not-allowed');
+      }
+      return;
+    }
+
+    if (emptyState) emptyState.classList.add('hidden');
+    if (timelineList) timelineList.classList.remove('hidden');
+
+    timelineList.innerHTML = '';
+    if (summaryPrices) summaryPrices.innerHTML = '';
+
+    let usedHours = 0;
+    let totalCost = 0;
+    const travelersCount = parseInt(searchParams.travelers) || 2;
+
+    itinerary.forEach((item, idx) => {
+      usedHours += parseFloat(item.duration) || 0;
+      
+      let itemCost = item.price;
+      if (item.type === 'activity' || item.type === 'spa' || item.type === 'gaming') {
+        itemCost = item.price * travelersCount;
+      }
+      totalCost += itemCost;
+
+      if (summaryPrices) {
+        let catIcon = "🏨";
+        if (item.type === 'dining') catIcon = "🍽️";
+        else if (item.type === 'spa') catIcon = "💆";
+        else if (item.type === 'gaming') catIcon = "🎮";
+        else if (item.type === 'activity') catIcon = "📸";
+        else if (item.type === 'transfer') catIcon = "🚖";
+        
+        summaryPrices.innerHTML += `
+          <li class="flex items-start justify-between gap-4">
+            <span class="flex items-center gap-2"><span>${catIcon}</span> ${item.name}</span>
+            <strong class="font-bold text-slate-900 flex-shrink-0">₹${itemCost.toLocaleString()}</strong>
+          </li>
+        `;
+      }
+
+      let optionsHtml = '';
+      if (item.type === 'hotel') {
+        optionsHtml = [3, 6, 12, 24].map(o => `<option value="${o}" ${item.duration == o ? 'selected' : ''}>${o} Hours Stay</option>`).join('');
+      } else if (item.type === 'dining') {
+        optionsHtml = [1, 1.5, 2].map(o => `<option value="${o}" ${item.duration == o ? 'selected' : ''}>${o} Hours dining</option>`).join('');
+      } else if (item.type === 'spa') {
+        optionsHtml = [0.5, 1, 1.5, 2].map(o => `<option value="${o}" ${item.duration == o ? 'selected' : ''}>${o === 0.5 ? '30 Mins Session' : o + ' Hours Session'}</option>`).join('');
+      } else if (item.type === 'gaming') {
+        optionsHtml = [1, 2, 3].map(o => `<option value="${o}" ${item.duration == o ? 'selected' : ''}>${o} Hours Play</option>`).join('');
+      } else if (item.type === 'activity') {
+        optionsHtml = [2, 3, 4, 5, 6].map(o => `<option value="${o}" ${item.duration == o ? 'selected' : ''}>${o} Hours Tour</option>`).join('');
+      } else if (item.type === 'transfer') {
+        optionsHtml = [0.5, 1].map(o => `<option value="${o}" ${item.duration == o ? 'selected' : ''}>${o === 0.5 ? '30 Mins Cab' : '1 Hour Cab'}</option>`).join('');
+      }
+
+      let categoryColor = "bg-sky-500";
+      if (item.type === 'hotel') categoryColor = "bg-emerald-500";
+      else if (item.type === 'dining') categoryColor = "bg-orange-500";
+      else if (item.type === 'spa') categoryColor = "bg-purple-500";
+      
+      timelineList.innerHTML += `
+        <div class="relative bg-white border border-gray-200 p-4 sm:p-5 rounded-2xl shadow-sm hover:shadow-md transition flex gap-4">
+          <div class="absolute -left-[31px] top-6 w-5 h-5 rounded-full ${categoryColor} border-4 border-white shadow-sm"></div>
+          
+          <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-xl overflow-hidden flex-shrink-0 bg-slate-50">
+            <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover"/>
+          </div>
+          
+          <div class="flex-grow flex flex-col justify-between">
+            <div class="flex justify-between items-start gap-4">
+              <div>
+                <span class="text-[10px] uppercase font-black text-sky-600 block mb-0.5 tracking-wider">${item.type}</span>
+                <h4 class="text-sm sm:text-base font-extrabold text-slate-900 leading-tight">${item.name}</h4>
+                <p class="text-[11px] text-slate-500 mt-1 leading-normal line-clamp-1">${item.desc || 'Flexible transit hours'}</p>
+              </div>
+              
+              <div class="flex items-center gap-1.5 flex-shrink-0 bg-slate-50 border border-slate-100 p-1 rounded-xl">
+                <button onclick="layoverx.reorderWorkspaceItem(${idx}, 'up')" class="p-1 hover:bg-white rounded-lg text-slate-500 hover:text-sky-600 transition disabled:opacity-20" ${idx === 0 ? 'disabled' : ''} title="Move Up">
+                  ▲
+                </button>
+                <button onclick="layoverx.reorderWorkspaceItem(${idx}, 'down')" class="p-1 hover:bg-white rounded-lg text-slate-500 hover:text-sky-600 transition disabled:opacity-20" ${idx === itinerary.length - 1 ? 'disabled' : ''} title="Move Down">
+                  ▼
+                </button>
+                <div class="w-[1px] h-3.5 bg-slate-200 mx-0.5"></div>
+                <button onclick="layoverx.removeWorkspaceItem(${idx})" class="p-1 hover:bg-red-50 rounded-lg text-slate-400 hover:text-red-500 transition" title="Delete">
+                  🗑️
+                </button>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between gap-4 mt-3 pt-3 border-t border-slate-100">
+              <div class="flex items-center gap-2">
+                <label class="text-[10px] text-slate-500 font-extrabold uppercase whitespace-nowrap">Duration:</label>
+                <select onchange="layoverx.updateWorkspaceItemDuration(${idx}, this.value)" class="bg-slate-50 border border-slate-200 rounded-lg px-2 py-1 text-[10px] font-bold text-slate-800 focus:ring-1 focus:ring-sky-500 cursor-pointer">
+                  ${optionsHtml}
+                </select>
+              </div>
+              <strong class="text-xs sm:text-sm font-black text-sky-700">₹${itemCost.toLocaleString()}</strong>
+            </div>
+          </div>
+        </div>
+      `;
+    });
+
+    if (usedHrsEl) usedHrsEl.textContent = `${usedHours.toFixed(1)}h`;
+    if (countEl) countEl.textContent = `${itinerary.length} items`;
+    if (totalPriceEl) totalPriceEl.textContent = `₹${totalCost.toLocaleString()}`;
+
+    const remainingVal = safeWindow - usedHours;
+    if (remainingHrsEl) {
+      remainingHrsEl.textContent = `${remainingVal.toFixed(1)}h`;
+      if (remainingVal < 0) remainingHrsEl.className = "text-sm font-extrabold text-red-600";
+      else remainingHrsEl.className = "text-sm font-extrabold text-indigo-800";
+    }
+
+    if (barUsed) {
+      const pctUsed = Math.min(100, (usedHours / totalHours) * 100);
+      barUsed.style.width = `${pctUsed.toFixed(1)}%`;
+      if (remainingVal < 0) {
+        barUsed.className = "h-full bg-red-500 transition-all duration-500";
+      } else {
+        barUsed.className = "h-full bg-sky-500 transition-all duration-500";
+      }
+    }
+    if (barBuffer) {
+      const pctBuffer = (3.5 / totalHours) * 100;
+      barBuffer.style.width = `${pctBuffer.toFixed(1)}%`;
+    }
+
+    const chkBtn = $('#btn-checkout');
+    const draftBtn = $('#btn-save-draft');
+    if (remainingVal < 0) {
+      if (warningEl) {
+        warningEl.innerHTML = `<span>⚠️ Your selected activities duration (${usedHours.toFixed(1)}h) exceeds safe layover exit window (${safeWindow.toFixed(1)}h). Remove some items or reduce timings.</span>`;
+        warningEl.classList.remove('hidden');
+        warningEl.classList.add('flex');
+      }
+      if (chkBtn) { chkBtn.disabled = true; chkBtn.classList.add('opacity-50', 'cursor-not-allowed'); }
+      if (draftBtn) { draftBtn.disabled = true; draftBtn.classList.add('opacity-50', 'cursor-not-allowed'); }
+    } else {
+      if (warningEl) warningEl.classList.add('hidden');
+      if (chkBtn) { chkBtn.disabled = false; chkBtn.classList.remove('opacity-50', 'cursor-not-allowed'); }
+      if (draftBtn) { draftBtn.disabled = false; draftBtn.classList.remove('opacity-50', 'cursor-not-allowed'); }
+    }
+  }
+
+  function loadWorkspaceDraftsSelect() {
+    const select = $('#workspace-drafts-select');
+    if (!select) return;
+
+    let drafts = [];
+    try {
+      const stored = localStorage.getItem('layoverx_saved_plans');
+      if (stored) drafts = JSON.parse(stored);
+    } catch(e) { console.error(e); }
+
+    select.innerHTML = '<option value="">-- Load Saved Draft --</option>';
+    drafts.forEach((d, idx) => {
+      select.innerHTML += `<option value="${idx}">Draft #${idx + 1} - ${d.cost} (${d.dateSaved})</option>`;
+    });
+
+    select.onchange = function() {
+      const val = this.value;
+      if (val !== "") {
+        layoverx.loadWorkspaceDraft(parseInt(val));
+      }
+    };
+  }
+
+  function initCheckoutPage() {
+    if (!window.location.pathname.includes('checkout')) return;
+
+    let itinerary = [];
+    try {
+      const stored = localStorage.getItem('layoverx_current_itinerary');
+      if (stored) itinerary = JSON.parse(stored);
+    } catch(e) { console.error(e); }
+
+    let searchParams = { travelers: '2', layoverDuration: 6.5, location: 'near-airport', arrivalDateTime: '' };
+    try {
+      const stored = localStorage.getItem('layoverx_search_params');
+      if (stored) searchParams = JSON.parse(stored);
+    } catch(e) { console.error(e); }
+
+    const listEl = $('#checkout-summary-list');
+    const totalEl = $('#checkout-total-price');
+
+    if (!listEl || itinerary.length === 0) {
+      if (listEl) listEl.innerHTML = '<li class="text-slate-400 italic">No services in cart.</li>';
+      return;
+    }
+
+    listEl.innerHTML = '';
+    let totalCost = 0;
+    const travelersCount = parseInt(searchParams.travelers) || 2;
+
+    itinerary.forEach(item => {
+      let cost = item.price;
+      if (item.type === 'activity' || item.type === 'spa' || item.type === 'gaming') {
+        cost = item.price * travelersCount;
+      }
+      totalCost += cost;
+
+      let catIcon = "🏨";
+      if (item.type === 'dining') catIcon = "🍽️";
+      else if (item.type === 'spa') catIcon = "💆";
+      else if (item.type === 'gaming') catIcon = "🎮";
+      else if (item.type === 'activity') catIcon = "📸";
+      else if (item.type === 'transfer') catIcon = "🚖";
+
+      listEl.innerHTML += `
+        <li class="flex items-start justify-between gap-4">
+          <span class="flex items-center gap-2"><span>${catIcon}</span> ${item.name} (${item.duration}h)</span>
+          <strong class="font-bold text-slate-900 flex-shrink-0">₹${cost.toLocaleString()}</strong>
+        </li>
+      `;
+    });
+
+    if (totalEl) totalEl.textContent = `₹${totalCost.toLocaleString()}`;
+
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        const nameInput = $('#chk-traveler-name');
+        if (nameInput && !nameInput.value) {
+          nameInput.value = user.displayName || user.email.split('@')[0];
+        }
+      }
+    });
+  }
+
+  function initMyTripsPage() {
+    if (!window.location.pathname.includes('my-trips')) return;
+
+    layoverx.switchTripsTab('upcoming');
+
+    const params = new URLSearchParams(window.location.search);
+    const bookingId = params.get('bookingId');
+    if (bookingId) {
+      setTimeout(() => {
+        layoverx.openTripReceipt(bookingId);
+      }, 500);
+    }
+  }
+
+  async function renderUpcomingTrips() {
+    const container = $('#tab-content-upcoming');
+    if (!container) return;
+
+    let trips = getLocalCompletedTrips();
+
+    const user = auth.currentUser;
+    if (user) {
+      try {
+        const snapshot = await db.collection("trips").where("uid", "==", user.uid).get();
+        const firestoreTrips = [];
+        snapshot.forEach(doc => firestoreTrips.push(doc.data()));
+        if (firestoreTrips.length > 0) {
+          trips = firestoreTrips;
+        }
+      } catch (dbError) {
+        console.warn("Could not query Firestore upcoming trips:", dbError);
+      }
+    }
+
+    if (trips.length === 0) {
+      container.innerHTML = `
+        <div class="bg-white rounded-3xl border border-gray-200 p-12 text-center shadow-sm">
+          <div class="w-16 h-16 bg-slate-50 text-slate-400 rounded-full flex items-center justify-center text-2xl mx-auto mb-4">📅</div>
+          <h3 class="text-base font-bold text-slate-900 mb-1">No Upcoming Bookings</h3>
+          <p class="text-slate-500 text-xs max-w-sm mx-auto mb-6">You don't have any finalized stopovers booked yet. Complete checkout to secure your reservations.</p>
+          <a href="plan-my-layover.html" class="inline-flex items-center gap-2 px-5 py-2.5 bg-sky-500 hover:bg-sky-600 text-white text-xs font-bold rounded-xl transition shadow">
+            Start Planning
+          </a>
+        </div>
+      `;
+      return;
+    }
+
+    container.innerHTML = '';
+    trips.forEach(t => {
+      const servicesCount = t.items ? t.items.length : 0;
+      const dateLabel = t.createdAt ? new Date(t.createdAt).toLocaleDateString() : 'Recent';
+      
+      container.innerHTML += `
+        <div class="bg-white rounded-3xl border border-gray-200 p-6 sm:p-8 shadow-sm flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6">
+          <div class="space-y-2">
+            <div class="flex items-center gap-2">
+              <span class="inline-block text-xs font-bold bg-emerald-50 text-emerald-700 px-2.5 py-0.5 rounded border border-emerald-100">Confirmed Booking</span>
+              <span class="text-[10px] text-slate-400 font-bold">Ref: ${t.bookingId}</span>
+            </div>
+            <h3 class="text-base sm:text-lg font-black text-slate-900">Stopover in Mumbai (${servicesCount} Services Booked)</h3>
+            <p class="text-xs text-slate-500 font-semibold">Traveler: ${t.passenger} • Flight Incoming: ${t.incomingFlight} • Date: ${dateLabel}</p>
+          </div>
+          <div class="flex gap-2.5 sm:self-center w-full sm:w-auto">
+            <button onclick="layoverx.openTripReceipt('${t.bookingId}')" class="w-full sm:w-auto px-4 py-2 bg-slate-900 hover:bg-black text-white text-xs font-bold rounded-xl transition shadow flex items-center justify-center gap-1.5 cursor-pointer">
+              📄 View Receipt &amp; Barcode
+            </button>
+          </div>
+        </div>
+      `;
+    });
+  }
+
+  function renderDraftTrips() {
+    const container = $('#tab-content-drafts');
+    if (!container) return;
+
+    let drafts = [];
+    try {
+      const stored = localStorage.getItem('layoverx_saved_plans');
+      if (stored) drafts = JSON.parse(stored);
+    } catch(e) { console.error(e); }
+
+    if (drafts.length === 0) {
+      container.innerHTML = `
+        <div class="bg-white rounded-3xl border border-gray-200 p-12 text-center shadow-sm">
+          <div class="w-16 h-16 bg-slate-50 text-slate-400 rounded-full flex items-center justify-center text-2xl mx-auto mb-4">💾</div>
+          <h3 class="text-base font-bold text-slate-900 mb-1">No Saved Drafts</h3>
+          <p class="text-slate-500 text-xs max-w-sm mx-auto mb-6">Build a timeline and click "Save Draft" in the itinerary workspace to access them here.</p>
+          <a href="my-itinerary.html" class="inline-flex items-center gap-2 px-5 py-2.5 bg-slate-900 hover:bg-black text-white text-xs font-bold rounded-xl transition shadow">
+            Open Planner
+          </a>
+        </div>
+      `;
+      return;
+    }
+
+    container.innerHTML = '';
+    drafts.forEach((d, idx) => {
+      const itemsCount = d.details && d.details.items ? d.details.items.length : 0;
+      
+      container.innerHTML += `
+        <div class="bg-white rounded-3xl border border-gray-200 p-6 sm:p-8 shadow-sm flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6">
+          <div class="space-y-1.5">
+            <span class="text-[10px] uppercase font-black text-sky-600 block tracking-wider">Draft Itinerary</span>
+            <h3 class="text-base sm:text-lg font-black text-slate-900">Stopover Proposal #${idx + 1} (${itemsCount} items)</h3>
+            <p class="text-xs text-slate-500 font-medium">Proposed cost: <span class="font-bold text-sky-700">${d.cost}</span> • Saved on ${d.dateSaved}</p>
+          </div>
+          <div class="flex gap-2 w-full sm:w-auto">
+            <button onclick="layoverx.loadWorkspaceDraft(${idx}); window.location.href='my-itinerary.html'" class="flex-grow sm:flex-grow-0 px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white text-xs font-bold rounded-xl transition shadow">
+              Load In Planner
+            </button>
+            <button onclick="layoverx.deleteDraftTrips(${idx})" class="px-4 py-2 bg-red-50 hover:bg-red-100 text-red-650 text-xs font-bold rounded-xl border border-red-100 transition">
+              Delete
+            </button>
+          </div>
+        </div>
+      `;
+    });
+  }
+
+  function renderPastTrips() {
+    const container = $('#tab-content-past');
+    if (!container) return;
+
+    let trips = getLocalCompletedTrips();
+
+    if (trips.length === 0) {
+      container.innerHTML = `
+        <div class="bg-white rounded-3xl border border-gray-200 p-12 text-center shadow-sm">
+          <div class="w-16 h-16 bg-slate-50 text-slate-400 rounded-full flex items-center justify-center text-2xl mx-auto mb-4">⏳</div>
+          <h3 class="text-base font-bold text-slate-900 mb-1">No Past Trips Found</h3>
+          <p class="text-slate-500 text-xs max-w-sm mx-auto mb-6">Trips you complete will appear here as historic records with receipt print downloads.</p>
+        </div>
+      `;
+      return;
+    }
+
+    container.innerHTML = '';
+    trips.forEach(t => {
+      const dateLabel = t.createdAt ? new Date(t.createdAt).toLocaleDateString() : 'Recent';
+      container.innerHTML += `
+        <div class="bg-white rounded-3xl border border-gray-200 p-6 sm:p-8 shadow-sm flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6">
+          <div class="space-y-1.5">
+            <span class="inline-block text-[10px] font-bold bg-slate-100 text-slate-700 px-2 py-0.5 rounded border border-slate-200">Archived Stay</span>
+            <h3 class="text-base sm:text-lg font-black text-slate-900">Stopover Proposal Ref: ${t.bookingId}</h3>
+            <p class="text-xs text-slate-500">Paid: <span class="font-bold text-slate-900">${t.totalCost}</span> • Completed on ${dateLabel}</p>
+          </div>
+          <div class="flex gap-2 w-full sm:w-auto">
+            <button onclick="layoverx.openTripReceipt('${t.bookingId}')" class="w-full sm:w-auto px-4 py-2 bg-slate-55 hover:bg-slate-100 text-slate-700 text-xs font-bold rounded-xl border border-slate-200 transition shadow flex items-center justify-center gap-1.5 cursor-pointer">
+              📄 View Invoice Receipt
+            </button>
+          </div>
+        </div>
+      `;
+    });
+  }
+
+  // Missing Itinerary, Draft, and Checkout implementations
+  function addToItinerary(type, id) {
+    let dict = null;
+    if (type === 'hotel') dict = HOTELS;
+    else if (type === 'dining') dict = DINING;
+    else if (type === 'spa') dict = SPA_WELLNESS;
+    else if (type === 'gaming') dict = GAMING_ENTERTAINMENT;
+    else if (type === 'activity') dict = EXPERIENCES;
+    else if (type === 'transfer') dict = TRANSFERS;
+
+    const dictItem = dict ? dict[id] : null;
+    if (!dictItem) {
+      showToast("Service details not found.", "error");
+      return;
+    }
+
+    let itinerary = [];
+    try {
+      const stored = localStorage.getItem('layoverx_current_itinerary');
+      if (stored) itinerary = JSON.parse(stored);
+    } catch(e) { console.error(e); }
+
+    // Unique check for hotel/dining/transfer
+    if (type === 'hotel' || type === 'dining' || type === 'transfer') {
+      const exists = itinerary.some(item => item.type === type);
+      if (exists) {
+        showToast(`You have already added a ${type} to your itinerary. Please remove it first to select a different one.`, "warning");
+        return;
+      }
+    } else {
+      const exists = itinerary.some(item => item.type === type && item.id == id);
+      if (exists) {
+        showToast("This item is already in your itinerary!", "warning");
+        return;
+      }
+    }
+
+    let defaultDuration = 1.0;
+    if (type === 'hotel') defaultDuration = 6.0;
+    else if (type === 'dining') defaultDuration = 1.5;
+    else if (type === 'spa') defaultDuration = 1.0;
+    else if (type === 'gaming') defaultDuration = 2.0;
+    else if (type === 'activity') defaultDuration = 3.0;
+    else if (type === 'transfer') defaultDuration = 0.5;
+
+    const duration = dictItem.duration !== undefined ? parseFloat(dictItem.duration) : defaultDuration;
+
+    itinerary.push({
+      type,
+      id,
+      name: dictItem.name,
+      price: dictItem.price,
+      duration: duration,
+      image: dictItem.image,
+      desc: dictItem.desc || ''
+    });
+
+    try {
+      localStorage.setItem('layoverx_current_itinerary', JSON.stringify(itinerary));
+    } catch(e) { console.error(e); }
+
+    updateItineraryBadges();
+    showToast(`Added "${dictItem.name}" to Itinerary Workspace.`, "success");
+  }
+
+  function reorderWorkspaceItem(idx, direction) {
+    let itinerary = [];
+    try {
+      const stored = localStorage.getItem('layoverx_current_itinerary');
+      if (stored) itinerary = JSON.parse(stored);
+    } catch(e) { console.error(e); }
+
+    if (direction === 'up' && idx > 0) {
+      const temp = itinerary[idx];
+      itinerary[idx] = itinerary[idx - 1];
+      itinerary[idx - 1] = temp;
+    } else if (direction === 'down' && idx < itinerary.length - 1) {
+      const temp = itinerary[idx];
+      itinerary[idx] = itinerary[idx + 1];
+      itinerary[idx + 1] = temp;
+    }
+
+    try {
+      localStorage.setItem('layoverx_current_itinerary', JSON.stringify(itinerary));
+    } catch(e) { console.error(e); }
+
+    renderWorkspaceItinerary();
+  }
+
+  function removeWorkspaceItem(idx) {
+    let itinerary = [];
+    try {
+      const stored = localStorage.getItem('layoverx_current_itinerary');
+      if (stored) itinerary = JSON.parse(stored);
+    } catch(e) { console.error(e); }
+
+    if (itinerary[idx]) {
+      const name = itinerary[idx].name;
+      itinerary.splice(idx, 1);
+      showToast(`Removed "${name}" from Itinerary.`, "info");
+    }
+
+    try {
+      localStorage.setItem('layoverx_current_itinerary', JSON.stringify(itinerary));
+    } catch(e) { console.error(e); }
+
+    updateItineraryBadges();
+    renderWorkspaceItinerary();
+  }
+
+  function updateWorkspaceItemDuration(idx, duration) {
+    let itinerary = [];
+    try {
+      const stored = localStorage.getItem('layoverx_current_itinerary');
+      if (stored) itinerary = JSON.parse(stored);
+    } catch(e) { console.error(e); }
+
+    if (itinerary[idx]) {
+      itinerary[idx].duration = parseFloat(duration);
+    }
+
+    try {
+      localStorage.setItem('layoverx_current_itinerary', JSON.stringify(itinerary));
+    } catch(e) { console.error(e); }
+
+    renderWorkspaceItinerary();
+  }
+
+  async function saveItineraryDraft() {
+    let itinerary = [];
+    try {
+      const stored = localStorage.getItem('layoverx_current_itinerary');
+      if (stored) itinerary = JSON.parse(stored);
+    } catch(e) { console.error(e); }
+
+    if (itinerary.length === 0) {
+      showToast("Cannot save an empty itinerary draft.", "warning");
+      return;
+    }
+
+    const priceText = $('#workspace-total-price')?.textContent || '₹0';
+
+    const draft = {
+      id: Date.now(),
+      cost: priceText,
+      dateSaved: new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+      details: {
+        items: itinerary
+      }
+    };
+
+    let drafts = [];
+    try {
+      const storedDrafts = localStorage.getItem('layoverx_saved_plans');
+      if (storedDrafts) drafts = JSON.parse(storedDrafts);
+    } catch(e) { console.error(e); }
+
+    drafts.push(draft);
+    localStorage.setItem('layoverx_saved_plans', JSON.stringify(drafts));
+    
+    showToast("Itinerary draft saved successfully!", "success");
+    loadWorkspaceDraftsSelect();
+  }
+
+  function loadWorkspaceDraft(draftIdx) {
+    let drafts = [];
+    try {
+      const storedDrafts = localStorage.getItem('layoverx_saved_plans');
+      if (storedDrafts) drafts = JSON.parse(storedDrafts);
+    } catch(e) { console.error(e); }
+
+    const draft = drafts[draftIdx];
+    if (draft && draft.details && draft.details.items) {
+      localStorage.setItem('layoverx_current_itinerary', JSON.stringify(draft.details.items));
+      updateItineraryBadges();
+      if (window.location.pathname.includes('my-itinerary')) {
+        renderWorkspaceItinerary();
+      }
+      showToast("Itinerary draft loaded successfully!", "success");
+    } else {
+      showToast("Failed to load draft.", "error");
+    }
+  }
+
+  function duplicateItineraryDraft() {
+    const select = $('#workspace-drafts-select');
+    if (!select || select.value === "") {
+      showToast("Please select a saved draft to duplicate first.", "warning");
+      return;
+    }
+
+    const idx = parseInt(select.value);
+    let drafts = [];
+    try {
+      const storedDrafts = localStorage.getItem('layoverx_saved_plans');
+      if (storedDrafts) drafts = JSON.parse(storedDrafts);
+    } catch(e) { console.error(e); }
+
+    const draft = drafts[idx];
+    if (draft) {
+      const duplicated = JSON.parse(JSON.stringify(draft));
+      duplicated.id = Date.now();
+      duplicated.dateSaved = new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) + ' (Copy)';
+      drafts.push(duplicated);
+      localStorage.setItem('layoverx_saved_plans', JSON.stringify(drafts));
+      showToast("Draft duplicated successfully!", "success");
+      loadWorkspaceDraftsSelect();
+    }
+  }
+
+  function proceedToCheckout() {
+    let itinerary = [];
+    try {
+      const stored = localStorage.getItem('layoverx_current_itinerary');
+      if (stored) itinerary = JSON.parse(stored);
+    } catch(e) { console.error(e); }
+
+    if (itinerary.length === 0) {
+      showToast("Your itinerary is empty. Add services first.", "warning");
+      return;
+    }
+
+    let searchParams = { travelers: '2', layoverDuration: 6.5, location: 'near-airport', arrivalDateTime: '' };
+    try {
+      const stored = localStorage.getItem('layoverx_search_params');
+      if (stored) searchParams = JSON.parse(stored);
+    } catch(e) { console.error(e); }
+
+    const totalHours = searchParams.layoverDuration || 6.5;
+    const safeWindow = Math.max(0, totalHours - 3.5);
+    let usedHours = 0;
+    itinerary.forEach(item => {
+      usedHours += parseFloat(item.duration) || 0;
+    });
+
+    if (usedHours > safeWindow) {
+      showToast("Your itinerary duration exceeds your safe layover exit window. Please adjust timings first.", "error");
+      return;
+    }
+
+    window.location.href = 'checkout.html';
+  }
+
+  async function handleCheckoutSubmit(e) {
+    e.preventDefault();
+    const btn = $('#btn-submit-payment');
+    if (btn && btn.disabled) return;
+
+    if (btn) {
+      btn.disabled = true;
+      btn.classList.add('opacity-80', 'cursor-not-allowed');
+      btn.innerHTML = 'Processing Payment...';
+    }
+
+    let itinerary = [];
+    try {
+      const stored = localStorage.getItem('layoverx_current_itinerary');
+      if (stored) itinerary = JSON.parse(stored);
+    } catch(e) { console.error(e); }
+
+    let searchParams = { travelers: '2', layoverDuration: 6.5, location: 'near-airport', arrivalDateTime: '' };
+    try {
+      const stored = localStorage.getItem('layoverx_search_params');
+      if (stored) searchParams = JSON.parse(stored);
+    } catch(e) { console.error(e); }
+
+    const passenger = $('#chk-traveler-name')?.value || 'Traveler';
+    const passport = $('#chk-passport')?.value || 'PASS-MUM-1';
+    const incomingFlight = $('#chk-flight-in')?.value || 'AI-101';
+    const emergencyContact = $('#chk-emergency')?.value || '';
+    const totalCost = $('#checkout-total-price')?.textContent || '₹0';
+
+    const bookingId = `LX-${Math.floor(Math.random() * 90000 + 10000)}-CSMIA`;
+
+    const tripData = {
+      bookingId,
+      items: itinerary,
+      passenger,
+      passport,
+      incomingFlight,
+      emergencyContact,
+      totalCost,
+      createdAt: new Date().toISOString(),
+      uid: auth.currentUser?.uid || 'guest-traveler'
+    };
+
+    let completedTrips = getLocalCompletedTrips();
+    completedTrips.push(tripData);
+    localStorage.setItem('layoverx_completed_trips', JSON.stringify(completedTrips));
+
+    if (auth.currentUser) {
+      try {
+        await db.collection("trips").doc(bookingId).set(tripData);
+      } catch (dbError) {
+        console.warn("Firestore trip save failed, saved locally:", dbError);
+      }
+    }
+
+    await new Promise(r => setTimeout(r, 1200));
+
+    localStorage.removeItem('layoverx_current_itinerary');
+    updateItineraryBadges();
+
+    showToast("Booking completed! Flight tracked, pickup scheduled.", "success");
+    window.location.href = `my-trips.html?bookingId=${bookingId}`;
+  }
+
+  function getLocalCompletedTrips() {
+    let completed = [];
+    try {
+      const stored = localStorage.getItem('layoverx_completed_trips');
+      if (stored) completed = JSON.parse(stored);
+    } catch(e) { console.error(e); }
+    return completed;
+  }
+
+  function improvePlanWithAi() {
+    let itinerary = [];
+    try {
+      const stored = localStorage.getItem('layoverx_current_itinerary');
+      if (stored) itinerary = JSON.parse(stored);
+    } catch(e) { console.error(e); }
+
+    let searchParams = { travelers: '2', layoverDuration: 6.5, location: 'near-airport', arrivalDateTime: '' };
+    try {
+      const stored = localStorage.getItem('layoverx_search_params');
+      if (stored) searchParams = JSON.parse(stored);
+    } catch(e) { console.error(e); }
+
+    const totalHours = searchParams.layoverDuration || 6.5;
+    const safeWindow = Math.max(0, totalHours - 3.5);
+    
+    let usedHours = 0;
+    itinerary.forEach(item => {
+      usedHours += parseFloat(item.duration) || 0;
+    });
+
+    let remaining = safeWindow - usedHours;
+    if (remaining <= 0.5) {
+      showToast("Your itinerary is already fully scheduled for your exit window!", "info");
+      return;
+    }
+
+    const categories = ['hotel', 'dining', 'activity', 'spa', 'gaming'];
+    const usedCategories = itinerary.map(item => item.type);
+    const missing = categories.filter(c => !usedCategories.includes(c));
+
+    if (missing.length === 0) {
+      showToast("You have services from all categories in your itinerary already!", "info");
+      return;
+    }
+
+    let addedAny = false;
+    for (const type of missing) {
+      let dict = null;
+      let defaultDuration = 1.0;
+      if (type === 'hotel') { dict = HOTELS; defaultDuration = 6.0; }
+      else if (type === 'dining') { dict = DINING; defaultDuration = 1.5; }
+      else if (type === 'spa') { dict = SPA_WELLNESS; defaultDuration = 1.0; }
+      else if (type === 'gaming') { dict = GAMING_ENTERTAINMENT; defaultDuration = 2.0; }
+      else if (type === 'activity') { dict = EXPERIENCES; defaultDuration = 3.0; }
+
+      if (dict) {
+        const keys = Object.keys(dict);
+        if (keys.length > 0) {
+          const dictItem = dict[keys[0]];
+          const dur = dictItem.duration !== undefined ? parseFloat(dictItem.duration) : defaultDuration;
+          if (dur <= remaining) {
+            itinerary.push({
+              type,
+              id: dictItem.id,
+              name: dictItem.name,
+              price: dictItem.price,
+              duration: dur,
+              image: dictItem.image,
+              desc: dictItem.desc || ''
+            });
+            remaining -= dur;
+            addedAny = true;
+            showToast(`AI co-pilot added missing category: ${type} ("${dictItem.name}") to utilize empty time slots.`, "success");
+            break;
+          }
+        }
+      }
+    }
+
+    if (addedAny) {
+      try {
+        localStorage.setItem('layoverx_current_itinerary', JSON.stringify(itinerary));
+      } catch(e) { console.error(e); }
+      updateItineraryBadges();
+      renderWorkspaceItinerary();
+    } else {
+      showToast("No missing service fits in your remaining exit window.", "info");
+    }
+  }
+
+  function handleAiCopilotSubmit(e) {
+    e.preventDefault();
+    const budget = $('#copilot-budget').value;
+    const interest = $('#copilot-interest').value;
+
+    let searchParams = { travelers: '2', layoverDuration: 6.5, location: 'near-airport', arrivalDateTime: '' };
+    try {
+      const stored = localStorage.getItem('layoverx_search_params');
+      if (stored) searchParams = JSON.parse(stored);
+    } catch(e) { console.error(e); }
+
+    const totalHours = searchParams.layoverDuration || 6.5;
+    const safeWindow = Math.max(0, totalHours - 3.5);
+
+    let itinerary = [];
+    let remaining = safeWindow;
+
+    if (interest === 'relaxed' && remaining >= 3.0) {
+      let hId = 3;
+      if (budget === 'luxury') hId = 1;
+      else if (budget === 'moderate') hId = 4;
+
+      const h = HOTELS[hId];
+      if (h) {
+        const dur = Math.min(6.0, remaining);
+        itinerary.push({
+          type: 'hotel',
+          id: hId,
+          name: h.name,
+          price: h.price,
+          duration: dur,
+          image: h.image,
+          desc: h.desc
+        });
+        remaining -= dur;
+      }
+    }
+
+    if (remaining >= 0.5) {
+      let cabId = 'sedan';
+      if (budget === 'luxury') cabId = 'luxury';
+      else if (budget === 'moderate') cabId = 'suv';
+
+      const c = TRANSFERS[cabId];
+      if (c) {
+        itinerary.push({
+          type: 'transfer',
+          id: cabId,
+          name: c.name,
+          price: c.price,
+          duration: 0.5,
+          image: c.image,
+          desc: c.desc
+        });
+        remaining -= 0.5;
+      }
+    }
+
+    if (remaining >= 1.5) {
+      let dId = 3;
+      if (budget === 'luxury') dId = 2;
+      else if (budget === 'moderate') dId = 1;
+
+      const d = DINING[dId];
+      if (d) {
+        itinerary.push({
+          type: 'dining',
+          id: dId,
+          name: d.name,
+          price: d.price,
+          duration: 1.5,
+          image: d.image,
+          desc: d.desc
+        });
+        remaining -= 1.5;
+      }
+    }
+
+    if (interest === 'explorer' && remaining >= 3.0) {
+      const a = EXPERIENCES[1];
+      if (a && a.duration <= remaining) {
+        itinerary.push({
+          type: 'activity',
+          id: 1,
+          name: a.name,
+          price: a.price,
+          duration: a.duration,
+          image: a.image,
+          desc: a.desc
+        });
+        remaining -= a.duration;
+      }
+    } else if (interest === 'gaming' && remaining >= 2.0) {
+      const g = GAMING_ENTERTAINMENT[1];
+      if (g && g.duration <= remaining) {
+        itinerary.push({
+          type: 'gaming',
+          id: 1,
+          name: g.name,
+          price: g.price,
+          duration: g.duration,
+          image: g.image,
+          desc: g.desc
+        });
+        remaining -= g.duration;
+      }
+    }
+
+    try {
+      localStorage.setItem('layoverx_current_itinerary', JSON.stringify(itinerary));
+    } catch(err) { console.error(err); }
+
+    updateItineraryBadges();
+    Modal.close('ai-copilot');
+    showToast("AI Copilot generated a customized layover itinerary draft for you!", "success");
+
+    if (window.location.pathname.includes('my-itinerary')) {
+      renderWorkspaceItinerary();
+    }
+  }
+
+    function openAiCopilot() {
+    Modal.open('ai-copilot');
+  }
+
+  function deleteDraftTrips(idx) {
+    try {
+      const data = JSON.parse(localStorage.getItem('layoverx_saved_plans'));
+      data.splice(idx, 1);
+      localStorage.setItem('layoverx_saved_plans', JSON.stringify(data));
+      showToast("Draft deleted.");
+      renderDraftTrips();
+    } catch(e) { console.error(e); }
+  }
+
+  function switchTripsTab(tab) {
+    $$('.trips-tab').forEach(el => {
+      el.classList.remove('border-sky-500', 'text-sky-600', 'font-black');
+      el.classList.add('border-transparent', 'text-slate-500', 'font-semibold');
+    });
+    
+    const activeBtn = Array.from($$('.trips-tab')).find(el => el.getAttribute('onclick').includes(tab));
+    if (activeBtn) {
+      activeBtn.classList.remove('border-transparent', 'text-slate-500', 'font-semibold');
+      activeBtn.classList.add('border-sky-500', 'text-sky-600', 'font-black');
+    }
+
+    $$('.tab-content').forEach(el => el.classList.add('hidden'));
+    
+    if (tab === 'upcoming') {
+      $('#tab-content-upcoming')?.classList.remove('hidden');
+      renderUpcomingTrips();
+    } else if (tab === 'drafts') {
+      $('#tab-content-drafts')?.classList.remove('hidden');
+      renderDraftTrips();
+    } else if (tab === 'past') {
+      $('#tab-content-past')?.classList.remove('hidden');
+      renderPastTrips();
+    }
+  }
+
+  function openTripReceipt(bookingId) {
+    let trips = getLocalCompletedTrips();
+    let trip = trips.find(t => t.bookingId === bookingId);
+
+    if (!trip) {
+      showToast("Receipt details not found.", "error");
+      return;
+    }
+
+    const codeEl = $('#receipt-booking-id') || $('#receipt-ref-code');
+    const nameEl = $('#receipt-passenger') || $('#receipt-passenger-name');
+    const flightEl = $('#receipt-flights') || $('#receipt-flight-number');
+    const passportEl = $('#receipt-passport') || $('#receipt-passport-number');
+    const totalEl = $('#receipt-total-cost');
+
+    if (codeEl) codeEl.textContent = trip.bookingId;
+    if (nameEl) nameEl.textContent = trip.passenger;
+    if (flightEl) flightEl.textContent = `Incoming: ${trip.incomingFlight}`;
+    if (passportEl) passportEl.textContent = trip.passport;
+    if (totalEl) totalEl.textContent = trip.totalCost;
+
+    const list = $('#receipt-services-list');
+    if (list) {
+      list.innerHTML = '';
+      trip.items.forEach(item => {
+        list.innerHTML += `
+          <div class="flex justify-between text-xs py-1.5 border-b border-gray-100 last:border-0">
+            <span class="font-medium text-gray-700">${item.name} (${item.duration}h)</span>
+            <span class="font-bold text-gray-900">₹${item.price.toLocaleString()}</span>
+          </div>
+        `;
+      });
+    }
+
+    Modal.open('trip-receipt');
+  }
+
+  // Extend window.layoverx namespace
+  Object.assign(window.layoverx, {
+    calculateContextDuration,
+    handleTripContextSubmit,
+    addToItinerary,
+    reorderWorkspaceItem,
+    removeWorkspaceItem,
+    updateWorkspaceItemDuration,
+    saveItineraryDraft,
+    loadWorkspaceDraft,
+    duplicateItineraryDraft,
+    proceedToCheckout,
+    handleCheckoutSubmit,
+    improvePlanWithAi,
+    handleAiCopilotSubmit,
+    openAiCopilot,
+    deleteDraftTrips,
+    openTripReceipt,
+    switchTripsTab
+  });
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else {
     init();
   }
+
 })();
+

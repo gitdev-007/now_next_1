@@ -19,6 +19,8 @@
         <a class="nav-link text-sm font-medium transition-colors duration-200 {{ACTIVE_GAMING}}" href="gaming-entertainment.html">Gaming</a>
         <a class="nav-link text-sm font-medium transition-colors duration-200 {{ACTIVE_EXPERIENCES}}" href="experiences.html">Tours</a>
         <a class="nav-link text-sm font-medium transition-colors duration-200 {{ACTIVE_TRANSFERS}}" href="airport-transfers.html">Transfers</a>
+        <button onclick="openAuthModal('trip-context')" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold bg-sky-500/20 hover:bg-sky-500/35 text-sky-300 border border-sky-500/30 transition-all hover:scale-105 cursor-pointer" id="global-trip-badge">✈️ Configure Trip</button>
+        <a class="nav-link text-sm font-medium transition-colors duration-200" href="my-itinerary.html" id="nav-itinerary-link">My Itinerary <span id="itinerary-badge" class="hidden ml-1 px-1.5 py-0.5 text-[10px] font-extrabold bg-rose-500 text-white rounded-full">0</span></a>
         <a href="plan-my-layover.html" class="{{PLAN_MY_LAYOVER_CLASS}}">Plan My Layover</a>
         
         <!-- Auth Guest View -->
@@ -26,9 +28,10 @@
           <a href="#login" class="nav-link text-sm font-medium cursor-pointer" onclick="openAuthModal('login');return false;">Login</a>
           <a href="#signup" class="px-4 py-2 bg-sky-700 text-white text-sm font-semibold rounded-xl hover:bg-sky-700 hover:shadow-lg hover:shadow-sky-500/20 transition hover:-translate-y-0.5 transform" onclick="openAuthModal('signup');return false;">Sign Up</a>
         </div>
-
+ 
         <!-- Auth User View -->
         <div class="auth-user hidden items-center gap-4 user-menu">
+          <a href="my-trips.html" class="text-sm font-medium text-sky-300 hover:text-sky-400 hover:underline">My Trips</a>
           <a href="supplier-dashboard.html" class="text-sm font-medium text-sky-300 hover:text-sky-400 hover:underline">Supplier Hub</a>
           <div class="flex items-center gap-2 bg-white/20 backdrop-blur-md border border-white/20 px-3 py-1.5 rounded-xl">
             <div class="w-6 h-6 bg-gradient-to-br from-sky-400 to-sky-600 rounded-full flex items-center justify-center text-[10px] font-bold text-white uppercase user-avatar-letter">U</div>
@@ -49,6 +52,8 @@
 
   <!-- Mobile Dropdown Menu -->
   <div class="lg:hidden hidden bg-white/95 backdrop-blur-xl rounded-2xl mt-2 p-4 shadow-xl mx-4 border border-gray-100" id="mobile-menu">
+    <button onclick="openAuthModal('trip-context')" class="mb-3 w-full flex items-center justify-center gap-1.5 px-4 py-3 rounded-xl text-xs font-extrabold bg-sky-50 text-sky-700 border border-sky-100 transition-all cursor-pointer" id="global-trip-badge-mobile">✈️ Configure Trip</button>
+    <a class="block text-gray-800 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium" href="my-itinerary.html">My Itinerary <span id="itinerary-badge-mobile" class="hidden ml-1 px-1.5 py-0.5 text-[10px] font-extrabold bg-rose-500 text-white rounded-full">0</span></a>
     <a class="block text-gray-800 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium {{ACTIVE_HOTELS}}" href="hotels.html">Hotels</a>
     <a class="block text-gray-800 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium {{ACTIVE_RESTAURANTS}}" href="restaurants.html">Restaurants</a>
     <a class="block text-gray-800 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium {{ACTIVE_SPA}}" href="spa-wellness.html">Spa & Wellness</a>
@@ -74,6 +79,7 @@
           <div class="text-sm font-bold text-gray-900 user-name">Traveler</div>
         </div>
       </div>
+      <a href="my-trips.html" class="w-full text-center py-2.5 bg-sky-50 text-sky-700 font-semibold rounded-xl text-sm transition">My Trips</a>
       <a href="supplier-dashboard.html" class="w-full text-center py-2.5 bg-indigo-50 text-indigo-700 font-semibold rounded-xl text-sm transition">Supplier Hub</a>
       <button class="mt-2 w-full text-center py-2.5 bg-red-50 text-red-600 hover:bg-red-100 text-sm font-semibold rounded-xl transition" onclick="layoverx.logout()">Logout</button>
     </div>

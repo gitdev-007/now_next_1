@@ -1,0 +1,128 @@
+<!-- my-trips.html source template -->
+<div class="relative min-h-[30vh] pt-24 pb-12 overflow-hidden text-white flex items-center bg-slate-900">
+  <div class="absolute inset-0 bg-gradient-to-tr from-slate-900 to-indigo-950 opacity-95 z-0"></div>
+  <div class="container relative z-10 space-y-4">
+    <nav class="flex items-center gap-2 text-xs text-white/70" aria-label="Breadcrumb">
+      <a href="index.html" class="hover:text-white transition-colors">Home</a>
+      <svg class="w-3 h-3 text-white/50" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+      <span class="text-white font-medium">Dashboard</span>
+    </nav>
+    <h1 class="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-tight">
+      My Trips <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-indigo-400">&amp; Bookings</span>
+    </h1>
+    <p class="text-slate-300 text-sm max-w-2xl">
+      Track upcoming stopovers, retrieve receipts, and manage saved itinerary drafts.
+    </p>
+  </div>
+</div>
+
+<section class="section bg-slate-50 min-h-screen">
+  <div class="container">
+    <!-- Tab Controls -->
+    <div class="flex items-center gap-3 border-b border-gray-200 pb-4 mb-8 overflow-x-auto no-scrollbar" id="trips-tabs">
+      <button class="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-sky-500 text-white shadow flex-shrink-0" onclick="layoverx.switchTripsTab('upcoming')" id="tab-upcoming">
+        📅 Upcoming Stopovers
+      </button>
+      <button class="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 flex-shrink-0" onclick="layoverx.switchTripsTab('drafts')" id="tab-drafts">
+        💾 Saved Drafts
+      </button>
+      <button class="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 flex-shrink-0" onclick="layoverx.switchTripsTab('past')" id="tab-past">
+        ⏳ Past Stopovers
+      </button>
+    </div>
+
+    <!-- Active Tab Window -->
+    <div id="trips-container" class="space-y-6">
+      
+      <!-- UPCOMING TRIPS TAB CONTENT -->
+      <div id="tab-content-upcoming" class="space-y-6">
+        <!-- Rendered dynamically -->
+        <div class="bg-white rounded-3xl border border-gray-200 p-12 text-center shadow-sm">
+          <div class="w-16 h-16 bg-slate-50 text-slate-400 rounded-full flex items-center justify-center text-2xl mx-auto mb-4">📅</div>
+          <h3 class="text-base font-bold text-slate-900 mb-1">No Upcoming Bookings</h3>
+          <p class="text-slate-500 text-xs max-w-sm mx-auto mb-6">You don't have any finalized stopovers booked yet. Complete checkout to secure your reservations.</p>
+          <a href="plan-my-layover.html" class="inline-flex items-center gap-2 px-5 py-2.5 bg-sky-500 hover:bg-sky-600 text-white text-xs font-bold rounded-xl transition shadow">
+            Start Planning
+          </a>
+        </div>
+      </div>
+
+      <!-- SAVED DRAFTS TAB CONTENT -->
+      <div id="tab-content-drafts" class="space-y-6 hidden">
+        <!-- Rendered dynamically -->
+        <div class="bg-white rounded-3xl border border-gray-200 p-12 text-center shadow-sm">
+          <div class="w-16 h-16 bg-slate-50 text-slate-400 rounded-full flex items-center justify-center text-2xl mx-auto mb-4">💾</div>
+          <h3 class="text-base font-bold text-slate-900 mb-1">No Saved Drafts</h3>
+          <p class="text-slate-500 text-xs max-w-sm mx-auto mb-6">Build a timeline and click "Save Draft" in the itinerary workspace to access them here.</p>
+          <a href="my-itinerary.html" class="inline-flex items-center gap-2 px-5 py-2.5 bg-slate-900 hover:bg-black text-white text-xs font-bold rounded-xl transition shadow">
+            Open Planner
+          </a>
+        </div>
+      </div>
+
+      <!-- PAST TRIPS TAB CONTENT -->
+      <div id="tab-content-past" class="space-y-6 hidden">
+        <!-- Rendered dynamically -->
+        <div class="bg-white rounded-3xl border border-gray-200 p-12 text-center shadow-sm">
+          <div class="w-16 h-16 bg-slate-50 text-slate-400 rounded-full flex items-center justify-center text-2xl mx-auto mb-4">⏳</div>
+          <h3 class="text-base font-bold text-slate-900 mb-1">No Past Trips Found</h3>
+          <p class="text-slate-500 text-xs max-w-sm mx-auto mb-6">Trips you complete will appear here as past records with download links for invoice summaries.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Trip Detail Receipt Overlay Modal -->
+<div id="modal-trip-receipt" class="modal-overlay opacity-0 transition-opacity duration-300 hidden" data-modal="trip-receipt" role="dialog" aria-modal="true" aria-labelledby="receipt-modal-title">
+  <div class="modal-content transform scale-95 transition-transform duration-300 p-6 sm:p-8 !max-w-md">
+    <button class="modal-close font-semibold text-2xl" aria-label="Close Receipt Modal" onclick="layoverx.closeModal('trip-receipt')">&times;</button>
+    <div class="space-y-6">
+      <div class="text-center space-y-2">
+        <span class="text-3xl">🛬</span>
+        <h2 id="receipt-modal-title" class="text-gray-900 text-xl font-extrabold tracking-tight">Booking Confirmation</h2>
+        <span class="inline-block text-xs font-bold bg-emerald-50 text-emerald-700 px-2.5 py-0.5 rounded border border-emerald-100" id="receipt-booking-id">LHX-94812-MUM</span>
+      </div>
+
+      <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4 space-y-3.5 text-xs text-slate-700">
+        <div class="flex justify-between items-center">
+          <span>Lead Passenger:</span>
+          <strong class="font-bold text-slate-900" id="receipt-passenger">John Doe</strong>
+        </div>
+        <div class="flex justify-between items-center">
+          <span>Passport Number:</span>
+          <strong class="font-bold text-slate-900" id="receipt-passport">Z1234567</strong>
+        </div>
+        <div class="flex justify-between items-center">
+          <span>Flight Info:</span>
+          <strong class="font-bold text-slate-900" id="receipt-flights">Incoming: BA-199 / Outgoing: EK-501</strong>
+        </div>
+        <div class="flex justify-between items-center">
+          <span>Layover Slot:</span>
+          <strong class="font-bold text-slate-900" id="receipt-timing">Flexible Slot</strong>
+        </div>
+      </div>
+
+      <div class="space-y-3">
+        <h3 class="text-xs font-bold text-slate-500 uppercase tracking-widest">Booked Services</h3>
+        <div class="space-y-2" id="receipt-services-list">
+          <!-- List of items -->
+        </div>
+      </div>
+
+      <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+        <span class="text-xs font-bold text-slate-500">Amount Paid:</span>
+        <strong class="text-xl font-black text-slate-950" id="receipt-total-cost">₹0</strong>
+      </div>
+
+      <!-- Mock barcode/QR -->
+      <div class="flex flex-col items-center justify-center gap-1.5 pt-4 border-t border-slate-100 border-dashed">
+        <div class="w-44 h-16 bg-slate-100 flex items-center justify-center text-2xl font-mono tracking-widest text-slate-400 border border-slate-200">
+          ||||| | ||||| | | ||
+        </div>
+        <span class="text-[9px] text-slate-400 font-bold uppercase tracking-wider">Present at gate check exit</span>
+      </div>
+    </div>
+  </div>
+</div>

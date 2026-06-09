@@ -1,0 +1,142 @@
+<!-- checkout.html source template -->
+<div class="relative min-h-[30vh] pt-24 pb-12 overflow-hidden text-white flex items-center bg-slate-900">
+  <div class="absolute inset-0 bg-gradient-to-tr from-slate-900 to-indigo-950 opacity-95 z-0"></div>
+  <div class="container relative z-10 space-y-4">
+    <nav class="flex items-center gap-2 text-xs text-white/70" aria-label="Breadcrumb">
+      <a href="index.html" class="hover:text-white transition-colors">Home</a>
+      <svg class="w-3 h-3 text-white/50" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+      <a href="my-itinerary.html" class="hover:text-white transition-colors">Itinerary</a>
+      <svg class="w-3 h-3 text-white/50" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+      <span class="text-white font-medium">Checkout</span>
+    </nav>
+    <h1 class="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-tight">
+      Confirm &amp; Book <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-indigo-400">Stopover Plan</span>
+    </h1>
+    <p class="text-slate-300 text-sm max-w-2xl">
+      Provide flight details and traveler information to register bookings with hotels and drivers.
+    </p>
+  </div>
+</div>
+
+<section class="section bg-slate-50 min-h-screen">
+  <div class="container">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- LEFT COLUMN: Booking forms & payment inputs -->
+      <div class="lg:col-span-8 space-y-6">
+        <form id="checkout-booking-form" onsubmit="layoverx.handleCheckoutSubmit(event)" class="space-y-6">
+          
+          <!-- Traveler Info -->
+          <div class="bg-white rounded-3xl border border-gray-200 p-6 sm:p-8 shadow-sm space-y-5">
+            <h2 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+              <span class="text-sky-500">👤</span> Traveler Details
+            </h2>
+            <p class="text-xs text-slate-500">Names must match passport details exactly for terminal security exit clearance.</p>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="form-group text-left">
+                <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1" for="chk-traveler-name">Lead Passenger Name</label>
+                <input id="chk-traveler-name" type="text" class="form-input w-full border border-gray-300 focus:border-sky-600 focus:ring-2 focus:ring-sky-600/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all shadow-sm" placeholder="e.g. John Doe" required autocomplete="name"/>
+              </div>
+              
+              <div class="form-group text-left">
+                <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1" for="chk-passport">Passport Number</label>
+                <input id="chk-passport" type="text" class="form-input w-full border border-gray-300 focus:border-sky-600 focus:ring-2 focus:ring-sky-600/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all shadow-sm" placeholder="e.g. Z1234567" required/>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="form-group text-left">
+                <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1" for="chk-traveler-nationality">Nationality / Country</label>
+                <input id="chk-traveler-nationality" type="text" class="form-input w-full border border-gray-300 focus:border-sky-600 focus:ring-2 focus:ring-sky-600/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all shadow-sm" placeholder="e.g. United Kingdom" required/>
+              </div>
+              
+              <div class="form-group text-left">
+                <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1" for="chk-emergency">Mobile Number (with country code)</label>
+                <input id="chk-emergency" type="tel" class="form-input w-full border border-gray-300 focus:border-sky-600 focus:ring-2 focus:ring-sky-600/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all shadow-sm" placeholder="e.g. +44 7911 123456" required autocomplete="tel"/>
+              </div>
+            </div>
+          </div>
+
+          <!-- Flight Timings & flight numbers -->
+          <div class="bg-white rounded-3xl border border-gray-200 p-6 sm:p-8 shadow-sm space-y-5">
+            <h2 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+              <span class="text-sky-500">✈️</span> Flight Flight Connections
+            </h2>
+            <p class="text-xs text-slate-500">We trace landing delays in real-time to adjust chauffeur pick-ups and room slots.</p>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="form-group text-left">
+                <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1" for="chk-flight-in">Incoming Flight Number</label>
+                <input id="chk-flight-in" type="text" class="form-input w-full border border-gray-300 focus:border-sky-600 focus:ring-2 focus:ring-sky-600/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all shadow-sm" placeholder="e.g. BA-199" required/>
+              </div>
+              
+              <div class="form-group text-left">
+                <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1" for="chk-flight-departure">Outgoing Flight Number</label>
+                <input id="chk-flight-departure" type="text" class="form-input w-full border border-gray-300 focus:border-sky-600 focus:ring-2 focus:ring-sky-600/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all shadow-sm" placeholder="e.g. EK-501" required/>
+              </div>
+            </div>
+          </div>
+
+          <!-- Simulated Payment Breakout -->
+          <div class="bg-white rounded-3xl border border-gray-200 p-6 sm:p-8 shadow-sm space-y-5">
+            <div class="flex items-center justify-between border-b border-gray-100 pb-4">
+              <h2 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+                <span class="text-emerald-500">💳</span> Payment Information
+              </h2>
+              <span class="text-[10px] bg-emerald-50 text-emerald-700 font-extrabold px-2 py-0.5 rounded border border-emerald-100 flex items-center gap-1">
+                🔒 SSL Encrypted
+              </span>
+            </div>
+            
+            <div class="space-y-4">
+              <div class="form-group text-left">
+                <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1" for="chk-card-num">Card Number</label>
+                <input id="chk-card-num" type="text" class="form-input w-full border border-gray-300 focus:border-sky-600 focus:ring-2 focus:ring-sky-600/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all shadow-sm" placeholder="4111 2222 3333 4444" required autocomplete="cc-number"/>
+              </div>
+
+              <div class="grid grid-cols-3 gap-4">
+                <div class="form-group text-left col-span-2">
+                  <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1" for="chk-card-expiry">Expiry Date</label>
+                  <input id="chk-card-expiry" type="text" class="form-input w-full border border-gray-300 focus:border-sky-600 focus:ring-2 focus:ring-sky-600/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all shadow-sm" placeholder="MM/YY" required autocomplete="cc-exp"/>
+                </div>
+                <div class="form-group text-left">
+                  <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1" for="chk-card-cvv">CVV</label>
+                  <input id="chk-card-cvv" type="text" class="form-input w-full border border-gray-300 focus:border-sky-600 focus:ring-2 focus:ring-sky-600/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all shadow-sm" placeholder="123" required autocomplete="cc-csc"/>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <button type="submit" id="btn-submit-payment" class="w-full py-4 bg-gray-900 hover:bg-black text-white font-extrabold text-base rounded-2xl shadow-xl transition transform hover:-translate-y-0.5 flex justify-center items-center gap-2">
+            <span>Secure Book &amp; Pay</span>
+            <svg class="w-5 h-5 hidden loading-spinner animate-spin" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+          </button>
+        </form>
+      </div>
+
+      <!-- RIGHT COLUMN: Order Breakdown Summary -->
+      <div class="lg:col-span-4 sticky top-40 space-y-6">
+        <div class="bg-white rounded-3xl border border-gray-200 p-6 sm:p-8 shadow-md space-y-6">
+          <h3 class="text-sm font-bold text-slate-900 uppercase tracking-widest">Selected Itinerary</h3>
+          
+          <ul id="checkout-summary-list" class="space-y-4 text-xs text-slate-650">
+            <!-- Populated via JS -->
+          </ul>
+
+          <hr class="border-gray-100"/>
+
+          <div class="flex justify-between items-baseline">
+            <span class="text-sm font-bold text-slate-800">Total Price</span>
+            <span class="text-2xl sm:text-3xl font-black text-slate-950" id="checkout-total-price">₹0</span>
+          </div>
+          
+          <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4 text-[10px] text-slate-500 leading-relaxed space-y-1.5">
+            <p>✅ Free cancellation up to 3h before checking in.</p>
+            <p>✅ All airport transfers are fixed price (includes driver wait time, parking and expressway tolls).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
