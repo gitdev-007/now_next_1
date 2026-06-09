@@ -1655,9 +1655,43 @@
     closeModal: (name) => Modal.close(name),
     switchModal: (from, to) => { Modal.close(from); Modal.open(to); },
     logout: () => Auth.logout(),
-    socialLogin: (p) => {
-      showToast(`Redirecting to ${p.toUpperCase()} login...`);
-      setTimeout(() => Auth.login(`${p}@layoverx.com`, "123456"), 1000);
+    socialLogin: async (p) => {
+      if (p === 'google') {
+        try {
+          const provider = new firebase.auth.GoogleAuthProvider();
+          // Add standard OAuth scopes if needed
+          provider.addScope('email');
+          provider.addScope('profile');
+          
+          const result = await auth.signInWithPopup(provider);
+          const user = result.user;
+          
+          Modal.closeAll();
+          showToast(`Welcome back, ${user.displayName || user.email.split('@')[0]}!`);
+          
+          try {
+            // Save user profile to Firestore users collection
+            await db.collection("users").doc(user.uid).set({
+              uid: user.uid,
+              fullName: user.displayName || user.email.split('@')[0],
+              email: user.email,
+              lastLogin: firebase.firestore.FieldValue.serverTimestamp()
+            }, { merge: true });
+          } catch (dbError) {
+            console.warn("Firestore profile update failed, but auth succeeded:", dbError);
+          }
+        } catch (error) {
+          console.error("Google Login Error:", error);
+          if (error.code === 'auth/invalid-credential' || error.code === 'auth/popup-closed-by-user') {
+             showToast(`Google login cancelled or invalid.`);
+          } else {
+             showToast(`Google login failed: ${error.message}`);
+          }
+        }
+      } else {
+        showToast(`Redirecting to ${p.toUpperCase()} login...`);
+        setTimeout(() => Auth.login(`${p}@layoverx.com`, "123456"), 1000);
+      }
     },
     handleLogin: (e) => {
       e.preventDefault();
