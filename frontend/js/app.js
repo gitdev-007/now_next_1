@@ -74,41 +74,86 @@
     3: { id: 3, name: "The Game Palacio - Casino Style Arcade", category: "gaming", rating: 4.7, duration: 2.5, price: 1800, image: "https://images.unsplash.com/photo-1511886929837-354d827aae26?w=600&h=400&fit=crop", desc: "Boutique bowling, high-end retro arcade games, and mechanical bull rides with a premium lounge bar." }
   };
 
+  /* ===== SUPABASE INIT ===== */
+  const SUPABASE_URL = 'https://ddhersherxvisvhywymg.supabase.co';
+  const SUPABASE_KEY = 'sb_publishable_60mTrW3-Ana7VTZ-pu567g_u0rTEXZO';
+  const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
   /* ===== AUTH ===== */
   const Auth = {
-    init() {
-      const saved = localStorage.getItem('layoverx_user');
-      if (saved) {
-        try {
-          state.user = JSON.parse(saved);
-          state.isAuthenticated = true;
-          this.updateUI();
-        } catch (e) { console.error(e); }
+    async init() {
+      // Check active session
+      const { data: { session }, error } = await supabase.auth.getSession();
+      if (session) {
+        state.user = { 
+          email: session.user.email, 
+          name: session.user.user_metadata?.full_name || session.user.email.split('@')[0],
+          avatar: (session.user.user_metadata?.full_name || session.user.email)[0].toUpperCase()
+        };
+        state.isAuthenticated = true;
       }
-    },
-    login(email, password) {
-      const name = email.split('@')[0];
-      const user = { email, name, avatar: name[0].toUpperCase() };
-      state.user = user;
-      state.isAuthenticated = true;
-      localStorage.setItem('layoverx_user', JSON.stringify(user));
       this.updateUI();
+
+      // Listen for auth state changes
+      supabase.auth.onAuthStateChange((event, session) => {
+        if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') {
+          state.isAuthenticated = true;
+          state.user = { 
+            email: session.user.email, 
+            name: session.user.user_metadata?.full_name || session.user.email.split('@')[0],
+            avatar: (session.user.user_metadata?.full_name || session.user.email)[0].toUpperCase()
+          };
+          this.updateUI();
+        } else if (event === 'SIGNED_OUT') {
+          state.isAuthenticated = false;
+          state.user = null;
+          this.updateUI();
+        }
+      });
+    },
+    async login(email, password) {
+      const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+      if (error) {
+        showToast(`Login failed: ${error.message}`);
+        return;
+      }
       Modal.closeAll();
-      showToast(`Welcome back, ${name}!`);
+      showToast(`Welcome back, ${data.user.user_metadata?.full_name || email.split('@')[0]}!`);
     },
-    signup(name, email, password) {
-      const user = { email, name, avatar: name[0].toUpperCase() };
-      state.user = user;
-      state.isAuthenticated = true;
-      localStorage.setItem('layoverx_user', JSON.stringify(user));
-      this.updateUI();
+    async signup(name, email, password) {
+      const { data, error } = await supabase.auth.signUp({ 
+        email, 
+        password,
+        options: {
+          data: { full_name: name }
+        }
+      });
+      
+      if (error) {
+        showToast(`Signup failed: ${error.message}`);
+        return;
+      }
+      
+      // Attempt to insert into profiles table if needed
+      if (data.user) {
+        const { error: profileError } = await supabase
+          .from('profiles')
+          .insert([{ id: data.user.id, email: email, full_name: name }]);
+          
+        if (profileError) {
+           console.warn('Could not create profile record:', profileError);
+        }
+      }
+
       Modal.closeAll();
       showToast(`Account created! Welcome, ${name}.`);
     },
-    logout() {
-      state.user = null;
-      state.isAuthenticated = false;
-      localStorage.removeItem('layoverx_user');
+    async logout() {
+      const { error } = await supabase.auth.signOut();
+      if (error) {
+        showToast(`Logout failed: ${error.message}`);
+        return;
+      }
       showToast("Signed out successfully.");
       setTimeout(() => window.location.reload(), 800);
     },
