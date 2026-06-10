@@ -107,6 +107,7 @@
             <a href="my-trips.html" class="flex items-center gap-2.5 px-4 py-2.5 text-sm text-gray-800 hover:bg-gray-50 transition-colors"><span class="text-base">✈️</span> My Trips</a>
             <a href="saved-itineraries.html" class="flex items-center gap-2.5 px-4 py-2.5 text-sm text-gray-800 hover:bg-gray-50 transition-colors"><span class="text-base">💾</span> Saved Itineraries</a>
             <a href="supplier-dashboard.html" class="flex items-center gap-2.5 px-4 py-2.5 text-sm text-gray-800 hover:bg-gray-50 transition-colors"><span class="text-base">💼</span> Supplier Hub</a>
+            <a href="revenue-admin.html" class="flex items-center gap-2.5 px-4 py-2.5 text-sm text-gray-800 hover:bg-gray-55 transition-colors font-semibold text-emerald-700 bg-emerald-50/50"><span class="text-base">📊</span> Revenue Admin</a>
             <a href="account-settings.html" class="flex items-center gap-2.5 px-4 py-2.5 text-sm text-gray-800 hover:bg-gray-50 transition-colors"><span class="text-base">⚙️</span> Settings</a>
             <div class="border-t border-gray-100 my-1"></div>
             <button onclick="layoverx.logout()" class="w-full flex items-center gap-2.5 px-4 py-2.5 text-sm text-red-650 hover:bg-red-50 transition-colors text-left"><span class="text-base">🚪</span> Logout</button>
@@ -154,6 +155,7 @@
       <a href="my-trips.html" class="w-full text-center py-2.5 bg-gray-50 hover:bg-gray-100 text-gray-800 rounded-xl text-sm transition">My Trips</a>
       <a href="saved-itineraries.html" class="w-full text-center py-2.5 bg-gray-50 hover:bg-gray-100 text-gray-800 rounded-xl text-sm transition">Saved Itineraries</a>
       <a href="supplier-dashboard.html" class="w-full text-center py-2.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 rounded-xl text-sm transition">Supplier Hub</a>
+      <a href="revenue-admin.html" class="w-full text-center py-2.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 rounded-xl text-sm transition font-semibold">Revenue Admin</a>
       <a href="account-settings.html" class="w-full text-center py-2.5 bg-gray-50 hover:bg-gray-100 text-gray-800 rounded-xl text-sm transition">Settings</a>
       <button class="mt-2 w-full text-center py-2.5 bg-red-50 text-red-600 hover:bg-red-100 text-sm font-semibold rounded-xl transition" onclick="layoverx.logout()">Logout</button>
     </div>
@@ -323,28 +325,24 @@
       if (stored) itinerary = JSON.parse(stored);
     } catch(e) { console.error(e); }
 
-    let searchParams = { travelers: '2' };
-    try {
-      const stored = localStorage.getItem('layoverx_search_params');
-      if (stored) searchParams = JSON.parse(stored);
-    } catch(e) { console.error(e); }
-
-    const pax = parseInt(searchParams.travelers) || 2;
-    listEl.innerHTML = '';
-    let total = 0;
-
     if (itinerary.length === 0) {
       listEl.innerHTML = '<li class="text-slate-400 italic">No services in cart.</li>';
       return;
     }
 
-    itinerary.forEach(item => {
-      let cost = item.price;
-      if (item.type !== 'transfer' && item.type !== 'hotel' && item.type !== 'dining') {
-        cost = item.price * pax;
-      }
-      total += cost;
+    // Try loading calculations from review page
+    let calculations = null;
+    try {
+      const storedCalc = localStorage.getItem('layoverx_active_calculation');
+      if (storedCalc) calculations = JSON.parse(storedCalc);
+    } catch(e) { console.error(e); }
 
+    if (!calculations) {
+      calculations = window.layoverx.calculateItineraryPrice(itinerary);
+    }
+
+    listEl.innerHTML = '';
+    calculations.itemPricingDetails.forEach(item => {
       let catIcon = "🏨";
       if (item.type === 'dining') catIcon = "🍽️";
       else if (item.type === 'spa') catIcon = "💆";
@@ -355,12 +353,38 @@
       listEl.innerHTML += `
         <li class="flex items-start justify-between gap-4">
           <span class="flex items-center gap-2"><span>${catIcon}</span> ${item.name}</span>
-          <strong class="font-bold text-slate-900 flex-shrink-0">₹${cost.toLocaleString()}</strong>
+          <strong class="font-bold text-slate-900 flex-shrink-0">₹${item.finalTotalCost.toFixed(2)}</strong>
         </li>
       `;
     });
 
-    totalCostGlobal = `₹${total.toLocaleString()}`;
+    if (calculations.totalDiscount > 0) {
+      listEl.innerHTML += `
+        <li class="flex items-start justify-between gap-4 text-emerald-600 font-bold border-t border-dashed border-gray-200 pt-2">
+          <span>Discounts & Coupons</span>
+          <span>-₹${calculations.totalDiscount.toFixed(2)}</span>
+        </li>
+      `;
+    }
+    const fees = calculations.convenienceFee + calculations.serviceFee + calculations.taxes;
+    if (fees > 0) {
+      listEl.innerHTML += `
+        <li class="flex items-start justify-between gap-4 text-slate-500">
+          <span>Taxes & Service Fees</span>
+          <span>+₹${fees.toFixed(2)}</span>
+        </li>
+      `;
+    }
+    if (calculations.insurancePremium > 0) {
+      listEl.innerHTML += `
+        <li class="flex items-start justify-between gap-4 text-sky-650 font-semibold">
+          <span>LayoverX Protection Insurance</span>
+          <span>+₹${calculations.insurancePremium.toFixed(2)}</span>
+        </li>
+      `;
+    }
+
+    totalCostGlobal = `₹${calculations.grandTotal.toFixed(2)}`;
     totalEl.textContent = totalCostGlobal;
   }
 
@@ -393,21 +417,45 @@
       if (stored) itinerary = JSON.parse(stored);
     } catch(e) { console.error(e); }
 
+    // Retrieve active calculations
+    let calculations = null;
+    try {
+      calculations = JSON.parse(localStorage.getItem('layoverx_active_calculation'));
+    } catch(e) { console.error(e); }
+    
+    if (!calculations) {
+      calculations = window.layoverx.calculateItineraryPrice(itinerary);
+    }
+
     const bookingId = `LX-${Math.floor(Math.random() * 90000 + 10000)}-CSMIA`;
     
     // Save to completed trips
     const tripData = {
       bookingId,
-      items: itinerary,
+      items: calculations.itemPricingDetails,
       passenger: travelerDetails.passenger,
       passport: travelerDetails.passport,
       nationality: travelerDetails.nationality,
       emergencyContact: travelerDetails.emergencyContact,
       incomingFlight: travelerDetails.incomingFlight,
       outgoingFlight: travelerDetails.outgoingFlight,
-      totalCost: totalCostGlobal,
+      
+      // Pricing details
+      subtotal: calculations.subtotal,
+      totalDiscount: calculations.totalDiscount,
+      discountLogs: calculations.discountLogs,
+      convenienceFee: calculations.convenienceFee,
+      serviceFee: calculations.serviceFee,
+      taxes: calculations.taxes,
+      insurancePremium: calculations.insurancePremium,
+      grandTotal: calculations.grandTotal,
+      pricingLogs: calculations.pricingLogs,
+      appliedCoupon: calculations.appliedCoupon,
+      
+      totalCost: `₹${calculations.grandTotal.toFixed(2)}`,
       createdAt: new Date().toISOString(),
-      status: 'Confirmed'
+      status: 'Confirmed',
+      uid: (typeof auth !== 'undefined' && auth.currentUser) ? auth.currentUser.uid : 'guest-traveler'
     };
 
     let completed = [];
@@ -418,9 +466,90 @@
     completed.push(tripData);
     localStorage.setItem('layoverx_completed_trips', JSON.stringify(completed));
 
+    // Firestore Integration for completed trips
+    if (typeof auth !== 'undefined' && auth.currentUser && typeof db !== 'undefined') {
+      try {
+        await db.collection("trips").doc(bookingId).set(tripData);
+      } catch (dbError) {
+        console.warn("Firestore trip save failed, saved locally:", dbError);
+      }
+    }
+
+    // Revenue Management System: Save to Transaction Logs
+    let transactions = [];
+    try {
+      transactions = JSON.parse(localStorage.getItem('layoverx_revenue_transactions')) || [];
+    } catch(e) {}
+
+    const vendorMap = {
+      hotel: "v_hotel_1",
+      dining: "v_dine_1",
+      spa: "v_spa_1",
+      gaming: "v_game_1",
+      activity: "v_act_1",
+      transfer: "v_trans_1"
+    };
+
+    const newTx = {
+      bookingId: bookingId,
+      createdAt: tripData.createdAt,
+      passenger: travelerDetails.passenger,
+      subtotal: calculations.subtotal,
+      totalDiscount: calculations.totalDiscount,
+      convenienceFee: calculations.convenienceFee,
+      serviceFee: calculations.serviceFee,
+      taxes: calculations.taxes,
+      insurancePremium: calculations.insurancePremium,
+      grandTotal: calculations.grandTotal,
+      items: calculations.itemPricingDetails.map(item => ({
+        type: item.type,
+        name: item.name,
+        finalTotalCost: item.finalTotalCost,
+        vendorId: vendorMap[item.type] || "v_generic_vendor"
+      })),
+      appliedCoupon: calculations.appliedCoupon,
+      paxCount: calculations.pricingLogs[0] ? (parseInt(calculations.pricingLogs[0].replace(/[^0-9]/g, '')) || 2) : 2
+    };
+    transactions.push(newTx);
+    localStorage.setItem('layoverx_revenue_transactions', JSON.stringify(transactions));
+
+    // Calculate payouts
+    let vendorPayoutsList = [];
+    try {
+      vendorPayoutsList = JSON.parse(localStorage.getItem('layoverx_vendor_payouts')) || [];
+    } catch(e) {}
+
+    let commissionRules = [];
+    try {
+      commissionRules = JSON.parse(localStorage.getItem('layoverx_commissions')) || [];
+    } catch(e) {}
+
+    calculations.itemPricingDetails.forEach(item => {
+      const category = item.type;
+      const rule = commissionRules.find(r => r.category === category);
+      const ratePercent = rule ? parseFloat(rule.ratePercent) : 15;
+      const commissionAmount = item.finalTotalCost * (ratePercent / 100.0);
+      const payoutAmount = item.finalTotalCost - commissionAmount;
+
+      const payoutId = `PO-${Math.floor(Math.random() * 90000 + 10000)}`;
+      vendorPayoutsList.push({
+        payoutId,
+        bookingId,
+        vendorId: vendorMap[category] || "v_generic_vendor",
+        amount: payoutAmount,
+        commissionAmount: commissionAmount,
+        ratePercent: ratePercent,
+        itemName: item.name,
+        status: "Pending",
+        datePaid: null
+      });
+    });
+    localStorage.setItem('layoverx_vendor_payouts', JSON.stringify(vendorPayoutsList));
+
     // Clear active itinerary in cart
     localStorage.removeItem('layoverx_current_itinerary');
     localStorage.removeItem('layoverx_temp_booking');
+    localStorage.removeItem('layoverx_active_calculation');
     if (window.layoverx && window.layoverx.updateItineraryBadges) {
       window.layoverx.updateItineraryBadges();
     }

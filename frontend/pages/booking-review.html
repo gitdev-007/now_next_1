@@ -51,7 +51,17 @@
           <h3 class="text-sm font-bold text-slate-900 uppercase tracking-widest">Pricing Summary</h3>
           
           <div class="space-y-3 text-xs text-slate-650" id="review-costs-breakdown">
-            <!-- Dynically populated price breakdown -->
+            <!-- Dynamically populated price breakdown -->
+          </div>
+
+          <!-- Promo Code Input -->
+          <div class="pt-2 border-t border-slate-100">
+            <label for="coupon-code-input" class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Have a Promo Code?</label>
+            <div class="flex gap-2">
+              <input type="text" id="coupon-code-input" class="bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-xs text-slate-800 uppercase focus:ring-1 focus:ring-sky-500 flex-grow" placeholder="e.g. WELCOME10"/>
+              <button type="button" onclick="applyCouponCode()" class="px-3 py-1.5 bg-sky-650 hover:bg-sky-700 text-white rounded-lg text-xs font-bold transition">Apply</button>
+            </div>
+            <div id="coupon-msg" class="text-[10px] font-bold mt-1 hidden"></div>
           </div>
           
           <hr class="border-gray-100"/>
@@ -75,9 +85,39 @@
 </section>
 
 <script>
+  let activeCouponCode = "";
+
   document.addEventListener('DOMContentLoaded', () => {
     loadReviewItinerary();
   });
+
+  function applyCouponCode() {
+    const code = document.getElementById('coupon-code-input').value.trim().toUpperCase();
+    const msg = document.getElementById('coupon-msg');
+    if (!code) {
+      activeCouponCode = "";
+      loadReviewItinerary();
+      return;
+    }
+    
+    let coupons = [];
+    try {
+      coupons = JSON.parse(localStorage.getItem('layoverx_coupons')) || [];
+    } catch(e) {}
+    
+    const exists = coupons.some(c => c.code === code);
+    if (exists) {
+      activeCouponCode = code;
+      msg.textContent = `✓ Coupon "${code}" Applied!`;
+      msg.className = "text-[10px] font-bold mt-1 text-emerald-600 block";
+      loadReviewItinerary();
+    } else {
+      activeCouponCode = "";
+      msg.textContent = "✗ Invalid Coupon Code";
+      msg.className = "text-[10px] font-bold mt-1 text-red-500 block";
+      loadReviewItinerary();
+    }
+  }
 
   function loadReviewItinerary() {
     const listEl = document.getElementById('booking-review-list');
@@ -91,14 +131,6 @@
       if (stored) itinerary = JSON.parse(stored);
     } catch(e) { console.error(e); }
 
-    let searchParams = { travelers: '2' };
-    try {
-      const stored = localStorage.getItem('layoverx_search_params');
-      if (stored) searchParams = JSON.parse(stored);
-    } catch(e) { console.error(e); }
-
-    const pax = parseInt(searchParams.travelers) || 2;
-
     if (itinerary.length === 0) {
       listEl.innerHTML = `
         <div class="text-center py-8 text-slate-500">
@@ -110,21 +142,14 @@
       return;
     }
 
+    const calculations = window.layoverx.calculateItineraryPrice(itinerary, {
+      couponCode: activeCouponCode
+    });
+
+    localStorage.setItem('layoverx_active_calculation', JSON.stringify(calculations));
+
     listEl.innerHTML = '';
-    breakdownEl.innerHTML = '';
-    let total = 0;
-
-    itinerary.forEach(item => {
-      // Calculate item price
-      let price = item.price;
-      let label = item.name;
-      if (item.type !== 'transfer' && item.type !== 'hotel' && item.type !== 'dining') {
-        price = item.price * pax;
-        label += ` (${pax} Guests)`;
-      }
-      total += price;
-
-      // Render details row
+    calculations.itemPricingDetails.forEach(item => {
       listEl.innerHTML += `
         <div class="flex items-center gap-4 bg-slate-50 border border-slate-200/60 p-4 rounded-2xl">
           <div class="w-12 h-12 bg-sky-100 text-sky-700 text-lg rounded-xl flex items-center justify-center flex-shrink-0">
@@ -132,21 +157,47 @@
           </div>
           <div class="flex-grow min-w-0">
             <h4 class="font-bold text-slate-900 text-sm truncate">${item.name}</h4>
-            <span class="text-xs text-slate-500 capitalize">${item.type} • ⏱️ ${item.duration}h slot</span>
+            <span class="text-xs text-slate-500 capitalize">${item.type} • unit price: ₹${item.finalItemUnitPrice.toFixed(2)}</span>
           </div>
-          <strong class="font-bold text-slate-900 text-sm whitespace-nowrap">₹${price.toLocaleString()}</strong>
-        </div>
-      `;
-
-      // Render summary row
-      breakdownEl.innerHTML += `
-        <div class="flex justify-between">
-          <span>${label}</span>
-          <strong class="font-semibold text-slate-800">₹${price.toLocaleString()}</strong>
+          <strong class="font-bold text-slate-900 text-sm whitespace-nowrap">₹${item.finalTotalCost.toFixed(2)}</strong>
         </div>
       `;
     });
 
-    totalEl.textContent = `₹${total.toLocaleString()}`;
+    breakdownEl.innerHTML = '';
+    breakdownEl.innerHTML += `
+      <div class="flex justify-between font-medium">
+        <span>Itinerary Subtotal</span>
+        <strong class="text-slate-800">₹${calculations.subtotal.toFixed(2)}</strong>
+      </div>
+    `;
+
+    if (calculations.totalDiscount > 0) {
+      calculations.discountLogs.forEach(log => {
+        breakdownEl.innerHTML += `
+          <div class="flex justify-between text-emerald-600 font-bold">
+            <span>${log.split(':')[0]}</span>
+            <span>${log.split(':')[1]}</span>
+          </div>
+        `;
+      });
+    }
+
+    breakdownEl.innerHTML += `
+      <div class="flex justify-between">
+        <span>Convenience Charge</span>
+        <span>₹${calculations.convenienceFee.toFixed(2)}</span>
+      </div>
+      <div class="flex justify-between">
+        <span>Platform Service Fee</span>
+        <span>₹${calculations.serviceFee.toFixed(2)}</span>
+      </div>
+      <div class="flex justify-between">
+        <span>GST (18% on fees)</span>
+        <span>₹${calculations.taxes.toFixed(2)}</span>
+      </div>
+    `;
+
+    totalEl.textContent = `₹${calculations.grandTotal.toFixed(2)}`;
   }
 </script>

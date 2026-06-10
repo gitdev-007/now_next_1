@@ -218,6 +218,61 @@ async function run() {
   await page.screenshot({ path: path.join(ARTIFACTS_DIR, 'experiences_mobile.png') });
   console.log('Took experiences_mobile.png');
 
+  // Step 6: Pricing & Revenue Admin Dashboard Verification
+  console.log('--- Step 6: Pricing & Revenue Admin Dashboard ---');
+  await page.goto('http://localhost:8000/revenue-admin.html');
+  await page.waitForLoadState('networkidle');
+
+  // Verify dashboard page loaded
+  const adminHeader = await page.innerText('h1');
+  console.log(`Admin page header: ${adminHeader}`);
+  if (adminHeader.includes('Revenue') && adminHeader.includes('Pricing')) {
+    console.log('✓ SUCCESS: Revenue Admin page loaded successfully!');
+  } else {
+    console.error('✗ FAILURE: Revenue Admin page failed to load!');
+  }
+
+  // Click Pricing Rules & Yield Tab to make override slider visible
+  console.log('Switching to Pricing tab...');
+  await page.click('#admin-tab-pricing');
+  await page.waitForTimeout(300);
+
+  // Adjust override slider to +20% and save
+  console.log('Adjusting manual override pricing slider to +20%...');
+  await page.evaluate(() => {
+    const slider = document.querySelector('#override-slider');
+    if (slider) {
+      slider.value = 20;
+      slider.dispatchEvent(new Event('input', { bubbles: true }));
+    }
+  });
+  await page.click('button:has-text("Apply Global Override Slider")');
+  await page.waitForTimeout(500);
+
+  // Navigate to verify override is saved in localStorage
+  const localOverride = await page.evaluate(() => {
+    const settings = JSON.parse(localStorage.getItem('layoverx_pricing_settings'));
+    return settings ? settings.manualOverridePercent : null;
+  });
+  console.log(`Verified manual override stored in localStorage: ${localOverride}%`);
+  if (parseInt(localOverride) === 20) {
+    console.log('✓ SUCCESS: Dynamic override successfully written to localStorage database!');
+  } else {
+    console.error('✗ FAILURE: Override was not saved!');
+  }
+
+  // Reset override to 0% so standard pricing is restored
+  console.log('Resetting override slider back to 0%...');
+  await page.evaluate(() => {
+    const slider = document.querySelector('#override-slider');
+    if (slider) {
+      slider.value = 0;
+      slider.dispatchEvent(new Event('input', { bubbles: true }));
+    }
+  });
+  await page.click('button:has-text("Apply Global Override Slider")');
+  await page.waitForTimeout(500);
+
   await browser.close();
   console.log('LayoverX QA audit complete!');
 }

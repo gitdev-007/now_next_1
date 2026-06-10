@@ -2239,6 +2239,411 @@
 
   /* ===== EXTENDED MARKETPLACE ENGINE ===== */
   
+  /* ===== ENTERPRISE PRICING & REVENUE ENGINE ===== */
+  if (!localStorage.getItem('layoverx_base_prices')) {
+    const defaults = {
+      hotel: { 1: 3499, 2: 5499, 3: 2200, 4: 4500 },
+      dining: { 1: 1800, 2: 4500, 3: 800, 4: 400 },
+      activity: { 1: 2899, 2: 1299, 3: 1999, 4: 1500 },
+      spa: { 1: 4500, 2: 1800, 3: 8500 },
+      gaming: { 1: 1200, 2: 2500, 3: 1800 },
+      transfer: { sedan: 899, suv: 1499, luxury: 3499 }
+    };
+    localStorage.setItem('layoverx_base_prices', JSON.stringify(defaults));
+  }
+
+  if (!localStorage.getItem('layoverx_seasonal_pricing')) {
+    const seasons = [
+      { name: "Winter Peak", start: "10-01", end: "02-28", multiplier: 1.25 },
+      { name: "Monsoon Low", start: "07-01", end: "09-30", multiplier: 0.85 },
+      { name: "Summer Standard", start: "03-01", end: "06-30", multiplier: 1.00 }
+    ];
+    localStorage.setItem('layoverx_seasonal_pricing', JSON.stringify(seasons));
+  }
+
+  if (!localStorage.getItem('layoverx_demand_settings')) {
+    const demand = {
+      simulatedOccupancy: 78,
+      highOccupancyThreshold: 80,
+      highOccupancyMultiplier: 1.20,
+      lowOccupancyThreshold: 30,
+      lowOccupancyMultiplier: 0.90,
+      autoDemandIncrease: true
+    };
+    localStorage.setItem('layoverx_demand_settings', JSON.stringify(demand));
+  }
+
+  if (!localStorage.getItem('layoverx_pricing_settings')) {
+    const general = {
+      globalMarkupPercent: 0,
+      globalMarkupFlat: 0,
+      weekendMultiplier: 1.10,
+      baseCommissionRate: 0.15,
+      flatConvenienceFee: 150,
+      serviceFeePercent: 0.02,
+      insurancePremium: 199,
+      manualOverridePercent: 0
+    };
+    localStorage.setItem('layoverx_pricing_settings', JSON.stringify(general));
+  }
+
+  if (!localStorage.getItem('layoverx_coupons')) {
+    const defaultCoupons = [
+      { code: "WELCOME10", discountType: "percent", value: 10, priority: 1, stackable: true, desc: "10% off for first-time transit flyers" },
+      { code: "REFER500", discountType: "flat", value: 500, priority: 2, stackable: true, desc: "₹500 flat discount on referring a traveler" },
+      { code: "FESTIVE20", discountType: "percent", value: 20, priority: 3, stackable: false, desc: "20% off for festive seasons (Non-stackable)" },
+      { code: "FLASH30", discountType: "percent", value: 30, priority: 4, stackable: false, desc: "30% off limited flash sale (Non-stackable)" }
+    ];
+    localStorage.setItem('layoverx_coupons', JSON.stringify(defaultCoupons));
+  }
+
+  if (!localStorage.getItem('layoverx_discounts')) {
+    const discounts = [
+      { name: "Group Booking", value: 15, unit: "percent", trigger: "pax >= 3", active: true },
+      { name: "Long Stay", value: 10, unit: "percent", trigger: "hours > 8", active: true },
+      { name: "Loyalty Member", value: 5, unit: "percent", trigger: "logged_in", active: true }
+    ];
+    localStorage.setItem('layoverx_discounts', JSON.stringify(discounts));
+  }
+
+  if (!localStorage.getItem('layoverx_commissions')) {
+    const commissions = [
+      { category: "hotel", ratePercent: 15, name: "Room Booking Commission" },
+      { category: "dining", ratePercent: 12, name: "Dining Reservation Fee" },
+      { category: "activity", ratePercent: 18, name: "Tour Experience Commission" },
+      { category: "spa", ratePercent: 15, name: "Wellness Partner Commission" },
+      { category: "gaming", ratePercent: 10, name: "Entertainment Partner Commission" },
+      { category: "transfer", ratePercent: 10, name: "Chauffeur Fleet Commission" }
+    ];
+    localStorage.setItem('layoverx_commissions', JSON.stringify(commissions));
+  }
+
+  if (!localStorage.getItem('layoverx_pricing_history')) {
+    const defaultHistory = [
+      { timestamp: new Date(Date.now() - 3600000 * 24 * 5).toISOString(), admin: "admin@layoverx.com", action: "Updated base prices for hotels and lounges", details: "Hotel Base standard room increased to ₹3,499" },
+      { timestamp: new Date(Date.now() - 3600000 * 24 * 3).toISOString(), admin: "admin@layoverx.com", action: "Adjusted Winter Peak seasonal pricing", details: "Set winter peak multiplier to 1.25x (Oct 1 - Feb 28)" },
+      { timestamp: new Date(Date.now() - 3600000 * 12).toISOString(), admin: "admin@layoverx.com", action: "Added Flash Sale coupon", details: "Added coupon code FLASH30 with 30% discount (non-stackable)" }
+    ];
+    localStorage.setItem('layoverx_pricing_history', JSON.stringify(defaultHistory));
+  }
+
+  if (!localStorage.getItem('layoverx_revenue_transactions')) {
+    const mockTx = [
+      {
+        bookingId: "LX-89104-CSMIA",
+        createdAt: new Date(Date.now() - 3600000 * 36).toISOString(),
+        passenger: "Sarah Jenkins",
+        subtotal: 10298,
+        totalDiscount: 1544.7,
+        convenienceFee: 150,
+        serviceFee: 175.07,
+        taxes: 58.51,
+        insurancePremium: 398,
+        grandTotal: 9534.88,
+        items: [
+          { type: "hotel", name: "Premium Transit Cabin (BOM)", finalTotalCost: 7499, vendorId: "v_hotel_1" },
+          { type: "transfer", name: "Premium SUV (Toyota Innova)", finalTotalCost: 2799, vendorId: "v_trans_2" }
+        ],
+        appliedCoupon: "WELCOME10",
+        paxCount: 2,
+        layoverHours: 8.5
+      },
+      {
+        bookingId: "LX-14589-CSMIA",
+        createdAt: new Date(Date.now() - 3600000 * 28).toISOString(),
+        passenger: "Amit Sharma",
+        subtotal: 4500,
+        totalDiscount: 225,
+        convenienceFee: 150,
+        serviceFee: 85.5,
+        taxes: 42.39,
+        insurancePremium: 0,
+        grandTotal: 4552.89,
+        items: [
+          { type: "dining", name: "Veda Indian Bistro Buffet", finalTotalCost: 4500, vendorId: "v_dine_1" }
+        ],
+        appliedCoupon: null,
+        paxCount: 3,
+        layoverHours: 4.5
+      },
+      {
+        bookingId: "LX-72301-CSMIA",
+        createdAt: new Date(Date.now() - 3600000 * 14).toISOString(),
+        passenger: "Robert Chen",
+        subtotal: 14798,
+        totalDiscount: 2219.7,
+        convenienceFee: 150,
+        serviceFee: 251.57,
+        taxes: 72.28,
+        insurancePremium: 199,
+        grandTotal: 13251.15,
+        items: [
+          { type: "hotel", name: "Niranta Airport Transit Hotel", finalTotalCost: 5499, vendorId: "v_hotel_2" },
+          { type: "spa", name: "O2 Express Back Massage", finalTotalCost: 5800, vendorId: "v_spa_1" },
+          { type: "transfer", name: "Compact Sedan", finalTotalCost: 3499, vendorId: "v_trans_1" }
+        ],
+        appliedCoupon: "REFER500",
+        paxCount: 1,
+        layoverHours: 12.0
+      },
+      {
+        bookingId: "LX-49812-CSMIA",
+        createdAt: new Date(Date.now() - 3600000 * 4).toISOString(),
+        passenger: "Elena Rostova",
+        subtotal: 7800,
+        totalDiscount: 2340,
+        convenienceFee: 150,
+        serviceFee: 109.2,
+        taxes: 46.66,
+        insurancePremium: 398,
+        grandTotal: 6163.86,
+        items: [
+          { type: "gaming", name: "Smaaash VR & Gaming Arena", finalTotalCost: 4300, vendorId: "v_game_1" },
+          { type: "activity", name: "Gateway of India Speed Tour", finalTotalCost: 3500, vendorId: "v_act_1" }
+        ],
+        appliedCoupon: "FLASH30",
+        paxCount: 2,
+        layoverHours: 7.0
+      }
+    ];
+    localStorage.setItem('layoverx_revenue_transactions', JSON.stringify(mockTx));
+  }
+
+  if (!localStorage.getItem('layoverx_vendor_payouts')) {
+    const payouts = [
+      { payoutId: "PO-82910", bookingId: "LX-72301-CSMIA", vendorId: "v_hotel_2", amount: 4674.15, commissionAmount: 824.85, ratePercent: 15, itemName: "Niranta Airport Transit Hotel", status: "Paid", datePaid: new Date(Date.now() - 3600000 * 12).toISOString() },
+      { payoutId: "PO-82911", bookingId: "LX-72301-CSMIA", vendorId: "v_spa_1", amount: 4930.00, commissionAmount: 870.00, ratePercent: 15, itemName: "O2 Express Back Massage", status: "Paid", datePaid: new Date(Date.now() - 3600000 * 12).toISOString() },
+      { payoutId: "PO-82912", bookingId: "LX-72301-CSMIA", vendorId: "v_trans_1", amount: 3149.10, commissionAmount: 349.90, ratePercent: 10, itemName: "Compact Sedan", status: "Pending", datePaid: null }
+    ];
+    localStorage.setItem('layoverx_vendor_payouts', JSON.stringify(payouts));
+  }
+
+  if (!localStorage.getItem('layoverx_financial_reports')) {
+    const reports = [
+      { period: "May 2026", grossBookingValue: 412500, discountsApplied: 51200, convenienceFees: 8550, serviceFees: 7226, taxes: 2840, netRevenue: 15776, payoutsApproved: 345524, reportDate: "2026-06-01" },
+      { period: "Q1 2026", grossBookingValue: 1250800, discountsApplied: 142000, convenienceFees: 24300, serviceFees: 22176, taxes: 8365, netRevenue: 46476, payoutsApproved: 1086624, reportDate: "2026-04-01" }
+    ];
+    localStorage.setItem('layoverx_financial_reports', JSON.stringify(reports));
+  }
+
+  function getSeasonalMultiplier(dateStr) {
+    const date = dateStr ? new Date(dateStr) : new Date();
+    const mmdd = String(date.getMonth() + 1).padStart(2, '0') + '-' + String(date.getDate()).padStart(2, '0');
+    try {
+      const seasons = JSON.parse(localStorage.getItem('layoverx_seasonal_pricing')) || [];
+      for (const s of seasons) {
+        if (s.start <= s.end) {
+          if (mmdd >= s.start && mmdd <= s.end) return s.multiplier;
+        } else {
+          if (mmdd >= s.start || mmdd <= s.end) return s.multiplier;
+        }
+      }
+    } catch(e) { console.error(e); }
+    return 1.0;
+  }
+
+  function getWeekendMultiplier(dateStr) {
+    const date = dateStr ? new Date(dateStr) : new Date();
+    const day = date.getDay();
+    if (day === 0 || day === 5 || day === 6) {
+      try {
+        const settings = JSON.parse(localStorage.getItem('layoverx_pricing_settings'));
+        if (settings && settings.weekendMultiplier !== undefined) {
+          return parseFloat(settings.weekendMultiplier);
+        }
+      } catch(e) {}
+      return 1.10;
+    }
+    return 1.0;
+  }
+
+  function getDemandMultiplier() {
+    try {
+      const d = JSON.parse(localStorage.getItem('layoverx_demand_settings'));
+      if (d && d.autoDemandIncrease) {
+        if (d.simulatedOccupancy >= d.highOccupancyThreshold) {
+          return d.highOccupancyMultiplier;
+        } else if (d.simulatedOccupancy <= d.lowOccupancyThreshold) {
+          return d.lowOccupancyMultiplier;
+        }
+      }
+    } catch(e) { console.error(e); }
+    return 1.0;
+  }
+
+  function getManualOverrideMultiplier() {
+    try {
+      const s = JSON.parse(localStorage.getItem('layoverx_pricing_settings'));
+      if (s && s.manualOverridePercent) {
+        return 1.0 + (parseFloat(s.manualOverridePercent) / 100.0);
+      }
+    } catch(e) {}
+    return 1.0;
+  }
+
+  window.layoverx.calculateItineraryPrice = function(itinerary, options = {}) {
+    let searchParams = { travelers: '2', layoverDuration: 6.5, location: 'near-airport', arrivalDateTime: '' };
+    try {
+      const stored = localStorage.getItem('layoverx_search_params');
+      if (stored) searchParams = JSON.parse(stored);
+    } catch(e) { console.error(e); }
+
+    const pax = parseInt(searchParams.travelers) || 2;
+    const duration = parseFloat(searchParams.layoverDuration) || 6.5;
+    const arrivalDate = searchParams.arrivalDateTime;
+
+    const basePrices = JSON.parse(localStorage.getItem('layoverx_base_prices')) || {};
+    const settings = JSON.parse(localStorage.getItem('layoverx_pricing_settings')) || {};
+    
+    const sMult = getSeasonalMultiplier(arrivalDate);
+    const wMult = getWeekendMultiplier(arrivalDate);
+    const dMult = getDemandMultiplier();
+    const oMult = getManualOverrideMultiplier();
+
+    const pricingLogs = [];
+    pricingLogs.push(`Arrival: ${arrivalDate || 'Not specified'}`);
+    pricingLogs.push(`Base Pricing adjustments loaded: SeasonalMultiplier=${sMult.toFixed(2)}, WeekendMultiplier=${wMult.toFixed(2)}, DemandMultiplier=${dMult.toFixed(2)}, ManualOverrideMultiplier=${oMult.toFixed(2)}`);
+
+    let itemPricingDetails = [];
+    let subtotal = 0;
+
+    itinerary.forEach(item => {
+      let baseVal = item.price;
+      if (basePrices[item.type] && basePrices[item.type][item.id] !== undefined) {
+        baseVal = basePrices[item.type][item.id];
+      }
+
+      let durationScale = 1.0;
+      if (item.type === 'hotel') {
+        if (item.duration == 3) durationScale = 0.7;
+        else if (item.duration == 12) durationScale = 1.5;
+        else if (item.duration == 24) durationScale = 2.2;
+      } else if (item.type === 'dining') {
+        if (item.duration == 1) durationScale = 0.8;
+        else if (item.duration == 2) durationScale = 1.2;
+      }
+
+      let scaledBase = baseVal * durationScale;
+      let finalItemPrice = scaledBase * sMult * wMult * dMult * oMult;
+      
+      if (settings.globalMarkupPercent) {
+        finalItemPrice *= (1 + parseFloat(settings.globalMarkupPercent) / 100.0);
+      }
+      if (settings.globalMarkupFlat) {
+        finalItemPrice += parseFloat(settings.globalMarkupFlat);
+      }
+
+      let finalTotalItemCost = finalItemPrice;
+      let isPaxDependent = (item.type === 'activity' || item.type === 'spa' || item.type === 'gaming');
+      if (isPaxDependent) {
+        finalTotalItemCost = finalItemPrice * pax;
+      }
+
+      subtotal += finalTotalItemCost;
+
+      itemPricingDetails.push({
+        type: item.type,
+        id: item.id,
+        name: item.name,
+        duration: item.duration,
+        basePrice: baseVal,
+        scaledBasePrice: scaledBase,
+        finalItemUnitPrice: finalItemPrice,
+        finalTotalCost: finalTotalItemCost,
+        isPaxDependent
+      });
+
+      pricingLogs.push(`Item "${item.name}" (Type: ${item.type}, ID: ${item.id}): baseVal=${baseVal}, scaledBase=${scaledBase.toFixed(2)}, finalTotalCost=${finalTotalItemCost.toFixed(2)}`);
+    });
+
+    let totalDiscount = 0;
+    const discountLogs = [];
+
+    if (pax >= 3) {
+      const discVal = subtotal * 0.15;
+      totalDiscount += discVal;
+      discountLogs.push(`Group booking discount (15%): -₹${discVal.toFixed(2)}`);
+    }
+
+    if (duration > 8.0) {
+      const discVal = subtotal * 0.10;
+      totalDiscount += discVal;
+      discountLogs.push(`Long-stay discount (10%): -₹${discVal.toFixed(2)}`);
+    }
+
+    if (auth.currentUser) {
+      const discVal = subtotal * 0.05;
+      totalDiscount += discVal;
+      discountLogs.push(`Loyalty member discount (5%): -₹${discVal.toFixed(2)}`);
+    }
+
+    let activeCoupon = null;
+    let couponDiscount = 0;
+    if (options.couponCode) {
+      const code = options.couponCode.trim().toUpperCase();
+      try {
+        const coupons = JSON.parse(localStorage.getItem('layoverx_coupons')) || [];
+        const coupon = coupons.find(c => c.code === code);
+        if (coupon) {
+          activeCoupon = coupon;
+          if (coupon.discountType === 'percent') {
+            couponDiscount = subtotal * (parseFloat(coupon.value) / 100.0);
+          } else {
+            couponDiscount = parseFloat(coupon.value);
+          }
+          discountLogs.push(`Coupon code [${code}]: -₹${couponDiscount.toFixed(2)}`);
+        } else {
+          pricingLogs.push(`Coupon code [${code}] not found or invalid.`);
+        }
+      } catch(e) { console.error(e); }
+    }
+
+    if (activeCoupon) {
+      if (activeCoupon.stackable) {
+        totalDiscount += couponDiscount;
+      } else {
+        if (couponDiscount > totalDiscount) {
+          totalDiscount = couponDiscount;
+          discountLogs.length = 0;
+          discountLogs.push(`Non-stackable coupon code [${activeCoupon.code}] preferred: -₹${couponDiscount.toFixed(2)}`);
+        } else {
+          pricingLogs.push(`Stacked discounts are higher than non-stackable coupon code [${activeCoupon.code}]. Coupon not applied.`);
+        }
+      }
+    }
+
+    const maxDiscount = subtotal * 0.35;
+    if (totalDiscount > maxDiscount) {
+      totalDiscount = maxDiscount;
+      discountLogs.push(`Discounts capped at 35% margin ceiling: -₹${totalDiscount.toFixed(2)}`);
+    }
+
+    const priceAfterDiscount = Math.max(0, subtotal - totalDiscount);
+    const convenienceFee = settings.flatConvenienceFee !== undefined ? parseFloat(settings.flatConvenienceFee) : 150;
+    const serviceFeePercent = settings.serviceFeePercent !== undefined ? parseFloat(settings.serviceFeePercent) : 0.02;
+    const serviceFee = priceAfterDiscount * serviceFeePercent;
+    const taxRate = 0.18;
+    const taxes = (convenienceFee + serviceFee) * taxRate;
+    const insurancePremium = options.optionalInsurance ? ((settings.insurancePremium !== undefined ? parseFloat(settings.insurancePremium) : 199) * pax) : 0;
+    const grandTotal = priceAfterDiscount + convenienceFee + serviceFee + taxes + insurancePremium;
+
+    pricingLogs.push(`Summary: Subtotal=${subtotal.toFixed(2)}, Discount=${totalDiscount.toFixed(2)}, ConvenienceFee=${convenienceFee}, ServiceFee=${serviceFee.toFixed(2)}, GST=${taxes.toFixed(2)}, Insurance=${insurancePremium}, GrandTotal=${grandTotal.toFixed(2)}`);
+
+    return {
+      subtotal,
+      itemPricingDetails,
+      totalDiscount,
+      discountLogs,
+      convenienceFee,
+      serviceFee,
+      taxes,
+      insurancePremium,
+      grandTotal,
+      pricingLogs,
+      appliedCoupon: activeCoupon ? activeCoupon.code : null
+    };
+  };
+
   const TRANSFERS = {
     'sedan': { id: 'sedan', name: "Compact Sedan (Toyota Etios or similar)", type: "sedan", rating: 4.8, reviews: 2100, price: 899, image: "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=600&h=400&fit=crop", desc: "Ideal for 1-3 passengers with standard luggage. AC, GPS tracking, and verified high hygiene standards.", amenities: ["4 Passengers", "2 Large Bags", "Instant Confirmation"] },
     'suv': { id: 'suv', name: "Premium SUV (Toyota Innova Crysta)", type: "suv", rating: 4.9, reviews: 1800, price: 1499, image: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=600&h=400&fit=crop", desc: "Extra room, premium comfort, great for families. AC, high luggage capacity, and professional English-speaking drivers.", amenities: ["6 Passengers", "4 Large Bags", "Popular Choice"] },
@@ -2844,12 +3249,6 @@
       if (stored) itinerary = JSON.parse(stored);
     } catch(e) { console.error(e); }
 
-    let searchParams = { travelers: '2', layoverDuration: 6.5, location: 'near-airport', arrivalDateTime: '' };
-    try {
-      const stored = localStorage.getItem('layoverx_search_params');
-      if (stored) searchParams = JSON.parse(stored);
-    } catch(e) { console.error(e); }
-
     const listEl = $('#checkout-summary-list');
     const totalEl = $('#checkout-total-price');
 
@@ -2858,17 +3257,18 @@
       return;
     }
 
+    let calculations = null;
+    try {
+      const storedCalc = localStorage.getItem('layoverx_active_calculation');
+      if (storedCalc) calculations = JSON.parse(storedCalc);
+    } catch(e) { console.error(e); }
+
+    if (!calculations) {
+      calculations = window.layoverx.calculateItineraryPrice(itinerary);
+    }
+
     listEl.innerHTML = '';
-    let totalCost = 0;
-    const travelersCount = parseInt(searchParams.travelers) || 2;
-
-    itinerary.forEach(item => {
-      let cost = item.price;
-      if (item.type === 'activity' || item.type === 'spa' || item.type === 'gaming') {
-        cost = item.price * travelersCount;
-      }
-      totalCost += cost;
-
+    calculations.itemPricingDetails.forEach(item => {
       let catIcon = "🏨";
       if (item.type === 'dining') catIcon = "🍽️";
       else if (item.type === 'spa') catIcon = "💆";
@@ -2878,13 +3278,31 @@
 
       listEl.innerHTML += `
         <li class="flex items-start justify-between gap-4">
-          <span class="flex items-center gap-2"><span>${catIcon}</span> ${item.name} (${item.duration}h)</span>
-          <strong class="font-bold text-slate-900 flex-shrink-0">₹${cost.toLocaleString()}</strong>
+          <span class="flex items-center gap-2"><span>${catIcon}</span> ${item.name}</span>
+          <strong class="font-bold text-slate-900 flex-shrink-0">₹${item.finalTotalCost.toFixed(2)}</strong>
         </li>
       `;
     });
 
-    if (totalEl) totalEl.textContent = `₹${totalCost.toLocaleString()}`;
+    if (calculations.totalDiscount > 0) {
+      listEl.innerHTML += `
+        <li class="flex items-start justify-between gap-4 text-emerald-650 font-bold border-t border-dashed border-gray-200 pt-2">
+          <span>Discounts & Coupons</span>
+          <span>-₹${calculations.totalDiscount.toFixed(2)}</span>
+        </li>
+      `;
+    }
+    const fees = calculations.convenienceFee + calculations.serviceFee + calculations.taxes;
+    if (fees > 0) {
+      listEl.innerHTML += `
+        <li class="flex items-start justify-between gap-4 text-slate-500">
+          <span>Taxes & Service Fees</span>
+          <span>+₹${fees.toFixed(2)}</span>
+        </li>
+      `;
+    }
+
+    if (totalEl) totalEl.textContent = `₹${calculations.grandTotal.toFixed(2)}`;
 
     auth.onAuthStateChanged(user => {
       if (user) {
@@ -3637,13 +4055,47 @@
     if (list) {
       list.innerHTML = '';
       trip.items.forEach(item => {
+        const itemPrice = item.finalTotalCost !== undefined ? item.finalTotalCost : item.price;
         list.innerHTML += `
           <div class="flex justify-between text-xs py-1.5 border-b border-gray-100 last:border-0">
-            <span class="font-medium text-gray-700">${item.name} (${item.duration}h)</span>
-            <span class="font-bold text-gray-900">₹${item.price.toLocaleString()}</span>
+            <span class="font-medium text-gray-700">${item.name} (${item.duration || 0}h)</span>
+            <span class="font-bold text-gray-900">₹${itemPrice.toLocaleString()}</span>
           </div>
         `;
       });
+
+      if (trip.subtotal !== undefined) {
+        list.innerHTML += `
+          <div class="border-t border-dashed border-gray-200 mt-2 pt-2 text-xs space-y-1">
+            <div class="flex justify-between text-gray-500">
+              <span>Subtotal:</span>
+              <span class="font-semibold text-gray-800">₹${trip.subtotal.toFixed(2)}</span>
+            </div>
+            ${trip.totalDiscount > 0 ? `
+            <div class="flex justify-between text-emerald-650 font-bold">
+              <span>Discounts:</span>
+              <span>-₹${trip.totalDiscount.toFixed(2)}</span>
+            </div>` : ''}
+            <div class="flex justify-between text-gray-500">
+              <span>Convenience Charge:</span>
+              <span>₹${trip.convenienceFee.toFixed(2)}</span>
+            </div>
+            <div class="flex justify-between text-gray-500">
+              <span>Service Fee:</span>
+              <span>₹${trip.serviceFee.toFixed(2)}</span>
+            </div>
+            <div class="flex justify-between text-gray-500">
+              <span>GST (18% on fees):</span>
+              <span>₹${trip.taxes.toFixed(2)}</span>
+            </div>
+            ${trip.insurancePremium > 0 ? `
+            <div class="flex justify-between text-sky-600 font-semibold">
+              <span>Insurance Protection:</span>
+              <span>₹${trip.insurancePremium.toFixed(2)}</span>
+            </div>` : ''}
+          </div>
+        `;
+      }
     }
 
     Modal.open('trip-receipt');

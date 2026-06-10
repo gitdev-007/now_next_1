@@ -218,6 +218,12 @@ PAGES_METADATA = {
         'canonical': 'https://layoverx.com/supplier-status.html',
         'json_ld': ''
     },
+    'revenue-admin.html': {
+        'title': 'Revenue & Dynamic Pricing Admin Dashboard | LayoverX Enterprise',
+        'description': 'Manage pricing rules, seasonal overrides, promotional campaigns, and real-time revenue performance ledgers.',
+        'canonical': 'https://layoverx.com/revenue-admin.html',
+        'json_ld': ''
+    },
     'notifications.html': {
         'title': 'Notifications Center | LayoverX Stopover Portal',
         'description': 'Stay updated with chauffeur details and flight delay logs.',
