@@ -2,7 +2,7 @@ const { chromium } = require('playwright');
 const path = require('path');
 const fs = require('fs');
 
-const ARTIFACTS_DIR = 'C:\\Users\\Dev Tinker\\.gemini\\antigravity-ide\\brain\\aa93e734-8169-4a3c-ab50-f76a5f6e8625';
+const ARTIFACTS_DIR = 'C:\\Users\\Dev Tinker\\.gemini\\antigravity-ide\\brain\\f9df78c6-37cc-4541-bc79-962564601bd6';
 
 // Helper to create mock upload files
 function createMockFiles() {
@@ -282,6 +282,9 @@ async function run() {
     console.log('Filling out STEP 4: Operational Details...');
     await page.fill('#biz-website', 'https://premiumtransitspa.com');
     await page.fill('#biz-maps-link', 'https://maps.google.com/?q=Mumbai+Airport+Spa');
+    await page.selectOption('#biz-type', 'Sole Proprietorship');
+    await page.selectOption('#biz-pricing-range', 'Premium');
+    await page.fill('#biz-services', 'Premium transit massage treatments and relaxation lounges');
     await page.fill('#biz-years', '4');
     await page.fill('#biz-staff', '12');
     await page.click('#next-btn');
@@ -323,11 +326,13 @@ async function run() {
     console.log('Submitting application to Firestore and uploading to Storage...');
     await page.click('#submit-btn');
 
-    // 6. Verify success page
-    console.log('Waiting for success screen...');
-    const successPanel = page.locator('#wizard-success-panel');
-    await successPanel.waitFor({ state: 'visible', timeout: 15000 });
-    const appId = await page.locator('#success-app-id').textContent();
+    // 6. Verify success page redirect
+    console.log('Waiting for success screen redirect to status page...');
+    await page.waitForURL('**/supplier-status.html*');
+    await page.waitForLoadState('networkidle');
+    console.log('Successfully redirected to supplier-status.html');
+
+    const appId = await page.locator('#status-app-ref').textContent();
     console.log('Onboarding complete! Application reference ID:', appId);
 
     // 7. Verify Firestore document and Storage objects via direct page injection check
@@ -345,8 +350,11 @@ async function run() {
     console.log('Logo URL Uploaded:', appData.documents.logoUrl);
 
     // 8. Verify Supplier Dashboard Page
-    console.log('Navigating to Supplier Dashboard...');
-    await page.click('text=Go to Supplier Dashboard');
+    console.log('Navigating to Supplier Dashboard via JS click...');
+    await page.evaluate(() => {
+      const btn = document.querySelector('main a[href="supplier-dashboard.html"]');
+      if (btn) btn.click();
+    });
     await page.waitForURL('**/supplier-dashboard.html');
     await page.waitForLoadState('networkidle');
 

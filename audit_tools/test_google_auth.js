@@ -35,26 +35,56 @@ const fs = require('fs');
     await route.fulfill({ status: 200 });
   });
 
-  await page.goto('http://localhost:8000/#login', { waitUntil: 'networkidle' });
-  await page.waitForSelector('#modal-login', { state: 'visible' });
-  
-  // Since Playwright cannot easily test cross-origin popups without complex context setups,
-  // we will trigger the function directly in the page context and mock the auth result.
-  // Wait, the page uses `signInWithPopup`. We can mock `signInWithPopup` directly on the `auth` object
-  // to avoid popup blockers in headless mode.
-  
-  await page.evaluate(() => {
-    window.layoverxAuth.signInWithPopup = async () => {
-      console.log('Mocked signInWithPopup called');
-      return {
-        user: {
+  // Intercept and mock layoverxAuth before the page scripts load
+  await page.addInitScript(() => {
+    const mockAuthObj = {
+      listeners: [],
+      currentUser: null,
+      onAuthStateChanged(callback) {
+        this.listeners.push(callback);
+        // immediately call it with current user
+        callback(this.currentUser);
+        return () => {
+          this.listeners = this.listeners.filter(l => l !== callback);
+        };
+      },
+      async signInWithPopup(provider) {
+        console.log('Mocked signInWithPopup called');
+        const mockUser = {
           uid: 'mock-google-uid-456',
           email: 'googleuser@example.com',
-          displayName: 'Google User'
+          displayName: 'Google User',
+          updateProfile: async () => {}
+        };
+        this.currentUser = mockUser;
+        for (const listener of this.listeners) {
+          listener(mockUser);
         }
-      };
+        return {
+          user: mockUser
+        };
+      },
+      async signOut() {
+        this.currentUser = null;
+        for (const listener of this.listeners) {
+          listener(null);
+        }
+      }
     };
+
+    Object.defineProperty(window, 'layoverxAuth', {
+      get() {
+        return mockAuthObj;
+      },
+      set(val) {
+        console.log('layoverxAuth set intercepted, keeping mock');
+      },
+      configurable: true
+    });
   });
+
+  await page.goto('http://localhost:8000/#login', { waitUntil: 'networkidle' });
+  await page.waitForSelector('#modal-login', { state: 'visible' });
 
   console.log('Clicking Google Login...');
   await page.click('button[onclick*="layoverx.socialLogin(\'google\')"]');
@@ -62,10 +92,6 @@ const fs = require('fs');
   await page.waitForTimeout(2000);
   
   const isAuthUserVisible = await page.evaluate(() => {
-    // Manually force UI update for testing if mock didn't trigger listener
-    state.isAuthenticated = true;
-    state.user = { email: 'googleuser@example.com', name: 'Google User', avatar: 'G' };
-    Auth.updateUI();
     return document.querySelector('.auth-user').style.display === 'flex';
   });
   
@@ -73,4 +99,8 @@ const fs = require('fs');
 
   await browser.close();
   console.log('Playwright Google Auth Test Complete.');
+  if (!isAuthUserVisible) {
+    console.error('Google Auth Test FAILED: Auth user elements are not visible.');
+    process.exit(1);
+  }
 })();

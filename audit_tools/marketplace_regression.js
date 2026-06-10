@@ -2,7 +2,7 @@ const { chromium } = require('playwright');
 const path = require('path');
 const fs = require('fs');
 
-const ARTIFACTS_DIR = 'C:\\Users\\Dev Tinker\\.gemini\\antigravity-ide\\brain\\aa93e734-8169-4a3c-ab50-f76a5f6e8625';
+const ARTIFACTS_DIR = 'C:\\Users\\Dev Tinker\\.gemini\\antigravity-ide\\brain\\f9df78c6-37cc-4541-bc79-962564601bd6';
 
 async function run() {
   console.log('Starting automated LayoverX Marketplace & Planner Regression audit...');
@@ -224,6 +224,12 @@ async function run() {
     await page.waitForLoadState('networkidle');
     console.log(`Arrived at page: ${page.url()}`);
 
+    if (page.url().includes('booking-review.html')) {
+      await page.click('text=Proceed to Traveler Details');
+      await page.waitForLoadState('networkidle');
+      console.log(`Transitioned to page: ${page.url()}`);
+    }
+
     // Fill traveler details
     await page.fill('#chk-traveler-name', 'Alice Mercer');
     await page.fill('#chk-passport', 'P-US-987654');
@@ -231,9 +237,6 @@ async function run() {
     await page.fill('#chk-emergency', '+1-555-0199');
     await page.fill('#chk-flight-in', 'UA-901');
     await page.fill('#chk-flight-departure', 'EK-501');
-    await page.fill('#chk-card-num', '4111222233334444');
-    await page.fill('#chk-card-expiry', '12/29');
-    await page.fill('#chk-card-cvv', '123');
     
     const breakoutPrice = await page.innerText('#checkout-total-price');
     console.log(`Checkout Final Breakout Price: ${breakoutPrice}`);
@@ -241,11 +244,33 @@ async function run() {
     await page.screenshot({ path: path.join(ARTIFACTS_DIR, 'regression_5_checkout_form.png') });
     console.log('Took regression_5_checkout_form.png');
 
+    // Submit traveler details to go to payment-selection.html
+    console.log('Submitting traveler details...');
+    await page.click('button:has-text("Proceed to Payment")');
+    await page.waitForURL('**/payment-selection.html*');
+    await page.waitForLoadState('networkidle');
+    console.log(`Arrived at payment selection: ${page.url()}`);
+
+    // Fill card payment details
+    console.log('Filling card payment details...');
+    await page.fill('#cc-name', 'Alice Mercer');
+    await page.fill('#cc-num', '4111222233334444');
+    await page.fill('#cc-expiry', '12/29');
+    await page.fill('#cc-cvv', '123');
+
     // Click checkout payment confirmation
-    await page.click('#btn-submit-payment');
+    console.log('Submitting secure payment...');
+    await page.click('#btn-pay-now');
+    await page.waitForURL('**/booking-confirmation.html*');
+    await page.waitForLoadState('networkidle');
+    console.log(`Arrived at booking confirmation: ${page.url()}`);
+
+    // Click View in My Trips
+    console.log('Clicking View in My Trips...');
+    await page.click('text=View in My Trips');
     await page.waitForURL('**/my-trips.html*');
     await page.waitForLoadState('networkidle');
-    console.log(`Redirected after payment to dashboard: ${page.url()}`);
+    console.log(`Redirected to dashboard: ${page.url()}`);
 
     // Verify confirm booking receipt ticket modal opens
     await page.waitForSelector('#modal-trip-receipt', { state: 'visible' });

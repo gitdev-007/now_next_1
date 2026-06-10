@@ -76,9 +76,13 @@
 </section>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      loadConfirmationDetails();
+    });
+  } else {
     loadConfirmationDetails();
-  });
+  }
 
   function loadConfirmationDetails() {
     const params = new URLSearchParams(window.location.search);
@@ -86,6 +90,11 @@
     if (!bookingId) return;
 
     document.getElementById('confirm-booking-id').textContent = bookingId;
+
+    const viewTripsBtns = document.querySelectorAll('a[href="my-trips.html"]');
+    viewTripsBtns.forEach(btn => {
+      btn.href = `my-trips.html?bookingId=${bookingId}`;
+    });
 
     let completed = [];
     try {
