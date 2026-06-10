@@ -19,17 +19,19 @@
   <meta name="robots" content="index, follow"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" as="style"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'"/>
+  <link rel="preload" href="css/tailwind.min.css" as="style"/>
+  <link rel="stylesheet" href="css/tailwind.min.css"/>
   
   <!-- Firebase App (the core Firebase SDK) -->
-  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app-compat.js" defer></script>
   <!-- Firebase Products -->
-  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-storage-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-auth-compat.js" defer></script>
+  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore-compat.js" defer></script>
+  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-storage-compat.js" defer></script>
   
-  <script src="js/firebase-config.js"></script>
+  <script src="js/firebase-config.js" defer></script>
   <link rel="stylesheet" href="css/design-system.css"/>
   <script src="js/app.js" defer></script>
   <script type="application/ld+json">
@@ -345,7 +347,7 @@
       <div class="carousel-item">
         <a href="hotels.html" class="card group h-full flex flex-col hover:-translate-y-1 transform transition duration-300">
           <div class="relative h-60 overflow-hidden">
-            <img alt="Transit Hotels" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&h=400&fit=crop"/>
+            <img height="400" width="600" alt="Transit Hotels" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&h=400&fit=crop&auto=format&fm=webp&q=75"/>
             <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
             
           </div>
@@ -363,7 +365,7 @@
       <div class="carousel-item">
         <a href="restaurants.html" class="card group h-full flex flex-col hover:-translate-y-1 transform transition duration-300">
           <div class="relative h-60 overflow-hidden">
-            <img alt="Transit Dining" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&h=400&fit=crop"/>
+            <img height="400" width="600" alt="Transit Dining" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&h=400&fit=crop&auto=format&fm=webp&q=75"/>
             <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
             
           </div>
@@ -381,7 +383,7 @@
       <div class="carousel-item">
         <a href="spa-wellness.html" class="card group h-full flex flex-col hover:-translate-y-1 transform transition duration-300">
           <div class="relative h-60 overflow-hidden">
-            <img alt="Spa & Wellness" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&h=400&fit=crop"/>
+            <img height="400" width="600" alt="Spa & Wellness" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&h=400&fit=crop&auto=format&fm=webp&q=75"/>
             <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
             
           </div>
@@ -399,7 +401,7 @@
       <div class="carousel-item">
         <a href="gaming-entertainment.html" class="card group h-full flex flex-col hover:-translate-y-1 transform transition duration-300">
           <div class="relative h-60 overflow-hidden">
-            <img alt="Gaming & Entertainment" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&h=400&fit=crop"/>
+            <img height="400" width="600" alt="Gaming & Entertainment" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&h=400&fit=crop&auto=format&fm=webp&q=75"/>
             <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
             
           </div>
@@ -417,7 +419,7 @@
       <div class="carousel-item">
         <a href="experiences.html" class="card group h-full flex flex-col hover:-translate-y-1 transform transition duration-300">
           <div class="relative h-60 overflow-hidden">
-            <img alt="City Tours" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" src="https://images.unsplash.com/photo-1567157577867-3c5d4b5e9a0e?w=600&h=400&fit=crop"/>
+            <img height="400" width="600" alt="City Tours" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" src="https://images.unsplash.com/photo-1567157577867-3c5d4b5e9a0e?w=600&h=400&fit=crop&auto=format&fm=webp&q=75"/>
             <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
             
           </div>
@@ -435,7 +437,7 @@
       <div class="carousel-item">
         <a href="experiences.html" class="card group h-full flex flex-col hover:-translate-y-1 transform transition duration-300">
           <div class="relative h-60 overflow-hidden">
-            <img alt="Experiences & Activities" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=600&h=400&fit=crop"/>
+            <img height="400" width="600" alt="Experiences & Activities" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=600&h=400&fit=crop&auto=format&fm=webp&q=75"/>
             <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
             
           </div>
@@ -482,7 +484,7 @@
         <div class="card h-full flex flex-col justify-between">
           <div>
             <div class="relative h-52 overflow-hidden">
-              <img alt="Niranta Airport Transit Hotel" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&h=400&fit=crop"/>
+              <img height="400" width="600" alt="Niranta Airport Transit Hotel" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&h=400&fit=crop&auto=format&fm=webp&q=75"/>
               <span class="absolute top-4 right-4 bg-sky-700 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md">Inside T2</span>
             </div>
             <div class="p-6">
@@ -509,7 +511,7 @@
         <div class="card h-full flex flex-col justify-between">
           <div>
             <div class="relative h-52 overflow-hidden">
-              <img alt="Peshawri Dining" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&h=400&fit=crop"/>
+              <img height="400" width="600" alt="Peshawri Dining" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&h=400&fit=crop&auto=format&fm=webp&q=75"/>
               <span class="absolute top-4 right-4 bg-sky-700 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md">Premium Dining</span>
             </div>
             <div class="p-6">
@@ -536,7 +538,7 @@
         <div class="card h-full flex flex-col justify-between">
           <div>
             <div class="relative h-52 overflow-hidden">
-              <img alt="Spa and wellness massage" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&h=400&fit=crop"/>
+              <img height="400" width="600" alt="Spa and wellness massage" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&h=400&fit=crop&auto=format&fm=webp&q=75"/>
               <span class="absolute top-4 right-4 bg-sky-700 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md">Relaxation Lounge</span>
             </div>
             <div class="p-6">
@@ -563,7 +565,7 @@
         <div class="card h-full flex flex-col justify-between">
           <div>
             <div class="relative h-52 overflow-hidden">
-              <img alt="High-tech gaming lounge" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&h=400&fit=crop"/>
+              <img height="400" width="600" alt="High-tech gaming lounge" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&h=400&fit=crop&auto=format&fm=webp&q=75"/>
               <span class="absolute top-4 right-4 bg-sky-700 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md">VR & Bowling</span>
             </div>
             <div class="p-6">
@@ -590,7 +592,7 @@
         <div class="card h-full flex flex-col justify-between">
           <div>
             <div class="relative h-52 overflow-hidden">
-              <img alt="Gateway of India tour" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1567157577867-3c5d4b5e9a0e?w=600&h=400&fit=crop"/>
+              <img height="400" width="600" alt="Gateway of India tour" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1567157577867-3c5d4b5e9a0e?w=600&h=400&fit=crop&auto=format&fm=webp&q=75"/>
               <span class="absolute top-4 right-4 bg-sky-700 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md">Private Cab + Guide</span>
             </div>
             <div class="p-6">
@@ -617,7 +619,7 @@
         <div class="card h-full flex flex-col justify-between">
           <div>
             <div class="relative h-52 overflow-hidden">
-              <img alt="Luxury executive sedan cab" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1610647752706-3bb12232b3cd?w=600&h=400&fit=crop"/>
+              <img height="400" width="600" alt="Luxury executive sedan cab" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1610647752706-3bb12232b3cd?w=600&h=400&fit=crop&auto=format&fm=webp&q=75"/>
               <span class="absolute top-4 right-4 bg-sky-700 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md">Tolls & Parking Incl.</span>
             </div>
             <div class="p-6">

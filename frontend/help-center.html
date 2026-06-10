@@ -19,17 +19,19 @@
   <meta name="robots" content="index, follow"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" as="style"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'"/>
+  <link rel="preload" href="css/tailwind.min.css" as="style"/>
+  <link rel="stylesheet" href="css/tailwind.min.css"/>
   
   <!-- Firebase App (the core Firebase SDK) -->
-  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app-compat.js" defer></script>
   <!-- Firebase Products -->
-  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-storage-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-auth-compat.js" defer></script>
+  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore-compat.js" defer></script>
+  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-storage-compat.js" defer></script>
   
-  <script src="js/firebase-config.js"></script>
+  <script src="js/firebase-config.js" defer></script>
   <link rel="stylesheet" href="css/design-system.css"/>
   <script src="js/app.js" defer></script>
   
@@ -167,7 +169,7 @@
   <main id="main">
     <!-- HELP CENTER PAGE -->
 <section class="relative bg-slate-900 text-white pt-24 pb-16 overflow-hidden">
-  <div class="absolute inset-0 bg-cover bg-center opacity-10" style="background-image:url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=1200')" role="img" aria-label="Airport Runway Background"></div>
+  <div class="absolute inset-0 bg-cover bg-center opacity-10" style="background-image:url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=1200&auto=format&fm=webp&q=75')" role="img" aria-label="Airport Runway Background"></div>
   <div class="container relative z-10">
     <div class="max-w-4xl mx-auto space-y-4 text-center">
       <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-white/10 text-sky-200 border border-white/20">

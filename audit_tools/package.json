@@ -12,7 +12,12 @@
   "type": "commonjs",
   "dependencies": {
     "@playwright/test": "^1.60.0",
+    "@tailwindcss/cli": "^4.3.0",
+    "autoprefixer": "^10.5.0",
     "axe-playwright": "^2.2.2",
-    "playwright": "^1.60.0"
+    "cssnano": "^8.0.1",
+    "playwright": "^1.60.0",
+    "postcss": "^8.5.15",
+    "tailwindcss": "^4.3.0"
   }
 }

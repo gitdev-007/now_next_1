@@ -19,17 +19,19 @@
   <meta name="robots" content="index, follow"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" as="style"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'"/>
+  <link rel="preload" href="css/tailwind.min.css" as="style"/>
+  <link rel="stylesheet" href="css/tailwind.min.css"/>
   
   <!-- Firebase App (the core Firebase SDK) -->
-  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app-compat.js" defer></script>
   <!-- Firebase Products -->
-  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-storage-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-auth-compat.js" defer></script>
+  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore-compat.js" defer></script>
+  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-storage-compat.js" defer></script>
   
-  <script src="js/firebase-config.js"></script>
+  <script src="js/firebase-config.js" defer></script>
   <link rel="stylesheet" href="css/design-system.css"/>
   <script src="js/app.js" defer></script>
   <script type="application/ld+json">
@@ -221,7 +223,7 @@
       <!-- Right Column -->
       <div class="lg:col-span-5 relative">
         <div class="relative rounded-2xl overflow-hidden shadow-2xl shadow-black/50 border border-white/10 group aspect-[4/3] sm:aspect-[16/10] lg:aspect-square">
-          <img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=800&h=600&fit=crop" alt="Premium luxury spa and wellness massage therapy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="eager" fetchpriority="high"/>
+          <img height="600" width="800" src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=800&h=600&fit=crop&auto=format&fm=webp&q=75" alt="Premium luxury spa and wellness massage therapy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="eager" fetchpriority="high"/>
           <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
           <div class="absolute bottom-4 left-4 bg-black/60 backdrop-blur-md border border-white/10 px-3 py-1.5 rounded-lg text-xs text-white font-semibold flex items-center gap-1.5">
             <span>📍 Mumbai CSMIA Airport District</span>
@@ -283,7 +285,7 @@
           <article class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col md:flex-row spa-item" 
                    data-category="massage" data-duration="1.5" data-price="4500">
             <div class="relative w-full md:w-80 h-52 md:h-auto flex-shrink-0">
-              <img alt="Spa Treatment" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&h=400&fit=crop"/>
+              <img height="400" width="600" alt="Spa Treatment" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&h=400&fit=crop&auto=format&fm=webp&q=75"/>
               <span class="absolute top-4 left-4 bg-theme-primary text-white text-[10px] font-bold px-2.5 py-1 rounded-md">💆 Massage</span>
             </div>
             <div class="p-6 flex-grow flex flex-col justify-between">
@@ -324,7 +326,7 @@
           <article class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col md:flex-row spa-item" 
                    data-category="express" data-duration="0.5" data-price="1800">
             <div class="relative w-full md:w-80 h-52 md:h-auto flex-shrink-0">
-              <img alt="Express Spa" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1611077544192-332e67500366?w=600&h=400&fit=crop"/>
+              <img height="400" width="600" alt="Express Spa" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1611077544192-332e67500366?w=600&h=400&fit=crop&auto=format&fm=webp&q=75"/>
               <span class="absolute top-4 left-4 bg-theme-primary text-white text-[10px] font-bold px-2.5 py-1 rounded-md">⚡ Express</span>
             </div>
             <div class="p-6 flex-grow flex flex-col justify-between">
@@ -365,7 +367,7 @@
           <article class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col md:flex-row spa-item" 
                    data-category="full-day" data-duration="3.0" data-price="8500">
             <div class="relative w-full md:w-80 h-52 md:h-auto flex-shrink-0">
-              <img alt="Six Senses Wellness Circuit" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1540555700478-4be289fbece8?w=600&h=400&fit=crop"/>
+              <img height="400" width="600" alt="Six Senses Wellness Circuit" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1540555700478-4be289fbece8?w=600&h=400&fit=crop&auto=format&fm=webp&q=75"/>
               <span class="absolute top-4 left-4 bg-theme-primary text-white text-[10px] font-bold px-2.5 py-1 rounded-md">🛁 Full Wellness</span>
             </div>
             <div class="p-6 flex-grow flex flex-col justify-between">
