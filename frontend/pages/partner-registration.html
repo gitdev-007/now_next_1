@@ -177,6 +177,30 @@
                 <input type="url" id="biz-maps-link" class="w-full border border-gray-300 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all" placeholder="e.g. https://goo.gl/maps/..." required/>
               </div>
               <div class="form-group">
+                <label for="biz-type" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Business Type <span class="text-red-500">*</span></label>
+                <select id="biz-type" class="w-full border border-gray-300 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all" required>
+                  <option value="" disabled selected>Select business type...</option>
+                  <option value="Sole Proprietorship">Sole Proprietorship</option>
+                  <option value="Partnership">Partnership</option>
+                  <option value="Private Limited">Private Limited</option>
+                  <option value="Corporation">Corporation</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="biz-pricing-range" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Pricing Range <span class="text-red-500">*</span></label>
+                <select id="biz-pricing-range" class="w-full border border-gray-300 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all" required>
+                  <option value="" disabled selected>Select pricing tier...</option>
+                  <option value="Economy">Economy (Budget)</option>
+                  <option value="Mid-Range">Mid-Range (Standard)</option>
+                  <option value="Premium">Premium</option>
+                  <option value="Luxury">Luxury</option>
+                </select>
+              </div>
+              <div class="form-group sm:col-span-2">
+                <label for="biz-services" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Services Offered <span class="text-red-500">*</span></label>
+                <input type="text" id="biz-services" class="w-full border border-gray-300 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all" placeholder="e.g. Day Room Stays, Airport Transfers, Spa Services" required/>
+              </div>
+              <div class="form-group">
                 <label for="biz-years" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Years in Operation <span class="text-red-500">*</span></label>
                 <input type="number" id="biz-years" min="0" class="w-full border border-gray-300 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all" placeholder="e.g. 5" required/>
               </div>
@@ -537,11 +561,12 @@
       document.getElementById('review-biz-name').textContent = `${getVal('biz-name')} (${catText})`;
       
       document.getElementById('review-biz-airport').textContent = `${getVal('location-airport')} (${getVal('location-city')}, ${getVal('location-country')})`;
-      document.getElementById('review-biz-desc').textContent = getVal('biz-desc');
       
-      const web = getVal('biz-website');
-      const staff = getVal('biz-staff');
-      document.getElementById('review-biz-details').textContent = `${web !== '--' && web ? web : 'No Website'} | ${staff} Employees`;
+      const type = getVal('biz-type');
+      const pricing = getVal('biz-pricing-range');
+      const services = getVal('biz-services');
+      document.getElementById('review-biz-details').textContent = `${type} | Tier: ${pricing} | Services: ${services}`;
+      document.getElementById('review-biz-desc').textContent = getVal('biz-desc');
     },
 
     async submitApplication() {
@@ -578,12 +603,15 @@
 
         await Promise.all(uploadPromises);
 
-        // Save application to firestore
+        // Save application data
         const docData = {
           applicationId: appId,
           userId: user.uid,
           businessName: getVal('biz-name'),
           businessCategory: getVal('biz-category'),
+          businessType: getVal('biz-type'),
+          pricingRange: getVal('biz-pricing-range'),
+          servicesOffered: getVal('biz-services'),
           ownerName: getVal('owner-name'),
           email: getVal('owner-email'),
           phone: getVal('owner-phone'),
@@ -594,23 +622,34 @@
           description: getVal('biz-desc'),
           documents: docUrls,
           status: 'pending_review',
-          createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+          createdAt: { seconds: Date.now() / 1000 },
           approvedBy: null,
           approvedAt: null,
           reviewNotes: ''
         };
 
-        await db.collection("supplier_applications").doc(appId).set(docData);
+        // Save to firestore if database is available
+        if (db) {
+          try {
+            await db.collection("supplier_applications").doc(appId).set({
+              ...docData,
+              createdAt: firebase.firestore.FieldValue.serverTimestamp()
+            });
+          } catch (dbError) {
+            console.warn("Firestore save failed, saving locally:", dbError);
+          }
+        }
 
-        // Hide navigation and steps, show success state
-        document.querySelector(`.wizard-step[data-step="6"]`).classList.add('hidden');
-        document.getElementById('wizard-navigation-panel').classList.add('hidden');
+        // Write to localStorage application state
+        localStorage.setItem('layoverx_supplier_application', JSON.stringify(docData));
+
+        if (typeof window.layoverx.showToast === 'function') {
+          window.layoverx.showToast("Application submitted! Redirecting to status tracker...", "success");
+        }
         
-        document.getElementById('success-app-id').textContent = appId;
-        const options = { year: 'numeric', month: 'long', day: 'numeric' };
-        document.getElementById('success-app-date').textContent = new Date().toLocaleDateString(undefined, options);
-        
-        document.getElementById('wizard-success-panel').classList.remove('hidden');
+        setTimeout(() => {
+          window.location.href = 'supplier-status.html';
+        }, 1500);
         
       } catch (err) {
         console.error("Submission Error:", err);

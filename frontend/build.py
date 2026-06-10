@@ -169,6 +169,84 @@ PAGES_METADATA = {
         'description': 'Access your upcoming, past, and draft transit itineraries.',
         'canonical': 'https://layoverx.com/my-trips.html',
         'json_ld': ''
+    },
+    'my-profile.html': {
+        'title': 'My Profile | LayoverX Traveler Portal',
+        'description': 'View and manage your passenger details and stopover travel preferences.',
+        'canonical': 'https://layoverx.com/my-profile.html',
+        'json_ld': ''
+    },
+    'account-settings.html': {
+        'title': 'Account Settings | LayoverX Traveler Portal',
+        'description': 'Configure notifications, currency, and account preferences.',
+        'canonical': 'https://layoverx.com/account-settings.html',
+        'json_ld': ''
+    },
+    'saved-itineraries.html': {
+        'title': 'Saved Itineraries | LayoverX Traveler Portal',
+        'description': 'Browse and manage your saved custom transit itineraries.',
+        'canonical': 'https://layoverx.com/saved-itineraries.html',
+        'json_ld': ''
+    },
+    'trip-details.html': {
+        'title': 'Itinerary Details | LayoverX Traveler Portal',
+        'description': 'Detailed view of your saved transit schedule and services timeline.',
+        'canonical': 'https://layoverx.com/trip-details.html',
+        'json_ld': ''
+    },
+    'booking-review.html': {
+        'title': 'Booking Review | Secure Checkout',
+        'description': 'Review your stopover plan and item prices before payment.',
+        'canonical': 'https://layoverx.com/booking-review.html',
+        'json_ld': ''
+    },
+    'payment-selection.html': {
+        'title': 'Payment Selection | Secure Checkout',
+        'description': 'Securely choose your payment option and process booking fees.',
+        'canonical': 'https://layoverx.com/payment-selection.html',
+        'json_ld': ''
+    },
+    'booking-confirmation.html': {
+        'title': 'Booking Confirmed | LayoverX Stopover Portal',
+        'description': 'Your stopover services are confirmed and flight delays are tracked.',
+        'canonical': 'https://layoverx.com/booking-confirmation.html',
+        'json_ld': ''
+    },
+    'supplier-status.html': {
+        'title': 'Supplier Application Status | Partner Program',
+        'description': 'Track your onboarding registration verification progress.',
+        'canonical': 'https://layoverx.com/supplier-status.html',
+        'json_ld': ''
+    },
+    'notifications.html': {
+        'title': 'Notifications Center | LayoverX Stopover Portal',
+        'description': 'Stay updated with chauffeur details and flight delay logs.',
+        'canonical': 'https://layoverx.com/notifications.html',
+        'json_ld': ''
+    },
+    'help-center.html': {
+        'title': 'Transit Concierge Help Center | Airport Exits & Visas',
+        'description': 'Guides on customs clearance, luggage lockers, and visas.',
+        'canonical': 'https://layoverx.com/help-center.html',
+        'json_ld': ''
+    },
+    'faq.html': {
+        'title': 'Frequently Asked Questions | LayoverX Stopover Portal',
+        'description': 'Common stopover questions about hours, flight delays, and refunds.',
+        'canonical': 'https://layoverx.com/faq.html',
+        'json_ld': ''
+    },
+    'terms.html': {
+        'title': 'Terms of Service | LayoverX Stopover Portal',
+        'description': 'Platform terms, liability connections and cancelation policies.',
+        'canonical': 'https://layoverx.com/terms.html',
+        'json_ld': ''
+    },
+    'privacy.html': {
+        'title': 'Privacy Policy | LayoverX Stopover Portal',
+        'description': 'How we protect your passport details and flight connection records.',
+        'canonical': 'https://layoverx.com/privacy.html',
+        'json_ld': ''
     }
 }
 

@@ -1,0 +1,78 @@
+<!-- NOTIFICATIONS CENTER PAGE -->
+<section class="relative bg-slate-900 text-white pt-24 pb-16 overflow-hidden">
+  <div class="absolute inset-0 bg-cover bg-center opacity-10" style="background-image:url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=1200')" role="img" aria-label="Airport Runway Background"></div>
+  <div class="container relative z-10">
+    <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+      <div class="space-y-2">
+        <h1 class="text-3xl font-black tracking-tight">Notifications Center</h1>
+        <p class="text-sm text-sky-200">Track real-time flight changes, gate assignments, and driver alerts</p>
+      </div>
+      <button onclick="clearAllNotifications()" class="px-4 py-2 border border-white/20 hover:bg-white/10 text-white text-xs font-bold rounded-xl transition">Clear All Alerts</button>
+    </div>
+  </div>
+</section>
+
+<section class="section bg-slate-50 min-h-[50vh]">
+  <div class="container">
+    <div class="max-w-3xl mx-auto space-y-4" id="notifications-list">
+      
+      <!-- Notification 1 -->
+      <div class="bg-white rounded-2xl border border-gray-200 p-5 shadow-sm flex items-start gap-4 hover:border-sky-300 transition-colors">
+        <div class="w-10 h-10 rounded-xl bg-sky-50 text-sky-700 flex items-center justify-center text-xl flex-shrink-0">🚖</div>
+        <div class="flex-grow space-y-1">
+          <div class="flex items-center justify-between gap-2">
+            <h3 class="font-extrabold text-gray-900 text-sm">Chauffeur Driver Assigned</h3>
+            <span class="text-[10px] text-gray-400 font-semibold">2 Hours Ago</span>
+          </div>
+          <p class="text-xs text-slate-650 leading-relaxed">
+            Your AC Sedan driver, Ramesh Kumar (Toyota Etios - MH-02-AB-1234), is assigned for your pickup at CSMIA T2 Arrivals Gate 2. Mobile: +91 98765 43210.
+          </p>
+        </div>
+      </div>
+
+      <!-- Notification 2 -->
+      <div class="bg-white rounded-2xl border border-gray-200 p-5 shadow-sm flex items-start gap-4 hover:border-sky-300 transition-colors">
+        <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center text-xl flex-shrink-0">🛫</div>
+        <div class="flex-grow space-y-1">
+          <div class="flex items-center justify-between gap-2">
+            <h3 class="font-extrabold text-gray-900 text-sm">Outgoing Flight Gate Update</h3>
+            <span class="text-[10px] text-gray-400 font-semibold">4 Hours Ago</span>
+          </div>
+          <p class="text-xs text-slate-650 leading-relaxed">
+            Your departure flight EK-501 boarding gate has changed from Gate 45 to Gate 51. Chauffeur pickup is rescheduled 10 mins earlier.
+          </p>
+        </div>
+      </div>
+
+      <!-- Notification 3 -->
+      <div class="bg-white rounded-2xl border border-gray-200 p-5 shadow-sm flex items-start gap-4 hover:border-sky-300 transition-colors">
+        <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center text-xl flex-shrink-0">🏨</div>
+        <div class="flex-grow space-y-1">
+          <div class="flex items-center justify-between gap-2">
+            <h3 class="font-extrabold text-gray-900 text-sm">JW Marriott Sahar Checked In</h3>
+            <span class="text-[10px] text-gray-400 font-semibold">Yesterday</span>
+          </div>
+          <p class="text-xs text-slate-650 leading-relaxed">
+            Your hourly day-use room slot reservation (Ref: LHX-18934) has check-in confirmation ready. Free terminal shuttle is parked at taxi bay.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  function clearAllNotifications() {
+    const list = document.getElementById('notifications-list');
+    if (list) {
+      list.innerHTML = `
+        <div class="bg-white rounded-2xl border border-gray-200 p-8 text-center text-slate-500 italic">
+          <p class="font-semibold text-base mb-1">No alerts found</p>
+          <p class="text-xs text-slate-400">All notifications have been cleared.</p>
+        </div>
+      `;
+      window.layoverx.showToast("Cleared all alerts.");
+    }
+  }
+</script>

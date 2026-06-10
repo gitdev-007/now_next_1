@@ -1,0 +1,278 @@
+<!-- TRIP DETAILS PAGE -->
+<section class="relative bg-slate-900 text-white pt-24 pb-16 overflow-hidden">
+  <div class="absolute inset-0 bg-cover bg-center opacity-10" style="background-image:url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=1200')" role="img" aria-label="Airport Runway Background"></div>
+  <div class="container relative z-10">
+    <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+      <div class="space-y-2">
+        <nav class="flex items-center gap-2 text-xs text-sky-300 mb-2" aria-label="Breadcrumb">
+          <a href="index.html" class="hover:underline">Home</a>
+          <span>&rarr;</span>
+          <a href="saved-itineraries.html" class="hover:underline">Saved Plans</a>
+          <span>&rarr;</span>
+          <span class="text-white font-semibold">Itinerary Details</span>
+        </nav>
+        <h1 class="text-3xl font-black tracking-tight" id="trip-title-header">Transit Itinerary Details</h1>
+        <p class="text-sm text-sky-200" id="trip-meta-subtitle">Saved on --</p>
+      </div>
+      <button onclick="loadThisTrip()" class="px-6 py-3.5 bg-sky-700 hover:bg-sky-800 text-white text-xs font-bold rounded-xl shadow-lg transition">Load & Edit in Workspace</button>
+    </div>
+  </div>
+</section>
+
+<section class="section bg-slate-50 min-h-[60vh]">
+  <div class="container">
+    <div class="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- Main Content (Timeline & Services) -->
+      <div class="lg:col-span-8 space-y-6">
+        
+        <!-- Summary Info Grid -->
+        <div class="bg-white rounded-3xl border border-gray-200 p-6 shadow-sm grid grid-cols-2 sm:grid-cols-4 gap-4">
+          <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100">
+            <span class="text-[10px] text-slate-400 font-extrabold uppercase tracking-wider block">Duration</span>
+            <strong class="text-base text-slate-900 font-bold block" id="trip-duration-val">--</strong>
+          </div>
+          <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100">
+            <span class="text-[10px] text-slate-400 font-extrabold uppercase tracking-wider block">Passengers</span>
+            <strong class="text-base text-slate-900 font-bold block" id="trip-travelers-val">--</strong>
+          </div>
+          <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100">
+            <span class="text-[10px] text-slate-400 font-extrabold uppercase tracking-wider block">Arrival</span>
+            <strong class="text-sm text-slate-900 font-bold block truncate" id="trip-arrival-val">--</strong>
+          </div>
+          <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100">
+            <span class="text-[10px] text-slate-400 font-extrabold uppercase tracking-wider block">Departure</span>
+            <strong class="text-sm text-slate-900 font-bold block truncate" id="trip-departure-val">--</strong>
+          </div>
+        </div>
+
+        <!-- Smart Timeline -->
+        <div class="bg-white rounded-3xl border border-gray-200 p-6 sm:p-8 shadow-sm">
+          <h2 class="text-lg font-bold text-gray-900 pb-4 border-b border-gray-100 mb-6">⏱️ Transit Schedule Timeline</h2>
+          <div class="relative pl-6 border-l-2 border-sky-400 space-y-6" id="trip-timeline-nodes">
+            <!-- Dynamically populated timeline nodes -->
+          </div>
+        </div>
+        
+        <!-- Traveler Notes -->
+        <div class="bg-white rounded-3xl border border-gray-200 p-6 sm:p-8 shadow-sm">
+          <h2 class="text-lg font-bold text-gray-900 mb-4">📝 Passenger Exit Notes</h2>
+          <div class="bg-slate-50 border border-slate-200/60 p-4 rounded-2xl text-xs sm:text-sm text-slate-700 space-y-2">
+            <p><strong>💡 Stopover Exit Checklist:</strong></p>
+            <ul class="list-disc pl-4 space-y-1">
+              <li>Keep passport, flight boarding pass, and transit visa printout handy.</li>
+              <li>Exit Gate 2 at Terminal 2 is the standard meeting point for all pre-booked LayoverX drivers.</li>
+              <li>Left luggage counter is available at the arrivals terminal if carrying heavy luggage.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+      
+      <!-- Right Sidebar (Pricing & AI Suggestions) -->
+      <aside class="lg:col-span-4 space-y-6">
+        <!-- Costs Box -->
+        <div class="bg-white rounded-3xl border border-gray-200 p-6 shadow-md flex flex-col justify-between">
+          <h2 class="text-sm font-black text-gray-900 uppercase tracking-widest mb-4">Price Breakdown</h2>
+          <div class="space-y-3 mb-6 text-xs text-slate-700" id="trip-costs-list">
+            <!-- Costs dynamic -->
+          </div>
+          <hr class="border-gray-100 my-4"/>
+          <div class="flex items-baseline justify-between mb-4">
+            <span class="text-xs text-slate-500 font-bold uppercase tracking-wider">Total Price</span>
+            <strong class="text-2xl font-black text-sky-700" id="trip-total-cost">₹0</strong>
+          </div>
+          <button onclick="window.location.href='checkout.html'" class="w-full py-3.5 bg-gray-900 hover:bg-black text-white font-extrabold text-xs rounded-xl shadow-lg transition hover:scale-[1.01] flex items-center justify-center gap-2">
+            ⚡ Finalize & Book Services
+          </button>
+        </div>
+        
+        <!-- AI Optimization Box -->
+        <div class="bg-gradient-to-br from-indigo-900 to-slate-900 text-white rounded-3xl p-6 shadow-md relative overflow-hidden">
+          <div class="absolute -top-10 -right-10 w-24 h-24 bg-white/5 rounded-full blur-xl"></div>
+          <h3 class="font-extrabold text-sm mb-2 flex items-center gap-1">✨ AI Co-Pilot Tips</h3>
+          <p class="text-[11px] text-indigo-200 leading-relaxed mb-4" id="ai-optimization-text">
+            Analyzing traffic patterns... Mumbai Western Express Highway has moderate congestion. Recommend starting return transfer 2.5 hours before boarding.
+          </p>
+        </div>
+      </aside>
+      
+    </div>
+  </div>
+</section>
+
+<script>
+  let activePlan = null;
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    loadTripDetails();
+  });
+
+  function loadTripDetails() {
+    const params = new URLSearchParams(window.location.search);
+    const planId = parseInt(params.get('id'));
+    if (!planId) {
+      window.layoverx.showToast("No itinerary ID specified.", "error");
+      setTimeout(() => window.location.href = 'saved-itineraries.html', 1500);
+      return;
+    }
+
+    let saved = [];
+    try {
+      const data = localStorage.getItem('layoverx_saved_plans');
+      if (data) saved = JSON.parse(data);
+    } catch(e) { console.error(e); }
+
+    activePlan = saved.find(p => p.id === planId);
+    if (!activePlan) {
+      window.layoverx.showToast("Itinerary details not found.", "error");
+      setTimeout(() => window.location.href = 'saved-itineraries.html', 1500);
+      return;
+    }
+
+    // Populate metadata
+    const hours = ((new Date(activePlan.departure) - new Date(activePlan.arrival)) / 3600000).toFixed(1);
+    
+    document.getElementById('trip-title-header').textContent = `${activePlan.location === 'near-airport' ? 'Near Mumbai Airport' : activePlan.location.toUpperCase()} stopover plan`;
+    document.getElementById('trip-meta-subtitle').textContent = `Saved on ${activePlan.dateSaved}`;
+    document.getElementById('trip-duration-val').textContent = `${hours} Hours`;
+    document.getElementById('trip-travelers-val').textContent = `${activePlan.travelers} Guests`;
+    document.getElementById('trip-arrival-val').textContent = new Date(activePlan.arrival).toLocaleString([], {dateStyle:'short', timeStyle:'short'});
+    document.getElementById('trip-departure-val').textContent = new Date(activePlan.departure).toLocaleString([], {dateStyle:'short', timeStyle:'short'});
+    document.getElementById('trip-total-cost').textContent = activePlan.cost;
+
+    // Load static service dictionaries for labels
+    const HOTELS = {
+      1: "Niranta Airport Transit Hotel",
+      2: "JW Marriott Mumbai Sahar",
+      3: "Ibis Mumbai Airport",
+      4: "The Orchid Hotel Mumbai"
+    };
+    const DINING = {
+      1: "Gajalee Coastal Seafood",
+      2: "Peshawri - ITC Maratha",
+      3: "Highway Gomantak",
+      4: "Elco Pani Puri Center"
+    };
+    const EXPERIENCES = {
+      1: "South Mumbai Gateway Heritage Tour",
+      2: "Guided Bandra Street Food Trail"
+    };
+    const SPA_WELLNESS = {
+      1: "Heavenly Spa by Westin",
+      2: "O2 Spa - Terminal 2"
+    };
+    const GAMING_ENTERTAINMENT = {
+      1: "Smaaash Entertainment Hub",
+      2: "PVR Directors Cut Cinema"
+    };
+
+    // Render costs breakdown list
+    const costsList = document.getElementById('trip-costs-list');
+    costsList.innerHTML = '';
+    const d = activePlan.details || {};
+    
+    const addCostItem = (label, cost) => {
+      costsList.innerHTML += `
+        <div class="flex justify-between">
+          <span>${label}</span>
+          <strong class="font-bold text-slate-900">₹${cost.toLocaleString()}</strong>
+        </div>
+      `;
+    };
+
+    if (d.cabType) {
+      const price = d.cabType === 'suv' ? 1499 : 899;
+      addCostItem('🚖 Airport Cabs Return', price);
+    }
+    if (d.hotelId) addCostItem(`🏨 Transit Hotel`, d.hotelId === 1 ? 3499 : 5499);
+    if (d.diningId) addCostItem(`🍽️ Table Booking`, d.diningId === 1 ? 1800 : 4500);
+    if (d.activityId) addCostItem(`📸 City Tours (${activePlan.travelers} pax)`, (d.activityId === 1 ? 2899 : 1299) * activePlan.travelers);
+    if (d.spaId) addCostItem(`💆 Spa Sessions (${activePlan.travelers} pax)`, (d.spaId === 1 ? 4500 : 1800) * activePlan.travelers);
+    if (d.gamingId) addCostItem(`🎮 Gaming Pass (${activePlan.travelers} pax)`, (d.gamingId === 1 ? 1200 : 2500) * activePlan.travelers);
+
+    // Build timeline nodes
+    const timelineNodes = document.getElementById('trip-timeline-nodes');
+    timelineNodes.innerHTML = '';
+    
+    const addTimelineBlock = (time, title, desc, icon = '⚪') => {
+      timelineNodes.innerHTML += `
+        <div class="relative bg-white border border-gray-200 p-4 rounded-xl shadow-sm">
+          <div class="absolute -left-[33px] top-4 w-5 h-5 rounded-full bg-sky-500 border-2 border-white flex items-center justify-center text-[10px] text-white">${icon}</div>
+          <strong class="text-gray-900 block text-xs sm:text-sm font-extrabold">${time} • ${title}</strong>
+          <p class="text-gray-500 text-xs mt-1 leading-relaxed">${desc}</p>
+        </div>
+      `;
+    };
+
+    let cur = new Date(activePlan.arrival);
+    const formatTime = (date) => date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+
+    addTimelineBlock(formatTime(cur), "🛫 Landing & Border Control", "Pass through passport immigration check (buffer calculated 1.5 hours).", "🛫");
+    cur = new Date(cur.getTime() + 1.5 * 3600000);
+    
+    if (d.cabType) {
+      addTimelineBlock(formatTime(cur), "🚖 Driver Meetup", `Meet private chauffeur at Exit Gate 2. AC ${d.cabType.toUpperCase()} transfer.`, "🚖");
+      cur = new Date(cur.getTime() + 0.5 * 3600000);
+    }
+    
+    if (d.hotelId) {
+      addTimelineBlock(formatTime(cur), `🏨 Check-in: ${HOTELS[d.hotelId]}`, "Rest and refresh in standard day-use pod suite room.", "🏨");
+      cur = new Date(cur.getTime() + 6 * 3600000);
+    }
+    if (d.diningId) {
+      addTimelineBlock(formatTime(cur), `🍽️ Reservation: ${DINING[d.diningId]}`, "Pre-booked dining slot reserved. Sol Kadhi & authentic crabs.", "🍽️");
+      cur = new Date(cur.getTime() + 1.5 * 3600000);
+    }
+    if (d.activityId) {
+      addTimelineBlock(formatTime(cur), `📸 Tour Start: ${EXPERIENCES[d.activityId]}`, "Guided sightseeing with private cab pickup included.", "📸");
+      cur = new Date(cur.getTime() + 4 * 3600000);
+    }
+    if (d.spaId) {
+      addTimelineBlock(formatTime(cur), `💆 Spa Treat: ${SPA_WELLNESS[d.spaId]}`, "Rejuvenating massage therapy treatment slot.", "💆");
+      cur = new Date(cur.getTime() + 1.5 * 3600000);
+    }
+    if (d.gamingId) {
+      addTimelineBlock(formatTime(cur), `🎮 Fun Zone: ${GAMING_ENTERTAINMENT[d.gamingId]}`, "Virtual reality gaming pass or movie watch session.", "🎮");
+      cur = new Date(cur.getTime() + 2 * 3600000);
+    }
+
+    const dropoffTime = new Date(new Date(activePlan.departure).getTime() - 2.0 * 3600000);
+    addTimelineBlock(formatTime(dropoffTime), "🚖 Return Airport Chauffeur Dropoff", "Return cab drops passengers back at departure gate CSIA terminal.", "🚖");
+    addTimelineBlock(formatTime(new Date(activePlan.departure)), "🛫 Boarding & Flight Departure", "Board connecting flight safely. Safe skies!", "🛫");
+  }
+
+  function loadThisTrip() {
+    if (!activePlan) return;
+    // Store in workspace current plan state
+    localStorage.setItem('layoverx_search_params', JSON.stringify({
+      arrivalDateTime: activePlan.arrival,
+      departureDateTime: activePlan.departure,
+      location: activePlan.location,
+      travelers: activePlan.travelers,
+      layoverDuration: (new Date(activePlan.departure) - new Date(activePlan.arrival)) / 3600000
+    }));
+
+    // Generate current itinerary structure
+    const HOTELS = {
+      1: { id: 1, name: "Niranta Airport Transit Hotel & Lounge", stars: 5, rating: 4.8, price: 3499 },
+      2: { id: 2, name: "JW Marriott Mumbai Sahar", stars: 5, rating: 4.7, price: 5499 }
+    };
+    const DINING = {
+      1: { id: 1, name: "Gajalee Coastal Seafood Restaurant", cuisine: "seafood", rating: 4.8, price: 1800 },
+      2: { id: 2, name: "Peshawri - ITC Maratha", cuisine: "fine-dining", rating: 4.9, price: 4500 }
+    };
+    
+    let itinerary = [];
+    const d = activePlan.details || {};
+    if (d.cabType) {
+      const price = d.cabType === 'suv' ? 1499 : 899;
+      itinerary.push({ type: 'transfer', id: d.cabType, name: `Airport Transfer (${d.cabType.toUpperCase()})`, price, duration: 0.5 });
+    }
+    if (d.hotelId && HOTELS[d.hotelId]) itinerary.push({ type: 'hotel', id: d.hotelId, name: HOTELS[d.hotelId].name, price: HOTELS[d.hotelId].price, duration: 6.0 });
+    if (d.diningId && DINING[d.diningId]) itinerary.push({ type: 'dining', id: d.diningId, name: DINING[d.diningId].name, price: DINING[d.diningId].price, duration: 1.5 });
+    
+    localStorage.setItem('layoverx_current_itinerary', JSON.stringify(itinerary));
+    window.location.href = 'plan-my-layover.html';
+  }
+</script>

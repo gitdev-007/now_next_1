@@ -43,8 +43,10 @@
   <!-- NAVBAR - Fixed, z-1000, always visible -->
 <nav class="fixed top-0 left-0 right-0 z-[1000] transition-all duration-300 bg-transparent" id="navbar" aria-label="Main Navigation">
   <div class="container">
-    <div class="flex items-center justify-between h-16 sm:h-20">
-      <a href="index.html" class="flex items-center gap-2" aria-label="LayoverX Home">
+    <div class="flex items-center justify-between h-16 sm:h-20 gap-4">
+      
+      <!-- LEFT: Logo -->
+      <a href="index.html" class="flex items-center gap-2 flex-shrink-0" aria-label="LayoverX Home">
         <div class="w-9 h-9 bg-gradient-to-br from-sky-500 to-sky-600 rounded-xl flex items-center justify-center">
           <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/>
@@ -53,33 +55,62 @@
         <span class="text-xl font-bold tracking-tight" id="logo-text">LayoverX</span>
       </a>
 
-      <!-- Desktop Links -->
-      <div class="hidden lg:flex items-center gap-6">
+      <!-- CENTER: Desktop Links -->
+      <div class="hidden lg:flex items-center gap-6 mx-auto">
         <a class="nav-link text-sm font-medium transition-colors duration-200 " href="hotels.html">Hotels</a>
         <a class="nav-link text-sm font-medium transition-colors duration-200 " href="restaurants.html">Restaurants</a>
         <a class="nav-link text-sm font-medium transition-colors duration-200 " href="spa-wellness.html">Spa</a>
         <a class="nav-link text-sm font-medium transition-colors duration-200 " href="gaming-entertainment.html">Gaming</a>
         <a class="nav-link text-sm font-medium transition-colors duration-200 " href="experiences.html">Tours</a>
         <a class="nav-link text-sm font-medium transition-colors duration-200 " href="airport-transfers.html">Transfers</a>
-        <button onclick="openAuthModal('trip-context')" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold bg-sky-500/20 hover:bg-sky-500/35 text-sky-300 border border-sky-500/30 transition-all hover:scale-105 cursor-pointer" id="global-trip-badge">✈️ Configure Trip</button>
-        <a class="nav-link text-sm font-medium transition-colors duration-200" href="my-itinerary.html" id="nav-itinerary-link">My Itinerary <span id="itinerary-badge" class="hidden ml-1 px-1.5 py-0.5 text-[10px] font-extrabold bg-rose-500 text-white rounded-full">0</span></a>
-        <a href="plan-my-layover.html" class="plan-my-layover-btn">Plan My Layover</a>
+      </div>
+
+      <!-- RIGHT: Desktop Actions / Auth -->
+      <div class="hidden lg:flex items-center gap-4 flex-shrink-0">
+        
+        <!-- Trip Summary Chip -->
+        <button onclick="openAuthModal('trip-context')" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer" id="global-trip-badge">
+          <span>✈️ Trip Summary</span>
+        </button>
+        
+        <!-- My Itinerary Link -->
+        <a class="nav-link text-sm font-medium transition-colors duration-200 flex items-center gap-1" href="my-itinerary.html" id="nav-itinerary-link">
+          My Itinerary
+          <span id="itinerary-badge" class="hidden px-2 py-0.5 text-[10px] font-extrabold bg-rose-500 text-white rounded-full">0</span>
+        </a>
+        
+        <!-- Plan My Layover primary button -->
+        <a href="plan-my-layover.html" class="plan-my-layover-btn whitespace-nowrap">Plan My Layover</a>
         
         <!-- Auth Guest View -->
-        <div class="auth-guest flex items-center gap-5">
+        <div class="auth-guest flex items-center gap-4">
           <a href="#login" class="nav-link text-sm font-medium cursor-pointer" onclick="openAuthModal('login');return false;">Login</a>
           <a href="#signup" class="px-4 py-2 bg-sky-700 text-white text-sm font-semibold rounded-xl hover:bg-sky-700 hover:shadow-lg hover:shadow-sky-500/20 transition hover:-translate-y-0.5 transform" onclick="openAuthModal('signup');return false;">Sign Up</a>
         </div>
  
         <!-- Auth User View -->
-        <div class="auth-user hidden items-center gap-4 user-menu">
-          <a href="my-trips.html" class="text-sm font-medium text-sky-300 hover:text-sky-400 hover:underline">My Trips</a>
-          <a href="supplier-dashboard.html" class="text-sm font-medium text-sky-300 hover:text-sky-400 hover:underline">Supplier Hub</a>
-          <div class="flex items-center gap-2 bg-white/20 backdrop-blur-md border border-white/20 px-3 py-1.5 rounded-xl">
+        <div class="auth-user hidden relative" id="header-user-menu">
+          <button id="user-menu-btn" class="flex items-center gap-2 border px-3 py-1.5 rounded-xl transition cursor-pointer" aria-expanded="false" aria-haspopup="true">
             <div class="w-6 h-6 bg-gradient-to-br from-sky-400 to-sky-600 rounded-full flex items-center justify-center text-[10px] font-bold text-white uppercase user-avatar-letter">U</div>
-            <span class="text-sm font-medium text-white user-name">Traveler</span>
+            <span class="text-sm font-medium user-name">Traveler</span>
+            <svg class="w-3.5 h-3.5 transition-transform duration-200" id="user-menu-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          
+          <div id="user-profile-dropdown" class="absolute right-0 mt-2 w-56 bg-white rounded-2xl shadow-xl border border-gray-100 py-2 hidden z-[1010]">
+            <div class="px-4 py-3 border-b border-gray-100">
+              <p class="text-xs text-gray-500 font-medium">Signed in as</p>
+              <p class="text-sm font-bold text-gray-900 truncate user-email-display">traveler@layoverx.com</p>
+            </div>
+            <a href="my-profile.html" class="flex items-center gap-2.5 px-4 py-2.5 text-sm text-gray-800 hover:bg-gray-50 transition-colors"><span class="text-base">👤</span> My Profile</a>
+            <a href="my-trips.html" class="flex items-center gap-2.5 px-4 py-2.5 text-sm text-gray-800 hover:bg-gray-50 transition-colors"><span class="text-base">✈️</span> My Trips</a>
+            <a href="saved-itineraries.html" class="flex items-center gap-2.5 px-4 py-2.5 text-sm text-gray-800 hover:bg-gray-50 transition-colors"><span class="text-base">💾</span> Saved Itineraries</a>
+            <a href="supplier-dashboard.html" class="flex items-center gap-2.5 px-4 py-2.5 text-sm text-gray-800 hover:bg-gray-50 transition-colors"><span class="text-base">💼</span> Supplier Hub</a>
+            <a href="account-settings.html" class="flex items-center gap-2.5 px-4 py-2.5 text-sm text-gray-800 hover:bg-gray-50 transition-colors"><span class="text-base">⚙️</span> Settings</a>
+            <div class="border-t border-gray-100 my-1"></div>
+            <button onclick="layoverx.logout()" class="w-full flex items-center gap-2.5 px-4 py-2.5 text-sm text-red-650 hover:bg-red-50 transition-colors text-left"><span class="text-base">🚪</span> Logout</button>
           </div>
-          <button class="text-sm font-medium text-red-400 hover:text-red-500 hover:underline cursor-pointer" onclick="layoverx.logout()">Logout</button>
         </div>
       </div>
 
@@ -94,7 +125,7 @@
 
   <!-- Mobile Dropdown Menu -->
   <div class="lg:hidden hidden bg-white/95 backdrop-blur-xl rounded-2xl mt-2 p-4 shadow-xl mx-4 border border-gray-100" id="mobile-menu">
-    <button onclick="openAuthModal('trip-context')" class="mb-3 w-full flex items-center justify-center gap-1.5 px-4 py-3 rounded-xl text-xs font-extrabold bg-sky-50 text-sky-700 border border-sky-100 transition-all cursor-pointer" id="global-trip-badge-mobile">✈️ Configure Trip</button>
+    <button onclick="openAuthModal('trip-context')" class="mb-3 w-full flex items-center justify-center gap-1.5 px-4 py-3 rounded-xl text-xs font-extrabold bg-sky-50 text-sky-700 border border-sky-100 transition-all cursor-pointer" id="global-trip-badge-mobile">✈️ Trip Summary</button>
     <a class="block text-gray-800 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium" href="my-itinerary.html">My Itinerary <span id="itinerary-badge-mobile" class="hidden ml-1 px-1.5 py-0.5 text-[10px] font-extrabold bg-rose-500 text-white rounded-full">0</span></a>
     <a class="block text-gray-800 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium " href="hotels.html">Hotels</a>
     <a class="block text-gray-800 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium " href="restaurants.html">Restaurants</a>
@@ -102,8 +133,6 @@
     <a class="block text-gray-800 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium " href="gaming-entertainment.html">Gaming & Fun</a>
     <a class="block text-gray-800 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium " href="experiences.html">Tours</a>
     <a class="block text-gray-800 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium " href="airport-transfers.html">Transfers</a>
-    <a class="block text-gray-800 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium " href="how-it-works.html">How It Works</a>
-    <a class="block text-gray-800 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium " href="contact.html">Contact</a>
     <a href="plan-my-layover.html" class="mt-2 block w-full text-center py-3 bg-sky-700 text-white font-semibold rounded-xl hover:bg-sky-700 transition shadow-md shadow-sky-500/10">Plan My Layover</a>
     
     <!-- Auth Guest View (Mobile) -->
@@ -114,15 +143,18 @@
 
     <!-- Auth User View (Mobile) -->
     <div class="auth-user hidden flex-col gap-2 mt-4 pt-4 border-t border-gray-100">
-      <div class="flex items-center gap-3 px-4 py-2 bg-gray-50 rounded-xl">
+      <div class="flex items-center gap-3 px-4 py-2 bg-gray-50 rounded-xl mb-2">
         <div class="w-8 h-8 bg-gradient-to-br from-sky-400 to-sky-600 rounded-full flex items-center justify-center text-xs font-bold text-white uppercase user-avatar-letter">U</div>
         <div>
-          <div class="text-xs text-gray-700 font-medium">Signed in as</div>
+          <div class="text-[10px] text-gray-400 font-medium">Signed in as</div>
           <div class="text-sm font-bold text-gray-900 user-name">Traveler</div>
         </div>
       </div>
-      <a href="my-trips.html" class="w-full text-center py-2.5 bg-sky-50 text-sky-700 font-semibold rounded-xl text-sm transition">My Trips</a>
-      <a href="supplier-dashboard.html" class="w-full text-center py-2.5 bg-indigo-50 text-indigo-700 font-semibold rounded-xl text-sm transition">Supplier Hub</a>
+      <a href="my-profile.html" class="w-full text-center py-2.5 bg-gray-50 hover:bg-gray-100 text-gray-800 rounded-xl text-sm transition">My Profile</a>
+      <a href="my-trips.html" class="w-full text-center py-2.5 bg-gray-50 hover:bg-gray-100 text-gray-800 rounded-xl text-sm transition">My Trips</a>
+      <a href="saved-itineraries.html" class="w-full text-center py-2.5 bg-gray-50 hover:bg-gray-100 text-gray-800 rounded-xl text-sm transition">Saved Itineraries</a>
+      <a href="supplier-dashboard.html" class="w-full text-center py-2.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 rounded-xl text-sm transition">Supplier Hub</a>
+      <a href="account-settings.html" class="w-full text-center py-2.5 bg-gray-50 hover:bg-gray-100 text-gray-800 rounded-xl text-sm transition">Settings</a>
       <button class="mt-2 w-full text-center py-2.5 bg-red-50 text-red-600 hover:bg-red-100 text-sm font-semibold rounded-xl transition" onclick="layoverx.logout()">Logout</button>
     </div>
   </div>
@@ -131,22 +163,22 @@
 
   <!-- Page Content -->
   <main id="main">
-    <!-- checkout.html source template -->
+    <!-- CHECKOUT: TRAVELER DETAILS PAGE (Step 2 of 4) -->
 <div class="relative min-h-[30vh] pt-24 pb-12 overflow-hidden text-white flex items-center bg-slate-900">
   <div class="absolute inset-0 bg-gradient-to-tr from-slate-900 to-indigo-950 opacity-95 z-0"></div>
   <div class="container relative z-10 space-y-4">
     <nav class="flex items-center gap-2 text-xs text-white/70" aria-label="Breadcrumb">
       <a href="index.html" class="hover:text-white transition-colors">Home</a>
       <svg class="w-3 h-3 text-white/50" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-      <a href="my-itinerary.html" class="hover:text-white transition-colors">Itinerary</a>
+      <a href="booking-review.html" class="hover:text-white transition-colors">Review Stopover</a>
       <svg class="w-3 h-3 text-white/50" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-      <span class="text-white font-medium">Checkout</span>
+      <span class="text-white font-medium">Traveler Details</span>
     </nav>
     <h1 class="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-tight">
-      Confirm &amp; Book <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-indigo-400">Stopover Plan</span>
+      Traveler &amp; <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-indigo-400">Flight Details</span>
     </h1>
     <p class="text-slate-300 text-sm max-w-2xl">
-      Provide flight details and traveler information to register bookings with hotels and drivers.
+      Step 2 of 4: Provide flight connection details and traveler information to align airport pick-up and hotel check-in buffers.
     </p>
   </div>
 </div>
@@ -155,9 +187,9 @@
   <div class="container">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
       
-      <!-- LEFT COLUMN: Booking forms & payment inputs -->
+      <!-- LEFT COLUMN: Traveler & Flight Forms -->
       <div class="lg:col-span-8 space-y-6">
-        <form id="checkout-booking-form" onsubmit="layoverx.handleCheckoutSubmit(event)" class="space-y-6">
+        <form id="checkout-booking-form" onsubmit="saveDetailsAndContinue(event)" class="space-y-6">
           
           <!-- Traveler Info -->
           <div class="bg-white rounded-3xl border border-gray-200 p-6 sm:p-8 shadow-sm space-y-5">
@@ -194,7 +226,7 @@
           <!-- Flight Timings & flight numbers -->
           <div class="bg-white rounded-3xl border border-gray-200 p-6 sm:p-8 shadow-sm space-y-5">
             <h2 class="text-lg font-bold text-slate-900 flex items-center gap-2">
-              <span class="text-sky-500">✈️</span> Flight Flight Connections
+              <span class="text-sky-500">✈️</span> Flight Connections
             </h2>
             <p class="text-xs text-slate-500">We trace landing delays in real-time to adjust chauffeur pick-ups and room slots.</p>
             
@@ -210,41 +242,13 @@
               </div>
             </div>
           </div>
-
-          <!-- Simulated Payment Breakout -->
-          <div class="bg-white rounded-3xl border border-gray-200 p-6 sm:p-8 shadow-sm space-y-5">
-            <div class="flex items-center justify-between border-b border-gray-100 pb-4">
-              <h2 class="text-lg font-bold text-slate-900 flex items-center gap-2">
-                <span class="text-emerald-500">💳</span> Payment Information
-              </h2>
-              <span class="text-[10px] bg-emerald-50 text-emerald-700 font-extrabold px-2 py-0.5 rounded border border-emerald-100 flex items-center gap-1">
-                🔒 SSL Encrypted
-              </span>
-            </div>
-            
-            <div class="space-y-4">
-              <div class="form-group text-left">
-                <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1" for="chk-card-num">Card Number</label>
-                <input id="chk-card-num" type="text" class="form-input w-full border border-gray-300 focus:border-sky-600 focus:ring-2 focus:ring-sky-600/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all shadow-sm" placeholder="4111 2222 3333 4444" required autocomplete="cc-number"/>
-              </div>
-
-              <div class="grid grid-cols-3 gap-4">
-                <div class="form-group text-left col-span-2">
-                  <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1" for="chk-card-expiry">Expiry Date</label>
-                  <input id="chk-card-expiry" type="text" class="form-input w-full border border-gray-300 focus:border-sky-600 focus:ring-2 focus:ring-sky-600/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all shadow-sm" placeholder="MM/YY" required autocomplete="cc-exp"/>
-                </div>
-                <div class="form-group text-left">
-                  <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1" for="chk-card-cvv">CVV</label>
-                  <input id="chk-card-cvv" type="text" class="form-input w-full border border-gray-300 focus:border-sky-600 focus:ring-2 focus:ring-sky-600/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all shadow-sm" placeholder="123" required autocomplete="cc-csc"/>
-                </div>
-              </div>
-            </div>
-          </div>
           
-          <button type="submit" id="btn-submit-payment" class="w-full py-4 bg-gray-900 hover:bg-black text-white font-extrabold text-base rounded-2xl shadow-xl transition transform hover:-translate-y-0.5 flex justify-center items-center gap-2">
-            <span>Secure Book &amp; Pay</span>
-            <svg class="w-5 h-5 hidden loading-spinner animate-spin" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
-          </button>
+          <div class="flex items-center justify-between">
+            <a href="booking-review.html" class="px-5 py-3 bg-white hover:bg-gray-150 text-gray-700 border border-gray-200 rounded-xl font-bold transition">Back to Review</a>
+            <button type="submit" class="px-6 py-3.5 bg-gray-900 hover:bg-black text-white font-extrabold text-xs rounded-xl shadow-lg transition hover:scale-[1.01] flex items-center gap-1">
+              Proceed to Payment &rarr;
+            </button>
+          </div>
         </form>
       </div>
 
@@ -273,6 +277,22 @@
     </div>
   </div>
 </section>
+
+<script>
+  function saveDetailsAndContinue(e) {
+    e.preventDefault();
+    const details = {
+      passenger: document.getElementById('chk-traveler-name').value,
+      passport: document.getElementById('chk-passport').value,
+      nationality: document.getElementById('chk-traveler-nationality').value,
+      emergencyContact: document.getElementById('chk-emergency').value,
+      incomingFlight: document.getElementById('chk-flight-in').value,
+      outgoingFlight: document.getElementById('chk-flight-departure').value
+    };
+    localStorage.setItem('layoverx_temp_booking', JSON.stringify(details));
+    window.location.href = 'payment-selection.html';
+  }
+</script>
 
   </main>
 

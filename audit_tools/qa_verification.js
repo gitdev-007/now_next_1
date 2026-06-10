@@ -2,7 +2,7 @@ const { chromium } = require('playwright');
 const path = require('path');
 const fs = require('fs');
 
-const ARTIFACTS_DIR = 'C:\\Users\\Dev Tinker\\.gemini\\antigravity-ide\\brain\\aa93e734-8169-4a3c-ab50-f76a5f6e8625';
+const ARTIFACTS_DIR = 'C:\\Users\\Dev Tinker\\.gemini\\antigravity-ide\\brain\\f9df78c6-37cc-4541-bc79-962564601bd6';
 
 async function run() {
   console.log('Starting automated LayoverX QA audit...');

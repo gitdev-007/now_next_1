@@ -1,0 +1,265 @@
+<!-- PAYMENT SELECTION PAGE (Step 3 of 4) -->
+<div class="relative min-h-[30vh] pt-24 pb-12 overflow-hidden text-white flex items-center bg-slate-900">
+  <div class="absolute inset-0 bg-gradient-to-tr from-slate-900 to-indigo-950 opacity-95 z-0"></div>
+  <div class="container relative z-10 space-y-4">
+    <nav class="flex items-center gap-2 text-xs text-white/70" aria-label="Breadcrumb">
+      <a href="index.html" class="hover:text-white transition-colors">Home</a>
+      <svg class="w-3 h-3 text-white/50" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+      <a href="checkout.html" class="hover:text-white transition-colors">Traveler Details</a>
+      <svg class="w-3 h-3 text-white/50" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+      <span class="text-white font-medium">Payment Selection</span>
+    </nav>
+    <h1 class="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-tight">
+      Select <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300">Payment Method</span>
+    </h1>
+    <p class="text-slate-300 text-sm max-w-2xl">
+      Step 3 of 4: All payments are processed securely. No booking fees or hidden charges.
+    </p>
+  </div>
+</div>
+
+<section class="section bg-slate-50 min-h-screen">
+  <div class="container">
+    <div class="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- LEFT COLUMN: Payment Methods Selector -->
+      <div class="lg:col-span-8 space-y-6">
+        <form id="payment-selection-form" onsubmit="processBookingPayment(event)" class="space-y-6">
+          
+          <!-- Payment Options tabs -->
+          <div class="bg-white rounded-3xl border border-gray-200 p-6 sm:p-8 shadow-sm space-y-6">
+            <h2 class="text-lg font-bold text-slate-900 flex items-center justify-between border-b border-gray-100 pb-4">
+              <span class="flex items-center gap-2"><span class="text-emerald-500">💳</span> Payment Method</span>
+              <span class="text-[10px] bg-emerald-50 text-emerald-700 font-extrabold px-2.5 py-0.5 rounded border border-emerald-100">🔒 SSL Secured</span>
+            </h2>
+            
+            <div class="grid grid-cols-3 gap-2 bg-slate-55 p-1 rounded-xl" id="payment-tabs">
+              <button type="button" onclick="selectPaymentTab('card')" id="tab-card" class="py-2.5 text-xs font-bold rounded-lg transition bg-white text-slate-900 shadow-sm">Card</button>
+              <button type="button" onclick="selectPaymentTab('upi')" id="tab-upi" class="py-2.5 text-xs font-bold rounded-lg transition text-slate-700 hover:bg-slate-100">UPI</button>
+              <button type="button" onclick="selectPaymentTab('paypal')" id="tab-paypal" class="py-2.5 text-xs font-bold rounded-lg transition text-slate-700 hover:bg-slate-100">PayPal</button>
+            </div>
+            
+            <!-- Credit Card Fields -->
+            <div id="payment-content-card" class="space-y-4">
+              <div class="form-group text-left">
+                <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Cardholder Name</label>
+                <input type="text" id="cc-name" class="form-input w-full border border-gray-300 focus:border-sky-600 rounded-xl px-4 py-3 text-sm text-gray-900" placeholder="e.g. John Doe" required autocomplete="cc-name"/>
+              </div>
+              <div class="form-group text-left">
+                <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Card Number</label>
+                <input type="text" id="cc-num" class="form-input w-full border border-gray-300 focus:border-sky-600 rounded-xl px-4 py-3 text-sm text-gray-900" placeholder="4111 2222 3333 4444" required autocomplete="cc-number"/>
+              </div>
+              <div class="grid grid-cols-2 gap-4">
+                <div class="form-group text-left">
+                  <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Expiry Date</label>
+                  <input type="text" id="cc-expiry" class="form-input w-full border border-gray-300 focus:border-sky-600 rounded-xl px-4 py-3 text-sm text-gray-900" placeholder="MM/YY" required autocomplete="cc-exp"/>
+                </div>
+                <div class="form-group text-left">
+                  <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">CVV</label>
+                  <input type="text" id="cc-cvv" class="form-input w-full border border-gray-300 focus:border-sky-600 rounded-xl px-4 py-3 text-sm text-gray-900" placeholder="123" required autocomplete="cc-csc"/>
+                </div>
+              </div>
+            </div>
+            
+            <!-- UPI Fields -->
+            <div id="payment-content-upi" class="space-y-4 hidden">
+              <div class="form-group text-left">
+                <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Enter UPI VPA ID</label>
+                <input type="text" id="upi-vpa" class="form-input w-full border border-gray-300 focus:border-sky-600 rounded-xl px-4 py-3 text-sm text-gray-900" placeholder="e.g. traveler@okaxis"/>
+                <p class="text-[10px] text-slate-500 mt-1">A payment request will be sent to your UPI app. Please approve within 5 minutes.</p>
+              </div>
+            </div>
+            
+            <!-- PayPal Fields -->
+            <div id="payment-content-paypal" class="space-y-4 hidden text-center py-6">
+              <div class="w-16 h-16 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center text-3xl mx-auto mb-3">💬</div>
+              <p class="text-sm font-semibold text-slate-900">Redirect to PayPal Account</p>
+              <p class="text-xs text-slate-500">You will be redirected to PayPal secure portal to authorize payment after clicking pay below.</p>
+            </div>
+            
+          </div>
+          
+          <div class="flex items-center justify-between">
+            <a href="checkout.html" class="px-5 py-3 bg-white hover:bg-gray-150 text-gray-700 border border-gray-200 rounded-xl font-bold transition">Back to Details</a>
+            <button type="submit" id="btn-pay-now" class="px-6 py-4 bg-gray-900 hover:bg-black text-white font-extrabold text-sm rounded-xl shadow-lg transition hover:scale-[1.01] flex items-center justify-center gap-2">
+              <span>Secure Book &amp; Pay</span>
+              <svg class="w-5 h-5 hidden loading-spinner animate-spin" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- RIGHT COLUMN: Payment Price Summary -->
+      <div class="lg:col-span-4 sticky top-40 space-y-6">
+        <div class="bg-white rounded-3xl border border-gray-200 p-6 sm:p-8 shadow-md space-y-6">
+          <h3 class="text-sm font-bold text-slate-900 uppercase tracking-widest">Order Summary</h3>
+          <ul id="payment-summary-list" class="space-y-4 text-xs text-slate-650">
+            <!-- Populated via JS -->
+          </ul>
+          <hr class="border-gray-100"/>
+          <div class="flex justify-between items-baseline">
+            <span class="text-sm font-bold text-slate-800">Total Price</span>
+            <span class="text-2xl sm:text-3xl font-black text-slate-950" id="payment-total-price">₹0</span>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<script>
+  let activeTab = 'card';
+  let totalCostGlobal = '₹0';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    loadPaymentItinerary();
+  });
+
+  function selectPaymentTab(tab) {
+    activeTab = tab;
+    // Update active tab class
+    document.querySelectorAll('#payment-tabs button').forEach(el => {
+      el.className = "py-2.5 text-xs font-bold rounded-lg transition text-slate-700 hover:bg-slate-100";
+    });
+    const activeBtn = document.getElementById(`tab-${tab}`);
+    if (activeBtn) activeBtn.className = "py-2.5 text-xs font-bold rounded-lg transition bg-white text-slate-900 shadow-sm";
+
+    // Toggle content views
+    document.getElementById('payment-content-card').classList.add('hidden');
+    document.getElementById('payment-content-upi').classList.add('hidden');
+    document.getElementById('payment-content-paypal').classList.add('hidden');
+    document.getElementById(`payment-content-${tab}`).classList.remove('hidden');
+
+    // Handle input validation requirements
+    const cardInputs = document.querySelectorAll('#payment-content-card input');
+    const upiInput = document.querySelector('#upi-vpa');
+    
+    if (tab === 'card') {
+      cardInputs.forEach(el => el.required = true);
+      if (upiInput) upiInput.required = false;
+    } else if (tab === 'upi') {
+      cardInputs.forEach(el => el.required = false);
+      if (upiInput) upiInput.required = true;
+    } else {
+      cardInputs.forEach(el => el.required = false);
+      if (upiInput) upiInput.required = false;
+    }
+  }
+
+  function loadPaymentItinerary() {
+    const listEl = document.getElementById('payment-summary-list');
+    const totalEl = document.getElementById('payment-total-price');
+    if (!listEl || !totalEl) return;
+
+    let itinerary = [];
+    try {
+      const stored = localStorage.getItem('layoverx_current_itinerary');
+      if (stored) itinerary = JSON.parse(stored);
+    } catch(e) { console.error(e); }
+
+    let searchParams = { travelers: '2' };
+    try {
+      const stored = localStorage.getItem('layoverx_search_params');
+      if (stored) searchParams = JSON.parse(stored);
+    } catch(e) { console.error(e); }
+
+    const pax = parseInt(searchParams.travelers) || 2;
+    listEl.innerHTML = '';
+    let total = 0;
+
+    if (itinerary.length === 0) {
+      listEl.innerHTML = '<li class="text-slate-400 italic">No services in cart.</li>';
+      return;
+    }
+
+    itinerary.forEach(item => {
+      let cost = item.price;
+      if (item.type !== 'transfer' && item.type !== 'hotel' && item.type !== 'dining') {
+        cost = item.price * pax;
+      }
+      total += cost;
+
+      let catIcon = "🏨";
+      if (item.type === 'dining') catIcon = "🍽️";
+      else if (item.type === 'spa') catIcon = "💆";
+      else if (item.type === 'gaming') catIcon = "🎮";
+      else if (item.type === 'activity') catIcon = "📸";
+      else if (item.type === 'transfer') catIcon = "🚖";
+
+      listEl.innerHTML += `
+        <li class="flex items-start justify-between gap-4">
+          <span class="flex items-center gap-2"><span>${catIcon}</span> ${item.name}</span>
+          <strong class="font-bold text-slate-900 flex-shrink-0">₹${cost.toLocaleString()}</strong>
+        </li>
+      `;
+    });
+
+    totalCostGlobal = `₹${total.toLocaleString()}`;
+    totalEl.textContent = totalCostGlobal;
+  }
+
+  async function processBookingPayment(e) {
+    e.preventDefault();
+    const btn = document.getElementById('btn-pay-now');
+    const spinner = btn.querySelector('.loading-spinner');
+    const span = btn.querySelector('span');
+
+    if (btn && btn.disabled) return;
+
+    btn.disabled = true;
+    btn.classList.add('opacity-80', 'cursor-not-allowed');
+    if (span) span.textContent = 'Processing Payment...';
+    if (spinner) spinner.classList.remove('hidden');
+
+    // Simulate payment processing delay
+    await new Promise(r => setTimeout(r, 1500));
+
+    // Get temp checkout traveler details
+    let travelerDetails = { passenger: 'Traveler', passport: 'PASS-MUM-1', nationality: 'United Kingdom', emergencyContact: '', incomingFlight: 'AI-101', outgoingFlight: 'EK-501' };
+    try {
+      const stored = localStorage.getItem('layoverx_temp_booking');
+      if (stored) travelerDetails = JSON.parse(stored);
+    } catch(e) { console.error(e); }
+
+    let itinerary = [];
+    try {
+      const stored = localStorage.getItem('layoverx_current_itinerary');
+      if (stored) itinerary = JSON.parse(stored);
+    } catch(e) { console.error(e); }
+
+    const bookingId = `LX-${Math.floor(Math.random() * 90000 + 10000)}-CSMIA`;
+    
+    // Save to completed trips
+    const tripData = {
+      bookingId,
+      items: itinerary,
+      passenger: travelerDetails.passenger,
+      passport: travelerDetails.passport,
+      nationality: travelerDetails.nationality,
+      emergencyContact: travelerDetails.emergencyContact,
+      incomingFlight: travelerDetails.incomingFlight,
+      outgoingFlight: travelerDetails.outgoingFlight,
+      totalCost: totalCostGlobal,
+      createdAt: new Date().toISOString(),
+      status: 'Confirmed'
+    };
+
+    let completed = [];
+    try {
+      const stored = localStorage.getItem('layoverx_completed_trips');
+      if (stored) completed = JSON.parse(stored);
+    } catch(e) { console.error(e); }
+    completed.push(tripData);
+    localStorage.setItem('layoverx_completed_trips', JSON.stringify(completed));
+
+    // Clear active itinerary in cart
+    localStorage.removeItem('layoverx_current_itinerary');
+    localStorage.removeItem('layoverx_temp_booking');
+    if (window.layoverx && window.layoverx.updateItineraryBadges) {
+      window.layoverx.updateItineraryBadges();
+    }
+
+    window.location.href = `booking-confirmation.html?bookingId=${bookingId}`;
+  }
+</script>

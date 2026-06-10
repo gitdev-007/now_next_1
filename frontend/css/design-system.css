@@ -135,6 +135,40 @@ input[type="datetime-local"],input[type="date"]{appearance:none;-webkit-appearan
 #navbar:not(.scrolled) #menu-btn{color:#fff}
 #navbar:not(.scrolled) #menu-btn:hover{background:rgba(255,255,255,0.1)}
 
+/* Scrolled vs Not Scrolled for actions */
+#navbar:not(.scrolled) #user-menu-btn {
+  color: #ffffff !important;
+  border-color: rgba(255, 255, 255, 0.25) !important;
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+#navbar:not(.scrolled) #user-menu-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+}
+#navbar.scrolled #user-menu-btn {
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
+  background-color: #f8fafc !important;
+}
+#navbar.scrolled #user-menu-btn:hover {
+  background-color: #f1f5f9 !important;
+}
+#navbar:not(.scrolled) #global-trip-badge {
+  color: #38bdf8 !important;
+  border-color: rgba(56, 189, 248, 0.3) !important;
+  background-color: rgba(14, 165, 233, 0.15) !important;
+}
+#navbar:not(.scrolled) #global-trip-badge:hover {
+  background-color: rgba(14, 165, 233, 0.3) !important;
+}
+#navbar.scrolled #global-trip-badge {
+  color: #0284c7 !important;
+  border-color: #bae6fd !important;
+  background-color: #f0f9ff !important;
+}
+#navbar.scrolled #global-trip-badge:hover {
+  background-color: #e0f2fe !important;
+}
+
 /* Mobile menu */
 #mobile-menu{position:absolute;top:100%;left:0;right:0;background:#fff;border-radius:1rem;box-shadow:var(--shadow-lg);margin:0 1rem;padding:.75rem;display:none}
 #mobile-menu:not(.hidden){display:block}

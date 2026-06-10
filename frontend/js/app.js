@@ -160,6 +160,7 @@
       $$('.auth-user').forEach((el) => el.style.display = isAuth ? 'flex' : 'none');
       $$('.user-name').forEach((el) => el.textContent = state.user?.name || '');
       $$('.user-avatar-letter').forEach((el) => el.textContent = state.user?.avatar || 'U');
+      $$('.user-email-display').forEach((el) => el.textContent = state.user?.email || 'traveler@layoverx.com');
     }
   };
 
@@ -326,6 +327,30 @@
       menu.classList.toggle('hidden');
       const expanded = !menu.classList.contains('hidden');
       btn.setAttribute('aria-expanded', expanded);
+    });
+  }
+
+  /* ===== USER MENU DROPDOWN ===== */
+  function decorateUserDropdown() {
+    document.addEventListener('click', (e) => {
+      const btn = document.getElementById('user-menu-btn');
+      const dropdown = document.getElementById('user-profile-dropdown');
+      const arrow = document.getElementById('user-menu-arrow');
+      if (!btn || !dropdown) return;
+      
+      const clickedBtn = e.target.closest('#user-menu-btn');
+      const clickedDropdown = e.target.closest('#user-profile-dropdown');
+      
+      if (clickedBtn) {
+        dropdown.classList.toggle('hidden');
+        const visible = !dropdown.classList.contains('hidden');
+        btn.setAttribute('aria-expanded', visible);
+        if (arrow) arrow.style.transform = visible ? 'rotate(180deg)' : 'rotate(0deg)';
+      } else if (!clickedDropdown) {
+        dropdown.classList.add('hidden');
+        btn.setAttribute('aria-expanded', 'false');
+        if (arrow) arrow.style.transform = 'rotate(0deg)';
+      }
     });
   }
 
@@ -1700,20 +1725,60 @@
     saved.forEach((p, idx) => {
       const hours = ((new Date(p.departure) - new Date(p.arrival)) / 3600000).toFixed(1);
       listEl.innerHTML += `
-        <li class="bg-white border border-gray-200 shadow-sm p-4 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs sm:text-sm transition-all duration-300">
+        <li class="bg-white border border-gray-200 shadow-sm p-4 rounded-xl flex flex-col justify-between gap-3 text-xs sm:text-sm transition-all duration-300">
           <div>
-            <strong class="text-gray-900 block font-extrabold text-base">${p.location === 'near-airport' ? 'Near Mumbai Airport' : p.location.toUpperCase()} (${hours}h Layover)</strong>
+            <strong class="text-gray-900 block font-extrabold text-sm sm:text-base">${p.location === 'near-airport' ? 'Near Mumbai Airport' : p.location.toUpperCase()} (${hours}h Layover)</strong>
             <span class="text-gray-500 text-xs mt-1 block">Saved on ${p.dateSaved} • <span class="font-bold text-sky-700">${p.cost}</span></span>
           </div>
-          <div class="flex flex-wrap gap-2 sm:justify-end">
-            <button onclick="layoverx.viewPlanDetails(${idx})" class="px-3 py-1.5 bg-gray-50 hover:bg-gray-100 text-gray-700 border border-gray-200 rounded-lg font-bold transition">View Details</button>
-            <button onclick="layoverx.loadPlan(${idx})" class="px-3 py-1.5 bg-sky-50 hover:bg-sky-100 text-sky-700 border border-sky-100 rounded-lg font-bold transition">Load</button>
-            <button onclick="layoverx.deletePlan(${idx})" class="px-3 py-1.5 bg-red-50 hover:bg-red-100 text-red-600 border border-red-100 rounded-lg font-bold transition">Delete</button>
+          <div class="flex flex-wrap gap-1.5 sm:justify-end">
+            <a href="trip-details.html?id=${p.id}" class="px-2 py-1 bg-gray-50 hover:bg-gray-100 text-gray-700 border border-gray-200 rounded-lg font-bold text-[11px] transition text-center flex items-center justify-center">View Details</a>
+            <button onclick="layoverx.loadPlan(${idx})" class="px-2 py-1 bg-sky-50 hover:bg-sky-100 text-sky-700 border border-sky-100 rounded-lg font-bold text-[11px] transition">Edit</button>
+            <button onclick="layoverx.duplicatePlan(${idx})" class="px-2 py-1 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-100 rounded-lg font-bold text-[11px] transition">Duplicate</button>
+            <button onclick="layoverx.sharePlan(${idx})" class="px-2 py-1 bg-purple-50 hover:bg-purple-100 text-purple-700 border border-purple-100 rounded-lg font-bold text-[11px] transition">Share</button>
+            <button onclick="layoverx.deletePlan(${idx})" class="px-2 py-1 bg-red-50 hover:bg-red-100 text-red-600 border border-red-100 rounded-lg font-bold text-[11px] transition">Delete</button>
           </div>
         </li>
       `;
     });
   }
+
+  window.layoverx.duplicatePlan = function(idx) {
+    try {
+      const data = JSON.parse(localStorage.getItem('layoverx_saved_plans')) || [];
+      const plan = data[idx];
+      if (plan) {
+        const copy = JSON.parse(JSON.stringify(plan));
+        copy.id = Date.now();
+        copy.dateSaved = new Date().toLocaleDateString();
+        data.push(copy);
+        localStorage.setItem('layoverx_saved_plans', JSON.stringify(data));
+        showToast("Itinerary duplicated successfully!", "success");
+        loadSavedPlans();
+        if (typeof renderSavedPlansPage === 'function') {
+          renderSavedPlansPage();
+        }
+      }
+    } catch(e) { console.error(e); }
+  };
+
+  window.layoverx.sharePlan = function(idx) {
+    try {
+      const data = JSON.parse(localStorage.getItem('layoverx_saved_plans')) || [];
+      const plan = data[idx];
+      if (plan) {
+        const url = window.location.origin + '/plan-my-layover.html';
+        const params = new URLSearchParams({
+          arrivalDateTime: plan.arrival,
+          departureDateTime: plan.departure,
+          location: plan.location,
+          travelers: plan.travelers
+        });
+        navigator.clipboard.writeText(`${url}?${params.toString()}`)
+          .then(() => showToast("Shareable link copied to clipboard!", "success"))
+          .catch(() => showToast("Failed to copy link.", "error"));
+      }
+    } catch(e) { console.error(e); }
+  };
 
   window.layoverx.viewPlanDetails = function(idx) {
     try {
@@ -1826,6 +1891,11 @@
         
         recalculateItinerary();
         showToast("Loaded saved itinerary details!");
+        
+        const plannerForm = $('#planner-form') || $('#plan-arrival');
+        if (plannerForm) {
+          plannerForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
       }
     } catch(e) { console.error(e); }
   };
@@ -2139,6 +2209,7 @@
     initHashRouting();
     decorateNavbar();
     decorateMobileMenu();
+    decorateUserDropdown();
     initAccessibility();
     
     // Page specific setups
@@ -3223,7 +3294,7 @@
       return;
     }
 
-    window.location.href = 'checkout.html';
+    window.location.href = 'booking-review.html';
   }
 
   async function handleCheckoutSubmit(e) {

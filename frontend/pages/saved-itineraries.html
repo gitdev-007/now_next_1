@@ -1,0 +1,225 @@
+<!-- SAVED PLANS PAGE -->
+<section class="relative bg-slate-900 text-white pt-24 pb-16 overflow-hidden">
+  <div class="absolute inset-0 bg-cover bg-center opacity-10" style="background-image:url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=1200')" role="img" aria-label="Airport Runway Background"></div>
+  <div class="container relative z-10">
+    <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+      <div class="space-y-2">
+        <h1 class="text-3xl font-black tracking-tight">Saved Itineraries</h1>
+        <p class="text-sm text-sky-200">Manage and reload your saved transit plans</p>
+      </div>
+      <a href="plan-my-layover.html" class="px-5 py-3 bg-sky-700 hover:bg-sky-800 text-white text-xs font-bold rounded-xl shadow-lg transition">＋ Plan New Stopover</a>
+    </div>
+  </div>
+</section>
+
+<section class="section bg-slate-50 min-h-[50vh]">
+  <div class="container">
+    <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+      
+      <!-- Left Profile Sidebar -->
+      <aside class="md:col-span-1 space-y-6">
+        <div class="bg-white border border-gray-150 rounded-2xl p-6 shadow-sm">
+          <h2 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4">Navigation</h2>
+          <nav class="flex flex-col gap-1 text-sm">
+            <a href="my-profile.html" class="flex items-center gap-2 px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-xl transition-all">👤 Profile Details</a>
+            <a href="my-trips.html" class="flex items-center gap-2 px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-xl transition-all">✈️ My Trips</a>
+            <a href="saved-itineraries.html" class="flex items-center gap-2 px-3 py-2 bg-sky-50 text-sky-700 rounded-xl font-bold transition-all">💾 Saved Plans</a>
+            <a href="account-settings.html" class="flex items-center gap-2 px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-xl transition-all">⚙️ Settings</a>
+          </nav>
+        </div>
+      </aside>
+
+      <!-- Center Saved Itineraries List -->
+      <div class="md:col-span-2 space-y-4" id="saved-plans-page-list">
+        <!-- Dynically populated list of saved itineraries -->
+        <div class="bg-white rounded-2xl border border-gray-200 p-8 text-center text-slate-500 italic">
+          Loading saved itineraries...
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    renderSavedPlansPage();
+  });
+
+  function renderSavedPlansPage() {
+    const container = document.getElementById('saved-plans-page-list');
+    if (!container) return;
+
+    let saved = [];
+    try {
+      const data = localStorage.getItem('layoverx_saved_plans');
+      if (data) saved = JSON.parse(data);
+    } catch(e) { console.error(e); }
+
+    if (saved.length === 0) {
+      container.innerHTML = `
+        <div class="bg-white rounded-2xl border border-gray-200 p-8 text-center text-slate-500">
+          <p class="font-semibold text-lg">No saved itineraries found</p>
+          <p class="text-xs text-slate-400 mt-1">Configure timings and select custom day rooms, spas, or tours in the planner to save plans.</p>
+          <a href="plan-my-layover.html" class="mt-4 inline-block px-4 py-2 bg-slate-900 hover:bg-black text-white text-xs font-bold rounded-xl transition">Open AI Planner</a>
+        </div>
+      `;
+      return;
+    }
+
+    container.innerHTML = '';
+    saved.forEach((p, idx) => {
+      const arrivalDate = new Date(p.arrival);
+      const departureDate = new Date(p.departure);
+      const hours = ((departureDate - arrivalDate) / 3600000).toFixed(1);
+      
+      const details = p.details || {};
+      const countServices = [details.hotelId, details.diningId, details.spaId, details.gamingId].filter(Boolean).length + (details.items ? details.items.filter(x => x.type === 'activity').length : 0);
+
+      container.innerHTML += `
+        <div class="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between gap-4">
+          <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-2">
+            <div>
+              <span class="inline-block text-[10px] font-extrabold bg-sky-50 text-sky-700 px-2 py-0.5 rounded uppercase tracking-wider mb-2">
+                ${p.location === 'near-airport' ? 'Near Mumbai Airport' : p.location.toUpperCase()}
+              </span>
+              <h2 class="text-lg font-extrabold text-gray-900">${hours}h Stopover Plan (${p.travelers} Guests)</h2>
+              <p class="text-xs text-slate-400 mt-1">
+                📅 Arrival: ${arrivalDate.toLocaleDateString()} at ${arrivalDate.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
+              </p>
+            </div>
+            <div class="text-right sm:text-right mt-1 sm:mt-0 flex-shrink-0">
+              <span class="text-xs text-gray-400 block font-semibold uppercase">Total Cost</span>
+              <strong class="text-lg font-black text-sky-700">${p.cost}</strong>
+            </div>
+          </div>
+          
+          <div class="border-t border-gray-100 pt-4 flex flex-wrap gap-2 items-center justify-between">
+            <span class="text-xs font-medium text-slate-500">🛒 Selected: ${countServices} Transit Services</span>
+            <div class="flex flex-wrap gap-1.5">
+              <a href="trip-details.html?id=${p.id}" class="px-2.5 py-1.5 bg-gray-55 hover:bg-gray-100 text-gray-700 border border-gray-200 rounded-lg text-xs font-bold transition">View Details</a>
+              <button onclick="loadPlanIntoPlanner(${idx})" class="px-2.5 py-1.5 bg-sky-50 hover:bg-sky-100 text-sky-700 border border-sky-100 rounded-lg text-xs font-bold transition">Load</button>
+              <button onclick="duplicatePlan(${idx})" class="px-2.5 py-1.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-100 rounded-lg text-xs font-bold transition">Duplicate</button>
+              <button onclick="sharePlanDetails(${idx})" class="px-2.5 py-1.5 bg-purple-50 hover:bg-purple-100 text-purple-700 border border-purple-100 rounded-lg text-xs font-bold transition">Share</button>
+              <button onclick="deletePlanDetails(${idx})" class="px-2.5 py-1.5 bg-red-50 hover:bg-red-100 text-red-600 border border-red-100 rounded-lg text-xs font-bold transition">Delete</button>
+            </div>
+          </div>
+        </div>
+      `;
+    });
+  }
+
+  function loadPlanIntoPlanner(idx) {
+    try {
+      const data = JSON.parse(localStorage.getItem('layoverx_saved_plans'));
+      const plan = data[idx];
+      if (plan) {
+        // Set search params and current itinerary in localStorage, then redirect
+        localStorage.setItem('layoverx_search_params', JSON.stringify({
+          arrivalDateTime: plan.arrival,
+          departureDateTime: plan.departure,
+          location: plan.location,
+          travelers: plan.travelers,
+          layoverDuration: (new Date(plan.departure) - new Date(plan.arrival)) / 3600000
+        }));
+        
+        // Re-construct the itinerary array format
+        const HOTELS = {
+          1: { id: 1, name: "Niranta Airport Transit Hotel & Lounge", stars: 5, rating: 4.8, price: 3499 },
+          2: { id: 2, name: "JW Marriott Mumbai Sahar", stars: 5, rating: 4.7, price: 5499 },
+          3: { id: 3, name: "Ibis Mumbai Airport", stars: 3, rating: 4.2, price: 2200 },
+          4: { id: 4, name: "The Orchid Hotel Mumbai Vile Parle", stars: 4, rating: 4.6, price: 4500 }
+        };
+        const DINING = {
+          1: { id: 1, name: "Gajalee Coastal Seafood Restaurant", cuisine: "seafood", rating: 4.8, price: 1800 },
+          2: { id: 2, name: "Peshawri - ITC Maratha", cuisine: "fine-dining", rating: 4.9, price: 4500 },
+          3: { id: 3, name: "Highway Gomantak", cuisine: "local", rating: 4.5, price: 800 },
+          4: { id: 4, name: "Elco Pani Puri Center", cuisine: "street-food", rating: 4.4, price: 400 }
+        };
+        const EXPERIENCES = {
+          1: { id: 1, name: "South Mumbai Gateway Heritage Tour", category: "sightseeing", rating: 4.9, duration: 5, price: 2899 },
+          2: { id: 2, name: "Guided Bandra Street Food Trail", category: "food", rating: 4.8, duration: 3, price: 1299 }
+        };
+        const SPA_WELLNESS = {
+          1: { id: 1, name: "Heavenly Spa by Westin", category: "massage", rating: 4.9, duration: 1.5, price: 4500 },
+          2: { id: 2, name: "O2 Spa - Terminal 2", category: "express", rating: 4.7, duration: 0.5, price: 1800 }
+        };
+        const GAMING_ENTERTAINMENT = {
+          1: { id: 1, name: "Smaaash Entertainment Hub", category: "gaming", rating: 4.6, duration: 2, price: 1200 },
+          2: { id: 2, name: "PVR Directors Cut Luxury Cinema", category: "movie", rating: 4.9, duration: 3, price: 2500 }
+        };
+        
+        let itinerary = [];
+        const d = plan.details;
+        
+        if (d.cabType) {
+          const price = d.cabType === 'suv' ? 1499 : 899;
+          itinerary.push({ type: 'transfer', id: d.cabType, name: `Airport Transfer (${d.cabType.toUpperCase()})`, price, duration: 0.5 });
+        }
+        if (d.hotelId && HOTELS[d.hotelId]) {
+          itinerary.push({ type: 'hotel', id: d.hotelId, name: HOTELS[d.hotelId].name, price: HOTELS[d.hotelId].price, duration: 6.0 });
+        }
+        if (d.diningId && DINING[d.diningId]) {
+          itinerary.push({ type: 'dining', id: d.diningId, name: DINING[d.diningId].name, price: DINING[d.diningId].price, duration: 1.5 });
+        }
+        if (d.activityId && EXPERIENCES[d.activityId]) {
+          itinerary.push({ type: 'activity', id: d.activityId, name: EXPERIENCES[d.activityId].name, price: EXPERIENCES[d.activityId].price, duration: EXPERIENCES[d.activityId].duration });
+        }
+        if (d.spaId && SPA_WELLNESS[d.spaId]) {
+          itinerary.push({ type: 'spa', id: d.spaId, name: SPA_WELLNESS[d.spaId].name, price: SPA_WELLNESS[d.spaId].price, duration: SPA_WELLNESS[d.spaId].duration });
+        }
+        if (d.gamingId && GAMING_ENTERTAINMENT[d.gamingId]) {
+          itinerary.push({ type: 'gaming', id: d.gamingId, name: GAMING_ENTERTAINMENT[d.gamingId].name, price: GAMING_ENTERTAINMENT[d.gamingId].price, duration: GAMING_ENTERTAINMENT[d.gamingId].duration });
+        }
+        
+        localStorage.setItem('layoverx_current_itinerary', JSON.stringify(itinerary));
+        window.location.href = 'plan-my-layover.html';
+      }
+    } catch(e) { console.error(e); }
+  }
+
+  function duplicatePlan(idx) {
+    try {
+      const data = JSON.parse(localStorage.getItem('layoverx_saved_plans'));
+      const plan = data[idx];
+      if (plan) {
+        const copy = JSON.parse(JSON.stringify(plan));
+        copy.id = Date.now();
+        copy.dateSaved = new Date().toLocaleDateString();
+        data.push(copy);
+        localStorage.setItem('layoverx_saved_plans', JSON.stringify(data));
+        window.layoverx.showToast("Itinerary duplicated successfully!", "success");
+        renderSavedPlansPage();
+      }
+    } catch(e) { console.error(e); }
+  }
+
+  function sharePlanDetails(idx) {
+    try {
+      const data = JSON.parse(localStorage.getItem('layoverx_saved_plans'));
+      const plan = data[idx];
+      if (plan) {
+        const url = window.location.origin + '/plan-my-layover.html';
+        const params = new URLSearchParams({
+          arrivalDateTime: plan.arrival,
+          departureDateTime: plan.departure,
+          location: plan.location,
+          travelers: plan.travelers
+        });
+        navigator.clipboard.writeText(`${url}?${params.toString()}`)
+          .then(() => window.layoverx.showToast("Shareable link copied to clipboard!", "success"))
+          .catch(() => window.layoverx.showToast("Failed to copy link.", "error"));
+      }
+    } catch(e) { console.error(e); }
+  }
+
+  function deletePlanDetails(idx) {
+    try {
+      const data = JSON.parse(localStorage.getItem('layoverx_saved_plans'));
+      data.splice(idx, 1);
+      localStorage.setItem('layoverx_saved_plans', JSON.stringify(data));
+      window.layoverx.showToast("Saved Itinerary deleted successfully.", "info");
+      renderSavedPlansPage();
+    } catch(e) { console.error(e); }
+  }
+</script>
