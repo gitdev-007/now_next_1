@@ -1,0 +1,84 @@
+# LayoverX - Comprehensive Use Case Analysis
+
+This document outlines all possible user journeys, booking flows, partnership workflows, and edge cases for the LayoverX platform, based on the current architecture (HTML/Tailwind/Firebase). 
+
+---
+
+## 1. B2C: Customer Booking Cases
+
+### Case 1.1: Standard Single-Service Booking (Hotels, Tours, Spas)
+**How it works:** User browses `hotels.html` or `experiences.html` -> Clicks a specific service -> Views `service-details.html` -> Adds to itinerary/cart -> Proceeds to `checkout.html` -> Logs in (if not already) via `loginsingup.html` -> Completes payment.
+*   **Pros:** Direct, familiar e-commerce flow. Easy to track conversions.
+*   **Cons:** If a user is just on a layover, booking a single service might leave them with awkward gaps in their schedule.
+*   **Improvement:** Suggest complementary services (e.g., "You booked a hotel, do you need an airport transfer?") on the service details page.
+
+### Case 1.2: The "Plan My Layover" (Smart Itinerary) Flow
+**How it works:** User navigates to `plan-my-layover.html` -> Inputs layover duration, terminal, and preferences (budget, interests) -> System generates a timeline-based itinerary -> User reviews `my-itinerary.html` -> Checks out all items in one cart.
+*   **Pros:** Unique value proposition. Solves the exact pain point of transit passengers maximizing their limited time.
+*   **Cons:** Complex to manage inventory across multiple suppliers simultaneously. High risk of one service failing and ruining the chronological itinerary.
+*   **Improvement:** Implement real-time inventory locking for 10 minutes while the user is on the checkout page to guarantee all parts of the itinerary are available.
+
+### Case 1.3: Guest Checkout vs. Authenticated Checkout
+**How it works:** User reaches `checkout.html`. They can either create an account (Firebase Auth) or proceed as a guest (if permitted).
+*   **Pros:** Guest checkout reduces friction and increases conversion rates.
+*   **Cons:** Harder to provide post-booking support, send itinerary updates, or handle cancellations for guest users.
+*   **Improvement:** Allow guest checkout but strongly incentivize account creation post-purchase (e.g., "Create a password to track your driver").
+
+### Case 1.4: Post-Booking Management
+**How it works:** User visits `my-trips.html` to view upcoming layovers, download tickets, or request cancellations.
+*   **Pros:** Self-service reduces customer support overhead.
+*   **Cons:** Previously lacked situational awareness.
+*   **Improvement (Implemented):** Added an interactive "Live Transit Route" map interface container at the top of the upcoming trips tab, ready to sync with their itinerary locations.
+
+---
+
+## 2. B2B: Partnership & Supplier Cases
+
+### Case 2.1: Supplier Registration & Onboarding
+**How it works:** Business owner goes to `partner-registration.html` -> Submits business details, KYC documents, and service category -> Data is saved to Firestore.
+*   **Pros:** Automated intake process scales well.
+*   **Cons:** Susceptible to spam or low-quality listings.
+*   **Improvement (Implemented):** Added a backend `onPartnerRegistration` cloud function. All new registrations default to `pending_review` and an email notification is automatically dispatched to the LayoverX admin team via SendGrid.
+
+### Case 2.2: Supplier Dashboard Management
+**How it works:** Approved partner logs into `supplier-dashboard.html` -> Adds new services, sets pricing, manages availability calendars, and views upcoming bookings.
+*   **Pros:** Empowers vendors, reducing operational bottleneck for LayoverX staff.
+*   **Cons:** Vendors might overbook if the system doesn't sync with their external calendars.
+*   **Improvement:** Implement iCal/API syncing so hotel/tour availability is automatically updated.
+
+### Case 2.3: Order Fulfillment & Payouts
+**How it works:** Customer books -> Supplier gets notified -> Supplier provides service -> LayoverX takes a commission -> Payout is issued to the supplier.
+*   **Pros:** Classic marketplace model; highly scalable.
+*   **Cons:** Escrow, chargebacks, and split payments are complex.
+*   **Improvement (Implemented):** Created backend `createPaymentIntent` function hooked into Stripe API with marketplace support. Validates the cart total against the database backend, generating secure intents for frontend checkout.
+
+---
+
+## 3. Other Edge Cases & Core Flows ("Binging Things")
+
+### Case 3.1: Authentication & Security
+**How it works:** Handled via Firebase Auth (`firebase-auth-compat.js`).
+*   **Pros:** Secure, fast, and handles password resets out-of-the-box.
+*   **Cons:** Previously relied entirely on client-side cart validation.
+*   **Improvement (Implemented):** Shifted cart calculations to backend Firebase Functions. *(Note: Auth test shows "Missing or insufficient permissions" when creating Firestore profile, indicating strict Firestore Rules are now active but need adjustment for new user creation).*
+
+### Case 3.2: Flight Delays & Layover Changes (Critical Edge Case)
+**How it works:** A user's flight is delayed, altering their layover window.
+*   **Pros:** N/A (Currently a risk).
+*   **Cons:** If a user books a 4-hour spa session but their flight is delayed, they miss the slot.
+*   **Improvement (Implemented):** Scheduled CRON job stub (`checkFlightDelays`) added to Firebase Functions to poll FlightAware API every 30 mins to dynamically shift itinerary timelines based on real delays.
+
+---
+
+## 4. What is Remaining to Make it a Complete Working Website?
+
+While the frontend, UI/UX overrides, and backend Cloud Function scaffold are built, the following are required for a true public launch:
+
+1.  **Firebase Security Rules Tweaks:**
+    *   The `test_google_auth.js` script caught an issue: users successfully authenticate, but updating their `/users/{uid}` document fails with "Missing or insufficient permissions". The rules block needs to be updated to allow `write` if `request.auth.uid == userId`.
+2.  **Admin Panel (Superadmin):**
+    *   A hidden dashboard for LayoverX employees to actually view the `pending_review` suppliers generated by the Cloud Function, and an interface to hit the "Approve" button.
+3.  **Search & Filtering Engine:**
+    *   Implementing Algolia or Typesense for fast, typo-tolerant searching of hotels and restaurants.
+4.  **Complete the Flight Delay Implementation:**
+    *   Hooking up the actual FlightAware API keys to the backend CRON job stub created.

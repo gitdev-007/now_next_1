@@ -1,0 +1,22 @@
+# LayoverX Action Summary
+Date: June 2026
+
+## What was completed today:
+1. **Frontend Upgrades:** We tackled the UX limitations. A "Complementary Services" block was added to individual detail pages (`service-details.html`) to encourage up-selling (e.g., adding airport transfers to hotel bookings).
+2. **Checkout Incentives:** We added a banner in `checkout.html` encouraging guest users to create an account so they can track dynamic flight delays.
+3. **Trip Tracking:** `my-trips.html` was upgraded with an interactive map container for their upcoming trips.
+4. **Backend Infrastructure (Firebase Functions):** We created the necessary Node.js serverless functions structure (`backend/functions`) to make this a true web application.
+    * Implemented Stripe payment intent and server-side cart validation.
+    * Implemented real-time inventory locking mechanism.
+    * Added SendGrid alerts and "Pending Review" status to partner registrations.
+    * Scaffolded a CRON job for checking FlightAware APIs for delays.
+
+## Automated Browser Testing (QA):
+We ran the existing Playwright / Puppeteer automated test suites within the `audit_tools/` directory against a local Python HTTP server.
+*   **`marketplace_regression.js`**: ✅ Passed. Verified global trip context syncing, cart increments, time limit validation logic, and the mock checkout receipt generation.
+*   **`qa_verification.js`**: ✅ Passed. Verified timeline warning logic and admin override panels.
+*   **`supplier_onboarding.js`**: ✅ Passed. Verified file uploads and modal interactions for the B2B side.
+*   **`test_google_auth.js`**: ⚠️ Partial. Auth succeeds, but creating the user document fails due to "Missing or insufficient permissions," highlighting that strict database rules are working but require the `/users/{uid}` path to be opened for self-creation.
+
+## Next Steps:
+We updated `possible_cases.txt` to reflect the completed backend features and refined the list of remaining work (e.g., tweaking Firestore Rules, building the Admin Panel).
