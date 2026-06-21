@@ -200,7 +200,14 @@ input[type="datetime-local"],input[type="date"]{appearance:none;-webkit-appearan
 .theme-tours { --primary: #f43f5e; --primary-dark: #e11d48; --primary-light: #fb7185; --secondary: #0ea5e9; --theme-hero-from: #881337; --theme-hero-to: #4c0519; }
 .theme-transfers { --primary: #475569; --primary-dark: #1e293b; --primary-light: #94a3b8; --secondary: #334155; --theme-hero-from: #0f172a; --theme-hero-to: #334155; }
 
-/* Apply Theme Hero Backgrounds */
+/* Default hero (non-themed pages) uses sky gradient */
+.default-hero {
+  --theme-hero-from: #0369a1;
+  --theme-hero-to: #0284c7;
+}
+.default-hero {
+  background: linear-gradient(to bottom right, var(--theme-hero-from), var(--theme-hero-to)) !important;
+}
 .theme-hero {
   background: linear-gradient(to bottom right, var(--theme-hero-from), var(--theme-hero-to)) !important;
 }
@@ -320,4 +327,27 @@ input[type="radio"]:checked + div h3 {
   background: #0369a1;
   border-color: #0369a1;
 }
+
+.text-body { color: var(--body-color) !important; }
+.text-muted { color: var(--text-muted) !important; }
+.text-heading { color: var(--heading-color) !important; }
+
+/* Text utilities */
+.text-base { font-size: 1rem; }
+.text-sm { font-size: 0.875rem; }
+.text-xs { font-size: 0.75rem; }
+.text-lg { font-size: 1.125rem; }
+.text-xl { font-size: 1.25rem; }
+.text-2xl { font-size: 1.5rem; }
+.text-3xl { font-size: 1.875rem; }
+.text-4xl { font-size: 2.25rem; }
+
+.font-medium { font-weight: 500; }
+.font-semibold { font-weight: 600; }
+.font-bold { font-weight: 700; }
+.font-extrabold { font-weight: 800; }
+
+.text-center { text-align: center; }
+.uppercase { text-transform: uppercase; }
+.tracking-wider { letter-spacing: 0.05em; }
 
