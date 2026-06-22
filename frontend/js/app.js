@@ -58,14 +58,14 @@
   const EXPERIENCES = {
     1: { id: 1, name: "South Mumbai Gateway Heritage Tour", category: "sightseeing", rating: 4.9, duration: 5, price: 2899, image: "https://images.unsplash.com/photo-1605307066130-098b5f638948?w=600&h=400&fit=crop", desc: "AC private vehicle tour visiting the Gateway of India, Queen's Necklace, Taj Mahal Palace, and Victoria Terminus." },
     2: { id: 2, name: "Guided Bandra Street Food Trail", category: "food", rating: 4.8, duration: 3, price: 1299, image: "https://images.unsplash.com/photo-1559339352-11d035aa65de?w=600&h=400&fit=crop", desc: "Hygienic culinary walk through Bandra West. Sample local snacks, sweet rolls, seekh kebabs, and vada pav." },
-    3: { id: 3, name: "Elephanta Caves Fast-Track Excursion", category: "culture", rating: 4.7, duration: 4, price: 1999, image: "https://images.unsplash.com/photo-1598977123418-45f04b616a0e?w=600&h=400&fit=crop", desc: "Ferry tickets and professional guides to explore the historic rock-cut cave temples on Elephanta Island." },
+    3: { id: 3, name: "Elephanta Caves Fast-Track Excursion", category: "culture", rating: 4.7, duration: 4, price: 1999, image: "https://images.unsplash.com/photo-1548013146-72479768bada?w=600&h=400&fit=crop", desc: "Ferry tickets and professional guides to explore the historic rock-cut cave temples on Elephanta Island." },
     4: { id: 4, name: "Bazaar & Boutique Shopping Expedition", category: "shopping", rating: 4.6, duration: 3.5, price: 1500, image: "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600&h=400&fit=crop", desc: "Accompanied market tour to buy Indian cottons, silks, spices, and souvenirs with secure baggage drop back in cab." }
   };
 
   const SPA_WELLNESS = {
     1: { id: 1, name: "Heavenly Spa by Westin", category: "massage", rating: 4.9, duration: 1.5, price: 4500, image: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&h=400&fit=crop", desc: "Full-body Swedish massage, steam room access, and luxury aromatherapy in a tranquil airport-adjacent setting." },
-    2: { id: 2, name: "O2 Spa - Terminal 2", category: "express", rating: 4.7, duration: 0.5, price: 1800, image: "https://images.unsplash.com/photo-1611077544192-332e67500366?w=600&h=400&fit=crop", desc: "Convenient express foot reflexology and head-neck-shoulder massage located right at the T2 arrivals lounge." },
-    3: { id: 3, name: "Six Senses Wellness Circuit", category: "full-day", rating: 4.8, duration: 3, price: 8500, image: "https://images.unsplash.com/photo-1540555700478-4be289fbece8?w=600&h=400&fit=crop", desc: "Holistic wellness journey including detox juices, meditation session, deep tissue massage, and facial treatment." }
+    2: { id: 2, name: "O2 Spa - Terminal 2", category: "express", rating: 4.7, duration: 0.5, price: 1800, image: "https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=600&h=400&fit=crop", desc: "Convenient express foot reflexology and head-neck-shoulder massage located right at the T2 arrivals lounge." },
+    3: { id: 3, name: "Six Senses Wellness Circuit", category: "full-day", rating: 4.8, duration: 3, price: 8500, image: "https://images.unsplash.com/photo-1560750588-73207b1ef5b8?w=600&h=400&fit=crop", desc: "Holistic wellness journey including detox juices, meditation session, deep tissue massage, and facial treatment." }
   };
 
   const GAMING_ENTERTAINMENT = {
@@ -158,7 +158,7 @@
       const isAuth = state.isAuthenticated;
       $$('.auth-guest').forEach((el) => el.style.display = isAuth ? 'none' : 'flex');
       $$('.auth-user').forEach((el) => el.style.display = isAuth ? 'flex' : 'none');
-      $$('.user-name').forEach((el) => el.textContent = state.user?.name || '');
+      $$('.user-name').forEach((el) => el.textContent = state.user?.name || 'Traveler');
       $$('.user-avatar-letter').forEach((el) => el.textContent = state.user?.avatar || 'U');
       $$('.user-email-display').forEach((el) => el.textContent = state.user?.email || 'traveler@layoverx.com');
     }
