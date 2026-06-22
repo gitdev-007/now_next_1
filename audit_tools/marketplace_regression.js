@@ -2,7 +2,7 @@ const { chromium } = require('playwright');
 const path = require('path');
 const fs = require('fs');
 
-const ARTIFACTS_DIR = 'C:\\Users\\Dev Tinker\\.gemini\\antigravity-ide\\brain\\f9df78c6-37cc-4541-bc79-962564601bd6';
+const ARTIFACTS_DIR = 'C:\\Users\\Dev Tinker\\.gemini\\antigravity-ide\\brain\\ce74cb2a-d480-4432-92ad-0dcbb4134f51';
 
 async function run() {
   console.log('Starting automated LayoverX Marketplace & Planner Regression audit...');
@@ -25,8 +25,8 @@ async function run() {
     // STEP 1: Global Context Search Form & Pre-fill
     // ----------------------------------------------------
     console.log('\n--- Step 1: Homepage Search & Context Setup ---');
-    await page.goto('http://localhost:8000/index.html');
-    await page.waitForLoadState('networkidle');
+    await page.goto('http://localhost:8001/index.html');
+    await page.waitForLoadState('load');
 
     // Select search parameters
     await page.selectOption('#search-location', 'bandra');
@@ -50,7 +50,7 @@ async function run() {
 
     // Click Search to set local storage and redirect to Plan My Layover
     await page.click('#search-btn');
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('load');
     console.log(`Redirected to URL: ${page.url()}`);
 
     // Verify global trip context summary badge is rendering in header
@@ -98,8 +98,8 @@ async function run() {
     console.log('\n--- Step 3: Listing Pages Pre-fill & Add To Itinerary ---');
     
     // Navigate to Hotels Listing
-    await page.goto('http://localhost:8000/hotels.html');
-    await page.waitForLoadState('networkidle');
+    await page.goto('http://localhost:8001/hotels.html');
+    await page.waitForLoadState('load');
 
     // Verify check-in datetime prefilled matches context
     const checkinVal = await page.inputValue('#hotel-checkin');
@@ -126,11 +126,11 @@ async function run() {
 
     // Go to Restaurants Listing and View Details
     console.log('Navigating to dining and viewing Peshawri details...');
-    await page.goto('http://localhost:8000/restaurants.html');
-    await page.waitForLoadState('networkidle');
+    await page.goto('http://localhost:8001/restaurants.html');
+    await page.waitForLoadState('load');
 
     await page.click('.rest-item:has-text("Peshawri") a:has-text("View Details")');
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('load');
     console.log(`Loaded Service Details Page: ${page.url()}`);
 
     // Verify dynamic detail content
@@ -161,8 +161,8 @@ async function run() {
     // STEP 4: Itinerary Workspace Validation
     // ----------------------------------------------------
     console.log('\n--- Step 4: Itinerary Workspace Math & Limit Validation ---');
-    await page.goto('http://localhost:8000/my-itinerary.html');
-    await page.waitForLoadState('networkidle');
+    await page.goto('http://localhost:8001/my-itinerary.html');
+    await page.waitForLoadState('load');
 
     // Inspect used vs remaining safe window
     const totalHrsText = await page.innerText('#workspace-total-hours');
@@ -221,12 +221,12 @@ async function run() {
     // ----------------------------------------------------
     console.log('\n--- Step 5: Checkout & Booking finalization ---');
     await page.click('#btn-checkout');
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('load');
     console.log(`Arrived at page: ${page.url()}`);
 
     if (page.url().includes('booking-review.html')) {
       await page.click('text=Proceed to Traveler Details');
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('load');
       console.log(`Transitioned to page: ${page.url()}`);
     }
 
@@ -248,7 +248,7 @@ async function run() {
     console.log('Submitting traveler details...');
     await page.click('button:has-text("Proceed to Payment")');
     await page.waitForURL('**/payment-selection.html*');
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('load');
     console.log(`Arrived at payment selection: ${page.url()}`);
 
     // Fill card payment details
@@ -262,14 +262,14 @@ async function run() {
     console.log('Submitting secure payment...');
     await page.click('#btn-pay-now');
     await page.waitForURL('**/booking-confirmation.html*');
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('load');
     console.log(`Arrived at booking confirmation: ${page.url()}`);
 
     // Click View in My Trips
     console.log('Clicking View in My Trips...');
     await page.click('text=View in My Trips');
     await page.waitForURL('**/my-trips.html*');
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('load');
     console.log(`Redirected to dashboard: ${page.url()}`);
 
     // Verify confirm booking receipt ticket modal opens

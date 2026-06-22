@@ -29,31 +29,31 @@
           <!-- Traveler Info -->
           <div class="bg-white rounded-3xl border border-gray-200 p-6 sm:p-8 shadow-sm space-y-5">
             <h2 class="text-lg font-bold text-slate-900 flex items-center gap-2">
-              <span class="text-sky-500">👤</span> Traveler Details
+              <span class="text-theme-accent">👤</span> Traveler Details
             </h2>
             <p class="text-xs text-slate-500">Names must match passport details exactly for terminal security exit clearance.</p>
             
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div class="form-group text-left">
                 <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1" for="chk-traveler-name">Lead Passenger Name</label>
-                <input id="chk-traveler-name" type="text" class="form-input w-full border border-gray-300 focus:border-sky-600 focus:ring-2 focus:ring-sky-600/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all shadow-sm" placeholder="e.g. John Doe" required autocomplete="name"/>
+                <input id="chk-traveler-name" type="text" class="form-input" placeholder="e.g. John Doe" required autocomplete="name"/>
               </div>
               
               <div class="form-group text-left">
                 <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1" for="chk-passport">Passport Number</label>
-                <input id="chk-passport" type="text" class="form-input w-full border border-gray-300 focus:border-sky-600 focus:ring-2 focus:ring-sky-600/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all shadow-sm" placeholder="e.g. Z1234567" required/>
+                <input id="chk-passport" type="text" class="form-input" placeholder="e.g. Z1234567" required/>
               </div>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div class="form-group text-left">
                 <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1" for="chk-traveler-nationality">Nationality / Country</label>
-                <input id="chk-traveler-nationality" type="text" class="form-input w-full border border-gray-300 focus:border-sky-600 focus:ring-2 focus:ring-sky-600/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all shadow-sm" placeholder="e.g. United Kingdom" required/>
+                <input id="chk-traveler-nationality" type="text" class="form-input" placeholder="e.g. United Kingdom" required/>
               </div>
               
               <div class="form-group text-left">
                 <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1" for="chk-emergency">Mobile Number (with country code)</label>
-                <input id="chk-emergency" type="tel" class="form-input w-full border border-gray-300 focus:border-sky-600 focus:ring-2 focus:ring-sky-600/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all shadow-sm" placeholder="e.g. +44 7911 123456" required autocomplete="tel"/>
+                <input id="chk-emergency" type="tel" class="form-input" placeholder="e.g. +44 7911 123456" required autocomplete="tel"/>
               </div>
             </div>
           </div>
@@ -61,19 +61,19 @@
           <!-- Flight Timings & flight numbers -->
           <div class="bg-white rounded-3xl border border-gray-200 p-6 sm:p-8 shadow-sm space-y-5">
             <h2 class="text-lg font-bold text-slate-900 flex items-center gap-2">
-              <span class="text-sky-500">✈️</span> Flight Connections
+              <span class="text-theme-accent">✈️</span> Flight Connections
             </h2>
             <p class="text-xs text-slate-500">We trace landing delays in real-time to adjust chauffeur pick-ups and room slots.</p>
             
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div class="form-group text-left">
                 <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1" for="chk-flight-in">Incoming Flight Number</label>
-                <input id="chk-flight-in" type="text" class="form-input w-full border border-gray-300 focus:border-sky-600 focus:ring-2 focus:ring-sky-600/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all shadow-sm" placeholder="e.g. BA-199" required/>
+                <input id="chk-flight-in" type="text" class="form-input" placeholder="e.g. BA-199" required/>
               </div>
               
               <div class="form-group text-left">
                 <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1" for="chk-flight-departure">Outgoing Flight Number</label>
-                <input id="chk-flight-departure" type="text" class="form-input w-full border border-gray-300 focus:border-sky-600 focus:ring-2 focus:ring-sky-600/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all shadow-sm" placeholder="e.g. EK-501" required/>
+                <input id="chk-flight-departure" type="text" class="form-input" placeholder="e.g. EK-501" required/>
               </div>
             </div>
           </div>
@@ -90,8 +90,8 @@
           </div>
           
           <div class="flex items-center justify-between">
-            <a href="booking-review.html" class="px-5 py-3 bg-white hover:bg-gray-150 text-gray-700 border border-gray-200 rounded-xl font-bold transition">Back to Review</a>
-            <button type="submit" class="px-6 py-3.5 bg-gray-900 hover:bg-black text-white font-extrabold text-xs rounded-xl shadow-lg transition hover:scale-[1.01] flex items-center gap-1">
+            <a href="booking-review.html" class="btn btn-ghost border border-gray-200">Back to Review</a>
+            <button type="submit" class="btn btn-primary flex items-center gap-1">
               Proceed to Payment &rarr;
             </button>
           </div>

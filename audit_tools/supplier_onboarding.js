@@ -2,7 +2,7 @@ const { chromium } = require('playwright');
 const path = require('path');
 const fs = require('fs');
 
-const ARTIFACTS_DIR = 'C:\\Users\\Dev Tinker\\.gemini\\antigravity-ide\\brain\\f9df78c6-37cc-4541-bc79-962564601bd6';
+const ARTIFACTS_DIR = 'C:\\Users\\Dev Tinker\\.gemini\\antigravity-ide\\brain\\ce74cb2a-d480-4432-92ad-0dcbb4134f51';
 
 // Helper to create mock upload files
 function createMockFiles() {
@@ -207,21 +207,21 @@ async function run() {
     });
   });
 
-  const baseUrl = 'http://localhost:8000';
+  const baseUrl = 'http://localhost:8001';
 
   try {
     // Clear session storage at startup
     console.log('Opening Contact page...');
     await page.goto(`${baseUrl}/contact.html`);
     await page.evaluate(() => sessionStorage.clear());
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('load');
 
     // 2. Click "Register as Supplier"
     console.log('Clicking Register as Supplier...');
     await page.click('text=Register as Supplier');
     await page.waitForURL('**/partner-registration.html');
     console.log('Successfully redirected to partner-registration.html');
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('load');
 
     // 3. Assert Auth Required panel is visible since user is Guest
     console.log('Verifying Auth Required overlay is visible...');
@@ -329,7 +329,7 @@ async function run() {
     // 6. Verify success page redirect
     console.log('Waiting for success screen redirect to status page...');
     await page.waitForURL('**/supplier-status.html*');
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('load');
     console.log('Successfully redirected to supplier-status.html');
 
     const appId = await page.locator('#status-app-ref').textContent();
@@ -356,7 +356,7 @@ async function run() {
       if (btn) btn.click();
     });
     await page.waitForURL('**/supplier-dashboard.html');
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('load');
 
     // Verify dashboard displays the correct application
     const dashAppId = await page.locator('#dash-app-id').textContent();

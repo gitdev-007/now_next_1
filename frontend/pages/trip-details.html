@@ -4,7 +4,7 @@
   <div class="container relative z-10">
     <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
       <div class="space-y-2">
-        <nav class="flex items-center gap-2 text-xs text-sky-300 mb-2" aria-label="Breadcrumb">
+        <nav class="flex items-center gap-2 text-xs text-theme-accent mb-2" aria-label="Breadcrumb">
           <a href="index.html" class="hover:underline">Home</a>
           <span>&rarr;</span>
           <a href="saved-itineraries.html" class="hover:underline">Saved Plans</a>
@@ -14,7 +14,7 @@
         <h1 class="text-3xl font-black tracking-tight" id="trip-title-header">Transit Itinerary Details</h1>
         <p class="text-sm text-sky-200" id="trip-meta-subtitle">Saved on --</p>
       </div>
-      <button onclick="loadThisTrip()" class="px-6 py-3.5 bg-sky-700 hover:bg-sky-800 text-white text-xs font-bold rounded-xl shadow-lg transition">Load & Edit in Workspace</button>
+      <button onclick="loadThisTrip()" class="px-6 py-3.5 bg-theme-primary hover:bg-sky-800 text-white text-xs font-bold rounded-xl shadow-lg transition">Load & Edit in Workspace</button>
     </div>
   </div>
 </section>
@@ -80,7 +80,7 @@
           <hr class="border-gray-100 my-4"/>
           <div class="flex items-baseline justify-between mb-4">
             <span class="text-xs text-slate-500 font-bold uppercase tracking-wider">Total Price</span>
-            <strong class="text-2xl font-black text-sky-700" id="trip-total-cost">₹0</strong>
+            <strong class="text-2xl font-black text-theme-primary" id="trip-total-cost">₹0</strong>
           </div>
           <button onclick="window.location.href='checkout.html'" class="w-full py-3.5 bg-gray-900 hover:bg-black text-white font-extrabold text-xs rounded-xl shadow-lg transition hover:scale-[1.01] flex items-center justify-center gap-2">
             ⚡ Finalize & Book Services
@@ -198,7 +198,7 @@
     const addTimelineBlock = (time, title, desc, icon = '⚪') => {
       timelineNodes.innerHTML += `
         <div class="relative bg-white border border-gray-200 p-4 rounded-xl shadow-sm">
-          <div class="absolute -left-[33px] top-4 w-5 h-5 rounded-full bg-sky-500 border-2 border-white flex items-center justify-center text-[10px] text-white">${icon}</div>
+          <div class="absolute -left-[33px] top-4 w-5 h-5 rounded-full bg-emerald-50/400 border-2 border-white flex items-center justify-center text-[10px] text-white">${icon}</div>
           <strong class="text-gray-900 block text-xs sm:text-sm font-extrabold">${time} • ${title}</strong>
           <p class="text-gray-500 text-xs mt-1 leading-relaxed">${desc}</p>
         </div>

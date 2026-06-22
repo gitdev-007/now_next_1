@@ -1,7 +1,7 @@
 const { chromium } = require('playwright');
 const path = require('path');
 
-const ARTIFACTS_DIR = 'C:\\Users\\Dev Tinker\\.gemini\\antigravity-ide\\brain\\aa93e734-8169-4a3c-ab50-f76a5f6e8625';
+const ARTIFACTS_DIR = 'C:\\Users\\Dev Tinker\\.gemini\\antigravity-ide\\brain\\ce74cb2a-d480-4432-92ad-0dcbb4134f51';
 
 async function run() {
   console.log('Starting Contact page screenshot validation...');
@@ -12,8 +12,8 @@ async function run() {
   // Desktop check
   console.log('Checking desktop layout (1280x800)...');
   await page.setViewportSize({ width: 1280, height: 800 });
-  await page.goto('http://localhost:8000/contact.html');
-  await page.waitForLoadState('networkidle');
+  await page.goto('http://localhost:8001/contact.html');
+  await page.waitForLoadState('load');
   await page.screenshot({ path: path.join(ARTIFACTS_DIR, 'contact_desktop.png'), fullPage: false });
   console.log('Saved contact_desktop.png');
 

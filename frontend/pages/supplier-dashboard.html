@@ -49,7 +49,7 @@
       <p class="text-sm text-gray-600 mb-8 max-w-md mx-auto leading-relaxed">
         You haven't submitted any supplier onboarding applications yet. Apply now to list your business on the LayoverX marketplace.
       </p>
-      <a href="partner-registration.html" class="inline-block px-8 py-3.5 bg-sky-700 hover:bg-sky-700 text-white font-bold rounded-xl shadow-md transition transform hover:-translate-y-0.5">
+      <a href="partner-registration.html" class="inline-block px-8 py-3.5 bg-theme-primary hover:bg-theme-primary text-white font-bold rounded-xl shadow-md transition transform hover:-translate-y-0.5">
         Register as Supplier
       </a>
     </div>
@@ -136,7 +136,7 @@
               </div>
               <div>
                 <span class="block text-xs text-gray-400 uppercase font-bold tracking-wider mb-0.5">Website</span>
-                <a id="dash-biz-website" href="#" target="_blank" rel="noopener" class="text-sky-700 font-bold hover:underline">--</a>
+                <a id="dash-biz-website" href="#" target="_blank" rel="noopener" class="text-theme-primary font-bold hover:underline">--</a>
               </div>
               <div>
                 <span class="block text-xs text-gray-400 uppercase font-bold tracking-wider mb-0.5">Staff & Operational Years</span>
@@ -386,8 +386,8 @@
         `;
       } else if (status === 'requires_info') {
         return `
-          <span class="px-3 py-1 rounded-full text-xs font-bold text-sky-700 bg-sky-100 flex items-center gap-1.5">
-            <span class="w-1.5 h-1.5 rounded-full bg-sky-500"></span>
+          <span class="px-3 py-1 rounded-full text-xs font-bold text-theme-primary bg-sky-100 flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-50/400"></span>
             Requires More Info
           </span>
         `;
@@ -438,7 +438,7 @@
         step3.querySelector('span').textContent = "Rejected";
       } else if (status === 'requires_info') {
         // Step 2 requires info
-        ring2.className = "w-8 h-8 rounded-full bg-sky-500 text-white font-bold text-xs flex items-center justify-center shadow-md shadow-sky-500/10 animate-bounce ring-4 ring-sky-50";
+        ring2.className = "w-8 h-8 rounded-full bg-emerald-50/400 text-white font-bold text-xs flex items-center justify-center shadow-md shadow-primary animate-bounce ring-4 ring-sky-50";
         ring2.innerHTML = 'ℹ️';
         step2.querySelector('span').className = "text-xs font-bold text-sky-600";
         step2.querySelector('span').textContent = "Requires Info";

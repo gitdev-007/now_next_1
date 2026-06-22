@@ -83,7 +83,7 @@ const fs = require('fs');
     });
   });
 
-  await page.goto('http://localhost:8000/#login', { waitUntil: 'networkidle' });
+  await page.goto('http://localhost:8001/#login', { waitUntil: 'load' });
   await page.waitForSelector('#modal-login', { state: 'visible' });
 
   console.log('Clicking Google Login...');

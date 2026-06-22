@@ -7,7 +7,7 @@
         <h1 class="text-3xl font-black tracking-tight">Saved Itineraries</h1>
         <p class="text-sm text-sky-200">Manage and reload your saved transit plans</p>
       </div>
-      <a href="plan-my-layover.html" class="px-5 py-3 bg-sky-700 hover:bg-sky-800 text-white text-xs font-bold rounded-xl shadow-lg transition">＋ Plan New Stopover</a>
+      <a href="plan-my-layover.html" class="px-5 py-3 bg-theme-primary hover:bg-sky-800 text-white text-xs font-bold rounded-xl shadow-lg transition">＋ Plan New Stopover</a>
     </div>
   </div>
 </section>
@@ -23,7 +23,7 @@
           <nav class="flex flex-col gap-1 text-sm">
             <a href="my-profile.html" class="flex items-center gap-2 px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-xl transition-all">👤 Profile Details</a>
             <a href="my-trips.html" class="flex items-center gap-2 px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-xl transition-all">✈️ My Trips</a>
-            <a href="saved-itineraries.html" class="flex items-center gap-2 px-3 py-2 bg-sky-50 text-sky-700 rounded-xl font-bold transition-all">💾 Saved Plans</a>
+            <a href="saved-itineraries.html" class="flex items-center gap-2 px-3 py-2 bg-emerald-50/40 text-theme-primary rounded-xl font-bold transition-all">💾 Saved Plans</a>
             <a href="account-settings.html" class="flex items-center gap-2 px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-xl transition-all">⚙️ Settings</a>
           </nav>
         </div>
@@ -80,7 +80,7 @@
         <div class="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between gap-4">
           <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-2">
             <div>
-              <span class="inline-block text-[10px] font-extrabold bg-sky-50 text-sky-700 px-2 py-0.5 rounded uppercase tracking-wider mb-2">
+              <span class="inline-block text-[10px] font-extrabold bg-emerald-50/40 text-theme-primary px-2 py-0.5 rounded uppercase tracking-wider mb-2">
                 ${p.location === 'near-airport' ? 'Near Mumbai Airport' : p.location.toUpperCase()}
               </span>
               <h2 class="text-lg font-extrabold text-gray-900">${hours}h Stopover Plan (${p.travelers} Guests)</h2>
@@ -90,7 +90,7 @@
             </div>
             <div class="text-right sm:text-right mt-1 sm:mt-0 flex-shrink-0">
               <span class="text-xs text-gray-400 block font-semibold uppercase">Total Cost</span>
-              <strong class="text-lg font-black text-sky-700">${p.cost}</strong>
+              <strong class="text-lg font-black text-theme-primary">${p.cost}</strong>
             </div>
           </div>
           
@@ -98,7 +98,7 @@
             <span class="text-xs font-medium text-slate-500">🛒 Selected: ${countServices} Transit Services</span>
             <div class="flex flex-wrap gap-1.5">
               <a href="trip-details.html?id=${p.id}" class="px-2.5 py-1.5 bg-gray-55 hover:bg-gray-100 text-gray-700 border border-gray-200 rounded-lg text-xs font-bold transition">View Details</a>
-              <button onclick="loadPlanIntoPlanner(${idx})" class="px-2.5 py-1.5 bg-sky-50 hover:bg-sky-100 text-sky-700 border border-sky-100 rounded-lg text-xs font-bold transition">Load</button>
+              <button onclick="loadPlanIntoPlanner(${idx})" class="px-2.5 py-1.5 bg-emerald-50/40 hover:bg-sky-100 text-theme-primary border border-sky-100 rounded-lg text-xs font-bold transition">Load</button>
               <button onclick="duplicatePlan(${idx})" class="px-2.5 py-1.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-100 rounded-lg text-xs font-bold transition">Duplicate</button>
               <button onclick="sharePlanDetails(${idx})" class="px-2.5 py-1.5 bg-purple-50 hover:bg-purple-100 text-purple-700 border border-purple-100 rounded-lg text-xs font-bold transition">Share</button>
               <button onclick="deletePlanDetails(${idx})" class="px-2.5 py-1.5 bg-red-50 hover:bg-red-100 text-red-600 border border-red-100 rounded-lg text-xs font-bold transition">Delete</button>
