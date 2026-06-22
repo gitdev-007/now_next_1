@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const base = 'frontend/pages';
+const base = 'frontend/src/pages';
 const pages = fs.readdirSync(base).filter(f => f.endsWith('.html'));
 
 const replacements = [

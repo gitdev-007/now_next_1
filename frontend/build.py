@@ -9,8 +9,8 @@ import os
 BASE = 'frontend'
 
 # Ensure directories exist
-os.makedirs(f'{BASE}/pages', exist_ok=True)
-os.makedirs(f'{BASE}/components', exist_ok=True)
+os.makedirs(f'{BASE}/src/pages', exist_ok=True)
+os.makedirs(f'{BASE}/src/components', exist_ok=True)
 os.makedirs(f'{BASE}/css', exist_ok=True)
 os.makedirs(f'{BASE}/js', exist_ok=True)
 
@@ -257,7 +257,7 @@ PAGES_METADATA = {
 }
 
 def load_component(name):
-    path = os.path.join(BASE, 'components', f'{name}.html')
+    path = os.path.join(BASE, 'src', 'components', f'{name}.html')
     if not os.path.exists(path):
         print(f"Warning: Component '{name}' not found at {path}")
         return ""
@@ -265,7 +265,7 @@ def load_component(name):
         return f.read()
 
 def compile_page(filename):
-    page_path = os.path.join(BASE, 'pages', filename)
+    page_path = os.path.join(BASE, 'src', 'pages', filename)
     if not os.path.exists(page_path):
         print(f"Error: Page source file '{filename}' not found at {page_path}")
         return
