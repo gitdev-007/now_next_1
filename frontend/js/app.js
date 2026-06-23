@@ -42,111 +42,460 @@
 
   /* ===== MOCK DATA ===== */
   const HOTELS = {
-    1: { id: 1, name: "Niranta Airport Transit Hotel & Lounge", stars: 5, rating: 4.8, reviews: 2400, distance: 0.0, price: 3499, amenities: ["24/7 Check-in", "Free WiFi", "Shower Room", "Massage Spa"], image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&h=400&fit=crop", desc: "Located directly inside Terminal 2 Arrivals area. No transit visa required. Express spa, restaurant, clean sleeping pods, and shower suites." },
-    2: { id: 2, name: "JW Marriott Mumbai Sahar", stars: 5, rating: 4.7, reviews: 1800, distance: 1.2, price: 5499, amenities: ["24/7 Check-in", "Free Airport Shuttle", "Swimming Pool", "Spa & Gym"], image: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=600&h=400&fit=crop", desc: "Five-star luxury oasis next to T2. Features premium suites, resort pool, luxury wellness treatments, and complimentary terminal dropoffs." },
-    3: { id: 3, name: "Ibis Mumbai Airport", stars: 3, rating: 4.2, reviews: 1100, distance: 0.8, price: 2200, amenities: ["24/7 Check-in", "Free WiFi", "Airport Shuttle", "Breakfast Buffet"], image: "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=600&h=400&fit=crop", desc: "Ergonomic budget rooms situated next to the domestic terminal. Soundproof windows, all-day check-in, and convenient working desks." },
-    4: { id: 4, name: "The Orchid Hotel Mumbai Vile Parle", stars: 4, rating: 4.6, reviews: 1500, distance: 2.1, price: 4500, amenities: ["24/7 Check-in", "Free Airport Shuttle", "Rooftop Pool", "Green Certified"], image: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=600&h=400&fit=crop", desc: "Asia's first certified five-star ecofriendly hotel. Runway-view pool, spa, airport transportations, and delicious multiple dining options." }
+    1: { 
+      id: 1, 
+      name: "Niranta Airport Transit Hotel & Lounge", 
+      stars: 5, 
+      rating: 4.8, 
+      reviews: 2400, 
+      distance: 0.0, 
+      price: 3499, 
+      amenities: ["24/7 Check-in", "Free WiFi", "Shower Room", "Massage Spa"], 
+      image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&h=400&fit=crop", 
+      desc: "Located directly inside Terminal 2 Arrivals area. No transit visa required. Express spa, restaurant, clean sleeping pods, and shower suites.",
+      coordinates: { lat: 19.0883, lng: 72.8683 },
+      address: {
+        full: "Terminal 2, Arrival Level, Chhatrapati Shivaji Maharaj International Airport, Mumbai 400099",
+        area: "T2 Arrivals"
+      },
+      google_place_id: "ChIJ53zP4vXG5zsRx4YhS_Rk0Q8"
+    },
+    2: { 
+      id: 2, 
+      name: "JW Marriott Mumbai Sahar", 
+      stars: 5, 
+      rating: 4.7, 
+      reviews: 1800, 
+      distance: 1.2, 
+      price: 5499, 
+      amenities: ["24/7 Check-in", "Free Airport Shuttle", "Swimming Pool", "Spa & Gym"], 
+      image: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=600&h=400&fit=crop", 
+      desc: "Five-star luxury oasis next to T2. Features premium suites, resort pool, luxury wellness treatments, and complimentary terminal dropoffs.",
+      coordinates: { lat: 19.1030, lng: 72.8735 },
+      address: {
+        full: "IA Project Road, Chhatrapati Shivaji International Airport Area, Andheri, Mumbai 400099",
+        area: "Sahar"
+      },
+      google_place_id: "ChIJN7pUOfvG5zsREJ1_R_Yw7Z8"
+    },
+    3: { 
+      id: 3, 
+      name: "Ibis Mumbai Airport", 
+      stars: 3, 
+      rating: 4.2, 
+      reviews: 1100, 
+      distance: 0.8, 
+      price: 2200, 
+      amenities: ["24/7 Check-in", "Free WiFi", "Airport Shuttle", "Breakfast Buffet"], 
+      image: "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=600&h=400&fit=crop", 
+      desc: "Ergonomic budget rooms situated next to the domestic terminal. Soundproof windows, all-day check-in, and convenient working desks.",
+      coordinates: { lat: 19.0952, lng: 72.8529 },
+      address: {
+        full: "Plot No 26, Nehru Rd, Adarsh Nagar, Vile Parle East, Mumbai 400099",
+        area: "Vile Parle East"
+      },
+      google_place_id: "ChIJR979DvfG5zsR_z1_X_Yw7Z8"
+    },
+    4: { 
+      id: 4, 
+      name: "The Orchid Hotel Mumbai Vile Parle", 
+      stars: 4, 
+      rating: 4.6, 
+      reviews: 1500, 
+      distance: 2.1, 
+      price: 4500, 
+      amenities: ["24/7 Check-in", "Free Airport Shuttle", "Rooftop Pool", "Green Certified"], 
+      image: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=600&h=400&fit=crop", 
+      desc: "Asia's first certified five-star ecofriendly hotel. Runway-view pool, spa, airport transportations, and delicious multiple dining options.",
+      coordinates: { lat: 19.0950, lng: 72.8520 },
+      address: {
+        full: "Nehru Road, Adarsh Nagar, Near Mumbai Domestic Airport, Vile Parle East, Mumbai 400099",
+        area: "Vile Parle East"
+      },
+      google_place_id: "ChIJp1eZDvfG5zsREJ1_R_Yw7Z8"
+    }
   };
 
   const DINING = {
-    1: { id: 1, name: "Gajalee Coastal Seafood Restaurant", cuisine: "seafood", rating: 4.8, reviews: 940, distance: 3.5, price: 1800, image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&h=400&fit=crop", desc: "Legendary seafood destination famous for butter garlic pepper crabs, bombil fry, stuffed pomfret, and local sol kadhi drink." },
-    2: { id: 2, name: "Peshawri - ITC Maratha", cuisine: "fine-dining", rating: 4.9, reviews: 1240, distance: 1.1, price: 4500, image: "https://images.unsplash.com/photo-1544025162-d76694265947?w=600&h=400&fit=crop", desc: "Ultra luxury traditional North-West Frontier clay-oven diner. World-famous Dal Bukhara, paneer tikka, and slow cooked lamb." },
-    3: { id: 3, name: "Highway Gomantak", cuisine: "local", rating: 4.5, reviews: 560, distance: 2.2, price: 800, image: "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=600&h=400&fit=crop", desc: "An unpretentious local icon serving Konkan seafood thalis, sol kadhi, and crispy bombay duck fry." },
-    4: { id: 4, name: "Elco Pani Puri Center", cuisine: "street-food", rating: 4.4, reviews: 1890, distance: 4.2, price: 400, image: "https://images.unsplash.com/photo-1601050690597-df056fb4ce78?w=600&h=400&fit=crop", desc: "High-hygiene local street food. Purified mineral water golgappe, pav bhaji, ragda pattice, and fresh fruit juices." }
+    1: { 
+      id: 1, 
+      name: "Gajalee Coastal Seafood Restaurant", 
+      cuisine: "seafood", 
+      rating: 4.8, 
+      reviews: 940, 
+      distance: 3.5, 
+      price: 1800, 
+      image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&h=400&fit=crop", 
+      desc: "Legendary seafood destination famous for butter garlic pepper crabs, bombil fry, stuffed pomfret, and local sol kadhi drink.",
+      coordinates: { lat: 19.1022, lng: 72.8464 },
+      address: {
+        full: "Kadamgiri Complex, Hanuman Rd, Vile Parle East, Mumbai 400057",
+        area: "Vile Parle East"
+      },
+      google_place_id: "ChIJv53pYvfG5zsRfMvV8H-i_3Q"
+    },
+    2: { 
+      id: 2, 
+      name: "Peshawri - ITC Maratha", 
+      cuisine: "fine-dining", 
+      rating: 4.9, 
+      reviews: 1240, 
+      distance: 1.1, 
+      price: 4500, 
+      image: "https://images.unsplash.com/photo-1544025162-d76694265947?w=600&h=400&fit=crop", 
+      desc: "Ultra luxury traditional North-West Frontier clay-oven diner. World-famous Dal Bukhara, paneer tikka, and slow cooked lamb.",
+      coordinates: { lat: 19.1028, lng: 72.8705 },
+      address: {
+        full: "ITC Maratha, Sahar Rd, Andheri East, Mumbai 400099",
+        area: "Andheri East"
+      },
+      google_place_id: "ChIJuS9_R_vG5zsR-T_Lz7qU8Ww"
+    },
+    3: { 
+      id: 3, 
+      name: "Highway Gomantak", 
+      cuisine: "local", 
+      rating: 4.5, 
+      reviews: 560, 
+      distance: 2.2, 
+      price: 800, 
+      image: "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=600&h=400&fit=crop", 
+      desc: "An unpretentious local icon serving Konkan seafood thalis, sol kadhi, and crispy bombay duck fry.",
+      coordinates: { lat: 19.0620, lng: 72.8480 },
+      address: {
+        full: "44/2179, Gandhi Nagar, Service Rd, Bandra East, Mumbai 400051",
+        area: "Bandra East"
+      },
+      google_place_id: "ChIJ_U-YI_HG5zsRAw_M_7qU8Ww"
+    },
+    4: { 
+      id: 4, 
+      name: "Elco Pani Puri Center", 
+      cuisine: "street-food", 
+      rating: 4.4, 
+      reviews: 1890, 
+      distance: 4.2, 
+      price: 400, 
+      image: "https://images.unsplash.com/photo-1601050690597-df056fb4ce78?w=600&h=400&fit=crop", 
+      desc: "High-hygiene local street food. Purified mineral water golgappe, pav bhaji, ragda pattice, and fresh fruit juices.",
+      coordinates: { lat: 19.0594, lng: 72.8333 },
+      address: {
+        full: "2/A, Elco Market, Hill Rd, Bandra West, Mumbai 400050",
+        area: "Bandra West"
+      },
+      google_place_id: "ChIJ7T-YI_HG5zsRAw_M_7qU8Ww"
+    }
   };
 
   const EXPERIENCES = {
-    1: { id: 1, name: "South Mumbai Gateway Heritage Tour", category: "sightseeing", rating: 4.9, duration: 5, price: 2899, image: "https://images.unsplash.com/photo-1605307066130-098b5f638948?w=600&h=400&fit=crop", desc: "AC private vehicle tour visiting the Gateway of India, Queen's Necklace, Taj Mahal Palace, and Victoria Terminus." },
-    2: { id: 2, name: "Guided Bandra Street Food Trail", category: "food", rating: 4.8, duration: 3, price: 1299, image: "https://images.unsplash.com/photo-1559339352-11d035aa65de?w=600&h=400&fit=crop", desc: "Hygienic culinary walk through Bandra West. Sample local snacks, sweet rolls, seekh kebabs, and vada pav." },
-    3: { id: 3, name: "Elephanta Caves Fast-Track Excursion", category: "culture", rating: 4.7, duration: 4, price: 1999, image: "https://images.unsplash.com/photo-1548013146-72479768bada?w=600&h=400&fit=crop", desc: "Ferry tickets and professional guides to explore the historic rock-cut cave temples on Elephanta Island." },
-    4: { id: 4, name: "Bazaar & Boutique Shopping Expedition", category: "shopping", rating: 4.6, duration: 3.5, price: 1500, image: "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600&h=400&fit=crop", desc: "Accompanied market tour to buy Indian cottons, silks, spices, and souvenirs with secure baggage drop back in cab." }
+    1: { 
+      id: 1, 
+      name: "South Mumbai Gateway Heritage Tour", 
+      category: "sightseeing", 
+      rating: 4.9, 
+      duration: 5, 
+      price: 2899, 
+      image: "https://images.unsplash.com/photo-1605307066130-098b5f638948?w=600&h=400&fit=crop", 
+      desc: "AC private vehicle tour visiting the Gateway of India, Queen's Necklace, Taj Mahal Palace, and Victoria Terminus.",
+      coordinates: { lat: 18.9220, lng: 72.8347 },
+      address: {
+        full: "Apollo Bandar, Colaba, Mumbai 400001",
+        area: "Colaba"
+      },
+      google_place_id: "ChIJW2x9_7HG5zsR_z1_X_Yw7Z8"
+    },
+    2: { 
+      id: 2, 
+      name: "Guided Bandra Street Food Trail", 
+      category: "food", 
+      rating: 4.8, 
+      duration: 3, 
+      price: 1299, 
+      image: "https://images.unsplash.com/photo-1559339352-11d035aa65de?w=600&h=400&fit=crop", 
+      desc: "Hygienic culinary walk through Bandra West. Sample local snacks, sweet rolls, seekh kebabs, and vada pav.",
+      coordinates: { lat: 19.0594, lng: 72.8333 },
+      address: {
+        full: "Hill Road, Bandra West, Mumbai 400050",
+        area: "Bandra West"
+      },
+      google_place_id: "ChIJ7T-YI_HG5zsRAw_M_7qU8Ww"
+    },
+    3: { 
+      id: 3, 
+      name: "Elephanta Caves Fast-Track Excursion", 
+      category: "culture", 
+      rating: 4.7, 
+      duration: 4, 
+      price: 1999, 
+      image: "https://images.unsplash.com/photo-1598977123418-45f04b616a0e?w=600&h=400&fit=crop", 
+      desc: "Ferry tickets and professional guides to explore the historic rock-cut cave temples on Elephanta Island.",
+      coordinates: { lat: 18.9220, lng: 72.8347 },
+      address: {
+        full: "Gateway of India, Colaba, Mumbai 400001",
+        area: "Colaba Jetty"
+      },
+      google_place_id: "ChIJW2x9_7HG5zsR_z1_X_Yw7Z8"
+    },
+    4: { 
+      id: 4, 
+      name: "Bazaar & Boutique Shopping Expedition", 
+      category: "shopping", 
+      rating: 4.6, 
+      duration: 3.5, 
+      price: 1500, 
+      image: "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600&h=400&fit=crop", 
+      desc: "Accompanied market tour to buy Indian cottons, silks, spices, and souvenirs with secure baggage drop back in cab.",
+      coordinates: { lat: 18.9472, lng: 72.8354 },
+      address: {
+        full: "Mahatma Jyotiba Phule Mandai, Dhobi Talao, Mumbai 400001",
+        area: "South Mumbai"
+      },
+      google_place_id: "ChIJu-YI_7HG5zsRAw_M_7qU8Ww"
+    }
   };
 
   const SPA_WELLNESS = {
-    1: { id: 1, name: "Heavenly Spa by Westin", category: "massage", rating: 4.9, duration: 1.5, price: 4500, image: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&h=400&fit=crop", desc: "Full-body Swedish massage, steam room access, and luxury aromatherapy in a tranquil airport-adjacent setting." },
-    2: { id: 2, name: "O2 Spa - Terminal 2", category: "express", rating: 4.7, duration: 0.5, price: 1800, image: "https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=600&h=400&fit=crop", desc: "Convenient express foot reflexology and head-neck-shoulder massage located right at the T2 arrivals lounge." },
-    3: { id: 3, name: "Six Senses Wellness Circuit", category: "full-day", rating: 4.8, duration: 3, price: 8500, image: "https://images.unsplash.com/photo-1560750588-73207b1ef5b8?w=600&h=400&fit=crop", desc: "Holistic wellness journey including detox juices, meditation session, deep tissue massage, and facial treatment." }
+    1: { 
+      id: 1, 
+      name: "Heavenly Spa by Westin", 
+      category: "massage", 
+      rating: 4.9, 
+      duration: 1.5, 
+      price: 4500, 
+      image: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&h=400&fit=crop", 
+      desc: "Full-body Swedish massage, steam room access, and luxury aromatherapy in a tranquil airport-adjacent setting.",
+      coordinates: { lat: 19.1020, lng: 72.8720 },
+      address: {
+        full: "The Westin Mumbai Sahar, Marol, Andheri East, Mumbai 400059",
+        area: "Andheri East"
+      },
+      google_place_id: "ChIJuS9_R_vG5zsR-T_Lz7qU8Ww"
+    },
+    2: { 
+      id: 2, 
+      name: "O2 Spa - Terminal 2", 
+      category: "express", 
+      rating: 4.7, 
+      duration: 0.5, 
+      price: 1800, 
+      image: "https://images.unsplash.com/photo-1611077544192-332e67500366?w=600&h=400&fit=crop", 
+      desc: "Convenient express foot reflexology and head-neck-shoulder massage located right at the T2 arrivals lounge.",
+      coordinates: { lat: 19.0883, lng: 72.8683 },
+      address: {
+        full: "T2 Arrival Level, Chhatrapati Shivaji Maharaj International Airport, Mumbai 400099",
+        area: "T2 Arrivals"
+      },
+      google_place_id: "ChIJ53zP4vXG5zsRx4YhS_Rk0Q8"
+    },
+    3: { 
+      id: 3, 
+      name: "Six Senses Wellness Circuit", 
+      category: "full-day", 
+      rating: 4.8, 
+      duration: 3, 
+      price: 8500, 
+      image: "https://images.unsplash.com/photo-1540555700478-4be289fbece8?w=600&h=400&fit=crop", 
+      desc: "Holistic wellness journey including detox juices, meditation session, deep tissue massage, and facial treatment.",
+      coordinates: { lat: 19.1020, lng: 72.8720 },
+      address: {
+        full: "The Westin Mumbai Sahar, Marol, Andheri East, Mumbai 400059",
+        area: "Andheri East"
+      },
+      google_place_id: "ChIJuS9_R_vG5zsR-T_Lz7qU8Ww"
+    }
   };
 
   const GAMING_ENTERTAINMENT = {
-    1: { id: 1, name: "Smaaash Entertainment Hub", category: "gaming", rating: 4.6, duration: 2, price: 1200, image: "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&h=400&fit=crop", desc: "Virtual reality games, bowling, cricket simulators, and arcade fun. Perfect for high-energy transit breaks." },
-    2: { id: 2, name: "PVR Directors Cut Luxury Cinema", category: "movie", rating: 4.9, duration: 3, price: 2500, image: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=600&h=400&fit=crop", desc: "Ultra-premium movie watching with recliner seats, butler service, and fine dining at the airport mall." },
-    3: { id: 3, name: "The Game Palacio - Casino Style Arcade", category: "gaming", rating: 4.7, duration: 2.5, price: 1800, image: "https://images.unsplash.com/photo-1511886929837-354d827aae26?w=600&h=400&fit=crop", desc: "Boutique bowling, high-end retro arcade games, and mechanical bull rides with a premium lounge bar." }
+    1: { 
+      id: 1, 
+      name: "Smaaash Entertainment Hub", 
+      category: "gaming", 
+      rating: 4.6, 
+      duration: 2, 
+      price: 1200, 
+      image: "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&h=400&fit=crop", 
+      desc: "Virtual reality games, bowling, cricket simulators, and arcade fun. Perfect for high-energy transit breaks.",
+      coordinates: { lat: 19.1350, lng: 72.8800 },
+      address: {
+        full: "R City Mall, LBS Rd, Amrut Nagar, Ghatkopar West, Mumbai 400086",
+        area: "Ghatkopar West"
+      },
+      google_place_id: "ChIJv53pYvfG5zsRfMvV8H-i_3Q"
+    },
+    2: { 
+      id: 2, 
+      name: "PVR Directors Cut Luxury Cinema", 
+      category: "movie", 
+      rating: 4.9, 
+      duration: 3, 
+      price: 2500, 
+      image: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=600&h=400&fit=crop", 
+      desc: "Ultra-premium movie watching with recliner seats, butler service, and fine dining at the airport mall.",
+      coordinates: { lat: 19.0860, lng: 72.8880 },
+      address: {
+        full: "Phoenix Marketcity, Kurla West, Mumbai 400070",
+        area: "Kurla West"
+      },
+      google_place_id: "ChIJv53pYvfG5zsRfMvV8H-i_3Q"
+    },
+    3: { 
+      id: 3, 
+      name: "The Game Palacio - Casino Style Arcade", 
+      category: "gaming", 
+      rating: 4.7, 
+      duration: 2.5, 
+      price: 1800, 
+      image: "https://images.unsplash.com/photo-1511886929837-354d827aae26?w=600&h=400&fit=crop", 
+      desc: "Boutique bowling, high-end retro arcade games, and mechanical bull rides with a premium lounge bar.",
+      coordinates: { lat: 19.0590, lng: 72.8300 },
+      address: {
+        full: "Elanza, Hill Rd, Bandra West, Mumbai 400050",
+        area: "Bandra West"
+      },
+      google_place_id: "ChIJ7T-YI_HG5zsRAw_M_7qU8Ww"
+    }
   };
 
-  /* ===== FIREBASE INTEGRATION ===== */
-  // The global firebase objects are initialized in firebase-config.js
-  const auth = window.layoverxAuth;
-  const db = window.layoverxDb;
+  /* ===== DATABASE & AUTH INTEGRATION ===== */
+  function mapTripToDatabase(trip) {
+    return {
+      booking_id: trip.bookingId,
+      uid: trip.uid,
+      status: trip.status || 'confirmed',
+      arrival: trip.arrival || trip.arrivalDateTime || null,
+      departure: trip.departure || trip.departureDateTime || null,
+      incoming_flight: trip.incomingFlight || null,
+      outgoing_flight: trip.outgoingFlight || null,
+      incoming_flight_delay: trip.incomingFlightDelay || 0,
+      outgoing_flight_delay: trip.outgoingFlightDelay || 0,
+      flight_cancelled: trip.flightCancelled || false,
+      departure_gate: trip.departureGate || null,
+      actual_arrival: trip.actualArrival || null,
+      actual_departure: trip.actualDeparture || null,
+      layover_duration: trip.layoverDuration || 0.0,
+      safe_exit_window: trip.safeExitWindow || 0.0,
+      experience_feasible: trip.experienceFeasible !== false,
+      details: trip,
+      payment_id: trip.paymentId || null,
+      order_id: trip.orderId || null,
+      payment_failure_reason: trip.paymentFailureReason || null,
+      created_at: trip.createdAt || new Date().toISOString(),
+      updated_at: new Date().toISOString()
+    };
+  }
+
+  function mapTripFromDatabase(row) {
+    if (!row) return null;
+    return row.details || {
+      bookingId: row.booking_id,
+      uid: row.uid,
+      status: row.status,
+      arrival: row.arrival,
+      departure: row.departure,
+      arrivalDateTime: row.arrival,
+      departureDateTime: row.departure,
+      incomingFlight: row.incoming_flight,
+      outgoingFlight: row.outgoing_flight,
+      incomingFlightDelay: row.incoming_flight_delay || 0,
+      outgoingFlightDelay: row.outgoing_flight_delay || 0,
+      flightCancelled: row.flight_cancelled || false,
+      departureGate: row.departure_gate,
+      actualArrival: row.actual_arrival,
+      actualDeparture: row.actual_departure,
+      layoverDuration: row.layover_duration,
+      safeExitWindow: row.safe_exit_window,
+      experienceFeasible: row.experience_feasible,
+      details: row.details,
+      paymentId: row.payment_id,
+      orderId: row.order_id,
+      paymentFailureReason: row.payment_failure_reason,
+      createdAt: row.created_at,
+      updatedAt: row.updated_at
+    };
+  }
 
   /* ===== AUTH ===== */
   const Auth = {
     init() {
-      // Listen for Firebase auth state changes
-      auth.onAuthStateChanged(user => {
-        if (user) {
-          // User is signed in.
-          state.user = { 
-            email: user.email, 
-            name: user.displayName || user.email.split('@')[0], 
-            avatar: (user.displayName || user.email)[0].toUpperCase(),
-            uid: user.uid
-          };
-          state.isAuthenticated = true;
-        } else {
-          // User is signed out.
-          state.user = null;
-          state.isAuthenticated = false;
-        }
-        this.updateUI();
-      });
+      if (window.supabase) {
+        window.supabase.auth.onAuthStateChange(async (event, session) => {
+          const user = session?.user;
+          if (user) {
+            state.user = { 
+              email: user.email, 
+              name: user.user_metadata?.full_name || user.email.split('@')[0], 
+              avatar: (user.user_metadata?.full_name || user.email)[0].toUpperCase(),
+              uid: user.id
+            };
+            state.isAuthenticated = true;
+
+            // Auto-upsert user profile to database
+            try {
+              await window.supabase.from("users").upsert({
+                uid: user.id,
+                full_name: user.user_metadata?.full_name || user.email.split('@')[0],
+                email: user.email,
+                created_at: new Date().toISOString()
+              });
+            } catch (dbError) {
+              console.warn("Supabase user profile auto-upsert failed:", dbError);
+            }
+          } else {
+            state.user = null;
+            state.isAuthenticated = false;
+          }
+          this.updateUI();
+        });
+      }
     },
     async login(email, password) {
       try {
-        await auth.signInWithEmailAndPassword(email, password);
+        const { data, error } = await window.supabase.auth.signInWithPassword({ email, password });
+        if (error) throw error;
         Modal.closeAll();
         showToast(`Welcome back!`, 'success');
       } catch (error) {
         console.error("Login Error:", error);
-        let msg = 'Invalid email or password.';
-        if (error.code === 'auth/user-not-found') msg = 'No account found with this email.';
-        if (error.code === 'auth/too-many-requests') msg = 'Too many attempts. Please try again later.';
+        let msg = error.message || 'Invalid email or password.';
         showToast(msg, 'error');
         throw error;
       }
     },
     async signup(name, email, password) {
       try {
-        const userCredential = await auth.createUserWithEmailAndPassword(email, password);
-        const user = userCredential.user;
-        
-        // Update Firebase profile with display name
-        await user.updateProfile({
-          displayName: name
+        const { data, error } = await window.supabase.auth.signUp({
+          email,
+          password,
+          options: {
+            data: {
+              full_name: name
+            }
+          }
         });
+        if (error) throw error;
+        const user = data.user;
         
-        // Save user profile to Firestore users collection
-        await db.collection("users").doc(user.uid).set({
-          uid: user.uid,
-          fullName: name,
+        // Save user profile to Supabase users table
+        const { error: dbError } = await window.supabase.from("users").upsert({
+          uid: user.id,
+          full_name: name,
           email: email,
-          createdAt: firebase.firestore.FieldValue.serverTimestamp()
+          created_at: new Date().toISOString()
         });
+        if (dbError) throw dbError;
         
         Modal.closeAll();
         showToast(`Account created! Welcome, ${name}.`, 'success');
       } catch (error) {
         console.error("Signup Error:", error);
-        let msg = error.message;
-        if (error.code === 'auth/email-already-in-use') msg = 'This email is already registered.';
-        if (error.code === 'auth/weak-password') msg = 'Password is too weak. Must be at least 6 characters.';
-        showToast(msg, 'error');
+        showToast(error.message || 'Signup failed', 'error');
         throw error;
       }
     },
     async logout() {
       try {
-        await auth.signOut();
+        const { error } = await window.supabase.auth.signOut();
+        if (error) throw error;
         showToast("Signed out successfully.", 'info');
         setTimeout(() => window.location.reload(), 800);
       } catch (error) {
@@ -158,7 +507,7 @@
       const isAuth = state.isAuthenticated;
       $$('.auth-guest').forEach((el) => el.style.display = isAuth ? 'none' : 'flex');
       $$('.auth-user').forEach((el) => el.style.display = isAuth ? 'flex' : 'none');
-      $$('.user-name').forEach((el) => el.textContent = state.user?.name || 'Traveler');
+      $$('.user-name').forEach((el) => el.textContent = state.user?.name || '');
       $$('.user-avatar-letter').forEach((el) => el.textContent = state.user?.avatar || 'U');
       $$('.user-email-display').forEach((el) => el.textContent = state.user?.email || 'traveler@layoverx.com');
     }
@@ -296,6 +645,7 @@
     }, 4000);
   };
   const showToast = window.layoverx.showToast;
+  window.showToast = showToast;
 
   /* ===== NAVBAR DECORATOR ===== */
   function decorateNavbar() {
@@ -304,8 +654,12 @@
     const menuBtn = $('#menu-btn');
     if (!navbar) return;
     
+    // Check if page has a dark hero section or layout
+    const hasHero = document.querySelector('#hero-section') || document.querySelector('.theme-hero');
+    
     function handleScroll() {
-      const scrolled = window.scrollY > 40;
+      // If no hero section exists, always use the scrolled/opaque style
+      const scrolled = window.scrollY > 40 || !hasHero;
       navbar.classList.toggle('bg-transparent', !scrolled);
       navbar.classList.toggle('bg-white/95', scrolled);
       navbar.classList.toggle('backdrop-blur-xl', scrolled);
@@ -1921,35 +2275,13 @@
     socialLogin: async (p) => {
       if (p === 'google') {
         try {
-          const provider = new firebase.auth.GoogleAuthProvider();
-          // Add standard OAuth scopes if needed
-          provider.addScope('email');
-          provider.addScope('profile');
-          
-          const result = await auth.signInWithPopup(provider);
-          const user = result.user;
-          
-          Modal.closeAll();
-          showToast(`Welcome back, ${user.displayName || user.email.split('@')[0]}!`);
-          
-          try {
-            // Save user profile to Firestore users collection
-            await db.collection("users").doc(user.uid).set({
-              uid: user.uid,
-              fullName: user.displayName || user.email.split('@')[0],
-              email: user.email,
-              lastLogin: firebase.firestore.FieldValue.serverTimestamp()
-            }, { merge: true });
-          } catch (dbError) {
-            console.warn("Firestore profile update failed, but auth succeeded:", dbError);
-          }
+          const { error } = await window.supabase.auth.signInWithOAuth({
+            provider: 'google'
+          });
+          if (error) throw error;
         } catch (error) {
           console.error("Google Login Error:", error);
-          if (error.code === 'auth/invalid-credential' || error.code === 'auth/popup-closed-by-user') {
-             showToast(`Google login cancelled or invalid.`);
-          } else {
-             showToast(`Google login failed: ${error.message}`);
-          }
+          showToast(`Google login failed: ${error.message || error}`);
         }
       } else {
         showToast(`Redirecting to ${p.toUpperCase()} login...`);
@@ -2233,6 +2565,14 @@
     initCheckoutPage();
     initMyTripsPage();
     updateItineraryBadges();
+
+    const isCheckoutPage = window.location.pathname.includes('checkout.html') ||
+                           window.location.pathname.includes('payment-selection.html') ||
+                           window.location.pathname.includes('booking-review.html');
+    if (isCheckoutPage) {
+      checkAndCreateLock();
+      initCrossTabSync();
+    }
 
     console.log('%c LayoverX Premium Portal Activated ✈️ ', 'background:#0ea5e9;color:#fff;font-weight:bold;padding:4px 8px;border-radius:4px');
   }
@@ -2571,7 +2911,7 @@
       discountLogs.push(`Long-stay discount (10%): -₹${discVal.toFixed(2)}`);
     }
 
-    if (auth.currentUser) {
+    if (state.isAuthenticated) {
       const discVal = subtotal * 0.05;
       totalDiscount += discVal;
       discountLogs.push(`Loyalty member discount (5%): -₹${discVal.toFixed(2)}`);
@@ -2645,9 +2985,80 @@
   };
 
   const TRANSFERS = {
-    'sedan': { id: 'sedan', name: "Compact Sedan (Toyota Etios or similar)", type: "sedan", rating: 4.8, reviews: 2100, price: 899, image: "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=600&h=400&fit=crop", desc: "Ideal for 1-3 passengers with standard luggage. AC, GPS tracking, and verified high hygiene standards.", amenities: ["4 Passengers", "2 Large Bags", "Instant Confirmation"] },
-    'suv': { id: 'suv', name: "Premium SUV (Toyota Innova Crysta)", type: "suv", rating: 4.9, reviews: 1800, price: 1499, image: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=600&h=400&fit=crop", desc: "Extra room, premium comfort, great for families. AC, high luggage capacity, and professional English-speaking drivers.", amenities: ["6 Passengers", "4 Large Bags", "Popular Choice"] },
-    'luxury': { id: 'luxury', name: "Luxury Executive (Mercedes C-Class or Audi A4)", type: "luxury", rating: 4.9, reviews: 840, price: 3499, image: "https://images.unsplash.com/photo-1563720223185-11003d516935?w=600&h=400&fit=crop", desc: "Chauffeur-driven luxury class vehicle. Leather seats, airport exit gate placard meet and greet service included.", amenities: ["4 Passengers", "2 Large Bags", "Premium Chauffeur"] }
+    'sedan': { 
+      id: 'sedan', 
+      name: "Compact Sedan (Toyota Etios or similar)", 
+      type: "sedan", 
+      rating: 4.8, 
+      reviews: 2100, 
+      price: 899, 
+      image: "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=600&h=400&fit=crop", 
+      desc: "Ideal for 1-3 passengers with standard luggage. AC, GPS tracking, and verified high hygiene standards.", 
+      amenities: ["4 Passengers", "2 Large Bags", "Instant Confirmation"],
+      coordinates: { lat: null, lng: null },
+      address: {
+        full: "Vehicle Fleet",
+        area: "City-wide"
+      },
+      google_place_id: "fleet_sedan"
+    },
+    'suv': { 
+      id: 'suv', 
+      name: "Premium SUV (Toyota Innova Crysta)", 
+      type: "suv", 
+      rating: 4.9, 
+      reviews: 1800, 
+      price: 1499, 
+      image: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=600&h=400&fit=crop", 
+      desc: "Extra room, premium comfort, great for families. AC, high luggage capacity, and professional English-speaking drivers.", 
+      amenities: ["6 Passengers", "4 Large Bags", "Popular Choice"],
+      coordinates: { lat: null, lng: null },
+      address: {
+        full: "Vehicle Fleet",
+        area: "City-wide"
+      },
+      google_place_id: "fleet_suv"
+    },
+    'luxury': { 
+      id: 'luxury', 
+      name: "Luxury Executive (Mercedes C-Class or Audi A4)", 
+      type: "luxury", 
+      rating: 4.9, 
+      reviews: 840, 
+      price: 3499, 
+      image: "https://images.unsplash.com/photo-1563720223185-11003d516935?w=600&h=400&fit=crop", 
+      desc: "Chauffeur-driven luxury class vehicle. Leather seats, airport exit gate placard meet and greet service included.", 
+      amenities: ["4 Passengers", "2 Large Bags", "Premium Chauffeur"],
+      coordinates: { lat: null, lng: null },
+      address: {
+        full: "Vehicle Fleet",
+        area: "City-wide"
+      },
+      google_place_id: "fleet_luxury"
+    }
+  };
+
+  const TERMINAL_NODES = {
+    'CSMIA_T1': {
+      id: 'CSMIA_T1',
+      name: 'Mumbai Airport Terminal 1',
+      type: 'airport_terminal',
+      coordinates: { lat: 19.0913, lng: 72.8524 },
+      address: {
+        full: "Domestic Terminal, Santacruz East, Mumbai 400099",
+        area: "Santacruz"
+      }
+    },
+    'CSMIA_T2': {
+      id: 'CSMIA_T2',
+      name: 'Mumbai Airport Terminal 2',
+      type: 'airport_terminal',
+      coordinates: { lat: 19.0896, lng: 72.8656 },
+      address: {
+        full: "International Terminal, Sahar Road, Andheri East, Mumbai 400099",
+        area: "Sahar"
+      }
+    }
   };
 
   function initGlobalTravelContext() {
@@ -2765,6 +3176,10 @@
     
     if (window.location.pathname.includes('my-itinerary')) {
       renderWorkspaceItinerary();
+    }
+
+    if (window.layoverxAnalytics) {
+      window.layoverxAnalytics.trackEvent("Search Context Updated", { location: loc, duration: hours, travelers: trav });
     }
   }
 
@@ -3304,14 +3719,46 @@
 
     if (totalEl) totalEl.textContent = `₹${calculations.grandTotal.toFixed(2)}`;
 
-    auth.onAuthStateChanged(user => {
-      if (user) {
-        const nameInput = $('#chk-traveler-name');
-        if (nameInput && !nameInput.value) {
-          nameInput.value = user.displayName || user.email.split('@')[0];
+    let tempBooking = null;
+    try {
+      const storedTemp = localStorage.getItem('layoverx_temp_booking');
+      if (storedTemp) tempBooking = JSON.parse(storedTemp);
+    } catch(e) { console.error(e); }
+
+    const nameVal = (tempBooking && tempBooking.passenger) || localStorage.getItem('layoverx_passenger_name');
+    const passportVal = (tempBooking && tempBooking.passport) || localStorage.getItem('layoverx_passport_number');
+    const nationalityVal = tempBooking && tempBooking.nationality;
+    const flightVal = (tempBooking && tempBooking.incomingFlight) || localStorage.getItem('layoverx_flight_number');
+    const flightOutVal = tempBooking && tempBooking.outgoingFlight;
+    const emergencyVal = (tempBooking && tempBooking.emergencyContact) || localStorage.getItem('layoverx_emergency_contact');
+
+    if (nameVal && $('#chk-traveler-name')) $('#chk-traveler-name').value = nameVal;
+    if (passportVal && $('#chk-passport')) $('#chk-passport').value = passportVal;
+    if (nationalityVal && $('#chk-traveler-nationality')) $('#chk-traveler-nationality').value = nationalityVal;
+    if (flightVal && $('#chk-flight-in')) $('#chk-flight-in').value = flightVal;
+    if (flightOutVal && $('#chk-flight-departure')) $('#chk-flight-departure').value = flightOutVal;
+    if (emergencyVal && $('#chk-emergency')) $('#chk-emergency').value = emergencyVal;
+
+    if (window.supabase) {
+      window.supabase.auth.getSession().then(({ data: { session } }) => {
+        const user = session?.user;
+        if (user) {
+          const nameInput = $('#chk-traveler-name');
+          if (nameInput && !nameInput.value) {
+            nameInput.value = user.user_metadata?.full_name || user.email.split('@')[0];
+          }
         }
-      }
-    });
+      });
+      window.supabase.auth.onAuthStateChange((event, session) => {
+        const user = session?.user;
+        if (user) {
+          const nameInput = $('#chk-traveler-name');
+          if (nameInput && !nameInput.value) {
+            nameInput.value = user.user_metadata?.full_name || user.email.split('@')[0];
+          }
+        }
+      });
+    }
   }
 
   function initMyTripsPage() {
@@ -3334,17 +3781,23 @@
 
     let trips = getLocalCompletedTrips();
 
-    const user = auth.currentUser;
-    if (user) {
+    if (window.supabase) {
       try {
-        const snapshot = await db.collection("trips").where("uid", "==", user.uid).get();
-        const firestoreTrips = [];
-        snapshot.forEach(doc => firestoreTrips.push(doc.data()));
-        if (firestoreTrips.length > 0) {
-          trips = firestoreTrips;
+        const { data: { session } } = await window.supabase.auth.getSession();
+        const user = session?.user;
+        if (user) {
+          const { data: dbTrips, error: dbError } = await window.supabase
+            .from("trips")
+            .select("*")
+            .eq("uid", user.id);
+          if (dbError) throw dbError;
+          const dbTripsMapped = (dbTrips || []).map(row => row.details || mapTripFromDatabase(row));
+          if (dbTripsMapped.length > 0) {
+            trips = dbTripsMapped;
+          }
         }
       } catch (dbError) {
-        console.warn("Could not query Firestore upcoming trips:", dbError);
+        console.warn("Could not query Supabase upcoming trips:", dbError);
       }
     }
 
@@ -3535,6 +3988,10 @@
 
     updateItineraryBadges();
     showToast(`Added "${dictItem.name}" to Itinerary Workspace.`, "success");
+
+    if (window.layoverxAnalytics) {
+      window.layoverxAnalytics.trackEvent("Item Added To Cart", { type, id, name: dictItem.name, price: dictItem.price });
+    }
   }
 
   function reorderWorkspaceItem(idx, direction) {
@@ -3570,8 +4027,14 @@
 
     if (itinerary[idx]) {
       const name = itinerary[idx].name;
+      const type = itinerary[idx].type;
+      const id = itinerary[idx].id;
       itinerary.splice(idx, 1);
       showToast(`Removed "${name}" from Itinerary.`, "info");
+
+      if (window.layoverxAnalytics) {
+        window.layoverxAnalytics.trackEvent("Item Removed From Cart", { type, id, name });
+      }
     }
 
     try {
@@ -3682,6 +4145,81 @@
     }
   }
 
+  function switchExperienceTab(tab) {
+    const tabs = ['tours', 'spa', 'gaming'];
+    tabs.forEach(t => {
+      const content = document.getElementById(`tab-content-${t}`);
+      const btn = document.getElementById(`tab-exp-${t}`);
+      if (content) {
+        if (t === tab) content.classList.remove('hidden');
+        else content.classList.add('hidden');
+      }
+      if (btn) {
+        if (t === tab) {
+          btn.className = 'px-3 py-1.5 text-xs font-bold rounded-lg transition bg-white text-sky-700 shadow-sm';
+        } else {
+          btn.className = 'px-3 py-1.5 text-xs font-bold rounded-lg transition text-gray-655 hover:text-gray-900';
+        }
+      }
+    });
+  }
+
+  function savePlannerToItinerary() {
+    const travelerName = $('#review-traveler-name')?.value || '';
+    const passportNumber = $('#review-passport')?.value || '';
+    const flightNumber = $('#review-flight-in')?.value || '';
+    const emergencyContact = $('#review-emergency')?.value || '';
+
+    if (travelerName) localStorage.setItem('layoverx_passenger_name', travelerName);
+    if (passportNumber) localStorage.setItem('layoverx_passport_number', passportNumber);
+    if (flightNumber) localStorage.setItem('layoverx_flight_number', flightNumber);
+    if (emergencyContact) localStorage.setItem('layoverx_emergency_contact', emergencyContact);
+
+    const cab = state.currentPlan.cabType || 'sedan';
+    const cItem = TRANSFERS[cab];
+    const itinerary = [];
+    if (cItem) {
+      itinerary.push({
+        type: 'transfer',
+        id: cab,
+        name: cItem.name,
+        price: cItem.price,
+        duration: 0.5,
+        image: cItem.image,
+        desc: cItem.desc || ''
+      });
+    }
+
+    (state.currentPlan.items || []).forEach(item => {
+      let dict = null;
+      if (item.type === 'hotel') dict = HOTELS;
+      else if (item.type === 'dining') dict = DINING;
+      else if (item.type === 'activity') dict = EXPERIENCES;
+      else if (item.type === 'spa') dict = SPA_WELLNESS;
+      else if (item.type === 'gaming') dict = GAMING_ENTERTAINMENT;
+      
+      const dictItem = dict ? dict[item.id] : null;
+      if (dictItem) {
+        itinerary.push({
+          type: item.type,
+          id: item.id,
+          name: dictItem.name,
+          price: dictItem.price,
+          duration: item.duration,
+          image: dictItem.image,
+          desc: dictItem.desc || ''
+        });
+      }
+    });
+
+    try {
+      localStorage.setItem('layoverx_current_itinerary', JSON.stringify(itinerary));
+    } catch(e) { console.error(e); }
+
+    updateItineraryBadges();
+    proceedToCheckout();
+  }
+
   function proceedToCheckout() {
     let itinerary = [];
     try {
@@ -3710,6 +4248,10 @@
     if (usedHours > safeWindow) {
       showToast("Your itinerary duration exceeds your safe layover exit window. Please adjust timings first.", "error");
       return;
+    }
+
+    if (window.layoverxAnalytics) {
+      window.layoverxAnalytics.trackEvent("Checkout Started", { itemsCount: itinerary.length, usedHours });
     }
 
     window.location.href = 'booking-review.html';
@@ -3746,6 +4288,12 @@
 
     const bookingId = `LX-${Math.floor(Math.random() * 90000 + 10000)}-CSMIA`;
 
+    let user = null;
+    if (window.supabase) {
+      const { data: { session } } = await window.supabase.auth.getSession();
+      user = session?.user;
+    }
+
     const tripData = {
       bookingId,
       items: itinerary,
@@ -3755,18 +4303,20 @@
       emergencyContact,
       totalCost,
       createdAt: new Date().toISOString(),
-      uid: auth.currentUser?.uid || 'guest-traveler'
+      uid: user ? user.id : 'guest-traveler'
     };
 
     let completedTrips = getLocalCompletedTrips();
     completedTrips.push(tripData);
     localStorage.setItem('layoverx_completed_trips', JSON.stringify(completedTrips));
 
-    if (auth.currentUser) {
+    if (user && window.supabase) {
       try {
-        await db.collection("trips").doc(bookingId).set(tripData);
+        const payload = mapTripToDatabase(tripData);
+        const { error } = await window.supabase.from("trips").upsert(payload);
+        if (error) throw error;
       } catch (dbError) {
-        console.warn("Firestore trip save failed, saved locally:", dbError);
+        console.warn("Supabase trip save failed, saved locally:", dbError);
       }
     }
 
@@ -4101,6 +4651,603 @@
     Modal.open('trip-receipt');
   }
 
+  /* ===== CHECKOUT INVENTORY LOCK & COUNTDOWN TIMER ===== */
+  let countdownInterval = null;
+
+  async function checkAndCreateLock() {
+    const callApi = async (endpoint, payload) => {
+      const backendUrl = window.LAYOVERX_SUPABASE_CONFIG?.backendUrl || "https://api.layoverx.in";
+      let token = null;
+      if (window.supabase) {
+        const { data: { session } } = await window.supabase.auth.getSession();
+        if (session) token = session.access_token;
+      }
+      const headers = { 'Content-Type': 'application/json' };
+      if (token) headers['Authorization'] = `Bearer ${token}`;
+      
+      const response = await fetch(`${backendUrl}/api/${endpoint}`, {
+        method: 'POST',
+        headers,
+        body: JSON.stringify(payload)
+      });
+      const resData = await response.json();
+      if (!response.ok) {
+        throw new Error(resData.error || resData.message || 'API request failed');
+      }
+      return resData;
+    };
+
+    let expiry = parseInt(localStorage.getItem('layoverx_lock_expiry') || 0);
+    let sessionId = localStorage.getItem('layoverx_lock_session_id');
+    let lockedItems = [];
+    try {
+      const stored = localStorage.getItem('layoverx_locked_items');
+      if (stored) lockedItems = JSON.parse(stored);
+    } catch(e) { console.error(e); }
+    
+    let itinerary = [];
+    try {
+      const stored = localStorage.getItem('layoverx_current_itinerary');
+      if (stored) itinerary = JSON.parse(stored);
+    } catch(e) { console.error(e); }
+
+    if (itinerary.length === 0 && lockedItems.length === 0) {
+      return; // nothing to lock
+    }
+
+    const items = lockedItems.length > 0 ? lockedItems : itinerary.map(item => ({
+      serviceId: String(item.id),
+      slot: item.slot || 'slot_default'
+    }));
+
+    // If there is an existing session, validate it against backend
+    if (sessionId && expiry) {
+      try {
+        const res = await callApi('bookings/validate-lock', { items, sessionId });
+        if (res && res.success) {
+          expiry = res.expiresAt;
+          localStorage.setItem('layoverx_lock_expiry', expiry);
+          localStorage.setItem('layoverx_locked_items', JSON.stringify(items));
+          startCountdownTimer(expiry, res.serverTime);
+          return;
+        } else {
+          // Lock session is invalid/expired. Clear it and show expired modal.
+          localStorage.removeItem('layoverx_lock_expiry');
+          localStorage.removeItem('layoverx_lock_session_id');
+          localStorage.removeItem('layoverx_locked_items');
+          showExpirationModal();
+          return;
+        }
+      } catch (err) {
+        console.error("validateLockSession failed:", err);
+        // Fallback to local countdown if valid locally
+        const localExpiry = parseInt(localStorage.getItem('layoverx_lock_expiry') || 0);
+        if (localExpiry > Date.now()) {
+          startCountdownTimer(localExpiry, Date.now());
+          return;
+        } else {
+          localStorage.removeItem('layoverx_lock_expiry');
+          localStorage.removeItem('layoverx_lock_session_id');
+          localStorage.removeItem('layoverx_locked_items');
+          showExpirationModal();
+          return;
+        }
+      }
+    }
+
+    // Create a new lock session
+    sessionId = `sess_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+    try {
+      const res = await callApi('bookings/lock', { items, sessionId });
+      if (res && res.success) {
+        expiry = res.expiresAt;
+        localStorage.setItem('layoverx_lock_expiry', expiry);
+        localStorage.setItem('layoverx_lock_session_id', sessionId);
+        localStorage.setItem('layoverx_locked_items', JSON.stringify(items));
+        showToast("Inventory locked successfully.", "success");
+        startCountdownTimer(expiry, res.serverTime);
+      } else {
+        showToast("Failed to lock inventory: " + (res ? res.error : "Unknown error"), "error");
+        setTimeout(() => {
+          window.location.href = 'my-itinerary.html';
+        }, 2000);
+        return;
+      }
+    } catch (err) {
+      console.error("lockInventory failed:", err);
+      showToast("Error locking inventory. Please try again.", "error");
+      setTimeout(() => {
+        window.location.href = 'my-itinerary.html';
+      }, 2000);
+      return;
+    }
+  }
+
+  function startCountdownTimer(serverExpiry, serverTime) {
+    if (countdownInterval) clearInterval(countdownInterval);
+
+    // If not called with server time, fallback to local storage values
+    if (serverExpiry === undefined || serverTime === undefined) {
+      serverExpiry = parseInt(localStorage.getItem('layoverx_lock_expiry') || 0);
+      serverTime = Date.now();
+    }
+
+    // Monotonic time tracking to prevent clock tampering
+    const remainingSecondsOnLoad = (serverExpiry - serverTime) / 1000;
+    const loadPerfTime = performance.now();
+
+    // Prepend timer banner inside <main id="main"> if not already present
+    let banner = document.getElementById('reservation-timer-banner');
+    if (!banner) {
+      const mainEl = document.getElementById('main');
+      if (mainEl) {
+        banner = document.createElement('div');
+        banner.id = 'reservation-timer-banner';
+        mainEl.insertBefore(banner, mainEl.firstChild);
+      }
+    }
+
+    function updateTimer() {
+      if (!serverExpiry) return;
+
+      const elapsed = (performance.now() - loadPerfTime) / 1000;
+      const remainingTime = remainingSecondsOnLoad - elapsed; // clock independent
+
+      // Cache remainingTime globally on window so other components can access it securely without reading localStorage
+      window.layoverx.remainingTime = remainingTime;
+
+      if (remainingTime > 0) {
+        // ACTIVE state
+        const mins = Math.floor(remainingTime / 60);
+        const secs = Math.floor(remainingTime % 60);
+        const timeStr = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+        
+        if (banner) {
+          banner.className = "w-full text-center py-3 px-4 text-sm font-bold z-50 bg-sky-950/90 text-sky-400 border-b border-sky-900 backdrop-blur-md sticky top-[72px] transition-colors duration-300";
+          banner.innerHTML = `⏳ Reservation Held — ${timeStr} remaining`;
+        }
+        enableCheckoutControls();
+
+      } else if (remainingTime <= 0 && remainingTime > -30) {
+        // GRACE state
+        if (banner) {
+          banner.className = "w-full text-center py-3 px-4 text-sm font-bold z-50 bg-amber-950/90 text-amber-500 border-b border-amber-900 backdrop-blur-md sticky top-[72px] animate-pulse transition-colors duration-300";
+          banner.innerHTML = `⚠ Reservation expired. Finish payment within 30 seconds.`;
+        }
+
+        const isRazorpayOpen = window.layoverx && window.layoverx.razorpayOpen;
+        if (!isRazorpayOpen) {
+          disableCheckoutControls();
+        }
+
+      } else {
+        // EXPIRED state
+        clearInterval(countdownInterval);
+
+        if (banner) {
+          banner.className = "w-full text-center py-3 px-4 text-sm font-bold z-50 bg-red-950/90 text-red-500 border-b border-red-900 backdrop-blur-md sticky top-[72px] transition-colors duration-300";
+          banner.innerHTML = `Your reservation has expired. Please restart checkout.`;
+        }
+
+        disableCheckoutControls();
+        showExpirationModal();
+      }
+    }
+
+    updateTimer();
+    countdownInterval = setInterval(updateTimer, 1000);
+  }
+
+  function getRemainingTime() {
+    if (window.layoverx.remainingTime !== undefined) {
+      return window.layoverx.remainingTime;
+    }
+    const expiry = parseInt(localStorage.getItem('layoverx_lock_expiry') || 0);
+    if (!expiry) return -999;
+    return (expiry - Date.now()) / 1000;
+  }
+
+  function enableCheckoutControls() {
+    const forms = ['#checkout-booking-form', '#payment-selection-form'];
+    forms.forEach(selector => {
+      const form = document.querySelector(selector);
+      if (form) {
+        const inputs = form.querySelectorAll('input, select, textarea, button');
+        inputs.forEach(el => {
+          if (el.id !== 'btn-context-submit') {
+            el.removeAttribute('disabled');
+            el.classList.remove('opacity-50', 'cursor-not-allowed');
+          }
+        });
+      }
+    });
+
+    const payBtn = document.getElementById('btn-pay-now');
+    if (payBtn) {
+      payBtn.removeAttribute('disabled');
+      payBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+    }
+
+    const proceedLinks = document.querySelectorAll('a[href="checkout.html"], a[href="payment-selection.html"]');
+    proceedLinks.forEach(el => {
+      el.classList.remove('opacity-50', 'pointer-events-none', 'cursor-not-allowed');
+    });
+  }
+
+  function disableCheckoutControls() {
+    const forms = ['#checkout-booking-form', '#payment-selection-form'];
+    forms.forEach(selector => {
+      const form = document.querySelector(selector);
+      if (form) {
+        const inputs = form.querySelectorAll('input, select, textarea, button');
+        inputs.forEach(el => {
+          el.setAttribute('disabled', 'true');
+          el.classList.add('opacity-50', 'cursor-not-allowed');
+        });
+      }
+    });
+
+    const payBtn = document.getElementById('btn-pay-now');
+    if (payBtn) {
+      payBtn.setAttribute('disabled', 'true');
+      payBtn.classList.add('opacity-50', 'cursor-not-allowed');
+    }
+
+    const proceedLinks = document.querySelectorAll('a[href="checkout.html"], a[href="payment-selection.html"]');
+    proceedLinks.forEach(el => {
+      el.classList.add('opacity-50', 'pointer-events-none', 'cursor-not-allowed');
+    });
+  }
+
+  // ===== CROSS-TAB SYNC — BROADCAST CHANNEL =====
+
+  /**
+   * Broadcasts a checkout lifecycle event to all other open tabs via localStorage.
+   * The storage event fires in every other tab but NOT in the originating tab.
+   *
+   * @param {'payment_complete'|'expired'|'restarted'} type - Event type
+   */
+  function broadcastCheckoutEvent(type) {
+    try {
+      localStorage.setItem('layoverx_checkout_event', JSON.stringify({
+        type,
+        ts: Date.now()
+      }));
+    } catch(e) {
+      console.warn('broadcastCheckoutEvent: could not write to localStorage', e);
+    }
+  }
+
+  /**
+   * Shows a modal informing the user that checkout was completed in another tab.
+   * Does NOT include a Restart button — the user should navigate away normally.
+   */
+  function showCompletedInOtherTabModal() {
+    // Remove any existing expiration modal to avoid overlap
+    const existingExpired = document.getElementById('modal-checkout-expired');
+    if (existingExpired) existingExpired.remove();
+
+    let modal = document.getElementById('modal-checkout-other-tab');
+    if (!modal) {
+      modal = document.createElement('div');
+      modal.id = 'modal-checkout-other-tab';
+      modal.className = "fixed inset-0 z-[10000] flex items-center justify-center bg-slate-900/90 backdrop-blur-md p-4";
+      modal.innerHTML = `
+        <div class="modal-content max-w-md w-full bg-white rounded-3xl border border-gray-200 p-8 shadow-2xl text-center space-y-6 transform scale-100 transition-all duration-300">
+          <div class="w-16 h-16 bg-emerald-50 text-emerald-500 rounded-full flex items-center justify-center text-3xl mx-auto">
+            ✅
+          </div>
+          <div class="space-y-2">
+            <h3 class="text-xl font-black text-slate-900">Booking Confirmed</h3>
+            <p class="text-sm text-slate-600">Checkout was completed in another tab. Your booking is confirmed.</p>
+          </div>
+          <a href="my-trips.html" class="block w-full py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-sm rounded-xl shadow-lg transition transform hover:scale-[1.01] text-center">
+            View My Trips
+          </a>
+        </div>
+      `;
+      document.body.appendChild(modal);
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  /**
+   * Registers a storage event listener on checkout/payment/review pages.
+   * Reacts to cross-tab lock state changes broadcast via layoverx_checkout_event.
+   */
+  function initCrossTabSync() {
+    const isCheckoutPage = window.location.pathname.includes('checkout.html') ||
+                           window.location.pathname.includes('payment-selection.html') ||
+                           window.location.pathname.includes('booking-review.html');
+    if (!isCheckoutPage) return;
+
+    window.addEventListener('storage', function(event) {
+      if (event.key !== 'layoverx_checkout_event') return;
+
+      let evt = null;
+      try { evt = JSON.parse(event.newValue); } catch(e) { return; }
+      if (!evt || typeof evt.type !== 'string') return;
+
+      // Ignore stale events older than 10 seconds (e.g. leftover from previous sessions)
+      if ((Date.now() - evt.ts) > 10000) return;
+
+      console.log('[CrossTabSync] Received event from another tab:', evt.type);
+
+      if (evt.type === 'payment_complete') {
+        // Another tab successfully completed payment
+        if (countdownInterval) clearInterval(countdownInterval);
+        disableCheckoutControls();
+        showCompletedInOtherTabModal();
+
+      } else if (evt.type === 'expired' || evt.type === 'restarted') {
+        // Another tab expired or restarted checkout — sync this tab to expired state
+        if (countdownInterval) clearInterval(countdownInterval);
+        disableCheckoutControls();
+        // Clear local lock state so this tab doesn't re-validate a dead session
+        localStorage.removeItem('layoverx_lock_expiry');
+        localStorage.removeItem('layoverx_lock_session_id');
+        localStorage.removeItem('layoverx_locked_items');
+        showExpirationModal();
+      }
+    });
+  }
+
+  // ===== END CROSS-TAB SYNC =====
+
+  function showExpirationModal() {
+    // Broadcast to other tabs ONLY if this is the originating tab (not already syncing)
+    // Guard: only broadcast if we still have a live session (not already cleared)
+    const hasLiveSession = !!localStorage.getItem('layoverx_lock_session_id');
+    if (hasLiveSession) {
+      broadcastCheckoutEvent('expired');
+    }
+
+    let modal = document.getElementById('modal-checkout-expired');
+    if (!modal) {
+      modal = document.createElement('div');
+      modal.id = 'modal-checkout-expired';
+      modal.className = "fixed inset-0 z-[10000] flex items-center justify-center bg-slate-900/90 backdrop-blur-md p-4";
+      modal.innerHTML = `
+        <div class="modal-content max-w-md w-full bg-white rounded-3xl border border-gray-200 p-8 shadow-2xl text-center space-y-6 transform scale-100 transition-all duration-300">
+          <div class="w-16 h-16 bg-red-50 text-red-500 rounded-full flex items-center justify-center text-3xl mx-auto animate-bounce">
+            ⚠️
+          </div>
+          <div class="space-y-2">
+            <h3 class="text-xl font-black text-slate-900">Reservation Expired</h3>
+            <p class="text-sm text-slate-600">Your reservation has expired. Please restart checkout.</p>
+          </div>
+          <button id="btn-restart-checkout" onclick="window.layoverx.restartCheckout()" class="w-full py-3.5 bg-gray-900 hover:bg-black text-white font-extrabold text-sm rounded-xl shadow-lg transition transform hover:scale-[1.01]">
+            Restart Checkout
+          </button>
+        </div>
+      `;
+      document.body.appendChild(modal);
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  function initializeTransitMap(details, activePlan) {
+    function showMapFallback(message = "Map unavailable. View itinerary timeline instead.") {
+      const mapContainer = document.getElementById('itinerary-map-container');
+      if (mapContainer) {
+        mapContainer.innerHTML = `
+          <div class="p-8 text-center text-slate-500 bg-slate-50 border border-gray-200 rounded-3xl" style="min-height: 200px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+            <svg class="w-8 h-8 text-slate-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+            <p class="text-xs font-semibold text-slate-600">${message}</p>
+          </div>
+        `;
+      }
+    }
+
+    function createCustomMarkerIcon(emoji, color) {
+      if (typeof L === 'undefined') return null;
+      return L.divIcon({
+        className: 'custom-map-marker',
+        html: `
+          <div style="
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            background-color: ${color};
+            border: 2px solid white;
+            border-radius: 50%;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+            font-size: 16px;
+            transition: transform 0.2s;
+          " onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1.0)'">
+            ${emoji}
+          </div>
+        `,
+        iconSize: [32, 32],
+        iconAnchor: [16, 16],
+        popupAnchor: [0, -16]
+      });
+    }
+
+    function updateMapStats(distance, duration) {
+      const distKm = (distance / 1000).toFixed(1);
+      const durMins = Math.round(duration / 60);
+
+      const mapDistance = document.getElementById('map-distance');
+      const mapDuration = document.getElementById('map-duration');
+      const mapDistanceVal = document.getElementById('map-distance-val');
+      const mapDurationVal = document.getElementById('map-duration-val');
+
+      if (mapDistance) mapDistance.textContent = `${distKm} km`;
+      if (mapDuration) mapDuration.textContent = `ETA: ${durMins} mins`;
+      if (mapDistanceVal) mapDistanceVal.textContent = `${distKm} km`;
+      if (mapDurationVal) {
+        mapDurationVal.textContent = `${durMins} mins`;
+        mapDurationVal.className = "text-emerald-600 font-bold bg-emerald-50 px-2.5 py-1 rounded-lg";
+      }
+    }
+
+    try {
+      if (typeof L === 'undefined') {
+        throw new Error("Leaflet Library is not loaded.");
+      }
+
+      const apiKey = window.LAYOVERX_MAP_CONFIG?.OPENROUTESERVICE_API_KEY;
+      if (!apiKey || apiKey === "YOUR_OPENROUTESERVICE_API_KEY") {
+        throw new Error("OpenRouteService API key is missing or not configured.");
+      }
+
+      const mapElement = document.getElementById('itinerary-map');
+      if (!mapElement) return;
+
+      // Clean up previous map instance if it exists
+      if (window.layoverxMap) {
+        window.layoverxMap.remove();
+        window.layoverxMap = null;
+      }
+
+      const map = L.map('itinerary-map', {
+        zoomControl: false
+      });
+      window.layoverxMap = map;
+
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors'
+      }).addTo(map);
+
+      // Determine Origin Terminal
+      const airportOrigin = (activePlan && activePlan.location === 'bandra') ? TERMINAL_NODES['CSMIA_T2'] : TERMINAL_NODES['CSMIA_T1'];
+
+      // Build coordinates route list
+      const coords = [];
+      coords.push([airportOrigin.coordinates.lng, airportOrigin.coordinates.lat]);
+
+      if (details.hotelId && HOTELS[details.hotelId]) {
+        const h = HOTELS[details.hotelId];
+        coords.push([h.coordinates.lng, h.coordinates.lat]);
+      }
+      if (details.diningId && DINING[details.diningId]) {
+        const d = DINING[details.diningId];
+        coords.push([d.coordinates.lng, d.coordinates.lat]);
+      }
+      if (details.activityId && EXPERIENCES[details.activityId]) {
+        const e = EXPERIENCES[details.activityId];
+        coords.push([e.coordinates.lng, e.coordinates.lat]);
+      }
+      if (details.spaId && SPA_WELLNESS[details.spaId]) {
+        const s = SPA_WELLNESS[details.spaId];
+        coords.push([s.coordinates.lng, s.coordinates.lat]);
+      }
+      if (details.gamingId && GAMING_ENTERTAINMENT[details.gamingId]) {
+        const g = GAMING_ENTERTAINMENT[details.gamingId];
+        coords.push([g.coordinates.lng, g.coordinates.lat]);
+      }
+
+      coords.push([airportOrigin.coordinates.lng, airportOrigin.coordinates.lat]);
+
+      // Check for empty or single stop itinerary (to avoid calling ORS with 1 unique point)
+      const uniqueCoords = Array.from(new Set(coords.map(c => c.join(','))));
+      if (uniqueCoords.length <= 1) {
+        // Render single airport marker
+        map.setView([airportOrigin.coordinates.lat, airportOrigin.coordinates.lng], 14);
+        
+        L.marker([airportOrigin.coordinates.lat, airportOrigin.coordinates.lng], {
+          icon: createCustomMarkerIcon('🛫', '#0284c7')
+        }).addTo(map).bindPopup(`<b>${airportOrigin.name}</b><br>Origin & Destination`);
+
+        updateMapStats(0, 0);
+        return;
+      }
+
+      // Call OpenRouteService Directions API (POST)
+      fetch('https://api.openrouteservice.org/v2/directions/driving-car/geojson', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json; charset=utf-8',
+          'Authorization': apiKey
+        },
+        body: JSON.stringify({
+          coordinates: coords
+        })
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`ORS API responded with status ${response.status}`);
+        }
+        return response.json();
+      })
+      .then(data => {
+        // Draw route polyline
+        const routeLayer = L.geoJSON(data, {
+          style: {
+            color: '#0ea5e9',
+            weight: 5,
+            opacity: 0.85
+          }
+        }).addTo(map);
+
+        // Fit map boundaries to the polyline route
+        map.fitBounds(routeLayer.getBounds(), { padding: [40, 40] });
+
+        // Extract total distance and duration from properties summary
+        const summary = data.features[0].properties.summary;
+        updateMapStats(summary.distance, summary.duration);
+
+        // Render markers
+        // Origin Marker (T1 or T2)
+        L.marker([airportOrigin.coordinates.lat, airportOrigin.coordinates.lng], {
+          icon: createCustomMarkerIcon('🛫', '#0284c7')
+        }).addTo(map).bindPopup(`<b>${airportOrigin.name}</b><br>Origin & Destination`);
+
+        // Waypoints
+        if (details.hotelId && HOTELS[details.hotelId]) {
+          const h = HOTELS[details.hotelId];
+          L.marker([h.coordinates.lat, h.coordinates.lng], {
+            icon: createCustomMarkerIcon('🏨', '#8b5cf6')
+          }).addTo(map).bindPopup(`<b>${h.name}</b><br>Hotel`);
+        }
+        if (details.diningId && DINING[details.diningId]) {
+          const d = DINING[details.diningId];
+          L.marker([d.coordinates.lat, d.coordinates.lng], {
+            icon: createCustomMarkerIcon('🍽️', '#f97316')
+          }).addTo(map).bindPopup(`<b>${d.name}</b><br>Restaurant`);
+        }
+        if (details.activityId && EXPERIENCES[details.activityId]) {
+          const e = EXPERIENCES[details.activityId];
+          L.marker([e.coordinates.lat, e.coordinates.lng], {
+            icon: createCustomMarkerIcon('📸', '#eab308')
+          }).addTo(map).bindPopup(`<b>${e.name}</b><br>Experience`);
+        }
+        if (details.spaId && SPA_WELLNESS[details.spaId]) {
+          const s = SPA_WELLNESS[details.spaId];
+          L.marker([s.coordinates.lat, s.coordinates.lng], {
+            icon: createCustomMarkerIcon('💆', '#ec4899')
+          }).addTo(map).bindPopup(`<b>${s.name}</b><br>Spa`);
+        }
+        if (details.gamingId && GAMING_ENTERTAINMENT[details.gamingId]) {
+          const g = GAMING_ENTERTAINMENT[details.gamingId];
+          L.marker([g.coordinates.lat, g.coordinates.lng], {
+            icon: createCustomMarkerIcon('🎮', '#10b981')
+          }).addTo(map).bindPopup(`<b>${g.name}</b><br>Gaming & Entertainment`);
+        }
+      })
+      .catch(err => {
+        console.error("Directions request failed:", err);
+        showMapFallback("Map unavailable. View itinerary timeline instead.");
+      });
+
+    } catch (err) {
+      console.error("Leaflet initialization failed:", err);
+      showMapFallback("Map unavailable. View itinerary timeline instead.");
+    }
+  }
+
+  function restartCheckout() {
+    broadcastCheckoutEvent('restarted');
+    localStorage.removeItem('layoverx_lock_session_id');
+    localStorage.removeItem('layoverx_lock_expiry');
+    localStorage.removeItem('layoverx_locked_items');
+    document.body.style.overflow = '';
+    window.location.href = 'my-itinerary.html';
+  }
+
   // Extend window.layoverx namespace
   Object.assign(window.layoverx, {
     calculateContextDuration,
@@ -4119,8 +5266,134 @@
     openAiCopilot,
     deleteDraftTrips,
     openTripReceipt,
-    switchTripsTab
+    switchTripsTab,
+    checkAndCreateLock,
+    startCountdownTimer,
+    restartCheckout,
+    getRemainingTime,
+    broadcastCheckoutEvent,
+    initializeTransitMap,
+    switchExperienceTab,
+    savePlannerToItinerary
   });
+
+  // --- ANALYTICS SYSTEM ---
+  const Analytics = {
+    async trackEvent(eventName, eventData = {}) {
+      console.log(`[Analytics Event] ${eventName}:`, eventData);
+      
+      let localEvents = [];
+      try {
+        localEvents = JSON.parse(localStorage.getItem('layoverx_analytics_events')) || [];
+      } catch(e) {}
+      
+      let userId = 'guest-traveler';
+      if (window.supabase) {
+        const { data: { session } } = await window.supabase.auth.getSession();
+        if (session?.user) {
+          userId = session.user.id;
+        }
+      }
+
+      localEvents.push({
+        eventName,
+        eventData,
+        timestamp: new Date().toISOString(),
+        userId
+      });
+      localStorage.setItem('layoverx_analytics_events', JSON.stringify(localEvents));
+
+      if (window.supabase) {
+        try {
+          await window.supabase.from("analytics_events").insert([{
+            user_id: userId,
+            event: eventName,
+            data: eventData
+          }]);
+        } catch (err) {
+          console.warn("Could not save event to Supabase:", err);
+        }
+      }
+    }
+  };
+  window.layoverxAnalytics = Analytics;
+
+  function sanitizeLogContent(str) {
+    if (!str) return "";
+    let clean = String(str);
+    clean = clean.replace(/(passport(?:[_\s]*number)?\s*[:=]?\s*["']?)[A-PR-WY0-9][1-9]\d\s?\d{4}[1-9]\b/gi, "$1[REDACTED_PASSPORT]");
+    clean = clean.replace(/\b[A-PR-WY][1-9]\d\s?\d{4}[1-9]\b/gi, "[REDACTED_PASSPORT]");
+    clean = clean.replace(/(passport(?:\s*number)?\s*[:=]\s*)['"]?[a-z0-9]+['"]?/gi, "$1[REDACTED_PASSPORT]");
+    clean = clean.replace(/\b[a-fA-F0-9]{64}\b/g, "[REDACTED_SIGNATURE]");
+    clean = clean.replace(/rzp_(?:test|live)_[a-zA-Z0-9]{14,24}/g, "[REDACTED_RAZORPAY_KEY]");
+    clean = clean.replace(/sk_(?:test|live)_[a-zA-Z0-9]{24,100}/g, "[REDACTED_STRIPE_KEY]");
+    clean = clean.replace(/ey[a-zA-Z0-9-_]+\.[a-zA-Z0-9-_]+\.[a-zA-Z0-9-_]+/g, "[REDACTED_TOKEN]");
+    clean = clean.replace(/(password|secret|pass|token)\s*[:=]\s*['"]?[a-zA-Z0-9_\-\.\/+=]{8,}['"]?/gi, "$1: [REDACTED]");
+    return clean;
+  }
+
+  // --- MONITORING & LOGGING ---
+  async function logErrorToStorage(type, message, stack = "", severity = "ERROR", source = "client-runtime") {
+    if (type === "Unhandled Promise Rejection" || type === "Javascript Runtime Error") {
+      severity = "ERROR";
+      source = "client-runtime";
+    }
+
+    const cleanMessage = sanitizeLogContent(message);
+    const cleanStack = sanitizeLogContent(stack);
+
+    console.error(`[Error Logged] [${severity}] ${type}: ${cleanMessage}`);
+    
+    let localErrors = [];
+    try {
+      localErrors = JSON.parse(localStorage.getItem('layoverx_error_logs')) || [];
+    } catch(e) {}
+    
+    let userId = 'guest-traveler';
+    if (window.supabase) {
+      const { data: { session } } = await window.supabase.auth.getSession();
+      if (session?.user) {
+        userId = session.user.id;
+      }
+    }
+
+    localErrors.push({
+      type,
+      message: cleanMessage,
+      stack: cleanStack,
+      timestamp: new Date().toISOString(),
+      url: window.location.href,
+      userAgent: navigator.userAgent,
+      severity,
+      source
+    });
+    localStorage.setItem('layoverx_error_logs', JSON.stringify(localErrors));
+
+    if (window.supabase) {
+      try {
+        await window.supabase.from("error_logs").insert([{
+          severity,
+          source: source || type || "client-runtime",
+          message: cleanMessage,
+          stack: cleanStack,
+          uid: userId
+        }]);
+      } catch (err) {
+        console.warn("Could not save error log to Supabase:", err);
+      }
+    }
+  }
+
+  // Window error listeners
+  window.addEventListener('error', function (event) {
+    logErrorToStorage("Javascript Runtime Error", event.message, event.error ? event.error.stack : "");
+  });
+
+  window.addEventListener('unhandledrejection', function (event) {
+    logErrorToStorage("Unhandled Promise Rejection", String(event.reason), "");
+  });
+
+  window.layoverx.logError = logErrorToStorage;
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);

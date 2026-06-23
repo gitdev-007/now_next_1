@@ -188,6 +188,44 @@ async function run() {
       }
     };
 
+    const mockSupabase = {
+      auth: {
+        signUp: async ({ email, password, options }) => {
+          console.log('MOCK SUPABASE AUTH: signUp called for', email);
+          const result = await mockAuth.createUserWithEmailAndPassword(email, password);
+          return { data: { user: result.user }, error: null };
+        },
+        getSession: async () => {
+          return { data: { session: currentUser ? { user: currentUser } : null }, error: null };
+        },
+        onAuthStateChange: (cb) => {
+          mockAuth.onAuthStateChanged((user) => {
+            cb('SIGNED_IN', user ? { user } : null);
+          });
+        }
+      },
+      from: (table) => {
+        return {
+          upsert: async (data) => {
+            console.log(`MOCK SUPABASE DB: upsert in ${table}:`, data);
+            if (!store[table]) store[table] = {};
+            const id = data.uid || data.id || 'mock-id';
+            store[table][id] = data;
+            sessionStorage.setItem('__mockStore', JSON.stringify(store));
+            return { error: null };
+          },
+          insert: async (data) => {
+            console.log(`MOCK SUPABASE DB: insert in ${table}:`, data);
+            if (!store[table]) store[table] = {};
+            const id = data.uid || data.id || 'mock-id';
+            store[table][id] = data;
+            sessionStorage.setItem('__mockStore', JSON.stringify(store));
+            return { error: null };
+          }
+        };
+      }
+    };
+
     // Override the globals immediately. We do NOT override window.firebase itself,
     // so properties like window.firebase.firestore.FieldValue.serverTimestamp remain valid.
     Object.defineProperty(window, 'layoverxAuth', {
@@ -202,6 +240,11 @@ async function run() {
     });
     Object.defineProperty(window, 'layoverxStorage', {
       get: () => mockStorage,
+      set: () => {},
+      configurable: true
+    });
+    Object.defineProperty(window, 'supabase', {
+      get: () => mockSupabase,
       set: () => {},
       configurable: true
     });

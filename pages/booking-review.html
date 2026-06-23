@@ -1,0 +1,203 @@
+<!-- BOOKING REVIEW PAGE -->
+<section class="relative bg-slate-900 text-white pt-24 pb-16 overflow-hidden">
+  <div class="absolute inset-0 bg-cover bg-center opacity-10" style="background-image:url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=1200&auto=format&fm=webp&q=75')" role="img" aria-label="Airport Runway Background"></div>
+  <div class="container relative z-10">
+    <div class="max-w-4xl mx-auto space-y-4">
+      <nav class="flex items-center gap-2 text-xs text-theme-accent" aria-label="Breadcrumb">
+        <a href="index.html" class="hover:underline">Home</a>
+        <span>&rarr;</span>
+        <a href="my-itinerary.html" class="hover:underline">Itinerary</a>
+        <span>&rarr;</span>
+        <span class="text-white font-semibold">Review Stopover</span>
+      </nav>
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-tight">
+        Review Your <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-indigo-400">Stopover Plan</span>
+      </h1>
+      <p class="text-slate-300 text-sm max-w-2xl">
+        Step 1 of 4: Please review your items and price breakdown before proceeding to checkout.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section bg-slate-50 min-h-screen">
+  <div class="container">
+    <div class="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- Left Column (Review Itinerary Items List) -->
+      <div class="lg:col-span-8 space-y-6">
+        <div class="bg-white rounded-3xl border border-gray-200 p-6 sm:p-8 shadow-sm">
+          <h2 class="text-lg font-bold text-slate-900 mb-6 flex items-center gap-2">
+            <span>🛒</span> Selected Services Review
+          </h2>
+          
+          <div id="booking-review-list" class="space-y-4">
+            <!-- Dynamically populated via JS -->
+            <p class="text-slate-500 italic text-center py-6">No items in your active itinerary. Go back to select services.</p>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between">
+          <a href="my-itinerary.html" class="btn btn-ghost border border-gray-200">Back to Workspace</a>
+          <a href="checkout.html" class="btn btn-primary flex items-center gap-1">
+            Proceed to Traveler Details &rarr;
+          </a>
+        </div>
+      </div>
+
+      <!-- Right Column (Price Summary & Protection) -->
+      <div class="lg:col-span-4 space-y-6">
+        <div class="bg-white rounded-3xl border border-gray-200 p-6 shadow-md space-y-6">
+          <h3 class="text-sm font-bold text-slate-900 uppercase tracking-widest">Pricing Summary</h3>
+          
+          <div class="space-y-4 text-xs text-slate-650" id="review-costs-breakdown">
+            <!-- Dynamically populated price breakdown -->
+          </div>
+
+          <!-- Promo Code Input -->
+          <div class="pt-2 border-t border-slate-100">
+            <label for="coupon-code-input" class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Have a Promo Code?</label>
+            <div class="flex gap-2">
+              <input type="text" id="coupon-code-input" class="bg-slate-50 border border-slate-200 rounded-lg px-2 py-2 text-xs text-slate-800 uppercase focus:ring-1 focus:ring-sky-500 flex-grow" placeholder="e.g. WELCOME10"/>
+              <button type="button" onclick="applyCouponCode()" class="px-4 py-2 bg-sky-650 hover:bg-theme-primary text-white rounded-lg text-xs font-bold transition">Apply</button>
+            </div>
+            <div id="coupon-msg" class="text-[10px] font-bold mt-1 hidden"></div>
+          </div>
+          
+          <hr class="border-gray-100"/>
+          
+          <div class="flex justify-between items-baseline">
+            <span class="text-sm font-bold text-slate-800">Total Price</span>
+            <span class="text-2xl font-black text-theme-primary" id="review-total-price">₹0</span>
+          </div>
+        </div>
+
+        <div class="bg-emerald-50/40 border border-sky-100 rounded-3xl p-6 shadow-sm space-y-4">
+          <h3 class="font-bold text-sm text-sky-900 flex items-center gap-2">🛡️ LayoverX Protection</h3>
+          <p class="text-xs text-theme-primary leading-relaxed">
+            Missed flight connection protection included. If your airline delays landing, your room slot and chauffeur adjustments are done automatically.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  let activeCouponCode = "";
+
+  document.addEventListener('DOMContentLoaded', () => {
+    loadReviewItinerary();
+  });
+
+  function applyCouponCode() {
+    const code = document.getElementById('coupon-code-input').value.trim().toUpperCase();
+    const msg = document.getElementById('coupon-msg');
+    if (!code) {
+      activeCouponCode = "";
+      loadReviewItinerary();
+      return;
+    }
+    
+    let coupons = [];
+    try {
+      coupons = JSON.parse(localStorage.getItem('layoverx_coupons')) || [];
+    } catch(e) {}
+    
+    const exists = coupons.some(c => c.code === code);
+    if (exists) {
+      activeCouponCode = code;
+      msg.textContent = `✓ Coupon "${code}" Applied!`;
+      msg.className = "text-[10px] font-bold mt-1 text-emerald-600 block";
+      loadReviewItinerary();
+    } else {
+      activeCouponCode = "";
+      msg.textContent = "✗ Invalid Coupon Code";
+      msg.className = "text-[10px] font-bold mt-1 text-red-500 block";
+      loadReviewItinerary();
+    }
+  }
+
+  function loadReviewItinerary() {
+    const listEl = document.getElementById('booking-review-list');
+    const breakdownEl = document.getElementById('review-costs-breakdown');
+    const totalEl = document.getElementById('review-total-price');
+    if (!listEl || !breakdownEl || !totalEl) return;
+
+    let itinerary = [];
+    try {
+      const stored = localStorage.getItem('layoverx_current_itinerary');
+      if (stored) itinerary = JSON.parse(stored);
+    } catch(e) { console.error(e); }
+
+    if (itinerary.length === 0) {
+      listEl.innerHTML = `
+        <div class="text-center py-8 text-slate-500">
+          <p class="font-semibold">Your itinerary is empty</p>
+          <a href="plan-my-layover.html" class="mt-4 inline-block px-4 py-2 bg-slate-900 hover:bg-black text-white text-xs font-bold rounded-xl">Add Services Now</a>
+        </div>
+      `;
+      totalEl.textContent = '₹0';
+      return;
+    }
+
+    const calculations = window.layoverx.calculateItineraryPrice(itinerary, {
+      couponCode: activeCouponCode
+    });
+
+    localStorage.setItem('layoverx_active_calculation', JSON.stringify(calculations));
+
+    listEl.innerHTML = '';
+    calculations.itemPricingDetails.forEach(item => {
+      listEl.innerHTML += `
+        <div class="flex items-center gap-4 bg-slate-50 border border-slate-200/60 p-4 rounded-2xl">
+          <div class="w-12 h-12 bg-sky-100 text-theme-primary text-lg rounded-xl flex items-center justify-center flex-shrink-0">
+            ${item.type === 'hotel' ? '🏨' : item.type === 'dining' ? '🍽️' : item.type === 'transfer' ? '🚖' : '📸'}
+          </div>
+          <div class="flex-grow min-w-0">
+            <h4 class="font-bold text-slate-900 text-sm truncate">${item.name}</h4>
+            <span class="text-xs text-slate-500 capitalize">${item.type} • unit price: ₹${item.finalItemUnitPrice.toFixed(2)}</span>
+          </div>
+          <strong class="font-bold text-slate-900 text-sm whitespace-nowrap">₹${item.finalTotalCost.toFixed(2)}</strong>
+        </div>
+      `;
+    });
+
+    breakdownEl.innerHTML = '';
+    breakdownEl.innerHTML += `
+      <div class="flex justify-between font-medium">
+        <span>Itinerary Subtotal</span>
+        <strong class="text-slate-800">₹${calculations.subtotal.toFixed(2)}</strong>
+      </div>
+    `;
+
+    if (calculations.totalDiscount > 0) {
+      calculations.discountLogs.forEach(log => {
+        breakdownEl.innerHTML += `
+          <div class="flex justify-between text-emerald-600 font-bold">
+            <span>${log.split(':')[0]}</span>
+            <span>${log.split(':')[1]}</span>
+          </div>
+        `;
+      });
+    }
+
+    breakdownEl.innerHTML += `
+      <div class="flex justify-between">
+        <span>Convenience Charge</span>
+        <span>₹${calculations.convenienceFee.toFixed(2)}</span>
+      </div>
+      <div class="flex justify-between">
+        <span>Platform Service Fee</span>
+        <span>₹${calculations.serviceFee.toFixed(2)}</span>
+      </div>
+      <div class="flex justify-between">
+        <span>GST (18% on fees)</span>
+        <span>₹${calculations.taxes.toFixed(2)}</span>
+      </div>
+    `;
+
+    totalEl.textContent = `₹${calculations.grandTotal.toFixed(2)}`;
+  }
+</script>

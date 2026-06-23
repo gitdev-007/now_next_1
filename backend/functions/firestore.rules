@@ -1,0 +1,37 @@
+firebase projects:listrules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Allow anyone to read public data
+    match /{document=**} {
+      allow read: if true;
+    }
+
+    // Users can read and write their own profile document
+    match /users/{userId} {
+      allow read: if true;
+      allow create, update: if request.auth != null && request.auth.uid == userId;
+      allow delete: if false; // Prevent accidental profile deletion
+    }
+
+    // Partners collection: only authenticated users can create, admins can update status
+    match /partners/{partnerId} {
+      allow create: if request.auth != null;
+      allow update: if request.auth.token.admin == true;  // assume custom claim for admin
+      allow read: if true;
+    }
+
+    // Supplier applications: users can create, read their own, admin can read/write all
+    match /supplier_applications/{appId} {
+      allow create: if request.auth != null && request.auth.uid == request.resource.data.userId;
+      allow read: if request.auth != null && (request.auth.uid == resource.data.userId || request.auth.token.admin == true);
+      allow update, delete: if request.auth != null && request.auth.token.admin == true;
+    }
+
+    // Trips: users can create and read their own, admin can read/write all
+    match /trips/{tripId} {
+      allow create: if request.auth != null && request.auth.uid == request.resource.data.uid;
+      allow read, update: if request.auth != null && (request.auth.uid == resource.data.uid || request.auth.token.admin == true);
+      allow delete: if request.auth != null && request.auth.token.admin == true;
+    }
+  }
+}

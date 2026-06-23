@@ -1,0 +1,30 @@
+{
+  "name": "next_layoverx_1",
+  "version": "1.0.0",
+  "description": "LayoverX — Mumbai Airport Layover Experience Platform",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "build": "node frontend/build.js",
+    "build:page": "node frontend/build.js",
+    "dev": "node frontend/build.js && cd frontend && npx serve . -p 8000",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gitdev-007/next_layoverx_1.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/gitdev-007/next_layoverx_1/issues"
+  },
+  "homepage": "https://github.com/gitdev-007/next_layoverx_1#readme",
+  "dependencies": {
+    "lucide-react": "^1.21.0"
+  }
+}

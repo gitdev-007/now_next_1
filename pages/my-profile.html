@@ -1,0 +1,116 @@
+<!-- MY PROFILE PAGE -->
+<section class="relative bg-slate-900 text-white pt-24 pb-16 overflow-hidden">
+  <div class="absolute inset-0 bg-cover bg-center opacity-10" style="background-image:url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=1200&auto=format&fm=webp&q=75')" role="img" aria-label="Airport Runway Background"></div>
+  <div class="container relative z-10">
+    <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-6 text-center md:text-left">
+      <div class="w-24 h-24 rounded-2xl bg-gradient-to-br from-sky-400 to-sky-600 flex items-center justify-center text-4xl font-extrabold text-white shadow-lg shadow-primary user-avatar-letter uppercase">U</div>
+      <div class="space-y-2">
+        <h1 class="text-3xl font-black tracking-tight user-name">Traveler</h1>
+        <p class="text-sm text-sky-200 font-semibold flex items-center gap-2 justify-center md:justify-start">
+          <span class="inline-block w-2.5 h-2.5 bg-emerald-500 rounded-full"></span> Verified Transit Passenger
+        </p>
+        <p class="text-xs text-gray-400 user-email-display">traveler@layoverx.com</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section bg-slate-50">
+  <div class="container">
+    <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+      
+      <!-- Left Profile Sidebar -->
+      <aside class="md:col-span-1 space-y-6">
+        <div class="bg-white border border-gray-150 rounded-2xl p-6 shadow-sm">
+          <h2 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4">Navigation</h2>
+          <nav class="flex flex-col gap-1 text-sm">
+            <a href="my-profile.html" class="flex items-center gap-2 px-4 py-2 bg-emerald-50/40 text-theme-primary rounded-xl font-bold transition-all">👤 Profile Details</a>
+            <a href="my-trips.html" class="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-xl transition-all">✈️ My Trips</a>
+            <a href="saved-itineraries.html" class="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-xl transition-all">💾 Saved Plans</a>
+            <a href="account-settings.html" class="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-xl transition-all">⚙️ Settings</a>
+          </nav>
+        </div>
+        
+        <div class="bg-gradient-to-br from-sky-500 to-sky-600 text-white rounded-2xl p-6 shadow-md shadow-primary">
+          <h3 class="font-extrabold text-base mb-2">Need a Visa?</h3>
+          <p class="text-xs text-sky-100 leading-relaxed mb-4">Transit passengers can get a 24-48 hour tourist visa on arrival at Mumbai. Check eligibility details.</p>
+          <a href="how-it-works.html" class="inline-flex items-center gap-1 text-xs font-bold bg-white text-theme-primary px-4 py-2 rounded-lg shadow-sm hover:bg-gray-50 transition">Read Visa Guide &rarr;</a>
+        </div>
+      </aside>
+
+      <!-- Center Profile Panel -->
+      <div class="md:col-span-2 space-y-6">
+        <!-- Personal Information Card -->
+        <div class="bg-white border border-gray-200 rounded-2xl p-6 sm:p-8 shadow-sm">
+          <h2 class="text-lg font-bold text-gray-900 mb-6 flex items-center gap-2">👤 Personal Information</h2>
+          
+          <form class="space-y-4" onsubmit="event.preventDefault(); layoverx.showToast('Profile updated successfully!', 'success')">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="form-group">
+                <label class="form-label">Full Name</label>
+                <input type="text" class="form-input user-name-input" value="Traveler" placeholder="Your name"/>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Email Address</label>
+                <input type="email" class="form-input user-email-input" value="traveler@layoverx.com" placeholder="Your email" readonly/>
+              </div>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="form-group">
+                <label class="form-label">Phone Number</label>
+                <input type="tel" class="form-input" value="+1 (555) 019-2834" placeholder="Phone number"/>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Nationality</label>
+                <input type="text" class="form-input" value="United States" placeholder="Your citizenship"/>
+              </div>
+            </div>
+            
+            <hr class="border-gray-100 my-6"/>
+            
+            <h3 class="text-sm font-bold text-gray-900 mb-4">✈️ Transit Preference Profile</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="form-group">
+                <label class="form-label">Preferred Lounge Style</label>
+                <select class="form-input cursor-pointer">
+                  <option>Quiet / Sleeping Pod focus</option>
+                  <option selected>Activity & City Tours</option>
+                  <option>Fine Dining & Spa Wellness</option>
+                  <option>Gaming & Entertainment</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Baggage Preference</label>
+                <select class="form-input cursor-pointer">
+                  <option selected>Use Left-Luggage Airport service</option>
+                  <option>Carry cabin luggage along</option>
+                  <option>Checked-through to final destination</option>
+                </select>
+              </div>
+            </div>
+            
+            <div class="pt-4 flex justify-end">
+              <button type="submit" class="px-4 py-2 bg-gray-900 text-white font-bold text-xs rounded-xl shadow-md hover:bg-black hover:shadow-lg transition">Save Changes</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Sync state details to the input fields dynamically
+    const user = window.layoverx.user || JSON.parse(localStorage.getItem('layoverx_user'));
+    if (user) {
+      document.querySelectorAll('.user-name').forEach(el => el.textContent = user.name);
+      document.querySelectorAll('.user-name-input').forEach(el => el.value = user.name);
+      document.querySelectorAll('.user-email-display').forEach(el => el.textContent = user.email);
+      document.querySelectorAll('.user-email-input').forEach(el => el.value = user.email);
+      document.querySelectorAll('.user-avatar-letter').forEach(el => el.textContent = user.avatar);
+    }
+  });
+</script>

@@ -1,0 +1,94 @@
+<!-- ACCOUNT SETTINGS PAGE -->
+<section class="relative bg-slate-900 text-white pt-24 pb-16 overflow-hidden">
+  <div class="absolute inset-0 bg-cover bg-center opacity-10" style="background-image:url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=1200&auto=format&fm=webp&q=75')" role="img" aria-label="Airport Runway Background"></div>
+  <div class="container relative z-10">
+    <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-6 text-center md:text-left">
+      <div class="w-24 h-24 rounded-2xl bg-gradient-to-br from-sky-400 to-sky-600 flex items-center justify-center text-4xl font-extrabold text-white shadow-lg shadow-primary user-avatar-letter uppercase">U</div>
+      <div class="space-y-2">
+        <h1 class="text-3xl font-black tracking-tight">Account Settings</h1>
+        <p class="text-sm text-sky-200 font-semibold user-name">Traveler</p>
+        <p class="text-xs text-gray-400 user-email-display">traveler@layoverx.com</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section bg-slate-50">
+  <div class="container">
+    <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+      
+      <!-- Left Profile Sidebar -->
+      <aside class="md:col-span-1 space-y-6">
+        <div class="bg-white border border-gray-150 rounded-2xl p-6 shadow-sm">
+          <h2 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4">Navigation</h2>
+          <nav class="flex flex-col gap-1 text-sm">
+            <a href="my-profile.html" class="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-xl transition-all">👤 Profile Details</a>
+            <a href="my-trips.html" class="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-xl transition-all">✈️ My Trips</a>
+            <a href="saved-itineraries.html" class="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-xl transition-all">💾 Saved Plans</a>
+            <a href="account-settings.html" class="flex items-center gap-2 px-4 py-2 bg-emerald-50/40 text-theme-primary rounded-xl font-bold transition-all">⚙️ Settings</a>
+          </nav>
+        </div>
+      </aside>
+
+      <!-- Center Profile Panel -->
+      <div class="md:col-span-2 space-y-6">
+        <!-- Settings Form -->
+        <div class="bg-white border border-gray-200 rounded-2xl p-6 sm:p-8 shadow-sm">
+          <h2 class="text-lg font-bold text-gray-900 mb-6 flex items-center gap-2">⚙️ Account Preferences</h2>
+          
+          <form class="space-y-6" onsubmit="event.preventDefault(); layoverx.showToast('Preferences updated successfully!', 'success')">
+            
+            <div class="form-group">
+              <label class="form-label">Default Booking Currency</label>
+              <select class="form-input cursor-pointer">
+                <option value="INR" selected>INR (₹) - Indian Rupee</option>
+                <option value="USD">USD ($) - US Dollar</option>
+                <option value="EUR">EUR (€) - Euro</option>
+                <option value="GBP">GBP (£) - British Pound</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">Flight Notifications Delivery</label>
+              <div class="space-y-2 mt-2">
+                <label class="flex items-center gap-2 text-sm text-gray-700 cursor-pointer">
+                  <input type="checkbox" checked class="rounded border-gray-300 text-theme-primary focus:ring-sky-500 h-4 w-4"/>
+                  <span>Send WhatsApp status updates on my chauffeur details</span>
+                </label>
+                <label class="flex items-center gap-2 text-sm text-gray-700 cursor-pointer">
+                  <input type="checkbox" checked class="rounded border-gray-300 text-theme-primary focus:ring-sky-500 h-4 w-4"/>
+                  <span>SMS alerts on flight gate changes & delays during layover</span>
+                </label>
+                <label class="flex items-center gap-2 text-sm text-gray-700 cursor-pointer">
+                  <input type="checkbox" class="rounded border-gray-300 text-theme-primary focus:ring-sky-500 h-4 w-4"/>
+                  <span>Email notifications for exclusive supplier discount codes</span>
+                </label>
+              </div>
+            </div>
+            
+            <hr class="border-gray-100"/>
+            
+            <div>
+              <h3 class="text-sm font-bold text-gray-900 mb-4">🔒 Password and Security</h3>
+              <div class="space-y-4">
+                <div class="form-group">
+                  <label class="form-label">New Password</label>
+                  <input type="password" class="form-input" placeholder="Enter new password (min 6 characters)"/>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Confirm Password</label>
+                  <input type="password" class="form-input" placeholder="Repeat password"/>
+                </div>
+              </div>
+            </div>
+            
+            <div class="pt-4 flex justify-end">
+              <button type="submit" class="px-4 py-2 bg-gray-900 text-white font-bold text-xs rounded-xl shadow-md hover:bg-black hover:shadow-lg transition">Update Settings</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section>

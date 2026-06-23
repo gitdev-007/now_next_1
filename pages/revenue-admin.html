@@ -1,0 +1,1115 @@
+<!-- ENTERPRISE REVENUE & PRICING ADMIN DASHBOARD -->
+<section class="relative bg-slate-900 text-white pt-24 pb-16 overflow-hidden">
+  <div class="absolute inset-0 bg-cover bg-center opacity-10" style="background-image:url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&auto=format&fm=webp&q=75')" role="img" aria-label="Business Analytics Background"></div>
+  <div class="container relative z-10">
+    <div class="max-w-6xl mx-auto space-y-4">
+      <nav class="flex items-center gap-2 text-xs text-emerald-450" aria-label="Breadcrumb">
+        <a href="index.html" class="hover:underline">Home</a>
+        <span>&rarr;</span>
+        <span class="text-white font-semibold">Revenue & Pricing Control Console</span>
+      </nav>
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <h1 class="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-tight">
+            Revenue & <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-450 to-teal-400">Pricing Admin</span>
+          </h1>
+          <p class="text-slate-350 text-sm max-w-2xl mt-1">
+            Enterprise-grade revenue management, dynamic yield overrides, discount stacking rule logs, and vendor payout ledgers.
+          </p>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-xs bg-emerald-500/10 text-emerald-400 font-extrabold px-4 py-1 rounded-full border border-emerald-500/20 flex items-center gap-2 animate-pulse">
+            <span class="w-2 h-2 rounded-full bg-emerald-405"></span> Live Pricing Engine Active
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-8 bg-slate-50 min-h-screen text-slate-800">
+  <div class="container max-w-6xl">
+    
+    <!-- Navigation Tabs -->
+    <div class="flex flex-wrap gap-2 border-b border-slate-200 pb-4 mb-6">
+      <button onclick="switchAdminTab('overview')" id="admin-tab-overview" class="px-4 py-4 text-sm font-extrabold rounded-xl transition bg-slate-900 text-white shadow-md">
+        📈 Revenue Overview
+      </button>
+      <button onclick="switchAdminTab('pricing')" id="admin-tab-pricing" class="px-4 py-4 text-sm font-bold text-slate-600 hover:bg-slate-100 rounded-xl transition">
+        ⚙️ Pricing Rules & Yield
+      </button>
+      <button onclick="switchAdminTab('promotions')" id="admin-tab-promotions" class="px-4 py-4 text-sm font-bold text-slate-600 hover:bg-slate-100 rounded-xl transition">
+        🏷️ Coupons & Discounts
+      </button>
+      <button onclick="switchAdminTab('payouts')" id="admin-tab-payouts" class="px-4 py-4 text-sm font-bold text-slate-600 hover:bg-slate-100 rounded-xl transition">
+        💼 Payouts & Audit Logs
+      </button>
+    </div>
+
+    <!-- TAB 1: OVERVIEW & ANALYTICS -->
+    <div id="admin-content-overview" class="admin-tab-content space-y-6">
+      
+      <!-- Key Metric Cards -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="bg-white rounded-2xl border border-slate-200/80 p-4 shadow-sm space-y-2">
+          <p class="text-xs text-slate-400 font-bold uppercase tracking-wider">Gross Booking Value (GBV)</p>
+          <div class="flex items-baseline gap-1">
+            <span class="text-2xl font-black text-slate-900" id="stat-gbv">₹0</span>
+          </div>
+          <p class="text-[10px] text-emerald-600 font-semibold">↑ 12.4% from last week</p>
+        </div>
+        
+        <div class="bg-white rounded-2xl border border-slate-200/80 p-4 shadow-sm space-y-2">
+          <p class="text-xs text-slate-400 font-bold uppercase tracking-wider">Platform Net Revenue</p>
+          <div class="flex items-baseline gap-1">
+            <span class="text-2xl font-black text-emerald-700" id="stat-net-rev">₹0</span>
+          </div>
+          <p class="text-[10px] text-slate-500 font-medium">Includes fees + commissions</p>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-slate-200/80 p-4 shadow-sm space-y-2">
+          <p class="text-xs text-slate-400 font-bold uppercase tracking-wider">Simulated Occupancy</p>
+          <div class="flex items-center gap-2">
+            <span class="text-2xl font-black text-slate-900" id="stat-occupancy">0%</span>
+            <span id="stat-occupancy-badge" class="text-[9px] font-extrabold px-2 py-1 rounded uppercase">Normal</span>
+          </div>
+          <p class="text-[10px] text-slate-500 font-medium">Controls yield-pricing trigger</p>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-slate-200/80 p-4 shadow-sm space-y-2">
+          <p class="text-xs text-slate-400 font-bold uppercase tracking-wider">Total Active Coupons</p>
+          <div class="flex items-baseline gap-1">
+            <span class="text-2xl font-black text-indigo-750" id="stat-coupons-count">0</span>
+          </div>
+          <p class="text-[10px] text-slate-500 font-medium">4 active stacking/priority filters</p>
+        </div>
+      </div>
+
+      <!-- Charts Section -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <div class="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm lg:col-span-8 space-y-4">
+          <h3 class="font-bold text-slate-900 text-sm flex items-center justify-between">
+            <span>📊 Booking Performance Trends</span>
+            <span class="text-xs text-slate-400">Weekly breakdown</span>
+          </h3>
+          <div class="relative h-64 w-full">
+            <canvas id="bookingsChart"></canvas>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm lg:col-span-4 space-y-4">
+          <h3 class="font-bold text-slate-900 text-sm">🍰 Net Revenue Streams</h3>
+          <div class="relative h-64 w-full flex items-center justify-center">
+            <canvas id="streamsChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Transaction Log -->
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-4">
+          <div>
+            <h3 class="font-bold text-slate-900 text-base">🛒 Real-time Revenue Transaction Ledger</h3>
+            <p class="text-xs text-slate-500 mt-1">Calculated prices, platform convenience fees, and taxes collected.</p>
+          </div>
+          <button onclick="downloadFinancialPlanCA()" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs rounded-xl transition shadow-md flex items-center gap-2">
+            📥 Compile CA Financial Summary
+          </button>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs border-collapse">
+            <thead>
+              <tr class="text-slate-400 font-bold border-b border-slate-100 bg-slate-50">
+                <th class="py-4 px-4 rounded-l-lg">Booking ID</th>
+                <th class="py-4 px-4">Date</th>
+                <th class="py-4 px-4">Lead Traveler</th>
+                <th class="py-4 px-4">Itinerary Subtotal</th>
+                <th class="py-4 px-4">Discounts Applied</th>
+                <th class="py-4 px-4">Fees & Taxes</th>
+                <th class="py-4 px-4">Grand Total</th>
+                <th class="py-4 px-4 rounded-r-lg text-right">Commission Earned</th>
+              </tr>
+            </thead>
+            <tbody id="revenue-tx-table-body" class="divide-y divide-slate-100 text-slate-700">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- TAB 2: PRICING RULES & OVERRIDES -->
+    <div id="admin-content-pricing" class="admin-tab-content hidden space-y-6">
+      
+      <!-- Overrides slider -->
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-sm space-y-4">
+        <h3 class="font-bold text-slate-900 text-lg flex items-center gap-2">
+          <span>⚡ Global Price Override Control</span>
+        </h3>
+        <p class="text-xs text-slate-500 leading-relaxed">
+          Instantly markup or discount all pricing rules across all categories. This applies dynamically at checkout review steps.
+        </p>
+
+        <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200/60 max-w-xl">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-xs font-bold text-slate-650">Markup Override Percent</span>
+            <span id="override-badge" class="text-sm font-black px-4 py-1 bg-emerald-50 text-emerald-700 border border-emerald-100 rounded-xl">0% (Disabled)</span>
+          </div>
+          <input type="range" id="override-slider" min="-20" max="50" step="5" value="0" oninput="updateOverrideLabel(this.value)" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-emerald-600"/>
+          <div class="flex justify-between text-[9px] font-extrabold text-slate-400 uppercase tracking-widest mt-2">
+            <span>-20% Discount</span>
+            <span>Normal</span>
+            <span>+50% Max Markup</span>
+          </div>
+          <button onclick="saveOverrideSetting()" class="mt-4 px-4 py-2 bg-slate-900 hover:bg-black text-white font-extrabold text-xs rounded-xl transition shadow">
+            Apply Global Override Slider
+          </button>
+        </div>
+      </div>
+
+      <!-- Base Prices Editor & Settings -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        
+        <!-- Base Prices List -->
+        <div class="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm lg:col-span-2 space-y-4">
+          <h3 class="font-bold text-slate-900 text-base">🏨 Service Base Pricing Configurator</h3>
+          <p class="text-xs text-slate-500">Edit base prices stored in local storage for service categories.</p>
+          
+          <div class="space-y-4" id="base-prices-editor-container">
+            <!-- Populated dynamically -->
+          </div>
+
+          <div class="pt-4 border-t border-slate-100 flex justify-end">
+            <button onclick="saveBasePrices()" class="px-4 py-4 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs rounded-xl shadow transition">
+              ✓ Save Configured Base Prices
+            </button>
+          </div>
+        </div>
+
+        <!-- Yield Settings & Triggers -->
+        <div class="space-y-6 lg:col-span-1">
+          
+          <!-- Occupancy Slider -->
+          <div class="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm space-y-4">
+            <h3 class="font-bold text-slate-900 text-base">📈 Occupancy Pricing Yield Control</h3>
+            <p class="text-xs text-slate-550">Simulate local transit demand to test dynamic markup triggers.</p>
+            
+            <div class="space-y-4 pt-2">
+              <div class="flex justify-between items-center text-xs">
+                <span class="font-bold text-slate-600">Simulated Occupancy</span>
+                <span id="lbl-occupancy" class="font-extrabold text-slate-900">78%</span>
+              </div>
+              <input type="range" id="slider-occupancy" min="10" max="100" step="2" value="78" oninput="updateOccupancyLabel(this.value)" class="w-full h-1.5 bg-slate-200 rounded-lg cursor-pointer accent-indigo-655"/>
+            </div>
+
+            <!-- Yield thresholds info -->
+            <div class="bg-indigo-50 border border-indigo-100 rounded-xl p-4.5 space-y-2 text-[10px] text-indigo-700">
+              <div class="flex items-center justify-between font-bold">
+                <span>🔥 High Occupancy (&ge;80%):</span>
+                <span>1.20x Markup</span>
+              </div>
+              <div class="flex items-center justify-between font-bold">
+                <span>❄️ Low Occupancy (&le;30%):</span>
+                <span>0.90x Discount</span>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-4 pt-2 border-t border-slate-100">
+              <input type="checkbox" id="chk-auto-demand" checked class="w-4 h-4 text-emerald-600 border-gray-300 rounded focus:ring-emerald-500"/>
+              <label for="chk-auto-demand" class="text-xs font-bold text-slate-700 select-none">Enable Yield Yield Auto Adjustments</label>
+            </div>
+            
+            <button onclick="saveOccupancySettings()" class="w-full px-4 py-2 bg-slate-900 hover:bg-black text-white font-extrabold text-xs rounded-xl transition shadow">
+              Apply Yield Config
+            </button>
+          </div>
+
+          <!-- Seasonal Pricing Config -->
+          <div class="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm space-y-4">
+            <h3 class="font-bold text-slate-900 text-base">❄️ Seasonal Calendar Multipliers</h3>
+            <div id="seasonal-pricing-list" class="space-y-4">
+              <!-- Populated dynamically -->
+            </div>
+            <button onclick="saveSeasonalPricing()" class="w-full px-4 py-2 bg-slate-900 hover:bg-black text-white font-extrabold text-xs rounded-xl transition shadow">
+              Update Seasonal Ranges
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- TAB 3: PROMOTIONS & COUPONS -->
+    <div id="admin-content-promotions" class="admin-tab-content hidden space-y-6">
+      
+      <!-- Discount Stack Policy -->
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-sm space-y-4">
+        <h3 class="font-bold text-slate-900 text-lg flex items-center gap-2">
+          <span>🛡️ Stackable discount & Priority Rules</span>
+        </h3>
+        <p class="text-xs text-slate-500 leading-relaxed max-w-3xl">
+          Configure whether customized promotional coupons can be stacked on top of automated system discounts (Loyalty Member - 5%, Group Booking - 15%, Long Stay - 10%). A hard margin cap of 35% discount ceiling is enforced.
+        </p>
+
+        <!-- Stacking options -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+          <div class="bg-slate-50 p-4 border border-slate-200/60 rounded-xl space-y-4">
+            <h4 class="text-xs font-bold text-slate-700 flex items-center justify-between">
+              <span>Loyalty Discount</span>
+              <span class="text-emerald-700 font-extrabold text-[10px]">5%</span>
+            </h4>
+            <p class="text-[10px] text-slate-400">Triggered if user is logged into their account.</p>
+          </div>
+          <div class="bg-slate-50 p-4 border border-slate-200/60 rounded-xl space-y-4">
+            <h4 class="text-xs font-bold text-slate-700 flex items-center justify-between">
+              <span>Group Booking</span>
+              <span class="text-emerald-700 font-extrabold text-[10px]">15%</span>
+            </h4>
+            <p class="text-[10px] text-slate-400">Triggered if traveler guest count is 3 or more.</p>
+          </div>
+          <div class="bg-slate-50 p-4 border border-slate-200/60 rounded-xl space-y-4">
+            <h4 class="text-xs font-bold text-slate-700 flex items-center justify-between">
+              <span>Long-Stay Discount</span>
+              <span class="text-emerald-700 font-extrabold text-[10px]">10%</span>
+            </h4>
+            <p class="text-[10px] text-slate-400">Triggered if total layover dur. exceeds 8 hours.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Add & Manage Coupons -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        
+        <!-- Add Coupon Form -->
+        <div class="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm lg:col-span-4 space-y-4">
+          <h3 class="font-bold text-slate-900 text-base">➕ Add New Promo Coupon</h3>
+          <form id="add-coupon-form" onsubmit="createNewCoupon(event)" class="space-y-4">
+            <div class="form-group">
+              <label class="block text-[10px] font-extrabold text-slate-400 uppercase tracking-widest mb-1" for="new-coupon-code">Coupon Code</label>
+              <input type="text" id="new-coupon-code" placeholder="e.g. MONSOON40" required class="bg-slate-50 border border-slate-200 rounded-lg px-4 py-2 text-xs text-slate-800 uppercase focus:ring-1 focus:ring-sky-500 w-full font-bold"/>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-4">
+              <div class="form-group">
+                <label class="block text-[10px] font-extrabold text-slate-400 uppercase tracking-widest mb-1" for="new-coupon-type">Discount Type</label>
+                <select id="new-coupon-type" class="bg-slate-50 border border-slate-200 rounded-lg px-4 py-2 text-xs text-slate-800 focus:ring-1 focus:ring-sky-500 w-full font-semibold">
+                  <option value="percent">Percentage (%)</option>
+                  <option value="flat">Flat Amount (₹)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="block text-[10px] font-extrabold text-slate-400 uppercase tracking-widest mb-1" for="new-coupon-value">Value</label>
+                <input type="number" id="new-coupon-value" min="1" placeholder="e.g. 15" required class="bg-slate-50 border border-slate-200 rounded-lg px-4 py-2 text-xs text-slate-800 focus:ring-1 focus:ring-sky-500 w-full font-semibold"/>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+              <div class="form-group">
+                <label class="block text-[10px] font-extrabold text-slate-400 uppercase tracking-widest mb-1" for="new-coupon-priority">Priority</label>
+                <input type="number" id="new-coupon-priority" value="5" min="1" required class="bg-slate-50 border border-slate-200 rounded-lg px-4 py-2 text-xs text-slate-800 focus:ring-1 focus:ring-sky-500 w-full font-semibold"/>
+              </div>
+              <div class="form-group">
+                <label class="block text-[10px] font-extrabold text-slate-400 uppercase tracking-widest mb-1" for="new-coupon-stackable">Stackable?</label>
+                <select id="new-coupon-stackable" class="bg-slate-50 border border-slate-200 rounded-lg px-4 py-2 text-xs text-slate-800 focus:ring-1 focus:ring-sky-500 w-full font-semibold">
+                  <option value="true">Yes (Stackable)</option>
+                  <option value="false">No (Single Use)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="block text-[10px] font-extrabold text-slate-400 uppercase tracking-widest mb-1" for="new-coupon-desc">Description</label>
+              <textarea id="new-coupon-desc" rows="2" placeholder="Explain the discount terms..." required class="bg-slate-50 border border-slate-200 rounded-lg px-4 py-2 text-xs text-slate-800 focus:ring-1 focus:ring-sky-500 w-full"></textarea>
+            </div>
+
+            <button type="submit" class="w-full py-2 bg-slate-900 hover:bg-black text-white font-extrabold text-xs rounded-xl transition shadow">
+              Create Coupon Code
+            </button>
+          </form>
+        </div>
+
+        <!-- Coupon List Table -->
+        <div class="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm lg:col-span-8 space-y-4">
+          <h3 class="font-bold text-slate-900 text-base">🏷️ Active Promotional Coupons</h3>
+          
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs border-collapse">
+              <thead>
+                <tr class="text-slate-400 font-bold border-b border-slate-100 bg-slate-50">
+                  <th class="py-4 px-4 rounded-l-lg">Code</th>
+                  <th class="py-4 px-4">Discount Value</th>
+                  <th class="py-4 px-4">Type</th>
+                  <th class="py-4 px-4">Priority</th>
+                  <th class="py-4 px-4">Stackable</th>
+                  <th class="py-4 px-4">Description</th>
+                  <th class="py-4 px-4 rounded-r-lg text-right">Action</th>
+                </tr>
+              </thead>
+              <tbody id="coupons-table-body" class="divide-y divide-slate-100 text-slate-700">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- TAB 4: PAYOUTS & AUDIT LOGS -->
+    <div id="admin-content-payouts" class="admin-tab-content hidden space-y-6">
+      
+      <!-- Vendor Payouts -->
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm space-y-4">
+        <h3 class="font-bold text-slate-900 text-base">💼 Vendor Payouts Ledger & Commissions</h3>
+        <p class="text-xs text-slate-550">Track payments due to transit hotels, dining bistros, spa partners and transport fleets. Commission is subtracted from gross vendor amount.</p>
+        
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs border-collapse">
+            <thead>
+              <tr class="text-slate-400 font-bold border-b border-slate-100 bg-slate-50">
+                <th class="py-4 px-4 rounded-l-lg">Payout ID</th>
+                <th class="py-4 px-4">Booking Ref</th>
+                <th class="py-4 px-4">Vendor ID</th>
+                <th class="py-4 px-4">Service Item Name</th>
+                <th class="py-4 px-4">Commission %</th>
+                <th class="py-4 px-4">Commission (₹)</th>
+                <th class="py-4 px-4">Net Payout Amount</th>
+                <th class="py-4 px-4">Status</th>
+                <th class="py-4 px-4 rounded-r-lg text-right">Process Action</th>
+              </tr>
+            </thead>
+            <tbody id="vendor-payout-table-body" class="divide-y divide-slate-100 text-slate-700">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Audit Logs -->
+      <div class="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm space-y-4">
+        <h3 class="font-bold text-slate-900 text-base flex items-center gap-2">
+          <span>🕒 Pricing Rule Audit Trail & Logs</span>
+        </h3>
+        <p class="text-xs text-slate-500">Chronological history of manual base price changes, overrides and coupon edits.</p>
+        
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs border-collapse">
+            <thead>
+              <tr class="text-slate-400 font-bold border-b border-slate-100 bg-slate-50">
+                <th class="py-4 px-4 rounded-l-lg">Timestamp</th>
+                <th class="py-4 px-4">Administrator</th>
+                <th class="py-4 px-4">Action</th>
+                <th class="py-4 px-4 rounded-r-lg">Details</th>
+              </tr>
+            </thead>
+            <tbody id="pricing-audit-table-body" class="divide-y divide-slate-100 text-slate-700">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- Include Chart.js from CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  let bookingsChartInstance = null;
+  let streamsChartInstance = null;
+
+  document.addEventListener('DOMContentLoaded', () => {
+    // Initial load check
+    if (!localStorage.getItem('layoverx_revenue_transactions')) {
+      // Refresh page if init needs to load in app.js
+      setTimeout(renderAllAdminViews, 100);
+    } else {
+      renderAllAdminViews();
+    }
+  });
+
+  function switchAdminTab(tab) {
+    document.querySelectorAll('.admin-tab-content').forEach(el => el.classList.add('hidden'));
+    document.getElementById(`admin-content-${tab}`).classList.remove('hidden');
+
+    document.querySelectorAll('[id^="admin-tab-"]').forEach(btn => {
+      btn.className = "px-4 py-4 text-sm font-bold text-slate-600 hover:bg-slate-100 rounded-xl transition";
+    });
+    
+    const activeBtn = document.getElementById(`admin-tab-${tab}`);
+    if (activeBtn) {
+      activeBtn.className = "px-4 py-4 text-sm font-extrabold rounded-xl transition bg-slate-900 text-white shadow-md";
+    }
+
+    if (tab === 'overview') {
+      renderAllAdminViews();
+    }
+  }
+
+  function renderAllAdminViews() {
+    loadOverviewStats();
+    loadTransactionLedger();
+    loadPricingRulesControls();
+    loadCouponsTab();
+    loadPayoutsAndAudits();
+    renderAnalyticsCharts();
+  }
+
+  // --- STATS OVERVIEW ---
+  function loadOverviewStats() {
+    const txList = JSON.parse(localStorage.getItem('layoverx_revenue_transactions')) || [];
+    const couponsList = JSON.parse(localStorage.getItem('layoverx_coupons')) || [];
+    const demandSettings = JSON.parse(localStorage.getItem('layoverx_demand_settings')) || {};
+
+    let totalGBV = 0;
+    let totalNetRev = 0;
+
+    txList.forEach(tx => {
+      totalGBV += tx.subtotal;
+      // Net Revenue is Platform fee + Convenience Fee + Commissions earned from vendor payouts
+      const serviceFee = tx.serviceFee || 0;
+      const convFee = tx.convenienceFee || 0;
+      
+      // Calculate commission from items
+      let commissionEarned = 0;
+      const commissionRules = JSON.parse(localStorage.getItem('layoverx_commissions')) || [];
+      
+      tx.items.forEach(item => {
+        const rule = commissionRules.find(r => r.category === item.type);
+        const ratePercent = rule ? parseFloat(rule.ratePercent) : 15;
+        commissionEarned += item.finalTotalCost * (ratePercent / 100.0);
+      });
+
+      totalNetRev += (serviceFee + convFee + commissionEarned);
+    });
+
+    document.getElementById('stat-gbv').textContent = `₹${totalGBV.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+    document.getElementById('stat-net-rev').textContent = `₹${totalNetRev.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+    
+    const occupancy = demandSettings.simulatedOccupancy || 0;
+    document.getElementById('stat-occupancy').textContent = `${occupancy}%`;
+
+    const occBadge = document.getElementById('stat-occupancy-badge');
+    if (occupancy >= 80) {
+      occBadge.textContent = "High (Yield +20%)";
+      occBadge.className = "text-[9px] font-extrabold px-2 py-1 rounded uppercase bg-rose-100 text-rose-700 border border-rose-200";
+    } else if (occupancy <= 30) {
+      occBadge.textContent = "Low (Discount -10%)";
+      occBadge.className = "text-[9px] font-extrabold px-2 py-1 rounded uppercase bg-amber-100 text-amber-700 border border-amber-200";
+    } else {
+      occBadge.textContent = "Standard";
+      occBadge.className = "text-[9px] font-extrabold px-2 py-1 rounded uppercase bg-emerald-100 text-emerald-700 border border-emerald-200";
+    }
+
+    document.getElementById('stat-coupons-count').textContent = couponsList.length;
+  }
+
+  // --- TRANSACTION LEDGER ---
+  function loadTransactionLedger() {
+    const txList = JSON.parse(localStorage.getItem('layoverx_revenue_transactions')) || [];
+    const tbody = document.getElementById('revenue-tx-table-body');
+    if (!tbody) return;
+
+    if (txList.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="8" class="py-6 text-center text-slate-400 italic">No revenue transactions recorded.</td></tr>`;
+      return;
+    }
+
+    tbody.innerHTML = '';
+    // Reverse sort to show latest first
+    const sortedTx = [...txList].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+    sortedTx.forEach(tx => {
+      // Calculate net commission earned
+      let commissionEarned = 0;
+      const commissionRules = JSON.parse(localStorage.getItem('layoverx_commissions')) || [];
+      tx.items.forEach(item => {
+        const rule = commissionRules.find(r => r.category === item.type);
+        const ratePercent = rule ? parseFloat(rule.ratePercent) : 15;
+        commissionEarned += item.finalTotalCost * (ratePercent / 100.0);
+      });
+      const netPlatformRevenue = (tx.serviceFee || 0) + (tx.convenienceFee || 0) + commissionEarned;
+
+      const dateStr = new Date(tx.createdAt).toLocaleDateString('en-IN', {
+        day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit'
+      });
+
+      tbody.innerHTML += `
+        <tr class="hover:bg-slate-50/80 transition-colors">
+          <td class="py-4 px-4 font-mono font-bold text-slate-900">${tx.bookingId}</td>
+          <td class="py-4 px-4 text-slate-500">${dateStr}</td>
+          <td class="py-4 px-4 font-semibold text-slate-800">${tx.passenger}</td>
+          <td class="py-4 px-4">₹${tx.subtotal.toFixed(2)}</td>
+          <td class="py-4 px-4 text-emerald-600 font-bold">-₹${(tx.totalDiscount || 0).toFixed(2)}</td>
+          <td class="py-4 px-4 text-slate-500">₹${((tx.convenienceFee || 0) + (tx.serviceFee || 0) + (tx.taxes || 0)).toFixed(2)}</td>
+          <td class="py-4 px-4 font-black text-slate-900">₹${tx.grandTotal.toFixed(2)}</td>
+          <td class="py-4 px-4 text-right font-bold text-emerald-700">₹${netPlatformRevenue.toFixed(2)}</td>
+        </tr>
+      `;
+    });
+  }
+
+  // --- PRICING RULES VIEW ---
+  function loadPricingRulesControls() {
+    const basePrices = JSON.parse(localStorage.getItem('layoverx_base_prices')) || {};
+    const pricingSettings = JSON.parse(localStorage.getItem('layoverx_pricing_settings')) || {};
+    const demandSettings = JSON.parse(localStorage.getItem('layoverx_demand_settings')) || {};
+    const seasonsList = JSON.parse(localStorage.getItem('layoverx_seasonal_pricing')) || [];
+
+    // General Overrides Label
+    const val = pricingSettings.manualOverridePercent || 0;
+    document.getElementById('override-slider').value = val;
+    updateOverrideLabel(val);
+
+    // Simulated Occupancy label
+    const occ = demandSettings.simulatedOccupancy || 0;
+    document.getElementById('slider-occupancy').value = occ;
+    updateOccupancyLabel(occ);
+    document.getElementById('chk-auto-demand').checked = !!demandSettings.autoDemandIncrease;
+
+    // Render Base Prices Editor
+    const container = document.getElementById('base-prices-editor-container');
+    if (container) {
+      container.innerHTML = '';
+      
+      const friendlyCategoryMap = {
+        hotel: "🏨 Transit Hotels Room Hourly rates",
+        dining: "🍽️ Dining Packages & Lounges",
+        activity: "📸 Guided City Sightseeing Excursions",
+        spa: "💆 Wellness & Express Spas",
+        gaming: "🎮 High-energy VR & Gaming Hubs",
+        transfer: "🚖 Fixed Airport Pick-up & Cabs"
+      };
+
+      Object.keys(basePrices).forEach(category => {
+        let rowsHtml = '';
+        Object.keys(basePrices[category]).forEach(itemId => {
+          const basePriceValue = basePrices[category][itemId];
+          let friendlyName = `Item ID: ${itemId}`;
+          
+          if (category === 'transfer') {
+            friendlyName = itemId === 'sedan' ? "Compact Sedan Cab" : (itemId === 'suv' ? "Premium SUV (Innova)" : "Luxury Chauffeur (Mercedes)");
+          } else if (category === 'hotel') {
+            const hotelNames = { 1: "Premium Cabin (3h)", 2: "Deluxe Suite Room (12h)", 3: "Budget Pod Stay (3h)", 4: "Standard Suite Room (6h)" };
+            friendlyName = hotelNames[itemId] || friendlyName;
+          } else if (category === 'dining') {
+            const dineNames = { 1: "Seafood Gourmet Meal", 2: "Fine-Dining Buffet", 3: "Local Coastal Lunch", 4: "Street Food Snack Crawl" };
+            friendlyName = dineNames[itemId] || friendlyName;
+          } else if (category === 'activity') {
+            const actNames = { 1: "South Mumbai Heritage Tour", 2: "Bandra Food Trail Tour", 3: "Dharavi Potters Walk", 4: "Bollywood Tour" };
+            friendlyName = actNames[itemId] || friendlyName;
+          } else if (category === 'spa') {
+            const spaNames = { 1: "Westin Full Spa Massage", 2: "O2 Terminal Express Massage", 3: "Luxury Hot Stone Circuit" };
+            friendlyName = spaNames[itemId] || friendlyName;
+          } else if (category === 'gaming') {
+            const gameNames = { 1: "Smaaash VR Pass", 2: "Luxury Cinema Private Ticket", 3: "Console Arcade Pass" };
+            friendlyName = gameNames[itemId] || friendlyName;
+          }
+
+          rowsHtml += `
+            <div class="flex items-center justify-between gap-4 p-4 bg-slate-50 border border-slate-100 rounded-xl">
+              <span class="text-xs font-semibold text-slate-700">${friendlyName}</span>
+              <div class="flex items-center gap-2">
+                <span class="text-xs text-slate-400">₹</span>
+                <input type="number" min="0" data-cat="${category}" data-id="${itemId}" value="${basePriceValue}" class="w-24 text-center rounded-lg border border-slate-200 px-2 py-1 text-xs font-bold text-slate-900 focus:outline-emerald-500 focus:ring-1 focus:ring-emerald-500"/>
+              </div>
+            </div>
+          `;
+        });
+
+        container.innerHTML += `
+          <div class="bg-white border border-slate-200/80 p-4 rounded-2xl space-y-4 shadow-xs">
+            <h4 class="text-xs font-bold text-slate-900 border-b border-slate-100 pb-2 uppercase tracking-wider">${friendlyCategoryMap[category] || category}</h4>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              ${rowsHtml}
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    // Render Seasons
+    const seasonsContainer = document.getElementById('seasonal-pricing-list');
+    if (seasonsContainer) {
+      seasonsContainer.innerHTML = '';
+      seasonsList.forEach((s, idx) => {
+        seasonsContainer.innerHTML += `
+          <div class="flex flex-col gap-2 p-4.5 bg-slate-55 border border-slate-200/60 rounded-xl">
+            <div class="flex justify-between items-center text-xs">
+              <span class="font-extrabold text-slate-800">${s.name}</span>
+              <div class="flex items-center gap-1">
+                <input type="number" step="0.05" id="season-mult-${idx}" value="${s.multiplier}" class="w-16 text-center border rounded px-2 py-1 text-xs font-bold text-slate-900"/>
+                <span class="text-[10px] text-slate-400">x</span>
+              </div>
+            </div>
+            <div class="flex justify-between items-center gap-2 text-[10px]">
+              <div class="flex items-center gap-1">
+                <span class="text-slate-400">Start (MM-DD):</span>
+                <input type="text" id="season-start-${idx}" value="${s.start}" class="w-14 border rounded px-1 text-center py-1"/>
+              </div>
+              <div class="flex items-center gap-1">
+                <span class="text-slate-400">End:</span>
+                <input type="text" id="season-end-${idx}" value="${s.end}" class="w-14 border rounded px-1 text-center py-1"/>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+    }
+  }
+
+  function updateOverrideLabel(val) {
+    const badge = document.getElementById('override-badge');
+    const overrideVal = parseInt(val);
+    if (overrideVal === 0) {
+      badge.textContent = "0% (Disabled)";
+      badge.className = "text-sm font-black px-4 py-1 bg-slate-100 text-slate-700 border border-slate-200 rounded-xl";
+    } else if (overrideVal > 0) {
+      badge.textContent = `+${overrideVal}% Markup`;
+      badge.className = "text-sm font-black px-4 py-1 bg-emerald-50 text-emerald-700 border border-emerald-100 rounded-xl";
+    } else {
+      badge.textContent = `${overrideVal}% Discount`;
+      badge.className = "text-sm font-black px-4 py-1 bg-amber-50 text-amber-700 border border-amber-100 rounded-xl";
+    }
+  }
+
+  function updateOccupancyLabel(val) {
+    document.getElementById('lbl-occupancy').textContent = `${val}%`;
+  }
+
+  function saveOverrideSetting() {
+    const val = parseInt(document.getElementById('override-slider').value);
+    const settings = JSON.parse(localStorage.getItem('layoverx_pricing_settings')) || {};
+    settings.manualOverridePercent = val;
+    localStorage.setItem('layoverx_pricing_settings', JSON.stringify(settings));
+
+    logAuditAction("Manual Override Adjusted", `Set manual override pricing multiplier to ${val}% markup`);
+    showToast(`Global Override applied: ${val}% markup/discount!`, "success");
+    renderAllAdminViews();
+  }
+
+  function saveBasePrices() {
+    const basePrices = JSON.parse(localStorage.getItem('layoverx_base_prices')) || {};
+    const inputs = document.querySelectorAll('#base-prices-editor-container input');
+
+    inputs.forEach(input => {
+      const cat = input.getAttribute('data-cat');
+      const id = input.getAttribute('data-id');
+      const val = parseFloat(input.value) || 0;
+      
+      if (basePrices[cat]) {
+        basePrices[cat][id] = val;
+      }
+    });
+
+    localStorage.setItem('layoverx_base_prices', JSON.stringify(basePrices));
+    logAuditAction("Updated base pricing rules", "Modified base prices for transit rooms, excursions, or taxi tariffs");
+    showToast("Base pricing rules committed and saved!", "success");
+    renderAllAdminViews();
+  }
+
+  function saveOccupancySettings() {
+    const occ = parseInt(document.getElementById('slider-occupancy').value);
+    const autoD = document.getElementById('chk-auto-demand').checked;
+
+    const demand = JSON.parse(localStorage.getItem('layoverx_demand_settings')) || {};
+    demand.simulatedOccupancy = occ;
+    demand.autoDemandIncrease = autoD;
+
+    localStorage.setItem('layoverx_demand_settings', JSON.stringify(demand));
+    logAuditAction("Yield settings updated", `Simulated occupancy updated to ${occ}%. Auto demand yield: ${autoD ? 'Enabled' : 'Disabled'}`);
+    showToast("Occupancy and yield settings updated!", "success");
+    renderAllAdminViews();
+  }
+
+  function saveSeasonalPricing() {
+    const seasonsList = JSON.parse(localStorage.getItem('layoverx_seasonal_pricing')) || [];
+    
+    seasonsList.forEach((s, idx) => {
+      const multInput = document.getElementById(`season-mult-${idx}`);
+      const startInput = document.getElementById(`season-start-${idx}`);
+      const endInput = document.getElementById(`season-end-${idx}`);
+      
+      if (multInput) s.multiplier = parseFloat(multInput.value) || 1.0;
+      if (startInput) s.start = startInput.value.trim();
+      if (endInput) s.end = endInput.value.trim();
+    });
+
+    localStorage.setItem('layoverx_seasonal_pricing', JSON.stringify(seasonsList));
+    logAuditAction("Seasonal Multipliers edited", "Modified peak/low-monsoon calendar dates or adjustments factors");
+    showToast("Seasonal multipliers saved!", "success");
+    renderAllAdminViews();
+  }
+
+  // --- PROMOTIONS & COUPONS ---
+  function loadCouponsTab() {
+    const couponsList = JSON.parse(localStorage.getItem('layoverx_coupons')) || [];
+    const tbody = document.getElementById('coupons-table-body');
+    if (!tbody) return;
+
+    if (couponsList.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="7" class="py-6 text-center text-slate-400 italic">No active coupons available. Add one.</td></tr>`;
+      return;
+    }
+
+    tbody.innerHTML = '';
+    couponsList.forEach((c, idx) => {
+      tbody.innerHTML += `
+        <tr class="hover:bg-slate-50/80 transition-colors">
+          <td class="py-4 px-4 font-mono font-bold text-slate-900">${c.code}</td>
+          <td class="py-4 px-4 font-semibold">${c.value}${c.discountType === 'percent' ? '%' : ' ₹'}</td>
+          <td class="py-4 px-4 capitalize">${c.discountType}</td>
+          <td class="py-4 px-4">${c.priority}</td>
+          <td class="py-4 px-4">
+            <span class="px-2 py-1 rounded-full text-[9px] font-bold ${c.stackable ? 'bg-emerald-50 text-emerald-700 border border-emerald-250' : 'bg-slate-100 text-slate-500'}">
+              ${c.stackable ? 'Stackable' : 'Single Use'}
+            </span>
+          </td>
+          <td class="py-4 px-4 text-slate-500">${c.desc || 'No description'}</td>
+          <td class="py-4 px-4 text-right">
+            <button onclick="deleteCoupon(${idx})" class="text-rose-650 hover:text-rose-800 font-bold transition">Delete</button>
+          </td>
+        </tr>
+      `;
+    });
+  }
+
+  function createNewCoupon(e) {
+    e.preventDefault();
+    const code = document.getElementById('new-coupon-code').value.trim().toUpperCase();
+    const type = document.getElementById('new-coupon-type').value;
+    const val = parseFloat(document.getElementById('new-coupon-value').value) || 0;
+    const priority = parseInt(document.getElementById('new-coupon-priority').value) || 5;
+    const stackable = document.getElementById('new-coupon-stackable').value === 'true';
+    const desc = document.getElementById('new-coupon-desc').value.trim();
+
+    if (!code) return;
+
+    const couponsList = JSON.parse(localStorage.getItem('layoverx_coupons')) || [];
+    if (couponsList.some(c => c.code === code)) {
+      showToast("A coupon with this code already exists!", "error");
+      return;
+    }
+
+    couponsList.push({ code, discountType: type, value: val, priority, stackable, desc });
+    localStorage.setItem('layoverx_coupons', JSON.stringify(couponsList));
+
+    logAuditAction("Coupon Created", `Added new coupon code ${code} (Discount: ${val}${type === 'percent' ? '%' : '₹'})`);
+    showToast(`Promo coupon ${code} added successfully!`, "success");
+    document.getElementById('add-coupon-form').reset();
+    renderAllAdminViews();
+  }
+
+  function deleteCoupon(idx) {
+    const couponsList = JSON.parse(localStorage.getItem('layoverx_coupons')) || [];
+    const deleted = couponsList[idx];
+    if (!deleted) return;
+
+    couponsList.splice(idx, 1);
+    localStorage.setItem('layoverx_coupons', JSON.stringify(couponsList));
+
+    logAuditAction("Coupon Deleted", `Removed coupon code ${deleted.code}`);
+    showToast("Coupon removed!", "success");
+    renderAllAdminViews();
+  }
+
+  // --- PAYOUTS & AUDIT LOGS ---
+  function loadPayoutsAndAudits() {
+    const historyList = JSON.parse(localStorage.getItem('layoverx_pricing_history')) || [];
+    const payoutsList = JSON.parse(localStorage.getItem('layoverx_vendor_payouts')) || [];
+    
+    // Audit History Table
+    const auditTbody = document.getElementById('pricing-audit-table-body');
+    if (auditTbody) {
+      if (historyList.length === 0) {
+        auditTbody.innerHTML = `<tr><td colspan="4" class="py-6 text-center text-slate-400 italic">No audit records found.</td></tr>`;
+      } else {
+        auditTbody.innerHTML = '';
+        // Reverse sort for latest log
+        const sortedHistory = [...historyList].sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+        sortedHistory.forEach(log => {
+          const time = new Date(log.timestamp).toLocaleString();
+          auditTbody.innerHTML += `
+            <tr class="hover:bg-slate-50/80 transition-colors">
+              <td class="py-4 px-4 font-semibold text-slate-500 font-mono">${time}</td>
+              <td class="py-4 px-4 font-bold text-slate-900">${log.admin}</td>
+              <td class="py-4 px-4 font-bold text-emerald-700">${log.action}</td>
+              <td class="py-4 px-4 text-slate-550">${log.details}</td>
+            </tr>
+          `;
+        });
+      }
+    }
+
+    // Vendor Payouts Table
+    const payoutTbody = document.getElementById('vendor-payout-table-body');
+    if (payoutTbody) {
+      if (payoutsList.length === 0) {
+        payoutTbody.innerHTML = `<tr><td colspan="9" class="py-6 text-center text-slate-400 italic">No vendor payouts computed.</td></tr>`;
+      } else {
+        payoutTbody.innerHTML = '';
+        // Reverse sort payout items
+        const sortedPayouts = [...payoutsList].reverse();
+        sortedPayouts.forEach((po, origIdx) => {
+          // Find original index inside the actual payouts list
+          const realIdx = payoutsList.findIndex(p => p.payoutId === po.payoutId);
+          
+          const isPending = po.status === 'Pending';
+          const badgeClass = isPending ? 'bg-amber-50 text-amber-700 border-amber-200' : 'bg-emerald-50 text-emerald-700 border-emerald-250';
+          const processBtn = isPending ? `<button onclick="processPayout(${realIdx})" class="px-2 py-1 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-[10px] rounded-lg transition shadow-xs">Disburse Payout</button>` : `<span class="text-slate-400 italic text-[10px]">Settled ${new Date(po.datePaid).toLocaleDateString()}</span>`;
+
+          payoutTbody.innerHTML += `
+            <tr class="hover:bg-slate-50/80 transition-colors">
+              <td class="py-4 px-4 font-mono font-bold text-slate-900">${po.payoutId}</td>
+              <td class="py-4 px-4 font-mono text-slate-500">${po.bookingId}</td>
+              <td class="py-4 px-4 font-semibold text-slate-700">${po.vendorId}</td>
+              <td class="py-4 px-4 text-slate-800 font-semibold">${po.itemName}</td>
+              <td class="py-4 px-4 font-bold">${po.ratePercent}%</td>
+              <td class="py-4 px-4 text-slate-500">₹${(po.commissionAmount || 0).toFixed(2)}</td>
+              <td class="py-4 px-4 font-black text-slate-900">₹${po.amount.toFixed(2)}</td>
+              <td class="py-4 px-4">
+                <span class="px-2 py-1 rounded-full text-[9px] font-extrabold border ${badgeClass}">
+                  ${po.status}
+                </span>
+              </td>
+              <td class="py-4 px-4 text-right">${processBtn}</td>
+            </tr>
+          `;
+        });
+      }
+    }
+  }
+
+  function processPayout(idx) {
+    const payoutsList = JSON.parse(localStorage.getItem('layoverx_vendor_payouts')) || [];
+    const po = payoutsList[idx];
+    if (!po) return;
+
+    po.status = "Paid";
+    po.datePaid = new Date().toISOString();
+    localStorage.setItem('layoverx_vendor_payouts', JSON.stringify(payoutsList));
+
+    logAuditAction("Vendor Payout Settled", `Disbursed ₹${po.amount.toFixed(2)} to vendor ${po.vendorId} for booking ${po.bookingId}`);
+    showToast("Payout disbursed and status marked settled!", "success");
+    renderAllAdminViews();
+  }
+
+  function logAuditAction(action, details) {
+    const historyList = JSON.parse(localStorage.getItem('layoverx_pricing_history')) || [];
+    historyList.push({
+      timestamp: new Date().toISOString(),
+      admin: (typeof auth !== 'undefined' && auth.currentUser) ? auth.currentUser.email : "admin@layoverx.com",
+      action,
+      details
+    });
+    localStorage.setItem('layoverx_pricing_history', JSON.stringify(historyList));
+  }
+
+  // --- CHARTS GENERATION ---
+  function renderAnalyticsCharts() {
+    // 1. Category Chart calculations
+    const txList = JSON.parse(localStorage.getItem('layoverx_revenue_transactions')) || [];
+    const commissionRules = JSON.parse(localStorage.getItem('layoverx_commissions')) || [];
+
+    const sums = { hotel: 0, dining: 0, activity: 0, spa: 0, gaming: 0, transfer: 0 };
+    const netSums = { hotel: 0, dining: 0, activity: 0, spa: 0, gaming: 0, transfer: 0 };
+
+    txList.forEach(tx => {
+      tx.items.forEach(item => {
+        if (sums[item.type] !== undefined) {
+          sums[item.type] += item.finalTotalCost;
+          
+          const rule = commissionRules.find(r => r.category === item.type);
+          const ratePercent = rule ? parseFloat(rule.ratePercent) : 15;
+          netSums[item.type] += item.finalTotalCost * (ratePercent / 100.0);
+        }
+      });
+    });
+
+    const labels = ["Hotels Stay", "Restaurants", "Tours & Trips", "Spas", "VR Gaming", "Transfers"];
+    const sumValues = [sums.hotel, sums.dining, sums.activity, sums.spa, sums.gaming, sums.transfer];
+    const commissionValues = [netSums.hotel, netSums.dining, netSums.activity, netSums.spa, netSums.gaming, netSums.transfer];
+
+    // Destroy existing charts to reload clean
+    if (bookingsChartInstance) bookingsChartInstance.destroy();
+    if (streamsChartInstance) streamsChartInstance.destroy();
+
+    const barCtx = document.getElementById('bookingsChart')?.getContext('2d');
+    if (barCtx) {
+      bookingsChartInstance = new Chart(barCtx, {
+        type: 'bar',
+        data: {
+          labels: labels,
+          datasets: [
+            {
+              label: 'Gross Bookings (₹)',
+              data: sumValues,
+              backgroundColor: 'rgba(14, 165, 233, 0.7)',
+              borderColor: '#0ea5e9',
+              borderWidth: 1.5,
+              borderRadius: 6
+            },
+            {
+              label: 'Platform Commission (₹)',
+              data: commissionValues,
+              backgroundColor: 'rgba(16, 185, 129, 0.7)',
+              borderColor: '#10b981',
+              borderWidth: 1.5,
+              borderRadius: 6
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: { beginAtZero: true }
+          },
+          plugins: {
+            legend: { position: 'top', labels: { font: { weight: 'bold', size: 10 } } }
+          }
+        }
+      });
+    }
+
+    // Pie chart for revenue streams
+    // Sum convenience charge, service fees, and commissions
+    let convenienceTotal = 0;
+    let serviceTotal = 0;
+    let commissionTotal = 0;
+    let insuranceTotal = 0;
+
+    txList.forEach(tx => {
+      convenienceTotal += (tx.convenienceFee || 0);
+      serviceTotal += (tx.serviceFee || 0);
+      insuranceTotal += (tx.insurancePremium || 0);
+
+      tx.items.forEach(item => {
+        const rule = commissionRules.find(r => r.category === item.type);
+        const ratePercent = rule ? parseFloat(rule.ratePercent) : 15;
+        commissionTotal += item.finalTotalCost * (ratePercent / 100.0);
+      });
+    });
+
+    const pieCtx = document.getElementById('streamsChart')?.getContext('2d');
+    if (pieCtx) {
+      streamsChartInstance = new Chart(pieCtx, {
+        type: 'doughnut',
+        data: {
+          labels: ["Commissions (15%)", "Convenience Fees", "Platform Service Fees", "Protection Insurance"],
+          datasets: [{
+            data: [commissionTotal, convenienceTotal, serviceTotal, insuranceTotal],
+            backgroundColor: [
+              '#0ea5e9',
+              '#10b981',
+              '#f59e0b',
+              '#6366f1'
+            ],
+            borderWidth: 2,
+            borderColor: '#ffffff'
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 9, weight: 'bold' } } }
+          }
+        }
+      });
+    }
+  }
+
+  // --- AUTOMATED FINANCIAL PLAN DOWNLOAD ---
+  function downloadFinancialPlanCA() {
+    const txList = JSON.parse(localStorage.getItem('layoverx_revenue_transactions')) || [];
+    const commissionRules = JSON.parse(localStorage.getItem('layoverx_commissions')) || [];
+    const discountsList = JSON.parse(localStorage.getItem('layoverx_discounts')) || [];
+    const demandSettings = JSON.parse(localStorage.getItem('layoverx_demand_settings')) || {};
+
+    let totalGross = 0;
+    let totalDiscount = 0;
+    let totalConvFee = 0;
+    let totalServiceFee = 0;
+    let totalTaxes = 0;
+    let totalInsurance = 0;
+    let totalCommissions = 0;
+
+    txList.forEach(tx => {
+      totalGross += tx.subtotal;
+      totalDiscount += (tx.totalDiscount || 0);
+      totalConvFee += (tx.convenienceFee || 0);
+      totalServiceFee += (tx.serviceFee || 0);
+      totalTaxes += (tx.taxes || 0);
+      totalInsurance += (tx.insurancePremium || 0);
+
+      tx.items.forEach(item => {
+        const rule = commissionRules.find(r => r.category === item.type);
+        const ratePercent = rule ? parseFloat(rule.ratePercent) : 15;
+        totalCommissions += item.finalTotalCost * (ratePercent / 100.0);
+      });
+    });
+
+    const netPlatformRevenue = totalCommissions + totalConvFee + totalServiceFee + totalInsurance;
+    const vendorPayouts = totalGross - totalDiscount - totalCommissions;
+
+    const documentContent = `================================================================================
+LAYOVERX TRAVEL MARKETPLACE - CA FINANCIAL STRATEGY & REVENUE LEDGER SUMMARY
+Generated Date: ${new Date().toLocaleString()} (Internal Audit Document)
+================================================================================
+
+A. EXECUTIVE LEDGER SUMMARY
+---------------------------
+Gross Booking Volume (GBV):         INR ${totalGross.toFixed(2)}
+Total Member Discounts Deducted:     INR ${totalDiscount.toFixed(2)}
+Total Net Bookings Post-Discounts:  INR ${(totalGross - totalDiscount).toFixed(2)}
+
+Net Platform Revenue Breakdown:
+  1. Room & Partner Commissions:    INR ${totalCommissions.toFixed(2)}
+  2. Platform Convenience Fees:     INR ${totalConvFee.toFixed(2)}
+  3. Platform Service Fees (2%):    INR ${totalServiceFee.toFixed(2)}
+  4. Protection Insurance Premium:  INR ${totalInsurance.toFixed(2)}
+  -------------------------------------------------------------
+  TOTAL PLATFORM NET REVENUE:      INR ${netPlatformRevenue.toFixed(2)}
+
+Vendor Disbursement Obligations:
+  Gross Vendor Payout calculated:   INR ${vendorPayouts.toFixed(2)}
+  Status: Pending Reconciliation
+
+Taxes & Compliance:
+  GST collected (18% on fees):       INR ${totalTaxes.toFixed(2)}
+
+B. DYNAMIC YIELD ENGINE COEFFICIENTS
+-------------------------------------
+Simulated Live Occupancy Rate:      ${demandSettings.simulatedOccupancy || 0}%
+High Occupancy Trigger Threshold:    ${demandSettings.highOccupancyThreshold || 80}%
+High Occupancy Yield Markup:        ${((demandSettings.highOccupancyMultiplier || 1.2) - 1.0) * 100}%
+Low Occupancy Discount:             ${(1.0 - (demandSettings.lowOccupancyMultiplier || 0.9)) * 100}%
+Dynamic Auto-Adjustment Yield:      ${demandSettings.autoDemandIncrease ? 'ACTIVE' : 'INACTIVE'}
+
+C. REVENUE TRANSACTIONS LEDGER (AUDIT TRAIL)
+--------------------------------------------
+${txList.map(tx => `[${tx.bookingId}] ${new Date(tx.createdAt).toLocaleDateString()} | Pax: ${tx.paxCount} | Subtotal: ₹${tx.subtotal.toFixed(2)} | Disc: -₹${tx.totalDiscount.toFixed(2)} | GrandTotal: ₹${tx.grandTotal.toFixed(2)}`).join('\n')}
+
+================================================================================
+CONFIDENTIAL - FOR BOARD OF DIRECTORS AND TAX COMPLIANCE CONCIERGE ONLY
+================================================================================`;
+
+    const blob = new Blob([documentContent], { type: "text/plain;charset=utf-8" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = `LAYOVERX_CA_FINANCIAL_REPORT_${new Date().toISOString().slice(0,10)}.txt`;
+    link.click();
+    
+    logAuditAction("Financial Report Compiled", "Generated and exported professional Chartered Accountant financial summary spreadsheet");
+    showToast("Chartered Accountant Financial summary report generated and downloaded!", "success");
+  }
+</script>

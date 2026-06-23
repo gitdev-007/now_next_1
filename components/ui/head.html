@@ -1,0 +1,270 @@
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>{{TITLE}} - LayoverX</title>
+  <meta name="description" content="{{DESCRIPTION}}"/>
+  <meta name="keywords" content="Mumbai Airport Hotels, Mumbai Airport Restaurants, Mumbai Transit Tours, Mumbai Airport Cabs, Layover Itinerary Planner, LayoverX"/>
+  <link rel="canonical" href="{{CANONICAL}}"/>
+  <meta property="og:title" content="{{TITLE}} - LayoverX"/>
+  <meta property="og:description" content="{{DESCRIPTION}}"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="{{CANONICAL}}"/>
+  <meta property="og:image" content="https://layoverx.com/assets/photos/homepage.png"/>
+  <meta property="og:site_name" content="LayoverX"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="{{TITLE}} - LayoverX"/>
+  <meta name="twitter:description" content="{{DESCRIPTION}}"/>
+  {{ROBOTS}}
+
+  <!-- Critical CSS: prevents FOUC & locks base font scale before Tailwind -->
+  <style>
+    /* Lock root font size — prevents browser zoom shifts */
+    html { font-size: 16px; box-sizing: border-box; }
+    *, *::before, *::after { box-sizing: inherit; }
+
+    /* Base body typography */
+    body {
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 1rem;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* Heading scale — clear hierarchy, no browser defaults */
+    .text-hero { font-size: 4rem; line-height: 1.1; font-weight: 900; letter-spacing: -0.03em; }
+    h1 { font-size: 3rem; line-height: 1.2; font-weight: 800; letter-spacing: -0.025em; }
+    h2 { font-size: 2.5rem; line-height: 1.25; font-weight: 800; letter-spacing: -0.02em; }
+    h3 { font-size: 2rem; line-height: 1.3; font-weight: 700; letter-spacing: -0.015em; }
+    h4 { font-size: 1.5rem; line-height: 1.35; font-weight: 700; }
+    h5 { font-size: 1.25rem; line-height: 1.4; font-weight: 600; }
+    h6 { font-size: 1rem; line-height: 1.5; font-weight: 600; }
+
+    /* Body text — never smaller than 14px */
+    p { font-size: 1rem; line-height: 1.5; }
+
+    /* Input & button baseline */
+    input, select, textarea, button { font-family: inherit; font-size: 0.95rem; }
+
+    /* Prevent layout shift from Tailwind loading */
+    .container { width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 1rem; }
+
+    /* Hide body content until CSS is parsed — avoids naked HTML flash */
+    body { visibility: visible; }
+  </style>
+
+  <!-- Inter font — weights 300-900 for full design range -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link rel="preload"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+    as="style"/>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+    media="print"
+    onload="this.media='all'"/>
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  </noscript>
+
+  <!-- Tailwind utility classes -->
+  <link rel="preload" href="css/tailwind.min.css" as="style"/>
+  <link rel="stylesheet" href="css/tailwind.min.css"/>
+
+  <!-- Supabase JS Client -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-init.js" type="module"></script>
+  <!-- Firebase & Supabase compatibility shim for legacy page templates -->
+  <script>
+    // Setup Firebase compat shims for legacy page templates
+    window.firebase = window.firebase || {
+      firestore: {
+        FieldValue: {
+          serverTimestamp: () => new Date().toISOString()
+        }
+      }
+    };
+
+    (function() {
+      if (window.layoverxAuth && window.layoverxDb) return; // Don't override if already set (e.g. by tests)
+
+      const getStoredUser = () => {
+        try {
+          const userStr = sessionStorage.getItem('__mockUser') || localStorage.getItem('layoverx_user');
+          return userStr ? JSON.parse(userStr) : null;
+        } catch(e) {
+          return null;
+        }
+      };
+
+      const setStoredUser = (user) => {
+        try {
+          if (user) {
+            sessionStorage.setItem('__mockUser', JSON.stringify(user));
+            localStorage.setItem('layoverx_user', JSON.stringify(user));
+          } else {
+            sessionStorage.removeItem('__mockUser');
+            localStorage.removeItem('layoverx_user');
+          }
+        } catch(e) {}
+      };
+
+      let currentUser = getStoredUser();
+      const authCallbacks = [];
+
+      const mockAuth = {
+        onAuthStateChanged: function(cb) {
+          authCallbacks.push(cb);
+          // Execute callback with current state immediately
+          setTimeout(() => cb(currentUser), 10);
+          return () => {
+            const index = authCallbacks.indexOf(cb);
+            if (index > -1) authCallbacks.splice(index, 1);
+          };
+        },
+        get currentUser() {
+          return currentUser;
+        },
+        createUserWithEmailAndPassword: async function(email, password) {
+          currentUser = {
+            uid: 'usr_' + Math.random().toString(36).substring(2, 11),
+            email: email,
+            displayName: email.split('@')[0],
+            updateProfile: async function(profile) {
+              currentUser.displayName = profile.displayName;
+              setStoredUser(currentUser);
+              authCallbacks.forEach(cb => cb(currentUser));
+            }
+          };
+          setStoredUser(currentUser);
+          authCallbacks.forEach(cb => cb(currentUser));
+          return { user: currentUser };
+        },
+        signInWithEmailAndPassword: async function(email, password) {
+          currentUser = {
+            uid: 'usr_' + Math.random().toString(36).substring(2, 11),
+            email: email,
+            displayName: email.split('@')[0],
+            updateProfile: async function(profile) {
+              currentUser.displayName = profile.displayName;
+              setStoredUser(currentUser);
+              authCallbacks.forEach(cb => cb(currentUser));
+            }
+          };
+          setStoredUser(currentUser);
+          authCallbacks.forEach(cb => cb(currentUser));
+          return { user: currentUser };
+        },
+        signOut: async function() {
+          currentUser = null;
+          setStoredUser(null);
+          authCallbacks.forEach(cb => cb(null));
+        }
+      };
+
+      // Simple document database store backed by localStorage
+      const getDbStore = () => {
+        try {
+          return JSON.parse(localStorage.getItem('__mockDbStore')) || {};
+        } catch(e) {
+          return {};
+        }
+      };
+
+      const setDbStore = (store) => {
+        try {
+          localStorage.setItem('__mockDbStore', JSON.stringify(store));
+        } catch(e) {}
+      };
+
+      const mockDb = {
+        collection: function(colName) {
+          return {
+            doc: function(docId) {
+              return {
+                set: async function(data, options) {
+                  const store = getDbStore();
+                  if (!store[colName]) store[colName] = {};
+                  store[colName][docId] = { ...store[colName][docId], ...data };
+                  setDbStore(store);
+                },
+                get: async function() {
+                  const store = getDbStore();
+                  const data = store[colName] ? store[colName][docId] : null;
+                  return {
+                    exists: !!data,
+                    data: () => data
+                  };
+                }
+              };
+            },
+            where: function(field, op, val) {
+              return {
+                get: async function() {
+                  const store = getDbStore();
+                  const results = [];
+                  Object.values(store[colName] || {}).forEach(doc => {
+                    if (doc[field] === val) {
+                      results.push({
+                        id: doc.id || doc.applicationId || doc.uid,
+                        data: () => doc
+                      });
+                    }
+                  });
+                  return {
+                    forEach: (cb) => results.forEach(cb),
+                    empty: results.length === 0,
+                    size: results.length,
+                    docs: results
+                  };
+                }
+              };
+            }
+          };
+        }
+      };
+
+      const mockStorage = {
+        ref: function() {
+          return {
+            child: function(path) {
+              return {
+                put: async function(file) {
+                  return {};
+                },
+                getDownloadURL: async function() {
+                  return `https://firebasestorage.googleapis.com/v0/b/mock/o/${encodeURIComponent(path)}`;
+                }
+              };
+            }
+          };
+        }
+      };
+
+      // Define globals if not already defined (e.g. by Playwright init script overrides)
+      if (!window.layoverxAuth) window.layoverxAuth = mockAuth;
+      if (!window.layoverxDb) window.layoverxDb = mockDb;
+      if (!window.layoverxStorage) window.layoverxStorage = mockStorage;
+    })();
+  </script>
+
+  <!-- LayoverX Design System (overrides Tailwind where needed) -->
+  <link rel="stylesheet" href="css/design-system.css"/>
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="" defer></script>
+
+  <!-- Map Config -->
+  <script src="js/map-config.js" defer></script>
+
+  <!-- App JS -->
+  <script src="js/app.js" defer></script>
+
+  <!-- Google Maps JS SDK -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&libraries=places" defer></script>
+
+  {{JSON_LD}}
+</head>
