@@ -1,5 +1,5 @@
 {
-  "buildCommand": "python frontend/build.py",
+  "buildCommand": "node frontend/build.js",
   "outputDirectory": "frontend",
   "headers": [
     {
