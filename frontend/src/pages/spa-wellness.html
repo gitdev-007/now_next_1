@@ -14,7 +14,7 @@
           <span class="text-white font-medium">Spa & Wellness</span>
         </nav>
         
-        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold theme-badge">
+        <span class="inline-flex items-center gap-2 px-4 py-1 rounded-full text-xs font-bold theme-badge">
           💆 REJUVENATING TRANSIT WELLNESS
         </span>
 
@@ -50,7 +50,7 @@
         <div class="relative rounded-2xl overflow-hidden shadow-2xl shadow-black/50 border border-white/10 group aspect-[4/3] sm:aspect-[16/10] lg:aspect-square">
           <img height="600" width="800" src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=800&h=600&fit=crop&auto=format&fm=webp&q=75" alt="Premium luxury spa and wellness massage therapy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="eager" fetchpriority="high"/>
           <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
-          <div class="absolute bottom-4 left-4 bg-black/60 backdrop-blur-md border border-white/10 px-3 py-1.5 rounded-lg text-xs text-white font-semibold flex items-center gap-1.5">
+          <div class="absolute bottom-4 left-4 bg-black/60 backdrop-blur-md border border-white/10 px-4 py-2 rounded-lg text-xs text-white font-semibold flex items-center gap-2">
             <span>📍 Mumbai CSMIA Airport District</span>
           </div>
         </div>
@@ -62,7 +62,7 @@
 <!-- CATEGORY TABS -->
 <section class="bg-white border-b border-gray-200 py-4 sticky top-16 sm:top-20 z-40 shadow-sm">
   <div class="container">
-    <div class="flex items-center gap-3 overflow-x-auto no-scrollbar" id="spa-tabs">
+    <div class="flex items-center gap-4 overflow-x-auto no-scrollbar" id="spa-tabs">
       <button class="spa-tab active bg-theme-primary text-white px-4 py-2 rounded-xl text-xs sm:text-sm font-bold flex-shrink-0" onclick="layoverx.filterSpa('all')">All Treatments</button>
       <button class="spa-tab bg-gray-55 text-theme-primary hover:bg-theme-primary px-4 py-2 rounded-xl text-xs sm:text-sm font-bold flex-shrink-0" onclick="layoverx.filterSpa('massage')">💆 Massages</button>
       <button class="spa-tab bg-gray-55 text-theme-primary hover:bg-theme-primary px-4 py-2 rounded-xl text-xs sm:text-sm font-bold flex-shrink-0" onclick="layoverx.filterSpa('express')">⚡ Express Services</button>
@@ -85,17 +85,17 @@
           </div>
           
           <div class="mb-6">
-            <h3 class="text-xs font-bold text-theme-primary uppercase tracking-wider mb-3">Duration</h3>
+            <h3 class="text-xs font-bold text-theme-primary uppercase tracking-wider mb-4">Duration</h3>
             <div class="space-y-2">
-              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-600 cursor-pointer">
+              <label class="flex items-center gap-2 text-sm font-medium text-gray-600 cursor-pointer">
                 <input type="checkbox" name="spa-duration" value="under-1h" class="rounded border-gray-300 text-theme-primary focus:ring-theme-primary"/>
                 Under 1 Hour
               </label>
-              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-600 cursor-pointer">
+              <label class="flex items-center gap-2 text-sm font-medium text-gray-600 cursor-pointer">
                 <input type="checkbox" name="spa-duration" value="1-2h" class="rounded border-gray-300 text-theme-primary focus:ring-theme-primary"/>
                 1 - 2 Hours
               </label>
-              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-600 cursor-pointer">
+              <label class="flex items-center gap-2 text-sm font-medium text-gray-600 cursor-pointer">
                 <input type="checkbox" name="spa-duration" value="above-2h" class="rounded border-gray-300 text-theme-primary focus:ring-theme-primary"/>
                 Deep Wellness (2h+)
               </label>
@@ -111,7 +111,7 @@
                    data-category="massage" data-duration="1.5" data-price="4500">
             <div class="relative w-full md:w-80 h-52 md:h-auto flex-shrink-0">
               <img height="400" width="600" alt="Spa Treatment" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&h=400&fit=crop&auto=format&fm=webp&q=75"/>
-              <span class="absolute top-4 left-4 bg-theme-primary text-white text-[10px] font-bold px-2.5 py-1 rounded-md">💆 Massage</span>
+              <span class="absolute top-4 left-4 bg-theme-primary text-white text-[10px] font-bold px-2 py-1 rounded-md">💆 Massage</span>
             </div>
             <div class="p-6 flex-grow flex flex-col justify-between">
               <div>
@@ -119,16 +119,16 @@
                   <h3 class="font-bold text-gray-900 text-lg hover:text-theme-primary transition-colors">
                     <a href="#" onclick="layoverx.openSpaDetail(1);return false;">Heavenly Spa by Westin</a>
                   </h3>
-                  <div class="flex items-center gap-1.5 bg-gray-50 text-theme-primary px-2 py-1 rounded-lg text-xs font-bold flex-shrink-0">
+                  <div class="flex items-center gap-2 bg-gray-50 text-theme-primary px-2 py-1 rounded-lg text-xs font-bold flex-shrink-0">
                     ⭐ 4.9 <span class="text-theme-primary font-medium">(450 reviews)</span>
                   </div>
                 </div>
-                <div class="text-xs text-theme-primary flex items-center gap-1.5 mb-3">
+                <div class="text-xs text-theme-primary flex items-center gap-2 mb-4">
                   <svg class="w-3.5 h-3.5 text-theme-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5A7.5 7.5 0 1119.5 10.5z"/></svg>
                   <span>Sahar, Andheri East • Airport Adjacent</span>
                 </div>
                 <p class="text-theme-primary text-sm mb-4 leading-relaxed line-clamp-2">Full-body Swedish massage, steam room access, and luxury aromatherapy in a tranquil setting.</p>
-                <div class="flex flex-wrap gap-1.5 mb-4">
+                <div class="flex flex-wrap gap-2 mb-4">
                   <span class="text-[10px] bg-gray-100 text-gray-800 font-bold px-2 py-1 rounded-md">💆 Swedish Massage</span>
                   <span class="text-[10px] bg-gray-100 text-gray-800 font-bold px-2 py-1 rounded-md">🛁 Steam & Sauna</span>
                   <span class="text-[10px] bg-gray-100 text-gray-800 font-bold px-2 py-1 rounded-md">🚖 Free Pickup</span>
@@ -152,7 +152,7 @@
                    data-category="express" data-duration="0.5" data-price="1800">
             <div class="relative w-full md:w-80 h-52 md:h-auto flex-shrink-0">
               <img height="400" width="600" alt="Express Spa" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=600&h=400&fit=crop&auto=format&fm=webp&q=75"/>
-              <span class="absolute top-4 left-4 bg-theme-primary text-white text-[10px] font-bold px-2.5 py-1 rounded-md">⚡ Express</span>
+              <span class="absolute top-4 left-4 bg-theme-primary text-white text-[10px] font-bold px-2 py-1 rounded-md">⚡ Express</span>
             </div>
             <div class="p-6 flex-grow flex flex-col justify-between">
               <div>
@@ -160,16 +160,16 @@
                   <h3 class="font-bold text-gray-900 text-lg hover:text-theme-primary transition-colors">
                     <a href="#" onclick="layoverx.openSpaDetail(2);return false;">O2 Spa - Terminal 2</a>
                   </h3>
-                  <div class="flex items-center gap-1.5 bg-gray-50 text-theme-primary px-2 py-1 rounded-lg text-xs font-bold flex-shrink-0">
+                  <div class="flex items-center gap-2 bg-gray-50 text-theme-primary px-2 py-1 rounded-lg text-xs font-bold flex-shrink-0">
                     ⭐ 4.7 <span class="text-theme-primary font-medium">(1.1k reviews)</span>
                   </div>
                 </div>
-                <div class="text-xs text-theme-primary flex items-center gap-1.5 mb-3">
+                <div class="text-xs text-theme-primary flex items-center gap-2 mb-4">
                   <svg class="w-3.5 h-3.5 text-theme-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5A7.5 7.5 0 1119.5 10.5z"/></svg>
                   <span>T2 Arrivals Lounge • Inside Terminal 2</span>
                 </div>
                 <p class="text-theme-primary text-sm mb-4 leading-relaxed line-clamp-2">Convenient express foot reflexology and head-neck-shoulder massage located right at the T2 arrivals lounge.</p>
-                <div class="flex flex-wrap gap-1.5 mb-4">
+                <div class="flex flex-wrap gap-2 mb-4">
                   <span class="text-[10px] bg-gray-100 text-gray-800 font-bold px-2 py-1 rounded-md">🦶 Foot Reflexology</span>
                   <span class="text-[10px] bg-gray-100 text-gray-800 font-bold px-2 py-1 rounded-md">💆 Head & Shoulder</span>
                   <span class="text-[10px] bg-gray-100 text-gray-800 font-bold px-2 py-1 rounded-md">⚡ Inside Terminal</span>
@@ -193,7 +193,7 @@
                    data-category="full-day" data-duration="3.0" data-price="8500">
             <div class="relative w-full md:w-80 h-52 md:h-auto flex-shrink-0">
               <img height="400" width="600" alt="Six Senses Wellness Circuit" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1560750588-73207b1ef5b8?w=600&h=400&fit=crop&auto=format&fm=webp&q=75"/>
-              <span class="absolute top-4 left-4 bg-theme-primary text-white text-[10px] font-bold px-2.5 py-1 rounded-md">🛁 Full Wellness</span>
+              <span class="absolute top-4 left-4 bg-theme-primary text-white text-[10px] font-bold px-2 py-1 rounded-md">🛁 Full Wellness</span>
             </div>
             <div class="p-6 flex-grow flex flex-col justify-between">
               <div>
@@ -201,16 +201,16 @@
                   <h3 class="font-bold text-gray-900 text-lg hover:text-theme-primary transition-colors">
                     <a href="#" onclick="layoverx.openSpaDetail(3);return false;">Six Senses Wellness Circuit</a>
                   </h3>
-                  <div class="flex items-center gap-1.5 bg-gray-50 text-theme-primary px-2 py-1 rounded-lg text-xs font-bold flex-shrink-0">
+                  <div class="flex items-center gap-2 bg-gray-50 text-theme-primary px-2 py-1 rounded-lg text-xs font-bold flex-shrink-0">
                     ⭐ 4.8 <span class="text-theme-primary font-medium">(280 reviews)</span>
                   </div>
                 </div>
-                <div class="text-xs text-theme-primary flex items-center gap-1.5 mb-3">
+                <div class="text-xs text-theme-primary flex items-center gap-2 mb-4">
                   <svg class="w-3.5 h-3.5 text-theme-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5A7.5 7.5 0 1119.5 10.5z"/></svg>
                   <span>Sahar Road • 1.3 km from CSMIA</span>
                 </div>
                 <p class="text-theme-primary text-sm mb-4 leading-relaxed line-clamp-2">Holistic wellness journey including detox juices, meditation session, deep tissue massage, and facial treatment.</p>
-                <div class="flex flex-wrap gap-1.5 mb-4">
+                <div class="flex flex-wrap gap-2 mb-4">
                   <span class="text-[10px] bg-gray-100 text-gray-800 font-bold px-2 py-1 rounded-md">🧘 Meditation & Detox</span>
                   <span class="text-[10px] bg-gray-100 text-gray-800 font-bold px-2 py-1 rounded-md">🧖 Deep Tissue</span>
                   <span class="text-[10px] bg-gray-100 text-gray-800 font-bold px-2 py-1 rounded-md">💆 Facial Skin Care</span>
@@ -251,7 +251,7 @@
       <h2 id="spa-detail-title" class="text-2xl font-bold text-gray-900 mb-1">Spa Name</h2>
       <div id="detail-spa-duration" class="text-xs text-theme-primary mb-4">Duration</div>
       <p id="detail-spa-description" class="text-gray-800 text-sm leading-relaxed mb-6"></p>
-      <div class="flex items-center justify-end gap-3 pt-4 border-t border-gray-100">
+      <div class="flex items-center justify-end gap-4 pt-4 border-t border-gray-100">
         <button type="button" onclick="layoverx.closeSpaDetail()" class="btn btn-ghost bg-gray-100">Cancel</button>
         <button type="button" id="detail-spa-book-btn" class="btn btn-primary">Book Spa</button>
       </div>

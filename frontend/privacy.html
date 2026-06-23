@@ -71,14 +71,14 @@
       <div class="hidden lg:flex items-center gap-4 flex-shrink-0">
         
         <!-- Trip Summary Chip -->
-        <button onclick="openAuthModal('trip-context')" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer" id="global-trip-badge">
+        <button onclick="openAuthModal('trip-context')" class="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer" id="global-trip-badge">
           <span>✈️ Trip Summary</span>
         </button>
         
         <!-- My Itinerary Link -->
         <a class="nav-link text-sm font-medium transition-colors duration-200 flex items-center gap-1" href="my-itinerary.html" id="nav-itinerary-link">
           My Itinerary
-          <span id="itinerary-badge" class="hidden px-2 py-0.5 text-[10px] font-extrabold bg-rose-500 text-white rounded-full">0</span>
+          <span id="itinerary-badge" class="hidden px-2 py-1 text-[10px] font-extrabold bg-rose-500 text-white rounded-full">0</span>
         </a>
         
         <!-- Plan My Layover primary button -->
@@ -92,7 +92,7 @@
  
         <!-- Auth User View -->
         <div class="auth-user hidden relative" id="header-user-menu">
-          <button id="user-menu-btn" class="flex items-center gap-2 border px-3 py-1.5 rounded-xl transition cursor-pointer" aria-expanded="false" aria-haspopup="true">
+          <button id="user-menu-btn" class="flex items-center gap-2 border px-4 py-2 rounded-xl transition cursor-pointer" aria-expanded="false" aria-haspopup="true">
             <div class="w-6 h-6 bg-gradient-to-br from-sky-400 to-sky-600 rounded-full flex items-center justify-center text-[10px] font-bold text-white uppercase user-avatar-letter">U</div>
             <span class="text-sm font-medium user-name">Traveler</span>
             <svg class="w-3.5 h-3.5 transition-transform duration-200" id="user-menu-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -101,18 +101,18 @@
           </button>
           
           <div id="user-profile-dropdown" class="absolute right-0 mt-2 w-56 bg-white rounded-2xl shadow-xl border border-gray-100 py-2 hidden z-[1010]">
-            <div class="px-4 py-3 border-b border-gray-100">
+            <div class="px-4 py-2 border-b border-gray-100">
               <p class="text-xs text-gray-500 font-medium">Signed in as</p>
               <p class="text-sm font-bold text-gray-900 truncate user-email-display">traveler@layoverx.com</p>
             </div>
-            <a href="my-profile.html" class="flex items-center gap-2.5 px-4 py-2.5 text-sm text-gray-800 hover:bg-gray-50 transition-colors"><span class="text-base">👤</span> My Profile</a>
-            <a href="my-trips.html" class="flex items-center gap-2.5 px-4 py-2.5 text-sm text-gray-800 hover:bg-gray-50 transition-colors"><span class="text-base">✈️</span> My Trips</a>
-            <a href="saved-itineraries.html" class="flex items-center gap-2.5 px-4 py-2.5 text-sm text-gray-800 hover:bg-gray-50 transition-colors"><span class="text-base">💾</span> Saved Itineraries</a>
-            <a href="supplier-dashboard.html" class="flex items-center gap-2.5 px-4 py-2.5 text-sm text-gray-800 hover:bg-gray-50 transition-colors"><span class="text-base">💼</span> Supplier Hub</a>
-            <a href="revenue-admin.html" class="flex items-center gap-2.5 px-4 py-2.5 text-sm text-gray-800 hover:bg-gray-55 transition-colors font-semibold text-emerald-700 bg-emerald-50/50"><span class="text-base">📊</span> Revenue Admin</a>
-            <a href="account-settings.html" class="flex items-center gap-2.5 px-4 py-2.5 text-sm text-gray-800 hover:bg-gray-50 transition-colors"><span class="text-base">⚙️</span> Settings</a>
+            <a href="my-profile.html" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-800 hover:bg-gray-55 transition-colors"><span class="text-base">👤</span> My Profile</a>
+            <a href="my-trips.html" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-800 hover:bg-gray-55 transition-colors"><span class="text-base">✈️</span> My Trips</a>
+            <a href="saved-itineraries.html" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-800 hover:bg-gray-55 transition-colors"><span class="text-base">💾</span> Saved Itineraries</a>
+            <a href="supplier-dashboard.html" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-800 hover:bg-gray-55 transition-colors"><span class="text-base">💼</span> Supplier Hub</a>
+            <a href="revenue-admin.html" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-800 hover:bg-gray-55 transition-colors font-semibold text-emerald-700 bg-emerald-50/50"><span class="text-base">📊</span> Revenue Admin</a>
+            <a href="account-settings.html" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-800 hover:bg-gray-55 transition-colors"><span class="text-base">⚙️</span> Settings</a>
             <div class="border-t border-gray-100 my-1"></div>
-            <button onclick="layoverx.logout()" class="w-full flex items-center gap-2.5 px-4 py-2.5 text-sm text-red-650 hover:bg-red-50 transition-colors text-left"><span class="text-base">🚪</span> Logout</button>
+            <button onclick="layoverx.logout()" class="w-full flex items-center gap-2 px-4 py-2 text-sm text-red-650 hover:bg-red-50 transition-colors text-left"><span class="text-base">🚪</span> Logout</button>
           </div>
         </div>
       </div>
@@ -128,38 +128,41 @@
 
   <!-- Mobile Dropdown Menu -->
   <div class="lg:hidden hidden bg-white/95 backdrop-blur-xl rounded-2xl mt-2 p-4 shadow-xl mx-4 border border-gray-100" id="mobile-menu">
-    <button onclick="openAuthModal('trip-context')" class="mb-3 w-full flex items-center justify-center gap-1.5 px-4 py-3 rounded-xl text-xs font-extrabold bg-sky-50 text-sky-700 border border-sky-100 transition-all cursor-pointer" id="global-trip-badge-mobile">✈️ Trip Summary</button>
-    <a class="block text-gray-800 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium" href="my-itinerary.html">My Itinerary <span id="itinerary-badge-mobile" class="hidden ml-1 px-1.5 py-0.5 text-[10px] font-extrabold bg-rose-500 text-white rounded-full">0</span></a>
-    <a class="block text-gray-800 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium " href="hotels.html">Hotels</a>
-    <a class="block text-gray-800 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium " href="restaurants.html">Restaurants</a>
-    <a class="block text-gray-800 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium " href="spa-wellness.html">Spa & Wellness</a>
-    <a class="block text-gray-800 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium " href="gaming-entertainment.html">Gaming & Fun</a>
-    <a class="block text-gray-800 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium " href="experiences.html">Tours</a>
-    <a class="block text-gray-800 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium " href="airport-transfers.html">Transfers</a>
-    <a href="plan-my-layover.html" class="mt-2 block w-full text-center py-3 bg-theme-primary text-white font-semibold rounded-xl hover:bg-theme-primary transition shadow-md shadow-primary">Plan My Layover</a>
+    <button onclick="openAuthModal('trip-context')" class="mb-4 w-full flex items-center justify-center gap-2 px-4 py-2 rounded-xl text-xs font-extrabold bg-sky-50 text-sky-700 border border-sky-100 transition-all cursor-pointer" id="global-trip-badge-mobile">✈️ Trip Summary</button>
+    <a class="block text-gray-800 py-2 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium" href="my-itinerary.html">My Itinerary <span id="itinerary-badge-mobile" class="hidden ml-1 px-2 py-1 text-[10px] font-extrabold bg-rose-500 text-white rounded-full">0</span></a>
+    <a class="block text-gray-800 py-2 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium " href="hotels.html">Hotels</a>
+    <a class="block text-gray-800 py-2 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium " href="restaurants.html">Restaurants</a>
+    <a class="block text-gray-800 py-2 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium " href="spa-wellness.html">Spa & Wellness</a>
+    <a class="block text-gray-800 py-2 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium " href="gaming-entertainment.html">Gaming & Fun</a>
+    <a class="block text-gray-800 py-2 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium " href="experiences.html">Tours</a>
+    <a class="block text-gray-800 py-2 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium " href="airport-transfers.html">Transfers</a>
+    <a href="plan-my-layover.html" class="mt-2 block w-full text-center py-4 bg-theme-primary text-white font-semibold rounded-xl hover:bg-theme-primary transition shadow-md shadow-primary">Plan My Layover</a>
     
     <!-- Auth Guest View (Mobile) -->
     <div class="auth-guest flex flex-col gap-2 mt-4 pt-4 border-t border-gray-100">
-      <a href="#login" class="block text-center py-2.5 text-gray-700 text-sm font-medium rounded-xl hover:bg-gray-50 border border-gray-200" onclick="openAuthModal('login');return false;">Login</a>
-      <a href="#signup" class="block text-center py-2.5 bg-theme-primary text-white text-sm font-semibold rounded-xl hover:bg-theme-primary transition" onclick="openAuthModal('signup');return false;">Sign Up</a>
+      <a href="#login" class="block text-center py-2 text-gray-700 text-sm font-medium rounded-xl hover:bg-gray-50 border border-gray-200" onclick="openAuthModal('login');return false;">Login</a>
+      <a href="#signup" class="block text-center py-2 bg-theme-primary text-white text-sm font-semibold rounded-xl hover:bg-theme-primary transition" onclick="openAuthModal('signup');return false;">Sign Up</a>
     </div>
 
     <!-- Auth User View (Mobile) -->
     <div class="auth-user hidden flex-col gap-2 mt-4 pt-4 border-t border-gray-100">
-      <div class="flex items-center gap-3 px-4 py-2 bg-gray-50 rounded-xl mb-2">
+      <div class="flex items-center gap-2 px-4 py-2 bg-gray-50 rounded-xl mb-2">
         <div class="w-8 h-8 bg-gradient-to-br from-sky-400 to-sky-600 rounded-full flex items-center justify-center text-xs font-bold text-white uppercase user-avatar-letter">U</div>
         <div>
           <div class="text-[10px] text-gray-400 font-medium">Signed in as</div>
           <div class="text-sm font-bold text-gray-900 user-name">Traveler</div>
         </div>
       </div>
-      <a href="my-profile.html" class="w-full text-center py-2.5 bg-gray-50 hover:bg-gray-100 text-gray-800 rounded-xl text-sm transition">My Profile</a>
-      <a href="my-trips.html" class="w-full text-center py-2.5 bg-gray-50 hover:bg-gray-100 text-gray-800 rounded-xl text-sm transition">My Trips</a>
-      <a href="saved-itineraries.html" class="w-full text-center py-2.5 bg-gray-50 hover:bg-gray-100 text-gray-800 rounded-xl text-sm transition">Saved Itineraries</a>
-      <a href="supplier-dashboard.html" class="w-full text-center py-2.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 rounded-xl text-sm transition">Supplier Hub</a>
-      <a href="revenue-admin.html" class="w-full text-center py-2.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 rounded-xl text-sm transition font-semibold">Revenue Admin</a>
-      <a href="account-settings.html" class="w-full text-center py-2.5 bg-gray-50 hover:bg-gray-100 text-gray-800 rounded-xl text-sm transition">Settings</a>
-      <button class="mt-2 w-full text-center py-2.5 bg-red-50 text-red-600 hover:bg-red-100 text-sm font-semibold rounded-xl transition" onclick="layoverx.logout()">Logout</button>
+      <a href="my-profile.html" class="w-full text-center py-2 bg-gray-50 hover:bg-gray-100 text-gray-800 rounded-xl text-sm transition">My Profile</a>
+      <a href="my-trips.html" class="w-full text-center py-2 bg-gray-50 hover:bg-gray-100 text-gray-800 rounded-xl text-sm transition">My Trips</a>
+      <a href="saved-itineraries.html" class="w-full text-center py-2 bg-gray-50 hover:bg-gray-100 text-gray-800 rounded-xl text-sm transition">Saved Itineraries</a>
+      <a href="supplier-dashboard.html" class="w-full text-center py-2 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 rounded-xl text-sm transition">Supplier Hub</a>
+      <a href="revenue-admin.html" class="w-full text-center py-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 rounded-xl text-sm transition font-semibold">Revenue Admin</a>
+      <a href="account-settings.html" class="w-full text-center py-2 bg-gray-50 hover:bg-gray-100 text-gray-800 rounded-xl text-sm transition">Settings</a>
+      <button class="mt-2 w-full text-center py-2 bg-red-50 text-red-600 hover:bg-red-100 text-sm font-semibold rounded-xl transition" onclick="layoverx.logout()">Logout</button>
+    </div>
+  </div>
+</nav>ton>
     </div>
   </div>
 </nav>
@@ -184,13 +187,13 @@
 
 <section class="section bg-slate-50 min-h-[50vh]">
   <div class="container">
-    <div class="max-w-3xl mx-auto bg-white border border-gray-200 rounded-3xl p-6 sm:p-10 shadow-sm space-y-6 text-xs sm:text-sm text-slate-700 leading-relaxed">
+    <div class="max-w-3xl mx-auto bg-white border border-gray-200 rounded-3xl p-6 sm:p-8 shadow-sm space-y-6 text-xs sm:text-sm text-slate-700 leading-relaxed">
       
       <h2 class="text-lg font-extrabold text-gray-900">1. Information Collection</h2>
       <p>
         When you book stopover activities on LayoverX, we collect the following details:
       </p>
-      <ul class="list-disc pl-5 space-y-1">
+      <ul class="list-disc pl-4 space-y-1">
         <li>Lead passenger name & nationality.</li>
         <li>Passport number (required for airport terminal gate customs verification checks).</li>
         <li>Incoming & outgoing flight numbers (used for auto-tracking delays).</li>
@@ -201,7 +204,7 @@
       <p>
         Your contact details, flight numbers, and passport identifiers are shared securely with:
       </p>
-      <ul class="list-disc pl-5 space-y-1">
+      <ul class="list-disc pl-4 space-y-1">
         <li>Your designated chauffeur cab operator.</li>
         <li>The transit hotel or spa salon check-in desks.</li>
       </ul>
@@ -224,7 +227,7 @@
   <!-- FOOTER -->
 <footer class="bg-gray-900 text-white pt-16 pb-12">
   <div class="container">
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
       <div>
         <a href="index.html" class="flex items-center gap-2 mb-4">
           <div class="w-9 h-9 bg-gradient-to-br from-sky-500 to-sky-600 rounded-xl flex items-center justify-center">
@@ -237,7 +240,7 @@
         <p class="text-gray-400 text-sm leading-relaxed mb-6">
           Mumbai Travel & Layover Experience Platform. Transform your transit hours into memorable journeys with premium hotels, fine dining, curated city tours, and airport transfers near CSIA.
         </p>
-        <div class="flex items-center gap-3">
+        <div class="flex items-center gap-4">
           <a href="#" aria-label="Facebook" class="w-8 h-8 rounded-lg bg-gray-800 hover:bg-sky-500 transition-colors flex items-center justify-center text-gray-400 hover:text-white">
             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M9 8H7v3h2v9h4v-9h3.6l.4-3h-4V6.5c0-.8.2-1.1 1-1.1h3V2h-4.3C12.3 2 10 3.8 10 7.5V8z"/></svg>
           </a>
@@ -269,17 +272,17 @@
       </div>
       <div>
         <h3 class="font-bold mb-4 text-sm text-theme-accent uppercase tracking-wider">Get In Touch</h3>
-        <ul class="space-y-3">
-          <li class="flex items-center gap-2.5 text-gray-400 text-sm">
+        <ul class="space-y-4">
+          <li class="flex items-center gap-2 text-gray-400 text-sm">
             <svg class="w-4 h-4 text-theme-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
             <a href="mailto:hello@layoverx.com" class="hover:text-white transition-colors">hello@layoverx.com</a>
           </li>
-          <li class="flex items-center gap-2.5 text-gray-400 text-sm">
+          <li class="flex items-center gap-2 text-gray-400 text-sm">
             <svg class="w-4 h-4 text-theme-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-2.824-1.47-5.112-3.758-6.58-6.58l1.293-.97c.362-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/></svg>
             <a href="tel:+912212345678" class="hover:text-white transition-colors">+91 22 1234 5678</a>
           </li>
-          <li class="flex items-start gap-2.5 text-gray-400 text-sm">
-            <svg class="w-4 h-4 text-theme-accent mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+          <li class="flex items-start gap-2 text-gray-400 text-sm">
+            <svg class="w-4 h-4 text-theme-accent mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
             <span>Andheri East, Near CSMIA Terminal 2,<br/>Mumbai, MH 400099, India</span>
           </li>
         </ul>
@@ -300,7 +303,7 @@
   <!-- Modals Section -->
   <!-- Auth Modals -->
 <div id="modal-login" class="modal-overlay opacity-0 transition-opacity duration-300" data-modal="login" role="dialog" aria-modal="true" aria-labelledby="login-title">
-  <div class="modal-content transform scale-95 transition-transform duration-300 p-8 sm:p-10 !max-w-md">
+  <div class="modal-content transform scale-95 transition-transform duration-300 p-8 sm:p-12 !max-w-md">
     <button class="modal-close font-semibold text-2xl" aria-label="Close Login Modal" onclick="layoverx.closeModal('login')">&times;</button>
     <div class="auth-form">
       <div class="mb-6 text-center">
@@ -308,13 +311,13 @@
         <p class="text-sm text-gray-500 font-medium">Log in to manage your LayoverX bookings.</p>
       </div>
       
-      <form id="form-login" onsubmit="layoverx.handleLogin(event)" class="space-y-5">
+      <form id="form-login" onsubmit="layoverx.handleLogin(event)" class="space-y-6">
         <div class="form-group text-left relative">
-          <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5" for="login-email">Email</label>
+          <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2" for="login-email">Email</label>
           <input id="login-email" type="email" class="form-input" required autocomplete="email"/>
         </div>
         <div class="form-group text-left relative">
-          <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5" for="login-password">Password</label>
+          <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2" for="login-password">Password</label>
           <div class="relative">
             <input id="login-password" type="password" class="form-input pr-12" required autocomplete="current-password"/>
             <button type="button" class="absolute inset-y-0 right-0 px-4 text-gray-400 hover:text-gray-600 flex items-center transition-colors focus:outline-none" onclick="layoverx.togglePassword('login-password')">
@@ -333,11 +336,11 @@
       
       <div class="flex items-center my-6">
         <div class="flex-grow border-t border-gray-200"></div>
-        <span class="px-3 text-xs font-semibold text-gray-400 uppercase tracking-widest">Or</span>
+        <span class="px-4 text-xs font-semibold text-gray-400 uppercase tracking-widest">Or</span>
         <div class="flex-grow border-t border-gray-200"></div>
       </div>
       
-      <div class="space-y-3">
+      <div class="space-y-4">
         <button id="btn-google-login" class="social-btn" onclick="layoverx.socialLogin('google')">
           <svg class="w-5 h-5" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v3.9h6.6c-.28 1.5-1.12 2.76-2.38 3.61v3h3.84c2.25-2.07 3.68-5.12 3.68-8.44z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.84-3c-1.07.72-2.44 1.15-4.09 1.15-3.15 0-5.82-2.13-6.77-5H1.28v3.1c1.98 3.94 6.06 6.66 10.72 6.66z"/><path fill="#FBBC05" d="M5.23 14.24a7.17 7.17 0 010-4.48v-3.1H1.28a11.96 11.96 0 000 10.68l3.95-3.1z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.43-3.43C17.95 1.19 15.24 0 12 0 7.34 0 3.26 2.72 1.28 6.66l3.95 3.1c.95-2.87 3.62-5 6.77-5z"/></svg>
           Continue with Google
@@ -354,7 +357,7 @@
 </div>
 
 <div id="modal-signup" class="modal-overlay opacity-0 transition-opacity duration-300" data-modal="signup" role="dialog" aria-modal="true" aria-labelledby="signup-title">
-  <div class="modal-content transform scale-95 transition-transform duration-300 p-8 sm:p-10 !max-w-md">
+  <div class="modal-content transform scale-95 transition-transform duration-300 p-8 sm:p-12 !max-w-md">
     <button class="modal-close font-semibold text-2xl" aria-label="Close Signup Modal" onclick="layoverx.closeModal('signup')">&times;</button>
     <div class="auth-form">
       <div class="mb-6 text-center">
@@ -364,15 +367,15 @@
       
       <form id="form-signup" onsubmit="layoverx.handleSignup(event)" class="space-y-4">
         <div class="form-group text-left">
-          <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5" for="signup-name">Full Name</label>
+          <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2" for="signup-name">Full Name</label>
           <input id="signup-name" type="text" class="form-input" required autocomplete="name"/>
         </div>
         <div class="form-group text-left">
-          <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5" for="signup-email">Email</label>
+          <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2" for="signup-email">Email</label>
           <input id="signup-email" type="email" class="form-input" required autocomplete="email"/>
         </div>
         <div class="form-group text-left relative">
-          <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5" for="signup-password">Password</label>
+          <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2" for="signup-password">Password</label>
           <div class="relative">
             <input id="signup-password" type="password" class="form-input pr-12" required autocomplete="new-password" oninput="layoverx.checkPasswordStrength(this.value)"/>
             <button type="button" class="absolute inset-y-0 right-0 px-4 text-gray-400 hover:text-gray-600 flex items-center transition-colors focus:outline-none" onclick="layoverx.togglePassword('signup-password')">
@@ -395,11 +398,11 @@
       
       <div class="flex items-center my-6">
         <div class="flex-grow border-t border-gray-200"></div>
-        <span class="px-3 text-xs font-semibold text-gray-400 uppercase tracking-widest">Or</span>
+        <span class="px-4 text-xs font-semibold text-gray-400 uppercase tracking-widest">Or</span>
         <div class="flex-grow border-t border-gray-200"></div>
       </div>
       
-      <div class="space-y-3">
+      <div class="space-y-4">
         <button id="btn-google-signup" class="social-btn" onclick="layoverx.socialLogin('google')">
           <svg class="w-5 h-5" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v3.9h6.6c-.28 1.5-1.12 2.76-2.38 3.61v3h3.84c2.25-2.07 3.68-5.12 3.68-8.44z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.84-3c-1.07.72-2.44 1.15-4.09 1.15-3.15 0-5.82-2.13-6.77-5H1.28v3.1c1.98 3.94 6.06 6.66 10.72 6.66z"/><path fill="#FBBC05" d="M5.23 14.24a7.17 7.17 0 010-4.48v-3.1H1.28a11.96 11.96 0 000 10.68l3.95-3.1z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.43-3.43C17.95 1.19 15.24 0 12 0 7.34 0 3.26 2.72 1.28 6.66l3.95 3.1c.95-2.87 3.62-5 6.77-5z"/></svg>
           Continue with Google
@@ -416,7 +419,7 @@
 </div>
 
 <div id="modal-forgot" class="modal-overlay opacity-0 transition-opacity duration-300" data-modal="forgot" role="dialog" aria-modal="true" aria-labelledby="forgot-title">
-  <div class="modal-content transform scale-95 transition-transform duration-300 p-8 sm:p-10 !max-w-md">
+  <div class="modal-content transform scale-95 transition-transform duration-300 p-8 sm:p-12 !max-w-md">
     <button class="modal-close font-semibold text-2xl" aria-label="Close Forgot Modal" onclick="layoverx.closeModal('forgot')">&times;</button>
     <div class="auth-form">
       <div class="mb-6 text-center">
@@ -425,7 +428,7 @@
       </div>
       
       <div class="form-group text-left space-y-2">
-        <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5" for="forgot-email">Email</label>
+        <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2" for="forgot-email">Email</label>
         <input id="forgot-email" type="email" class="form-input" required autocomplete="email"/>
       </div>
       <button id="btn-forgot-submit" class="btn btn-primary w-full mt-6" onclick="layoverx.handleForgot()">
@@ -441,7 +444,7 @@
 </div>
 
 <div id="modal-trip-context" class="modal-overlay opacity-0 transition-opacity duration-300 hidden" data-modal="trip-context" role="dialog" aria-modal="true" aria-labelledby="trip-context-title">
-  <div class="modal-content transform scale-95 transition-transform duration-300 p-8 sm:p-10 !max-w-md">
+  <div class="modal-content transform scale-95 transition-transform duration-300 p-8 sm:p-12 !max-w-md">
     <button class="modal-close font-semibold text-2xl" aria-label="Close Trip Modal" onclick="layoverx.closeModal('trip-context')">&times;</button>
     <div class="auth-form">
       <div class="mb-6 text-center">
@@ -451,7 +454,7 @@
       
       <form id="form-trip-context" onsubmit="layoverx.handleTripContextSubmit(event)" class="space-y-4">
         <div class="form-group text-left">
-          <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5" for="context-location">Airport Area</label>
+          <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2" for="context-location">Airport Area</label>
           <select id="context-location" class="form-input" required>
             <option value="near-airport">Mumbai Airport (CSMIA) Area</option>
             <option value="bandra">Bandra West (Shopping & Dining)</option>
@@ -459,16 +462,16 @@
           </select>
         </div>
         <div class="form-group text-left">
-          <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5" for="context-arrival">Arrival Date & Time</label>
+          <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2" for="context-arrival">Arrival Date & Time</label>
           <input id="context-arrival" type="datetime-local" class="form-input" required oninput="layoverx.calculateContextDuration()"/>
         </div>
         <div class="form-group text-left">
-          <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5" for="context-departure">Departure Date & Time</label>
+          <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2" for="context-departure">Departure Date & Time</label>
           <input id="context-departure" type="datetime-local" class="form-input" required oninput="layoverx.calculateContextDuration()"/>
         </div>
         <div class="grid grid-cols-2 gap-4">
           <div class="form-group text-left">
-            <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5" for="context-travelers">Travelers</label>
+            <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2" for="context-travelers">Travelers</label>
             <select id="context-travelers" class="form-input" required>
               <option value="1">1 Traveler</option>
               <option value="2">2 Travelers</option>
@@ -478,8 +481,8 @@
             </select>
           </div>
           <div class="form-group text-left">
-            <span class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5">Layover Hours</span>
-            <div id="context-duration-display" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-700 font-bold text-center">--</div>
+            <span class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Layover Hours</span>
+            <div id="context-duration-display" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-2 text-sm text-gray-700 font-bold text-center">--</div>
           </div>
         </div>
         <div id="context-validation-message" class="text-xs text-red-500 font-medium hidden"></div>

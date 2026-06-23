@@ -92,14 +92,14 @@
       <div class="hidden lg:flex items-center gap-4 flex-shrink-0">
         
         <!-- Trip Summary Chip -->
-        <button onclick="openAuthModal('trip-context')" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer" id="global-trip-badge">
+        <button onclick="openAuthModal('trip-context')" class="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer" id="global-trip-badge">
           <span>✈️ Trip Summary</span>
         </button>
         
         <!-- My Itinerary Link -->
         <a class="nav-link text-sm font-medium transition-colors duration-200 flex items-center gap-1" href="my-itinerary.html" id="nav-itinerary-link">
           My Itinerary
-          <span id="itinerary-badge" class="hidden px-2 py-0.5 text-[10px] font-extrabold bg-rose-500 text-white rounded-full">0</span>
+          <span id="itinerary-badge" class="hidden px-2 py-1 text-[10px] font-extrabold bg-rose-500 text-white rounded-full">0</span>
         </a>
         
         <!-- Plan My Layover primary button -->
@@ -113,7 +113,7 @@
  
         <!-- Auth User View -->
         <div class="auth-user hidden relative" id="header-user-menu">
-          <button id="user-menu-btn" class="flex items-center gap-2 border px-3 py-1.5 rounded-xl transition cursor-pointer" aria-expanded="false" aria-haspopup="true">
+          <button id="user-menu-btn" class="flex items-center gap-2 border px-4 py-2 rounded-xl transition cursor-pointer" aria-expanded="false" aria-haspopup="true">
             <div class="w-6 h-6 bg-gradient-to-br from-sky-400 to-sky-600 rounded-full flex items-center justify-center text-[10px] font-bold text-white uppercase user-avatar-letter">U</div>
             <span class="text-sm font-medium user-name">Traveler</span>
             <svg class="w-3.5 h-3.5 transition-transform duration-200" id="user-menu-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -122,18 +122,18 @@
           </button>
           
           <div id="user-profile-dropdown" class="absolute right-0 mt-2 w-56 bg-white rounded-2xl shadow-xl border border-gray-100 py-2 hidden z-[1010]">
-            <div class="px-4 py-3 border-b border-gray-100">
+            <div class="px-4 py-2 border-b border-gray-100">
               <p class="text-xs text-gray-500 font-medium">Signed in as</p>
               <p class="text-sm font-bold text-gray-900 truncate user-email-display">traveler@layoverx.com</p>
             </div>
-            <a href="my-profile.html" class="flex items-center gap-2.5 px-4 py-2.5 text-sm text-gray-800 hover:bg-gray-50 transition-colors"><span class="text-base">👤</span> My Profile</a>
-            <a href="my-trips.html" class="flex items-center gap-2.5 px-4 py-2.5 text-sm text-gray-800 hover:bg-gray-50 transition-colors"><span class="text-base">✈️</span> My Trips</a>
-            <a href="saved-itineraries.html" class="flex items-center gap-2.5 px-4 py-2.5 text-sm text-gray-800 hover:bg-gray-50 transition-colors"><span class="text-base">💾</span> Saved Itineraries</a>
-            <a href="supplier-dashboard.html" class="flex items-center gap-2.5 px-4 py-2.5 text-sm text-gray-800 hover:bg-gray-50 transition-colors"><span class="text-base">💼</span> Supplier Hub</a>
-            <a href="revenue-admin.html" class="flex items-center gap-2.5 px-4 py-2.5 text-sm text-gray-800 hover:bg-gray-55 transition-colors font-semibold text-emerald-700 bg-emerald-50/50"><span class="text-base">📊</span> Revenue Admin</a>
-            <a href="account-settings.html" class="flex items-center gap-2.5 px-4 py-2.5 text-sm text-gray-800 hover:bg-gray-50 transition-colors"><span class="text-base">⚙️</span> Settings</a>
+            <a href="my-profile.html" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-800 hover:bg-gray-55 transition-colors"><span class="text-base">👤</span> My Profile</a>
+            <a href="my-trips.html" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-800 hover:bg-gray-55 transition-colors"><span class="text-base">✈️</span> My Trips</a>
+            <a href="saved-itineraries.html" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-800 hover:bg-gray-55 transition-colors"><span class="text-base">💾</span> Saved Itineraries</a>
+            <a href="supplier-dashboard.html" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-800 hover:bg-gray-55 transition-colors"><span class="text-base">💼</span> Supplier Hub</a>
+            <a href="revenue-admin.html" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-800 hover:bg-gray-55 transition-colors font-semibold text-emerald-700 bg-emerald-50/50"><span class="text-base">📊</span> Revenue Admin</a>
+            <a href="account-settings.html" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-800 hover:bg-gray-55 transition-colors"><span class="text-base">⚙️</span> Settings</a>
             <div class="border-t border-gray-100 my-1"></div>
-            <button onclick="layoverx.logout()" class="w-full flex items-center gap-2.5 px-4 py-2.5 text-sm text-red-650 hover:bg-red-50 transition-colors text-left"><span class="text-base">🚪</span> Logout</button>
+            <button onclick="layoverx.logout()" class="w-full flex items-center gap-2 px-4 py-2 text-sm text-red-650 hover:bg-red-50 transition-colors text-left"><span class="text-base">🚪</span> Logout</button>
           </div>
         </div>
       </div>
@@ -149,38 +149,41 @@
 
   <!-- Mobile Dropdown Menu -->
   <div class="lg:hidden hidden bg-white/95 backdrop-blur-xl rounded-2xl mt-2 p-4 shadow-xl mx-4 border border-gray-100" id="mobile-menu">
-    <button onclick="openAuthModal('trip-context')" class="mb-3 w-full flex items-center justify-center gap-1.5 px-4 py-3 rounded-xl text-xs font-extrabold bg-sky-50 text-sky-700 border border-sky-100 transition-all cursor-pointer" id="global-trip-badge-mobile">✈️ Trip Summary</button>
-    <a class="block text-gray-800 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium" href="my-itinerary.html">My Itinerary <span id="itinerary-badge-mobile" class="hidden ml-1 px-1.5 py-0.5 text-[10px] font-extrabold bg-rose-500 text-white rounded-full">0</span></a>
-    <a class="block text-gray-800 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium " href="hotels.html">Hotels</a>
-    <a class="block text-gray-800 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium " href="restaurants.html">Restaurants</a>
-    <a class="block text-gray-800 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium " href="spa-wellness.html">Spa & Wellness</a>
-    <a class="block text-gray-800 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium " href="gaming-entertainment.html">Gaming & Fun</a>
-    <a class="block text-gray-800 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium " href="experiences.html">Tours</a>
-    <a class="block text-gray-800 py-3 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium " href="airport-transfers.html">Transfers</a>
-    <a href="plan-my-layover.html" class="mt-2 block w-full text-center py-3 bg-theme-primary text-white font-semibold rounded-xl hover:bg-theme-primary transition shadow-md shadow-primary">Plan My Layover</a>
+    <button onclick="openAuthModal('trip-context')" class="mb-4 w-full flex items-center justify-center gap-2 px-4 py-2 rounded-xl text-xs font-extrabold bg-sky-50 text-sky-700 border border-sky-100 transition-all cursor-pointer" id="global-trip-badge-mobile">✈️ Trip Summary</button>
+    <a class="block text-gray-800 py-2 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium" href="my-itinerary.html">My Itinerary <span id="itinerary-badge-mobile" class="hidden ml-1 px-2 py-1 text-[10px] font-extrabold bg-rose-500 text-white rounded-full">0</span></a>
+    <a class="block text-gray-800 py-2 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium " href="hotels.html">Hotels</a>
+    <a class="block text-gray-800 py-2 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium " href="restaurants.html">Restaurants</a>
+    <a class="block text-gray-800 py-2 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium " href="spa-wellness.html">Spa & Wellness</a>
+    <a class="block text-gray-800 py-2 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium " href="gaming-entertainment.html">Gaming & Fun</a>
+    <a class="block text-gray-800 py-2 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium " href="experiences.html">Tours</a>
+    <a class="block text-gray-800 py-2 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium " href="airport-transfers.html">Transfers</a>
+    <a href="plan-my-layover.html" class="mt-2 block w-full text-center py-4 bg-theme-primary text-white font-semibold rounded-xl hover:bg-theme-primary transition shadow-md shadow-primary">Plan My Layover</a>
     
     <!-- Auth Guest View (Mobile) -->
     <div class="auth-guest flex flex-col gap-2 mt-4 pt-4 border-t border-gray-100">
-      <a href="#login" class="block text-center py-2.5 text-gray-700 text-sm font-medium rounded-xl hover:bg-gray-50 border border-gray-200" onclick="openAuthModal('login');return false;">Login</a>
-      <a href="#signup" class="block text-center py-2.5 bg-theme-primary text-white text-sm font-semibold rounded-xl hover:bg-theme-primary transition" onclick="openAuthModal('signup');return false;">Sign Up</a>
+      <a href="#login" class="block text-center py-2 text-gray-700 text-sm font-medium rounded-xl hover:bg-gray-50 border border-gray-200" onclick="openAuthModal('login');return false;">Login</a>
+      <a href="#signup" class="block text-center py-2 bg-theme-primary text-white text-sm font-semibold rounded-xl hover:bg-theme-primary transition" onclick="openAuthModal('signup');return false;">Sign Up</a>
     </div>
 
     <!-- Auth User View (Mobile) -->
     <div class="auth-user hidden flex-col gap-2 mt-4 pt-4 border-t border-gray-100">
-      <div class="flex items-center gap-3 px-4 py-2 bg-gray-50 rounded-xl mb-2">
+      <div class="flex items-center gap-2 px-4 py-2 bg-gray-50 rounded-xl mb-2">
         <div class="w-8 h-8 bg-gradient-to-br from-sky-400 to-sky-600 rounded-full flex items-center justify-center text-xs font-bold text-white uppercase user-avatar-letter">U</div>
         <div>
           <div class="text-[10px] text-gray-400 font-medium">Signed in as</div>
           <div class="text-sm font-bold text-gray-900 user-name">Traveler</div>
         </div>
       </div>
-      <a href="my-profile.html" class="w-full text-center py-2.5 bg-gray-50 hover:bg-gray-100 text-gray-800 rounded-xl text-sm transition">My Profile</a>
-      <a href="my-trips.html" class="w-full text-center py-2.5 bg-gray-50 hover:bg-gray-100 text-gray-800 rounded-xl text-sm transition">My Trips</a>
-      <a href="saved-itineraries.html" class="w-full text-center py-2.5 bg-gray-50 hover:bg-gray-100 text-gray-800 rounded-xl text-sm transition">Saved Itineraries</a>
-      <a href="supplier-dashboard.html" class="w-full text-center py-2.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 rounded-xl text-sm transition">Supplier Hub</a>
-      <a href="revenue-admin.html" class="w-full text-center py-2.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 rounded-xl text-sm transition font-semibold">Revenue Admin</a>
-      <a href="account-settings.html" class="w-full text-center py-2.5 bg-gray-50 hover:bg-gray-100 text-gray-800 rounded-xl text-sm transition">Settings</a>
-      <button class="mt-2 w-full text-center py-2.5 bg-red-50 text-red-600 hover:bg-red-100 text-sm font-semibold rounded-xl transition" onclick="layoverx.logout()">Logout</button>
+      <a href="my-profile.html" class="w-full text-center py-2 bg-gray-50 hover:bg-gray-100 text-gray-800 rounded-xl text-sm transition">My Profile</a>
+      <a href="my-trips.html" class="w-full text-center py-2 bg-gray-50 hover:bg-gray-100 text-gray-800 rounded-xl text-sm transition">My Trips</a>
+      <a href="saved-itineraries.html" class="w-full text-center py-2 bg-gray-50 hover:bg-gray-100 text-gray-800 rounded-xl text-sm transition">Saved Itineraries</a>
+      <a href="supplier-dashboard.html" class="w-full text-center py-2 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 rounded-xl text-sm transition">Supplier Hub</a>
+      <a href="revenue-admin.html" class="w-full text-center py-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 rounded-xl text-sm transition font-semibold">Revenue Admin</a>
+      <a href="account-settings.html" class="w-full text-center py-2 bg-gray-50 hover:bg-gray-100 text-gray-800 rounded-xl text-sm transition">Settings</a>
+      <button class="mt-2 w-full text-center py-2 bg-red-50 text-red-600 hover:bg-red-100 text-sm font-semibold rounded-xl transition" onclick="layoverx.logout()">Logout</button>
+    </div>
+  </div>
+</nav>ton>
     </div>
   </div>
 </nav>
@@ -189,39 +192,39 @@
   <!-- Page Content -->
   <main id="main">
     <!-- HERO -->
-<header class="relative min-h-[90vh] flex items-center justify-center overflow-hidden" id="hero-section">
+<header class="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-slate-950" id="hero-section">
   <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('assets/photos/homepage.png')" role="img" aria-label="Mumbai skyline at sunset"></div>
-  <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/75" aria-hidden="true"></div>
-  <div class="relative z-10 text-center px-4 py-20 max-w-4xl mx-auto">
+  <div class="absolute inset-0 bg-gradient-to-b from-black/75 via-black/45 to-black/80" aria-hidden="true"></div>
+  <div class="relative z-10 text-center px-4 py-24 max-w-4xl mx-auto">
     <div class="reveal">
-      <span class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md border border-white/20 text-white px-4 py-2 rounded-full text-sm font-semibold mb-6">
-        ✨ Mumbai Travel & Layover Experiences
+      <span class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 text-white px-4 py-2 rounded-full text-sm font-semibold mb-6">
+        ✨ Mumbai Airport Layover Expert
       </span>
     </div>
     <h1 class="reveal text-4xl sm:text-5xl md:text-7xl font-extrabold text-white mb-6 leading-tight">
       Experience Mumbai<br/><span class="bg-gradient-to-r from-sky-400 to-cyan-300 bg-clip-text text-transparent">Beyond The Airport</span>
     </h1>
-    <p class="reveal text-base sm:text-lg md:text-xl text-white max-w-2xl mx-auto mb-10 leading-relaxed">
-      Maximize your stopover. Discover hotels, restaurants, spas, local sightseeing tours, and fixed-price transfers near CSMIA terminals.
+    <p class="reveal text-lg sm:text-xl text-white/95 max-w-2xl mx-auto mb-12 leading-relaxed">
+      Maximize your stopover. Discover transit hotels, authentic restaurants, express spas, city sightseeing tours, and fixed-price transfers near CSMIA terminals.
     </p>
-    <div class="reveal flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
-      <a href="experiences.html" class="btn btn-primary">Explore Tours</a>
-      <a href="plan-my-layover.html" class="btn btn-ghost">Plan My Layover</a>
+    <div class="reveal flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+      <a href="experiences.html" class="btn btn-primary w-full sm:w-auto">Explore Tours</a>
+      <a href="plan-my-layover.html" class="btn btn-outline border-white text-white hover:bg-white/10 w-full sm:w-auto">Plan My Layover</a>
     </div>
     <div class="reveal grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
-      <div class="bg-white/20 backdrop-blur-md border border-white/10 rounded-2xl p-4 text-center">
+      <div class="bg-white/10 backdrop-blur-md border border-white/10 rounded-2xl p-4 text-center">
         <div class="text-2xl sm:text-3xl font-extrabold text-theme-accent mb-1">6+</div>
         <div class="text-white text-xs sm:text-sm font-medium">Categories</div>
       </div>
-      <div class="bg-white/20 backdrop-blur-md border border-white/10 rounded-2xl p-4 text-center">
+      <div class="bg-white/10 backdrop-blur-md border border-white/10 rounded-2xl p-4 text-center">
         <div class="text-2xl sm:text-3xl font-extrabold text-theme-accent mb-1">CSMIA</div>
         <div class="text-white text-xs sm:text-sm font-medium">Airport Focused</div>
       </div>
-      <div class="bg-white/20 backdrop-blur-md border border-white/10 rounded-2xl p-4 text-center">
+      <div class="bg-white/10 backdrop-blur-md border border-white/10 rounded-2xl p-4 text-center">
         <div class="text-2xl sm:text-3xl font-extrabold text-theme-accent mb-1">24/7</div>
         <div class="text-white text-xs sm:text-sm font-medium">Instant Booking</div>
       </div>
-      <div class="bg-white/20 backdrop-blur-md border border-white/10 rounded-2xl p-4 text-center">
+      <div class="bg-white/10 backdrop-blur-md border border-white/10 rounded-2xl p-4 text-center">
         <div class="text-2xl sm:text-3xl font-extrabold text-theme-accent mb-1">Mumbai</div>
         <div class="text-white text-xs sm:text-sm font-medium">Local Experts</div>
       </div>
@@ -233,7 +236,7 @@
 <section class="relative z-20 -mt-16 sm:-mt-20 px-4 sm:px-6 mb-16" id="search">
   <div class="container">
     <div class="bg-white rounded-3xl shadow-xl border border-gray-100 p-6 sm:p-8">
-      <div class="flex items-center gap-2 sm:gap-3 mb-6 overflow-x-auto no-scrollbar -mx-1 pb-2" id="search-tabs">
+      <div class="flex items-center gap-2 sm:gap-4 mb-6 overflow-x-auto no-scrollbar -mx-1 pb-2" id="search-tabs">
         <button class="search-tab active" onclick="location.href='hotels.html'">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
             <path d="M3 21h18M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16M9 7h1m-1 4h1m-1 4h1m4-4h1m-1 4h1"/>
@@ -274,26 +277,26 @@
       
       <!-- Search Form -->
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="search-fields">
-        <div class="bg-gray-50 border border-gray-200 rounded-2xl p-4">
-          <label for="search-location" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Destination Area</label>
-          <select id="search-location" class="w-full bg-transparent text-sm font-semibold text-gray-900 border-none p-0 focus:ring-0 focus:outline-none cursor-pointer">
+        <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4">
+          <label for="search-location" class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Destination Area</label>
+          <select id="search-location" class="w-full bg-transparent text-sm font-semibold text-slate-900 border-none p-0 focus:ring-0 focus:outline-none cursor-pointer">
             <option value="near-airport">Near Mumbai Airport (CSMIA)</option>
             <option value="bandra">Bandra & Andheri West</option>
             <option value="colaba">Colaba & South Mumbai</option>
             <option value="juhu">Juhu Beach Area</option>
           </select>
         </div>
-        <div class="bg-gray-50 border border-gray-200 rounded-2xl p-4">
-          <label for="search-arrival" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Flight Arrival Time</label>
-          <input type="datetime-local" id="search-arrival" class="w-full bg-transparent text-sm font-semibold text-gray-900 border-none p-0 focus:ring-0 focus:outline-none" aria-label="Arrival date and time" required/>
+        <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4">
+          <label for="search-arrival" class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Flight Arrival Time</label>
+          <input type="datetime-local" id="search-arrival" class="w-full bg-transparent text-sm font-semibold text-slate-900 border-none p-0 focus:ring-0 focus:outline-none" aria-label="Arrival date and time" required/>
         </div>
-        <div class="bg-gray-50 border border-gray-200 rounded-2xl p-4">
-          <label for="search-departure" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Flight Departure Time</label>
-          <input type="datetime-local" id="search-departure" class="w-full bg-transparent text-sm font-semibold text-gray-900 border-none p-0 focus:ring-0 focus:outline-none" aria-label="Departure date and time" required/>
+        <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4">
+          <label for="search-departure" class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Flight Departure Time</label>
+          <input type="datetime-local" id="search-departure" class="w-full bg-transparent text-sm font-semibold text-slate-900 border-none p-0 focus:ring-0 focus:outline-none" aria-label="Departure date and time" required/>
         </div>
-        <div class="bg-gray-50 border border-gray-200 rounded-2xl p-4">
-          <label for="search-travelers" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Travelers</label>
-          <select id="search-travelers" class="w-full bg-transparent text-sm font-semibold text-gray-900 border-none p-0 focus:ring-0 focus:outline-none cursor-pointer">
+        <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4">
+          <label for="search-travelers" class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Travelers</label>
+          <select id="search-travelers" class="w-full bg-transparent text-sm font-semibold text-slate-900 border-none p-0 focus:ring-0 focus:outline-none cursor-pointer">
             <option value="1">1 Adult</option>
             <option value="2">2 Adults</option>
             <option value="3">3 Adults</option>
@@ -303,10 +306,10 @@
       </div>
       
       <!-- Duration Display -->
-      <div class="mt-4 flex items-center justify-between flex-wrap gap-3">
-        <div class="flex items-center gap-2 text-sm text-gray-800" id="duration-display" aria-live="polite">
-          <svg class="w-4 h-4 text-theme-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          <span>Calculated Layover window: <strong class="text-gray-900 font-bold" id="layover-duration">6h 00m</strong></span>
+      <div class="mt-4 flex items-center justify-between flex-wrap gap-4">
+        <div class="flex items-center gap-2 text-sm text-slate-700" id="duration-display" aria-live="polite">
+          <svg class="w-4 h-4 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span>Calculated Layover window: <strong class="text-slate-900 font-bold" id="layover-duration">6h 00m</strong></span>
         </div>
         <div id="validation-message" class="text-sm text-red-500 font-medium hidden" role="alert" aria-live="assertive"></div>
       </div>
@@ -319,24 +322,94 @@
   </div>
 </section>
 
-<!-- POPULAR CATEGORIES CAROUSEL -->
-<section class="section bg-white overflow-hidden" id="categories">
+<!-- VALUE PROPOSITION -->
+<section class="py-16 bg-slate-50" id="value-proposition">
+  <div class="container">
+    <div class="text-center mb-12 reveal">
+      <span class="inline-block text-sky-600 font-bold text-sm uppercase tracking-wider mb-2">Why LayoverX</span>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4">Designed Exclusively for Stopover Travelers</h2>
+      <p class="text-slate-650 max-w-xl mx-auto">We solve airport friction with curated local experiences synchronized with your flight boarding gates.</p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm flex flex-col gap-4">
+        <div class="w-12 h-12 rounded-xl bg-sky-50 flex items-center justify-center text-2xl">🛡️</div>
+        <h3 class="text-lg font-bold text-slate-900">Flight-Delay Protection</h3>
+        <p class="text-slate-650 text-sm leading-relaxed">We automatically track and update your bookings if your airline schedules or flight gates change.</p>
+      </div>
+      <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm flex flex-col gap-4">
+        <div class="w-12 h-12 rounded-xl bg-sky-50 flex items-center justify-center text-2xl">💼</div>
+        <h3 class="text-lg font-bold text-slate-900">Luggage Lockers & Storage</h3>
+        <p class="text-slate-650 text-sm leading-relaxed">Leave heavy suitcases in secure airport baggage facilities while you explore the city bag-free.</p>
+      </div>
+      <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm flex flex-col gap-4">
+        <div class="w-12 h-12 rounded-xl bg-sky-50 flex items-center justify-center text-2xl">🗺️</div>
+        <h3 class="text-lg font-bold text-slate-900">Visa & Exit Support</h3>
+        <p class="text-slate-650 text-sm leading-relaxed">Get visual guidance steps for custom clearance exits, transit e-Visas, and terminal transfers.</p>
+      </div>
+      <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm flex flex-col gap-4">
+        <div class="w-12 h-12 rounded-xl bg-sky-50 flex items-center justify-center text-2xl">🚗</div>
+        <h3 class="text-lg font-bold text-slate-900">Surge-Free Transfers</h3>
+        <p class="text-slate-650 text-sm leading-relaxed">Book flat-rate air-conditioned airport taxis with certified English-speaking drivers.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LAYOVER PLANNING WORKFLOW -->
+<section class="py-16 bg-white" id="how-it-works">
+  <div class="container">
+    <div class="text-center mb-16 reveal">
+      <span class="inline-block text-sky-600 font-bold text-sm uppercase tracking-wider mb-2">How It Works</span>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4">Escaping the Terminal is Simple</h2>
+      <p class="text-slate-650 max-w-xl mx-auto">Our smart platform handles buffers, travel coordinates, and schedules in 3 simple steps.</p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+      <div class="text-center reveal relative z-10 flex flex-col items-center">
+        <div class="w-16 h-16 bg-sky-600 text-white rounded-2xl flex items-center justify-center mb-6 text-2xl font-black shadow-lg shadow-sky-600/30">1</div>
+        <h3 class="text-xl font-bold text-slate-900 mb-2">Input Layover Window</h3>
+        <p class="text-slate-650 text-sm max-w-xs leading-relaxed">Provide your arrivals and departures. Our system automatically subtracts custom exit and security check margins.</p>
+      </div>
+      <div class="text-center reveal relative z-10 flex flex-col items-center">
+        <div class="w-16 h-16 bg-sky-600 text-white rounded-2xl flex items-center justify-center mb-6 text-2xl font-black shadow-lg shadow-sky-600/30">2</div>
+        <h3 class="text-xl font-bold text-slate-900 mb-2">Select Handpicked Experiences</h3>
+        <p class="text-slate-650 text-sm max-w-xs leading-relaxed">Customize your stopover timeline with hourly transit hotels, wellness spas, street food crawls, or terminal lounges.</p>
+      </div>
+      <div class="text-center reveal relative z-10 flex flex-col items-center">
+        <div class="w-16 h-16 bg-sky-600 text-white rounded-2xl flex items-center justify-center mb-6 text-2xl font-black shadow-lg shadow-sky-600/30">3</div>
+        <h3 class="text-xl font-bold text-slate-900 mb-2">Enjoy Transit Safely</h3>
+        <p class="text-slate-650 text-sm max-w-xs leading-relaxed">Your professional chauffeur meets you at arrivals. Navigate Mumbai with peace of mind and return strictly on time.</p>
+      </div>
+    </div>
+    
+    <div class="mt-16 text-center reveal">
+      <a href="how-it-works.html" class="inline-flex items-center gap-2 text-sky-600 hover:text-sky-700 font-bold hover:underline">
+        Read Airport exit guidelines & transit visa requirements 
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES OVERVIEW -->
+<section class="py-16 bg-slate-50 overflow-hidden" id="categories">
   <div class="container relative">
     <div class="text-center mb-12 reveal">
-      <span class="inline-block text-theme-primary font-bold text-sm uppercase tracking-wider mb-2">Concierge Services</span>
-      <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-3">Optimize Every Stopover Hour</h2>
-      <p class="text-gray-700 max-w-xl mx-auto">Browse through our specialized transit services tailored specifically to fit flight schedules.</p>
+      <span class="inline-block text-sky-600 font-bold text-sm uppercase tracking-wider mb-2">Concierge Services</span>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4">Optimize Every Stopover Hour</h2>
+      <p class="text-slate-650 max-w-xl mx-auto">Browse through our specialized transit services tailored specifically to fit flight schedules.</p>
     </div>
 
     <!-- Carousel Controls -->
     <div class="absolute top-1/2 -left-4 sm:left-0 -translate-y-1/2 z-20 hidden md:block">
-      <button class="carousel-nav-btn" id="prev-service" aria-label="Previous service">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+      <button class="w-10 h-10 rounded-full bg-white hover:bg-slate-50 shadow-md flex items-center justify-center border border-slate-200 text-slate-700 hover:text-sky-600 cursor-pointer disabled:opacity-50 transition" id="prev-service" aria-label="Previous service">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
       </button>
     </div>
     <div class="absolute top-1/2 -right-4 sm:right-0 -translate-y-1/2 z-20 hidden md:block">
-      <button class="carousel-nav-btn" id="next-service" aria-label="Next service">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+      <button class="w-10 h-10 rounded-full bg-white hover:bg-slate-50 shadow-md flex items-center justify-center border border-slate-200 text-slate-700 hover:text-sky-600 cursor-pointer disabled:opacity-50 transition" id="next-service" aria-label="Next service">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
       </button>
     </div>
 
@@ -345,16 +418,15 @@
       
       <!-- Hotels -->
       <div class="carousel-item">
-        <a href="hotels.html" class="card group h-full flex flex-col hover:-translate-y-1 transform transition duration-300">
-          <div class="relative h-60 overflow-hidden">
-            <img height="400" width="600" alt="Transit Hotels" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&h=400&fit=crop&auto=format&fm=webp&q=75"/>
+        <a href="hotels.html" class="card group h-full flex flex-col">
+          <div class="card-img-container">
+            <img height="400" width="600" alt="Transit Hotels" class="card-img" loading="lazy" src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&h=400&fit=crop&auto=format&fm=webp&q=75"/>
             <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-            
           </div>
-          <div class="p-6 flex-grow flex flex-col">
-            <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-theme-primary transition-colors">Transit Hotels</h3>
-            <p class="text-gray-700 text-sm mb-6 flex-grow">Flexible stays near CSMIA with 24/7 check-in and hourly day-use rates.</p>
-            <div class="flex items-center text-theme-primary font-bold text-sm">
+          <div class="card-content flex-grow">
+            <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-sky-600 transition-colors">Transit Hotels</h3>
+            <p class="text-slate-650 text-sm mb-6 flex-grow leading-relaxed">Flexible day-use rooms near CSMIA with 24/7 check-in and hourly rates.</p>
+            <div class="flex items-center text-sky-600 font-bold text-sm">
               Explore Stays <svg class="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path d="M9 5l7 7-7 7"/></svg>
             </div>
           </div>
@@ -363,16 +435,15 @@
 
       <!-- Restaurants -->
       <div class="carousel-item">
-        <a href="restaurants.html" class="card group h-full flex flex-col hover:-translate-y-1 transform transition duration-300">
-          <div class="relative h-60 overflow-hidden">
-            <img height="400" width="600" alt="Transit Dining" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&h=400&fit=crop&auto=format&fm=webp&q=75"/>
+        <a href="restaurants.html" class="card group h-full flex flex-col">
+          <div class="card-img-container">
+            <img height="400" width="600" alt="Transit Dining" class="card-img" loading="lazy" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&h=400&fit=crop&auto=format&fm=webp&q=75"/>
             <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-            
           </div>
-          <div class="p-6 flex-grow flex flex-col">
-            <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-theme-primary transition-colors">Transit Dining</h3>
-            <p class="text-gray-700 text-sm mb-6 flex-grow">From fine dining to local street food crawl guides near the airport.</p>
-            <div class="flex items-center text-theme-primary font-bold text-sm">
+          <div class="card-content flex-grow">
+            <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-sky-600 transition-colors">Transit Dining</h3>
+            <p class="text-slate-650 text-sm mb-6 flex-grow leading-relaxed">Authentic coastal fish curries, regional thalis, and local cafe trails near CSIA.</p>
+            <div class="flex items-center text-sky-600 font-bold text-sm">
               Explore Dining <svg class="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path d="M9 5l7 7-7 7"/></svg>
             </div>
           </div>
@@ -381,16 +452,15 @@
 
       <!-- Spa & Wellness -->
       <div class="carousel-item">
-        <a href="spa-wellness.html" class="card group h-full flex flex-col hover:-translate-y-1 transform transition duration-300">
-          <div class="relative h-60 overflow-hidden">
-            <img height="400" width="600" alt="Spa & Wellness" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&h=400&fit=crop&auto=format&fm=webp&q=75"/>
+        <a href="spa-wellness.html" class="card group h-full flex flex-col">
+          <div class="card-img-container">
+            <img height="400" width="600" alt="Spa & Wellness" class="card-img" loading="lazy" src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&h=400&fit=crop&auto=format&fm=webp&q=75"/>
             <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-            
           </div>
-          <div class="p-6 flex-grow flex flex-col">
-            <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-theme-primary transition-colors">Spa & Wellness</h3>
-            <p class="text-gray-700 text-sm mb-6 flex-grow">Refresh your transit with luxury treatments and express therapy sessions.</p>
-            <div class="flex items-center text-theme-primary font-bold text-sm">
+          <div class="card-content flex-grow">
+            <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-sky-600 transition-colors">Spa & Wellness</h3>
+            <p class="text-slate-650 text-sm mb-6 flex-grow leading-relaxed">Refresh your travel exhaustion with jetlag therapies, massages, and relaxation pools.</p>
+            <div class="flex items-center text-sky-600 font-bold text-sm">
               Explore Wellness <svg class="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path d="M9 5l7 7-7 7"/></svg>
             </div>
           </div>
@@ -399,16 +469,15 @@
 
       <!-- Gaming & Entertainment -->
       <div class="carousel-item">
-        <a href="gaming-entertainment.html" class="card group h-full flex flex-col hover:-translate-y-1 transform transition duration-300">
-          <div class="relative h-60 overflow-hidden">
-            <img height="400" width="600" alt="Gaming & Entertainment" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&h=400&fit=crop&auto=format&fm=webp&q=75"/>
+        <a href="gaming-entertainment.html" class="card group h-full flex flex-col">
+          <div class="card-img-container">
+            <img height="400" width="600" alt="Gaming & Entertainment" class="card-img" loading="lazy" src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&h=400&fit=crop&auto=format&fm=webp&q=75"/>
             <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-            
           </div>
-          <div class="p-6 flex-grow flex flex-col">
-            <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-theme-primary transition-colors">Gaming & Fun</h3>
-            <p class="text-gray-700 text-sm mb-6 flex-grow">VR zones, boutique bowling, and high-energy fun minutes from terminal.</p>
-            <div class="flex items-center text-theme-primary font-bold text-sm">
+          <div class="card-content flex-grow">
+            <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-sky-600 transition-colors">Gaming & Fun</h3>
+            <p class="text-slate-650 text-sm mb-6 flex-grow leading-relaxed">VR zones, boutique bowling lanes, and interactive escape rooms minutes from gates.</p>
+            <div class="flex items-center text-sky-600 font-bold text-sm">
               Explore Fun <svg class="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path d="M9 5l7 7-7 7"/></svg>
             </div>
           </div>
@@ -417,16 +486,15 @@
 
       <!-- City Tours -->
       <div class="carousel-item">
-        <a href="experiences.html" class="card group h-full flex flex-col hover:-translate-y-1 transform transition duration-300">
-          <div class="relative h-60 overflow-hidden">
-            <img height="400" width="600" alt="City Tours" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" src="https://images.unsplash.com/photo-1567157577867-3c5d4b5e9a0e?w=600&h=400&fit=crop&auto=format&fm=webp&q=75"/>
+        <a href="experiences.html" class="card group h-full flex flex-col">
+          <div class="card-img-container">
+            <img height="400" width="600" alt="City Tours" class="card-img" loading="lazy" src="https://images.unsplash.com/photo-1567157577867-3c5d4b5e9a0e?w=600&h=400&fit=crop&auto=format&fm=webp&q=75"/>
             <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-            
           </div>
-          <div class="p-6 flex-grow flex flex-col">
-            <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-theme-primary transition-colors">City Tours</h3>
-            <p class="text-gray-700 text-sm mb-6 flex-grow">Private AC vehicle tours visiting Mumbai's iconic heritage landmarks.</p>
-            <div class="flex items-center text-theme-primary font-bold text-sm">
+          <div class="card-content flex-grow">
+            <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-sky-600 transition-colors">City Tours</h3>
+            <p class="text-slate-650 text-sm mb-6 flex-grow leading-relaxed">Private AC vehicle sightseeing tours visiting iconic Gateway of India and Marine Drive.</p>
+            <div class="flex items-center text-sky-600 font-bold text-sm">
               Explore Tours <svg class="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path d="M9 5l7 7-7 7"/></svg>
             </div>
           </div>
@@ -435,16 +503,15 @@
 
       <!-- Experiences & Activities -->
       <div class="carousel-item">
-        <a href="experiences.html" class="card group h-full flex flex-col hover:-translate-y-1 transform transition duration-300">
-          <div class="relative h-60 overflow-hidden">
-            <img height="400" width="600" alt="Experiences & Activities" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=600&h=400&fit=crop&auto=format&fm=webp&q=75"/>
+        <a href="experiences.html" class="card group h-full flex flex-col">
+          <div class="card-img-container">
+            <img height="400" width="600" alt="Experiences & Activities" class="card-img" loading="lazy" src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=600&h=400&fit=crop&auto=format&fm=webp&q=75"/>
             <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-            
           </div>
-          <div class="p-6 flex-grow flex flex-col">
-            <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-theme-primary transition-colors">Activities</h3>
-            <p class="text-gray-700 text-sm mb-6 flex-grow">From food trails to boutique shopping, curated for your schedule.</p>
-            <div class="flex items-center text-theme-primary font-bold text-sm">
+          <div class="card-content flex-grow">
+            <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-sky-600 transition-colors">Activities</h3>
+            <p class="text-slate-650 text-sm mb-6 flex-grow leading-relaxed">Handmade souvenir shopping guides, local cooking trails, and custom photo-walks.</p>
+            <div class="flex items-center text-sky-600 font-bold text-sm">
               Explore More <svg class="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path d="M9 5l7 7-7 7"/></svg>
             </div>
           </div>
@@ -455,24 +522,54 @@
   </div>
 </section>
 
+<!-- TRUST INDICATORS -->
+<section class="py-12 bg-white border-y border-slate-200" id="trust-indicators">
+  <div class="container">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-8">
+      <div class="text-left max-w-sm">
+        <h3 class="text-lg font-bold text-slate-900">Mumbai Transit Standard</h3>
+        <p class="text-slate-650 text-sm leading-relaxed mt-1">Platform compliant with global safety guarantees, encrypted processing, and verified local operator checklists.</p>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 md:gap-12 items-center">
+        <div class="flex flex-col items-center text-center">
+          <span class="text-2xl font-black text-slate-800 tracking-tight">CSMIA</span>
+          <span class="text-[10px] text-slate-500 font-bold uppercase tracking-wider mt-1">Airport Transit Area</span>
+        </div>
+        <div class="flex flex-col items-center text-center">
+          <span class="text-2xl font-black text-slate-800 tracking-tight">Stripe</span>
+          <span class="text-[10px] text-slate-500 font-bold uppercase tracking-wider mt-1">PCI-DSS Checkout</span>
+        </div>
+        <div class="flex flex-col items-center text-center">
+          <span class="text-2xl font-black text-slate-800 tracking-tight">WCAG AA</span>
+          <span class="text-[10px] text-slate-500 font-bold uppercase tracking-wider mt-1">Compliant Accessibility</span>
+        </div>
+        <div class="flex flex-col items-center text-center">
+          <span class="text-2xl font-black text-slate-800 tracking-tight">24/7 Support</span>
+          <span class="text-[10px] text-slate-500 font-bold uppercase tracking-wider mt-1">Instant Assistance</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- FEATURED EXPERIENCES -->
-<section class="section bg-gray-50 overflow-hidden" id="experiences">
+<section class="py-16 bg-slate-50 overflow-hidden" id="experiences">
   <div class="container relative">
     <div class="text-center mb-12 reveal">
-      <span class="inline-block text-theme-primary font-bold text-sm uppercase tracking-wider mb-2">High Demand Bookings</span>
-      <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-3">Popular Transit Experiences</h2>
-      <p class="text-gray-700 max-w-xl mx-auto">Verified, top-reviewed partners, and close to the airport for secure departure timing.</p>
+      <span class="inline-block text-sky-600 font-bold text-sm uppercase tracking-wider mb-2">High Demand Bookings</span>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4">Popular Transit Experiences</h2>
+      <p class="text-slate-650 max-w-xl mx-auto">Verified, top-reviewed partners, and close to the airport for secure departure timing.</p>
     </div>
 
     <!-- Carousel Controls -->
     <div class="absolute top-1/2 -left-4 sm:left-0 -translate-y-1/2 z-20 hidden md:block">
-      <button class="carousel-nav-btn" id="prev-experience" aria-label="Previous experience">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+      <button class="w-10 h-10 rounded-full bg-white hover:bg-slate-50 shadow-md flex items-center justify-center border border-slate-200 text-slate-700 hover:text-sky-600 cursor-pointer disabled:opacity-50 transition" id="prev-experience" aria-label="Previous experience">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
       </button>
     </div>
     <div class="absolute top-1/2 -right-4 sm:right-0 -translate-y-1/2 z-20 hidden md:block">
-      <button class="carousel-nav-btn" id="next-experience" aria-label="Next experience">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+      <button class="w-10 h-10 rounded-full bg-white hover:bg-slate-50 shadow-md flex items-center justify-center border border-slate-200 text-slate-700 hover:text-sky-600 cursor-pointer disabled:opacity-50 transition" id="next-experience" aria-label="Next experience">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
       </button>
     </div>
 
@@ -483,25 +580,25 @@
       <div class="carousel-item">
         <div class="card h-full flex flex-col justify-between">
           <div>
-            <div class="relative h-52 overflow-hidden">
-              <img height="400" width="600" alt="Niranta Airport Transit Hotel" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&h=400&fit=crop&auto=format&fm=webp&q=75"/>
-              <span class="absolute top-4 right-4 bg-theme-primary text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md">Inside T2</span>
+            <div class="card-img-container">
+              <img height="400" width="600" alt="Niranta Airport Transit Hotel" class="card-img" loading="lazy" src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&h=400&fit=crop&auto=format&fm=webp&q=75"/>
+              <span class="absolute top-4 right-4 bg-sky-600 text-white text-xs font-bold px-4 py-2 rounded-full shadow-md">Inside T2</span>
             </div>
-            <div class="p-6">
-              <div class="flex items-center gap-3 text-xs text-gray-700 mb-2">
+            <div class="card-content">
+              <div class="flex items-center gap-4 text-xs text-slate-700 mb-1">
                 <span class="flex items-center gap-1 font-semibold text-emerald-700 bg-emerald-50 px-2 py-1 rounded-lg">⭐ 4.8 (2.4k Reviews)</span>
-                <span class="flex items-center gap-1 font-semibold bg-gray-100 text-gray-800 px-2 py-1 rounded-lg">⏰ Hourly Slots</span>
+                <span class="flex items-center gap-1 font-semibold bg-slate-100 text-slate-800 px-2 py-1 rounded-lg">⏰ Hourly Slots</span>
               </div>
-              <h3 class="text-lg font-bold text-gray-900 mb-2">Transit Hotel Stays</h3>
-              <p class="text-gray-700 text-sm">Flexible day-use transit rooms inside Terminal 2 with 24/7 check-in and free terminal shuttles.</p>
+              <h3 class="text-lg font-bold text-slate-900 mb-2">Transit Hotel Stays</h3>
+              <p class="text-slate-650 text-sm leading-relaxed">Flexible day-use transit rooms inside Terminal 2 with 24/7 check-in and free terminal shuttles.</p>
             </div>
           </div>
-          <div class="px-6 pb-6 pt-2 border-t border-gray-50 flex items-center justify-between">
+          <div class="px-6 pb-6 pt-4 border-t border-slate-150 flex items-center justify-between">
             <div>
-              <span class="text-[10px] text-gray-700 font-bold uppercase tracking-wider">Starting from</span>
-              <div class="text-lg font-extrabold text-theme-primary">₹3,499</div>
+              <span class="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Starting from</span>
+              <div class="text-lg font-extrabold text-sky-600">₹3,499</div>
             </div>
-            <a href="hotels.html" class="px-4 py-2 btn btn-primary">Book Day Room</a>
+            <a href="hotels.html" class="btn btn-primary btn-sm">Book Day Room</a>
           </div>
         </div>
       </div>
@@ -510,25 +607,25 @@
       <div class="carousel-item">
         <div class="card h-full flex flex-col justify-between">
           <div>
-            <div class="relative h-52 overflow-hidden">
-              <img height="400" width="600" alt="Peshawri Dining" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&h=400&fit=crop&auto=format&fm=webp&q=75"/>
-              <span class="absolute top-4 right-4 bg-theme-primary text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md">Premium Dining</span>
+            <div class="card-img-container">
+              <img height="400" width="600" alt="Peshawri Dining" class="card-img" loading="lazy" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&h=400&fit=crop&auto=format&fm=webp&q=75"/>
+              <span class="absolute top-4 right-4 bg-sky-600 text-white text-xs font-bold px-4 py-2 rounded-full shadow-md">Premium Dining</span>
             </div>
-            <div class="p-6">
-              <div class="flex items-center gap-3 text-xs text-gray-700 mb-2">
+            <div class="card-content">
+              <div class="flex items-center gap-4 text-xs text-slate-700 mb-1">
                 <span class="flex items-center gap-1 font-semibold text-emerald-700 bg-emerald-50 px-2 py-1 rounded-lg">⭐ 4.9 (1.2k Reviews)</span>
-                <span class="flex items-center gap-1 font-semibold bg-gray-100 text-gray-800 px-2 py-1 rounded-lg">⏰ Near CSMIA</span>
+                <span class="flex items-center gap-1 font-semibold bg-slate-100 text-slate-800 px-2 py-1 rounded-lg">⏰ Near CSMIA</span>
               </div>
-              <h3 class="text-lg font-bold text-gray-900 mb-2">Transit Food Experiences</h3>
-              <p class="text-gray-700 text-sm">Savor authentic coastal seafood, Maharashtrian thalis, and luxury five-star fine dining near the airport.</p>
+              <h3 class="text-lg font-bold text-slate-900 mb-2">Transit Food Experiences</h3>
+              <p class="text-slate-650 text-sm leading-relaxed">Savor authentic coastal seafood, Maharashtrian thalis, and luxury five-star fine dining near the airport.</p>
             </div>
           </div>
-          <div class="px-6 pb-6 pt-2 border-t border-gray-50 flex items-center justify-between">
+          <div class="px-6 pb-6 pt-4 border-t border-slate-150 flex items-center justify-between">
             <div>
-              <span class="text-[10px] text-gray-700 font-bold uppercase tracking-wider">Starting from</span>
-              <div class="text-lg font-extrabold text-theme-primary">₹400</div>
+              <span class="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Starting from</span>
+              <div class="text-lg font-extrabold text-sky-600">₹400</div>
             </div>
-            <a href="restaurants.html" class="btn btn-primary">Book Table</a>
+            <a href="restaurants.html" class="btn btn-primary btn-sm">Book Table</a>
           </div>
         </div>
       </div>
@@ -537,25 +634,25 @@
       <div class="carousel-item">
         <div class="card h-full flex flex-col justify-between">
           <div>
-            <div class="relative h-52 overflow-hidden">
-              <img height="400" width="600" alt="Spa and wellness massage" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&h=400&fit=crop&auto=format&fm=webp&q=75"/>
-              <span class="absolute top-4 right-4 bg-theme-primary text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md">Relaxation Lounge</span>
+            <div class="card-img-container">
+              <img height="400" width="600" alt="Spa and wellness massage" class="card-img" loading="lazy" src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&h=400&fit=crop&auto=format&fm=webp&q=75"/>
+              <span class="absolute top-4 right-4 bg-sky-600 text-white text-xs font-bold px-4 py-2 rounded-full shadow-md">Relaxation Lounge</span>
             </div>
-            <div class="p-6">
-              <div class="flex items-center gap-3 text-xs text-gray-700 mb-2">
+            <div class="card-content">
+              <div class="flex items-center gap-4 text-xs text-slate-700 mb-1">
                 <span class="flex items-center gap-1 font-semibold text-emerald-700 bg-emerald-50 px-2 py-1 rounded-lg">⭐ 4.8 (850 Reviews)</span>
-                <span class="flex items-center gap-1 font-semibold bg-gray-100 text-gray-800 px-2 py-1 rounded-lg">⏰ Express Slots</span>
+                <span class="flex items-center gap-1 font-semibold bg-slate-100 text-slate-800 px-2 py-1 rounded-lg">⏰ Express Slots</span>
               </div>
-              <h3 class="text-lg font-bold text-gray-900 mb-2">Spa & Wellness Sessions</h3>
-              <p class="text-gray-700 text-sm">Refresh with express foot reflexology, deep tissue massage, and hotel wellness circuits near terminal gates.</p>
+              <h3 class="text-lg font-bold text-slate-900 mb-2">Spa & Wellness Sessions</h3>
+              <p class="text-slate-650 text-sm leading-relaxed">Refresh with express foot reflexology, deep tissue massage, and hotel wellness circuits near terminal gates.</p>
             </div>
           </div>
-          <div class="px-6 pb-6 pt-2 border-t border-gray-50 flex items-center justify-between">
+          <div class="px-6 pb-6 pt-4 border-t border-slate-150 flex items-center justify-between">
             <div>
-              <span class="text-[10px] text-gray-700 font-bold uppercase tracking-wider">Starting from</span>
-              <div class="text-lg font-extrabold text-theme-primary">₹1,800</div>
+              <span class="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Starting from</span>
+              <div class="text-lg font-extrabold text-sky-600">₹1,800</div>
             </div>
-            <a href="spa-wellness.html" class="btn btn-primary">Book Spa</a>
+            <a href="spa-wellness.html" class="btn btn-primary btn-sm">Book Spa</a>
           </div>
         </div>
       </div>
@@ -564,25 +661,25 @@
       <div class="carousel-item">
         <div class="card h-full flex flex-col justify-between">
           <div>
-            <div class="relative h-52 overflow-hidden">
-              <img height="400" width="600" alt="High-tech gaming lounge" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&h=400&fit=crop&auto=format&fm=webp&q=75"/>
-              <span class="absolute top-4 right-4 bg-theme-primary text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md">VR & Bowling</span>
+            <div class="card-img-container">
+              <img height="400" width="600" alt="High-tech gaming lounge" class="card-img" loading="lazy" src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&h=400&fit=crop&auto=format&fm=webp&q=75"/>
+              <span class="absolute top-4 right-4 bg-sky-600 text-white text-xs font-bold px-4 py-2 rounded-full shadow-md">VR & Bowling</span>
             </div>
-            <div class="p-6">
-              <div class="flex items-center gap-3 text-xs text-gray-700 mb-2">
+            <div class="card-content">
+              <div class="flex items-center gap-4 text-xs text-slate-700 mb-1">
                 <span class="flex items-center gap-1 font-semibold text-emerald-700 bg-emerald-50 px-2 py-1 rounded-lg">⭐ 4.7 (980 Reviews)</span>
-                <span class="flex items-center gap-1 font-semibold bg-gray-100 text-gray-800 px-2 py-1 rounded-lg">⏰ Near Terminal</span>
+                <span class="flex items-center gap-1 font-semibold bg-slate-100 text-slate-800 px-2 py-1 rounded-lg">⏰ Near Terminal</span>
               </div>
-              <h3 class="text-lg font-bold text-gray-900 mb-2">Gaming & Entertainment</h3>
-              <p class="text-gray-700 text-sm">Escape airport boredom. Explore virtual reality zones, bowling, and retro arcade simulators near CSMIA.</p>
+              <h3 class="text-lg font-bold text-slate-900 mb-2">Gaming & Entertainment</h3>
+              <p class="text-slate-650 text-sm leading-relaxed">Escape airport boredom. Explore virtual reality zones, bowling, and retro arcade simulators near CSMIA.</p>
             </div>
           </div>
-          <div class="px-6 pb-6 pt-2 border-t border-gray-50 flex items-center justify-between">
+          <div class="px-6 pb-6 pt-4 border-t border-slate-150 flex items-center justify-between">
             <div>
-              <span class="text-[10px] text-gray-700 font-bold uppercase tracking-wider">Starting from</span>
-              <div class="text-lg font-extrabold text-theme-primary">₹1,200</div>
+              <span class="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Starting from</span>
+              <div class="text-lg font-extrabold text-sky-600">₹1,200</div>
             </div>
-            <a href="gaming-entertainment.html" class="btn btn-primary">Book Gaming</a>
+            <a href="gaming-entertainment.html" class="btn btn-primary btn-sm">Book Gaming</a>
           </div>
         </div>
       </div>
@@ -591,25 +688,25 @@
       <div class="carousel-item">
         <div class="card h-full flex flex-col justify-between">
           <div>
-            <div class="relative h-52 overflow-hidden">
-              <img height="400" width="600" alt="Gateway of India tour" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1567157577867-3c5d4b5e9a0e?w=600&h=400&fit=crop&auto=format&fm=webp&q=75"/>
-              <span class="absolute top-4 right-4 bg-theme-primary text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md">Private Cab + Guide</span>
+            <div class="card-img-container">
+              <img height="400" width="600" alt="Gateway of India tour" class="card-img" loading="lazy" src="https://images.unsplash.com/photo-1567157577867-3c5d4b5e9a0e?w=600&h=400&fit=crop&auto=format&fm=webp&q=75"/>
+              <span class="absolute top-4 right-4 bg-sky-600 text-white text-xs font-bold px-4 py-2 rounded-full shadow-md">Private Cab + Guide</span>
             </div>
-            <div class="p-6">
-              <div class="flex items-center gap-3 text-xs text-gray-700 mb-2">
+            <div class="card-content">
+              <div class="flex items-center gap-4 text-xs text-slate-700 mb-1">
                 <span class="flex items-center gap-1 font-semibold text-emerald-700 bg-emerald-50 px-2 py-1 rounded-lg">⭐ 4.9 (840 Reviews)</span>
-                <span class="flex items-center gap-1 font-semibold bg-gray-100 text-gray-800 px-2 py-1 rounded-lg">⏰ 3h - 8h Stays</span>
+                <span class="flex items-center gap-1 font-semibold bg-slate-100 text-slate-800 px-2 py-1 rounded-lg">⏰ 3h - 8h Stays</span>
               </div>
-              <h3 class="text-lg font-bold text-gray-900 mb-2">Time-Optimized City Tours</h3>
-              <p class="text-gray-700 text-sm">Guided heritage, food crawls, and boutique shopping tours structured exactly inside layover hours.</p>
+              <h3 class="text-lg font-bold text-slate-900 mb-2">Time-Optimized City Tours</h3>
+              <p class="text-slate-650 text-sm leading-relaxed">Guided heritage, food crawls, and boutique shopping tours structured exactly inside layover hours.</p>
             </div>
           </div>
-          <div class="px-6 pb-6 pt-2 border-t border-gray-50 flex items-center justify-between">
+          <div class="px-6 pb-6 pt-4 border-t border-slate-150 flex items-center justify-between">
             <div>
-              <span class="text-[10px] text-gray-700 font-bold uppercase tracking-wider">Starting from</span>
-              <div class="text-lg font-extrabold text-theme-primary">₹1,299</div>
+              <span class="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Starting from</span>
+              <div class="text-lg font-extrabold text-sky-600">₹1,299</div>
             </div>
-            <a href="experiences.html" class="btn btn-primary">Book Tour</a>
+            <a href="experiences.html" class="btn btn-primary btn-sm">Book Tour</a>
           </div>
         </div>
       </div>
@@ -618,25 +715,25 @@
       <div class="carousel-item">
         <div class="card h-full flex flex-col justify-between">
           <div>
-            <div class="relative h-52 overflow-hidden">
-              <img height="400" width="600" alt="Luxury executive sedan cab" class="w-full h-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1610647752706-3bb12232b3cd?w=600&h=400&fit=crop&auto=format&fm=webp&q=75"/>
-              <span class="absolute top-4 right-4 bg-theme-primary text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md">Tolls & Parking Incl.</span>
+            <div class="card-img-container">
+              <img height="400" width="600" alt="Luxury executive sedan cab" class="card-img" loading="lazy" src="https://images.unsplash.com/photo-1610647752706-3bb12232b3cd?w=600&h=400&fit=crop&auto=format&fm=webp&q=75"/>
+              <span class="absolute top-4 right-4 bg-sky-600 text-white text-xs font-bold px-4 py-2 rounded-full shadow-md">Tolls & Parking Incl.</span>
             </div>
-            <div class="p-6">
-              <div class="flex items-center gap-3 text-xs text-gray-700 mb-2">
+            <div class="card-content">
+              <div class="flex items-center gap-4 text-xs text-slate-700 mb-1">
                 <span class="flex items-center gap-1 font-semibold text-emerald-700 bg-emerald-50 px-2 py-1 rounded-lg">⭐ 4.8 (1.5k Reviews)</span>
-                <span class="flex items-center gap-1 font-semibold bg-gray-100 text-gray-800 px-2 py-1 rounded-lg">⏰ Surge Free</span>
+                <span class="flex items-center gap-1 font-semibold bg-slate-100 text-slate-800 px-2 py-1 rounded-lg">⏰ Surge Free</span>
               </div>
-              <h3 class="text-lg font-bold text-gray-900 mb-2">Fixed-Rate Airport Cabs</h3>
-              <p class="text-gray-700 text-sm">Surge-free flat rate airport pickups, drop-offs, tolls-inclusive, and chauffeur-driven rides inside AC Sedans/SUVs.</p>
+              <h3 class="text-lg font-bold text-slate-900 mb-2">Fixed-Rate Airport Cabs</h3>
+              <p class="text-slate-650 text-sm leading-relaxed">Surge-free flat rate airport pickups, drop-offs, tolls-inclusive, and chauffeur-driven rides inside AC Sedans/SUVs.</p>
             </div>
           </div>
-          <div class="px-6 pb-6 pt-2 border-t border-gray-50 flex items-center justify-between">
+          <div class="px-6 pb-6 pt-4 border-t border-slate-150 flex items-center justify-between">
             <div>
-              <span class="text-[10px] text-gray-700 font-bold uppercase tracking-wider">Starting from</span>
-              <div class="text-lg font-extrabold text-theme-primary">₹899</div>
+              <span class="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Starting from</span>
+              <div class="text-lg font-extrabold text-sky-600">₹899</div>
             </div>
-            <a href="airport-transfers.html" class="btn btn-primary">Book Cab</a>
+            <a href="airport-transfers.html" class="btn btn-primary btn-sm">Book Cab</a>
           </div>
         </div>
       </div>
@@ -645,113 +742,146 @@
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
-<section class="section bg-white" id="how-it-works">
-  <div class="container">
-    <div class="text-center mb-16 reveal">
-      <span class="inline-block text-theme-primary font-bold text-sm uppercase tracking-wider mb-2">Seamless Planning</span>
-      <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-3">Layover Booking in 3 Simple Steps</h2>
-      <p class="text-gray-700 max-w-xl mx-auto">We synchronize your airport exit, visa guidance, and transfer timings so you never miss a connection.</p>
-    </div>
-    
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
-      <div class="text-center reveal relative z-10">
-        <div class="w-16 h-16 bg-theme-primary text-white rounded-2xl flex items-center justify-center mx-auto mb-6 text-2xl font-black shadow-lg shadow-primary">1</div>
-        <h3 class="text-xl font-bold text-gray-900 mb-2">Enter Layover Window</h3>
-        <p class="text-gray-700 text-sm max-w-xs mx-auto">Input your landing and boarding times. We calculate buffer hours for customs and security checks.</p>
-      </div>
-      <div class="text-center reveal relative z-10">
-        <div class="w-16 h-16 bg-theme-primary text-white rounded-2xl flex items-center justify-center mx-auto mb-6 text-2xl font-black shadow-lg shadow-primary">2</div>
-        <h3 class="text-xl font-bold text-gray-900 mb-2">Select Services</h3>
-        <p class="text-gray-700 text-sm max-w-xs mx-auto">Customize your timeline. Select day-rooms, restaurant tables, activities, and cabs with verified travel agents.</p>
-      </div>
-      <div class="text-center reveal relative z-10">
-        <div class="w-16 h-16 bg-theme-primary text-white rounded-2xl flex items-center justify-center mx-auto mb-6 text-2xl font-black shadow-lg shadow-primary">3</div>
-        <h3 class="text-xl font-bold text-gray-900 mb-2">Enjoy Transit Safely</h3>
-        <p class="text-gray-700 text-sm max-w-xs mx-auto">Follow your smart timeline, keep tracked by your private chauffeur, and return to CSMIA refreshed and on time.</p>
-      </div>
-    </div>
-    
-    <div class="mt-16 text-center reveal">
-      <a href="how-it-works.html" class="inline-flex items-center gap-2 text-theme-primary hover:text-theme-primary font-bold hover:underline">
-        Read Airport exit guidelines & transit visa requirements 
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section class="section bg-gray-50" id="testimonials">
+<!-- SOCIAL PROOF (TESTIMONIALS) -->
+<section class="py-16 bg-white" id="testimonials">
   <div class="container">
     <div class="text-center mb-12 reveal">
-      <span class="inline-block text-theme-primary font-bold text-sm uppercase tracking-wider mb-2">Trusted Reviews</span>
-      <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-3">Loved by Transit Travelers</h2>
-      <p class="text-gray-700 max-w-xl mx-auto">Read real reviews from global transit flyers who escaped the terminal lounges.</p>
+      <span class="inline-block text-sky-600 font-bold text-sm uppercase tracking-wider mb-2">Loved by Travelers</span>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4">Real Stories from Transit Flyers</h2>
+      <p class="text-slate-650 max-w-xl mx-auto">Read how global flyers transformed empty layovers into memorable stopovers.</p>
     </div>
     
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <div class="card p-6 reveal flex flex-col justify-between">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="bg-slate-50 p-8 rounded-2xl border border-slate-200 flex flex-col justify-between shadow-sm">
         <div>
-          <div class="flex items-center gap-1 mb-3 text-amber-400">
+          <div class="flex items-center gap-1 mb-4 text-amber-500 font-semibold">
             ★★★★★
           </div>
-          <p class="text-gray-700 text-sm italic mb-6">"I had an 8-hour layover en route to London. LayoverX booked me a private driver who met me at CSIA T2 arrivals and a 3-hour heritage tour. Everything was on schedule, returning me 2 hours prior to my flight!"</p>
+          <p class="text-slate-700 text-sm italic mb-8 leading-relaxed">"I had an 8-hour layover en route to London. LayoverX booked me a private driver who met me at CSIA T2 arrivals and a 3-hour heritage tour. Everything was on schedule, returning me 2 hours prior to my flight!"</p>
         </div>
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 bg-theme-primary rounded-full flex items-center justify-center text-white font-bold text-sm">MB</div>
+        <div class="flex items-center gap-4">
+          <div class="w-10 h-10 rounded-full bg-gradient-to-br from-sky-400 to-sky-600 flex items-center justify-center text-white font-bold text-sm">MB</div>
           <div>
-            <div class="font-bold text-gray-900 text-sm">Marcus B.</div>
-            <div class="text-gray-700 text-xs font-medium">Transit from Munich</div>
+            <div class="font-bold text-slate-900 text-sm">Marcus B.</div>
+            <div class="text-slate-500 text-xs font-semibold">Munich to London (8h Layover)</div>
           </div>
         </div>
       </div>
       
-      <div class="card p-6 reveal flex flex-col justify-between">
+      <div class="bg-slate-50 p-8 rounded-2xl border border-slate-200 flex flex-col justify-between shadow-sm">
         <div>
-          <div class="flex items-center gap-1 mb-3 text-amber-400">
+          <div class="flex items-center gap-1 mb-4 text-amber-500 font-semibold">
             ★★★★★
           </div>
-          <p class="text-gray-700 text-sm italic mb-6">"Day-use hotel booking near Terminal 1 was smooth and fast. The free shuttle took 5 minutes to arrive. Best way to shower, rest, and check work emails between connections."</p>
+          <p class="text-slate-700 text-sm italic mb-8 leading-relaxed">"Day-use hotel booking near Terminal 1 was smooth and fast. The free shuttle took 5 minutes to arrive. Best way to shower, rest, and check work emails between connections."</p>
         </div>
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 bg-emerald-700 rounded-full flex items-center justify-center text-white font-bold text-sm">SK</div>
+        <div class="flex items-center gap-4">
+          <div class="w-10 h-10 rounded-full bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center text-white font-bold text-sm">SK</div>
           <div>
-            <div class="font-bold text-gray-900 text-sm">Sandhya K.</div>
-            <div class="text-gray-700 text-xs font-medium">Business Traveler, Bangalore</div>
+            <div class="font-bold text-slate-900 text-sm">Sandhya K.</div>
+            <div class="text-slate-500 text-xs font-semibold">Bangalore Business (6h Stopover)</div>
           </div>
         </div>
       </div>
 
-      <div class="card p-6 reveal flex flex-col justify-between">
+      <div class="bg-slate-50 p-8 rounded-2xl border border-slate-200 flex flex-col justify-between shadow-sm">
         <div>
-          <div class="flex items-center gap-1 mb-3 text-amber-400">
+          <div class="flex items-center gap-1 mb-4 text-amber-500 font-semibold">
             ★★★★★
           </div>
-          <p class="text-gray-700 text-sm italic mb-6">"Fantastic seafood lunch reserved at Gajalee. No queue, premium table, and the driver knew the exact traffic shortcuts to get me back to T2 check-in on time."</p>
+          <p class="text-slate-700 text-sm italic mb-8 leading-relaxed">"Fantastic seafood lunch reserved at Gajalee. No queue, premium table, and the driver knew the exact traffic shortcuts to get me back to T2 check-in on time."</p>
         </div>
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 bg-purple-700 rounded-full flex items-center justify-center text-white font-bold text-sm">JL</div>
+        <div class="flex items-center gap-4">
+          <div class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center text-white font-bold text-sm">JL</div>
           <div>
-            <div class="font-bold text-gray-900 text-sm">John L.</div>
-            <div class="text-gray-700 text-xs font-medium">Singapore Transit</div>
+            <div class="font-bold text-slate-900 text-sm">John L.</div>
+            <div class="text-slate-500 text-xs font-semibold">Singapore Transit (5h Layover)</div>
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ SECTION -->
+<section class="py-16 bg-slate-50" id="faq">
+  <div class="container max-w-4xl">
+    <div class="text-center mb-12 reveal">
+      <span class="inline-block text-sky-600 font-bold text-sm uppercase tracking-wider mb-2">FAQ</span>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4">Frequently Asked Questions</h2>
+      <p class="text-slate-650 max-w-xl mx-auto">Everything you need to know about exiting CSMIA airport and planning your layover.</p>
+    </div>
+    
+    <div class="space-y-4">
+      <details class="group bg-white border border-slate-200 rounded-2xl p-6 transition-all duration-300 hover:shadow-sm focus-within:ring-2 focus-within:ring-sky-500/20">
+        <summary class="flex items-center justify-between cursor-pointer font-bold text-slate-900 list-none select-none focus:outline-none">
+          <span class="text-base sm:text-lg">Do I need a transit visa to leave Mumbai airport?</span>
+          <span class="transition-transform duration-300 group-open:rotate-180 text-slate-500">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </span>
+        </summary>
+        <div class="mt-4 text-sm sm:text-base text-slate-700 leading-relaxed">
+          Most international transit passengers exiting the terminal will require a transit visa or tourist e-Visa for India. Passengers exiting Terminal 2 (T2) can obtain e-Visas online in advance. LayoverX helps provide guidance instructions, but we highly recommend checking current Indian immigration directives.
+        </div>
+      </details>
+
+      <details class="group bg-white border border-slate-200 rounded-2xl p-6 transition-all duration-300 hover:shadow-sm focus-within:ring-2 focus-within:ring-sky-500/20">
+        <summary class="flex items-center justify-between cursor-pointer font-bold text-slate-900 list-none select-none focus:outline-none">
+          <span class="text-base sm:text-lg">What happens if my inbound flight is delayed?</span>
+          <span class="transition-transform duration-300 group-open:rotate-180 text-slate-500">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </span>
+        </summary>
+        <div class="mt-4 text-sm sm:text-base text-slate-700 leading-relaxed">
+          Our system continuously tracks flight arrivals. If your inbound connection is delayed, our system automatically recalculates safety margins, updates the suppliers, and notifies your assigned chauffeur. If your layover window shrinks below safe thresholds, we will prompt or refund non-feasible segments.
+        </div>
+      </details>
+
+      <details class="group bg-white border border-slate-200 rounded-2xl p-6 transition-all duration-300 hover:shadow-sm focus-within:ring-2 focus-within:ring-sky-500/20">
+        <summary class="flex items-center justify-between cursor-pointer font-bold text-slate-900 list-none select-none focus:outline-none">
+          <span class="text-base sm:text-lg">Where is my luggage stored during the stopover?</span>
+          <span class="transition-transform duration-300 group-open:rotate-180 text-slate-500">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </span>
+        </summary>
+        <div class="mt-4 text-sm sm:text-base text-slate-700 leading-relaxed">
+          International baggage checked through to your final destination usually stays on the aircraft. For carry-on items or luggage checked only to Mumbai, CSMIA Terminal 2 features verified Left Luggage cloakrooms. Our airport transit guides walk you directly to these facilities.
+        </div>
+      </details>
+
+      <details class="group bg-white border border-slate-200 rounded-2xl p-6 transition-all duration-300 hover:shadow-sm focus-within:ring-2 focus-within:ring-sky-500/20">
+        <summary class="flex items-center justify-between cursor-pointer font-bold text-slate-900 list-none select-none focus:outline-none">
+          <span class="text-base sm:text-lg">How do you calculate safe layover buffer windows?</span>
+          <span class="transition-transform duration-300 group-open:rotate-180 text-slate-500">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </span>
+        </summary>
+        <div class="mt-4 text-sm sm:text-base text-slate-700 leading-relaxed">
+          We mandate a strict safety buffer: 2 hours subtracted for custom clearance and immigration exit checks, plus another 3 hours for boarding check-ins and security lines. This leaves active stopover hours calculated cleanly to protect your flight connection.
+        </div>
+      </details>
     </div>
   </div>
 </section>
 
 <!-- CALL TO ACTION -->
-<section class="section bg-white">
+<section class="py-16 bg-white">
   <div class="container">
-    <div class="bg-gradient-to-br from-theme-hero-from to-theme-hero-to rounded-3xl p-8 sm:p-16 text-center text-white relative overflow-hidden shadow-xl shadow-primary">
+    <div class="bg-gradient-to-br from-sky-700 to-sky-900 rounded-3xl p-8 sm:p-16 text-center text-white relative overflow-hidden shadow-xl shadow-sky-900/35">
       <div class="relative z-10 max-w-2xl mx-auto">
         <h2 class="text-3xl sm:text-4xl font-extrabold mb-4">Don't Waste Your Mumbai Layover</h2>
-        <p class="text-white mb-8 text-base sm:text-lg">Escape the airport gates. Book verified hotels, transport, and dining spots on the only dedicated transit platform.</p>
+        <p class="text-white/90 mb-8 text-base sm:text-lg leading-relaxed">Escape airport terminal gates. Book verified hotel day-use rooms, transfers, dining, and tours on the only platform dedicated to transit travelers.</p>
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a href="plan-my-layover.html" class="w-full sm:w-auto px-8 py-4 bg-white text-theme-primary font-bold rounded-xl hover:bg-gray-50 transition transform hover:-translate-y-0.5">Plan My Layover Now</a>
-          <a href="contact.html" class="w-full sm:w-auto px-8 py-4 bg-white/20 border border-white/30 text-white font-bold rounded-xl hover:bg-white/20 transition backdrop-blur-md">Speak with Transit Expert</a>
+          <a href="plan-my-layover.html" class="w-full sm:w-auto px-8 py-4 bg-white text-sky-800 font-bold rounded-xl hover:bg-slate-50 transition transform hover:-translate-y-0.5 shadow-md">Plan My Layover Now</a>
+          <a href="contact.html" class="w-full sm:w-auto px-8 py-4 bg-white/10 border border-white/20 text-white font-bold rounded-xl hover:bg-white/20 transition backdrop-blur-md">Speak with Transit Expert</a>
         </div>
       </div>
     </div>
@@ -764,7 +894,7 @@
   <!-- FOOTER -->
 <footer class="bg-gray-900 text-white pt-16 pb-12">
   <div class="container">
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
       <div>
         <a href="index.html" class="flex items-center gap-2 mb-4">
           <div class="w-9 h-9 bg-gradient-to-br from-sky-500 to-sky-600 rounded-xl flex items-center justify-center">
@@ -777,7 +907,7 @@
         <p class="text-gray-400 text-sm leading-relaxed mb-6">
           Mumbai Travel & Layover Experience Platform. Transform your transit hours into memorable journeys with premium hotels, fine dining, curated city tours, and airport transfers near CSIA.
         </p>
-        <div class="flex items-center gap-3">
+        <div class="flex items-center gap-4">
           <a href="#" aria-label="Facebook" class="w-8 h-8 rounded-lg bg-gray-800 hover:bg-sky-500 transition-colors flex items-center justify-center text-gray-400 hover:text-white">
             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M9 8H7v3h2v9h4v-9h3.6l.4-3h-4V6.5c0-.8.2-1.1 1-1.1h3V2h-4.3C12.3 2 10 3.8 10 7.5V8z"/></svg>
           </a>
@@ -809,17 +939,17 @@
       </div>
       <div>
         <h3 class="font-bold mb-4 text-sm text-theme-accent uppercase tracking-wider">Get In Touch</h3>
-        <ul class="space-y-3">
-          <li class="flex items-center gap-2.5 text-gray-400 text-sm">
+        <ul class="space-y-4">
+          <li class="flex items-center gap-2 text-gray-400 text-sm">
             <svg class="w-4 h-4 text-theme-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
             <a href="mailto:hello@layoverx.com" class="hover:text-white transition-colors">hello@layoverx.com</a>
           </li>
-          <li class="flex items-center gap-2.5 text-gray-400 text-sm">
+          <li class="flex items-center gap-2 text-gray-400 text-sm">
             <svg class="w-4 h-4 text-theme-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-2.824-1.47-5.112-3.758-6.58-6.58l1.293-.97c.362-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/></svg>
             <a href="tel:+912212345678" class="hover:text-white transition-colors">+91 22 1234 5678</a>
           </li>
-          <li class="flex items-start gap-2.5 text-gray-400 text-sm">
-            <svg class="w-4 h-4 text-theme-accent mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+          <li class="flex items-start gap-2 text-gray-400 text-sm">
+            <svg class="w-4 h-4 text-theme-accent mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
             <span>Andheri East, Near CSMIA Terminal 2,<br/>Mumbai, MH 400099, India</span>
           </li>
         </ul>
@@ -840,7 +970,7 @@
   <!-- Modals Section -->
   <!-- Auth Modals -->
 <div id="modal-login" class="modal-overlay opacity-0 transition-opacity duration-300" data-modal="login" role="dialog" aria-modal="true" aria-labelledby="login-title">
-  <div class="modal-content transform scale-95 transition-transform duration-300 p-8 sm:p-10 !max-w-md">
+  <div class="modal-content transform scale-95 transition-transform duration-300 p-8 sm:p-12 !max-w-md">
     <button class="modal-close font-semibold text-2xl" aria-label="Close Login Modal" onclick="layoverx.closeModal('login')">&times;</button>
     <div class="auth-form">
       <div class="mb-6 text-center">
@@ -848,13 +978,13 @@
         <p class="text-sm text-gray-500 font-medium">Log in to manage your LayoverX bookings.</p>
       </div>
       
-      <form id="form-login" onsubmit="layoverx.handleLogin(event)" class="space-y-5">
+      <form id="form-login" onsubmit="layoverx.handleLogin(event)" class="space-y-6">
         <div class="form-group text-left relative">
-          <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5" for="login-email">Email</label>
+          <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2" for="login-email">Email</label>
           <input id="login-email" type="email" class="form-input" required autocomplete="email"/>
         </div>
         <div class="form-group text-left relative">
-          <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5" for="login-password">Password</label>
+          <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2" for="login-password">Password</label>
           <div class="relative">
             <input id="login-password" type="password" class="form-input pr-12" required autocomplete="current-password"/>
             <button type="button" class="absolute inset-y-0 right-0 px-4 text-gray-400 hover:text-gray-600 flex items-center transition-colors focus:outline-none" onclick="layoverx.togglePassword('login-password')">
@@ -873,11 +1003,11 @@
       
       <div class="flex items-center my-6">
         <div class="flex-grow border-t border-gray-200"></div>
-        <span class="px-3 text-xs font-semibold text-gray-400 uppercase tracking-widest">Or</span>
+        <span class="px-4 text-xs font-semibold text-gray-400 uppercase tracking-widest">Or</span>
         <div class="flex-grow border-t border-gray-200"></div>
       </div>
       
-      <div class="space-y-3">
+      <div class="space-y-4">
         <button id="btn-google-login" class="social-btn" onclick="layoverx.socialLogin('google')">
           <svg class="w-5 h-5" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v3.9h6.6c-.28 1.5-1.12 2.76-2.38 3.61v3h3.84c2.25-2.07 3.68-5.12 3.68-8.44z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.84-3c-1.07.72-2.44 1.15-4.09 1.15-3.15 0-5.82-2.13-6.77-5H1.28v3.1c1.98 3.94 6.06 6.66 10.72 6.66z"/><path fill="#FBBC05" d="M5.23 14.24a7.17 7.17 0 010-4.48v-3.1H1.28a11.96 11.96 0 000 10.68l3.95-3.1z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.43-3.43C17.95 1.19 15.24 0 12 0 7.34 0 3.26 2.72 1.28 6.66l3.95 3.1c.95-2.87 3.62-5 6.77-5z"/></svg>
           Continue with Google
@@ -894,7 +1024,7 @@
 </div>
 
 <div id="modal-signup" class="modal-overlay opacity-0 transition-opacity duration-300" data-modal="signup" role="dialog" aria-modal="true" aria-labelledby="signup-title">
-  <div class="modal-content transform scale-95 transition-transform duration-300 p-8 sm:p-10 !max-w-md">
+  <div class="modal-content transform scale-95 transition-transform duration-300 p-8 sm:p-12 !max-w-md">
     <button class="modal-close font-semibold text-2xl" aria-label="Close Signup Modal" onclick="layoverx.closeModal('signup')">&times;</button>
     <div class="auth-form">
       <div class="mb-6 text-center">
@@ -904,15 +1034,15 @@
       
       <form id="form-signup" onsubmit="layoverx.handleSignup(event)" class="space-y-4">
         <div class="form-group text-left">
-          <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5" for="signup-name">Full Name</label>
+          <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2" for="signup-name">Full Name</label>
           <input id="signup-name" type="text" class="form-input" required autocomplete="name"/>
         </div>
         <div class="form-group text-left">
-          <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5" for="signup-email">Email</label>
+          <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2" for="signup-email">Email</label>
           <input id="signup-email" type="email" class="form-input" required autocomplete="email"/>
         </div>
         <div class="form-group text-left relative">
-          <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5" for="signup-password">Password</label>
+          <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2" for="signup-password">Password</label>
           <div class="relative">
             <input id="signup-password" type="password" class="form-input pr-12" required autocomplete="new-password" oninput="layoverx.checkPasswordStrength(this.value)"/>
             <button type="button" class="absolute inset-y-0 right-0 px-4 text-gray-400 hover:text-gray-600 flex items-center transition-colors focus:outline-none" onclick="layoverx.togglePassword('signup-password')">
@@ -935,11 +1065,11 @@
       
       <div class="flex items-center my-6">
         <div class="flex-grow border-t border-gray-200"></div>
-        <span class="px-3 text-xs font-semibold text-gray-400 uppercase tracking-widest">Or</span>
+        <span class="px-4 text-xs font-semibold text-gray-400 uppercase tracking-widest">Or</span>
         <div class="flex-grow border-t border-gray-200"></div>
       </div>
       
-      <div class="space-y-3">
+      <div class="space-y-4">
         <button id="btn-google-signup" class="social-btn" onclick="layoverx.socialLogin('google')">
           <svg class="w-5 h-5" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v3.9h6.6c-.28 1.5-1.12 2.76-2.38 3.61v3h3.84c2.25-2.07 3.68-5.12 3.68-8.44z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.84-3c-1.07.72-2.44 1.15-4.09 1.15-3.15 0-5.82-2.13-6.77-5H1.28v3.1c1.98 3.94 6.06 6.66 10.72 6.66z"/><path fill="#FBBC05" d="M5.23 14.24a7.17 7.17 0 010-4.48v-3.1H1.28a11.96 11.96 0 000 10.68l3.95-3.1z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.43-3.43C17.95 1.19 15.24 0 12 0 7.34 0 3.26 2.72 1.28 6.66l3.95 3.1c.95-2.87 3.62-5 6.77-5z"/></svg>
           Continue with Google
@@ -956,7 +1086,7 @@
 </div>
 
 <div id="modal-forgot" class="modal-overlay opacity-0 transition-opacity duration-300" data-modal="forgot" role="dialog" aria-modal="true" aria-labelledby="forgot-title">
-  <div class="modal-content transform scale-95 transition-transform duration-300 p-8 sm:p-10 !max-w-md">
+  <div class="modal-content transform scale-95 transition-transform duration-300 p-8 sm:p-12 !max-w-md">
     <button class="modal-close font-semibold text-2xl" aria-label="Close Forgot Modal" onclick="layoverx.closeModal('forgot')">&times;</button>
     <div class="auth-form">
       <div class="mb-6 text-center">
@@ -965,7 +1095,7 @@
       </div>
       
       <div class="form-group text-left space-y-2">
-        <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5" for="forgot-email">Email</label>
+        <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2" for="forgot-email">Email</label>
         <input id="forgot-email" type="email" class="form-input" required autocomplete="email"/>
       </div>
       <button id="btn-forgot-submit" class="btn btn-primary w-full mt-6" onclick="layoverx.handleForgot()">
@@ -981,7 +1111,7 @@
 </div>
 
 <div id="modal-trip-context" class="modal-overlay opacity-0 transition-opacity duration-300 hidden" data-modal="trip-context" role="dialog" aria-modal="true" aria-labelledby="trip-context-title">
-  <div class="modal-content transform scale-95 transition-transform duration-300 p-8 sm:p-10 !max-w-md">
+  <div class="modal-content transform scale-95 transition-transform duration-300 p-8 sm:p-12 !max-w-md">
     <button class="modal-close font-semibold text-2xl" aria-label="Close Trip Modal" onclick="layoverx.closeModal('trip-context')">&times;</button>
     <div class="auth-form">
       <div class="mb-6 text-center">
@@ -991,7 +1121,7 @@
       
       <form id="form-trip-context" onsubmit="layoverx.handleTripContextSubmit(event)" class="space-y-4">
         <div class="form-group text-left">
-          <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5" for="context-location">Airport Area</label>
+          <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2" for="context-location">Airport Area</label>
           <select id="context-location" class="form-input" required>
             <option value="near-airport">Mumbai Airport (CSMIA) Area</option>
             <option value="bandra">Bandra West (Shopping & Dining)</option>
@@ -999,16 +1129,16 @@
           </select>
         </div>
         <div class="form-group text-left">
-          <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5" for="context-arrival">Arrival Date & Time</label>
+          <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2" for="context-arrival">Arrival Date & Time</label>
           <input id="context-arrival" type="datetime-local" class="form-input" required oninput="layoverx.calculateContextDuration()"/>
         </div>
         <div class="form-group text-left">
-          <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5" for="context-departure">Departure Date & Time</label>
+          <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2" for="context-departure">Departure Date & Time</label>
           <input id="context-departure" type="datetime-local" class="form-input" required oninput="layoverx.calculateContextDuration()"/>
         </div>
         <div class="grid grid-cols-2 gap-4">
           <div class="form-group text-left">
-            <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5" for="context-travelers">Travelers</label>
+            <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2" for="context-travelers">Travelers</label>
             <select id="context-travelers" class="form-input" required>
               <option value="1">1 Traveler</option>
               <option value="2">2 Travelers</option>
@@ -1018,8 +1148,8 @@
             </select>
           </div>
           <div class="form-group text-left">
-            <span class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5">Layover Hours</span>
-            <div id="context-duration-display" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-700 font-bold text-center">--</div>
+            <span class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Layover Hours</span>
+            <div id="context-duration-display" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-2 text-sm text-gray-700 font-bold text-center">--</div>
           </div>
         </div>
         <div id="context-validation-message" class="text-xs text-red-500 font-medium hidden"></div>

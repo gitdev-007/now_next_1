@@ -14,7 +14,7 @@
           <span class="text-white font-medium">Airport Transfers</span>
         </nav>
         
-        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold theme-badge">
+        <span class="inline-flex items-center gap-2 px-4 py-1 rounded-full text-xs font-bold theme-badge">
           🚕 FIXED-RATE TRANSIT TRANSFERS
         </span>
 
@@ -50,7 +50,7 @@
         <div class="relative rounded-2xl overflow-hidden shadow-2xl shadow-black/50 border border-white/10 group aspect-[4/3] sm:aspect-[16/10] lg:aspect-square">
           <img height="600" width="800" src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=800&h=600&fit=crop&auto=format&fm=webp&q=75" alt="Luxury executive sedan transfer in Mumbai" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="eager" fetchpriority="high"/>
           <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
-          <div class="absolute bottom-4 left-4 bg-black/60 backdrop-blur-md border border-white/10 px-3 py-1.5 rounded-lg text-xs text-white font-semibold flex items-center gap-1.5">
+          <div class="absolute bottom-4 left-4 bg-black/60 backdrop-blur-md border border-white/10 px-4 py-2 rounded-lg text-xs text-white font-semibold flex items-center gap-2">
             <span>📍 Mumbai CSMIA Terminal Pickups</span>
           </div>
         </div>
@@ -65,7 +65,7 @@
     <form id="transfer-search-form" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-end">
       <div>
         <label for="cab-pickup" class="block text-xs font-bold text-theme-primary uppercase mb-1">Pickup Location</label>
-        <select id="cab-pickup" class="w-full bg-gray-50 border border-gray-200 rounded-xl p-3 text-sm font-semibold text-gray-800 focus:ring-2 focus:ring-theme-primary cursor-pointer">
+        <select id="cab-pickup" class="w-full bg-gray-50 border border-gray-200 rounded-xl p-4 text-sm font-semibold text-gray-800 focus:ring-2 focus:ring-theme-primary cursor-pointer">
           <option value="t2">Mumbai Airport T2 (International)</option>
           <option value="t1">Mumbai Airport T1 (Domestic)</option>
           <option value="hotel">Nearby Hotel / Other</option>
@@ -73,7 +73,7 @@
       </div>
       <div>
         <label for="cab-drop" class="block text-xs font-bold text-theme-primary uppercase mb-1">Drop Location</label>
-        <select id="cab-drop" class="w-full bg-gray-50 border border-gray-200 rounded-xl p-3 text-sm font-semibold text-gray-800 focus:ring-2 focus:ring-theme-primary cursor-pointer">
+        <select id="cab-drop" class="w-full bg-gray-50 border border-gray-200 rounded-xl p-4 text-sm font-semibold text-gray-800 focus:ring-2 focus:ring-theme-primary cursor-pointer">
           <option value="bandra">Bandra (Cafe Street / Sea Link)</option>
           <option value="colaba">Colaba (Gateway of India / South Bombay)</option>
           <option value="juhu">Juhu Beach (Seaside Hotels)</option>
@@ -82,9 +82,9 @@
       </div>
       <div>
         <label for="cab-time" class="block text-xs font-bold text-theme-primary uppercase mb-1">Pickup Date & Time</label>
-        <input type="datetime-local" id="cab-time" class="w-full bg-gray-50 border border-gray-200 rounded-xl p-3 text-sm font-semibold text-gray-800 focus:ring-2 focus:ring-theme-primary"/>
+        <input type="datetime-local" id="cab-time" class="w-full bg-gray-50 border border-gray-200 rounded-xl p-4 text-sm font-semibold text-gray-800 focus:ring-2 focus:ring-theme-primary"/>
       </div>
-      <button type="submit" class="py-3 bg-theme-primary hover:bg-theme-primary text-white font-bold rounded-xl shadow-md transition transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
+      <button type="submit" class="py-4 bg-theme-primary hover:bg-theme-primary text-white font-bold rounded-xl shadow-md transition transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
         Check Vehicles
       </button>
@@ -107,17 +107,17 @@
           
           <!-- Cab category filter -->
           <div class="mb-6">
-            <h3 class="text-xs font-bold text-theme-primary uppercase tracking-wider mb-3">Cab Category</h3>
+            <h3 class="text-xs font-bold text-theme-primary uppercase tracking-wider mb-4">Cab Category</h3>
             <div class="space-y-2">
-              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-600 cursor-pointer">
+              <label class="flex items-center gap-2 text-sm font-medium text-gray-600 cursor-pointer">
                 <input type="checkbox" name="cab-type" value="sedan" class="rounded border-gray-300 text-theme-primary focus:ring-theme-primary"/>
                 Compact Sedan
               </label>
-              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-600 cursor-pointer">
+              <label class="flex items-center gap-2 text-sm font-medium text-gray-600 cursor-pointer">
                 <input type="checkbox" name="cab-type" value="suv" class="rounded border-gray-300 text-theme-primary focus:ring-theme-primary"/>
                 Premium SUV
               </label>
-              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-600 cursor-pointer">
+              <label class="flex items-center gap-2 text-sm font-medium text-gray-600 cursor-pointer">
                 <input type="checkbox" name="cab-type" value="luxury" class="rounded border-gray-300 text-theme-primary focus:ring-theme-primary"/>
                 Luxury Executive
               </label>
@@ -126,13 +126,13 @@
           
           <!-- Passenger filter -->
           <div>
-            <h3 class="text-xs font-bold text-theme-primary uppercase tracking-wider mb-3">Passenger Capacity</h3>
+            <h3 class="text-xs font-bold text-theme-primary uppercase tracking-wider mb-4">Passenger Capacity</h3>
             <div class="space-y-2">
-              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-600 cursor-pointer">
+              <label class="flex items-center gap-2 text-sm font-medium text-gray-600 cursor-pointer">
                 <input type="checkbox" name="cab-capacity" value="4" class="rounded border-gray-300 text-theme-primary focus:ring-theme-primary"/>
                 Up to 4 Passengers
               </label>
-              <label class="flex items-center gap-2.5 text-sm font-medium text-gray-600 cursor-pointer">
+              <label class="flex items-center gap-2 text-sm font-medium text-gray-600 cursor-pointer">
                 <input type="checkbox" name="cab-capacity" value="6" class="rounded border-gray-300 text-theme-primary focus:ring-theme-primary"/>
                 Up to 6 Passengers
               </label>
@@ -160,15 +160,15 @@
               <div>
                 <div class="flex items-center justify-between gap-2 mb-1">
                   <h3 class="font-bold text-gray-900 text-lg">Compact Sedan (Toyota Etios or similar)</h3>
-                  <div class="flex items-center gap-1.5 bg-gray-50 text-theme-primary px-2 py-1 rounded-lg text-xs font-bold flex-shrink-0">
+                  <div class="flex items-center gap-2 bg-gray-50 text-theme-primary px-2 py-1 rounded-lg text-xs font-bold flex-shrink-0">
                     ⭐ 4.8 <span class="text-theme-primary font-medium">(2.1k reviews)</span>
                   </div>
                 </div>
-                <div class="text-xs text-theme-primary flex items-center gap-1.5 mb-3">
+                <div class="text-xs text-theme-primary flex items-center gap-2 mb-4">
                   <span>📍 T2 & T1 Airport Pickups</span>
                 </div>
                 <p class="text-theme-primary text-sm mb-4 leading-relaxed line-clamp-2">Ideal for 1-3 passengers with standard luggage. AC, GPS tracking, and verified high hygiene standards.</p>
-                <div class="flex flex-wrap gap-1.5 mb-4">
+                <div class="flex flex-wrap gap-2 mb-4">
                   <span class="text-[10px] bg-gray-100 text-gray-800 font-bold px-2 py-1 rounded-md">👤 4 Passengers</span>
                   <span class="text-[10px] bg-gray-100 text-gray-800 font-bold px-2 py-1 rounded-md">🧳 2 Large Bags</span>
                   <span class="text-[10px] bg-gray-55 text-theme-primary font-bold px-2 py-1 rounded-md">⚡ Instant Confirmation</span>
@@ -197,15 +197,15 @@
               <div>
                 <div class="flex items-center justify-between gap-2 mb-1">
                   <h3 class="font-bold text-gray-900 text-lg">Premium SUV (Toyota Innova Crysta)</h3>
-                  <div class="flex items-center gap-1.5 bg-gray-50 text-theme-primary px-2 py-1 rounded-lg text-xs font-bold flex-shrink-0">
+                  <div class="flex items-center gap-2 bg-gray-50 text-theme-primary px-2 py-1 rounded-lg text-xs font-bold flex-shrink-0">
                     ⭐ 4.9 <span class="text-theme-primary font-medium">(1.8k reviews)</span>
                   </div>
                 </div>
-                <div class="text-xs text-theme-primary flex items-center gap-1.5 mb-3">
+                <div class="text-xs text-theme-primary flex items-center gap-2 mb-4">
                   <span>📍 T2 & T1 Airport Pickups</span>
                 </div>
                 <p class="text-theme-primary text-sm mb-4 leading-relaxed line-clamp-2">Extra room, premium comfort, great for families. AC, high luggage capacity, and professional English-speaking drivers.</p>
-                <div class="flex flex-wrap gap-1.5 mb-4">
+                <div class="flex flex-wrap gap-2 mb-4">
                   <span class="text-[10px] bg-gray-100 text-gray-800 font-bold px-2 py-1 rounded-md">👤 6 Passengers</span>
                   <span class="text-[10px] bg-gray-100 text-gray-800 font-bold px-2 py-1 rounded-md">🧳 4 Large Bags</span>
                   <span class="text-[10px] bg-gray-55 text-theme-primary font-bold px-2 py-1 rounded-md">⭐ Popular Choice</span>
@@ -234,15 +234,15 @@
               <div>
                 <div class="flex items-center justify-between gap-2 mb-1">
                   <h3 class="font-bold text-gray-900 text-lg">Luxury Executive (Mercedes C-Class or Audi A4)</h3>
-                  <div class="flex items-center gap-1.5 bg-gray-50 text-theme-primary px-2 py-1 rounded-lg text-xs font-bold flex-shrink-0">
+                  <div class="flex items-center gap-2 bg-gray-50 text-theme-primary px-2 py-1 rounded-lg text-xs font-bold flex-shrink-0">
                     ⭐ 4.9 <span class="text-theme-primary font-medium">(840 reviews)</span>
                   </div>
                 </div>
-                <div class="text-xs text-theme-primary flex items-center gap-1.5 mb-3">
+                <div class="text-xs text-theme-primary flex items-center gap-2 mb-4">
                   <span>📍 T2 arrivals gate meet service</span>
                 </div>
                 <p class="text-theme-primary text-sm mb-4 leading-relaxed line-clamp-2">Chauffeur-driven luxury class vehicle. Leather seats, airport exit gate placard meet and greet service included.</p>
-                <div class="flex flex-wrap gap-1.5 mb-4">
+                <div class="flex flex-wrap gap-2 mb-4">
                   <span class="text-[10px] bg-gray-100 text-gray-800 font-bold px-2 py-1 rounded-md">👤 4 Passengers</span>
                   <span class="text-[10px] bg-gray-100 text-gray-800 font-bold px-2 py-1 rounded-md">🧳 2 Large Bags</span>
                   <span class="text-[10px] bg-gray-55 text-theme-primary font-bold px-2 py-1 rounded-md">✨ Premium Chauffeur</span>
@@ -284,17 +284,17 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
       <div class="bg-gray-50 p-6 rounded-2xl border border-gray-200">
         <div class="w-12 h-12 bg-theme-primary text-white rounded-xl flex items-center justify-center mx-auto mb-4 text-lg font-bold">1</div>
-        <h3 class="font-bold text-gray-900 mb-1.5 text-sm">Clear Immigration</h3>
+        <h3 class="font-bold text-gray-900 mb-2 text-sm">Clear Immigration</h3>
         <p class="text-theme-primary text-xs leading-relaxed">Proceed to immigration. Clear passport control using your transit visa (approx. 20-30 mins wait time).</p>
       </div>
       <div class="bg-gray-50 p-6 rounded-2xl border border-gray-200">
         <div class="w-12 h-12 bg-theme-primary text-white rounded-xl flex items-center justify-center mx-auto mb-4 text-lg font-bold">2</div>
-        <h3 class="font-bold text-gray-900 mb-1.5 text-sm">Exit Gate 2</h3>
+        <h3 class="font-bold text-gray-900 mb-2 text-sm">Exit Gate 2</h3>
         <p class="text-theme-primary text-xs leading-relaxed">Collect baggage if checked in, then exit the arrival hall and head straight toward Exit Gate 2.</p>
       </div>
       <div class="bg-gray-50 p-6 rounded-2xl border border-gray-200">
         <div class="w-12 h-12 bg-theme-primary text-white rounded-xl flex items-center justify-center mx-auto mb-4 text-lg font-bold">3</div>
-        <h3 class="font-bold text-gray-900 mb-1.5 text-sm">Spot Name Placard</h3>
+        <h3 class="font-bold text-gray-900 mb-2 text-sm">Spot Name Placard</h3>
         <p class="text-theme-primary text-xs leading-relaxed">Your driver will be waiting in the arrivals placard zone with a LayoverX banner showing your name.</p>
       </div>
     </div>
@@ -309,21 +309,21 @@
       <h2 class="text-3xl font-extrabold text-gray-900">Airport Taxi FAQ</h2>
     </div>
     <div class="space-y-6">
-      <details class="group bg-white rounded-2xl border border-gray-200 p-5 cursor-pointer">
+      <details class="group bg-white rounded-2xl border border-gray-200 p-4 cursor-pointer">
         <summary class="flex items-center justify-between text-base font-bold text-gray-900 list-none">
           What happens if my landing flight is delayed?
           <span class="text-theme-primary group-open:rotate-180 transition-transform duration-200">▼</span>
         </summary>
-        <p class="text-gray-800 text-sm mt-3 leading-relaxed">
+        <p class="text-gray-800 text-sm mt-4 leading-relaxed">
           We track your flight number in real-time. If your flight is delayed or reaches early, our pickup schedule adjusts automatically. There are zero extra charges for flight delays.
         </p>
       </details>
-      <details class="group bg-white rounded-2xl border border-gray-200 p-5 cursor-pointer">
+      <details class="group bg-white rounded-2xl border border-gray-200 p-4 cursor-pointer">
         <summary class="flex items-center justify-between text-base font-bold text-gray-900 list-none">
           Do these quotes include Bandra-Worli Sea Link tolls?
           <span class="text-theme-primary group-open:rotate-180 transition-transform duration-200">▼</span>
         </summary>
-        <p class="text-gray-800 text-sm mt-3 leading-relaxed">
+        <p class="text-gray-800 text-sm mt-4 leading-relaxed">
           Yes! All taxi quotes shown are flat-rate and include highway tolls, airport terminal entry park fees, and driver allowances. The price you book is the final price.
         </p>
       </details>

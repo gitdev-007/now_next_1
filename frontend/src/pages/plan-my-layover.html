@@ -1,5 +1,5 @@
 <!-- SEARCH INPUT SECTION -->
-<section class="bg-gray-900 text-white pt-20 sm:pt-28 pb-10 border-b border-gray-800">
+<section class="bg-gray-900 text-white pt-20 sm:pt-24 pb-8 border-b border-gray-800">
   <div class="container">
     <div class="max-w-5xl mx-auto">
       <nav class="flex items-center gap-2 text-xs text-gray-700 mb-4" aria-label="Breadcrumb">
@@ -13,7 +13,7 @@
       <form id="planner-form" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 bg-gray-800 p-4 rounded-2xl border border-gray-700">
         <div>
           <label for="plan-location" class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Destination Area</label>
-          <select id="plan-location" class="w-full bg-gray-900 border border-gray-600 rounded-xl p-3 text-sm font-semibold text-white focus:ring-2 focus:ring-sky-500 focus:border-sky-500 cursor-pointer transition">
+          <select id="plan-location" class="w-full bg-gray-900 border border-gray-600 rounded-xl p-4 text-sm font-semibold text-white focus:ring-2 focus:ring-sky-500 focus:border-sky-500 cursor-pointer transition">
             <option value="near-airport">Near Mumbai Airport</option>
             <option value="bandra">Bandra (Sea Link District)</option>
             <option value="colaba">Colaba (South Mumbai Heritage)</option>
@@ -22,15 +22,15 @@
         </div>
         <div>
           <label for="plan-arrival" class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Landing Flight Arrival</label>
-          <input type="datetime-local" id="plan-arrival" class="w-full bg-gray-900 border border-gray-600 rounded-xl p-3 text-sm font-semibold text-white focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition"/>
+          <input type="datetime-local" id="plan-arrival" class="w-full bg-gray-900 border border-gray-600 rounded-xl p-4 text-sm font-semibold text-white focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition"/>
         </div>
         <div>
           <label for="plan-departure" class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Boarding Flight Departure</label>
-          <input type="datetime-local" id="plan-departure" class="w-full bg-gray-900 border border-gray-600 rounded-xl p-3 text-sm font-semibold text-white focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition"/>
+          <input type="datetime-local" id="plan-departure" class="w-full bg-gray-900 border border-gray-600 rounded-xl p-4 text-sm font-semibold text-white focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition"/>
         </div>
         <div>
           <label for="plan-travelers" class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Travelers Count</label>
-          <select id="plan-travelers" class="w-full bg-gray-900 border border-gray-600 rounded-xl p-3 text-sm font-semibold text-white focus:ring-2 focus:ring-sky-500 focus:border-sky-500 cursor-pointer transition">
+          <select id="plan-travelers" class="w-full bg-gray-900 border border-gray-600 rounded-xl p-4 text-sm font-semibold text-white focus:ring-2 focus:ring-sky-500 focus:border-sky-500 cursor-pointer transition">
             <option value="1">1 Traveler</option>
             <option value="2" selected>2 Travelers</option>
             <option value="3">3 Travelers</option>
@@ -40,7 +40,7 @@
       </form>
       
       <!-- Safe Hours Banner -->
-      <div class="mt-4 flex flex-wrap items-center justify-between gap-3 bg-sky-950/40 border border-sky-900/50 p-3.5 rounded-xl text-sky-200 text-xs sm:text-sm">
+      <div class="mt-4 flex flex-wrap items-center justify-between gap-4 bg-sky-950/40 border border-sky-900/50 p-4.5 rounded-xl text-sky-200 text-xs sm:text-sm">
         <div class="flex items-center gap-2">
           <span>⏱️ Calculated Transit window: <strong class="text-white" id="plan-duration-display">6h 00m</strong></span>
           <span class="text-theme-primary">|</span>
@@ -55,7 +55,7 @@
 </section>
 
 <!-- PREMIUM SERVICES CAROUSEL -->
-<section class="bg-white border-b border-gray-100 py-10 overflow-hidden">
+<section class="bg-white border-b border-gray-100 py-8 overflow-hidden">
   <div class="container relative">
     <div class="flex items-center justify-between mb-8 px-1">
       <div>
@@ -154,7 +154,7 @@
         <!-- Step 1: Airport Cabs Transfers selection -->
         <div class="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
           <div class="flex items-center justify-between pb-4 border-b border-gray-100 mb-6">
-            <div class="flex items-center gap-3">
+            <div class="flex items-center gap-4">
               <span class="w-7 h-7 rounded-lg bg-sky-100 text-theme-primary font-bold flex items-center justify-center text-xs">1</span>
               <h2 class="text-lg font-bold text-gray-900">Choose Airport Transfer Cab</h2>
             </div>
@@ -167,7 +167,7 @@
                 <input type="radio" name="plan-cab" value="sedan" checked class="text-theme-primary focus:ring-sky-500 h-4 w-4 border-gray-300"/>
                 <div>
                   <h3 class="font-bold text-gray-800 text-sm">AC Sedan Transfer (Toyota Etios)</h3>
-                  <p class="text-gray-700 text-xs mt-0.5">Fits 4 Passengers, 2 Standard Bags. Verified Driver.</p>
+                  <p class="text-gray-700 text-xs mt-1">Fits 4 Passengers, 2 Standard Bags. Verified Driver.</p>
                 </div>
               </div>
               <strong class="text-gray-900 text-sm">₹899 <span class="text-gray-700 text-xs font-normal">flat</span></strong>
@@ -178,7 +178,7 @@
                 <input type="radio" name="plan-cab" value="suv" class="text-theme-primary focus:ring-sky-500 h-4 w-4 border-gray-300"/>
                 <div>
                   <h3 class="font-bold text-gray-800 text-sm">AC SUV Transfer (Innova Crysta)</h3>
-                  <p class="text-gray-700 text-xs mt-0.5">Fits 6 Passengers, 4 Standard Bags. Extra comfort.</p>
+                  <p class="text-gray-700 text-xs mt-1">Fits 6 Passengers, 4 Standard Bags. Extra comfort.</p>
                 </div>
               </div>
               <strong class="text-gray-900 text-sm">₹1,499 <span class="text-gray-700 text-xs font-normal">flat</span></strong>
@@ -189,11 +189,11 @@
         <!-- Step 2: Add Transit Hotels slot -->
         <div class="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
           <div class="flex items-center justify-between pb-4 border-b border-gray-100 mb-6">
-            <div class="flex items-center gap-3">
+            <div class="flex items-center gap-4">
               <span class="w-7 h-7 rounded-lg bg-sky-100 text-theme-primary font-bold flex items-center justify-center text-xs">2</span>
               <h2 class="text-lg font-bold text-gray-900">Add Transit Hotel (Optional)</h2>
             </div>
-            <span class="text-xs text-emerald-700 font-bold bg-emerald-50 px-2 py-0.5 rounded-lg">Hourly check-in</span>
+            <span class="text-xs text-emerald-700 font-bold bg-emerald-50 px-2 py-1 rounded-lg">Hourly check-in</span>
           </div>
           
           <div class="space-y-4" id="plan-hotels-options">
@@ -203,11 +203,11 @@
               <div class="flex items-start gap-4">
                 <input type="checkbox" id="chk-hotel-1" class="rounded border-gray-300 text-theme-primary focus:ring-sky-500 mt-1 h-4 w-4"/>
                 <div>
-                  <h3 class="font-bold text-gray-800 text-sm flex items-center gap-1.5">
+                  <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
                     Niranta Airport Transit Hotel & Lounge
-                    <span class="bg-sky-100 text-theme-primary text-[9px] font-bold px-1.5 py-0.5 rounded">Inside T2</span>
+                    <span class="bg-sky-100 text-theme-primary text-[9px] font-bold px-2 py-1 rounded">Inside T2</span>
                   </h3>
-                  <p class="text-gray-700 text-xs mt-0.5">⭐ 4.8 | Located inside Terminal 2 Arrivals area. No visa check needed.</p>
+                  <p class="text-gray-700 text-xs mt-1">⭐ 4.8 | Located inside Terminal 2 Arrivals area. No visa check needed.</p>
                 </div>
               </div>
               <div class="text-right sm:text-right mt-2 sm:mt-0 flex-shrink-0">
@@ -220,11 +220,11 @@
               <div class="flex items-start gap-4">
                 <input type="checkbox" id="chk-hotel-2" class="rounded border-gray-300 text-theme-primary focus:ring-sky-500 mt-1 h-4 w-4"/>
                 <div>
-                  <h3 class="font-bold text-gray-800 text-sm flex items-center gap-1.5">
+                  <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
                     JW Marriott Mumbai Sahar
-                    <span class="bg-gray-100 text-gray-655 text-[9px] font-bold px-1.5 py-0.5 rounded">1.2 km from CSMIA</span>
+                    <span class="bg-gray-100 text-gray-655 text-[9px] font-bold px-2 py-1 rounded">1.2 km from CSMIA</span>
                   </h3>
-                  <p class="text-gray-700 text-xs mt-0.5">⭐ 4.7 | Luxury 5-Star. Free shuttle, pool access, and gym included.</p>
+                  <p class="text-gray-700 text-xs mt-1">⭐ 4.7 | Luxury 5-Star. Free shuttle, pool access, and gym included.</p>
                 </div>
               </div>
               <div class="text-right sm:text-right mt-2 sm:mt-0 flex-shrink-0">
@@ -238,7 +238,7 @@
         <!-- Step 3: Add Dining reservations -->
         <div class="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
           <div class="flex items-center justify-between pb-4 border-b border-gray-100 mb-6">
-            <div class="flex items-center gap-3">
+            <div class="flex items-center gap-4">
               <span class="w-7 h-7 rounded-lg bg-sky-100 text-theme-primary font-bold flex items-center justify-center text-xs">3</span>
               <h2 class="text-lg font-bold text-gray-900">Add Dining Reservation (Optional)</h2>
             </div>
@@ -253,7 +253,7 @@
                 <input type="checkbox" id="chk-dining-1" class="rounded border-gray-300 text-theme-primary focus:ring-sky-500 mt-1 h-4 w-4"/>
                 <div>
                   <h3 class="font-bold text-gray-800 text-sm">Gajalee Coastal Seafood Restaurant</h3>
-                  <p class="text-gray-700 text-xs mt-0.5">⭐ 4.8 | Vile Parle East. Butter Garlic Pepper Crabs, Thalis. (15 min drive)</p>
+                  <p class="text-gray-700 text-xs mt-1">⭐ 4.8 | Vile Parle East. Butter Garlic Pepper Crabs, Thalis. (15 min drive)</p>
                 </div>
               </div>
               <div class="text-right mt-2 sm:mt-0 flex-shrink-0">
@@ -267,7 +267,7 @@
                 <input type="checkbox" id="chk-dining-2" class="rounded border-gray-300 text-theme-primary focus:ring-sky-500 mt-1 h-4 w-4"/>
                 <div>
                   <h3 class="font-bold text-gray-800 text-sm">Peshawri - ITC Maratha</h3>
-                  <p class="text-gray-700 text-xs mt-0.5">⭐ 4.9 | Sahar Road. Five-star Northwest luxury dining. Dal Bukhara. (5 min drive)</p>
+                  <p class="text-gray-700 text-xs mt-1">⭐ 4.9 | Sahar Road. Five-star Northwest luxury dining. Dal Bukhara. (5 min drive)</p>
                 </div>
               </div>
               <div class="text-right mt-2 sm:mt-0 flex-shrink-0">
@@ -281,11 +281,11 @@
         <!-- Step 4: Add City Activities -->
         <div class="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
           <div class="flex items-center justify-between pb-4 border-b border-gray-100 mb-6">
-            <div class="flex items-center gap-3">
+            <div class="flex items-center gap-4">
               <span class="w-7 h-7 rounded-lg bg-sky-100 text-theme-primary font-bold flex items-center justify-center text-xs">4</span>
               <h2 class="text-lg font-bold text-gray-900">Add City Tours & Activities (Optional)</h2>
             </div>
-            <span class="text-xs text-emerald-700 font-bold bg-emerald-50 px-2 py-0.5 rounded-lg">AC Car Included</span>
+            <span class="text-xs text-emerald-700 font-bold bg-emerald-50 px-2 py-1 rounded-lg">AC Car Included</span>
           </div>
           
           <div class="space-y-4" id="plan-activities-options">
@@ -296,7 +296,7 @@
                 <input type="checkbox" id="chk-activity-1" class="rounded border-gray-300 text-theme-primary focus:ring-sky-500 mt-1 h-4 w-4"/>
                 <div>
                   <h3 class="font-bold text-gray-800 text-sm">South Mumbai Gateway Heritage Tour</h3>
-                  <p class="text-gray-700 text-xs mt-0.5">⭐ 4.9 | ⏱️ 5 Hours duration. Gateway, Marine Drive Art Deco. (Recommended for 8h+ Layovers)</p>
+                  <p class="text-gray-700 text-xs mt-1">⭐ 4.9 | ⏱️ 5 Hours duration. Gateway, Marine Drive Art Deco. (Recommended for 8h+ Layovers)</p>
                 </div>
               </div>
               <div class="text-right mt-2 sm:mt-0 flex-shrink-0">
@@ -310,7 +310,7 @@
                 <input type="checkbox" id="chk-activity-2" class="rounded border-gray-300 text-theme-primary focus:ring-sky-500 mt-1 h-4 w-4"/>
                 <div>
                   <h3 class="font-bold text-gray-800 text-sm">Guided Bandra Street Food Trail</h3>
-                  <p class="text-gray-700 text-xs mt-0.5">⭐ 4.8 | ⏱️ 3 Hours duration. Vada Pav, kebabs, Pani Puri. (Recommended for 5h+ Layovers)</p>
+                  <p class="text-gray-700 text-xs mt-1">⭐ 4.8 | ⏱️ 3 Hours duration. Vada Pav, kebabs, Pani Puri. (Recommended for 5h+ Layovers)</p>
                 </div>
               </div>
               <div class="text-right mt-2 sm:mt-0 flex-shrink-0">
@@ -324,11 +324,11 @@
         <!-- Step 5: Spa & Wellness -->
         <div class="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
           <div class="flex items-center justify-between pb-4 border-b border-gray-100 mb-6">
-            <div class="flex items-center gap-3">
+            <div class="flex items-center gap-4">
               <span class="w-7 h-7 rounded-lg bg-sky-100 text-theme-primary font-bold flex items-center justify-center text-xs">5</span>
               <h2 class="text-lg font-bold text-gray-900">Add Spa & Wellness (Optional)</h2>
             </div>
-            <span class="text-xs text-theme-primary font-bold bg-emerald-50/40 px-2 py-0.5 rounded-lg">Express Sessions</span>
+            <span class="text-xs text-theme-primary font-bold bg-emerald-50/40 px-2 py-1 rounded-lg">Express Sessions</span>
           </div>
           
           <div class="space-y-4" id="plan-spa-options">
@@ -337,7 +337,7 @@
                 <input type="checkbox" id="chk-spa-1" class="rounded border-gray-300 text-theme-primary focus:ring-sky-500 mt-1 h-4 w-4"/>
                 <div>
                   <h3 class="font-bold text-gray-800 text-sm">Heavenly Spa by Westin</h3>
-                  <p class="text-gray-700 text-xs mt-0.5">⭐ 4.9 | Full-body Swedish massage. (1.5 Hours)</p>
+                  <p class="text-gray-700 text-xs mt-1">⭐ 4.9 | Full-body Swedish massage. (1.5 Hours)</p>
                 </div>
               </div>
               <div class="text-right mt-2 sm:mt-0 flex-shrink-0">
@@ -349,7 +349,7 @@
                 <input type="checkbox" id="chk-spa-2" class="rounded border-gray-300 text-theme-primary focus:ring-sky-500 mt-1 h-4 w-4"/>
                 <div>
                   <h3 class="font-bold text-gray-800 text-sm">O2 Spa - Terminal 2</h3>
-                  <p class="text-gray-700 text-xs mt-0.5">⭐ 4.7 | Express foot reflexology. (30 Mins)</p>
+                  <p class="text-gray-700 text-xs mt-1">⭐ 4.7 | Express foot reflexology. (30 Mins)</p>
                 </div>
               </div>
               <div class="text-right mt-2 sm:mt-0 flex-shrink-0">
@@ -362,11 +362,11 @@
         <!-- Step 6: Gaming & Entertainment -->
         <div class="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
           <div class="flex items-center justify-between pb-4 border-b border-gray-100 mb-6">
-            <div class="flex items-center gap-3">
+            <div class="flex items-center gap-4">
               <span class="w-7 h-7 rounded-lg bg-sky-100 text-theme-primary font-bold flex items-center justify-center text-xs">6</span>
               <h2 class="text-lg font-bold text-gray-900">Add Gaming & Entertainment (Optional)</h2>
             </div>
-            <span class="text-xs text-amber-700 font-bold bg-amber-50 px-2 py-0.5 rounded-lg">High Energy fun</span>
+            <span class="text-xs text-amber-700 font-bold bg-amber-50 px-2 py-1 rounded-lg">High Energy fun</span>
           </div>
           
           <div class="space-y-4" id="plan-gaming-options">
@@ -375,7 +375,7 @@
                 <input type="checkbox" id="chk-gaming-1" class="rounded border-gray-300 text-theme-primary focus:ring-sky-500 mt-1 h-4 w-4"/>
                 <div>
                   <h3 class="font-bold text-gray-800 text-sm">Smaaash Entertainment Hub</h3>
-                  <p class="text-gray-700 text-xs mt-0.5">⭐ 4.6 | VR games, bowling & arcade fun. (2 Hours)</p>
+                  <p class="text-gray-700 text-xs mt-1">⭐ 4.6 | VR games, bowling & arcade fun. (2 Hours)</p>
                 </div>
               </div>
               <div class="text-right mt-2 sm:mt-0 flex-shrink-0">
@@ -387,7 +387,7 @@
                 <input type="checkbox" id="chk-gaming-2" class="rounded border-gray-300 text-theme-primary focus:ring-sky-500 mt-1 h-4 w-4"/>
                 <div>
                   <h3 class="font-bold text-gray-800 text-sm">PVR Directors Cut Cinema</h3>
-                  <p class="text-gray-700 text-xs mt-0.5">⭐ 4.9 | Luxury cinema with butler service. (3 Hours)</p>
+                  <p class="text-gray-700 text-xs mt-1">⭐ 4.9 | Luxury cinema with butler service. (3 Hours)</p>
                 </div>
               </div>
               <div class="text-right mt-2 sm:mt-0 flex-shrink-0">
@@ -406,7 +406,7 @@
         <div class="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm flex flex-col">
           <div class="flex items-center justify-between mb-6 flex-shrink-0">
             <h2 class="text-sm font-black text-gray-900 uppercase tracking-widest">Summary</h2>
-            <span class="bg-emerald-50/40 text-theme-primary text-[10px] font-bold px-2 py-0.5 rounded-full border border-sky-100" id="travelers-badge">2 Guests</span>
+            <span class="bg-emerald-50/40 text-theme-primary text-[10px] font-bold px-2 py-1 rounded-full border border-sky-100" id="travelers-badge">2 Guests</span>
           </div>
           
           <div class="flex-grow overflow-y-auto no-scrollbar pr-1 mb-6">
@@ -415,7 +415,7 @@
             </ul>
           </div>
           
-          <div class="pt-5 border-t border-gray-100 mb-6 flex-shrink-0">
+          <div class="pt-4 border-t border-gray-100 mb-6 flex-shrink-0">
             <div class="flex items-end justify-between mb-1">
               <span class="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Total Estimated Cost</span>
               <div class="text-2xl font-black text-theme-primary leading-none" id="total-cost">₹0</div>
@@ -424,7 +424,7 @@
           </div>
           
           <!-- Actions Buttons -->
-          <div class="grid grid-cols-2 gap-3 flex-shrink-0">
+          <div class="grid grid-cols-2 gap-4 flex-shrink-0">
             <button type="button" id="btn-save-plan" onclick="layoverx.saveCurrentPlan()" class="h-11 flex items-center justify-center bg-gray-900 hover:bg-black text-white font-bold text-xs rounded-xl shadow-md transition transform hover:-translate-y-0.5"><span>💾 Save Plan</span></button>
             <button type="button" onclick="layoverx.shareCurrentPlan()" class="h-11 flex items-center justify-center bg-white hover:bg-gray-50 text-gray-900 font-bold text-xs rounded-xl border border-gray-200 shadow-sm transition transform hover:-translate-y-0.5">🔗 Share Plan</button>
           </div>
@@ -434,7 +434,7 @@
         <div class="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
           <h2 class="text-lg font-bold text-gray-900 pb-4 border-b border-gray-100 mb-6 flex items-center justify-between">
             <span>Your Smart AI Timeline</span>
-            <span class="bg-emerald-50 text-emerald-700 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded">Checked</span>
+            <span class="bg-emerald-50 text-emerald-700 text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded">Checked</span>
           </h2>
           
           <!-- Dynamic Timeline graphic -->
@@ -486,19 +486,19 @@
       </div>
       
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-6">
-        <div class="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
+        <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
           <div class="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">Duration</div>
           <div id="itinerary-details-duration" class="font-semibold text-gray-900 text-sm">--</div>
         </div>
-        <div class="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
+        <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
           <div class="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">Travelers</div>
           <div id="itinerary-details-travelers" class="font-semibold text-gray-900 text-sm">--</div>
         </div>
-        <div class="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
+        <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
           <div class="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">Arrival</div>
           <div id="itinerary-details-arrival" class="font-semibold text-gray-900 text-sm truncate">--</div>
         </div>
-        <div class="bg-white p-3 rounded-xl border border-gray-200 shadow-sm">
+        <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
           <div class="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">Departure</div>
           <div id="itinerary-details-departure" class="font-semibold text-gray-900 text-sm truncate">--</div>
         </div>
@@ -507,14 +507,14 @@
     
     <div class="mb-8">
       <h3 class="text-sm font-black text-gray-900 uppercase tracking-widest mb-4">Selected Services</h3>
-      <div id="itinerary-details-services" class="space-y-3">
+      <div id="itinerary-details-services" class="space-y-4">
         <!-- Dynamic services inserted here -->
       </div>
     </div>
     
-    <div class="flex items-center justify-end gap-3 pt-6 border-t border-gray-200">
-      <button type="button" onclick="layoverx.closeModal('itinerary-details')" class="px-5 py-3 bg-white hover:bg-gray-100 text-gray-800 font-bold text-sm rounded-xl border border-gray-300 transition shadow-sm">Close</button>
-      <button type="button" id="itinerary-details-load-btn" class="px-6 py-3 bg-gray-900 hover:bg-black text-white font-bold text-sm rounded-xl shadow-lg transition transform hover:-translate-y-0.5">Load This Itinerary</button>
+    <div class="flex items-center justify-end gap-4 pt-6 border-t border-gray-200">
+      <button type="button" onclick="layoverx.closeModal('itinerary-details')" class="px-4 py-4 bg-white hover:bg-gray-100 text-gray-800 font-bold text-sm rounded-xl border border-gray-300 transition shadow-sm">Close</button>
+      <button type="button" id="itinerary-details-load-btn" class="px-6 py-4 bg-gray-900 hover:bg-black text-white font-bold text-sm rounded-xl shadow-lg transition transform hover:-translate-y-0.5">Load This Itinerary</button>
     </div>
   </div>
 </div>

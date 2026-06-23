@@ -1,6 +1,6 @@
 <!-- Auth Modals -->
 <div id="modal-login" class="modal-overlay opacity-0 transition-opacity duration-300" data-modal="login" role="dialog" aria-modal="true" aria-labelledby="login-title">
-  <div class="modal-content transform scale-95 transition-transform duration-300 p-8 sm:p-10 !max-w-md">
+  <div class="modal-content transform scale-95 transition-transform duration-300 p-8 sm:p-12 !max-w-md">
     <button class="modal-close font-semibold text-2xl" aria-label="Close Login Modal" onclick="layoverx.closeModal('login')">&times;</button>
     <div class="auth-form">
       <div class="mb-6 text-center">
@@ -8,13 +8,13 @@
         <p class="text-sm text-gray-500 font-medium">Log in to manage your LayoverX bookings.</p>
       </div>
       
-      <form id="form-login" onsubmit="layoverx.handleLogin(event)" class="space-y-5">
+      <form id="form-login" onsubmit="layoverx.handleLogin(event)" class="space-y-6">
         <div class="form-group text-left relative">
-          <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5" for="login-email">Email</label>
+          <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2" for="login-email">Email</label>
           <input id="login-email" type="email" class="form-input" required autocomplete="email"/>
         </div>
         <div class="form-group text-left relative">
-          <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5" for="login-password">Password</label>
+          <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2" for="login-password">Password</label>
           <div class="relative">
             <input id="login-password" type="password" class="form-input pr-12" required autocomplete="current-password"/>
             <button type="button" class="absolute inset-y-0 right-0 px-4 text-gray-400 hover:text-gray-600 flex items-center transition-colors focus:outline-none" onclick="layoverx.togglePassword('login-password')">
@@ -33,11 +33,11 @@
       
       <div class="flex items-center my-6">
         <div class="flex-grow border-t border-gray-200"></div>
-        <span class="px-3 text-xs font-semibold text-gray-400 uppercase tracking-widest">Or</span>
+        <span class="px-4 text-xs font-semibold text-gray-400 uppercase tracking-widest">Or</span>
         <div class="flex-grow border-t border-gray-200"></div>
       </div>
       
-      <div class="space-y-3">
+      <div class="space-y-4">
         <button id="btn-google-login" class="social-btn" onclick="layoverx.socialLogin('google')">
           <svg class="w-5 h-5" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v3.9h6.6c-.28 1.5-1.12 2.76-2.38 3.61v3h3.84c2.25-2.07 3.68-5.12 3.68-8.44z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.84-3c-1.07.72-2.44 1.15-4.09 1.15-3.15 0-5.82-2.13-6.77-5H1.28v3.1c1.98 3.94 6.06 6.66 10.72 6.66z"/><path fill="#FBBC05" d="M5.23 14.24a7.17 7.17 0 010-4.48v-3.1H1.28a11.96 11.96 0 000 10.68l3.95-3.1z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.43-3.43C17.95 1.19 15.24 0 12 0 7.34 0 3.26 2.72 1.28 6.66l3.95 3.1c.95-2.87 3.62-5 6.77-5z"/></svg>
           Continue with Google
@@ -54,7 +54,7 @@
 </div>
 
 <div id="modal-signup" class="modal-overlay opacity-0 transition-opacity duration-300" data-modal="signup" role="dialog" aria-modal="true" aria-labelledby="signup-title">
-  <div class="modal-content transform scale-95 transition-transform duration-300 p-8 sm:p-10 !max-w-md">
+  <div class="modal-content transform scale-95 transition-transform duration-300 p-8 sm:p-12 !max-w-md">
     <button class="modal-close font-semibold text-2xl" aria-label="Close Signup Modal" onclick="layoverx.closeModal('signup')">&times;</button>
     <div class="auth-form">
       <div class="mb-6 text-center">
@@ -64,15 +64,15 @@
       
       <form id="form-signup" onsubmit="layoverx.handleSignup(event)" class="space-y-4">
         <div class="form-group text-left">
-          <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5" for="signup-name">Full Name</label>
+          <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2" for="signup-name">Full Name</label>
           <input id="signup-name" type="text" class="form-input" required autocomplete="name"/>
         </div>
         <div class="form-group text-left">
-          <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5" for="signup-email">Email</label>
+          <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2" for="signup-email">Email</label>
           <input id="signup-email" type="email" class="form-input" required autocomplete="email"/>
         </div>
         <div class="form-group text-left relative">
-          <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5" for="signup-password">Password</label>
+          <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2" for="signup-password">Password</label>
           <div class="relative">
             <input id="signup-password" type="password" class="form-input pr-12" required autocomplete="new-password" oninput="layoverx.checkPasswordStrength(this.value)"/>
             <button type="button" class="absolute inset-y-0 right-0 px-4 text-gray-400 hover:text-gray-600 flex items-center transition-colors focus:outline-none" onclick="layoverx.togglePassword('signup-password')">
@@ -95,11 +95,11 @@
       
       <div class="flex items-center my-6">
         <div class="flex-grow border-t border-gray-200"></div>
-        <span class="px-3 text-xs font-semibold text-gray-400 uppercase tracking-widest">Or</span>
+        <span class="px-4 text-xs font-semibold text-gray-400 uppercase tracking-widest">Or</span>
         <div class="flex-grow border-t border-gray-200"></div>
       </div>
       
-      <div class="space-y-3">
+      <div class="space-y-4">
         <button id="btn-google-signup" class="social-btn" onclick="layoverx.socialLogin('google')">
           <svg class="w-5 h-5" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v3.9h6.6c-.28 1.5-1.12 2.76-2.38 3.61v3h3.84c2.25-2.07 3.68-5.12 3.68-8.44z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.84-3c-1.07.72-2.44 1.15-4.09 1.15-3.15 0-5.82-2.13-6.77-5H1.28v3.1c1.98 3.94 6.06 6.66 10.72 6.66z"/><path fill="#FBBC05" d="M5.23 14.24a7.17 7.17 0 010-4.48v-3.1H1.28a11.96 11.96 0 000 10.68l3.95-3.1z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.43-3.43C17.95 1.19 15.24 0 12 0 7.34 0 3.26 2.72 1.28 6.66l3.95 3.1c.95-2.87 3.62-5 6.77-5z"/></svg>
           Continue with Google
@@ -116,7 +116,7 @@
 </div>
 
 <div id="modal-forgot" class="modal-overlay opacity-0 transition-opacity duration-300" data-modal="forgot" role="dialog" aria-modal="true" aria-labelledby="forgot-title">
-  <div class="modal-content transform scale-95 transition-transform duration-300 p-8 sm:p-10 !max-w-md">
+  <div class="modal-content transform scale-95 transition-transform duration-300 p-8 sm:p-12 !max-w-md">
     <button class="modal-close font-semibold text-2xl" aria-label="Close Forgot Modal" onclick="layoverx.closeModal('forgot')">&times;</button>
     <div class="auth-form">
       <div class="mb-6 text-center">
@@ -125,7 +125,7 @@
       </div>
       
       <div class="form-group text-left space-y-2">
-        <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5" for="forgot-email">Email</label>
+        <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2" for="forgot-email">Email</label>
         <input id="forgot-email" type="email" class="form-input" required autocomplete="email"/>
       </div>
       <button id="btn-forgot-submit" class="btn btn-primary w-full mt-6" onclick="layoverx.handleForgot()">
@@ -141,7 +141,7 @@
 </div>
 
 <div id="modal-trip-context" class="modal-overlay opacity-0 transition-opacity duration-300 hidden" data-modal="trip-context" role="dialog" aria-modal="true" aria-labelledby="trip-context-title">
-  <div class="modal-content transform scale-95 transition-transform duration-300 p-8 sm:p-10 !max-w-md">
+  <div class="modal-content transform scale-95 transition-transform duration-300 p-8 sm:p-12 !max-w-md">
     <button class="modal-close font-semibold text-2xl" aria-label="Close Trip Modal" onclick="layoverx.closeModal('trip-context')">&times;</button>
     <div class="auth-form">
       <div class="mb-6 text-center">
@@ -151,7 +151,7 @@
       
       <form id="form-trip-context" onsubmit="layoverx.handleTripContextSubmit(event)" class="space-y-4">
         <div class="form-group text-left">
-          <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5" for="context-location">Airport Area</label>
+          <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2" for="context-location">Airport Area</label>
           <select id="context-location" class="form-input" required>
             <option value="near-airport">Mumbai Airport (CSMIA) Area</option>
             <option value="bandra">Bandra West (Shopping & Dining)</option>
@@ -159,16 +159,16 @@
           </select>
         </div>
         <div class="form-group text-left">
-          <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5" for="context-arrival">Arrival Date & Time</label>
+          <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2" for="context-arrival">Arrival Date & Time</label>
           <input id="context-arrival" type="datetime-local" class="form-input" required oninput="layoverx.calculateContextDuration()"/>
         </div>
         <div class="form-group text-left">
-          <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5" for="context-departure">Departure Date & Time</label>
+          <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2" for="context-departure">Departure Date & Time</label>
           <input id="context-departure" type="datetime-local" class="form-input" required oninput="layoverx.calculateContextDuration()"/>
         </div>
         <div class="grid grid-cols-2 gap-4">
           <div class="form-group text-left">
-            <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5" for="context-travelers">Travelers</label>
+            <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2" for="context-travelers">Travelers</label>
             <select id="context-travelers" class="form-input" required>
               <option value="1">1 Traveler</option>
               <option value="2">2 Travelers</option>
@@ -178,8 +178,8 @@
             </select>
           </div>
           <div class="form-group text-left">
-            <span class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5">Layover Hours</span>
-            <div id="context-duration-display" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-700 font-bold text-center">--</div>
+            <span class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Layover Hours</span>
+            <div id="context-duration-display" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-2 text-sm text-gray-700 font-bold text-center">--</div>
           </div>
         </div>
         <div id="context-validation-message" class="text-xs text-red-500 font-medium hidden"></div>

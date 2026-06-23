@@ -30,33 +30,33 @@
           <div class="bg-white rounded-3xl border border-gray-200 p-6 sm:p-8 shadow-sm space-y-6">
             <h2 class="text-lg font-bold text-slate-900 flex items-center justify-between border-b border-gray-100 pb-4">
               <span class="flex items-center gap-2"><span class="text-emerald-500">💳</span> Payment Method</span>
-              <span class="text-[10px] bg-emerald-50 text-emerald-700 font-extrabold px-2.5 py-0.5 rounded border border-emerald-100">🔒 SSL Secured</span>
+              <span class="text-[10px] bg-emerald-50 text-emerald-700 font-extrabold px-2 py-1 rounded border border-emerald-100">🔒 SSL Secured</span>
             </h2>
             
             <div class="grid grid-cols-3 gap-2 bg-slate-55 p-1 rounded-xl" id="payment-tabs">
-              <button type="button" onclick="selectPaymentTab('card')" id="tab-card" class="py-2.5 text-xs font-bold rounded-lg transition bg-white text-slate-900 shadow-sm">Card</button>
-              <button type="button" onclick="selectPaymentTab('upi')" id="tab-upi" class="py-2.5 text-xs font-bold rounded-lg transition text-slate-700 hover:bg-slate-100">UPI</button>
-              <button type="button" onclick="selectPaymentTab('paypal')" id="tab-paypal" class="py-2.5 text-xs font-bold rounded-lg transition text-slate-700 hover:bg-slate-100">PayPal</button>
+              <button type="button" onclick="selectPaymentTab('card')" id="tab-card" class="py-2 text-xs font-bold rounded-lg transition bg-white text-slate-900 shadow-sm">Card</button>
+              <button type="button" onclick="selectPaymentTab('upi')" id="tab-upi" class="py-2 text-xs font-bold rounded-lg transition text-slate-700 hover:bg-slate-100">UPI</button>
+              <button type="button" onclick="selectPaymentTab('paypal')" id="tab-paypal" class="py-2 text-xs font-bold rounded-lg transition text-slate-700 hover:bg-slate-100">PayPal</button>
             </div>
             
             <!-- Credit Card Fields -->
             <div id="payment-content-card" class="space-y-4">
               <div class="form-group text-left">
                 <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Cardholder Name</label>
-                <input type="text" id="cc-name" class="form-input w-full border border-gray-300 focus:border-sky-600 rounded-xl px-4 py-3 text-sm text-gray-900" placeholder="e.g. John Doe" required autocomplete="cc-name"/>
+                <input type="text" id="cc-name" class="form-input w-full border border-gray-300 focus:border-sky-600 rounded-xl px-4 py-4 text-sm text-gray-900" placeholder="e.g. John Doe" required autocomplete="cc-name"/>
               </div>
               <div class="form-group text-left">
                 <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Card Number</label>
-                <input type="text" id="cc-num" class="form-input w-full border border-gray-300 focus:border-sky-600 rounded-xl px-4 py-3 text-sm text-gray-900" placeholder="4111 2222 3333 4444" required autocomplete="cc-number"/>
+                <input type="text" id="cc-num" class="form-input w-full border border-gray-300 focus:border-sky-600 rounded-xl px-4 py-4 text-sm text-gray-900" placeholder="4111 2222 3333 4444" required autocomplete="cc-number"/>
               </div>
               <div class="grid grid-cols-2 gap-4">
                 <div class="form-group text-left">
                   <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Expiry Date</label>
-                  <input type="text" id="cc-expiry" class="form-input w-full border border-gray-300 focus:border-sky-600 rounded-xl px-4 py-3 text-sm text-gray-900" placeholder="MM/YY" required autocomplete="cc-exp"/>
+                  <input type="text" id="cc-expiry" class="form-input w-full border border-gray-300 focus:border-sky-600 rounded-xl px-4 py-4 text-sm text-gray-900" placeholder="MM/YY" required autocomplete="cc-exp"/>
                 </div>
                 <div class="form-group text-left">
                   <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">CVV</label>
-                  <input type="text" id="cc-cvv" class="form-input w-full border border-gray-300 focus:border-sky-600 rounded-xl px-4 py-3 text-sm text-gray-900" placeholder="123" required autocomplete="cc-csc"/>
+                  <input type="text" id="cc-cvv" class="form-input w-full border border-gray-300 focus:border-sky-600 rounded-xl px-4 py-4 text-sm text-gray-900" placeholder="123" required autocomplete="cc-csc"/>
                 </div>
               </div>
             </div>
@@ -65,14 +65,14 @@
             <div id="payment-content-upi" class="space-y-4 hidden">
               <div class="form-group text-left">
                 <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Enter UPI VPA ID</label>
-                <input type="text" id="upi-vpa" class="form-input w-full border border-gray-300 focus:border-sky-600 rounded-xl px-4 py-3 text-sm text-gray-900" placeholder="e.g. traveler@okaxis"/>
+                <input type="text" id="upi-vpa" class="form-input w-full border border-gray-300 focus:border-sky-600 rounded-xl px-4 py-4 text-sm text-gray-900" placeholder="e.g. traveler@okaxis"/>
                 <p class="text-[10px] text-slate-500 mt-1">A payment request will be sent to your UPI app. Please approve within 5 minutes.</p>
               </div>
             </div>
             
             <!-- PayPal Fields -->
             <div id="payment-content-paypal" class="space-y-4 hidden text-center py-6">
-              <div class="w-16 h-16 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center text-3xl mx-auto mb-3">💬</div>
+              <div class="w-16 h-16 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center text-3xl mx-auto mb-4">💬</div>
               <p class="text-sm font-semibold text-slate-900">Redirect to PayPal Account</p>
               <p class="text-xs text-slate-500">You will be redirected to PayPal secure portal to authorize payment after clicking pay below.</p>
             </div>
@@ -120,10 +120,10 @@
     activeTab = tab;
     // Update active tab class
     document.querySelectorAll('#payment-tabs button').forEach(el => {
-      el.className = "py-2.5 text-xs font-bold rounded-lg transition text-slate-700 hover:bg-slate-100";
+      el.className = "py-2 text-xs font-bold rounded-lg transition text-slate-700 hover:bg-slate-100";
     });
     const activeBtn = document.getElementById(`tab-${tab}`);
-    if (activeBtn) activeBtn.className = "py-2.5 text-xs font-bold rounded-lg transition bg-white text-slate-900 shadow-sm";
+    if (activeBtn) activeBtn.className = "py-2 text-xs font-bold rounded-lg transition bg-white text-slate-900 shadow-sm";
 
     // Toggle content views
     document.getElementById('payment-content-card').classList.add('hidden');

@@ -4,7 +4,7 @@
   <div class="absolute -top-40 -right-40 w-96 h-96 bg-emerald-50/400/10 rounded-full blur-3xl"></div>
   
   <div class="container relative z-10 text-center max-w-3xl">
-    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-50/400/20 text-theme-accent border border-white/20 mb-4">
+    <span class="inline-flex items-center gap-2 px-4 py-1 rounded-full text-xs font-bold bg-emerald-50/400/20 text-theme-accent border border-white/20 mb-4">
       🚀 LAYOVERX PARTNER PROGRAM
     </span>
     <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-tight mb-4">
@@ -30,11 +30,11 @@
       <p class="text-sm text-gray-600 mb-8 leading-relaxed">
         To submit a supplier application and manage your business listing, please log in or create an account.
       </p>
-      <div class="flex flex-col gap-3">
-        <button onclick="window.openAuthModal('login')" class="px-6 py-3 bg-gray-900 hover:bg-black text-white font-bold rounded-xl shadow-md transition-all">
+      <div class="flex flex-col gap-4">
+        <button onclick="window.openAuthModal('login')" class="px-6 py-4 bg-gray-900 hover:bg-black text-white font-bold rounded-xl shadow-md transition-all">
           Sign In / Log In
         </button>
-        <button onclick="window.openAuthModal('signup')" class="px-6 py-3 border border-gray-300 hover:bg-gray-50 text-gray-800 font-bold rounded-xl transition-all">
+        <button onclick="window.openAuthModal('signup')" class="px-6 py-4 border border-gray-300 hover:bg-gray-50 text-gray-800 font-bold rounded-xl transition-all">
           Create New Account
         </button>
       </div>
@@ -43,34 +43,34 @@
     <!-- MAIN ONBOARDING WIZARD (Visible when authed) -->
     <div id="partner-wizard-panel" class="hidden">
       <!-- Progress Stepper -->
-      <div class="mb-10 px-4">
+      <div class="mb-8 px-4">
         <div class="flex items-center justify-between relative max-w-3xl mx-auto">
           <!-- Stepper Background Line -->
           <div class="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-0.5 bg-gray-200 z-0"></div>
           <div id="stepper-progress-line" class="absolute left-0 top-1/2 -translate-y-1/2 h-0.5 bg-sky-600 z-0 transition-all duration-300" style="width: 0%;"></div>
 
           <!-- Step Indicators -->
-          <div class="step-indicator z-10 flex flex-col items-center gap-1.5 active" data-step="1">
+          <div class="step-indicator z-10 flex flex-col items-center gap-2 active" data-step="1">
             <div class="w-8 h-8 rounded-full bg-sky-600 text-white font-bold text-sm flex items-center justify-center transition-all shadow-md shadow-primary ring-4 ring-sky-50">1</div>
             <span class="text-[10px] sm:text-xs font-bold text-gray-800">Owner</span>
           </div>
-          <div class="step-indicator z-10 flex flex-col items-center gap-1.5" data-step="2">
+          <div class="step-indicator z-10 flex flex-col items-center gap-2" data-step="2">
             <div class="w-8 h-8 rounded-full bg-white text-gray-400 border border-gray-300 font-bold text-sm flex items-center justify-center transition-all">2</div>
             <span class="text-[10px] sm:text-xs font-medium text-gray-400">Business</span>
           </div>
-          <div class="step-indicator z-10 flex flex-col items-center gap-1.5" data-step="3">
+          <div class="step-indicator z-10 flex flex-col items-center gap-2" data-step="3">
             <div class="w-8 h-8 rounded-full bg-white text-gray-400 border border-gray-300 font-bold text-sm flex items-center justify-center transition-all">3</div>
             <span class="text-[10px] sm:text-xs font-medium text-gray-400">Location</span>
           </div>
-          <div class="step-indicator z-10 flex flex-col items-center gap-1.5" data-step="4">
+          <div class="step-indicator z-10 flex flex-col items-center gap-2" data-step="4">
             <div class="w-8 h-8 rounded-full bg-white text-gray-400 border border-gray-300 font-bold text-sm flex items-center justify-center transition-all">4</div>
             <span class="text-[10px] sm:text-xs font-medium text-gray-400">Details</span>
           </div>
-          <div class="step-indicator z-10 flex flex-col items-center gap-1.5" data-step="5">
+          <div class="step-indicator z-10 flex flex-col items-center gap-2" data-step="5">
             <div class="w-8 h-8 rounded-full bg-white text-gray-400 border border-gray-300 font-bold text-sm flex items-center justify-center transition-all">5</div>
             <span class="text-[10px] sm:text-xs font-medium text-gray-400">Uploads</span>
           </div>
-          <div class="step-indicator z-10 flex flex-col items-center gap-1.5" data-step="6">
+          <div class="step-indicator z-10 flex flex-col items-center gap-2" data-step="6">
             <div class="w-8 h-8 rounded-full bg-white text-gray-400 border border-gray-300 font-bold text-sm flex items-center justify-center transition-all">6</div>
             <span class="text-[10px] sm:text-xs font-medium text-gray-400">Review</span>
           </div>
@@ -78,7 +78,7 @@
       </div>
 
       <!-- Form Card -->
-      <div class="bg-white border border-gray-200 rounded-3xl shadow-xl p-8 sm:p-10 relative">
+      <div class="bg-white border border-gray-200 rounded-3xl shadow-xl p-8 sm:p-8 relative">
         <form id="onboarding-form" onsubmit="event.preventDefault();" class="space-y-6">
           
           <!-- STEP 1: OWNER INFO -->
@@ -87,18 +87,18 @@
               <h2 class="text-xl sm:text-2xl font-extrabold text-gray-900 mb-1">Owner Information</h2>
               <p class="text-sm text-gray-500 font-medium">Verify your direct contact details. We will use these for verification call.</p>
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div class="form-group">
                 <label for="owner-name" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Full Name <span class="text-red-500">*</span></label>
-                <input type="text" id="owner-name" class="w-full border border-gray-300 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all" placeholder="Enter owner full name" required/>
+                <input type="text" id="owner-name" class="form-input" placeholder="Enter owner full name" required/>
               </div>
               <div class="form-group">
                 <label for="owner-email" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Email Address <span class="text-red-500">*</span></label>
-                <input type="email" id="owner-email" class="w-full border border-gray-300 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all bg-gray-50" readonly required/>
+                <input type="email" id="owner-email" class="form-input bg-slate-100" readonly required/>
               </div>
               <div class="form-group sm:col-span-2">
                 <label for="owner-phone" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Mobile / WhatsApp Number <span class="text-red-500">*</span></label>
-                <input type="tel" id="owner-phone" class="w-full border border-gray-300 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all" placeholder="e.g. +91 98765 43210" required/>
+                <input type="tel" id="owner-phone" class="form-input" placeholder="e.g. +91 98765 43210" required/>
               </div>
             </div>
           </div>
@@ -109,15 +109,15 @@
               <h2 class="text-xl sm:text-2xl font-extrabold text-gray-900 mb-1">Business details</h2>
               <p class="text-sm text-gray-500 font-medium">Tell us about your brand name and marketplace category.</p>
             </div>
-            <div class="space-y-5">
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div class="space-y-4">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div class="form-group">
                   <label for="biz-name" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Registered Business Name <span class="text-red-500">*</span></label>
-                  <input type="text" id="biz-name" class="w-full border border-gray-300 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all" placeholder="e.g. Grand Transit Inn Sahar" required/>
+                  <input type="text" id="biz-name" class="form-input" placeholder="e.g. Grand Transit Inn Sahar" required/>
                 </div>
                 <div class="form-group">
                   <label for="biz-category" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Business Category <span class="text-red-500">*</span></label>
-                  <select id="biz-category" class="w-full border border-gray-300 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all" required>
+                  <select id="biz-category" class="form-input" required>
                     <option value="" disabled selected>Select category...</option>
                     <option value="Hotel">Transit Hotel</option>
                     <option value="Restaurant">Premium Dining / Restaurant</option>
@@ -130,7 +130,7 @@
               </div>
               <div class="form-group">
                 <label for="biz-desc" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Business Description <span class="text-red-500">*</span></label>
-                <textarea id="biz-desc" rows="4" class="w-full border border-gray-300 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all" placeholder="Briefly describe your transit services, hourly slots, proximity to terminals, or specialty options..." required></textarea>
+                <textarea id="biz-desc" rows="4" class="form-input" placeholder="Briefly describe your transit services, hourly slots, proximity to terminals, or specialty options..." required></textarea>
               </div>
             </div>
           </div>
@@ -141,22 +141,22 @@
               <h2 class="text-xl sm:text-2xl font-extrabold text-gray-900 mb-1">Location details</h2>
               <p class="text-sm text-gray-500 font-medium">Specify the primary international airport you service.</p>
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div class="form-group">
                 <label for="location-airport" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Airport Served <span class="text-red-500">*</span></label>
-                <input type="text" id="location-airport" class="w-full border border-gray-300 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all" placeholder="e.g. Mumbai Airport CSMIA (BOM)" required/>
+                <input type="text" id="location-airport" class="form-input" placeholder="e.g. Mumbai Airport CSMIA (BOM)" required/>
               </div>
               <div class="form-group">
                 <label for="location-city" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">City <span class="text-red-500">*</span></label>
-                <input type="text" id="location-city" class="w-full border border-gray-300 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all" placeholder="e.g. Mumbai" required/>
+                <input type="text" id="location-city" class="form-input" placeholder="e.g. Mumbai" required/>
               </div>
               <div class="form-group">
                 <label for="location-state" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">State / Region <span class="text-red-500">*</span></label>
-                <input type="text" id="location-state" class="w-full border border-gray-300 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all" placeholder="e.g. Maharashtra" required/>
+                <input type="text" id="location-state" class="form-input" placeholder="e.g. Maharashtra" required/>
               </div>
               <div class="form-group">
                 <label for="location-country" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Country <span class="text-red-500">*</span></label>
-                <input type="text" id="location-country" class="w-full border border-gray-300 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all" placeholder="e.g. India" required/>
+                <input type="text" id="location-country" class="form-input" placeholder="e.g. India" required/>
               </div>
             </div>
           </div>
@@ -167,18 +167,18 @@
               <h2 class="text-xl sm:text-2xl font-extrabold text-gray-900 mb-1">Operational details</h2>
               <p class="text-sm text-gray-500 font-medium">Additional information to complete your online storefront metadata profile.</p>
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div class="form-group">
                 <label for="biz-website" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Website URL</label>
-                <input type="url" id="biz-website" class="w-full border border-gray-300 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all" placeholder="e.g. https://myhotel.com"/>
+                <input type="url" id="biz-website" class="form-input" placeholder="e.g. https://myhotel.com"/>
               </div>
               <div class="form-group">
                 <label for="biz-maps-link" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Google Maps Location Link <span class="text-red-500">*</span></label>
-                <input type="url" id="biz-maps-link" class="w-full border border-gray-300 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all" placeholder="e.g. https://goo.gl/maps/..." required/>
+                <input type="url" id="biz-maps-link" class="form-input" placeholder="e.g. https://goo.gl/maps/..." required/>
               </div>
               <div class="form-group">
                 <label for="biz-type" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Business Type <span class="text-red-500">*</span></label>
-                <select id="biz-type" class="w-full border border-gray-300 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all" required>
+                <select id="biz-type" class="form-input" required>
                   <option value="" disabled selected>Select business type...</option>
                   <option value="Sole Proprietorship">Sole Proprietorship</option>
                   <option value="Partnership">Partnership</option>
@@ -188,7 +188,7 @@
               </div>
               <div class="form-group">
                 <label for="biz-pricing-range" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Pricing Range <span class="text-red-500">*</span></label>
-                <select id="biz-pricing-range" class="w-full border border-gray-300 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all" required>
+                <select id="biz-pricing-range" class="form-input" required>
                   <option value="" disabled selected>Select pricing tier...</option>
                   <option value="Economy">Economy (Budget)</option>
                   <option value="Mid-Range">Mid-Range (Standard)</option>
@@ -198,15 +198,15 @@
               </div>
               <div class="form-group sm:col-span-2">
                 <label for="biz-services" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Services Offered <span class="text-red-500">*</span></label>
-                <input type="text" id="biz-services" class="w-full border border-gray-300 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all" placeholder="e.g. Day Room Stays, Airport Transfers, Spa Services" required/>
+                <input type="text" id="biz-services" class="form-input" placeholder="e.g. Day Room Stays, Airport Transfers, Spa Services" required/>
               </div>
               <div class="form-group">
                 <label for="biz-years" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Years in Operation <span class="text-red-500">*</span></label>
-                <input type="number" id="biz-years" min="0" class="w-full border border-gray-300 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all" placeholder="e.g. 5" required/>
+                <input type="number" id="biz-years" min="0" class="form-input" placeholder="e.g. 5" required/>
               </div>
               <div class="form-group">
                 <label for="biz-staff" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Number of Full-Time Staff <span class="text-red-500">*</span></label>
-                <input type="number" id="biz-staff" min="1" class="w-full border border-gray-300 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 rounded-xl px-4 py-3 text-sm text-gray-900 transition-all" placeholder="e.g. 15" required/>
+                <input type="number" id="biz-staff" min="1" class="form-input" placeholder="e.g. 15" required/>
               </div>
             </div>
           </div>
@@ -219,57 +219,57 @@
             </div>
             <div class="space-y-6">
               <!-- Logo Upload -->
-              <div class="border border-dashed border-gray-300 hover:border-sky-500 rounded-2xl p-5 transition-colors relative">
+              <div class="border border-dashed border-gray-300 hover:border-sky-500 rounded-2xl p-4 transition-colors relative">
                 <div class="flex items-center gap-4">
                   <div class="w-12 h-12 bg-emerald-50/40 rounded-xl flex items-center justify-center text-xl text-sky-600">🖼️</div>
                   <div class="flex-grow">
                     <h4 class="font-bold text-gray-900 text-sm">Business Logo / Profile Banner <span class="text-red-500">*</span></h4>
-                    <p class="text-xs text-gray-500 mt-0.5">High-quality image of logo or entrance storefront.</p>
+                    <p class="text-xs text-gray-500 mt-1">High-quality image of logo or entrance storefront.</p>
                   </div>
                   <label class="cursor-pointer px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-800 text-xs font-bold rounded-xl transition">
                     Browse
                     <input type="file" id="upload-logo" accept="image/*,.pdf" class="hidden" required onchange="partnerOnboarding.handleFileSelected(this, 'logo')"/>
                   </label>
                 </div>
-                <div id="file-logo-status" class="hidden mt-3 text-xs font-medium text-emerald-600 flex items-center gap-1.5">
+                <div id="file-logo-status" class="hidden mt-4 text-xs font-medium text-emerald-600 flex items-center gap-2">
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
                   <span>Selected: <strong class="file-name text-gray-800"></strong></span>
                 </div>
               </div>
 
               <!-- License Upload -->
-              <div class="border border-dashed border-gray-300 hover:border-sky-500 rounded-2xl p-5 transition-colors relative">
+              <div class="border border-dashed border-gray-300 hover:border-sky-500 rounded-2xl p-4 transition-colors relative">
                 <div class="flex items-center gap-4">
                   <div class="w-12 h-12 bg-emerald-50/40 rounded-xl flex items-center justify-center text-xl text-sky-600">📜</div>
                   <div class="flex-grow">
                     <h4 class="font-bold text-gray-900 text-sm">Business Registration Certificate / Trade License <span class="text-red-500">*</span></h4>
-                    <p class="text-xs text-gray-500 mt-0.5">Official registration license or GST registration.</p>
+                    <p class="text-xs text-gray-500 mt-1">Official registration license or GST registration.</p>
                   </div>
                   <label class="cursor-pointer px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-800 text-xs font-bold rounded-xl transition">
                     Browse
                     <input type="file" id="upload-license" accept="image/*,.pdf" class="hidden" required onchange="partnerOnboarding.handleFileSelected(this, 'license')"/>
                   </label>
                 </div>
-                <div id="file-license-status" class="hidden mt-3 text-xs font-medium text-emerald-600 flex items-center gap-1.5">
+                <div id="file-license-status" class="hidden mt-4 text-xs font-medium text-emerald-600 flex items-center gap-2">
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
                   <span>Selected: <strong class="file-name text-gray-800"></strong></span>
                 </div>
               </div>
 
               <!-- Identity Verification Document -->
-              <div class="border border-dashed border-gray-300 hover:border-sky-500 rounded-2xl p-5 transition-colors relative">
+              <div class="border border-dashed border-gray-300 hover:border-sky-500 rounded-2xl p-4 transition-colors relative">
                 <div class="flex items-center gap-4">
                   <div class="w-12 h-12 bg-emerald-50/40 rounded-xl flex items-center justify-center text-xl text-sky-600">🆔</div>
                   <div class="flex-grow">
                     <h4 class="font-bold text-gray-900 text-sm">Owner Identity Verification Document <span class="text-red-500">*</span></h4>
-                    <p class="text-xs text-gray-500 mt-0.5">Government ID, Passport, or Aadhaar Card scan.</p>
+                    <p class="text-xs text-gray-500 mt-1">Government ID, Passport, or Aadhaar Card scan.</p>
                   </div>
                   <label class="cursor-pointer px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-800 text-xs font-bold rounded-xl transition">
                     Browse
                     <input type="file" id="upload-id" accept="image/*,.pdf" class="hidden" required onchange="partnerOnboarding.handleFileSelected(this, 'id')"/>
                   </label>
                 </div>
-                <div id="file-id-status" class="hidden mt-3 text-xs font-medium text-emerald-600 flex items-center gap-1.5">
+                <div id="file-id-status" class="hidden mt-4 text-xs font-medium text-emerald-600 flex items-center gap-2">
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
                   <span>Selected: <strong class="file-name text-gray-800"></strong></span>
                 </div>
@@ -285,37 +285,37 @@
             </div>
             
             <div class="border border-gray-100 rounded-2xl overflow-hidden divide-y divide-gray-100 bg-gray-50/50">
-              <div class="p-5 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="p-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-0.5">Owner Full Name</h4>
+                  <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Owner Full Name</h4>
                   <p id="review-owner-name" class="text-sm font-semibold text-gray-900">--</p>
                 </div>
                 <div>
-                  <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-0.5">Email & Phone</h4>
+                  <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Email & Phone</h4>
                   <p id="review-owner-contact" class="text-sm font-semibold text-gray-900">--</p>
                 </div>
               </div>
-              <div class="p-5 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="p-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-0.5">Business & Category</h4>
+                  <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Business & Category</h4>
                   <p id="review-biz-name" class="text-sm font-semibold text-gray-900">--</p>
                 </div>
                 <div>
-                  <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-0.5">Airport Proximity</h4>
+                  <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Airport Proximity</h4>
                   <p id="review-biz-airport" class="text-sm font-semibold text-gray-900">--</p>
                 </div>
               </div>
-              <div class="p-5">
-                <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-0.5">Listing Description</h4>
+              <div class="p-4">
+                <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Listing Description</h4>
                 <p id="review-biz-desc" class="text-sm text-gray-700 leading-relaxed">--</p>
               </div>
-              <div class="p-5 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="p-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-0.5">Website & Staff Count</h4>
+                  <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Website & Staff Count</h4>
                   <p id="review-biz-details" class="text-sm font-semibold text-gray-900">--</p>
                 </div>
                 <div>
-                  <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-0.5">Uploaded Documents</h4>
+                  <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Uploaded Documents</h4>
                   <p id="review-biz-files" class="text-sm text-emerald-600 font-semibold flex items-center gap-1">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                     <span>All 3 certificates selected</span>
@@ -351,7 +351,7 @@
               </div>
               <div class="flex justify-between items-center text-sm">
                 <span class="text-gray-500 font-medium">Review Verification Status:</span>
-                <span class="px-2.5 py-1 text-xs font-bold text-amber-700 bg-amber-100 rounded-full flex items-center gap-1.5">
+                <span class="px-2 py-1 text-xs font-bold text-amber-700 bg-amber-100 rounded-full flex items-center gap-2">
                   <span class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>
                   Pending Review
                 </span>
@@ -363,10 +363,10 @@
             </div>
 
             <div class="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
-              <a href="supplier-dashboard.html" class="flex-grow px-6 py-3.5 bg-gray-900 hover:bg-black text-white text-sm font-bold rounded-xl shadow-md transition-all">
+              <a href="supplier-dashboard.html" class="flex-grow px-6 py-4.5 bg-gray-900 hover:bg-black text-white text-sm font-bold rounded-xl shadow-md transition-all">
                 Go to Supplier Dashboard
               </a>
-              <a href="index.html" class="px-6 py-3.5 border border-gray-300 hover:bg-gray-50 text-gray-800 text-sm font-semibold rounded-xl transition-all">
+              <a href="index.html" class="px-6 py-4.5 border border-gray-300 hover:bg-gray-50 text-gray-800 text-sm font-semibold rounded-xl transition-all">
                 Return Home
               </a>
             </div>
@@ -374,14 +374,14 @@
 
           <!-- Navigation buttons -->
           <div id="wizard-navigation-panel" class="flex justify-between items-center border-t border-gray-150 pt-8 mt-6">
-            <button type="button" id="prev-btn" onclick="partnerOnboarding.moveStep(-1)" class="px-6 py-3 border border-gray-300 text-gray-700 font-bold rounded-xl text-sm hover:bg-gray-50 transition invisible">
+            <button type="button" id="prev-btn" onclick="partnerOnboarding.moveStep(-1)" class="px-6 py-4 border border-gray-300 text-gray-700 font-bold rounded-xl text-sm hover:bg-gray-50 transition invisible">
               Back
             </button>
-            <button type="button" id="next-btn" onclick="partnerOnboarding.moveStep(1)" class="px-7 py-3 bg-theme-primary hover:bg-theme-primary text-white font-bold rounded-xl text-sm shadow-md transition transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
+            <button type="button" id="next-btn" onclick="partnerOnboarding.moveStep(1)" class="px-6 py-4 bg-theme-primary hover:bg-theme-primary text-white font-bold rounded-xl text-sm shadow-md transition transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
               <span>Next Step</span>
               <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
             </button>
-            <button type="button" id="submit-btn" onclick="partnerOnboarding.submitApplication()" class="px-7 py-3 bg-emerald-600 hover:bg-emerald-600 text-white font-bold rounded-xl text-sm shadow-md transition transform hover:-translate-y-0.5 flex items-center justify-center gap-2 hidden">
+            <button type="button" id="submit-btn" onclick="partnerOnboarding.submitApplication()" class="px-6 py-4 bg-emerald-600 hover:bg-emerald-600 text-white font-bold rounded-xl text-sm shadow-md transition transform hover:-translate-y-0.5 flex items-center justify-center gap-2 hidden">
               <span>Submit Application</span>
               <svg class="w-4 h-4 text-white hidden spinner animate-spin" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
             </button>
