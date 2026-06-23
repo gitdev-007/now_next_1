@@ -5417,12 +5417,107 @@
     }
   }
 
+  /* ===== HOMEPAGE SEARCH WIDGET ===== */
+  function initHomepageSearch() {
+    const arrivalInput = document.getElementById('search-arrival');
+    const departureInput = document.getElementById('search-departure');
+    const durationDisplay = document.getElementById('layover-duration');
+    const validationMsg = document.getElementById('validation-message');
+    const searchBtn = document.getElementById('search-btn');
+
+    if (!arrivalInput || !departureInput) return;
+
+    // Set default values (3h from now and 9h from now)
+    const now = new Date();
+    const tplus3 = new Date(now.getTime() + 3 * 60 * 60 * 1000);
+    const tplus9 = new Date(now.getTime() + 9 * 60 * 60 * 1000);
+    const toInputValue = (d) => d.toISOString().slice(0, 16);
+    arrivalInput.value = toInputValue(tplus3);
+    departureInput.value = toInputValue(tplus9);
+
+    function updateLayoverDuration() {
+      if (!arrivalInput.value || !departureInput.value) return;
+      const arrival = new Date(arrivalInput.value);
+      const departure = new Date(departureInput.value);
+      const diffMs = departure - arrival;
+
+      if (validationMsg) {
+        if (diffMs < 0) {
+          validationMsg.textContent = 'Departure must be after arrival.';
+          validationMsg.classList.remove('hidden');
+          return;
+        }
+        if (diffMs < 5 * 3600000) {
+          validationMsg.textContent = 'A minimum 5h layover is recommended for safe exit.';
+          validationMsg.classList.remove('hidden');
+        } else {
+          validationMsg.classList.add('hidden');
+        }
+      }
+
+      const totalMin = Math.floor(diffMs / 60000);
+      const hours = Math.floor(totalMin / 60);
+      const mins = totalMin % 60;
+      // Subtract 5h safety buffer
+      const activeHours = Math.max(0, hours - 5);
+      const activeMin = mins;
+      if (durationDisplay) {
+        durationDisplay.textContent = `${hours}h ${String(mins).padStart(2, '0')}m total · ~${activeHours}h ${String(activeMin).padStart(2, '0')}m active`;
+      }
+    }
+
+    arrivalInput.addEventListener('change', updateLayoverDuration);
+    departureInput.addEventListener('change', updateLayoverDuration);
+    updateLayoverDuration();
+
+    if (searchBtn) {
+      searchBtn.addEventListener('click', function() {
+        const arrival = arrivalInput.value;
+        const departure = departureInput.value;
+        const travelers = document.getElementById('search-travelers')?.value || '2';
+        const location = document.getElementById('search-location')?.value || 'near-airport';
+        const url = `plan-my-layover.html?arrival=${encodeURIComponent(arrival)}&departure=${encodeURIComponent(departure)}&travelers=${travelers}&area=${location}`;
+        window.location.href = url;
+      });
+    }
+  }
+
+  /* ===== CAROUSEL ARROW NAVIGATION ===== */
+  function initCarouselArrows() {
+    const setupArrows = (prevId, nextId, carouselId) => {
+      const prev = document.getElementById(prevId);
+      const next = document.getElementById(nextId);
+      const carousel = document.getElementById(carouselId);
+      if (!prev || !next || !carousel) return;
+
+      const scrollAmount = () => carousel.offsetWidth * 0.75;
+
+      next.addEventListener('click', () => carousel.scrollBy({ left: scrollAmount(), behavior: 'smooth' }));
+      prev.addEventListener('click', () => carousel.scrollBy({ left: -scrollAmount(), behavior: 'smooth' }));
+
+      const updateArrows = () => {
+        prev.disabled = carousel.scrollLeft < 10;
+        next.disabled = carousel.scrollLeft + carousel.offsetWidth >= carousel.scrollWidth - 10;
+      };
+
+      carousel.addEventListener('scroll', updateArrows, { passive: true });
+      updateArrows();
+    };
+
+    setupArrows('prev-service', 'next-service', 'services-carousel');
+    setupArrows('prev-experience', 'next-experience', 'experiences-carousel');
+  }
+
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
     document.addEventListener('DOMContentLoaded', initReveal);
+    document.addEventListener('DOMContentLoaded', initHomepageSearch);
+    document.addEventListener('DOMContentLoaded', initCarouselArrows);
   } else {
     init();
     initReveal();
+    initHomepageSearch();
+    initCarouselArrows();
   }
 
 })();
