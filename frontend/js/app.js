@@ -507,7 +507,7 @@
       const isAuth = state.isAuthenticated;
       $$('.auth-guest').forEach((el) => el.style.display = isAuth ? 'none' : 'flex');
       $$('.auth-user').forEach((el) => el.style.display = isAuth ? 'flex' : 'none');
-      $$('.user-name').forEach((el) => el.textContent = state.user?.name || '');
+       $$('.user-name').forEach((el) => el.textContent = state.user?.name || 'Traveler');
       $$('.user-avatar-letter').forEach((el) => el.textContent = state.user?.avatar || 'U');
       $$('.user-email-display').forEach((el) => el.textContent = state.user?.email || 'traveler@layoverx.com');
     }
@@ -1517,9 +1517,9 @@
 
     // Load URL params if any
     const params = new URLSearchParams(window.location.search);
-    let landing = params.get('arrivalDateTime');
-    let boarding = params.get('departureDateTime');
-    let loc = params.get('location');
+    let landing = params.get('arrivalDateTime') || params.get('arrival');
+    let boarding = params.get('departureDateTime') || params.get('departure');
+    let loc = params.get('location') || params.get('area');
     let travelers = params.get('travelers');
 
     // Fallback to localStorage
@@ -1539,10 +1539,15 @@
     const now = new Date();
     const sixh = new Date(now.getTime() + 6*60*60*1000);
     
-    $('#plan-arrival').value = landing || toLocalISO(now);
-    $('#plan-departure').value = boarding || toLocalISO(sixh);
-    if (loc) $('#plan-location').value = loc;
-    if (travelers) $('#plan-travelers').value = travelers;
+    const arrVal = landing || toLocalISO(now);
+    const depVal = boarding || toLocalISO(sixh);
+    const locVal = loc || 'near-airport';
+    const travelersVal = travelers || '2';
+
+    $('#plan-arrival').value = arrVal;
+    $('#plan-departure').value = depVal;
+    if ($('#plan-location')) $('#plan-location').value = locVal;
+    if ($('#plan-travelers')) $('#plan-travelers').value = travelersVal;
 
     // Save planner search criteria to localStorage
     const savePlannerParams = () => {
@@ -1561,6 +1566,9 @@
         }));
       } catch(e) { console.error(e); }
     };
+
+    // Save immediately to ensure it survives reloads & page sync
+    savePlannerParams();
 
     // Setup bindings
     $$('#plan-hotels-options input[type="checkbox"]').forEach((el, index) => {
@@ -3063,9 +3071,31 @@
 
   function initGlobalTravelContext() {
     let params = null;
-    try {
-      params = JSON.parse(localStorage.getItem('layoverx_search_params'));
-    } catch(e) { console.error(e); }
+
+    // Check URL parameters first to ensure dynamic redirects set context
+    const urlParams = new URLSearchParams(window.location.search);
+    const urlArrival = urlParams.get('arrivalDateTime') || urlParams.get('arrival');
+    const urlDeparture = urlParams.get('departureDateTime') || urlParams.get('departure');
+    const urlLocation = urlParams.get('location') || urlParams.get('area');
+    const urlTravelers = urlParams.get('travelers');
+
+    if (urlArrival && urlDeparture) {
+      const dur = (new Date(urlDeparture) - new Date(urlArrival)) / 3600000;
+      params = {
+        location: urlLocation || 'near-airport',
+        arrivalDateTime: urlArrival,
+        departureDateTime: urlDeparture,
+        travelers: urlTravelers || '2',
+        layoverDuration: dur
+      };
+      try {
+        localStorage.setItem('layoverx_search_params', JSON.stringify(params));
+      } catch(e) { console.error(e); }
+    } else {
+      try {
+        params = JSON.parse(localStorage.getItem('layoverx_search_params'));
+      } catch(e) { console.error(e); }
+    }
 
     if (!params) {
       const now = new Date();
@@ -5476,6 +5506,24 @@
         const departure = departureInput.value;
         const travelers = document.getElementById('search-travelers')?.value || '2';
         const location = document.getElementById('search-location')?.value || 'near-airport';
+        
+        // Calculate layover duration
+        let hours = 6.5;
+        if (arrival && departure) {
+          hours = (new Date(departure) - new Date(arrival)) / 3600000;
+        }
+
+        // Save to localStorage immediately
+        try {
+          localStorage.setItem('layoverx_search_params', JSON.stringify({
+            arrivalDateTime: arrival,
+            departureDateTime: departure,
+            location: location,
+            travelers: travelers,
+            layoverDuration: hours
+          }));
+        } catch(e) { console.error(e); }
+
         const url = `plan-my-layover.html?arrival=${encodeURIComponent(arrival)}&departure=${encodeURIComponent(departure)}&travelers=${travelers}&area=${location}`;
         window.location.href = url;
       });
