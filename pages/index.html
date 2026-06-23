@@ -1,128 +1,117 @@
 <!-- HERO -->
-<header class="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-slate-950" id="hero-section">
-  <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('assets/photos/homepage.png')" role="img" aria-label="Mumbai skyline at sunset"></div>
-  <div class="absolute inset-0 bg-gradient-to-b from-black/75 via-black/45 to-black/80" aria-hidden="true"></div>
-  <div class="relative z-10 text-center px-4 py-24 max-w-4xl mx-auto">
+<header class="relative min-h-[92vh] flex items-center justify-center overflow-hidden bg-slate-950" id="hero-section">
+  <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image:url('assets/photos/homepage.png')" role="img" aria-label="Mumbai skyline at sunset"></div>
+  <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/80" aria-hidden="true"></div>
+  <div class="relative z-10 text-center px-4 max-w-4xl mx-auto w-full" style="padding-top:6.5rem;padding-bottom:3rem;">
     <div class="reveal">
-      <span class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 text-white px-4 py-2 rounded-full text-sm font-semibold mb-6">
+      <span class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-6">
         ✨ Mumbai Airport Layover Expert
       </span>
     </div>
-    <h1 class="reveal text-4xl sm:text-5xl md:text-7xl font-extrabold text-white mb-6 leading-tight">
+    <h1 class="reveal text-5xl sm:text-6xl md:text-7xl font-extrabold text-white mb-5 leading-tight tracking-tight" style="text-shadow:0 2px 24px rgba(0,0,0,0.4)">
       Experience Mumbai<br/><span class="bg-gradient-to-r from-sky-400 to-cyan-300 bg-clip-text text-transparent">Beyond The Airport</span>
     </h1>
-    <p class="reveal text-lg sm:text-xl text-white/95 max-w-2xl mx-auto mb-12 leading-relaxed">
-      Maximize your stopover. Discover transit hotels, authentic restaurants, express spas, city sightseeing tours, and fixed-price transfers near CSMIA terminals.
+    <p class="reveal text-lg sm:text-xl text-white/90 max-w-2xl mx-auto mb-10 leading-relaxed font-light">
+      Maximize your stopover. Discover transit hotels, authentic restaurants, express spas, city tours, and fixed-price transfers near CSMIA.
     </p>
-    <div class="reveal flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-      <a href="experiences.html" class="btn btn-primary w-full sm:w-auto">Explore Tours</a>
-      <a href="plan-my-layover.html" class="btn btn-outline border-white text-white hover:bg-white/10 w-full sm:w-auto">Plan My Layover</a>
+    <div class="reveal flex flex-col sm:flex-row items-center justify-center gap-3 mb-14">
+      <a href="experiences.html" class="btn btn-primary w-full sm:w-auto text-base px-8">Explore Tours</a>
+      <a href="plan-my-layover.html" class="btn btn-outline border-white text-white hover:bg-white/10 w-full sm:w-auto text-base px-8">Plan My Layover</a>
     </div>
-    <div class="reveal grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
-      <div class="bg-white/10 backdrop-blur-md border border-white/10 rounded-2xl p-4 text-center">
-        <div class="text-2xl sm:text-3xl font-extrabold text-theme-accent mb-1">6+</div>
-        <div class="text-white text-xs sm:text-sm font-medium">Categories</div>
+    <div class="reveal grid grid-cols-2 md:grid-cols-4 gap-3 max-w-2xl mx-auto">
+      <div class="stat-card">
+        <div class="text-2xl sm:text-3xl font-extrabold text-sky-400 mb-1">6+</div>
+        <div class="text-white/80 text-xs font-semibold">Service Categories</div>
       </div>
-      <div class="bg-white/10 backdrop-blur-md border border-white/10 rounded-2xl p-4 text-center">
-        <div class="text-2xl sm:text-3xl font-extrabold text-theme-accent mb-1">CSMIA</div>
-        <div class="text-white text-xs sm:text-sm font-medium">Airport Focused</div>
+      <div class="stat-card">
+        <div class="text-2xl sm:text-3xl font-extrabold text-sky-400 mb-1">CSMIA</div>
+        <div class="text-white/80 text-xs font-semibold">Airport Focused</div>
       </div>
-      <div class="bg-white/10 backdrop-blur-md border border-white/10 rounded-2xl p-4 text-center">
-        <div class="text-2xl sm:text-3xl font-extrabold text-theme-accent mb-1">24/7</div>
-        <div class="text-white text-xs sm:text-sm font-medium">Instant Booking</div>
+      <div class="stat-card">
+        <div class="text-2xl sm:text-3xl font-extrabold text-sky-400 mb-1">24/7</div>
+        <div class="text-white/80 text-xs font-semibold">Instant Booking</div>
       </div>
-      <div class="bg-white/10 backdrop-blur-md border border-white/10 rounded-2xl p-4 text-center">
-        <div class="text-2xl sm:text-3xl font-extrabold text-theme-accent mb-1">Mumbai</div>
-        <div class="text-white text-xs sm:text-sm font-medium">Local Experts</div>
+      <div class="stat-card">
+        <div class="text-2xl sm:text-3xl font-extrabold text-sky-400 mb-1">Mumbai</div>
+        <div class="text-white/80 text-xs font-semibold">Local Experts</div>
       </div>
     </div>
   </div>
 </header>
 
-<!-- QUICK SEARCH -->
-<section class="relative z-20 -mt-16 sm:-mt-20 px-4 sm:px-6 mb-16" id="search">
+<!-- QUICK SEARCH WIDGET -->
+<section class="relative z-20 -mt-16 sm:-mt-20 px-4 sm:px-6 mb-20" id="search">
   <div class="container">
-    <div class="bg-white rounded-3xl shadow-xl border border-gray-100 p-6 sm:p-8">
-      <div class="flex items-center gap-2 sm:gap-4 mb-6 overflow-x-auto no-scrollbar -mx-1 pb-2" id="search-tabs">
-        <button class="search-tab active" onclick="location.href='hotels.html'">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-            <path d="M3 21h18M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16M9 7h1m-1 4h1m-1 4h1m4-4h1m-1 4h1"/>
-          </svg>
+    <div class="bg-white rounded-3xl shadow-2xl border border-gray-100 p-6 sm:p-8" style="box-shadow:0 25px 50px -12px rgba(0,0,0,0.18)">
+      <!-- Category Tabs -->
+      <div class="flex items-center gap-2 mb-6 overflow-x-auto no-scrollbar -mx-1 pb-1" id="search-tabs" role="tablist" aria-label="Service categories">
+        <button class="search-tab active" onclick="location.href='hotels.html'" role="tab" aria-selected="true">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M3 21h18M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16M9 7h1m-1 4h1m-1 4h1m4-4h1m-1 4h1"/></svg>
           Hotels
         </button>
-        <button class="search-tab" onclick="location.href='restaurants.html'">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-            <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2M7 2v4M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v6"/>
-          </svg>
+        <button class="search-tab" onclick="location.href='restaurants.html'" role="tab" aria-selected="false">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2M7 2v4M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v6"/></svg>
           Restaurants
         </button>
-        <button class="search-tab" onclick="location.href='spa-wellness.html'">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-            <path d="M12 7.5a4.5 4.5 0 1 1 4.5 4.5M12 7.5A4.5 4.5 0 1 0 7.5 12M12 7.5V12m0 0a4.5 4.5 0 1 0 4.5 4.5M12 12a4.5 4.5 0 1 1-4.5 4.5"/>
-          </svg>
+        <button class="search-tab" onclick="location.href='spa-wellness.html'" role="tab" aria-selected="false">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M12 7.5a4.5 4.5 0 1 1 4.5 4.5M12 7.5A4.5 4.5 0 1 0 7.5 12M12 7.5V12m0 0a4.5 4.5 0 1 0 4.5 4.5M12 12a4.5 4.5 0 1 1-4.5 4.5"/></svg>
           Spa
         </button>
-        <button class="search-tab" onclick="location.href='gaming-entertainment.html'">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-            <path d="M6 12h.01M9 12h.01M15 12h.01M18 12h.01M4 11a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-6ZM9 15v2M15 15v2"/>
-          </svg>
+        <button class="search-tab" onclick="location.href='gaming-entertainment.html'" role="tab" aria-selected="false">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M6 12h.01M9 12h.01M15 12h.01M18 12h.01M4 11a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-6ZM9 15v2M15 15v2"/></svg>
           Gaming
         </button>
-        <button class="search-tab" onclick="location.href='experiences.html'">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-            <circle cx="12" cy="12" r="10"/><path d="m16.24 7.76-2.12 6.36-6.36 2.12 2.12-6.36 6.36-2.12z"/>
-          </svg>
+        <button class="search-tab" onclick="location.href='experiences.html'" role="tab" aria-selected="false">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m16.24 7.76-2.12 6.36-6.36 2.12 2.12-6.36 6.36-2.12z"/></svg>
           Tours
         </button>
-        <button class="search-tab" onclick="location.href='airport-transfers.html'">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-            <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2M7 17a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z"/>
-          </svg>
+        <button class="search-tab" onclick="location.href='airport-transfers.html'" role="tab" aria-selected="false">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2M7 17a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z"/></svg>
           Transfers
         </button>
       </div>
-      
-      <!-- Search Form -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="search-fields">
-        <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4">
-          <label for="search-location" class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Destination Area</label>
-          <select id="search-location" class="w-full bg-transparent text-sm font-semibold text-slate-900 border-none p-0 focus:ring-0 focus:outline-none cursor-pointer">
+
+      <!-- Search Fields -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3" id="search-fields">
+        <div class="search-field">
+          <label for="search-location">Destination Area</label>
+          <select id="search-location" aria-label="Destination area">
             <option value="near-airport">Near Mumbai Airport (CSMIA)</option>
-            <option value="bandra">Bandra & Andheri West</option>
-            <option value="colaba">Colaba & South Mumbai</option>
+            <option value="bandra">Bandra &amp; Andheri West</option>
+            <option value="colaba">Colaba &amp; South Mumbai</option>
             <option value="juhu">Juhu Beach Area</option>
           </select>
         </div>
-        <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4">
-          <label for="search-arrival" class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Flight Arrival Time</label>
-          <input type="datetime-local" id="search-arrival" class="w-full bg-transparent text-sm font-semibold text-slate-900 border-none p-0 focus:ring-0 focus:outline-none" aria-label="Arrival date and time" required/>
+        <div class="search-field">
+          <label for="search-arrival">Flight Arrival Time</label>
+          <input type="datetime-local" id="search-arrival" aria-label="Arrival date and time" required/>
         </div>
-        <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4">
-          <label for="search-departure" class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Flight Departure Time</label>
-          <input type="datetime-local" id="search-departure" class="w-full bg-transparent text-sm font-semibold text-slate-900 border-none p-0 focus:ring-0 focus:outline-none" aria-label="Departure date and time" required/>
+        <div class="search-field">
+          <label for="search-departure">Flight Departure Time</label>
+          <input type="datetime-local" id="search-departure" aria-label="Departure date and time" required/>
         </div>
-        <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4">
-          <label for="search-travelers" class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Travelers</label>
-          <select id="search-travelers" class="w-full bg-transparent text-sm font-semibold text-slate-900 border-none p-0 focus:ring-0 focus:outline-none cursor-pointer">
+        <div class="search-field">
+          <label for="search-travelers">Travelers</label>
+          <select id="search-travelers" aria-label="Number of travelers">
             <option value="1">1 Adult</option>
-            <option value="2">2 Adults</option>
+            <option value="2" selected>2 Adults</option>
             <option value="3">3 Adults</option>
             <option value="4">4+ Family/Group</option>
           </select>
         </div>
       </div>
-      
-      <!-- Duration Display -->
-      <div class="mt-4 flex items-center justify-between flex-wrap gap-4">
-        <div class="flex items-center gap-2 text-sm text-slate-700" id="duration-display" aria-live="polite">
+
+      <!-- Layover Duration Row -->
+      <div class="mt-4 flex items-center justify-between flex-wrap gap-3">
+        <div class="flex items-center gap-2 text-sm text-slate-600" id="duration-display" aria-live="polite">
           <svg class="w-4 h-4 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          <span>Calculated Layover window: <strong class="text-slate-900 font-bold" id="layover-duration">6h 00m</strong></span>
+          <span>Layover window: <strong class="text-slate-900 font-bold" id="layover-duration">6h 00m</strong></span>
         </div>
         <div id="validation-message" class="text-sm text-red-500 font-medium hidden" role="alert" aria-live="assertive"></div>
       </div>
-      
-      <button id="search-btn" class="btn btn-primary w-full mt-6 flex items-center justify-center gap-2" type="button">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 21l8.904-4.474L18 11.25l-8.187 4.654zm-1.125-2.25L3 18.003V6c0-1.1.9-2 2-2h14c1.1 0 2 .9 2 2v6.003L18 12.5m-9.313 1.154L18 12.5"/></svg>
+
+      <button id="search-btn" class="btn btn-primary w-full mt-5 text-base gap-2" type="button" style="height:3.25rem">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
         Build Custom AI Itinerary
       </button>
     </div>
@@ -130,111 +119,122 @@
 </section>
 
 <!-- VALUE PROPOSITION -->
-<section class="py-16 bg-slate-50" id="value-proposition">
+<section class="py-20 bg-slate-50" id="value-proposition">
   <div class="container">
-    <div class="text-center mb-12 reveal">
-      <span class="inline-block text-sky-600 font-bold text-sm uppercase tracking-wider mb-2">Why LayoverX</span>
-      <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4">Designed Exclusively for Stopover Travelers</h2>
-      <p class="text-slate-650 max-w-xl mx-auto">We solve airport friction with curated local experiences synchronized with your flight boarding gates.</p>
+    <div class="text-center mb-14 reveal">
+      <span class="section-label">Why LayoverX</span>
+      <h2 class="section-title">Designed Exclusively for Stopover Travelers</h2>
+      <p class="section-subtitle">We solve airport friction with curated local experiences synchronized with your flight boarding gates.</p>
     </div>
-    
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-      <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm flex flex-col gap-4">
-        <div class="w-12 h-12 rounded-xl bg-sky-50 flex items-center justify-center text-2xl">🛡️</div>
-        <h3 class="text-lg font-bold text-slate-900">Flight-Delay Protection</h3>
-        <p class="text-slate-650 text-sm leading-relaxed">We automatically track and update your bookings if your airline schedules or flight gates change.</p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="reveal bg-white p-7 rounded-2xl border border-slate-100 shadow-sm flex flex-col gap-4 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
+        <div class="icon-badge icon-badge-sky">🛡️</div>
+        <div>
+          <h3 class="text-base font-bold text-slate-900 mb-1.5">Flight-Delay Protection</h3>
+          <p class="text-slate-500 text-sm leading-relaxed">We automatically track and update your bookings if your airline schedules or flight gates change.</p>
+        </div>
       </div>
-      <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm flex flex-col gap-4">
-        <div class="w-12 h-12 rounded-xl bg-sky-50 flex items-center justify-center text-2xl">💼</div>
-        <h3 class="text-lg font-bold text-slate-900">Luggage Lockers & Storage</h3>
-        <p class="text-slate-650 text-sm leading-relaxed">Leave heavy suitcases in secure airport baggage facilities while you explore the city bag-free.</p>
+      <div class="reveal bg-white p-7 rounded-2xl border border-slate-100 shadow-sm flex flex-col gap-4 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
+        <div class="icon-badge icon-badge-sky">💼</div>
+        <div>
+          <h3 class="text-base font-bold text-slate-900 mb-1.5">Luggage Lockers &amp; Storage</h3>
+          <p class="text-slate-500 text-sm leading-relaxed">Leave heavy suitcases in secure airport baggage facilities while you explore the city bag-free.</p>
+        </div>
       </div>
-      <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm flex flex-col gap-4">
-        <div class="w-12 h-12 rounded-xl bg-sky-50 flex items-center justify-center text-2xl">🗺️</div>
-        <h3 class="text-lg font-bold text-slate-900">Visa & Exit Support</h3>
-        <p class="text-slate-650 text-sm leading-relaxed">Get visual guidance steps for custom clearance exits, transit e-Visas, and terminal transfers.</p>
+      <div class="reveal bg-white p-7 rounded-2xl border border-slate-100 shadow-sm flex flex-col gap-4 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
+        <div class="icon-badge icon-badge-sky">🗺️</div>
+        <div>
+          <h3 class="text-base font-bold text-slate-900 mb-1.5">Visa &amp; Exit Support</h3>
+          <p class="text-slate-500 text-sm leading-relaxed">Get visual guidance steps for custom clearance exits, transit e-Visas, and terminal transfers.</p>
+        </div>
       </div>
-      <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm flex flex-col gap-4">
-        <div class="w-12 h-12 rounded-xl bg-sky-50 flex items-center justify-center text-2xl">🚗</div>
-        <h3 class="text-lg font-bold text-slate-900">Surge-Free Transfers</h3>
-        <p class="text-slate-650 text-sm leading-relaxed">Book flat-rate air-conditioned airport taxis with certified English-speaking drivers.</p>
+      <div class="reveal bg-white p-7 rounded-2xl border border-slate-100 shadow-sm flex flex-col gap-4 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
+        <div class="icon-badge icon-badge-sky">🚗</div>
+        <div>
+          <h3 class="text-base font-bold text-slate-900 mb-1.5">Surge-Free Transfers</h3>
+          <p class="text-slate-500 text-sm leading-relaxed">Book flat-rate air-conditioned airport taxis with certified English-speaking drivers.</p>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- LAYOVER PLANNING WORKFLOW -->
-<section class="py-16 bg-white" id="how-it-works">
+<!-- HOW IT WORKS -->
+<section class="py-20 bg-white" id="how-it-works">
   <div class="container">
-    <div class="text-center mb-16 reveal">
-      <span class="inline-block text-sky-600 font-bold text-sm uppercase tracking-wider mb-2">How It Works</span>
-      <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4">Escaping the Terminal is Simple</h2>
-      <p class="text-slate-650 max-w-xl mx-auto">Our smart platform handles buffers, travel coordinates, and schedules in 3 simple steps.</p>
+    <div class="text-center mb-14 reveal">
+      <span class="section-label">How It Works</span>
+      <h2 class="section-title">Escaping the Terminal is Simple</h2>
+      <p class="section-subtitle">Our smart platform handles buffers, travel coordinates, and schedules in 3 simple steps.</p>
     </div>
-    
+
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
-      <div class="text-center reveal relative z-10 flex flex-col items-center">
-        <div class="w-16 h-16 bg-sky-600 text-white rounded-2xl flex items-center justify-center mb-6 text-2xl font-black shadow-lg shadow-sky-600/30">1</div>
-        <h3 class="text-xl font-bold text-slate-900 mb-2">Input Layover Window</h3>
-        <p class="text-slate-650 text-sm max-w-xs leading-relaxed">Provide your arrivals and departures. Our system automatically subtracts custom exit and security check margins.</p>
+      <!-- Connector line (desktop only) -->
+      <div class="hidden md:block absolute top-8 left-1/6 right-1/6 h-px bg-gradient-to-r from-sky-100 via-sky-300 to-sky-100" aria-hidden="true"></div>
+
+      <div class="reveal flex flex-col items-center text-center relative z-10">
+        <div class="step-number mb-6">1</div>
+        <h3 class="text-lg font-bold text-slate-900 mb-2">Input Layover Window</h3>
+        <p class="text-slate-500 text-sm max-w-xs leading-relaxed">Provide your arrivals and departures. Our system automatically subtracts custom exit and security check margins.</p>
       </div>
-      <div class="text-center reveal relative z-10 flex flex-col items-center">
-        <div class="w-16 h-16 bg-sky-600 text-white rounded-2xl flex items-center justify-center mb-6 text-2xl font-black shadow-lg shadow-sky-600/30">2</div>
-        <h3 class="text-xl font-bold text-slate-900 mb-2">Select Handpicked Experiences</h3>
-        <p class="text-slate-650 text-sm max-w-xs leading-relaxed">Customize your stopover timeline with hourly transit hotels, wellness spas, street food crawls, or terminal lounges.</p>
+      <div class="reveal flex flex-col items-center text-center relative z-10">
+        <div class="step-number mb-6">2</div>
+        <h3 class="text-lg font-bold text-slate-900 mb-2">Select Handpicked Experiences</h3>
+        <p class="text-slate-500 text-sm max-w-xs leading-relaxed">Customize your stopover timeline with hourly transit hotels, wellness spas, street food crawls, or terminal lounges.</p>
       </div>
-      <div class="text-center reveal relative z-10 flex flex-col items-center">
-        <div class="w-16 h-16 bg-sky-600 text-white rounded-2xl flex items-center justify-center mb-6 text-2xl font-black shadow-lg shadow-sky-600/30">3</div>
-        <h3 class="text-xl font-bold text-slate-900 mb-2">Enjoy Transit Safely</h3>
-        <p class="text-slate-650 text-sm max-w-xs leading-relaxed">Your professional chauffeur meets you at arrivals. Navigate Mumbai with peace of mind and return strictly on time.</p>
+      <div class="reveal flex flex-col items-center text-center relative z-10">
+        <div class="step-number mb-6">3</div>
+        <h3 class="text-lg font-bold text-slate-900 mb-2">Enjoy Transit Safely</h3>
+        <p class="text-slate-500 text-sm max-w-xs leading-relaxed">Your professional chauffeur meets you at arrivals. Navigate Mumbai with peace of mind and return strictly on time.</p>
       </div>
     </div>
-    
-    <div class="mt-16 text-center reveal">
-      <a href="how-it-works.html" class="inline-flex items-center gap-2 text-sky-600 hover:text-sky-700 font-bold hover:underline">
-        Read Airport exit guidelines & transit visa requirements 
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+
+    <div class="mt-14 text-center reveal">
+      <a href="how-it-works.html" class="inline-flex items-center gap-2 text-sky-600 hover:text-sky-700 font-bold text-sm hover:underline transition-colors">
+        Read airport exit guidelines &amp; transit visa requirements
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
       </a>
     </div>
   </div>
 </section>
 
-<!-- SERVICES OVERVIEW -->
-<section class="py-16 bg-slate-50 overflow-hidden" id="categories">
+<!-- SERVICES OVERVIEW CAROUSEL -->
+<section class="py-20 bg-slate-50 overflow-hidden" id="categories">
   <div class="container relative">
-    <div class="text-center mb-12 reveal">
-      <span class="inline-block text-sky-600 font-bold text-sm uppercase tracking-wider mb-2">Concierge Services</span>
-      <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4">Optimize Every Stopover Hour</h2>
-      <p class="text-slate-650 max-w-xl mx-auto">Browse through our specialized transit services tailored specifically to fit flight schedules.</p>
+    <div class="text-center mb-14 reveal">
+      <span class="section-label">Concierge Services</span>
+      <h2 class="section-title">Optimize Every Stopover Hour</h2>
+      <p class="section-subtitle">Browse through our specialized transit services tailored specifically to fit flight schedules.</p>
     </div>
 
-    <!-- Carousel Controls -->
-    <div class="absolute top-1/2 -left-4 sm:left-0 -translate-y-1/2 z-20 hidden md:block">
-      <button class="w-10 h-10 rounded-full bg-white hover:bg-slate-50 shadow-md flex items-center justify-center border border-slate-200 text-slate-700 hover:text-sky-600 cursor-pointer disabled:opacity-50 transition" id="prev-service" aria-label="Previous service">
+    <!-- Carousel Navigation -->
+    <div class="absolute top-1/2 -left-5 -translate-y-1/2 z-20 hidden md:block">
+      <button class="w-11 h-11 rounded-full bg-white shadow-lg flex items-center justify-center border border-slate-200 text-slate-600 hover:text-sky-600 hover:border-sky-300 transition-all disabled:opacity-40" id="prev-service" aria-label="Previous service">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
       </button>
     </div>
-    <div class="absolute top-1/2 -right-4 sm:right-0 -translate-y-1/2 z-20 hidden md:block">
-      <button class="w-10 h-10 rounded-full bg-white hover:bg-slate-50 shadow-md flex items-center justify-center border border-slate-200 text-slate-700 hover:text-sky-600 cursor-pointer disabled:opacity-50 transition" id="next-service" aria-label="Next service">
+    <div class="absolute top-1/2 -right-5 -translate-y-1/2 z-20 hidden md:block">
+      <button class="w-11 h-11 rounded-full bg-white shadow-lg flex items-center justify-center border border-slate-200 text-slate-600 hover:text-sky-600 hover:border-sky-300 transition-all disabled:opacity-40" id="next-service" aria-label="Next service">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
       </button>
     </div>
 
-    <!-- Carousel Container -->
-    <div class="carousel-container gap-6 pb-8 px-1" id="services-carousel">
-      
+    <div class="carousel-container gap-5 pb-4 px-1" id="services-carousel">
+
       <!-- Hotels -->
       <div class="carousel-item">
         <a href="hotels.html" class="card group h-full flex flex-col">
           <div class="card-img-container">
             <img height="400" width="600" alt="Transit Hotels" class="card-img" loading="lazy" src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&h=400&fit=crop&auto=format&fm=webp&q=75"/>
             <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+            <span class="absolute top-3 left-3 bg-sky-600 text-white text-[11px] font-bold px-2.5 py-1 rounded-full">Hotels</span>
           </div>
           <div class="card-content flex-grow">
-            <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-sky-600 transition-colors">Transit Hotels</h3>
-            <p class="text-slate-650 text-sm mb-6 flex-grow leading-relaxed">Flexible day-use rooms near CSMIA with 24/7 check-in and hourly rates.</p>
-            <div class="flex items-center text-sky-600 font-bold text-sm">
-              Explore Stays <svg class="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path d="M9 5l7 7-7 7"/></svg>
+            <h3 class="text-base font-bold text-slate-900 mb-1.5 group-hover:text-sky-600 transition-colors">Transit Hotels</h3>
+            <p class="text-slate-500 text-sm flex-grow leading-relaxed">Flexible day-use rooms near CSMIA with 24/7 check-in and hourly rates.</p>
+            <div class="flex items-center text-sky-600 font-bold text-sm mt-4">
+              Explore Stays <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path d="M9 5l7 7-7 7"/></svg>
             </div>
           </div>
         </a>
@@ -246,12 +246,13 @@
           <div class="card-img-container">
             <img height="400" width="600" alt="Transit Dining" class="card-img" loading="lazy" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&h=400&fit=crop&auto=format&fm=webp&q=75"/>
             <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+            <span class="absolute top-3 left-3 bg-orange-500 text-white text-[11px] font-bold px-2.5 py-1 rounded-full">Dining</span>
           </div>
           <div class="card-content flex-grow">
-            <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-sky-600 transition-colors">Transit Dining</h3>
-            <p class="text-slate-650 text-sm mb-6 flex-grow leading-relaxed">Authentic coastal fish curries, regional thalis, and local cafe trails near CSIA.</p>
-            <div class="flex items-center text-sky-600 font-bold text-sm">
-              Explore Dining <svg class="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path d="M9 5l7 7-7 7"/></svg>
+            <h3 class="text-base font-bold text-slate-900 mb-1.5 group-hover:text-sky-600 transition-colors">Transit Dining</h3>
+            <p class="text-slate-500 text-sm flex-grow leading-relaxed">Authentic coastal fish curries, regional thalis, and local cafe trails near CSIA.</p>
+            <div class="flex items-center text-sky-600 font-bold text-sm mt-4">
+              Explore Dining <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path d="M9 5l7 7-7 7"/></svg>
             </div>
           </div>
         </a>
@@ -261,14 +262,15 @@
       <div class="carousel-item">
         <a href="spa-wellness.html" class="card group h-full flex flex-col">
           <div class="card-img-container">
-            <img height="400" width="600" alt="Spa & Wellness" class="card-img" loading="lazy" src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&h=400&fit=crop&auto=format&fm=webp&q=75"/>
+            <img height="400" width="600" alt="Spa &amp; Wellness" class="card-img" loading="lazy" src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&h=400&fit=crop&auto=format&fm=webp&q=75"/>
             <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+            <span class="absolute top-3 left-3 bg-violet-600 text-white text-[11px] font-bold px-2.5 py-1 rounded-full">Spa</span>
           </div>
           <div class="card-content flex-grow">
-            <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-sky-600 transition-colors">Spa & Wellness</h3>
-            <p class="text-slate-650 text-sm mb-6 flex-grow leading-relaxed">Refresh your travel exhaustion with jetlag therapies, massages, and relaxation pools.</p>
-            <div class="flex items-center text-sky-600 font-bold text-sm">
-              Explore Wellness <svg class="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path d="M9 5l7 7-7 7"/></svg>
+            <h3 class="text-base font-bold text-slate-900 mb-1.5 group-hover:text-sky-600 transition-colors">Spa &amp; Wellness</h3>
+            <p class="text-slate-500 text-sm flex-grow leading-relaxed">Refresh your travel exhaustion with jetlag therapies, massages, and relaxation pools.</p>
+            <div class="flex items-center text-sky-600 font-bold text-sm mt-4">
+              Explore Wellness <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path d="M9 5l7 7-7 7"/></svg>
             </div>
           </div>
         </a>
@@ -278,14 +280,15 @@
       <div class="carousel-item">
         <a href="gaming-entertainment.html" class="card group h-full flex flex-col">
           <div class="card-img-container">
-            <img height="400" width="600" alt="Gaming & Entertainment" class="card-img" loading="lazy" src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&h=400&fit=crop&auto=format&fm=webp&q=75"/>
+            <img height="400" width="600" alt="Gaming &amp; Entertainment" class="card-img" loading="lazy" src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&h=400&fit=crop&auto=format&fm=webp&q=75"/>
             <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+            <span class="absolute top-3 left-3 bg-fuchsia-600 text-white text-[11px] font-bold px-2.5 py-1 rounded-full">Gaming</span>
           </div>
           <div class="card-content flex-grow">
-            <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-sky-600 transition-colors">Gaming & Fun</h3>
-            <p class="text-slate-650 text-sm mb-6 flex-grow leading-relaxed">VR zones, boutique bowling lanes, and interactive escape rooms minutes from gates.</p>
-            <div class="flex items-center text-sky-600 font-bold text-sm">
-              Explore Fun <svg class="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path d="M9 5l7 7-7 7"/></svg>
+            <h3 class="text-base font-bold text-slate-900 mb-1.5 group-hover:text-sky-600 transition-colors">Gaming &amp; Fun</h3>
+            <p class="text-slate-500 text-sm flex-grow leading-relaxed">VR zones, boutique bowling lanes, and interactive escape rooms minutes from gates.</p>
+            <div class="flex items-center text-sky-600 font-bold text-sm mt-4">
+              Explore Fun <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path d="M9 5l7 7-7 7"/></svg>
             </div>
           </div>
         </a>
@@ -297,113 +300,113 @@
           <div class="card-img-container">
             <img height="400" width="600" alt="City Tours" class="card-img" loading="lazy" src="https://images.unsplash.com/photo-1567157577867-3c5d4b5e9a0e?w=600&h=400&fit=crop&auto=format&fm=webp&q=75"/>
             <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+            <span class="absolute top-3 left-3 bg-rose-600 text-white text-[11px] font-bold px-2.5 py-1 rounded-full">Tours</span>
           </div>
           <div class="card-content flex-grow">
-            <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-sky-600 transition-colors">City Tours</h3>
-            <p class="text-slate-650 text-sm mb-6 flex-grow leading-relaxed">Private AC vehicle sightseeing tours visiting iconic Gateway of India and Marine Drive.</p>
-            <div class="flex items-center text-sky-600 font-bold text-sm">
-              Explore Tours <svg class="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path d="M9 5l7 7-7 7"/></svg>
+            <h3 class="text-base font-bold text-slate-900 mb-1.5 group-hover:text-sky-600 transition-colors">City Tours</h3>
+            <p class="text-slate-500 text-sm flex-grow leading-relaxed">Private AC vehicle sightseeing tours visiting iconic Gateway of India and Marine Drive.</p>
+            <div class="flex items-center text-sky-600 font-bold text-sm mt-4">
+              Explore Tours <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path d="M9 5l7 7-7 7"/></svg>
             </div>
           </div>
         </a>
       </div>
 
-      <!-- Experiences & Activities -->
+      <!-- Transfers -->
       <div class="carousel-item">
-        <a href="experiences.html" class="card group h-full flex flex-col">
+        <a href="airport-transfers.html" class="card group h-full flex flex-col">
           <div class="card-img-container">
-            <img height="400" width="600" alt="Experiences & Activities" class="card-img" loading="lazy" src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=600&h=400&fit=crop&auto=format&fm=webp&q=75"/>
+            <img height="400" width="600" alt="Airport Transfers" class="card-img" loading="lazy" src="https://images.unsplash.com/photo-1610647752706-3bb12232b3cd?w=600&h=400&fit=crop&auto=format&fm=webp&q=75"/>
             <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+            <span class="absolute top-3 left-3 bg-slate-600 text-white text-[11px] font-bold px-2.5 py-1 rounded-full">Transfers</span>
           </div>
           <div class="card-content flex-grow">
-            <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-sky-600 transition-colors">Activities</h3>
-            <p class="text-slate-650 text-sm mb-6 flex-grow leading-relaxed">Handmade souvenir shopping guides, local cooking trails, and custom photo-walks.</p>
-            <div class="flex items-center text-sky-600 font-bold text-sm">
-              Explore More <svg class="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path d="M9 5l7 7-7 7"/></svg>
+            <h3 class="text-base font-bold text-slate-900 mb-1.5 group-hover:text-sky-600 transition-colors">Airport Transfers</h3>
+            <p class="text-slate-500 text-sm flex-grow leading-relaxed">Fixed-rate, surge-free taxi rides with certified English-speaking chauffeurs.</p>
+            <div class="flex items-center text-sky-600 font-bold text-sm mt-4">
+              Explore Transfers <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path d="M9 5l7 7-7 7"/></svg>
             </div>
           </div>
         </a>
       </div>
-
     </div>
   </div>
 </section>
 
 <!-- TRUST INDICATORS -->
-<section class="py-12 bg-white border-y border-slate-200" id="trust-indicators">
+<section class="py-12 bg-white border-y border-slate-100" id="trust-indicators">
   <div class="container">
-    <div class="flex flex-col md:flex-row items-center justify-between gap-8">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-10">
       <div class="text-left max-w-sm">
-        <h3 class="text-lg font-bold text-slate-900">Mumbai Transit Standard</h3>
-        <p class="text-slate-650 text-sm leading-relaxed mt-1">Platform compliant with global safety guarantees, encrypted processing, and verified local operator checklists.</p>
+        <h3 class="text-base font-bold text-slate-900 mb-1">Mumbai Transit Standard</h3>
+        <p class="text-slate-500 text-sm leading-relaxed">Platform compliant with global safety guarantees, encrypted processing, and verified local operator checklists.</p>
       </div>
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 md:gap-12 items-center">
-        <div class="flex flex-col items-center text-center">
-          <span class="text-2xl font-black text-slate-800 tracking-tight">CSMIA</span>
-          <span class="text-[10px] text-slate-500 font-bold uppercase tracking-wider mt-1">Airport Transit Area</span>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-8 md:gap-12 items-center">
+        <div class="trust-badge">
+          <span class="trust-badge-value">CSMIA</span>
+          <span class="trust-badge-label">Airport Transit Area</span>
         </div>
-        <div class="flex flex-col items-center text-center">
-          <span class="text-2xl font-black text-slate-800 tracking-tight">Stripe</span>
-          <span class="text-[10px] text-slate-500 font-bold uppercase tracking-wider mt-1">PCI-DSS Checkout</span>
+        <div class="trust-badge">
+          <span class="trust-badge-value">Stripe</span>
+          <span class="trust-badge-label">PCI-DSS Checkout</span>
         </div>
-        <div class="flex flex-col items-center text-center">
-          <span class="text-2xl font-black text-slate-800 tracking-tight">WCAG AA</span>
-          <span class="text-[10px] text-slate-500 font-bold uppercase tracking-wider mt-1">Compliant Accessibility</span>
+        <div class="trust-badge">
+          <span class="trust-badge-value">WCAG AA</span>
+          <span class="trust-badge-label">Accessible Platform</span>
         </div>
-        <div class="flex flex-col items-center text-center">
-          <span class="text-2xl font-black text-slate-800 tracking-tight">24/7 Support</span>
-          <span class="text-[10px] text-slate-500 font-bold uppercase tracking-wider mt-1">Instant Assistance</span>
+        <div class="trust-badge">
+          <span class="trust-badge-value">24/7</span>
+          <span class="trust-badge-label">Instant Assistance</span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FEATURED EXPERIENCES -->
-<section class="py-16 bg-slate-50 overflow-hidden" id="experiences">
+<!-- FEATURED EXPERIENCES CAROUSEL -->
+<section class="py-20 bg-slate-50 overflow-hidden" id="experiences">
   <div class="container relative">
-    <div class="text-center mb-12 reveal">
-      <span class="inline-block text-sky-600 font-bold text-sm uppercase tracking-wider mb-2">High Demand Bookings</span>
-      <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4">Popular Transit Experiences</h2>
-      <p class="text-slate-650 max-w-xl mx-auto">Verified, top-reviewed partners, and close to the airport for secure departure timing.</p>
+    <div class="text-center mb-14 reveal">
+      <span class="section-label">High Demand Bookings</span>
+      <h2 class="section-title">Popular Transit Experiences</h2>
+      <p class="section-subtitle">Verified, top-reviewed partners — close to the airport for secure departure timing.</p>
     </div>
 
-    <!-- Carousel Controls -->
-    <div class="absolute top-1/2 -left-4 sm:left-0 -translate-y-1/2 z-20 hidden md:block">
-      <button class="w-10 h-10 rounded-full bg-white hover:bg-slate-50 shadow-md flex items-center justify-center border border-slate-200 text-slate-700 hover:text-sky-600 cursor-pointer disabled:opacity-50 transition" id="prev-experience" aria-label="Previous experience">
+    <!-- Carousel Navigation -->
+    <div class="absolute top-1/2 -left-5 -translate-y-1/2 z-20 hidden md:block">
+      <button class="w-11 h-11 rounded-full bg-white shadow-lg flex items-center justify-center border border-slate-200 text-slate-600 hover:text-sky-600 hover:border-sky-300 transition-all" id="prev-experience" aria-label="Previous experience">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
       </button>
     </div>
-    <div class="absolute top-1/2 -right-4 sm:right-0 -translate-y-1/2 z-20 hidden md:block">
-      <button class="w-10 h-10 rounded-full bg-white hover:bg-slate-50 shadow-md flex items-center justify-center border border-slate-200 text-slate-700 hover:text-sky-600 cursor-pointer disabled:opacity-50 transition" id="next-experience" aria-label="Next experience">
+    <div class="absolute top-1/2 -right-5 -translate-y-1/2 z-20 hidden md:block">
+      <button class="w-11 h-11 rounded-full bg-white shadow-lg flex items-center justify-center border border-slate-200 text-slate-600 hover:text-sky-600 hover:border-sky-300 transition-all" id="next-experience" aria-label="Next experience">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
       </button>
     </div>
 
-    <!-- Carousel Container -->
-    <div class="carousel-container gap-6 pb-8 px-1" id="experiences-carousel">
-      
+    <div class="carousel-container gap-5 pb-4 px-1" id="experiences-carousel">
+
       <!-- Card 1: Hotels -->
       <div class="carousel-item">
-        <div class="card h-full flex flex-col justify-between">
+        <div class="card h-full flex flex-col">
           <div>
             <div class="card-img-container">
               <img height="400" width="600" alt="Niranta Airport Transit Hotel" class="card-img" loading="lazy" src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&h=400&fit=crop&auto=format&fm=webp&q=75"/>
-              <span class="absolute top-4 right-4 bg-sky-600 text-white text-xs font-bold px-4 py-2 rounded-full shadow-md">Inside T2</span>
+              <span class="absolute top-3 right-3 bg-sky-600 text-white text-xs font-bold px-3 py-1 rounded-full">Inside T2</span>
             </div>
             <div class="card-content">
-              <div class="flex items-center gap-4 text-xs text-slate-700 mb-1">
-                <span class="flex items-center gap-1 font-semibold text-emerald-700 bg-emerald-50 px-2 py-1 rounded-lg">⭐ 4.8 (2.4k Reviews)</span>
-                <span class="flex items-center gap-1 font-semibold bg-slate-100 text-slate-800 px-2 py-1 rounded-lg">⏰ Hourly Slots</span>
+              <div class="flex items-center gap-2 text-xs mb-2">
+                <span class="flex items-center gap-1 font-semibold text-emerald-700 bg-emerald-50 px-2 py-1 rounded-lg">⭐ 4.8 (2.4k)</span>
+                <span class="flex items-center gap-1 font-semibold bg-slate-100 text-slate-700 px-2 py-1 rounded-lg">⏰ Hourly</span>
               </div>
-              <h3 class="text-lg font-bold text-slate-900 mb-2">Transit Hotel Stays</h3>
-              <p class="text-slate-650 text-sm leading-relaxed">Flexible day-use transit rooms inside Terminal 2 with 24/7 check-in and free terminal shuttles.</p>
+              <h3 class="text-base font-bold text-slate-900 mb-1.5">Transit Hotel Stays</h3>
+              <p class="text-slate-500 text-sm leading-relaxed">Flexible day-use transit rooms inside Terminal 2 with 24/7 check-in and free terminal shuttles.</p>
             </div>
           </div>
-          <div class="px-6 pb-6 pt-4 border-t border-slate-150 flex items-center justify-between">
-            <div>
-              <span class="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Starting from</span>
-              <div class="text-lg font-extrabold text-sky-600">₹3,499</div>
+          <div class="px-5 pb-5 pt-4 border-t border-slate-100 flex items-center justify-between mt-auto">
+            <div class="price-tag">
+              <span class="price-tag-label">Starting from</span>
+              <span class="price-tag-value">₹3,499</span>
             </div>
             <a href="hotels.html" class="btn btn-primary btn-sm">Book Day Room</a>
           </div>
@@ -412,25 +415,25 @@
 
       <!-- Card 2: Restaurants -->
       <div class="carousel-item">
-        <div class="card h-full flex flex-col justify-between">
+        <div class="card h-full flex flex-col">
           <div>
             <div class="card-img-container">
               <img height="400" width="600" alt="Peshawri Dining" class="card-img" loading="lazy" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&h=400&fit=crop&auto=format&fm=webp&q=75"/>
-              <span class="absolute top-4 right-4 bg-sky-600 text-white text-xs font-bold px-4 py-2 rounded-full shadow-md">Premium Dining</span>
+              <span class="absolute top-3 right-3 bg-orange-500 text-white text-xs font-bold px-3 py-1 rounded-full">Premium</span>
             </div>
             <div class="card-content">
-              <div class="flex items-center gap-4 text-xs text-slate-700 mb-1">
-                <span class="flex items-center gap-1 font-semibold text-emerald-700 bg-emerald-50 px-2 py-1 rounded-lg">⭐ 4.9 (1.2k Reviews)</span>
-                <span class="flex items-center gap-1 font-semibold bg-slate-100 text-slate-800 px-2 py-1 rounded-lg">⏰ Near CSMIA</span>
+              <div class="flex items-center gap-2 text-xs mb-2">
+                <span class="flex items-center gap-1 font-semibold text-emerald-700 bg-emerald-50 px-2 py-1 rounded-lg">⭐ 4.9 (1.2k)</span>
+                <span class="flex items-center gap-1 font-semibold bg-slate-100 text-slate-700 px-2 py-1 rounded-lg">Near CSMIA</span>
               </div>
-              <h3 class="text-lg font-bold text-slate-900 mb-2">Transit Food Experiences</h3>
-              <p class="text-slate-650 text-sm leading-relaxed">Savor authentic coastal seafood, Maharashtrian thalis, and luxury five-star fine dining near the airport.</p>
+              <h3 class="text-base font-bold text-slate-900 mb-1.5">Transit Food Experiences</h3>
+              <p class="text-slate-500 text-sm leading-relaxed">Savor authentic coastal seafood, Maharashtrian thalis, and luxury fine dining near the airport.</p>
             </div>
           </div>
-          <div class="px-6 pb-6 pt-4 border-t border-slate-150 flex items-center justify-between">
-            <div>
-              <span class="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Starting from</span>
-              <div class="text-lg font-extrabold text-sky-600">₹400</div>
+          <div class="px-5 pb-5 pt-4 border-t border-slate-100 flex items-center justify-between mt-auto">
+            <div class="price-tag">
+              <span class="price-tag-label">Starting from</span>
+              <span class="price-tag-value">₹400</span>
             </div>
             <a href="restaurants.html" class="btn btn-primary btn-sm">Book Table</a>
           </div>
@@ -439,52 +442,52 @@
 
       <!-- Card 3: Spa & Wellness -->
       <div class="carousel-item">
-        <div class="card h-full flex flex-col justify-between">
+        <div class="card h-full flex flex-col">
           <div>
             <div class="card-img-container">
               <img height="400" width="600" alt="Spa and wellness massage" class="card-img" loading="lazy" src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&h=400&fit=crop&auto=format&fm=webp&q=75"/>
-              <span class="absolute top-4 right-4 bg-sky-600 text-white text-xs font-bold px-4 py-2 rounded-full shadow-md">Relaxation Lounge</span>
+              <span class="absolute top-3 right-3 bg-violet-600 text-white text-xs font-bold px-3 py-1 rounded-full">Relax</span>
             </div>
             <div class="card-content">
-              <div class="flex items-center gap-4 text-xs text-slate-700 mb-1">
-                <span class="flex items-center gap-1 font-semibold text-emerald-700 bg-emerald-50 px-2 py-1 rounded-lg">⭐ 4.8 (850 Reviews)</span>
-                <span class="flex items-center gap-1 font-semibold bg-slate-100 text-slate-800 px-2 py-1 rounded-lg">⏰ Express Slots</span>
+              <div class="flex items-center gap-2 text-xs mb-2">
+                <span class="flex items-center gap-1 font-semibold text-emerald-700 bg-emerald-50 px-2 py-1 rounded-lg">⭐ 4.8 (850)</span>
+                <span class="flex items-center gap-1 font-semibold bg-slate-100 text-slate-700 px-2 py-1 rounded-lg">Express Slots</span>
               </div>
-              <h3 class="text-lg font-bold text-slate-900 mb-2">Spa & Wellness Sessions</h3>
-              <p class="text-slate-650 text-sm leading-relaxed">Refresh with express foot reflexology, deep tissue massage, and hotel wellness circuits near terminal gates.</p>
+              <h3 class="text-base font-bold text-slate-900 mb-1.5">Spa &amp; Wellness Sessions</h3>
+              <p class="text-slate-500 text-sm leading-relaxed">Refresh with express foot reflexology, deep tissue massage, and hotel wellness circuits.</p>
             </div>
           </div>
-          <div class="px-6 pb-6 pt-4 border-t border-slate-150 flex items-center justify-between">
-            <div>
-              <span class="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Starting from</span>
-              <div class="text-lg font-extrabold text-sky-600">₹1,800</div>
+          <div class="px-5 pb-5 pt-4 border-t border-slate-100 flex items-center justify-between mt-auto">
+            <div class="price-tag">
+              <span class="price-tag-label">Starting from</span>
+              <span class="price-tag-value">₹1,800</span>
             </div>
             <a href="spa-wellness.html" class="btn btn-primary btn-sm">Book Spa</a>
           </div>
         </div>
       </div>
 
-      <!-- Card 4: Gaming & Entertainment -->
+      <!-- Card 4: Gaming -->
       <div class="carousel-item">
-        <div class="card h-full flex flex-col justify-between">
+        <div class="card h-full flex flex-col">
           <div>
             <div class="card-img-container">
               <img height="400" width="600" alt="High-tech gaming lounge" class="card-img" loading="lazy" src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&h=400&fit=crop&auto=format&fm=webp&q=75"/>
-              <span class="absolute top-4 right-4 bg-sky-600 text-white text-xs font-bold px-4 py-2 rounded-full shadow-md">VR & Bowling</span>
+              <span class="absolute top-3 right-3 bg-fuchsia-600 text-white text-xs font-bold px-3 py-1 rounded-full">VR &amp; Bowling</span>
             </div>
             <div class="card-content">
-              <div class="flex items-center gap-4 text-xs text-slate-700 mb-1">
-                <span class="flex items-center gap-1 font-semibold text-emerald-700 bg-emerald-50 px-2 py-1 rounded-lg">⭐ 4.7 (980 Reviews)</span>
-                <span class="flex items-center gap-1 font-semibold bg-slate-100 text-slate-800 px-2 py-1 rounded-lg">⏰ Near Terminal</span>
+              <div class="flex items-center gap-2 text-xs mb-2">
+                <span class="flex items-center gap-1 font-semibold text-emerald-700 bg-emerald-50 px-2 py-1 rounded-lg">⭐ 4.7 (980)</span>
+                <span class="flex items-center gap-1 font-semibold bg-slate-100 text-slate-700 px-2 py-1 rounded-lg">Near Terminal</span>
               </div>
-              <h3 class="text-lg font-bold text-slate-900 mb-2">Gaming & Entertainment</h3>
-              <p class="text-slate-650 text-sm leading-relaxed">Escape airport boredom. Explore virtual reality zones, bowling, and retro arcade simulators near CSMIA.</p>
+              <h3 class="text-base font-bold text-slate-900 mb-1.5">Gaming &amp; Entertainment</h3>
+              <p class="text-slate-500 text-sm leading-relaxed">VR zones, bowling, and retro arcade simulators near CSMIA.</p>
             </div>
           </div>
-          <div class="px-6 pb-6 pt-4 border-t border-slate-150 flex items-center justify-between">
-            <div>
-              <span class="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Starting from</span>
-              <div class="text-lg font-extrabold text-sky-600">₹1,200</div>
+          <div class="px-5 pb-5 pt-4 border-t border-slate-100 flex items-center justify-between mt-auto">
+            <div class="price-tag">
+              <span class="price-tag-label">Starting from</span>
+              <span class="price-tag-value">₹1,200</span>
             </div>
             <a href="gaming-entertainment.html" class="btn btn-primary btn-sm">Book Gaming</a>
           </div>
@@ -493,25 +496,25 @@
 
       <!-- Card 5: City Tours -->
       <div class="carousel-item">
-        <div class="card h-full flex flex-col justify-between">
+        <div class="card h-full flex flex-col">
           <div>
             <div class="card-img-container">
               <img height="400" width="600" alt="Gateway of India tour" class="card-img" loading="lazy" src="https://images.unsplash.com/photo-1567157577867-3c5d4b5e9a0e?w=600&h=400&fit=crop&auto=format&fm=webp&q=75"/>
-              <span class="absolute top-4 right-4 bg-sky-600 text-white text-xs font-bold px-4 py-2 rounded-full shadow-md">Private Cab + Guide</span>
+              <span class="absolute top-3 right-3 bg-rose-600 text-white text-xs font-bold px-3 py-1 rounded-full">Guide Incl.</span>
             </div>
             <div class="card-content">
-              <div class="flex items-center gap-4 text-xs text-slate-700 mb-1">
-                <span class="flex items-center gap-1 font-semibold text-emerald-700 bg-emerald-50 px-2 py-1 rounded-lg">⭐ 4.9 (840 Reviews)</span>
-                <span class="flex items-center gap-1 font-semibold bg-slate-100 text-slate-800 px-2 py-1 rounded-lg">⏰ 3h - 8h Stays</span>
+              <div class="flex items-center gap-2 text-xs mb-2">
+                <span class="flex items-center gap-1 font-semibold text-emerald-700 bg-emerald-50 px-2 py-1 rounded-lg">⭐ 4.9 (840)</span>
+                <span class="flex items-center gap-1 font-semibold bg-slate-100 text-slate-700 px-2 py-1 rounded-lg">3h–8h Stays</span>
               </div>
-              <h3 class="text-lg font-bold text-slate-900 mb-2">Time-Optimized City Tours</h3>
-              <p class="text-slate-650 text-sm leading-relaxed">Guided heritage, food crawls, and boutique shopping tours structured exactly inside layover hours.</p>
+              <h3 class="text-base font-bold text-slate-900 mb-1.5">Time-Optimized City Tours</h3>
+              <p class="text-slate-500 text-sm leading-relaxed">Guided heritage, food crawls, and boutique shopping tours inside layover hours.</p>
             </div>
           </div>
-          <div class="px-6 pb-6 pt-4 border-t border-slate-150 flex items-center justify-between">
-            <div>
-              <span class="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Starting from</span>
-              <div class="text-lg font-extrabold text-sky-600">₹1,299</div>
+          <div class="px-5 pb-5 pt-4 border-t border-slate-100 flex items-center justify-between mt-auto">
+            <div class="price-tag">
+              <span class="price-tag-label">Starting from</span>
+              <span class="price-tag-value">₹1,299</span>
             </div>
             <a href="experiences.html" class="btn btn-primary btn-sm">Book Tour</a>
           </div>
@@ -520,89 +523,82 @@
 
       <!-- Card 6: Transfers -->
       <div class="carousel-item">
-        <div class="card h-full flex flex-col justify-between">
+        <div class="card h-full flex flex-col">
           <div>
             <div class="card-img-container">
               <img height="400" width="600" alt="Luxury executive sedan cab" class="card-img" loading="lazy" src="https://images.unsplash.com/photo-1610647752706-3bb12232b3cd?w=600&h=400&fit=crop&auto=format&fm=webp&q=75"/>
-              <span class="absolute top-4 right-4 bg-sky-600 text-white text-xs font-bold px-4 py-2 rounded-full shadow-md">Tolls & Parking Incl.</span>
+              <span class="absolute top-3 right-3 bg-slate-700 text-white text-xs font-bold px-3 py-1 rounded-full">Tolls Incl.</span>
             </div>
             <div class="card-content">
-              <div class="flex items-center gap-4 text-xs text-slate-700 mb-1">
-                <span class="flex items-center gap-1 font-semibold text-emerald-700 bg-emerald-50 px-2 py-1 rounded-lg">⭐ 4.8 (1.5k Reviews)</span>
-                <span class="flex items-center gap-1 font-semibold bg-slate-100 text-slate-800 px-2 py-1 rounded-lg">⏰ Surge Free</span>
+              <div class="flex items-center gap-2 text-xs mb-2">
+                <span class="flex items-center gap-1 font-semibold text-emerald-700 bg-emerald-50 px-2 py-1 rounded-lg">⭐ 4.8 (1.5k)</span>
+                <span class="flex items-center gap-1 font-semibold bg-slate-100 text-slate-700 px-2 py-1 rounded-lg">Surge Free</span>
               </div>
-              <h3 class="text-lg font-bold text-slate-900 mb-2">Fixed-Rate Airport Cabs</h3>
-              <p class="text-slate-650 text-sm leading-relaxed">Surge-free flat rate airport pickups, drop-offs, tolls-inclusive, and chauffeur-driven rides inside AC Sedans/SUVs.</p>
+              <h3 class="text-base font-bold text-slate-900 mb-1.5">Fixed-Rate Airport Cabs</h3>
+              <p class="text-slate-500 text-sm leading-relaxed">Surge-free flat rate pickups, drop-offs, tolls-inclusive, chauffeur-driven sedans/SUVs.</p>
             </div>
           </div>
-          <div class="px-6 pb-6 pt-4 border-t border-slate-150 flex items-center justify-between">
-            <div>
-              <span class="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Starting from</span>
-              <div class="text-lg font-extrabold text-sky-600">₹899</div>
+          <div class="px-5 pb-5 pt-4 border-t border-slate-100 flex items-center justify-between mt-auto">
+            <div class="price-tag">
+              <span class="price-tag-label">Starting from</span>
+              <span class="price-tag-value">₹899</span>
             </div>
             <a href="airport-transfers.html" class="btn btn-primary btn-sm">Book Cab</a>
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- SOCIAL PROOF (TESTIMONIALS) -->
-<section class="py-16 bg-white" id="testimonials">
+<!-- TESTIMONIALS -->
+<section class="py-20 bg-white" id="testimonials">
   <div class="container">
-    <div class="text-center mb-12 reveal">
-      <span class="inline-block text-sky-600 font-bold text-sm uppercase tracking-wider mb-2">Loved by Travelers</span>
-      <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4">Real Stories from Transit Flyers</h2>
-      <p class="text-slate-650 max-w-xl mx-auto">Read how global flyers transformed empty layovers into memorable stopovers.</p>
+    <div class="text-center mb-14 reveal">
+      <span class="section-label">Loved by Travelers</span>
+      <h2 class="section-title">Real Stories from Transit Flyers</h2>
+      <p class="section-subtitle">Read how global flyers transformed empty layovers into memorable stopovers.</p>
     </div>
-    
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <div class="bg-slate-50 p-8 rounded-2xl border border-slate-200 flex flex-col justify-between shadow-sm">
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="reveal testimonial-card">
         <div>
-          <div class="flex items-center gap-1 mb-4 text-amber-500 font-semibold">
-            ★★★★★
-          </div>
-          <p class="text-slate-700 text-sm italic mb-8 leading-relaxed">"I had an 8-hour layover en route to London. LayoverX booked me a private driver who met me at CSIA T2 arrivals and a 3-hour heritage tour. Everything was on schedule, returning me 2 hours prior to my flight!"</p>
+          <div class="flex items-center gap-0.5 mb-5 text-amber-400 text-lg">★★★★★</div>
+          <p class="text-slate-700 text-sm italic mb-6 leading-relaxed">"I had an 8-hour layover en route to London. LayoverX booked me a private driver who met me at CSIA T2 arrivals and a 3-hour heritage tour. Everything was on schedule, returning me 2 hours prior to my flight!"</p>
         </div>
-        <div class="flex items-center gap-4">
-          <div class="w-10 h-10 rounded-full bg-gradient-to-br from-sky-400 to-sky-600 flex items-center justify-center text-white font-bold text-sm">MB</div>
+        <div class="flex items-center gap-3 pt-4 border-t border-slate-100">
+          <div class="w-9 h-9 rounded-full bg-gradient-to-br from-sky-400 to-sky-600 flex items-center justify-center text-white font-bold text-xs flex-shrink-0">MB</div>
           <div>
             <div class="font-bold text-slate-900 text-sm">Marcus B.</div>
-            <div class="text-slate-500 text-xs font-semibold">Munich to London (8h Layover)</div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="bg-slate-50 p-8 rounded-2xl border border-slate-200 flex flex-col justify-between shadow-sm">
-        <div>
-          <div class="flex items-center gap-1 mb-4 text-amber-500 font-semibold">
-            ★★★★★
-          </div>
-          <p class="text-slate-700 text-sm italic mb-8 leading-relaxed">"Day-use hotel booking near Terminal 1 was smooth and fast. The free shuttle took 5 minutes to arrive. Best way to shower, rest, and check work emails between connections."</p>
-        </div>
-        <div class="flex items-center gap-4">
-          <div class="w-10 h-10 rounded-full bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center text-white font-bold text-sm">SK</div>
-          <div>
-            <div class="font-bold text-slate-900 text-sm">Sandhya K.</div>
-            <div class="text-slate-500 text-xs font-semibold">Bangalore Business (6h Stopover)</div>
+            <div class="text-slate-400 text-xs">Munich to London (8h Layover)</div>
           </div>
         </div>
       </div>
 
-      <div class="bg-slate-50 p-8 rounded-2xl border border-slate-200 flex flex-col justify-between shadow-sm">
+      <div class="reveal testimonial-card">
         <div>
-          <div class="flex items-center gap-1 mb-4 text-amber-500 font-semibold">
-            ★★★★★
-          </div>
-          <p class="text-slate-700 text-sm italic mb-8 leading-relaxed">"Fantastic seafood lunch reserved at Gajalee. No queue, premium table, and the driver knew the exact traffic shortcuts to get me back to T2 check-in on time."</p>
+          <div class="flex items-center gap-0.5 mb-5 text-amber-400 text-lg">★★★★★</div>
+          <p class="text-slate-700 text-sm italic mb-6 leading-relaxed">"Day-use hotel booking near Terminal 1 was smooth and fast. The free shuttle took 5 minutes to arrive. Best way to shower, rest, and check work emails between connections."</p>
         </div>
-        <div class="flex items-center gap-4">
-          <div class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center text-white font-bold text-sm">JL</div>
+        <div class="flex items-center gap-3 pt-4 border-t border-slate-100">
+          <div class="w-9 h-9 rounded-full bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center text-white font-bold text-xs flex-shrink-0">SK</div>
+          <div>
+            <div class="font-bold text-slate-900 text-sm">Sandhya K.</div>
+            <div class="text-slate-400 text-xs">Bangalore Business (6h Stopover)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal testimonial-card">
+        <div>
+          <div class="flex items-center gap-0.5 mb-5 text-amber-400 text-lg">★★★★★</div>
+          <p class="text-slate-700 text-sm italic mb-6 leading-relaxed">"Fantastic seafood lunch at Gajalee. No queue, premium table, and the driver knew the exact traffic shortcuts to get me back to T2 check-in on time."</p>
+        </div>
+        <div class="flex items-center gap-3 pt-4 border-t border-slate-100">
+          <div class="w-9 h-9 rounded-full bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center text-white font-bold text-xs flex-shrink-0">JL</div>
           <div>
             <div class="font-bold text-slate-900 text-sm">John L.</div>
-            <div class="text-slate-500 text-xs font-semibold">Singapore Transit (5h Layover)</div>
+            <div class="text-slate-400 text-xs">Singapore Transit (5h Layover)</div>
           </div>
         </div>
       </div>
@@ -611,67 +607,59 @@
 </section>
 
 <!-- FAQ SECTION -->
-<section class="py-16 bg-slate-50" id="faq">
-  <div class="container max-w-4xl">
-    <div class="text-center mb-12 reveal">
-      <span class="inline-block text-sky-600 font-bold text-sm uppercase tracking-wider mb-2">FAQ</span>
-      <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4">Frequently Asked Questions</h2>
-      <p class="text-slate-650 max-w-xl mx-auto">Everything you need to know about exiting CSMIA airport and planning your layover.</p>
+<section class="py-20 bg-slate-50" id="faq">
+  <div class="container max-w-3xl">
+    <div class="text-center mb-14 reveal">
+      <span class="section-label">FAQ</span>
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <p class="section-subtitle">Everything you need to know about exiting CSMIA and planning your layover.</p>
     </div>
-    
-    <div class="space-y-4">
-      <details class="group bg-white border border-slate-200 rounded-2xl p-6 transition-all duration-300 hover:shadow-sm focus-within:ring-2 focus-within:ring-sky-500/20">
-        <summary class="flex items-center justify-between cursor-pointer font-bold text-slate-900 list-none select-none focus:outline-none">
-          <span class="text-base sm:text-lg">Do I need a transit visa to leave Mumbai airport?</span>
-          <span class="transition-transform duration-300 group-open:rotate-180 text-slate-500">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
-            </svg>
+
+    <div class="space-y-3 reveal">
+      <details class="faq-item group">
+        <summary class="flex items-center justify-between cursor-pointer font-bold text-slate-900 list-none select-none p-6 focus:outline-none">
+          <span class="text-sm sm:text-base pr-4">Do I need a transit visa to leave Mumbai airport?</span>
+          <span class="transition-transform duration-300 group-open:rotate-180 text-slate-400 flex-shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
           </span>
         </summary>
-        <div class="mt-4 text-sm sm:text-base text-slate-700 leading-relaxed">
+        <div class="px-6 pb-6 text-sm text-slate-600 leading-relaxed">
           Most international transit passengers exiting the terminal will require a transit visa or tourist e-Visa for India. Passengers exiting Terminal 2 (T2) can obtain e-Visas online in advance. LayoverX helps provide guidance instructions, but we highly recommend checking current Indian immigration directives.
         </div>
       </details>
 
-      <details class="group bg-white border border-slate-200 rounded-2xl p-6 transition-all duration-300 hover:shadow-sm focus-within:ring-2 focus-within:ring-sky-500/20">
-        <summary class="flex items-center justify-between cursor-pointer font-bold text-slate-900 list-none select-none focus:outline-none">
-          <span class="text-base sm:text-lg">What happens if my inbound flight is delayed?</span>
-          <span class="transition-transform duration-300 group-open:rotate-180 text-slate-500">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
-            </svg>
+      <details class="faq-item group">
+        <summary class="flex items-center justify-between cursor-pointer font-bold text-slate-900 list-none select-none p-6 focus:outline-none">
+          <span class="text-sm sm:text-base pr-4">What happens if my inbound flight is delayed?</span>
+          <span class="transition-transform duration-300 group-open:rotate-180 text-slate-400 flex-shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
           </span>
         </summary>
-        <div class="mt-4 text-sm sm:text-base text-slate-700 leading-relaxed">
+        <div class="px-6 pb-6 text-sm text-slate-600 leading-relaxed">
           Our system continuously tracks flight arrivals. If your inbound connection is delayed, our system automatically recalculates safety margins, updates the suppliers, and notifies your assigned chauffeur. If your layover window shrinks below safe thresholds, we will prompt or refund non-feasible segments.
         </div>
       </details>
 
-      <details class="group bg-white border border-slate-200 rounded-2xl p-6 transition-all duration-300 hover:shadow-sm focus-within:ring-2 focus-within:ring-sky-500/20">
-        <summary class="flex items-center justify-between cursor-pointer font-bold text-slate-900 list-none select-none focus:outline-none">
-          <span class="text-base sm:text-lg">Where is my luggage stored during the stopover?</span>
-          <span class="transition-transform duration-300 group-open:rotate-180 text-slate-500">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
-            </svg>
+      <details class="faq-item group">
+        <summary class="flex items-center justify-between cursor-pointer font-bold text-slate-900 list-none select-none p-6 focus:outline-none">
+          <span class="text-sm sm:text-base pr-4">Where is my luggage stored during the stopover?</span>
+          <span class="transition-transform duration-300 group-open:rotate-180 text-slate-400 flex-shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
           </span>
         </summary>
-        <div class="mt-4 text-sm sm:text-base text-slate-700 leading-relaxed">
+        <div class="px-6 pb-6 text-sm text-slate-600 leading-relaxed">
           International baggage checked through to your final destination usually stays on the aircraft. For carry-on items or luggage checked only to Mumbai, CSMIA Terminal 2 features verified Left Luggage cloakrooms. Our airport transit guides walk you directly to these facilities.
         </div>
       </details>
 
-      <details class="group bg-white border border-slate-200 rounded-2xl p-6 transition-all duration-300 hover:shadow-sm focus-within:ring-2 focus-within:ring-sky-500/20">
-        <summary class="flex items-center justify-between cursor-pointer font-bold text-slate-900 list-none select-none focus:outline-none">
-          <span class="text-base sm:text-lg">How do you calculate safe layover buffer windows?</span>
-          <span class="transition-transform duration-300 group-open:rotate-180 text-slate-500">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
-            </svg>
+      <details class="faq-item group">
+        <summary class="flex items-center justify-between cursor-pointer font-bold text-slate-900 list-none select-none p-6 focus:outline-none">
+          <span class="text-sm sm:text-base pr-4">How do you calculate safe layover buffer windows?</span>
+          <span class="transition-transform duration-300 group-open:rotate-180 text-slate-400 flex-shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
           </span>
         </summary>
-        <div class="mt-4 text-sm sm:text-base text-slate-700 leading-relaxed">
+        <div class="px-6 pb-6 text-sm text-slate-600 leading-relaxed">
           We mandate a strict safety buffer: 2 hours subtracted for custom clearance and immigration exit checks, plus another 3 hours for boarding check-ins and security lines. This leaves active stopover hours calculated cleanly to protect your flight connection.
         </div>
       </details>
@@ -680,15 +668,18 @@
 </section>
 
 <!-- CALL TO ACTION -->
-<section class="py-16 bg-white">
+<section class="py-20 bg-white">
   <div class="container">
-    <div class="bg-gradient-to-br from-sky-700 to-sky-900 rounded-3xl p-8 sm:p-16 text-center text-white relative overflow-hidden shadow-xl shadow-sky-900/35">
-      <div class="relative z-10 max-w-2xl mx-auto">
-        <h2 class="text-3xl sm:text-4xl font-extrabold mb-4">Don't Waste Your Mumbai Layover</h2>
-        <p class="text-white/90 mb-8 text-base sm:text-lg leading-relaxed">Escape airport terminal gates. Book verified hotel day-use rooms, transfers, dining, and tours on the only platform dedicated to transit travelers.</p>
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a href="plan-my-layover.html" class="w-full sm:w-auto px-8 py-4 bg-white text-sky-800 font-bold rounded-xl hover:bg-slate-50 transition transform hover:-translate-y-0.5 shadow-md">Plan My Layover Now</a>
-          <a href="contact.html" class="w-full sm:w-auto px-8 py-4 bg-white/10 border border-white/20 text-white font-bold rounded-xl hover:bg-white/20 transition backdrop-blur-md">Speak with Transit Expert</a>
+    <div class="bg-gradient-to-br from-sky-600 via-sky-700 to-indigo-800 rounded-3xl p-10 sm:p-16 text-center text-white relative overflow-hidden reveal" style="box-shadow:0 24px 48px -12px rgba(7,89,133,0.4)">
+      <!-- Background decoration -->
+      <div class="absolute -top-16 -right-16 w-64 h-64 bg-white/5 rounded-full" aria-hidden="true"></div>
+      <div class="absolute -bottom-12 -left-12 w-48 h-48 bg-white/5 rounded-full" aria-hidden="true"></div>
+      <div class="relative z-10 max-w-xl mx-auto">
+        <h2 class="text-3xl sm:text-4xl font-extrabold mb-4 leading-tight">Don't Waste Your Mumbai Layover</h2>
+        <p class="text-white/85 mb-10 text-base sm:text-lg leading-relaxed">Escape airport terminal gates. Book verified hotel day-use rooms, transfers, dining, and tours on the only platform dedicated to transit travelers.</p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+          <a href="plan-my-layover.html" class="w-full sm:w-auto px-8 py-3.5 bg-white text-sky-800 font-bold rounded-xl hover:bg-slate-50 transition-all shadow-lg hover:-translate-y-0.5">Plan My Layover Now</a>
+          <a href="contact.html" class="w-full sm:w-auto px-8 py-3.5 bg-white/10 border border-white/25 text-white font-bold rounded-xl hover:bg-white/20 transition-all backdrop-blur-sm">Speak with Transit Expert</a>
         </div>
       </div>
     </div>

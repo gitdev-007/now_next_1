@@ -1,0 +1,7 @@
+@import "./styles/tokens/tokens.css";
+@import "tailwindcss";
+@layer base {
+  @import "./design-system/index.css";
+}
+@source "./pages/**/*.html";
+@source "./components/ui/**/*.html";

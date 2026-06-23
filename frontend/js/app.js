@@ -5395,10 +5395,34 @@
 
   window.layoverx.logError = logErrorToStorage;
 
+  /* ===== REVEAL ON SCROLL ANIMATION ===== */
+  function initReveal() {
+    const elements = document.querySelectorAll('.reveal');
+    if (!elements.length) return;
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+      elements.forEach((el) => observer.observe(el));
+    } else {
+      // Fallback: reveal immediately if observer not supported
+      elements.forEach((el) => el.classList.add('revealed'));
+    }
+  }
+
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
+    document.addEventListener('DOMContentLoaded', initReveal);
   } else {
     init();
+    initReveal();
   }
 
 })();
