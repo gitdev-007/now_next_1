@@ -1,0 +1,149 @@
+<!-- SUPPLIER APPLICATION STATUS PAGE -->
+<section class="relative bg-slate-900 text-white pt-24 pb-16 overflow-hidden">
+  <div class="absolute inset-0 bg-cover bg-center opacity-10" style="background-image:url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=1200&auto=format&fm=webp&q=75')" role="img" aria-label="Airport Runway Background"></div>
+  <div class="container relative z-10">
+    <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+      <div class="space-y-2">
+        <h1 class="text-3xl font-black tracking-tight">Application Status</h1>
+        <p class="text-sm text-sky-200">Track your LayoverX partner onboarding progress</p>
+      </div>
+      <a href="supplier-dashboard.html" class="px-4 py-4 bg-theme-primary hover:bg-sky-800 text-white text-xs font-bold rounded-xl shadow-lg transition">Supplier Dashboard</a>
+    </div>
+  </div>
+</section>
+
+<section class="section bg-slate-50 min-h-[50vh]">
+  <div class="container">
+    <div class="max-w-xl mx-auto bg-white border border-gray-200 rounded-3xl p-6 sm:p-8 shadow-lg text-center space-y-6">
+      
+      <div class="w-16 h-16 bg-emerald-50/40 text-sky-600 rounded-full flex items-center justify-center text-3xl mx-auto border border-sky-100">
+        📋
+      </div>
+      
+      <div class="space-y-1">
+        <h2 class="text-xl font-extrabold text-gray-900" id="status-biz-name">Loading Business Application...</h2>
+        <p class="text-xs text-slate-500">Reference Code: <strong id="status-app-ref" class="text-slate-700">--</strong></p>
+      </div>
+
+      <!-- Tracker Stepper Vertical -->
+      <div class="space-y-6 text-left max-w-sm mx-auto pt-4">
+        
+        <!-- Step 1: Submitted -->
+        <div class="flex items-start gap-4">
+          <div class="w-8 h-8 rounded-full bg-emerald-500 text-white font-bold text-xs flex items-center justify-center flex-shrink-0 shadow-md">✓</div>
+          <div>
+            <h3 class="text-sm font-extrabold text-gray-900">Application Submitted</h3>
+            <p class="text-[11px] text-slate-500 mt-1" id="status-submitted-date">Credentials logged in verification queue.</p>
+          </div>
+        </div>
+
+        <!-- Step 2: Under Review -->
+        <div class="flex items-start gap-4">
+          <div class="w-8 h-8 rounded-full bg-amber-500 text-white font-bold text-xs flex items-center justify-center flex-shrink-0 shadow-md animate-pulse" id="step-review-indicator">2</div>
+          <div>
+            <h3 class="text-sm font-extrabold text-gray-900" id="step-review-title">Under Review</h3>
+            <p class="text-[11px] text-slate-500 mt-1" id="status-review-desc">Operational desk checks license files (SLA: 24h).</p>
+          </div>
+        </div>
+
+        <!-- Step 3: Approved -->
+        <div class="flex items-start gap-4">
+          <div class="w-8 h-8 rounded-full bg-gray-200 text-gray-500 font-bold text-xs flex items-center justify-center flex-shrink-0 border border-gray-300" id="step-decision-indicator">3</div>
+          <div>
+            <h3 class="text-sm font-extrabold text-gray-400" id="step-decision-title">Marketplace Decision</h3>
+            <p class="text-[11px] text-slate-400 mt-1" id="status-decision-desc">Approved store credentials go live on BOM search queries.</p>
+          </div>
+        </div>
+        
+      </div>
+
+      <hr class="border-gray-100 my-6"/>
+
+      <div class="bg-slate-50 border border-slate-200/60 p-4 rounded-2xl text-left text-xs text-slate-650 space-y-2">
+        <p><strong>💡 What happens next?</strong></p>
+        <p>Once approved, your services will be searchable on Mumbai stopovers. You can access the partner console to edit pricing, manage booking requests, and set live terminal availability slots.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    loadStatusDetails();
+  });
+
+  async function loadStatusDetails() {
+    const bizNameEl = document.getElementById('status-biz-name');
+    const appRefEl = document.getElementById('status-app-ref');
+    const subDateEl = document.getElementById('status-submitted-date');
+    const revInd = document.getElementById('step-review-indicator');
+    const revTitle = document.getElementById('step-review-title');
+    const decInd = document.getElementById('step-decision-indicator');
+    const decTitle = document.getElementById('step-decision-title');
+    const decDesc = document.getElementById('status-decision-desc');
+
+    if (!bizNameEl) return;
+
+    let app = null;
+    
+    // Attempt to read from Firestore if logged in
+    const user = window.layoverxAuth.currentUser;
+    if (user && window.layoverxDb) {
+      try {
+        const querySnapshot = await window.layoverxDb.collection("supplier_applications")
+          .where("userId", "==", user.uid)
+          .get();
+        const apps = [];
+        querySnapshot.forEach(doc => apps.push(doc.data()));
+        if (apps.length > 0) {
+          app = apps[0];
+        }
+      } catch (err) { console.warn(err); }
+    }
+
+    // Fallback to localStorage mock application data
+    if (!app) {
+      try {
+        const stored = localStorage.getItem('layoverx_supplier_application');
+        if (stored) app = JSON.parse(stored);
+      } catch (e) { console.error(e); }
+    }
+    if (!app) {
+      app = {
+        applicationId: 'APP-MOCK-MUM',
+        businessName: 'Grand Transit Inn Sahar',
+        status: 'pending_review',
+        createdAt: { seconds: Date.now() / 1000 }
+      };
+    }
+
+    bizNameEl.textContent = app.businessName;
+    appRefEl.textContent = app.applicationId;
+    
+    const subDate = app.createdAt?.seconds ? new Date(app.createdAt.seconds * 1000) : new Date();
+    subDateEl.textContent = `Credentials logged on ${subDate.toLocaleDateString()} inside BOM queue.`;
+
+    if (app.status === 'approved') {
+      revInd.className = "w-8 h-8 rounded-full bg-emerald-500 text-white font-bold text-xs flex items-center justify-center flex-shrink-0 shadow-md";
+      revInd.textContent = '✓';
+      revTitle.className = "text-sm font-extrabold text-gray-900";
+      
+      decInd.className = "w-8 h-8 rounded-full bg-emerald-500 text-white font-bold text-xs flex items-center justify-center flex-shrink-0 shadow-md";
+      decInd.textContent = '✓';
+      decTitle.className = "text-sm font-extrabold text-emerald-600";
+      decTitle.textContent = "Approved";
+      decDesc.textContent = "Your business listing is now live on BOM marketplace queries!";
+    } else if (app.status === 'rejected') {
+      revInd.className = "w-8 h-8 rounded-full bg-emerald-500 text-white font-bold text-xs flex items-center justify-center flex-shrink-0 shadow-md";
+      revInd.textContent = '✓';
+      revTitle.className = "text-sm font-extrabold text-gray-900";
+      
+      decInd.className = "w-8 h-8 rounded-full bg-red-500 text-white font-bold text-xs flex items-center justify-center flex-shrink-0 shadow-md";
+      decInd.textContent = '✕';
+      decTitle.className = "text-sm font-extrabold text-red-650";
+      decTitle.textContent = "Application Rejected";
+      decDesc.textContent = "Verification checks failed. Please check review notes in supplier dashboard.";
+    }
+  }
+</script>

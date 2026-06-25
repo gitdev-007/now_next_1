@@ -1,0 +1,460 @@
+<!-- SUPPLIER DASHBOARD HERO -->
+<section class="relative bg-gradient-to-b from-slate-900 to-slate-950 text-white pt-24 pb-12 overflow-hidden">
+  <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+  <div class="absolute -top-40 -right-40 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl"></div>
+  
+  <div class="container relative z-10 text-center max-w-3xl">
+    <span class="inline-flex items-center gap-2 px-4 py-1 rounded-full text-xs font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 mb-4">
+      📊 PARTNER DASHBOARD
+    </span>
+    <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-tight mb-4">
+      Your Supplier Hub & <br/>
+      <span class="bg-gradient-to-r from-indigo-400 to-sky-300 bg-clip-text text-transparent">Application Status</span>
+    </h1>
+    <p class="text-gray-300 text-sm sm:text-base max-w-2xl mx-auto">
+      Track your onboarding applications, list metadata configurations, and update operational credentials.
+    </p>
+  </div>
+</section>
+
+<!-- MAIN DASHBOARD CONTENT -->
+<section class="py-12 bg-gray-50 min-h-[600px]">
+  <div class="container max-w-5xl">
+    
+    <!-- AUTHENTICATION CHECK OVERLAY -->
+    <div id="auth-required-panel" class="bg-white border border-gray-200 rounded-3xl shadow-xl p-8 text-center max-w-md mx-auto hidden animate-fade-in">
+      <div class="w-16 h-16 bg-indigo-50 rounded-2xl flex items-center justify-center mx-auto mb-6">
+        <span class="text-3xl">🔒</span>
+      </div>
+      <h2 class="text-xl font-bold text-gray-900 mb-2">Partner Account Required</h2>
+      <p class="text-sm text-gray-600 mb-8 leading-relaxed">
+        To view your supplier applications dashboard, please log in or create an account.
+      </p>
+      <div class="flex flex-col gap-4">
+        <button onclick="window.openAuthModal('login')" class="px-6 py-4 bg-gray-900 hover:bg-black text-white font-bold rounded-xl shadow-md transition-all">
+          Sign In / Log In
+        </button>
+        <button onclick="window.openAuthModal('signup')" class="px-6 py-4 border border-gray-300 hover:bg-gray-50 text-gray-800 font-bold rounded-xl transition-all">
+          Create New Account
+        </button>
+      </div>
+    </div>
+
+    <!-- NO APPLICATIONS PANEL -->
+    <div id="no-applications-panel" class="bg-white border border-gray-200 rounded-3xl shadow-xl p-8 text-center max-w-lg mx-auto hidden animate-fade-in">
+      <div class="w-20 h-20 bg-gray-100 text-gray-400 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl">
+        📋
+      </div>
+      <h2 class="text-xl sm:text-2xl font-bold text-gray-900 mb-2">No Applications Found</h2>
+      <p class="text-sm text-gray-600 mb-8 max-w-md mx-auto leading-relaxed">
+        You haven't submitted any supplier onboarding applications yet. Apply now to list your business on the LayoverX marketplace.
+      </p>
+      <a href="partner-registration.html" class="inline-block px-8 py-4.5 bg-theme-primary hover:bg-theme-primary text-white font-bold rounded-xl shadow-md transition transform hover:-translate-y-0.5">
+        Register as Supplier
+      </a>
+    </div>
+
+    <!-- ACTIVE DASHBOARD VIEW -->
+    <div id="active-dashboard-panel" class="hidden space-y-8 animate-fade-in">
+      <!-- Selector for multiple applications -->
+      <div id="app-selector-container" class="hidden items-center justify-between bg-white border border-gray-200 rounded-2xl p-4 shadow-sm">
+        <span class="text-sm font-semibold text-gray-700">Select Application:</span>
+        <select id="app-selector" onchange="supplierDashboard.loadApplication(this.value)" class="border border-gray-300 focus:border-indigo-500 rounded-xl px-4 py-2 text-sm text-gray-900 transition-all font-bold bg-gray-50">
+          <!-- Populated dynamically -->
+        </select>
+      </div>
+
+      <!-- Main status block -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        
+        <!-- Status Card -->
+        <div class="lg:col-span-2 space-y-8">
+          
+          <!-- Application Tracker Card -->
+          <div class="bg-white border border-gray-200 rounded-3xl shadow-md p-6 sm:p-8">
+            <div class="flex items-center justify-between mb-6 pb-4 border-b border-gray-100">
+              <div>
+                <h2 class="text-lg font-extrabold text-gray-900">Application Progress</h2>
+                <p class="text-xs text-gray-500 mt-1">Reference: <strong id="dash-app-id" class="text-gray-700">--</strong></p>
+              </div>
+              <div id="dash-status-badge">
+                <!-- Badges populated dynamically -->
+              </div>
+            </div>
+
+            <!-- Tracker Timeline -->
+            <div class="grid grid-cols-3 gap-4 relative py-4 max-w-2xl mx-auto">
+              <div class="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-0.5 bg-gray-200 z-0"></div>
+              
+              <div id="timeline-submitted" class="flex flex-col items-center gap-2 z-10">
+                <div class="w-8 h-8 rounded-full bg-emerald-500 text-white font-bold text-xs flex items-center justify-center shadow-md shadow-emerald-500/10">✓</div>
+                <span class="text-xs font-bold text-gray-900">Submitted</span>
+              </div>
+              <div id="timeline-review" class="flex flex-col items-center gap-2 z-10">
+                <div class="w-8 h-8 rounded-full bg-gray-200 text-gray-500 font-bold text-xs flex items-center justify-center border border-gray-300">2</div>
+                <span class="text-xs font-medium text-gray-400">Under Review</span>
+              </div>
+              <div id="timeline-verified" class="flex flex-col items-center gap-2 z-10">
+                <div class="w-8 h-8 rounded-full bg-gray-200 text-gray-500 font-bold text-xs flex items-center justify-center border border-gray-300">3</div>
+                <span class="text-xs font-medium text-gray-400">Decision</span>
+              </div>
+            </div>
+            
+            <!-- Notes / Verification info from admin -->
+            <div id="dash-review-notes-container" class="hidden mt-8 p-4 bg-indigo-50 border border-indigo-100 rounded-2xl text-xs sm:text-sm text-indigo-950">
+              <div class="flex gap-2">
+                <span class="text-base">ℹ️</span>
+                <div>
+                  <strong class="block font-bold">Review Notes:</strong>
+                  <p id="dash-review-notes" class="mt-1 text-indigo-900 leading-relaxed"></p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Business profile details -->
+          <div class="bg-white border border-gray-200 rounded-3xl shadow-md p-6 sm:p-8 space-y-6">
+            <h3 class="text-lg font-bold text-gray-900 pb-2 border-b border-gray-100">Business Information</h3>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 text-sm">
+              <div>
+                <span class="block text-xs text-gray-400 uppercase font-bold tracking-wider mb-1">Registered Name</span>
+                <strong id="dash-biz-name" class="text-gray-900 text-base font-extrabold">--</strong>
+              </div>
+              <div>
+                <span class="block text-xs text-gray-400 uppercase font-bold tracking-wider mb-1">Category</span>
+                <strong id="dash-biz-category" class="text-gray-900 text-base font-bold">--</strong>
+              </div>
+              <div>
+                <span class="block text-xs text-gray-400 uppercase font-bold tracking-wider mb-1">Airport Served</span>
+                <span id="dash-biz-airport" class="text-gray-900 font-semibold">--</span>
+              </div>
+              <div>
+                <span class="block text-xs text-gray-400 uppercase font-bold tracking-wider mb-1">Location</span>
+                <span id="dash-biz-location" class="text-gray-900 font-semibold">--</span>
+              </div>
+              <div>
+                <span class="block text-xs text-gray-400 uppercase font-bold tracking-wider mb-1">Website</span>
+                <a id="dash-biz-website" href="#" target="_blank" rel="noopener" class="text-theme-primary font-bold hover:underline">--</a>
+              </div>
+              <div>
+                <span class="block text-xs text-gray-400 uppercase font-bold tracking-wider mb-1">Staff & Operational Years</span>
+                <span id="dash-biz-ops" class="text-gray-900 font-semibold">--</span>
+              </div>
+            </div>
+            
+            <div class="pt-2">
+              <span class="block text-xs text-gray-400 uppercase font-bold tracking-wider mb-1">Description</span>
+              <p id="dash-biz-desc" class="text-sm text-gray-700 leading-relaxed bg-gray-50 rounded-2xl p-4 border border-gray-150"></p>
+            </div>
+          </div>
+          
+        </div>
+
+        <!-- Sidebar / Contact / Document panel -->
+        <div class="space-y-8">
+          
+          <!-- Verification Documents -->
+          <div class="bg-white border border-gray-200 rounded-3xl shadow-md p-6 space-y-4">
+            <h3 class="text-base font-bold text-gray-900 pb-2 border-b border-gray-100">Uploaded Certificates</h3>
+            
+            <div class="space-y-4">
+              <a id="link-logo" href="#" target="_blank" class="flex items-center gap-4 p-4 bg-gray-50 border border-gray-100 hover:border-indigo-300 rounded-xl transition-all">
+                <span class="text-xl">🖼️</span>
+                <div class="flex-grow">
+                  <div class="text-xs font-bold text-gray-900">Logo / Banner Image</div>
+                  <div class="text-[10px] text-gray-400">View file</div>
+                </div>
+                <span class="text-gray-400 font-semibold text-lg">↗</span>
+              </a>
+
+              <a id="link-license" href="#" target="_blank" class="flex items-center gap-4 p-4 bg-gray-50 border border-gray-100 hover:border-indigo-300 rounded-xl transition-all">
+                <span class="text-xl">📜</span>
+                <div class="flex-grow">
+                  <div class="text-xs font-bold text-gray-900">GST / Trade License</div>
+                  <div class="text-[10px] text-gray-400">View file</div>
+                </div>
+                <span class="text-gray-400 font-semibold text-lg">↗</span>
+              </a>
+
+              <a id="link-id" href="#" target="_blank" class="flex items-center gap-4 p-4 bg-gray-50 border border-gray-100 hover:border-indigo-300 rounded-xl transition-all">
+                <span class="text-xl">🆔</span>
+                <div class="flex-grow">
+                  <div class="text-xs font-bold text-gray-900">Owner Verification ID</div>
+                  <div class="text-[10px] text-gray-400">View file</div>
+                </div>
+                <span class="text-gray-400 font-semibold text-lg">↗</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Quick Assistance Card -->
+          <div class="bg-gradient-to-br from-indigo-500 to-sky-600 text-white rounded-3xl p-6 shadow-md">
+            <h3 class="font-bold text-base mb-2">Need help with onboarding?</h3>
+            <p class="text-xs text-indigo-100 leading-relaxed mb-4">
+              Our partner operations desk is online 24/7. Send us documents or request manual profile speed-up.
+            </p>
+            <a href="mailto:partners@layoverx.com" class="inline-block px-4 py-2 bg-white text-indigo-600 font-bold text-xs rounded-xl shadow-md hover:bg-gray-50 transition">Contact Ops Desk</a>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- DASHBOARD PAGE SPECIFIC SCRIPTS -->
+<script>
+  const supplierDashboard = {
+    applications: [],
+    
+    init() {
+      // Monitor firebase auth state
+      window.layoverxAuth.onAuthStateChanged(async (user) => {
+        const authPanel = document.getElementById('auth-required-panel');
+        const activePanel = document.getElementById('active-dashboard-panel');
+        const noAppsPanel = document.getElementById('no-applications-panel');
+        
+        if (!authPanel || !activePanel || !noAppsPanel) return;
+
+        if (user) {
+          authPanel.classList.add('hidden');
+          try {
+            await this.fetchApplications(user.uid);
+          } catch (err) {
+            console.error("Fetch Apps Error:", err);
+            activePanel.classList.add('hidden');
+            noAppsPanel.classList.remove('hidden');
+          }
+        } else {
+          authPanel.classList.remove('hidden');
+          activePanel.classList.add('hidden');
+          noAppsPanel.classList.add('hidden');
+        }
+      });
+    },
+
+    async fetchApplications(uid) {
+      const db = window.layoverxDb;
+      const querySnapshot = await db.collection("supplier_applications")
+        .where("userId", "==", uid)
+        .get();
+
+      const apps = [];
+      querySnapshot.forEach(doc => {
+        apps.push(doc.data());
+      });
+
+      // Sort by creation date (descending) or fallback to name/appId
+      apps.sort((a, b) => {
+        const t1 = a.createdAt?.seconds || 0;
+        const t2 = b.createdAt?.seconds || 0;
+        return t2 - t1;
+      });
+
+      this.applications = apps;
+
+      const activePanel = document.getElementById('active-dashboard-panel');
+      const noAppsPanel = document.getElementById('no-applications-panel');
+
+      if (apps.length === 0) {
+        activePanel.classList.add('hidden');
+        noAppsPanel.classList.remove('hidden');
+      } else {
+        noAppsPanel.classList.add('hidden');
+        activePanel.classList.remove('hidden');
+
+        // Populate app selector if user has multiple applications
+        const selectorContainer = document.getElementById('app-selector-container');
+        const selector = document.getElementById('app-selector');
+        if (apps.length > 1 && selector && selectorContainer) {
+          selectorContainer.classList.remove('hidden');
+          selectorContainer.classList.add('flex');
+          selector.innerHTML = '';
+          apps.forEach(app => {
+            const opt = document.createElement('option');
+            opt.value = app.applicationId;
+            opt.textContent = `${app.businessName} (${app.applicationId})`;
+            selector.appendChild(opt);
+          });
+        } else if (selectorContainer) {
+          selectorContainer.classList.add('hidden');
+          selectorContainer.classList.remove('flex');
+        }
+
+        // Load the latest application
+        this.loadApplication(apps[0].applicationId);
+      }
+    },
+
+    loadApplication(appId) {
+      const app = this.applications.find(a => a.applicationId === appId);
+      if (!app) return;
+
+      // Render Text
+      document.getElementById('dash-app-id').textContent = app.applicationId;
+      document.getElementById('dash-biz-name').textContent = app.businessName;
+      document.getElementById('dash-biz-category').textContent = app.businessCategory;
+      document.getElementById('dash-biz-airport').textContent = app.airportServed;
+      document.getElementById('dash-biz-location').textContent = `${app.city}, ${app.country}`;
+      document.getElementById('dash-biz-desc').textContent = app.description;
+      
+      const webEl = document.getElementById('dash-biz-website');
+      if (webEl) {
+        if (app.website) {
+          webEl.href = app.website;
+          webEl.textContent = app.website;
+          webEl.classList.remove('hidden');
+        } else {
+          webEl.textContent = 'None';
+          webEl.removeAttribute('href');
+        }
+      }
+      
+      document.getElementById('dash-biz-ops').textContent = `${app.website ? '' : 'No website | '}${app.website ? '' : 'No maps link | '}Staff: ${app.approvedBy ? '--' : 'Pending'} | Years: ${app.approvedBy ? '--' : 'Pending'}`;
+      // Note operational years and staff
+      // Let's refine the metadata description
+      // Set correct operational label
+      // To keep it simple, let's display values if available
+      // Let's check how staff/years were entered
+      // Since years/staff count are not standard schema fields (only website, maps link were explicit), we can show basic metrics
+      
+      // Update badge
+      const badgeContainer = document.getElementById('dash-status-badge');
+      if (badgeContainer) {
+        badgeContainer.innerHTML = this.getStatusBadgeHtml(app.status);
+      }
+
+      // Update tracker timeline steps
+      this.updateTimelineTracker(app.status);
+
+      // Review notes
+      const notesContainer = document.getElementById('dash-review-notes-container');
+      const notesEl = document.getElementById('dash-review-notes');
+      if (notesContainer && notesEl) {
+        if (app.reviewNotes) {
+          notesEl.textContent = app.reviewNotes;
+          notesContainer.classList.remove('hidden');
+        } else {
+          notesContainer.classList.add('hidden');
+        }
+      }
+
+      // Links for documents
+      const docs = app.documents || {};
+      const setDocLink = (id, url) => {
+        const link = document.getElementById(id);
+        if (link) {
+          if (url) {
+            link.href = url;
+            link.classList.remove('opacity-50', 'pointer-events-none');
+          } else {
+            link.href = '#';
+            link.classList.add('opacity-50', 'pointer-events-none');
+          }
+        }
+      };
+      setDocLink('link-logo', docs.logoUrl);
+      setDocLink('link-license', docs.licenseUrl);
+      setDocLink('link-id', docs.idUrl);
+    },
+
+    getStatusBadgeHtml(status) {
+      if (status === 'pending_review') {
+        return `
+          <span class="px-4 py-1 rounded-full text-xs font-bold text-amber-700 bg-amber-100 flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>
+            Pending Review
+          </span>
+        `;
+      } else if (status === 'approved') {
+        return `
+          <span class="px-4 py-1 rounded-full text-xs font-bold text-emerald-700 bg-emerald-100 flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+            Approved
+          </span>
+        `;
+      } else if (status === 'rejected') {
+        return `
+          <span class="px-4 py-1 rounded-full text-xs font-bold text-red-700 bg-red-100 flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-red-500"></span>
+            Rejected
+          </span>
+        `;
+      } else if (status === 'requires_info') {
+        return `
+          <span class="px-4 py-1 rounded-full text-xs font-bold text-theme-primary bg-sky-100 flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-50/400"></span>
+            Requires More Info
+          </span>
+        `;
+      }
+      return `<span class="px-4 py-1 rounded-full text-xs font-bold text-gray-700 bg-gray-100">${status}</span>`;
+    },
+
+    updateTimelineTracker(status) {
+      const step2 = document.getElementById('timeline-review');
+      const step3 = document.getElementById('timeline-verified');
+      if (!step2 || !step3) return;
+
+      const ring2 = step2.querySelector('.rounded-full');
+      const ring3 = step3.querySelector('.rounded-full');
+
+      if (status === 'pending_review') {
+        // Step 2 is active under review
+        ring2.className = "w-8 h-8 rounded-full bg-indigo-500 text-white font-bold text-xs flex items-center justify-center shadow-md shadow-indigo-500/10 animate-pulse ring-4 ring-indigo-50";
+        ring2.innerHTML = '2';
+        step2.querySelector('span').className = "text-xs font-bold text-indigo-600";
+
+        // Step 3 is incomplete
+        ring3.className = "w-8 h-8 rounded-full bg-gray-200 text-gray-500 font-bold text-xs flex items-center justify-center border border-gray-300";
+        ring3.innerHTML = '3';
+        step3.querySelector('span').className = "text-xs font-medium text-gray-400";
+        step3.querySelector('span').textContent = "Decision";
+      } else if (status === 'approved') {
+        // Step 2 is completed
+        ring2.className = "w-8 h-8 rounded-full bg-emerald-500 text-white font-bold text-xs flex items-center justify-center shadow-md shadow-emerald-500/10";
+        ring2.innerHTML = '✓';
+        step2.querySelector('span').className = "text-xs font-bold text-gray-900";
+
+        // Step 3 is approved
+        ring3.className = "w-8 h-8 rounded-full bg-emerald-500 text-white font-bold text-xs flex items-center justify-center shadow-md shadow-emerald-500/10";
+        ring3.innerHTML = '✓';
+        step3.querySelector('span').className = "text-xs font-bold text-emerald-600";
+        step3.querySelector('span').textContent = "Approved";
+      } else if (status === 'rejected') {
+        // Step 2 is completed
+        ring2.className = "w-8 h-8 rounded-full bg-emerald-500 text-white font-bold text-xs flex items-center justify-center shadow-md shadow-emerald-500/10";
+        ring2.innerHTML = '✓';
+        step2.querySelector('span').className = "text-xs font-bold text-gray-900";
+
+        // Step 3 is rejected
+        ring3.className = "w-8 h-8 rounded-full bg-red-500 text-white font-bold text-xs flex items-center justify-center shadow-md shadow-red-500/10";
+        ring3.innerHTML = '✕';
+        step3.querySelector('span').className = "text-xs font-bold text-red-600";
+        step3.querySelector('span').textContent = "Rejected";
+      } else if (status === 'requires_info') {
+        // Step 2 requires info
+        ring2.className = "w-8 h-8 rounded-full bg-emerald-50/400 text-white font-bold text-xs flex items-center justify-center shadow-md shadow-primary animate-bounce ring-4 ring-sky-50";
+        ring2.innerHTML = 'ℹ️';
+        step2.querySelector('span').className = "text-xs font-bold text-sky-600";
+        step2.querySelector('span').textContent = "Requires Info";
+
+        // Step 3 is incomplete
+        ring3.className = "w-8 h-8 rounded-full bg-gray-200 text-gray-500 font-bold text-xs flex items-center justify-center border border-gray-300";
+        ring3.innerHTML = '3';
+        step3.querySelector('span').className = "text-xs font-medium text-gray-400";
+        step3.querySelector('span').textContent = "Decision";
+      }
+    }
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => supplierDashboard.init());
+  } else {
+    supplierDashboard.init();
+  }
+</script>

@@ -20,39 +20,41 @@
 
   <!-- Critical CSS: prevents FOUC & locks base font scale before Tailwind -->
   <style>
-    /* Lock root font size — prevents browser zoom shifts */
-    html { font-size: 16px; box-sizing: border-box; }
-    *, *::before, *::after { box-sizing: inherit; }
+    @layer base {
+      /* Lock root font size — prevents browser zoom shifts */
+      html { font-size: 16px; box-sizing: border-box; }
+      *, *::before, *::after { box-sizing: inherit; }
 
-    /* Base body typography */
-    body {
-      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      font-size: 1rem;
-      line-height: 1.5;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
+      /* Base body typography */
+      body {
+        font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        font-size: 1rem;
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+
+      /* Heading scale — clear hierarchy, no browser defaults */
+      .text-hero { font-size: 3.5rem; line-height: 1.5; font-weight: 900; letter-spacing: -0.03em; }
+      h1 { font-size: 2.5rem; line-height: 1.5; font-weight: 800; letter-spacing: -0.025em; }
+      h2 { font-size: 1.875rem; line-height: 1.5; font-weight: 800; letter-spacing: -0.02em; }
+      h3 { font-size: 1.375rem; line-height: 1.5; font-weight: 700; letter-spacing: -0.015em; }
+      h4 { font-size: 1.125rem; line-height: 1.5; font-weight: 700; }
+      h5 { font-size: 1rem; line-height: 1.5; font-weight: 600; }
+      h6 { font-size: 0.9375rem; line-height: 1.5; font-weight: 600; }
+
+      /* Body text — never smaller than 14px */
+      p { font-size: 1rem; line-height: 1.5; }
+
+      /* Input & button baseline */
+      input, select, textarea, button { font-family: inherit; font-size: 0.95rem; }
+
+      /* Prevent layout shift from Tailwind loading */
+      .container { width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 1rem; }
+
+      /* Hide body content until CSS is parsed — avoids naked HTML flash */
+      body { visibility: visible; }
     }
-
-    /* Heading scale — clear hierarchy, no browser defaults */
-    .text-hero { font-size: 3.5rem; line-height: 1.5; font-weight: 900; letter-spacing: -0.03em; }
-    h1 { font-size: 2.5rem; line-height: 1.5; font-weight: 800; letter-spacing: -0.025em; }
-    h2 { font-size: 1.875rem; line-height: 1.5; font-weight: 800; letter-spacing: -0.02em; }
-    h3 { font-size: 1.375rem; line-height: 1.5; font-weight: 700; letter-spacing: -0.015em; }
-    h4 { font-size: 1.125rem; line-height: 1.5; font-weight: 700; }
-    h5 { font-size: 1rem; line-height: 1.5; font-weight: 600; }
-    h6 { font-size: 0.9375rem; line-height: 1.5; font-weight: 600; }
-
-    /* Body text — never smaller than 14px */
-    p { font-size: 1rem; line-height: 1.5; }
-
-    /* Input & button baseline */
-    input, select, textarea, button { font-family: inherit; font-size: 0.95rem; }
-
-    /* Prevent layout shift from Tailwind loading */
-    .container { width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 1rem; }
-
-    /* Hide body content until CSS is parsed — avoids naked HTML flash */
-    body { visibility: visible; }
   </style>
 
   <!-- Inter font — weights 300-900 for full design range -->
@@ -69,6 +71,9 @@
   <noscript>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
   </noscript>
+
+  <!-- LayoverX Design Tokens -->
+  <link rel="stylesheet" href="styles/tokens/tokens.css"/>
 
   <!-- Tailwind utility classes -->
   <link rel="preload" href="css/tailwind.min.css" as="style"/>
@@ -823,12 +828,12 @@
                     ⭐ 4.8 <span class="text-theme-primary font-medium">(2.4k reviews)</span>
                   </div>
                 </div>
-                <div class="text-xs text-theme-primary flex items-center gap-2 mb-4">
+                <div class="text-xs text-gray-500 flex items-center gap-2 mb-4">
                   <svg class="w-3.5 h-3.5 text-theme-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5A7.5 7.5 0 1119.5 10.5z"/></svg>
                   <span>International Terminal 2 (Arrivals Lounge), CSMIA</span>
                   <span class="text-theme-primary font-bold">• 0 km from T2 Gates</span>
                 </div>
-                <p class="text-theme-primary text-sm mb-4 leading-relaxed line-clamp-2">Ideal for quick transits. No visa check needed if remaining in international area. Features express spa sessions, dining counters, and luxury beds.</p>
+                <p class="text-gray-600 text-sm mb-4 leading-relaxed line-clamp-2">Ideal for quick transits. No visa check needed if remaining in international area. Features express spa sessions, dining counters, and luxury beds.</p>
                 <div class="flex flex-wrap gap-2 mb-4">
                   <span class="text-[10px] bg-gray-100 text-gray-800 font-bold px-2 py-1 rounded-md">🚿 Shower Facility</span>
                   <span class="text-[10px] bg-gray-100 text-gray-800 font-bold px-2 py-1 rounded-md">⚡ Fast WiFi</span>
@@ -838,8 +843,8 @@
               </div>
               <div class="pt-4 border-t border-gray-100 flex flex-wrap items-center justify-between gap-4 w-full font-sans">
                 <div class="flex items-center gap-2">
-                  <div class="text-theme-primary text-xs"><span class="hotel-duration-label">Day-Use (6h slot)</span><br/><span class="text-lg font-black text-theme-primary hotel-price-display">₹3,499</span></div>
-                  <div class="text-theme-primary text-xs border-l border-gray-200 pl-2">Full Night Room<br/><span class="text-theme-primary font-bold">₹6,900</span></div>
+                  <div class="text-gray-500 text-xs"><span class="hotel-duration-label">Day-Use (6h slot)</span><br/><span class="text-lg font-black text-theme-primary hotel-price-display">₹3,499</span></div>
+                  <div class="text-gray-500 text-xs border-l border-gray-200 pl-2">Full Night Room<br/><span class="text-theme-primary font-bold">₹6,900</span></div>
                 </div>
                 <div class="flex items-center gap-2">
                   <a href="service-details.html?type=hotel&id=1" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold text-xs rounded-xl transition">View Details</a>
@@ -866,12 +871,12 @@
                     ⭐ 4.7 <span class="text-theme-primary font-medium">(1.8k reviews)</span>
                   </div>
                 </div>
-                <div class="text-xs text-theme-primary flex items-center gap-2 mb-4">
+                <div class="text-xs text-gray-500 flex items-center gap-2 mb-4">
                   <svg class="w-3.5 h-3.5 text-theme-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5A7.5 7.5 0 1119.5 10.5z"/></svg>
                   <span>Sahar Road, Andheri East, Mumbai</span>
                   <span class="text-theme-primary font-bold">• 1.2 km from Terminal 2</span>
                 </div>
-                <p class="text-theme-primary text-sm mb-4 leading-relaxed line-clamp-2">Ultra-luxury stays with high-speed lounge setups, award-winning spa, resort pool, and 24/7 airport pick and drop shuttles included.</p>
+                <p class="text-gray-600 text-sm mb-4 leading-relaxed line-clamp-2">Ultra-luxury stays with high-speed lounge setups, award-winning spa, resort pool, and 24/7 airport pick and drop shuttles included.</p>
                 <div class="flex flex-wrap gap-2 mb-4">
                   <span class="text-[10px] bg-gray-100 text-gray-800 font-bold px-2 py-1 rounded-md">🚍 Free Airport Shuttle</span>
                   <span class="text-[10px] bg-gray-100 text-gray-800 font-bold px-2 py-1 rounded-md">🏊 Pool Access</span>
@@ -881,8 +886,8 @@
               </div>
               <div class="pt-4 border-t border-gray-100 flex flex-wrap items-center justify-between gap-4 w-full font-sans">
                 <div class="flex items-center gap-2">
-                  <div class="text-theme-primary text-xs"><span class="hotel-duration-label">Day-Use (6h slot)</span><br/><span class="text-lg font-black text-theme-primary hotel-price-display">₹5,499</span></div>
-                  <div class="text-theme-primary text-xs border-l border-gray-200 pl-2">Full Night Room<br/><span class="text-theme-primary font-bold">₹12,000</span></div>
+                  <div class="text-gray-500 text-xs"><span class="hotel-duration-label">Day-Use (6h slot)</span><br/><span class="text-lg font-black text-theme-primary hotel-price-display">₹5,499</span></div>
+                  <div class="text-gray-500 text-xs border-l border-gray-200 pl-2">Full Night Room<br/><span class="text-theme-primary font-bold">₹12,000</span></div>
                 </div>
                 <div class="flex items-center gap-2">
                   <a href="service-details.html?type=hotel&id=2" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold text-xs rounded-xl transition">View Details</a>
@@ -909,12 +914,12 @@
                     ⭐ 4.2 <span class="text-theme-primary font-medium">(1.1k reviews)</span>
                   </div>
                 </div>
-                <div class="text-xs text-theme-primary flex items-center gap-2 mb-4">
+                <div class="text-xs text-gray-500 flex items-center gap-2 mb-4">
                   <svg class="w-3.5 h-3.5 text-theme-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5A7.5 7.5 0 1119.5 10.5z"/></svg>
                   <span>Western Express Highway, Vile Parle East, Mumbai</span>
                   <span class="text-theme-primary font-bold">• 0.8 km from Domestic T1</span>
                 </div>
-                <p class="text-theme-primary text-sm mb-4 leading-relaxed line-clamp-2">Cozy, ergonomic rooms designed for short-stay transits. Excellent continental breakfast, business desk, and hourly check-in.</p>
+                <p class="text-gray-600 text-sm mb-4 leading-relaxed line-clamp-2">Cozy, ergonomic rooms designed for short-stay transits. Excellent continental breakfast, business desk, and hourly check-in.</p>
                 <div class="flex flex-wrap gap-2 mb-4">
                   <span class="text-[10px] bg-gray-100 text-gray-800 font-bold px-2 py-1 rounded-md">🚍 Airport Shuttle (paid)</span>
                   <span class="text-[10px] bg-gray-100 text-gray-800 font-bold px-2 py-1 rounded-md">☕ Breakfast Buffet</span>
@@ -923,8 +928,8 @@
               </div>
               <div class="pt-4 border-t border-gray-100 flex flex-wrap items-center justify-between gap-4 w-full font-sans">
                 <div class="flex items-center gap-2">
-                  <div class="text-theme-primary text-xs"><span class="hotel-duration-label">Day-Use (6h slot)</span><br/><span class="text-lg font-black text-theme-primary hotel-price-display">₹2,200</span></div>
-                  <div class="text-theme-primary text-xs border-l border-gray-200 pl-2">Full Night Room<br/><span class="text-theme-primary font-bold">₹4,200</span></div>
+                  <div class="text-gray-500 text-xs"><span class="hotel-duration-label">Day-Use (6h slot)</span><br/><span class="text-lg font-black text-theme-primary hotel-price-display">₹2,200</span></div>
+                  <div class="text-gray-500 text-xs border-l border-gray-200 pl-2">Full Night Room<br/><span class="text-theme-primary font-bold">₹4,200</span></div>
                 </div>
                 <div class="flex items-center gap-2">
                   <a href="service-details.html?type=hotel&id=3" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold text-xs rounded-xl transition">View Details</a>
@@ -952,12 +957,12 @@
                     ⭐ 4.6 <span class="text-theme-primary font-medium">(1.5k reviews)</span>
                   </div>
                 </div>
-                <div class="text-xs text-theme-primary flex items-center gap-2 mb-4">
+                <div class="text-xs text-gray-500 flex items-center gap-2 mb-4">
                   <svg class="w-3.5 h-3.5 text-theme-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5A7.5 7.5 0 1119.5 10.5z"/></svg>
                   <span>Nehru Road, Vile Parle East, Mumbai</span>
                   <span class="text-theme-primary font-bold">• 2.1 km from Terminal 2</span>
                 </div>
-                <p class="text-theme-primary text-sm mb-4 leading-relaxed line-clamp-2">Asia's first certified 5-star ecofriendly hotel. Features a rooftop swimming pool with runway view, airport lounge, and spa treatments.</p>
+                <p class="text-gray-600 text-sm mb-4 leading-relaxed line-clamp-2">Asia's first certified 5-star ecofriendly hotel. Features a rooftop swimming pool with runway view, airport lounge, and spa treatments.</p>
                 <div class="flex flex-wrap gap-2 mb-4">
                   <span class="text-[10px] bg-gray-100 text-gray-800 font-bold px-2 py-1 rounded-md">🚍 Free Airport Shuttle</span>
                   <span class="text-[10px] bg-gray-100 text-gray-800 font-bold px-2 py-1 rounded-md">🏊 Rooftop Pool</span>
@@ -966,8 +971,8 @@
               </div>
               <div class="pt-4 border-t border-gray-100 flex flex-wrap items-center justify-between gap-4 w-full font-sans">
                 <div class="flex items-center gap-2">
-                  <div class="text-theme-primary text-xs"><span class="hotel-duration-label">Day-Use (6h slot)</span><br/><span class="text-lg font-black text-theme-primary hotel-price-display">₹4,500</span></div>
-                  <div class="text-theme-primary text-xs border-l border-gray-200 pl-2">Full Night Room<br/><span class="text-theme-primary font-bold">₹8,500</span></div>
+                  <div class="text-gray-500 text-xs"><span class="hotel-duration-label">Day-Use (6h slot)</span><br/><span class="text-lg font-black text-theme-primary hotel-price-display">₹4,500</span></div>
+                  <div class="text-gray-500 text-xs border-l border-gray-200 pl-2">Full Night Room<br/><span class="text-theme-primary font-bold">₹8,500</span></div>
                 </div>
                 <div class="flex items-center gap-2">
                   <a href="service-details.html?type=hotel&id=4" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold text-xs rounded-xl transition">View Details</a>
@@ -1001,7 +1006,7 @@
             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
           </div>
           <h3 class="text-base font-bold text-gray-900 mb-1">No Hotels Found</h3>
-          <p class="text-theme-primary text-sm max-w-sm mx-auto mb-4">No transit hotels match your selected filters. Try broadening your pricing bounds or select fewer amenities.</p>
+          <p class="text-gray-600 text-sm max-w-sm mx-auto mb-4">No transit hotels match your selected filters. Try broadening your pricing bounds or select fewer amenities.</p>
           <button type="button" onclick="layoverx.resetFilters()" class="px-4 py-2 bg-theme-primary text-white font-bold text-xs rounded-xl shadow-md">Reset Filters</button>
         </div>
 
@@ -1018,11 +1023,11 @@
       <div>
         <span class="inline-block text-theme-primary font-bold text-sm uppercase tracking-wider mb-2">Exclusive Partner</span>
         <h2 class="text-3xl font-extrabold text-gray-900 mb-4">Premium In-Terminal Transit</h2>
-        <p class="text-theme-primary text-sm sm:text-base leading-relaxed mb-6">Have a layover under 5 hours? Avoid clearing immigration altogether. Niranta Transit Hotel is located directly inside Terminal 2 Arrivals, offering luxury sleep pods, hot showers, and high-speed working desks. Book by the hour with zero boarding anxiety.</p>
+        <p class="text-gray-600 text-sm sm:text-base leading-relaxed mb-6">Have a layover under 5 hours? Avoid clearing immigration altogether. Niranta Transit Hotel is located directly inside Terminal 2 Arrivals, offering luxury sleep pods, hot showers, and high-speed working desks. Book by the hour with zero boarding anxiety.</p>
         <div class="flex items-center gap-6">
-          <div><div class="text-2xl font-black text-theme-primary">0 min</div><div class="text-xs text-theme-primary font-medium">Immigration Wait</div></div>
-          <div class="border-l border-gray-200 pl-6"><div class="text-2xl font-black text-theme-primary">24/7</div><div class="text-xs text-theme-primary font-medium">Check-in Availability</div></div>
-          <div class="border-l border-gray-200 pl-6"><div class="text-2xl font-black text-theme-primary">4.8★</div><div class="text-xs text-theme-primary font-medium">Guest Rating</div></div>
+          <div><div class="text-2xl font-black text-theme-primary">0 min</div><div class="text-xs text-gray-500 font-medium">Immigration Wait</div></div>
+          <div class="border-l border-gray-200 pl-6"><div class="text-2xl font-black text-theme-primary">24/7</div><div class="text-xs text-gray-500 font-medium">Check-in Availability</div></div>
+          <div class="border-l border-gray-200 pl-6"><div class="text-2xl font-black text-theme-primary">4.8★</div><div class="text-xs text-gray-500 font-medium">Guest Rating</div></div>
         </div>
       </div>
       <div class="relative rounded-3xl overflow-hidden shadow-lg h-80">
@@ -1101,7 +1106,7 @@
 <!-- CTA SECTION -->
 <section class="section bg-gray-50 border-t border-gray-100">
   <div class="container">
-    <div class="rounded-3xl p-8 sm:p-12 text-center text-white shadow-lg relative overflow-hidden">
+    <div class="rounded-3xl p-8 sm:p-12 text-center text-white shadow-lg relative overflow-hidden" style="background:linear-gradient(135deg,var(--theme-hero-from),var(--theme-hero-to))">
       <h2 class="text-2xl sm:text-3xl font-extrabold mb-4">Maximize Your Flight Layover</h2>
       <p class="text-white text-sm sm:text-base mb-6 max-w-xl mx-auto">Build an entire layover plan by connecting a transit hotel with city tours and airport transfers.</p>
       <a href="plan-my-layover.html" class="btn btn-ghost bg-white text-theme-primary hover:bg-gray-50 shadow-md">Plan My Entire Layover</a>
@@ -1119,7 +1124,7 @@
         <img id="detail-hotel-image" alt="Hotel main view" class="w-full h-full object-cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"/>
       </div>
       <h2 id="hotel-detail-title" class="text-2xl font-bold text-gray-900 mb-1">Hotel Name</h2>
-      <div id="detail-hotel-location" class="text-xs text-theme-primary flex items-center gap-2 mb-4">Location</div>
+      <div id="detail-hotel-location" class="text-xs text-gray-500 flex items-center gap-2 mb-4">Location</div>
       
       <div class="grid grid-cols-3 gap-4 text-center mb-6">
         <div class="bg-gray-50 p-4 rounded-xl"><div class="text-[10px] text-theme-primary font-bold uppercase">Rating</div><div id="detail-hotel-rating" class="text-sm font-black text-theme-primary">4.8★</div></div>

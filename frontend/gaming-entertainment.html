@@ -20,39 +20,41 @@
 
   <!-- Critical CSS: prevents FOUC & locks base font scale before Tailwind -->
   <style>
-    /* Lock root font size — prevents browser zoom shifts */
-    html { font-size: 16px; box-sizing: border-box; }
-    *, *::before, *::after { box-sizing: inherit; }
+    @layer base {
+      /* Lock root font size — prevents browser zoom shifts */
+      html { font-size: 16px; box-sizing: border-box; }
+      *, *::before, *::after { box-sizing: inherit; }
 
-    /* Base body typography */
-    body {
-      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      font-size: 1rem;
-      line-height: 1.5;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
+      /* Base body typography */
+      body {
+        font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        font-size: 1rem;
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+
+      /* Heading scale — clear hierarchy, no browser defaults */
+      .text-hero { font-size: 3.5rem; line-height: 1.5; font-weight: 900; letter-spacing: -0.03em; }
+      h1 { font-size: 2.5rem; line-height: 1.5; font-weight: 800; letter-spacing: -0.025em; }
+      h2 { font-size: 1.875rem; line-height: 1.5; font-weight: 800; letter-spacing: -0.02em; }
+      h3 { font-size: 1.375rem; line-height: 1.5; font-weight: 700; letter-spacing: -0.015em; }
+      h4 { font-size: 1.125rem; line-height: 1.5; font-weight: 700; }
+      h5 { font-size: 1rem; line-height: 1.5; font-weight: 600; }
+      h6 { font-size: 0.9375rem; line-height: 1.5; font-weight: 600; }
+
+      /* Body text — never smaller than 14px */
+      p { font-size: 1rem; line-height: 1.5; }
+
+      /* Input & button baseline */
+      input, select, textarea, button { font-family: inherit; font-size: 0.95rem; }
+
+      /* Prevent layout shift from Tailwind loading */
+      .container { width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 1rem; }
+
+      /* Hide body content until CSS is parsed — avoids naked HTML flash */
+      body { visibility: visible; }
     }
-
-    /* Heading scale — clear hierarchy, no browser defaults */
-    .text-hero { font-size: 3.5rem; line-height: 1.5; font-weight: 900; letter-spacing: -0.03em; }
-    h1 { font-size: 2.5rem; line-height: 1.5; font-weight: 800; letter-spacing: -0.025em; }
-    h2 { font-size: 1.875rem; line-height: 1.5; font-weight: 800; letter-spacing: -0.02em; }
-    h3 { font-size: 1.375rem; line-height: 1.5; font-weight: 700; letter-spacing: -0.015em; }
-    h4 { font-size: 1.125rem; line-height: 1.5; font-weight: 700; }
-    h5 { font-size: 1rem; line-height: 1.5; font-weight: 600; }
-    h6 { font-size: 0.9375rem; line-height: 1.5; font-weight: 600; }
-
-    /* Body text — never smaller than 14px */
-    p { font-size: 1rem; line-height: 1.5; }
-
-    /* Input & button baseline */
-    input, select, textarea, button { font-family: inherit; font-size: 0.95rem; }
-
-    /* Prevent layout shift from Tailwind loading */
-    .container { width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 1rem; }
-
-    /* Hide body content until CSS is parsed — avoids naked HTML flash */
-    body { visibility: visible; }
   </style>
 
   <!-- Inter font — weights 300-900 for full design range -->
@@ -69,6 +71,9 @@
   <noscript>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
   </noscript>
+
+  <!-- LayoverX Design Tokens -->
+  <link rel="stylesheet" href="styles/tokens/tokens.css"/>
 
   <!-- Tailwind utility classes -->
   <link rel="preload" href="css/tailwind.min.css" as="style"/>
@@ -707,11 +712,11 @@
                     ⭐ 4.6 <span class="text-theme-primary font-medium">(420 reviews)</span>
                   </div>
                 </div>
-                <div class="text-xs text-theme-primary flex items-center gap-2 mb-4">
+                <div class="text-xs text-gray-500 flex items-center gap-2 mb-4">
                   <svg class="w-3.5 h-3.5 text-theme-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5A7.5 7.5 0 1119.5 10.5z"/></svg>
                   <span>Kurla West • Near T2 Airport Mall</span>
                 </div>
-                <p class="text-theme-primary text-sm mb-4 leading-relaxed line-clamp-2">Virtual reality games, bowling, cricket simulators, and arcade fun. Perfect for high-energy transit breaks.</p>
+                <p class="text-gray-600 text-sm mb-4 leading-relaxed line-clamp-2">Virtual reality games, bowling, cricket simulators, and arcade fun. Perfect for high-energy transit breaks.</p>
                 <div class="flex flex-wrap gap-2 mb-4">
                   <span class="text-[10px] bg-gray-100 text-gray-800 font-bold px-2 py-1 rounded-md">🎮 Virtual Reality</span>
                   <span class="text-[10px] bg-gray-100 text-gray-800 font-bold px-2 py-1 rounded-md">🎳 Bowling Lanes</span>
@@ -721,7 +726,7 @@
               <div class="pt-4 border-t border-gray-100 flex flex-wrap items-center justify-between gap-4 w-full">
                 <div class="flex items-center gap-2">
                   <div class="text-theme-primary text-xs">Starting Price<br/><span class="text-lg font-black text-theme-primary">₹1,200</span></div>
-                  <div class="text-theme-primary text-xs border-l border-gray-200 pl-2">Session Duration<br/><span class="text-theme-primary font-bold">2 Hours</span></div>
+                  <div class="text-gray-500 text-xs border-l border-gray-200 pl-2">Session Duration<br/><span class="text-theme-primary font-bold">2 Hours</span></div>
                 </div>
                 <div class="flex items-center gap-2">
                   <a href="service-details.html?type=gaming&id=1" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold text-xs rounded-xl transition">View Details</a>
@@ -748,11 +753,11 @@
                     ⭐ 4.9 <span class="text-theme-primary font-medium">(650 reviews)</span>
                   </div>
                 </div>
-                <div class="text-xs text-theme-primary flex items-center gap-2 mb-4">
+                <div class="text-xs text-gray-500 flex items-center gap-2 mb-4">
                   <svg class="w-3.5 h-3.5 text-theme-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5A7.5 7.5 0 1119.5 10.5z"/></svg>
                   <span>Phoenix Mall • 2.5 km from CSMIA</span>
                 </div>
-                <p class="text-theme-primary text-sm mb-4 leading-relaxed line-clamp-2">Ultra-premium movie watching with recliner seats, butler service, and fine dining at the airport mall.</p>
+                <p class="text-gray-600 text-sm mb-4 leading-relaxed line-clamp-2">Ultra-premium movie watching with recliner seats, butler service, and fine dining at the airport mall.</p>
                 <div class="flex flex-wrap gap-2 mb-4">
                   <span class="text-[10px] bg-gray-100 text-gray-800 font-bold px-2 py-1 rounded-md">🛋️ Recliner Seats</span>
                   <span class="text-[10px] bg-gray-100 text-gray-800 font-bold px-2 py-1 rounded-md">🍽️ Butler Dining</span>
@@ -762,7 +767,7 @@
               <div class="pt-4 border-t border-gray-100 flex flex-wrap items-center justify-between gap-4 w-full">
                 <div class="flex items-center gap-2">
                   <div class="text-theme-primary text-xs">Starting Price<br/><span class="text-lg font-black text-theme-primary">₹2,500</span></div>
-                  <div class="text-theme-primary text-xs border-l border-gray-200 pl-2">Session Duration<br/><span class="text-theme-primary font-bold">3 Hours</span></div>
+                  <div class="text-gray-500 text-xs border-l border-gray-200 pl-2">Session Duration<br/><span class="text-theme-primary font-bold">3 Hours</span></div>
                 </div>
                 <div class="flex items-center gap-2">
                   <a href="service-details.html?type=gaming&id=2" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold text-xs rounded-xl transition">View Details</a>
@@ -789,11 +794,11 @@
                     ⭐ 4.7 <span class="text-theme-primary font-medium">(180 reviews)</span>
                   </div>
                 </div>
-                <div class="text-xs text-theme-primary flex items-center gap-2 mb-4">
+                <div class="text-xs text-gray-500 flex items-center gap-2 mb-4">
                   <svg class="w-3.5 h-3.5 text-theme-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5A7.5 7.5 0 1119.5 10.5z"/></svg>
                   <span>Bandra West • 4.5 km from CSMIA</span>
                 </div>
-                <p class="text-theme-primary text-sm mb-4 leading-relaxed line-clamp-2">Boutique bowling, high-end retro arcade games, and mechanical bull rides with a premium lounge bar.</p>
+                <p class="text-gray-600 text-sm mb-4 leading-relaxed line-clamp-2">Boutique bowling, high-end retro arcade games, and mechanical bull rides with a premium lounge bar.</p>
                 <div class="flex flex-wrap gap-2 mb-4">
                   <span class="text-[10px] bg-gray-100 text-gray-800 font-bold px-2 py-1 rounded-md">🎳 Retro Bowling</span>
                   <span class="text-[10px] bg-gray-100 text-gray-800 font-bold px-2 py-1 rounded-md">🎲 Casino Arcade</span>
@@ -803,7 +808,7 @@
               <div class="pt-4 border-t border-gray-100 flex flex-wrap items-center justify-between gap-4 w-full">
                 <div class="flex items-center gap-2">
                   <div class="text-theme-primary text-xs">Starting Price<br/><span class="text-lg font-black text-theme-primary">₹1,800</span></div>
-                  <div class="text-theme-primary text-xs border-l border-gray-200 pl-2">Session Duration<br/><span class="text-theme-primary font-bold">2.5 Hours</span></div>
+                  <div class="text-gray-500 text-xs border-l border-gray-200 pl-2">Session Duration<br/><span class="text-theme-primary font-bold">2.5 Hours</span></div>
                 </div>
                 <div class="flex items-center gap-2">
                   <a href="service-details.html?type=gaming&id=3" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold text-xs rounded-xl transition">View Details</a>
@@ -816,7 +821,7 @@
 
         <div id="gaming-empty" class="bg-white rounded-2xl border border-gray-200 p-12 text-center hidden">
           <h3 class="text-base font-bold text-gray-900 mb-1">No Fun Found</h3>
-          <p class="text-theme-primary text-sm mb-4">Try different filters.</p>
+          <p class="text-gray-600 text-sm mb-4">Try different filters.</p>
           <button type="button" onclick="layoverx.clearGamingFilters()" class="px-4 py-2 bg-theme-primary text-white text-xs font-bold rounded-xl shadow-md">Reset Filters</button>
         </div>
       </div>

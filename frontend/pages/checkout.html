@@ -1,0 +1,141 @@
+<!-- CHECKOUT: TRAVELER DETAILS PAGE (Step 2 of 4) -->
+<div class="relative min-h-[30vh] pt-24 pb-12 overflow-hidden text-white flex items-center bg-slate-900">
+  <div class="absolute inset-0 bg-gradient-to-tr from-slate-900 to-indigo-950 opacity-95 z-0"></div>
+  <div class="container relative z-10 space-y-4">
+    <nav class="flex items-center gap-2 text-xs text-white/70" aria-label="Breadcrumb">
+      <a href="index.html" class="hover:text-white transition-colors">Home</a>
+      <svg class="w-3 h-3 text-white/50" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+      <a href="booking-review.html" class="hover:text-white transition-colors">Review Stopover</a>
+      <svg class="w-3 h-3 text-white/50" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+      <span class="text-white font-medium">Traveler Details</span>
+    </nav>
+    <h1 class="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-tight">
+      Traveler &amp; <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-indigo-400">Flight Details</span>
+    </h1>
+    <p class="text-slate-300 text-sm max-w-2xl">
+      Step 2 of 4: Provide flight connection details and traveler information to align airport pick-up and hotel check-in buffers.
+    </p>
+  </div>
+</div>
+
+<section class="section bg-slate-50 min-h-screen">
+  <div class="container">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- LEFT COLUMN: Traveler & Flight Forms -->
+      <div class="lg:col-span-8 space-y-6">
+        <form id="checkout-booking-form" onsubmit="saveDetailsAndContinue(event)" class="space-y-6">
+          
+          <!-- Traveler Info -->
+          <div class="bg-white rounded-3xl border border-gray-200 p-6 sm:p-8 shadow-sm space-y-4">
+            <h2 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+              <span class="text-theme-accent">👤</span> Traveler Details
+            </h2>
+            <p class="text-xs text-slate-500">Names must match passport details exactly for terminal security exit clearance.</p>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="form-group text-left">
+                <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1" for="chk-traveler-name">Lead Passenger Name</label>
+                <input id="chk-traveler-name" type="text" class="form-input" placeholder="e.g. John Doe" required autocomplete="name"/>
+              </div>
+              
+              <div class="form-group text-left">
+                <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1" for="chk-passport">Passport Number</label>
+                <input id="chk-passport" type="text" class="form-input" placeholder="e.g. Z1234567" required/>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="form-group text-left">
+                <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1" for="chk-traveler-nationality">Nationality / Country</label>
+                <input id="chk-traveler-nationality" type="text" class="form-input" placeholder="e.g. United Kingdom" required/>
+              </div>
+              
+              <div class="form-group text-left">
+                <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1" for="chk-emergency">Mobile Number (with country code)</label>
+                <input id="chk-emergency" type="tel" class="form-input" placeholder="e.g. +44 7911 123456" required autocomplete="tel"/>
+              </div>
+            </div>
+          </div>
+
+          <!-- Flight Timings & flight numbers -->
+          <div class="bg-white rounded-3xl border border-gray-200 p-6 sm:p-8 shadow-sm space-y-4">
+            <h2 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+              <span class="text-theme-accent">✈️</span> Flight Connections
+            </h2>
+            <p class="text-xs text-slate-500">We trace landing delays in real-time to adjust chauffeur pick-ups and room slots.</p>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="form-group text-left">
+                <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1" for="chk-flight-in">Incoming Flight Number</label>
+                <input id="chk-flight-in" type="text" class="form-input" placeholder="e.g. BA-199" required/>
+              </div>
+              
+              <div class="form-group text-left">
+                <label class="form-label block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1" for="chk-flight-departure">Outgoing Flight Number</label>
+                <input id="chk-flight-departure" type="text" class="form-input" placeholder="e.g. EK-501" required/>
+              </div>
+            </div>
+          </div>
+
+          <!-- Guest Checkout Account Creation Incentive -->
+          <div id="checkout-guest-incentive" class="bg-indigo-50 border border-indigo-100 rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>
+              <h3 class="text-sm font-bold text-indigo-900 mb-1">Checking out as a Guest?</h3>
+              <p class="text-xs text-indigo-700">Create a password next to track your itinerary and get live flight delay adjustments automatically.</p>
+            </div>
+            <button type="button" onclick="window.layoverx.openAuthModal('signup')" class="whitespace-nowrap px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-xl shadow-md transition">
+              Create Account
+            </button>
+          </div>
+          
+          <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <a href="booking-review.html" class="btn btn-ghost border border-gray-200 w-full sm:w-auto text-center">Back to Review</a>
+            <button type="submit" class="btn btn-primary flex items-center gap-1 w-full sm:w-auto justify-center">
+              Proceed to Payment &rarr;
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- RIGHT COLUMN: Order Breakdown Summary -->
+      <div class="lg:col-span-4 sticky top-40 space-y-6">
+        <div class="bg-white rounded-3xl border border-gray-200 p-6 sm:p-8 shadow-md space-y-6">
+          <h3 class="text-sm font-bold text-slate-900 uppercase tracking-widest">Selected Itinerary</h3>
+          
+          <ul id="checkout-summary-list" class="space-y-4 text-xs text-slate-650">
+            <!-- Populated via JS -->
+          </ul>
+
+          <hr class="border-gray-100"/>
+
+          <div class="flex justify-between items-baseline">
+            <span class="text-sm font-bold text-slate-800">Total Price</span>
+            <span class="text-2xl sm:text-3xl font-black text-slate-950" id="checkout-total-price">₹0</span>
+          </div>
+          
+          <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4 text-[10px] text-slate-500 leading-relaxed space-y-2">
+            <p>✅ Free cancellation up to 3h before checking in.</p>
+            <p>✅ All airport transfers are fixed price (includes driver wait time, parking and expressway tolls).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function saveDetailsAndContinue(e) {
+    e.preventDefault();
+    const details = {
+      passenger: document.getElementById('chk-traveler-name').value,
+      passport: document.getElementById('chk-passport').value,
+      nationality: document.getElementById('chk-traveler-nationality').value,
+      emergencyContact: document.getElementById('chk-emergency').value,
+      incomingFlight: document.getElementById('chk-flight-in').value,
+      outgoingFlight: document.getElementById('chk-flight-departure').value
+    };
+    localStorage.setItem('layoverx_temp_booking', JSON.stringify(details));
+    window.location.href = 'payment-selection.html';
+  }
+</script>

@@ -20,39 +20,41 @@
 
   <!-- Critical CSS: prevents FOUC & locks base font scale before Tailwind -->
   <style>
-    /* Lock root font size — prevents browser zoom shifts */
-    html { font-size: 16px; box-sizing: border-box; }
-    *, *::before, *::after { box-sizing: inherit; }
+    @layer base {
+      /* Lock root font size — prevents browser zoom shifts */
+      html { font-size: 16px; box-sizing: border-box; }
+      *, *::before, *::after { box-sizing: inherit; }
 
-    /* Base body typography */
-    body {
-      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      font-size: 1rem;
-      line-height: 1.5;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
+      /* Base body typography */
+      body {
+        font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        font-size: 1rem;
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+
+      /* Heading scale — clear hierarchy, no browser defaults */
+      .text-hero { font-size: 3.5rem; line-height: 1.5; font-weight: 900; letter-spacing: -0.03em; }
+      h1 { font-size: 2.5rem; line-height: 1.5; font-weight: 800; letter-spacing: -0.025em; }
+      h2 { font-size: 1.875rem; line-height: 1.5; font-weight: 800; letter-spacing: -0.02em; }
+      h3 { font-size: 1.375rem; line-height: 1.5; font-weight: 700; letter-spacing: -0.015em; }
+      h4 { font-size: 1.125rem; line-height: 1.5; font-weight: 700; }
+      h5 { font-size: 1rem; line-height: 1.5; font-weight: 600; }
+      h6 { font-size: 0.9375rem; line-height: 1.5; font-weight: 600; }
+
+      /* Body text — never smaller than 14px */
+      p { font-size: 1rem; line-height: 1.5; }
+
+      /* Input & button baseline */
+      input, select, textarea, button { font-family: inherit; font-size: 0.95rem; }
+
+      /* Prevent layout shift from Tailwind loading */
+      .container { width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 1rem; }
+
+      /* Hide body content until CSS is parsed — avoids naked HTML flash */
+      body { visibility: visible; }
     }
-
-    /* Heading scale — clear hierarchy, no browser defaults */
-    .text-hero { font-size: 3.5rem; line-height: 1.5; font-weight: 900; letter-spacing: -0.03em; }
-    h1 { font-size: 2.5rem; line-height: 1.5; font-weight: 800; letter-spacing: -0.025em; }
-    h2 { font-size: 1.875rem; line-height: 1.5; font-weight: 800; letter-spacing: -0.02em; }
-    h3 { font-size: 1.375rem; line-height: 1.5; font-weight: 700; letter-spacing: -0.015em; }
-    h4 { font-size: 1.125rem; line-height: 1.5; font-weight: 700; }
-    h5 { font-size: 1rem; line-height: 1.5; font-weight: 600; }
-    h6 { font-size: 0.9375rem; line-height: 1.5; font-weight: 600; }
-
-    /* Body text — never smaller than 14px */
-    p { font-size: 1rem; line-height: 1.5; }
-
-    /* Input & button baseline */
-    input, select, textarea, button { font-family: inherit; font-size: 0.95rem; }
-
-    /* Prevent layout shift from Tailwind loading */
-    .container { width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 1rem; }
-
-    /* Hide body content until CSS is parsed — avoids naked HTML flash */
-    body { visibility: visible; }
   </style>
 
   <!-- Inter font — weights 300-900 for full design range -->
@@ -69,6 +71,9 @@
   <noscript>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
   </noscript>
+
+  <!-- LayoverX Design Tokens -->
+  <link rel="stylesheet" href="styles/tokens/tokens.css"/>
 
   <!-- Tailwind utility classes -->
   <link rel="preload" href="css/tailwind.min.css" as="style"/>
@@ -753,10 +758,10 @@
                     ⭐ 4.8 <span class="text-theme-primary font-medium">(2.1k reviews)</span>
                   </div>
                 </div>
-                <div class="text-xs text-theme-primary flex items-center gap-2 mb-4">
+                <div class="text-xs text-gray-500 flex items-center gap-2 mb-4">
                   <span>📍 T2 & T1 Airport Pickups</span>
                 </div>
-                <p class="text-theme-primary text-sm mb-4 leading-relaxed line-clamp-2">Ideal for 1-3 passengers with standard luggage. AC, GPS tracking, and verified high hygiene standards.</p>
+                <p class="text-gray-600 text-sm mb-4 leading-relaxed line-clamp-2">Ideal for 1-3 passengers with standard luggage. AC, GPS tracking, and verified high hygiene standards.</p>
                 <div class="flex flex-wrap gap-2 mb-4">
                   <span class="text-[10px] bg-gray-100 text-gray-800 font-bold px-2 py-1 rounded-md">👤 4 Passengers</span>
                   <span class="text-[10px] bg-gray-100 text-gray-800 font-bold px-2 py-1 rounded-md">🧳 2 Large Bags</span>
@@ -766,7 +771,7 @@
               <div class="pt-4 border-t border-gray-100 flex flex-wrap items-center justify-between gap-4">
                 <div class="flex items-center gap-2">
                   <div class="text-theme-primary text-xs">Fixed Quote<br/><span class="text-lg font-black text-theme-primary">₹899</span></div>
-                  <div class="text-theme-primary text-xs border-l border-gray-200 pl-2">Wait Buffer<br/><span class="text-theme-primary font-bold">45 Mins Free</span></div>
+                  <div class="text-gray-500 text-xs border-l border-gray-200 pl-2">Wait Buffer<br/><span class="text-theme-primary font-bold">45 Mins Free</span></div>
                 </div>
                 <div class="flex items-center gap-2">
                   <a href="service-details.html?type=transfer&id=sedan" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold text-xs rounded-xl transition">View Details</a>
@@ -790,10 +795,10 @@
                     ⭐ 4.9 <span class="text-theme-primary font-medium">(1.8k reviews)</span>
                   </div>
                 </div>
-                <div class="text-xs text-theme-primary flex items-center gap-2 mb-4">
+                <div class="text-xs text-gray-500 flex items-center gap-2 mb-4">
                   <span>📍 T2 & T1 Airport Pickups</span>
                 </div>
-                <p class="text-theme-primary text-sm mb-4 leading-relaxed line-clamp-2">Extra room, premium comfort, great for families. AC, high luggage capacity, and professional English-speaking drivers.</p>
+                <p class="text-gray-600 text-sm mb-4 leading-relaxed line-clamp-2">Extra room, premium comfort, great for families. AC, high luggage capacity, and professional English-speaking drivers.</p>
                 <div class="flex flex-wrap gap-2 mb-4">
                   <span class="text-[10px] bg-gray-100 text-gray-800 font-bold px-2 py-1 rounded-md">👤 6 Passengers</span>
                   <span class="text-[10px] bg-gray-100 text-gray-800 font-bold px-2 py-1 rounded-md">🧳 4 Large Bags</span>
@@ -803,7 +808,7 @@
               <div class="pt-4 border-t border-gray-100 flex flex-wrap items-center justify-between gap-4">
                 <div class="flex items-center gap-2">
                   <div class="text-theme-primary text-xs">Fixed Quote<br/><span class="text-lg font-black text-theme-primary">₹1,499</span></div>
-                  <div class="text-theme-primary text-xs border-l border-gray-200 pl-2">Wait Buffer<br/><span class="text-theme-primary font-bold">45 Mins Free</span></div>
+                  <div class="text-gray-500 text-xs border-l border-gray-200 pl-2">Wait Buffer<br/><span class="text-theme-primary font-bold">45 Mins Free</span></div>
                 </div>
                 <div class="flex items-center gap-2">
                   <a href="service-details.html?type=transfer&id=suv" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold text-xs rounded-xl transition">View Details</a>
@@ -827,10 +832,10 @@
                     ⭐ 4.9 <span class="text-theme-primary font-medium">(840 reviews)</span>
                   </div>
                 </div>
-                <div class="text-xs text-theme-primary flex items-center gap-2 mb-4">
+                <div class="text-xs text-gray-500 flex items-center gap-2 mb-4">
                   <span>📍 T2 arrivals gate meet service</span>
                 </div>
-                <p class="text-theme-primary text-sm mb-4 leading-relaxed line-clamp-2">Chauffeur-driven luxury class vehicle. Leather seats, airport exit gate placard meet and greet service included.</p>
+                <p class="text-gray-600 text-sm mb-4 leading-relaxed line-clamp-2">Chauffeur-driven luxury class vehicle. Leather seats, airport exit gate placard meet and greet service included.</p>
                 <div class="flex flex-wrap gap-2 mb-4">
                   <span class="text-[10px] bg-gray-100 text-gray-800 font-bold px-2 py-1 rounded-md">👤 4 Passengers</span>
                   <span class="text-[10px] bg-gray-100 text-gray-800 font-bold px-2 py-1 rounded-md">🧳 2 Large Bags</span>
@@ -840,7 +845,7 @@
               <div class="pt-4 border-t border-gray-100 flex flex-wrap items-center justify-between gap-4">
                 <div class="flex items-center gap-2">
                   <div class="text-theme-primary text-xs">Fixed Quote<br/><span class="text-lg font-black text-theme-primary">₹3,499</span></div>
-                  <div class="text-theme-primary text-xs border-l border-gray-200 pl-2">Wait Buffer<br/><span class="text-theme-primary font-bold">45 Mins Free</span></div>
+                  <div class="text-gray-500 text-xs border-l border-gray-200 pl-2">Wait Buffer<br/><span class="text-theme-primary font-bold">45 Mins Free</span></div>
                 </div>
                 <div class="flex items-center gap-2">
                   <a href="service-details.html?type=transfer&id=luxury" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold text-xs rounded-xl transition">View Details</a>
@@ -853,7 +858,7 @@
 
         <div id="cab-empty" class="bg-white rounded-2xl border border-gray-200 p-12 text-center hidden">
           <h3 class="text-base font-bold text-gray-900 mb-1">No Vehicles Found</h3>
-          <p class="text-theme-primary text-sm mb-4">No matching vehicles fit your selected filters. Try adjusting passenger choices.</p>
+          <p class="text-gray-600 text-sm mb-4">No matching vehicles fit your selected filters. Try adjusting passenger choices.</p>
           <button type="button" onclick="layoverx.clearCabFilters()" class="px-4 py-2 bg-theme-primary text-white text-xs font-bold rounded-xl shadow-md">Reset Filters</button>
         </div>
 
@@ -874,17 +879,17 @@
       <div class="bg-gray-50 p-6 rounded-2xl border border-gray-200">
         <div class="w-12 h-12 bg-theme-primary text-white rounded-xl flex items-center justify-center mx-auto mb-4 text-lg font-bold">1</div>
         <h3 class="font-bold text-gray-900 mb-2 text-sm">Clear Immigration</h3>
-        <p class="text-theme-primary text-xs leading-relaxed">Proceed to immigration. Clear passport control using your transit visa (approx. 20-30 mins wait time).</p>
+        <p class="text-gray-600 text-xs leading-relaxed">Proceed to immigration. Clear passport control using your transit visa (approx. 20-30 mins wait time).</p>
       </div>
       <div class="bg-gray-50 p-6 rounded-2xl border border-gray-200">
         <div class="w-12 h-12 bg-theme-primary text-white rounded-xl flex items-center justify-center mx-auto mb-4 text-lg font-bold">2</div>
         <h3 class="font-bold text-gray-900 mb-2 text-sm">Exit Gate 2</h3>
-        <p class="text-theme-primary text-xs leading-relaxed">Collect baggage if checked in, then exit the arrival hall and head straight toward Exit Gate 2.</p>
+        <p class="text-gray-600 text-xs leading-relaxed">Collect baggage if checked in, then exit the arrival hall and head straight toward Exit Gate 2.</p>
       </div>
       <div class="bg-gray-50 p-6 rounded-2xl border border-gray-200">
         <div class="w-12 h-12 bg-theme-primary text-white rounded-xl flex items-center justify-center mx-auto mb-4 text-lg font-bold">3</div>
         <h3 class="font-bold text-gray-900 mb-2 text-sm">Spot Name Placard</h3>
-        <p class="text-theme-primary text-xs leading-relaxed">Your driver will be waiting in the arrivals placard zone with a LayoverX banner showing your name.</p>
+        <p class="text-gray-600 text-xs leading-relaxed">Your driver will be waiting in the arrivals placard zone with a LayoverX banner showing your name.</p>
       </div>
     </div>
   </div>

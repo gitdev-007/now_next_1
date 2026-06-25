@@ -2,7 +2,9 @@
    LayoverX Unified Design System
    Core resets, layout grid, typography scale, buttons, forms, & cards.
    ========================================================================== */
-/* @import url('../styles/tokens/tokens.css'); */
+@import url('../styles/tokens/tokens.css');
+
+@layer base {
 /* --- RESET & BASIC STYLES --- */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -154,17 +156,70 @@ h6 {
   font-weight: 500;
   letter-spacing: 0.02em;
 }
+} /* end @layer base */
 
+@layer utilities {
 /* --- TAILWIND TYPOGRAPHY OVERRIDES --- */
-.text-xs { font-size: var(--font-tiny) !important; line-height: 1.5 !important; }
-.text-sm { font-size: var(--font-caption) !important; line-height: 1.5 !important; }
-.text-base { font-size: var(--font-body) !important; line-height: 1.5 !important; }
-.text-lg { font-size: var(--font-h4) !important; line-height: 1.5 !important; }
-.text-xl { font-size: var(--font-h3) !important; line-height: 1.5 !important; }
-.text-2xl { font-size: var(--font-h2) !important; line-height: 1.5 !important; }
-.text-3xl { font-size: var(--font-h1) !important; line-height: 1.5 !important; }
-.text-4xl, .text-5xl, .text-6xl, .text-7xl { font-size: var(--font-hero) !important; line-height: 1.5 !important; }
+/* Base Sizing Utilities */
+.text-xs { font-size: var(--font-tiny); line-height: 1.5; }
+.text-sm { font-size: var(--font-caption); line-height: 1.5; }
+.text-base { font-size: var(--font-body); line-height: 1.5; }
+.text-lg { font-size: var(--font-h4); line-height: 1.5; }
+.text-xl { font-size: var(--font-h3); line-height: 1.5; }
+.text-2xl { font-size: var(--font-h2); line-height: 1.5; }
+.text-3xl { font-size: var(--font-h1); line-height: 1.5; }
+.text-4xl, .text-5xl, .text-6xl, .text-7xl { font-size: var(--font-hero); line-height: 1.5; }
 
+/* Responsive Utilities (sm: 640px) */
+@media (min-width: 640px) {
+  .sm\:text-xs { font-size: var(--font-tiny); }
+  .sm\:text-sm { font-size: var(--font-caption); }
+  .sm\:text-base { font-size: var(--font-body); }
+  .sm\:text-lg { font-size: var(--font-h4); }
+  .sm\:text-xl { font-size: var(--font-h3); }
+  .sm\:text-2xl { font-size: var(--font-h2); }
+  .sm\:text-3xl { font-size: var(--font-h1); }
+  .sm\:text-4xl, .sm\:text-5xl, .sm\:text-6xl, .sm\:text-7xl { font-size: var(--font-hero); }
+}
+
+/* Responsive Utilities (md: 768px) */
+@media (min-width: 768px) {
+  .md\:text-xs { font-size: var(--font-tiny); }
+  .md\:text-sm { font-size: var(--font-caption); }
+  .md\:text-base { font-size: var(--font-body); }
+  .md\:text-lg { font-size: var(--font-h4); }
+  .md\:text-xl { font-size: var(--font-h3); }
+  .md\:text-2xl { font-size: var(--font-h2); }
+  .md\:text-3xl { font-size: var(--font-h1); }
+  .md\:text-4xl, .md\:text-5xl, .md\:text-6xl, .md\:text-7xl { font-size: var(--font-hero); }
+}
+
+/* Responsive Utilities (lg: 1024px) */
+@media (min-width: 1024px) {
+  .lg\:text-xs { font-size: var(--font-tiny); }
+  .lg\:text-sm { font-size: var(--font-caption); }
+  .lg\:text-base { font-size: var(--font-body); }
+  .lg\:text-lg { font-size: var(--font-h4); }
+  .lg\:text-xl { font-size: var(--font-h3); }
+  .lg\:text-2xl { font-size: var(--font-h2); }
+  .lg\:text-3xl { font-size: var(--font-h1); }
+  .lg\:text-4xl, .lg\:text-5xl, .lg\:text-6xl, .lg\:text-7xl { font-size: var(--font-hero); }
+}
+
+/* Responsive Utilities (xl: 1280px) */
+@media (min-width: 1280px) {
+  .xl\:text-xs { font-size: var(--font-tiny); }
+  .xl\:text-sm { font-size: var(--font-caption); }
+  .xl\:text-base { font-size: var(--font-body); }
+  .xl\:text-lg { font-size: var(--font-h4); }
+  .xl\:text-xl { font-size: var(--font-h3); }
+  .xl\:text-2xl { font-size: var(--font-h2); }
+  .xl\:text-3xl { font-size: var(--font-h1); }
+  .xl\:text-4xl, .xl\:text-5xl, .xl\:text-6xl, .xl\:text-7xl { font-size: var(--font-hero); }
+}
+} /* end @layer utilities */
+
+@layer components {
 /* --- BUTTON SYSTEM --- */
 .btn {
   display: inline-flex;
@@ -744,6 +799,24 @@ textarea.form-input {
   }
 }
 
+/* --- SECTION SPACING UTILITY --- */
+.section {
+  padding-top: 4rem;  /* 64px */
+  padding-bottom: 4rem;
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding-top: 5rem;  /* 80px */
+    padding-bottom: 5rem;
+  }
+}
+
+/* --- CTA GRADIENT BACKGROUND --- */
+.cta-gradient {
+  background: linear-gradient(135deg, var(--theme-hero-from, #0369a1), var(--theme-hero-to, #0c4a6e)) !important;
+}
+
 /* --- REVEAL ANIMATION --- */
 .reveal {
   opacity: 0;
@@ -979,3 +1052,14 @@ textarea.form-input {
     display: block;
   }
 }
+
+/* --- THEMED PAGE BODY TEXT FIX ---
+   On themed pages (hotels, restaurants, spa, etc.) .text-theme-primary
+   resolves to the sector color (gold, orange, violet, etc.) which
+   is WRONG for body text paragraphs. These helpers ensure body text
+   always uses readable gray tones. */
+.themed-body-text { color: var(--text-secondary) !important; }  /* #334155 Slate 700 */
+.themed-muted-text { color: var(--text-muted) !important; }     /* #475569 Slate 600 */
+.themed-heading-text { color: var(--text-primary) !important; } /* #0f172a Slate 900 */
+
+} /* end @layer components */

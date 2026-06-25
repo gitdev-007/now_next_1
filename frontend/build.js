@@ -344,7 +344,7 @@ function processSupabaseInit() {
 // ─── Page compiler ───────────────────────────────────────────────────────────
 
 function compilePage(filename) {
-  const pagePath = path.join(BASE, '..', 'pages', filename);
+  const pagePath = path.join(BASE, 'pages', filename);
   if (!fs.existsSync(pagePath)) {
     console.error(`Error: Page source '${filename}' not found at ${pagePath}`);
     return;
