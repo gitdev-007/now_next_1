@@ -34,13 +34,13 @@
     }
 
     /* Heading scale — clear hierarchy, no browser defaults */
-    .text-hero { font-size: 4rem; line-height: 1.1; font-weight: 900; letter-spacing: -0.03em; }
-    h1 { font-size: 3rem; line-height: 1.2; font-weight: 800; letter-spacing: -0.025em; }
-    h2 { font-size: 2.5rem; line-height: 1.25; font-weight: 800; letter-spacing: -0.02em; }
-    h3 { font-size: 2rem; line-height: 1.3; font-weight: 700; letter-spacing: -0.015em; }
-    h4 { font-size: 1.5rem; line-height: 1.35; font-weight: 700; }
-    h5 { font-size: 1.25rem; line-height: 1.4; font-weight: 600; }
-    h6 { font-size: 1rem; line-height: 1.5; font-weight: 600; }
+    .text-hero { font-size: 3.5rem; line-height: 1.5; font-weight: 900; letter-spacing: -0.03em; }
+    h1 { font-size: 2.5rem; line-height: 1.5; font-weight: 800; letter-spacing: -0.025em; }
+    h2 { font-size: 1.875rem; line-height: 1.5; font-weight: 800; letter-spacing: -0.02em; }
+    h3 { font-size: 1.375rem; line-height: 1.5; font-weight: 700; letter-spacing: -0.015em; }
+    h4 { font-size: 1.125rem; line-height: 1.5; font-weight: 700; }
+    h5 { font-size: 1rem; line-height: 1.5; font-weight: 600; }
+    h6 { font-size: 0.9375rem; line-height: 1.5; font-weight: 600; }
 
     /* Body text — never smaller than 14px */
     p { font-size: 1rem; line-height: 1.5; }
@@ -73,6 +73,9 @@
   <!-- Tailwind utility classes -->
   <link rel="preload" href="css/tailwind.min.css" as="style"/>
   <link rel="stylesheet" href="css/tailwind.min.css"/>
+
+  <!-- LayoverX Design System -->
+  <link rel="stylesheet" href="css/design-system.css"/>
 
   <!-- Supabase JS Client -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -117,6 +120,21 @@
 
       const mockAuth = {
         onAuthStateChanged: function(cb) {
+          if (window.supabase && window.supabase.auth) {
+            const { data } = window.supabase.auth.onAuthStateChange((event, session) => {
+              const user = session ? session.user : null;
+              if (user) {
+                user.uid = user.id;
+                user.displayName = user.user_metadata?.full_name || user.email.split('@')[0];
+              }
+              cb(user);
+            });
+            return () => {
+              if (data && data.subscription) {
+                data.subscription.unsubscribe();
+              }
+            };
+          }
           authCallbacks.push(cb);
           // Execute callback with current state immediately
           setTimeout(() => cb(currentUser), 10);
@@ -126,9 +144,28 @@
           };
         },
         get currentUser() {
+          if (window.supabase && window.supabase.auth) {
+            try {
+              const saved = localStorage.getItem('layoverx_user');
+              if (saved) {
+                const u = JSON.parse(saved);
+                u.uid = u.id;
+                u.displayName = u.user_metadata?.full_name || u.email.split('@')[0];
+                return u;
+              }
+            } catch(e) {}
+          }
           return currentUser;
         },
         createUserWithEmailAndPassword: async function(email, password) {
+          if (window.supabase && window.supabase.auth) {
+            const { data, error } = await window.supabase.auth.signUp({ email, password });
+            if (error) throw error;
+            const u = data.user;
+            u.uid = u.id;
+            u.displayName = u.user_metadata?.full_name || u.email.split('@')[0];
+            return { user: u };
+          }
           currentUser = {
             uid: 'usr_' + Math.random().toString(36).substring(2, 11),
             email: email,
@@ -144,6 +181,14 @@
           return { user: currentUser };
         },
         signInWithEmailAndPassword: async function(email, password) {
+          if (window.supabase && window.supabase.auth) {
+            const { data, error } = await window.supabase.auth.signInWithPassword({ email, password });
+            if (error) throw error;
+            const u = data.user;
+            u.uid = u.id;
+            u.displayName = u.user_metadata?.full_name || u.email.split('@')[0];
+            return { user: u };
+          }
           currentUser = {
             uid: 'usr_' + Math.random().toString(36).substring(2, 11),
             email: email,
@@ -159,6 +204,11 @@
           return { user: currentUser };
         },
         signOut: async function() {
+          if (window.supabase && window.supabase.auth) {
+            const { error } = await window.supabase.auth.signOut();
+            if (error) throw error;
+            return;
+          }
           currentUser = null;
           setStoredUser(null);
           authCallbacks.forEach(cb => cb(null));
@@ -248,6 +298,138 @@
       if (!window.layoverxAuth) window.layoverxAuth = mockAuth;
       if (!window.layoverxDb) window.layoverxDb = mockDb;
       if (!window.layoverxStorage) window.layoverxStorage = mockStorage;
+
+      if (!window.supabase) {
+        window.supabase = (function() {
+          const authCallbacks = [];
+          let currentUser = null;
+          try {
+            const saved = localStorage.getItem('layoverx_user');
+            if (saved) currentUser = JSON.parse(saved);
+          } catch(e) {}
+
+          const mockSession = () => {
+            if (!currentUser) return null;
+            return {
+              user: currentUser,
+              access_token: 'mock-access-token',
+              expires_in: 3600
+            };
+          };
+
+          const notifyListeners = (event = 'SIGNED_IN') => {
+            authCallbacks.forEach(cb => cb(event, mockSession()));
+          };
+
+          return {
+            auth: {
+              onAuthStateChange: function(cb) {
+                authCallbacks.push(cb);
+                setTimeout(() => cb(currentUser ? 'SIGNED_IN' : 'SIGNED_OUT', mockSession()), 10);
+                return {
+                  data: {
+                    subscription: {
+                      unsubscribe: () => {
+                        const index = authCallbacks.indexOf(cb);
+                        if (index > -1) authCallbacks.splice(index, 1);
+                      }
+                    }
+                  }
+                };
+              },
+              getSession: async function() {
+                return { data: { session: mockSession() }, error: null };
+              },
+              signUp: async function({ email, password, options }) {
+                const fullName = options?.data?.full_name || email.split('@')[0];
+                currentUser = {
+                  id: 'usr_' + Math.random().toString(36).substring(2, 11),
+                  email,
+                  user_metadata: { full_name: fullName }
+                };
+                try {
+                  localStorage.setItem('layoverx_user', JSON.stringify(currentUser));
+                } catch(e) {}
+                setTimeout(() => notifyListeners('SIGNED_IN'), 10);
+                return { data: { user: currentUser }, error: null };
+              },
+              signInWithPassword: async function({ email, password }) {
+                currentUser = {
+                  id: 'usr_' + Math.random().toString(36).substring(2, 11),
+                  email,
+                  user_metadata: { full_name: email.split('@')[0] }
+                };
+                try {
+                  localStorage.setItem('layoverx_user', JSON.stringify(currentUser));
+                } catch(e) {}
+                setTimeout(() => notifyListeners('SIGNED_IN'), 10);
+                return { data: { session: mockSession(), user: currentUser }, error: null };
+              },
+              signOut: async function() {
+                currentUser = null;
+                try {
+                  localStorage.removeItem('layoverx_user');
+                } catch(e) {}
+                setTimeout(() => notifyListeners('SIGNED_OUT'), 10);
+                return { error: null };
+              },
+              signInWithOAuth: async function(options) {
+                currentUser = {
+                  id: 'usr_google_mock',
+                  email: 'google_user@gmail.com',
+                  user_metadata: { full_name: 'Mock Google User' }
+                };
+                try {
+                  localStorage.setItem('layoverx_user', JSON.stringify(currentUser));
+                } catch(e) {}
+                setTimeout(() => notifyListeners('SIGNED_IN'), 10);
+                return { data: { provider: 'google', url: '#' }, error: null };
+              }
+            },
+            from: function(tableName) {
+              return {
+                upsert: async function(payload) {
+                  try {
+                    const store = JSON.parse(localStorage.getItem('__mockDbStore')) || {};
+                    if (!store[tableName]) store[tableName] = {};
+                    const key = payload.uid || payload.id || 'doc_' + Math.random().toString(36).substring(2, 11);
+                    store[tableName][key] = { ...store[tableName][key], ...payload };
+                    localStorage.setItem('__mockDbStore', JSON.stringify(store));
+                  } catch(e) {}
+                  return { error: null };
+                },
+                insert: async function(payloads) {
+                  try {
+                    const store = JSON.parse(localStorage.getItem('__mockDbStore')) || {};
+                    if (!store[tableName]) store[tableName] = [];
+                    if (Array.isArray(store[tableName])) {
+                      store[tableName].push(...payloads);
+                    } else {
+                      store[tableName] = payloads;
+                    }
+                    localStorage.setItem('__mockDbStore', JSON.stringify(store));
+                  } catch(e) {}
+                  return { error: null };
+                },
+                select: function() {
+                  return {
+                    eq: function() {
+                      return {
+                        maybeSingle: async function() {
+                          return { data: null, error: null };
+                        },
+                        execute: async function() {
+                          return { data: [], error: null };
+                        }
+                      };
+                    }
+                  };
+                }
+              };
+            }
+          };
+        })();
+      }
     })();
   </script>
 
@@ -554,7 +736,7 @@
         
         <!-- Step 1: Airport Cabs Transfers selection -->
         <div class="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
-          <div class="flex items-center justify-between pb-4 border-b border-gray-100 mb-6">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-gray-100 mb-6 items-start">
             <div class="flex items-center gap-4">
               <span class="w-7 h-7 rounded-lg bg-sky-100 text-theme-primary font-bold flex items-center justify-center text-xs">1</span>
               <h2 class="text-lg font-bold text-gray-900">Choose Airport Transfer Cab</h2>
@@ -589,7 +771,7 @@
 
         <!-- Step 2: Add Transit Hotels slot -->
         <div class="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
-          <div class="flex items-center justify-between pb-4 border-b border-gray-100 mb-6">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-gray-100 mb-6 items-start">
             <div class="flex items-center gap-4">
               <span class="w-7 h-7 rounded-lg bg-sky-100 text-theme-primary font-bold flex items-center justify-center text-xs">2</span>
               <h2 class="text-lg font-bold text-gray-900">Add Transit Hotel (Optional)</h2>
@@ -638,7 +820,7 @@
 
         <!-- Step 3: Add Dining reservations -->
         <div class="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
-          <div class="flex items-center justify-between pb-4 border-b border-gray-100 mb-6">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-gray-100 mb-6 items-start">
             <div class="flex items-center gap-4">
               <span class="w-7 h-7 rounded-lg bg-sky-100 text-theme-primary font-bold flex items-center justify-center text-xs">3</span>
               <h2 class="text-lg font-bold text-gray-900">Add Dining Reservation (Optional)</h2>
@@ -681,7 +863,7 @@
 
         <!-- Step 4: Add City Activities -->
         <div class="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
-          <div class="flex items-center justify-between pb-4 border-b border-gray-100 mb-6">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-gray-100 mb-6 items-start">
             <div class="flex items-center gap-4">
               <span class="w-7 h-7 rounded-lg bg-sky-100 text-theme-primary font-bold flex items-center justify-center text-xs">4</span>
               <h2 class="text-lg font-bold text-gray-900">Add City Tours & Activities (Optional)</h2>
@@ -724,7 +906,7 @@
 
         <!-- Step 5: Spa & Wellness -->
         <div class="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
-          <div class="flex items-center justify-between pb-4 border-b border-gray-100 mb-6">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-gray-100 mb-6 items-start">
             <div class="flex items-center gap-4">
               <span class="w-7 h-7 rounded-lg bg-sky-100 text-theme-primary font-bold flex items-center justify-center text-xs">5</span>
               <h2 class="text-lg font-bold text-gray-900">Add Spa & Wellness (Optional)</h2>
@@ -762,7 +944,7 @@
 
         <!-- Step 6: Gaming & Entertainment -->
         <div class="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
-          <div class="flex items-center justify-between pb-4 border-b border-gray-100 mb-6">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-gray-100 mb-6 items-start">
             <div class="flex items-center gap-4">
               <span class="w-7 h-7 rounded-lg bg-sky-100 text-theme-primary font-bold flex items-center justify-center text-xs">6</span>
               <h2 class="text-lg font-bold text-gray-900">Add Gaming & Entertainment (Optional)</h2>

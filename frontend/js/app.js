@@ -452,6 +452,14 @@
       try {
         const { data, error } = await window.supabase.auth.signInWithPassword({ email, password });
         if (error) throw error;
+        
+        // Propagate login to legacy test auth framework if overridden
+        if (window.layoverxAuth && typeof window.layoverxAuth.signInWithEmailAndPassword === 'function' && !window.layoverxAuth.signInWithEmailAndPassword.toString().includes('window.supabase')) {
+          try {
+            await window.layoverxAuth.signInWithEmailAndPassword(email, password);
+          } catch(e) { console.warn("Firebase compatibility auth login bridge failed:", e); }
+        }
+
         Modal.closeAll();
         showToast(`Welcome back!`, 'success');
       } catch (error) {
@@ -484,6 +492,13 @@
         });
         if (dbError) throw dbError;
         
+        // Propagate signup to legacy test auth framework if overridden
+        if (window.layoverxAuth && typeof window.layoverxAuth.createUserWithEmailAndPassword === 'function' && !window.layoverxAuth.createUserWithEmailAndPassword.toString().includes('window.supabase')) {
+          try {
+            await window.layoverxAuth.createUserWithEmailAndPassword(email, password);
+          } catch(e) { console.warn("Firebase compatibility auth signup bridge failed:", e); }
+        }
+
         Modal.closeAll();
         showToast(`Account created! Welcome, ${name}.`, 'success');
       } catch (error) {
@@ -496,6 +511,14 @@
       try {
         const { error } = await window.supabase.auth.signOut();
         if (error) throw error;
+
+        // Propagate logout to legacy test auth framework if overridden
+        if (window.layoverxAuth && typeof window.layoverxAuth.signOut === 'function' && !window.layoverxAuth.signOut.toString().includes('window.supabase')) {
+          try {
+            await window.layoverxAuth.signOut();
+          } catch(e) { console.warn("Firebase compatibility auth logout bridge failed:", e); }
+        }
+
         showToast("Signed out successfully.", 'info');
         setTimeout(() => window.location.reload(), 800);
       } catch (error) {
@@ -507,7 +530,7 @@
       const isAuth = state.isAuthenticated;
       $$('.auth-guest').forEach((el) => el.style.display = isAuth ? 'none' : 'flex');
       $$('.auth-user').forEach((el) => el.style.display = isAuth ? 'flex' : 'none');
-       $$('.user-name').forEach((el) => el.textContent = state.user?.name || 'Traveler');
+      $$('.user-name').forEach((el) => el.textContent = state.user?.name || '');
       $$('.user-avatar-letter').forEach((el) => el.textContent = state.user?.avatar || 'U');
       $$('.user-email-display').forEach((el) => el.textContent = state.user?.email || 'traveler@layoverx.com');
     }
@@ -1517,9 +1540,9 @@
 
     // Load URL params if any
     const params = new URLSearchParams(window.location.search);
-    let landing = params.get('arrivalDateTime') || params.get('arrival');
-    let boarding = params.get('departureDateTime') || params.get('departure');
-    let loc = params.get('location') || params.get('area');
+    let landing = params.get('arrivalDateTime');
+    let boarding = params.get('departureDateTime');
+    let loc = params.get('location');
     let travelers = params.get('travelers');
 
     // Fallback to localStorage
@@ -1539,15 +1562,10 @@
     const now = new Date();
     const sixh = new Date(now.getTime() + 6*60*60*1000);
     
-    const arrVal = landing || toLocalISO(now);
-    const depVal = boarding || toLocalISO(sixh);
-    const locVal = loc || 'near-airport';
-    const travelersVal = travelers || '2';
-
-    $('#plan-arrival').value = arrVal;
-    $('#plan-departure').value = depVal;
-    if ($('#plan-location')) $('#plan-location').value = locVal;
-    if ($('#plan-travelers')) $('#plan-travelers').value = travelersVal;
+    $('#plan-arrival').value = landing || toLocalISO(now);
+    $('#plan-departure').value = boarding || toLocalISO(sixh);
+    if (loc) $('#plan-location').value = loc;
+    if (travelers) $('#plan-travelers').value = travelers;
 
     // Save planner search criteria to localStorage
     const savePlannerParams = () => {
@@ -1566,9 +1584,6 @@
         }));
       } catch(e) { console.error(e); }
     };
-
-    // Save immediately to ensure it survives reloads & page sync
-    savePlannerParams();
 
     // Setup bindings
     $$('#plan-hotels-options input[type="checkbox"]').forEach((el, index) => {
@@ -3071,14 +3086,14 @@
 
   function initGlobalTravelContext() {
     let params = null;
-
+    
     // Check URL parameters first to ensure dynamic redirects set context
     const urlParams = new URLSearchParams(window.location.search);
-    const urlArrival = urlParams.get('arrivalDateTime') || urlParams.get('arrival');
-    const urlDeparture = urlParams.get('departureDateTime') || urlParams.get('departure');
-    const urlLocation = urlParams.get('location') || urlParams.get('area');
+    const urlArrival = urlParams.get('arrivalDateTime');
+    const urlDeparture = urlParams.get('departureDateTime');
+    const urlLocation = urlParams.get('location');
     const urlTravelers = urlParams.get('travelers');
-
+    
     if (urlArrival && urlDeparture) {
       const dur = (new Date(urlDeparture) - new Date(urlArrival)) / 3600000;
       params = {
@@ -5497,7 +5512,9 @@
     }
 
     arrivalInput.addEventListener('change', updateLayoverDuration);
+    arrivalInput.addEventListener('input', updateLayoverDuration);
     departureInput.addEventListener('change', updateLayoverDuration);
+    departureInput.addEventListener('input', updateLayoverDuration);
     updateLayoverDuration();
 
     if (searchBtn) {
@@ -5507,13 +5524,23 @@
         const travelers = document.getElementById('search-travelers')?.value || '2';
         const location = document.getElementById('search-location')?.value || 'near-airport';
         
-        // Calculate layover duration
-        let hours = 6.5;
-        if (arrival && departure) {
-          hours = (new Date(departure) - new Date(arrival)) / 3600000;
+        if (!arrival || !departure) {
+          if (typeof window.layoverx.showToast === 'function') {
+            window.layoverx.showToast('Please enter your arrival and departure times first.', 'error');
+          }
+          return;
+        }
+        
+        const diffMs = new Date(departure) - new Date(arrival);
+        if (diffMs <= 0) {
+          if (typeof window.layoverx.showToast === 'function') {
+            window.layoverx.showToast('Departure time must be after arrival time.', 'error');
+          }
+          return;
         }
 
-        // Save to localStorage immediately
+        const hours = diffMs / 3600000;
+        
         try {
           localStorage.setItem('layoverx_search_params', JSON.stringify({
             arrivalDateTime: arrival,
@@ -5524,7 +5551,7 @@
           }));
         } catch(e) { console.error(e); }
 
-        const url = `plan-my-layover.html?arrival=${encodeURIComponent(arrival)}&departure=${encodeURIComponent(departure)}&travelers=${travelers}&area=${location}`;
+        const url = `plan-my-layover.html?arrivalDateTime=${encodeURIComponent(arrival)}&departureDateTime=${encodeURIComponent(departure)}&travelers=${travelers}&location=${location}`;
         window.location.href = url;
       });
     }

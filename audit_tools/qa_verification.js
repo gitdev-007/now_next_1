@@ -21,8 +21,8 @@ async function run() {
 
   // Step 1: Search Form Persistence
   console.log('--- Step 1: Search Form Persistence ---');
-  await page.goto('http://localhost:8001/index.html');
-  await page.waitForLoadState('load');
+  await page.goto('http://localhost:8000/index.html');
+  await page.waitForLoadState('networkidle');
 
   // Select values programmatically
   await page.selectOption('#search-location', 'bandra');
@@ -48,7 +48,7 @@ async function run() {
 
   // Submit form
   await page.click('#search-btn');
-  await page.waitForLoadState('load');
+  await page.waitForLoadState('networkidle');
   console.log(`Current page URL after search submit: ${page.url()}`);
 
   // Check inputs on planner page
@@ -68,7 +68,7 @@ async function run() {
   // Refresh page and check persistence
   console.log('Refreshing planner page...');
   await page.reload();
-  await page.waitForLoadState('load');
+  await page.waitForLoadState('networkidle');
 
   const refLocation = await page.inputValue('#plan-location');
   const refArrival = await page.inputValue('#plan-arrival');
@@ -136,8 +136,8 @@ async function run() {
 
   // Step 3: Modal Close Events
   console.log('--- Step 3: Modal Close Event Handlers ---');
-  await page.goto('http://localhost:8001/index.html');
-  await page.waitForLoadState('load');
+  await page.goto('http://localhost:8000/index.html');
+  await page.waitForLoadState('networkidle');
 
   // Open login
   await page.click('.auth-guest a:has-text("Login")');
@@ -175,8 +175,8 @@ async function run() {
   
   const pagesToTest = ['hotels.html', 'restaurants.html', 'spa-wellness.html', 'gaming-entertainment.html', 'experiences.html', 'airport-transfers.html'];
   for (const pageName of pagesToTest) {
-    await page.goto(`http://localhost:8001/${pageName}`);
-    await page.waitForLoadState('load');
+    await page.goto(`http://localhost:8000/${pageName}`);
+    await page.waitForLoadState('networkidle');
     console.log(`Verifying hero section on ${pageName}...`);
     
     // Check if the split columns display correctly
@@ -201,8 +201,8 @@ async function run() {
 
   // Step 5: Responsive Check on experiences.html
   console.log('--- Step 5: Responsive Audits on experiences.html ---');
-  await page.goto('http://localhost:8001/experiences.html');
-  await page.waitForLoadState('load');
+  await page.goto('http://localhost:8000/experiences.html');
+  await page.waitForLoadState('networkidle');
 
   // Tablet: 768px wide
   console.log('Resizing to tablet width (768px)...');
@@ -220,8 +220,8 @@ async function run() {
 
   // Step 6: Pricing & Revenue Admin Dashboard Verification
   console.log('--- Step 6: Pricing & Revenue Admin Dashboard ---');
-  await page.goto('http://localhost:8001/revenue-admin.html');
-  await page.waitForLoadState('load');
+  await page.goto('http://localhost:8000/revenue-admin.html');
+  await page.waitForLoadState('networkidle');
 
   // Verify dashboard page loaded
   const adminHeader = await page.innerText('h1');

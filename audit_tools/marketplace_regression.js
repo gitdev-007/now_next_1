@@ -25,8 +25,8 @@ async function run() {
     // STEP 1: Global Context Search Form & Pre-fill
     // ----------------------------------------------------
     console.log('\n--- Step 1: Homepage Search & Context Setup ---');
-    await page.goto('http://localhost:8001/index.html');
-    await page.waitForLoadState('load');
+    await page.goto('http://localhost:8000/index.html');
+    await page.waitForLoadState('networkidle');
 
     // Select search parameters
     await page.selectOption('#search-location', 'bandra');
@@ -50,7 +50,7 @@ async function run() {
 
     // Click Search to set local storage and redirect to Plan My Layover
     await page.click('#search-btn');
-    await page.waitForLoadState('load');
+    await page.waitForLoadState('networkidle');
     console.log(`Redirected to URL: ${page.url()}`);
 
     // Verify global trip context summary badge is rendering in header
@@ -98,8 +98,8 @@ async function run() {
     console.log('\n--- Step 3: Listing Pages Pre-fill & Add To Itinerary ---');
     
     // Navigate to Hotels Listing
-    await page.goto('http://localhost:8001/hotels.html');
-    await page.waitForLoadState('load');
+    await page.goto('http://localhost:8000/hotels.html');
+    await page.waitForLoadState('networkidle');
 
     // Verify check-in datetime prefilled matches context
     const checkinVal = await page.inputValue('#hotel-checkin');
@@ -126,11 +126,11 @@ async function run() {
 
     // Go to Restaurants Listing and View Details
     console.log('Navigating to dining and viewing Peshawri details...');
-    await page.goto('http://localhost:8001/restaurants.html');
-    await page.waitForLoadState('load');
+    await page.goto('http://localhost:8000/restaurants.html');
+    await page.waitForLoadState('networkidle');
 
     await page.click('.rest-item:has-text("Peshawri") a:has-text("View Details")');
-    await page.waitForLoadState('load');
+    await page.waitForLoadState('networkidle');
     console.log(`Loaded Service Details Page: ${page.url()}`);
 
     // Verify dynamic detail content
@@ -161,8 +161,8 @@ async function run() {
     // STEP 4: Itinerary Workspace Validation
     // ----------------------------------------------------
     console.log('\n--- Step 4: Itinerary Workspace Math & Limit Validation ---');
-    await page.goto('http://localhost:8001/my-itinerary.html');
-    await page.waitForLoadState('load');
+    await page.goto('http://localhost:8000/my-itinerary.html');
+    await page.waitForLoadState('networkidle');
 
     // Inspect used vs remaining safe window
     const totalHrsText = await page.innerText('#workspace-total-hours');
@@ -221,11 +221,13 @@ async function run() {
     // ----------------------------------------------------
     console.log('\n--- Step 5: Checkout & Booking finalization ---');
     await page.click('#btn-checkout');
+    await page.waitForURL('**/booking-review.html*');
     await page.waitForLoadState('load');
     console.log(`Arrived at page: ${page.url()}`);
 
     if (page.url().includes('booking-review.html')) {
       await page.click('text=Proceed to Traveler Details');
+      await page.waitForURL('**/checkout.html*');
       await page.waitForLoadState('load');
       console.log(`Transitioned to page: ${page.url()}`);
     }

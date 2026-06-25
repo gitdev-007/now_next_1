@@ -34,7 +34,7 @@ async function run() {
   page.on('console', msg => console.log('PAGE LOG:', msg.text()));
   page.on('pageerror', err => console.log('PAGE ERROR:', err.stack || err.message));
 
-  // 0. Inject mock firebase services before any navigation using sessionStorage persistence
+  // 0. Inject mock Supabase services before any navigation using sessionStorage persistence
   await page.addInitScript(() => {
     // Load mock database from sessionStorage
     let store;
@@ -119,7 +119,7 @@ async function run() {
       }
     };
     
-    // Mock Firestore
+    // Mock Supabase DB
     const mockDb = {
       collection: (name) => {
         if (!store[name]) {
@@ -130,12 +130,12 @@ async function run() {
           doc: (id) => {
             return {
               set: async (data, options) => {
-                console.log(`MOCK FIRESTORE: set in ${name}/${id}:`, data);
+                console.log(`MOCK DB: set in ${name}/${id}:`, data);
                 store[name][id] = data;
                 sessionStorage.setItem('__mockStore', JSON.stringify(store));
               },
               get: async () => {
-                console.log(`MOCK FIRESTORE: get from ${name}/${id}`);
+                console.log(`MOCK DB: get from ${name}/${id}`);
                 const data = store[name][id];
                 return {
                   exists: !!data,
@@ -145,7 +145,7 @@ async function run() {
             };
           },
           where: (field, op, val) => {
-            console.log(`MOCK FIRESTORE: query where ${field} ${op} ${val}`);
+            console.log(`MOCK DB: query where ${field} ${op} ${val}`);
             return {
               get: async () => {
                 const results = [];
@@ -178,7 +178,7 @@ async function run() {
                 return {};
               },
               getDownloadURL: async () => {
-                const url = `https://firebasestorage.googleapis.com/v0/b/mock/o/${encodeURIComponent(path)}`;
+                const url = `https://storage.mock/layoverx/${encodeURIComponent(path)}`;
                 console.log('MOCK STORAGE: getDownloadURL returning:', url);
                 return url;
               }
@@ -188,46 +188,7 @@ async function run() {
       }
     };
 
-    const mockSupabase = {
-      auth: {
-        signUp: async ({ email, password, options }) => {
-          console.log('MOCK SUPABASE AUTH: signUp called for', email);
-          const result = await mockAuth.createUserWithEmailAndPassword(email, password);
-          return { data: { user: result.user }, error: null };
-        },
-        getSession: async () => {
-          return { data: { session: currentUser ? { user: currentUser } : null }, error: null };
-        },
-        onAuthStateChange: (cb) => {
-          mockAuth.onAuthStateChanged((user) => {
-            cb('SIGNED_IN', user ? { user } : null);
-          });
-        }
-      },
-      from: (table) => {
-        return {
-          upsert: async (data) => {
-            console.log(`MOCK SUPABASE DB: upsert in ${table}:`, data);
-            if (!store[table]) store[table] = {};
-            const id = data.uid || data.id || 'mock-id';
-            store[table][id] = data;
-            sessionStorage.setItem('__mockStore', JSON.stringify(store));
-            return { error: null };
-          },
-          insert: async (data) => {
-            console.log(`MOCK SUPABASE DB: insert in ${table}:`, data);
-            if (!store[table]) store[table] = {};
-            const id = data.uid || data.id || 'mock-id';
-            store[table][id] = data;
-            sessionStorage.setItem('__mockStore', JSON.stringify(store));
-            return { error: null };
-          }
-        };
-      }
-    };
-
-    // Override the globals immediately. We do NOT override window.firebase itself,
-    // so properties like window.firebase.firestore.FieldValue.serverTimestamp remain valid.
+    // Override the globals immediately to inject Supabase-compatible mocks.
     Object.defineProperty(window, 'layoverxAuth', {
       get: () => mockAuth,
       set: () => {},
@@ -243,28 +204,23 @@ async function run() {
       set: () => {},
       configurable: true
     });
-    Object.defineProperty(window, 'supabase', {
-      get: () => mockSupabase,
-      set: () => {},
-      configurable: true
-    });
   });
 
-  const baseUrl = 'http://localhost:8001';
+  const baseUrl = 'http://127.0.0.1:8000';
 
   try {
     // Clear session storage at startup
     console.log('Opening Contact page...');
     await page.goto(`${baseUrl}/contact.html`);
-    await page.evaluate(() => sessionStorage.clear());
-    await page.waitForLoadState('load');
+    await page.evaluate(() => { sessionStorage.clear(); localStorage.clear(); });
+    await page.waitForLoadState('networkidle');
 
     // 2. Click "Register as Supplier"
     console.log('Clicking Register as Supplier...');
     await page.click('text=Register as Supplier');
     await page.waitForURL('**/partner-registration.html');
     console.log('Successfully redirected to partner-registration.html');
-    await page.waitForLoadState('load');
+    await page.waitForLoadState('networkidle');
 
     // 3. Assert Auth Required panel is visible since user is Guest
     console.log('Verifying Auth Required overlay is visible...');
@@ -277,6 +233,7 @@ async function run() {
     console.log('Triggering signup modal...');
     await page.click('#auth-required-panel button:has-text("Create New Account")');
     await page.locator('#modal-signup').waitFor({ state: 'visible', timeout: 5000 });
+    await page.waitForTimeout(500); // Wait for opacity/transform transition to settle
     
     const randomEmail = `supplier_${Date.now()}@test.com`;
     console.log(`Filling out signup details for: ${randomEmail}`);
@@ -366,19 +323,19 @@ async function run() {
     await page.setViewportSize({ width: 1280, height: 800 });
     await page.waitForTimeout(300);
 
-    console.log('Submitting application to Firestore and uploading to Storage...');
+    console.log('Submitting application to Supabase and uploading to Storage...');
     await page.click('#submit-btn');
 
     // 6. Verify success page redirect
     console.log('Waiting for success screen redirect to status page...');
     await page.waitForURL('**/supplier-status.html*');
-    await page.waitForLoadState('load');
+    await page.waitForLoadState('networkidle');
     console.log('Successfully redirected to supplier-status.html');
 
     const appId = await page.locator('#status-app-ref').textContent();
     console.log('Onboarding complete! Application reference ID:', appId);
 
-    // 7. Verify Firestore document and Storage objects via direct page injection check
+    // 7. Verify Supabase record and Storage objects via direct page injection check
     const appData = await page.evaluate((aid) => {
       const storeStr = sessionStorage.getItem('__mockStore');
       const store = JSON.parse(storeStr);
@@ -386,10 +343,10 @@ async function run() {
     }, appId);
 
     if (!appData) {
-      throw new Error(`Firestore document with ID ${appId} was not created!`);
+      throw new Error(`Database record with ID ${appId} was not created!`);
     }
-    console.log('Verified Firestore Document matches schema:', appData.applicationId === appId);
-    console.log('Firestore Status:', appData.status);
+    console.log('Verified DB record matches schema:', appData.applicationId === appId);
+    console.log('Application Status:', appData.status);
     console.log('Logo URL Uploaded:', appData.documents.logoUrl);
 
     // 8. Verify Supplier Dashboard Page
@@ -399,7 +356,7 @@ async function run() {
       if (btn) btn.click();
     });
     await page.waitForURL('**/supplier-dashboard.html');
-    await page.waitForLoadState('load');
+    await page.waitForLoadState('networkidle');
 
     // Verify dashboard displays the correct application
     const dashAppId = await page.locator('#dash-app-id').textContent();
