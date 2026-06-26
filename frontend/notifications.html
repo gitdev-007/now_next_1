@@ -72,15 +72,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
   </noscript>
 
-  <!-- LayoverX Design Tokens -->
-  <link rel="stylesheet" href="styles/tokens/tokens.css"/>
-
   <!-- Tailwind utility classes -->
   <link rel="preload" href="css/tailwind.min.css" as="style"/>
   <link rel="stylesheet" href="css/tailwind.min.css"/>
 
-  <!-- LayoverX Design System -->
-  <link rel="stylesheet" href="css/design-system.css"/>
+  <!-- LayoverX Modular Design System — loaded AFTER Tailwind so our values win -->
+  <link rel="stylesheet" href="css/index.css"/>
 
   <!-- Supabase JS Client -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -587,60 +584,89 @@
   <!-- Page Content -->
   <main id="main">
     <!-- NOTIFICATIONS CENTER PAGE -->
-<section class="relative bg-slate-900 text-white pt-24 pb-16 overflow-hidden">
-  <div class="absolute inset-0 bg-cover bg-center opacity-10" style="background-image:url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=1200&auto=format&fm=webp&q=75')" role="img" aria-label="Airport Runway Background"></div>
-  <div class="container relative z-10">
-    <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
-      <div class="space-y-2">
-        <h1 class="text-3xl font-black tracking-tight">Notifications Center</h1>
-        <p class="text-sm text-sky-200">Track real-time flight changes, gate assignments, and driver alerts</p>
+<section class="account-hero" role="banner">
+  <div class="container">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+      <div>
+        <h1 class="avatar-name">Notifications Center</h1>
+        <p class="avatar-email" style="margin-top: 0.25rem;">Track real-time flight changes, gate assignments, and driver alerts</p>
       </div>
-      <button onclick="clearAllNotifications()" class="px-4 py-2 border border-white/20 hover:bg-white/10 text-white text-xs font-bold rounded-xl transition">Clear All Alerts</button>
+      <button onclick="clearAllNotifications()" class="btn btn-outline" style="border-color: rgba(255,255,255,0.3); color: white;" aria-label="Clear all notifications">
+        Clear All Alerts
+      </button>
     </div>
   </div>
 </section>
 
-<section class="section bg-slate-50 min-h-[50vh]">
-  <div class="container">
-    <div class="max-w-3xl mx-auto space-y-4" id="notifications-list">
-      
-      <!-- Notification 1 -->
-      <div class="bg-white rounded-2xl border border-gray-200 p-4 shadow-sm flex items-start gap-4 hover:border-sky-300 transition-colors">
-        <div class="w-10 h-10 rounded-xl bg-emerald-50/40 text-theme-primary flex items-center justify-center text-xl flex-shrink-0">🚖</div>
-        <div class="flex-grow space-y-1">
-          <div class="flex items-center justify-between gap-2">
-            <h3 class="font-extrabold text-gray-900 text-sm">Chauffeur Driver Assigned</h3>
-            <span class="text-[10px] text-gray-400 font-semibold">2 Hours Ago</span>
+<section class="section" style="min-height: 50vh;">
+  <div class="container" style="max-width: 48rem;">
+
+    <!-- Search Bar -->
+    <div class="notification-search" role="search">
+      <span class="notification-search-icon" aria-hidden="true">&#128269;</span>
+      <input type="text" placeholder="Search notifications..." aria-label="Search notifications" id="notification-search-input" oninput="filterNotifications()"/>
+    </div>
+
+    <!-- Filters -->
+    <div class="notification-filters" role="toolbar" aria-label="Filter notifications">
+      <button class="notification-filter-btn active" onclick="setFilter('all', this)" aria-pressed="true">
+        All
+        <span class="notification-filter-count" id="count-all">3</span>
+      </button>
+      <button class="notification-filter-btn" onclick="setFilter('transport', this)" aria-pressed="false">
+        Transport
+        <span class="notification-filter-count" id="count-transport">1</span>
+      </button>
+      <button class="notification-filter-btn" onclick="setFilter('flight', this)" aria-pressed="false">
+        Flights
+        <span class="notification-filter-count" id="count-flight">1</span>
+      </button>
+      <button class="notification-filter-btn" onclick="setFilter('hotel', this)" aria-pressed="false">
+        Hotels
+        <span class="notification-filter-count" id="count-hotel">1</span>
+      </button>
+    </div>
+
+    <!-- Notifications List -->
+    <div class="flex flex-col gap-3" id="notifications-list" role="list" aria-label="Notifications">
+
+      <!-- Notification 1 - Unread -->
+      <div class="notification-card unread" role="listitem" data-category="transport">
+        <div class="notification-icon notification-icon-success" aria-hidden="true">&#128663;</div>
+        <div class="notification-body">
+          <div class="notification-header">
+            <h3 class="notification-title">Chauffeur Driver Assigned</h3>
+            <time class="notification-time" datetime="2026-06-25T10:00:00">2 Hours Ago</time>
           </div>
-          <p class="text-xs text-slate-650 leading-relaxed">
+          <p class="notification-text">
             Your AC Sedan driver, Ramesh Kumar (Toyota Etios - MH-02-AB-1234), is assigned for your pickup at CSMIA T2 Arrivals Gate 2. Mobile: +91 98765 43210.
           </p>
         </div>
       </div>
 
-      <!-- Notification 2 -->
-      <div class="bg-white rounded-2xl border border-gray-200 p-4 shadow-sm flex items-start gap-4 hover:border-sky-300 transition-colors">
-        <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center text-xl flex-shrink-0">🛫</div>
-        <div class="flex-grow space-y-1">
-          <div class="flex items-center justify-between gap-2">
-            <h3 class="font-extrabold text-gray-900 text-sm">Outgoing Flight Gate Update</h3>
-            <span class="text-[10px] text-gray-400 font-semibold">4 Hours Ago</span>
+      <!-- Notification 2 - Unread -->
+      <div class="notification-card unread" role="listitem" data-category="flight">
+        <div class="notification-icon notification-icon-warning" aria-hidden="true">&#9992;</div>
+        <div class="notification-body">
+          <div class="notification-header">
+            <h3 class="notification-title">Outgoing Flight Gate Update</h3>
+            <time class="notification-time" datetime="2026-06-25T08:00:00">4 Hours Ago</time>
           </div>
-          <p class="text-xs text-slate-650 leading-relaxed">
+          <p class="notification-text">
             Your departure flight EK-501 boarding gate has changed from Gate 45 to Gate 51. Chauffeur pickup is rescheduled 10 mins earlier.
           </p>
         </div>
       </div>
 
-      <!-- Notification 3 -->
-      <div class="bg-white rounded-2xl border border-gray-200 p-4 shadow-sm flex items-start gap-4 hover:border-sky-300 transition-colors">
-        <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center text-xl flex-shrink-0">🏨</div>
-        <div class="flex-grow space-y-1">
-          <div class="flex items-center justify-between gap-2">
-            <h3 class="font-extrabold text-gray-900 text-sm">JW Marriott Sahar Checked In</h3>
-            <span class="text-[10px] text-gray-400 font-semibold">Yesterday</span>
+      <!-- Notification 3 - Read -->
+      <div class="notification-card" role="listitem" data-category="hotel">
+        <div class="notification-icon notification-icon-info" aria-hidden="true">&#127976;</div>
+        <div class="notification-body">
+          <div class="notification-header">
+            <h3 class="notification-title">JW Marriott Sahar Checked In</h3>
+            <time class="notification-time" datetime="2026-06-24T14:00:00">Yesterday</time>
           </div>
-          <p class="text-xs text-slate-650 leading-relaxed">
+          <p class="notification-text">
             Your hourly day-use room slot reservation (Ref: LHX-18934) has check-in confirmation ready. Free terminal shuttle is parked at taxi bay.
           </p>
         </div>
@@ -651,13 +677,73 @@
 </section>
 
 <script>
+  let currentFilter = 'all';
+
+  function setFilter(filter, btn) {
+    currentFilter = filter;
+    document.querySelectorAll('.notification-filter-btn').forEach(b => {
+      b.classList.remove('active');
+      b.setAttribute('aria-pressed', 'false');
+    });
+    btn.classList.add('active');
+    btn.setAttribute('aria-pressed', 'true');
+    filterNotifications();
+  }
+
+  function filterNotifications() {
+    const search = document.getElementById('notification-search-input').value.toLowerCase();
+    const cards = document.querySelectorAll('.notification-card');
+    let visibleCount = 0;
+
+    cards.forEach(card => {
+      const category = card.dataset.category;
+      const text = card.textContent.toLowerCase();
+      const matchesFilter = currentFilter === 'all' || category === currentFilter;
+      const matchesSearch = !search || text.includes(search);
+
+      if (matchesFilter && matchesSearch) {
+        card.style.display = '';
+        visibleCount++;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    if (visibleCount === 0) {
+      showEmptyState();
+    } else {
+      hideEmptyState();
+    }
+  }
+
+  function showEmptyState() {
+    const list = document.getElementById('notifications-list');
+    if (!document.getElementById('empty-state')) {
+      const empty = document.createElement('div');
+      empty.id = 'empty-state';
+      empty.className = 'notification-empty';
+      empty.innerHTML = `
+        <div class="notification-empty-icon" aria-hidden="true">&#128276;</div>
+        <h3 class="notification-empty-title">No notifications found</h3>
+        <p class="notification-empty-text">Try adjusting your search or filter criteria.</p>
+      `;
+      list.appendChild(empty);
+    }
+  }
+
+  function hideEmptyState() {
+    const empty = document.getElementById('empty-state');
+    if (empty) empty.remove();
+  }
+
   function clearAllNotifications() {
     const list = document.getElementById('notifications-list');
     if (list) {
       list.innerHTML = `
-        <div class="bg-white rounded-2xl border border-gray-200 p-8 text-center text-slate-500 italic">
-          <p class="font-semibold text-base mb-1">No alerts found</p>
-          <p class="text-xs text-slate-400">All notifications have been cleared.</p>
+        <div class="notification-empty" role="status">
+          <div class="notification-empty-icon" aria-hidden="true">&#10003;</div>
+          <h3 class="notification-empty-title">All caught up!</h3>
+          <p class="notification-empty-text">No alerts found. All notifications have been cleared.</p>
         </div>
       `;
       window.layoverx.showToast("Cleared all alerts.");

@@ -1,0 +1,107 @@
+/* ==========================================================================
+   SECTOR THEMING ENGINE
+   Each marketplace sector overrides --primary and hero gradients.
+   Apply the theme class to <body> or a wrapper element.
+   ========================================================================== */
+
+/* ---- HOTELS — Luxury Gold ---- */
+.theme-hotels {
+  --primary: #9a732c;
+  --primary-dark: #7a581e;
+  --primary-light: #dfc28d;
+  --primary-glow: rgba(154, 115, 44, 0.12);
+  --theme-hero-from: #1e1b18;
+  --theme-hero-to: #332d25;
+}
+
+/* ---- RESTAURANTS — Dining Orange ---- */
+.theme-restaurants {
+  --primary: #d84b06;
+  --primary-dark: #b63d03;
+  --primary-light: #f97316;
+  --primary-glow: rgba(216, 75, 6, 0.12);
+  --theme-hero-from: #2c0e0e;
+  --theme-hero-to: #450a03;
+}
+
+/* ---- SPA & WELLNESS — Violet ---- */
+.theme-spa {
+  --primary: #6d28d9;
+  --primary-dark: #5b21b6;
+  --primary-light: #a78bfa;
+  --primary-glow: rgba(109, 40, 217, 0.12);
+  --theme-hero-from: #160a2c;
+  --theme-hero-to: #18153c;
+}
+
+/* ---- GAMING — Fuchsia ---- */
+.theme-gaming {
+  --primary: #a21caf;
+  --primary-dark: #86198f;
+  --primary-light: #e879f9;
+  --primary-glow: rgba(162, 28, 175, 0.12);
+  --theme-hero-from: #2a082e;
+  --theme-hero-to: #161233;
+}
+
+/* ---- TOURS / EXPERIENCES — Rose ---- */
+.theme-tours {
+  --primary: #be123c;
+  --primary-dark: #9f1239;
+  --primary-light: #fb7185;
+  --primary-glow: rgba(190, 18, 60, 0.12);
+  --theme-hero-from: #370617;
+  --theme-hero-to: #2c0735;
+}
+
+/* ---- TRANSFERS — Slate ---- */
+.theme-transfers {
+  --primary: #334155;
+  --primary-dark: #1e293b;
+  --primary-light: #64748b;
+  --primary-glow: rgba(51, 65, 85, 0.12);
+  --theme-hero-from: #1a202c;
+  --theme-hero-to: #2d3748;
+}
+
+/* ---- DEFAULT HERO (no theme, e.g. index page) ---- */
+.default-hero {
+  --theme-hero-from: #0369a1;
+  --theme-hero-to: #0c4a6e;
+}
+
+/* ---- HERO GRADIENT APPLICATION ---- */
+.default-hero,
+.theme-hero {
+  background: linear-gradient(135deg, var(--theme-hero-from), var(--theme-hero-to));
+}
+
+/* ---- THEME UTILITY CLASSES ---- */
+.theme-text-accent {
+  background: linear-gradient(to right, var(--primary), var(--primary-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.theme-badge {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--primary-light);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(4px);
+}
+
+/* ---- THEMED COMPONENT COLORS ---- */
+.bg-theme-primary       { background-color: var(--primary); }
+.hover\:bg-theme-primary:hover { background-color: var(--primary-dark); }
+.text-theme-primary     { color: var(--primary); }
+.border-theme-primary   { border-color: var(--primary); }
+.text-theme-accent      { color: var(--primary-light); }
+
+/* ---- THEMED BODY TEXT FIX ----
+   On themed pages, .text-theme-primary resolves to the sector color
+   (gold, orange, violet...) which is WRONG for body text.
+   Use these helpers to ensure body text stays readable gray. */
+.themed-body-text       { color: var(--text-secondary); }
+.themed-muted-text      { color: var(--text-muted); }
+.themed-heading-text    { color: var(--text-primary); }

@@ -70,15 +70,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
   </noscript>
 
-  <!-- LayoverX Design Tokens -->
-  <link rel="stylesheet" href="styles/tokens/tokens.css"/>
-
   <!-- Tailwind utility classes -->
   <link rel="preload" href="css/tailwind.min.css" as="style"/>
   <link rel="stylesheet" href="css/tailwind.min.css"/>
 
-  <!-- LayoverX Design System -->
-  <link rel="stylesheet" href="css/design-system.css"/>
+  <!-- LayoverX Modular Design System — loaded AFTER Tailwind so our values win -->
+  <link rel="stylesheet" href="css/index.css"/>
 
   <!-- Supabase JS Client -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>

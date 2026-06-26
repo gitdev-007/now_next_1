@@ -1,5 +1,7 @@
 /* ==========================================================================
-   LayoverX Design Tokens — Typography, Spacing, Color & Depth Scales
+   LAYOVERX DESIGN TOKENS
+   CSS custom properties — single source of truth for the entire design system.
+   Load AFTER Tailwind so our values win over Tailwind's :root defaults.
    ========================================================================== */
 
 :root {
@@ -56,41 +58,77 @@
   --space-96: 96px;
   --space-128: 128px;
 
-  /* --- TYPOGRAPHY SCALE --- */
-  --font-hero: 3.5rem;         /* 56px */
-  --font-h1: 2.5rem;           /* 40px */
-  --font-h2: 1.875rem;         /* 30px */
-  --font-h3: 1.375rem;         /* 22px */
-  --font-h4: 1.125rem;         /* 18px */
-  --font-body: 1rem;           /* 16px */
-  --font-secondary: 0.9375rem; /* 15px */
-  --font-caption: 0.875rem;    /* 14px */
-  --font-tiny: 0.75rem;        /* 12px */
+  /* --- TYPOGRAPHY SCALE (Full progression, no collapse) --- */
+  --font-hero: 3.5rem;         /* 56px — hero sections only */
+  --font-h1: 2.5rem;           /* 40px — page titles */
+  --font-h2: 1.875rem;         /* 30px — section titles */
+  --font-h3: 1.375rem;         /* 22px — subsection titles */
+  --font-h4: 1.125rem;         /* 18px — card titles */
+  --font-h5: 1rem;             /* 16px — minor headings */
+  --font-h6: 0.9375rem;        /* 15px — smallest headings */
+  --font-body: 1rem;           /* 16px — body text */
+  --font-body-large: 1.125rem; /* 18px — large body text */
+  --font-secondary: 0.9375rem; /* 15px — secondary text */
+  --font-caption: 0.875rem;    /* 14px — captions */
+  --font-small: 0.875rem;      /* 14px — small text */
+  --font-tiny: 0.75rem;        /* 12px — tiny text */
+  --font-4xl: 3.5rem;          /* 56px — same as hero (for text-4xl mapping) */
+  --font-5xl: 4rem;            /* 64px — display heading */
+  --font-6xl: 4.5rem;          /* 72px — large display */
+  --font-7xl: 5rem;            /* 80px — extra large display */
 
   /* Line Heights */
-  --lh-hero: 1.5;
-  --lh-h1: 1.5;
-  --lh-h2: 1.5;
-  --lh-h3: 1.5;
-  --lh-h4: 1.5;
-  --lh-h5: 1.5;
+  --lh-hero: 1.1;
+  --lh-h1: 1.2;
+  --lh-h2: 1.25;
+  --lh-h3: 1.3;
+  --lh-h4: 1.35;
+  --lh-h5: 1.4;
+  --lh-h6: 1.45;
   --lh-body: 1.5;
   --lh-small: 1.5;
+  --lh-4xl: 1.1;
+  --lh-5xl: 1.05;
+  --lh-6xl: 1.0;
+  --lh-7xl: 0.95;
+
+  /* Font Weights */
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+  --fw-extrabold: 800;
+  --fw-black: 900;
 
   /* --- RADIUS --- */
   --radius-sm: 6px;
   --radius: 12px;
   --radius-lg: 16px;
   --radius-xl: 24px;
+  --radius-pill: 999px;
+  --radius-full: 50%;
 
   /* --- SHADOWS --- */
   --shadow-sm: 0 1px 3px 0 rgba(15, 23, 42, 0.05), 0 1px 2px -1px rgba(15, 23, 42, 0.05);
   --shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.05), 0 2px 4px -2px rgba(15, 23, 42, 0.05);
   --shadow-lg: 0 10px 15px -3px rgba(15, 23, 42, 0.05), 0 4px 6px -4px rgba(15, 23, 42, 0.05);
   --shadow-xl: 0 20px 25px -5px rgba(15, 23, 42, 0.06), 0 8px 10px -6px rgba(15, 23, 42, 0.06);
+  --shadow-dropdown: 0 8px 24px rgba(15, 23, 42, 0.12);
+  --shadow-floating: 0 16px 48px rgba(15, 23, 42, 0.12), 0 4px 12px rgba(15, 23, 42, 0.06);
   --shadow-primary: 0 4px 14px 0 rgba(2, 132, 199, 0.25);
   
   /* --- TRANSITIONS --- */
   --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-spring: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* --- CONTAINER WIDTHS --- */
+  --container-sm: 640px;
+  --container-md: 768px;
+  --container-lg: 1024px;
+  --container-xl: 1280px;
+  --container-max: 1440px;
+
+  /* --- SIDEBAR --- */
+  --sidebar-width: 280px;
 }

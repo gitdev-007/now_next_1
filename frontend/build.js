@@ -443,23 +443,21 @@ function buildAll() {
     fs.mkdirSync(path.join(BASE, dir), { recursive: true });
   });
 
-  // Copy design system and tokens CSS files
+  // Copy modular CSS files (source: css/ → destination: frontend/css/)
   try {
-    const dsSrc = path.join(BASE, '..', 'design-system', 'index.css');
-    const dsDst = path.join(BASE, 'css', 'design-system.css');
-    if (fs.existsSync(dsSrc)) {
-      fs.copyFileSync(dsSrc, dsDst);
-      console.log(`Copied design system CSS to ${dsDst}`);
+    const cssSrcDir = path.join(BASE, '..', 'css');
+    const cssDstDir = path.join(BASE, 'css');
+    if (fs.existsSync(cssSrcDir)) {
+      const files = fs.readdirSync(cssSrcDir).filter(f => f.endsWith('.css'));
+      files.forEach(file => {
+        fs.copyFileSync(path.join(cssSrcDir, file), path.join(cssDstDir, file));
+      });
+      console.log(`Copied ${files.length} modular CSS files to ${cssDstDir}`);
     }
     
-    const tokenSrc = path.join(BASE, '..', 'styles', 'tokens', 'tokens.css');
-    const tokenDst = path.join(BASE, 'styles', 'tokens', 'tokens.css');
-    if (fs.existsSync(tokenSrc)) {
-      fs.copyFileSync(tokenSrc, tokenDst);
-      console.log(`Copied design tokens CSS to ${tokenDst}`);
-    }
+    // tokens.css is no longer loaded separately — it's embedded via css/variables.css -> css/index.css
   } catch (e) {
-    console.error('Error copying design system files:', e);
+    console.error('Error copying CSS files:', e);
   }
 
   processSupabaseInit();

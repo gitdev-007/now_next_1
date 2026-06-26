@@ -1,0 +1,123 @@
+/* ==========================================================================
+   TYPOGRAPHY SYSTEM
+   Heading hierarchy, text utilities, and section typography.
+   ========================================================================== */
+
+/* ---- HEADING HIERARCHY ---- */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-primary);
+  font-weight: var(--fw-bold);
+  line-height: 1.5;
+  margin-bottom: 0.5em;
+}
+
+.text-hero {
+  font-size: var(--font-hero);
+  line-height: var(--lh-hero);
+  font-weight: var(--fw-black);
+  letter-spacing: -0.03em;
+}
+
+h1 {
+  font-size: var(--font-h1);
+  line-height: var(--lh-h1);
+  font-weight: var(--fw-extrabold);
+  letter-spacing: -0.025em;
+}
+
+h2 {
+  font-size: var(--font-h2);
+  line-height: var(--lh-h2);
+  font-weight: var(--fw-extrabold);
+  letter-spacing: -0.02em;
+}
+
+h3 {
+  font-size: var(--font-h3);
+  line-height: var(--lh-h3);
+  font-weight: var(--fw-bold);
+  letter-spacing: -0.015em;
+}
+
+h4 {
+  font-size: var(--font-h4);
+  line-height: var(--lh-h4);
+  font-weight: var(--fw-bold);
+}
+
+h5 {
+  font-size: var(--font-h5);
+  line-height: var(--lh-h5);
+  font-weight: var(--fw-semibold);
+}
+
+h6 {
+  font-size: var(--font-h6);
+  line-height: var(--lh-h6);
+  font-weight: var(--fw-semibold);
+}
+
+/* ---- SEMANTIC TEXT CLASSES ---- */
+.body-large {
+  font-size: var(--font-body-large);
+  line-height: var(--lh-body);
+}
+
+.body {
+  font-size: var(--font-body);
+  line-height: var(--lh-body);
+}
+
+.small {
+  font-size: var(--font-caption);
+  line-height: var(--lh-small);
+}
+
+.caption {
+  font-size: var(--font-tiny);
+  line-height: var(--lh-small);
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.02em;
+}
+
+/* ---- TAILWIND TEXT-* UTILITY OVERRIDES ---- */
+.text-xs   { font-size: var(--font-tiny);     line-height: var(--lh-small); }
+.text-sm   { font-size: var(--font-caption);  line-height: var(--lh-small); }
+.text-base { font-size: var(--font-body);     line-height: var(--lh-body); }
+.text-lg   { font-size: var(--font-h4);       line-height: var(--lh-h4); }
+.text-xl   { font-size: var(--font-h3);       line-height: var(--lh-h3); }
+.text-2xl  { font-size: var(--font-h2);       line-height: var(--lh-h2); }
+.text-3xl  { font-size: var(--font-h1);       line-height: var(--lh-h1); }
+.text-4xl  { font-size: var(--font-4xl);      line-height: var(--lh-4xl); }
+.text-5xl  { font-size: var(--font-5xl);      line-height: var(--lh-5xl); }
+.text-6xl  { font-size: var(--font-6xl);      line-height: var(--lh-6xl); }
+.text-7xl  { font-size: var(--font-7xl);      line-height: var(--lh-7xl); }
+
+/* ---- SECTION TYPOGRAPHY ---- */
+.section-label {
+  display: inline-block;
+  color: var(--primary);
+  font-size: var(--font-tiny);
+  font-weight: var(--fw-extrabold);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.5rem;
+}
+
+.section-title {
+  font-size: var(--font-h2);
+  font-weight: var(--fw-extrabold);
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  line-height: var(--lh-h2);
+  margin-bottom: 1rem;
+}
+
+.section-subtitle {
+  font-size: var(--font-body);
+  color: var(--text-muted);
+  max-width: 40rem;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: var(--lh-body);
+}

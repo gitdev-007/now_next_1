@@ -1,0 +1,137 @@
+/* ==========================================================================
+   NAVIGATION SYSTEM
+   Navbar, scroll states, mobile menu, active indicators.
+   ========================================================================== */
+
+/* ---- GLASS HEADER ---- */
+.glass-header {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.45);
+}
+
+/* ---- NAV LINKS ---- */
+.nav-link {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.15s ease;
+  position: relative;
+  font-size: var(--font-caption);
+  font-weight: var(--fw-semibold);
+}
+
+.nav-link:hover {
+  color: var(--primary);
+}
+
+/* ---- ACTIVE NAV INDICATOR ---- */
+.active-nav-link {
+  color: var(--primary);
+  font-weight: var(--fw-extrabold);
+  position: relative;
+}
+
+.active-nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--primary);
+  border-radius: 99px;
+}
+
+/* ---- NAVBAR SCROLL STATES ---- */
+/* Not scrolled (transparent overlay on hero) — white text */
+#navbar:not(.scrolled) .nav-link {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+#navbar:not(.scrolled) .nav-link:hover {
+  color: #ffffff;
+}
+
+#navbar:not(.scrolled) #logo-text {
+  color: #ffffff;
+}
+
+#navbar:not(.scrolled) #menu-btn {
+  color: #ffffff;
+}
+
+#navbar:not(.scrolled) #global-trip-badge {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+/* Scrolled — dark text on white glass */
+#navbar.scrolled .nav-link {
+  color: var(--text-secondary);
+}
+
+#navbar.scrolled .nav-link:hover {
+  color: var(--primary);
+}
+
+#navbar.scrolled #logo-text {
+  color: var(--text-primary);
+}
+
+#navbar.scrolled #menu-btn {
+  color: var(--text-primary);
+}
+
+/* ---- PLAN MY LAYOVER BUTTON (in navbar) ---- */
+.plan-my-layover-btn {
+  display: inline-block;
+  text-align: center;
+  padding: 0.625rem 1.25rem;
+  font-size: var(--font-body);
+  font-weight: var(--fw-semibold);
+  border-radius: var(--radius);
+  transition: var(--transition);
+  box-shadow: var(--shadow-sm);
+  white-space: nowrap;
+}
+
+#navbar:not(.scrolled) .plan-my-layover-btn:not(.active) {
+  background: #ffffff;
+  color: var(--primary);
+}
+
+#navbar:not(.scrolled) .plan-my-layover-btn:not(.active):hover {
+  background: var(--background);
+  box-shadow: var(--shadow-lg);
+}
+
+#navbar.scrolled .plan-my-layover-btn:not(.active) {
+  background: transparent;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+}
+
+#navbar.scrolled .plan-my-layover-btn:not(.active):hover {
+  background: var(--primary);
+  color: var(--text-on-dark);
+}
+
+.plan-my-layover-btn.active {
+  background: var(--primary);
+  color: var(--text-on-dark);
+  border: 1px solid var(--primary);
+}
+
+.plan-my-layover-btn.active:hover {
+  background: var(--primary-dark);
+  border-color: var(--primary-dark);
+}
+
+/* ---- MOBILE MENU ---- */
+@media (max-width: 1023px) {
+  .mobile-menu-open {
+    display: flex !important;
+  }
+}

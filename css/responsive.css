@@ -1,0 +1,79 @@
+/* ==========================================================================
+   RESPONSIVE TYPOGRAPHY OVERRIDES
+   Maps Tailwind responsive text-* utilities to our design token scale.
+   ========================================================================== */
+
+/* ---- sm: 640px+ ---- */
+@media (min-width: 640px) {
+  .sm\:text-xs   { font-size: var(--font-tiny);     line-height: var(--lh-small); }
+  .sm\:text-sm   { font-size: var(--font-caption);  line-height: var(--lh-small); }
+  .sm\:text-base { font-size: var(--font-body);     line-height: var(--lh-body); }
+  .sm\:text-lg   { font-size: var(--font-h4);       line-height: var(--lh-h4); }
+  .sm\:text-xl   { font-size: var(--font-h3);       line-height: var(--lh-h3); }
+  .sm\:text-2xl  { font-size: var(--font-h2);       line-height: var(--lh-h2); }
+  .sm\:text-3xl  { font-size: var(--font-h1);       line-height: var(--lh-h1); }
+  .sm\:text-4xl  { font-size: var(--font-4xl);      line-height: var(--lh-4xl); }
+  .sm\:text-5xl  { font-size: var(--font-5xl);      line-height: var(--lh-5xl); }
+  .sm\:text-6xl  { font-size: var(--font-6xl);      line-height: var(--lh-6xl); }
+  .sm\:text-7xl  { font-size: var(--font-7xl);      line-height: var(--lh-7xl); }
+}
+
+/* ---- md: 768px+ ---- */
+@media (min-width: 768px) {
+  .md\:text-xs   { font-size: var(--font-tiny);     line-height: var(--lh-small); }
+  .md\:text-sm   { font-size: var(--font-caption);  line-height: var(--lh-small); }
+  .md\:text-base { font-size: var(--font-body);     line-height: var(--lh-body); }
+  .md\:text-lg   { font-size: var(--font-h4);       line-height: var(--lh-h4); }
+  .md\:text-xl   { font-size: var(--font-h3);       line-height: var(--lh-h3); }
+  .md\:text-2xl  { font-size: var(--font-h2);       line-height: var(--lh-h2); }
+  .md\:text-3xl  { font-size: var(--font-h1);       line-height: var(--lh-h1); }
+  .md\:text-4xl  { font-size: var(--font-4xl);      line-height: var(--lh-4xl); }
+  .md\:text-5xl  { font-size: var(--font-5xl);      line-height: var(--lh-5xl); }
+  .md\:text-6xl  { font-size: var(--font-6xl);      line-height: var(--lh-6xl); }
+  .md\:text-7xl  { font-size: var(--font-7xl);      line-height: var(--lh-7xl); }
+}
+
+/* ---- lg: 1024px+ ---- */
+@media (min-width: 1024px) {
+  .lg\:text-xs   { font-size: var(--font-tiny);     line-height: var(--lh-small); }
+  .lg\:text-sm   { font-size: var(--font-caption);  line-height: var(--lh-small); }
+  .lg\:text-base { font-size: var(--font-body);     line-height: var(--lh-body); }
+  .lg\:text-lg   { font-size: var(--font-h4);       line-height: var(--lh-h4); }
+  .lg\:text-xl   { font-size: var(--font-h3);       line-height: var(--lh-h3); }
+  .lg\:text-2xl  { font-size: var(--font-h2);       line-height: var(--lh-h2); }
+  .lg\:text-3xl  { font-size: var(--font-h1);       line-height: var(--lh-h1); }
+  .lg\:text-4xl  { font-size: var(--font-4xl);      line-height: var(--lh-4xl); }
+  .lg\:text-5xl  { font-size: var(--font-5xl);      line-height: var(--lh-5xl); }
+  .lg\:text-6xl  { font-size: var(--font-6xl);      line-height: var(--lh-6xl); }
+  .lg\:text-7xl  { font-size: var(--font-7xl);      line-height: var(--lh-7xl); }
+}
+
+/* ---- xl: 1280px+ ---- */
+@media (min-width: 1280px) {
+  .xl\:text-xs   { font-size: var(--font-tiny);     line-height: var(--lh-small); }
+  .xl\:text-sm   { font-size: var(--font-caption);  line-height: var(--lh-small); }
+  .xl\:text-base { font-size: var(--font-body);     line-height: var(--lh-body); }
+  .xl\:text-lg   { font-size: var(--font-h4);       line-height: var(--lh-h4); }
+  .xl\:text-xl   { font-size: var(--font-h3);       line-height: var(--lh-h3); }
+  .xl\:text-2xl  { font-size: var(--font-h2);       line-height: var(--lh-h2); }
+  .xl\:text-3xl  { font-size: var(--font-h1);       line-height: var(--lh-h1); }
+  .xl\:text-4xl  { font-size: var(--font-4xl);      line-height: var(--lh-4xl); }
+  .xl\:text-5xl  { font-size: var(--font-5xl);      line-height: var(--lh-5xl); }
+  .xl\:text-6xl  { font-size: var(--font-6xl);      line-height: var(--lh-6xl); }
+  .xl\:text-7xl  { font-size: var(--font-7xl);      line-height: var(--lh-7xl); }
+}
+
+/* ---- 2xl: 1536px+ ---- */
+@media (min-width: 1536px) {
+  .\32xl\:text-xs   { font-size: var(--font-tiny);     line-height: var(--lh-small); }
+  .\32xl\:text-sm   { font-size: var(--font-caption);  line-height: var(--lh-small); }
+  .\32xl\:text-base { font-size: var(--font-body);     line-height: var(--lh-body); }
+  .\32xl\:text-lg   { font-size: var(--font-h4);       line-height: var(--lh-h4); }
+  .\32xl\:text-xl   { font-size: var(--font-h3);       line-height: var(--lh-h3); }
+  .\32xl\:text-2xl  { font-size: var(--font-h2);       line-height: var(--lh-h2); }
+  .\32xl\:text-3xl  { font-size: var(--font-h1);       line-height: var(--lh-h1); }
+  .\32xl\:text-4xl  { font-size: var(--font-4xl);      line-height: var(--lh-4xl); }
+  .\32xl\:text-5xl  { font-size: var(--font-5xl);      line-height: var(--lh-5xl); }
+  .\32xl\:text-6xl  { font-size: var(--font-6xl);      line-height: var(--lh-6xl); }
+  .\32xl\:text-7xl  { font-size: var(--font-7xl);      line-height: var(--lh-7xl); }
+}

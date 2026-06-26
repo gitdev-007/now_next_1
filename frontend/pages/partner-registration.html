@@ -1,11 +1,9 @@
 <!-- PARTNER REGISTRATION HERO -->
-<section class="relative bg-gradient-to-b from-slate-900 to-slate-950 text-white pt-24 pb-12 overflow-hidden">
-  <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
-  <div class="absolute -top-40 -right-40 w-96 h-96 bg-emerald-50/400/10 rounded-full blur-3xl"></div>
-  
+<section class="supplier-hero" role="banner" aria-label="Partner Registration">
   <div class="container relative z-10 text-center max-w-3xl">
-    <span class="inline-flex items-center gap-2 px-4 py-1 rounded-full text-xs font-bold bg-emerald-50/400/20 text-theme-accent border border-white/20 mb-4">
-      🚀 LAYOVERX PARTNER PROGRAM
+    <span class="badge badge-primary" style="margin-bottom: 1rem;">
+      <span aria-hidden="true">&#128640;</span>
+      LAYOVERX PARTNER PROGRAM
     </span>
     <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-tight mb-4">
       Onboard Your Business on <br/>
@@ -18,23 +16,21 @@
 </section>
 
 <!-- MULTI-STEP WIZARD SECTION -->
-<section class="py-12 bg-gray-50 min-h-[600px]">
+<section class="section bg-gray-50 min-h-[600px]" aria-label="Partner Registration Form">
   <div class="container max-w-4xl">
     
     <!-- AUTHENTICATION CHECK OVERLAY -->
-    <div id="auth-required-panel" class="bg-white border border-gray-200 rounded-3xl shadow-xl p-8 text-center max-w-md mx-auto hidden animate-fade-in">
-      <div class="w-16 h-16 bg-emerald-50/40 rounded-2xl flex items-center justify-center mx-auto mb-6">
-        <span class="text-3xl">🔒</span>
-      </div>
+    <div id="auth-required-panel" class="supplier-auth-overlay hidden" role="alert" aria-label="Authentication required">
+      <div class="supplier-auth-icon" aria-hidden="true">&#128274;</div>
       <h2 class="text-xl font-bold text-gray-900 mb-2">Partner Account Required</h2>
       <p class="text-sm text-gray-600 mb-8 leading-relaxed">
         To submit a supplier application and manage your business listing, please log in or create an account.
       </p>
       <div class="flex flex-col gap-4">
-        <button onclick="window.openAuthModal('login')" class="px-6 py-4 bg-gray-900 hover:bg-black text-white font-bold rounded-xl shadow-md transition-all">
+        <button onclick="window.openAuthModal('login')" class="btn btn-primary btn-block">
           Sign In / Log In
         </button>
-        <button onclick="window.openAuthModal('signup')" class="px-6 py-4 border border-gray-300 hover:bg-gray-50 text-gray-800 font-bold rounded-xl transition-all">
+        <button onclick="window.openAuthModal('signup')" class="btn btn-outline btn-block">
           Create New Account
         </button>
       </div>
@@ -42,143 +38,137 @@
 
     <!-- MAIN ONBOARDING WIZARD (Visible when authed) -->
     <div id="partner-wizard-panel" class="hidden">
+      
       <!-- Progress Stepper -->
-      <div class="mb-8 px-4">
-        <div class="flex items-center justify-between relative max-w-3xl mx-auto">
-          <!-- Stepper Background Line -->
-          <div class="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-0.5 bg-gray-200 z-0"></div>
-          <div id="stepper-progress-line" class="absolute left-0 top-1/2 -translate-y-1/2 h-0.5 bg-sky-600 z-0 transition-all duration-300" style="width: 0%;"></div>
+      <div class="supplier-wizard-stepper" role="navigation" aria-label="Registration steps">
+        <div id="stepper-progress-line" class="supplier-wizard-progress" style="width: 0%;"></div>
 
-          <!-- Step Indicators -->
-          <div class="step-indicator z-10 flex flex-col items-center gap-2 active" data-step="1">
-            <div class="w-8 h-8 rounded-full bg-sky-600 text-white font-bold text-sm flex items-center justify-center transition-all shadow-md shadow-primary ring-4 ring-sky-50">1</div>
-            <span class="text-[10px] sm:text-xs font-bold text-gray-800">Owner</span>
-          </div>
-          <div class="step-indicator z-10 flex flex-col items-center gap-2" data-step="2">
-            <div class="w-8 h-8 rounded-full bg-white text-gray-400 border border-gray-300 font-bold text-sm flex items-center justify-center transition-all">2</div>
-            <span class="text-[10px] sm:text-xs font-medium text-gray-400">Business</span>
-          </div>
-          <div class="step-indicator z-10 flex flex-col items-center gap-2" data-step="3">
-            <div class="w-8 h-8 rounded-full bg-white text-gray-400 border border-gray-300 font-bold text-sm flex items-center justify-center transition-all">3</div>
-            <span class="text-[10px] sm:text-xs font-medium text-gray-400">Location</span>
-          </div>
-          <div class="step-indicator z-10 flex flex-col items-center gap-2" data-step="4">
-            <div class="w-8 h-8 rounded-full bg-white text-gray-400 border border-gray-300 font-bold text-sm flex items-center justify-center transition-all">4</div>
-            <span class="text-[10px] sm:text-xs font-medium text-gray-400">Details</span>
-          </div>
-          <div class="step-indicator z-10 flex flex-col items-center gap-2" data-step="5">
-            <div class="w-8 h-8 rounded-full bg-white text-gray-400 border border-gray-300 font-bold text-sm flex items-center justify-center transition-all">5</div>
-            <span class="text-[10px] sm:text-xs font-medium text-gray-400">Uploads</span>
-          </div>
-          <div class="step-indicator z-10 flex flex-col items-center gap-2" data-step="6">
-            <div class="w-8 h-8 rounded-full bg-white text-gray-400 border border-gray-300 font-bold text-sm flex items-center justify-center transition-all">6</div>
-            <span class="text-[10px] sm:text-xs font-medium text-gray-400">Review</span>
-          </div>
+        <div class="supplier-wizard-step" data-step="1">
+          <div class="supplier-wizard-step-ring supplier-wizard-step-ring--active">1</div>
+          <span class="supplier-wizard-step-label">Owner</span>
+        </div>
+        <div class="supplier-wizard-step" data-step="2">
+          <div class="supplier-wizard-step-ring supplier-wizard-step-ring--pending">2</div>
+          <span class="supplier-wizard-step-label supplier-wizard-step-label--pending">Business</span>
+        </div>
+        <div class="supplier-wizard-step" data-step="3">
+          <div class="supplier-wizard-step-ring supplier-wizard-step-ring--pending">3</div>
+          <span class="supplier-wizard-step-label supplier-wizard-step-label--pending">Location</span>
+        </div>
+        <div class="supplier-wizard-step" data-step="4">
+          <div class="supplier-wizard-step-ring supplier-wizard-step-ring--pending">4</div>
+          <span class="supplier-wizard-step-label supplier-wizard-step-label--pending">Details</span>
+        </div>
+        <div class="supplier-wizard-step" data-step="5">
+          <div class="supplier-wizard-step-ring supplier-wizard-step-ring--pending">5</div>
+          <span class="supplier-wizard-step-label supplier-wizard-step-label--pending">Uploads</span>
+        </div>
+        <div class="supplier-wizard-step" data-step="6">
+          <div class="supplier-wizard-step-ring supplier-wizard-step-ring--pending">6</div>
+          <span class="supplier-wizard-step-label supplier-wizard-step-label--pending">Review</span>
         </div>
       </div>
 
       <!-- Form Card -->
-      <div class="bg-white border border-gray-200 rounded-3xl shadow-xl p-8 sm:p-8 relative">
-        <form id="onboarding-form" onsubmit="event.preventDefault();" class="space-y-6">
+      <div class="supplier-wizard-card">
+        <form id="onboarding-form" onsubmit="event.preventDefault();" novalidate>
           
           <!-- STEP 1: OWNER INFO -->
           <div class="wizard-step" data-step="1">
-            <div class="mb-6">
-              <h2 class="text-xl sm:text-2xl font-extrabold text-gray-900 mb-1">Owner Information</h2>
-              <p class="text-sm text-gray-500 font-medium">Verify your direct contact details. We will use these for verification call.</p>
+            <div class="supplier-wizard-heading">
+              <h2>Owner Information</h2>
+              <p>Verify your direct contact details. We will use these for verification call.</p>
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="form-row">
               <div class="form-group">
-                <label for="owner-name" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Full Name <span class="text-red-500">*</span></label>
-                <input type="text" id="owner-name" class="form-input" placeholder="Enter owner full name" required/>
+                <label for="owner-name" class="form-label">Full Name <span aria-hidden="true">*</span></label>
+                <input type="text" id="owner-name" class="form-input" placeholder="Enter owner full name" required aria-required="true"/>
               </div>
               <div class="form-group">
-                <label for="owner-email" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Email Address <span class="text-red-500">*</span></label>
-                <input type="email" id="owner-email" class="form-input bg-slate-100" readonly required/>
+                <label for="owner-email" class="form-label">Email Address <span aria-hidden="true">*</span></label>
+                <input type="email" id="owner-email" class="form-input" style="background: var(--surface-muted);" readonly required aria-required="true"/>
               </div>
-              <div class="form-group sm:col-span-2">
-                <label for="owner-phone" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Mobile / WhatsApp Number <span class="text-red-500">*</span></label>
-                <input type="tel" id="owner-phone" class="form-input" placeholder="e.g. +91 98765 43210" required/>
+              <div class="form-group" style="grid-column: 1 / -1;">
+                <label for="owner-phone" class="form-label">Mobile / WhatsApp Number <span aria-hidden="true">*</span></label>
+                <input type="tel" id="owner-phone" class="form-input" placeholder="e.g. +91 98765 43210" required aria-required="true"/>
               </div>
             </div>
           </div>
 
           <!-- STEP 2: BUSINESS & CATEGORY -->
           <div class="wizard-step hidden" data-step="2">
-            <div class="mb-6">
-              <h2 class="text-xl sm:text-2xl font-extrabold text-gray-900 mb-1">Business details</h2>
-              <p class="text-sm text-gray-500 font-medium">Tell us about your brand name and marketplace category.</p>
+            <div class="supplier-wizard-heading">
+              <h2>Business details</h2>
+              <p>Tell us about your brand name and marketplace category.</p>
             </div>
-            <div class="space-y-4">
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div class="form-group">
-                  <label for="biz-name" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Registered Business Name <span class="text-red-500">*</span></label>
-                  <input type="text" id="biz-name" class="form-input" placeholder="e.g. Grand Transit Inn Sahar" required/>
-                </div>
-                <div class="form-group">
-                  <label for="biz-category" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Business Category <span class="text-red-500">*</span></label>
-                  <select id="biz-category" class="form-input" required>
-                    <option value="" disabled selected>Select category...</option>
-                    <option value="Hotel">Transit Hotel</option>
-                    <option value="Restaurant">Premium Dining / Restaurant</option>
-                    <option value="Spa">Spa & Wellness Lounge</option>
-                    <option value="Gaming">Gaming & Cinema Lounge</option>
-                    <option value="Tours">Sightseeing & Tours Operator</option>
-                    <option value="Transfers">Airport Pickup & Cabs Operator</option>
-                  </select>
-                </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="biz-name" class="form-label">Registered Business Name <span aria-hidden="true">*</span></label>
+                <input type="text" id="biz-name" class="form-input" placeholder="e.g. Grand Transit Inn Sahar" required aria-required="true"/>
               </div>
               <div class="form-group">
-                <label for="biz-desc" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Business Description <span class="text-red-500">*</span></label>
-                <textarea id="biz-desc" rows="4" class="form-input" placeholder="Briefly describe your transit services, hourly slots, proximity to terminals, or specialty options..." required></textarea>
+                <label for="biz-category" class="form-label">Business Category <span aria-hidden="true">*</span></label>
+                <select id="biz-category" class="form-input" required aria-required="true">
+                  <option value="" disabled selected>Select category...</option>
+                  <option value="Hotel">Transit Hotel</option>
+                  <option value="Restaurant">Premium Dining / Restaurant</option>
+                  <option value="Spa">Spa &amp; Wellness Lounge</option>
+                  <option value="Gaming">Gaming &amp; Cinema Lounge</option>
+                  <option value="Tours">Sightseeing &amp; Tours Operator</option>
+                  <option value="Transfers">Airport Pickup &amp; Cabs Operator</option>
+                </select>
               </div>
+            </div>
+            <div class="form-group">
+              <label for="biz-desc" class="form-label">Business Description <span aria-hidden="true">*</span></label>
+              <textarea id="biz-desc" rows="4" class="form-input" placeholder="Briefly describe your transit services, hourly slots, proximity to terminals, or specialty options..." required aria-required="true"></textarea>
             </div>
           </div>
 
           <!-- STEP 3: LOCATION INFO -->
           <div class="wizard-step hidden" data-step="3">
-            <div class="mb-6">
-              <h2 class="text-xl sm:text-2xl font-extrabold text-gray-900 mb-1">Location details</h2>
-              <p class="text-sm text-gray-500 font-medium">Specify the primary international airport you service.</p>
+            <div class="supplier-wizard-heading">
+              <h2>Location details</h2>
+              <p>Specify the primary international airport you service.</p>
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="form-row">
               <div class="form-group">
-                <label for="location-airport" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Airport Served <span class="text-red-500">*</span></label>
-                <input type="text" id="location-airport" class="form-input" placeholder="e.g. Mumbai Airport CSMIA (BOM)" required/>
+                <label for="location-airport" class="form-label">Airport Served <span aria-hidden="true">*</span></label>
+                <input type="text" id="location-airport" class="form-input" placeholder="e.g. Mumbai Airport CSMIA (BOM)" required aria-required="true"/>
               </div>
               <div class="form-group">
-                <label for="location-city" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">City <span class="text-red-500">*</span></label>
-                <input type="text" id="location-city" class="form-input" placeholder="e.g. Mumbai" required/>
+                <label for="location-city" class="form-label">City <span aria-hidden="true">*</span></label>
+                <input type="text" id="location-city" class="form-input" placeholder="e.g. Mumbai" required aria-required="true"/>
               </div>
               <div class="form-group">
-                <label for="location-state" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">State / Region <span class="text-red-500">*</span></label>
-                <input type="text" id="location-state" class="form-input" placeholder="e.g. Maharashtra" required/>
+                <label for="location-state" class="form-label">State / Region <span aria-hidden="true">*</span></label>
+                <input type="text" id="location-state" class="form-input" placeholder="e.g. Maharashtra" required aria-required="true"/>
               </div>
               <div class="form-group">
-                <label for="location-country" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Country <span class="text-red-500">*</span></label>
-                <input type="text" id="location-country" class="form-input" placeholder="e.g. India" required/>
+                <label for="location-country" class="form-label">Country <span aria-hidden="true">*</span></label>
+                <input type="text" id="location-country" class="form-input" placeholder="e.g. India" required aria-required="true"/>
               </div>
             </div>
           </div>
 
           <!-- STEP 4: BUSINESS DETAILS -->
           <div class="wizard-step hidden" data-step="4">
-            <div class="mb-6">
-              <h2 class="text-xl sm:text-2xl font-extrabold text-gray-900 mb-1">Operational details</h2>
-              <p class="text-sm text-gray-500 font-medium">Additional information to complete your online storefront metadata profile.</p>
+            <div class="supplier-wizard-heading">
+              <h2>Operational details</h2>
+              <p>Additional information to complete your online storefront metadata profile.</p>
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="form-row">
               <div class="form-group">
-                <label for="biz-website" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Website URL</label>
+                <label for="biz-website" class="form-label">Website URL</label>
                 <input type="url" id="biz-website" class="form-input" placeholder="e.g. https://myhotel.com"/>
               </div>
               <div class="form-group">
-                <label for="biz-maps-link" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Google Maps Location Link <span class="text-red-500">*</span></label>
-                <input type="url" id="biz-maps-link" class="form-input" placeholder="e.g. https://goo.gl/maps/..." required/>
+                <label for="biz-maps-link" class="form-label">Google Maps Location Link <span aria-hidden="true">*</span></label>
+                <input type="url" id="biz-maps-link" class="form-input" placeholder="e.g. https://goo.gl/maps/..." required aria-required="true"/>
               </div>
               <div class="form-group">
-                <label for="biz-type" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Business Type <span class="text-red-500">*</span></label>
-                <select id="biz-type" class="form-input" required>
+                <label for="biz-type" class="form-label">Business Type <span aria-hidden="true">*</span></label>
+                <select id="biz-type" class="form-input" required aria-required="true">
                   <option value="" disabled selected>Select business type...</option>
                   <option value="Sole Proprietorship">Sole Proprietorship</option>
                   <option value="Partnership">Partnership</option>
@@ -187,8 +177,8 @@
                 </select>
               </div>
               <div class="form-group">
-                <label for="biz-pricing-range" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Pricing Range <span class="text-red-500">*</span></label>
-                <select id="biz-pricing-range" class="form-input" required>
+                <label for="biz-pricing-range" class="form-label">Pricing Range <span aria-hidden="true">*</span></label>
+                <select id="biz-pricing-range" class="form-input" required aria-required="true">
                   <option value="" disabled selected>Select pricing tier...</option>
                   <option value="Economy">Economy (Budget)</option>
                   <option value="Mid-Range">Mid-Range (Standard)</option>
@@ -196,194 +186,189 @@
                   <option value="Luxury">Luxury</option>
                 </select>
               </div>
-              <div class="form-group sm:col-span-2">
-                <label for="biz-services" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Services Offered <span class="text-red-500">*</span></label>
-                <input type="text" id="biz-services" class="form-input" placeholder="e.g. Day Room Stays, Airport Transfers, Spa Services" required/>
+              <div class="form-group" style="grid-column: 1 / -1;">
+                <label for="biz-services" class="form-label">Services Offered <span aria-hidden="true">*</span></label>
+                <input type="text" id="biz-services" class="form-input" placeholder="e.g. Day Room Stays, Airport Transfers, Spa Services" required aria-required="true"/>
               </div>
               <div class="form-group">
-                <label for="biz-years" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Years in Operation <span class="text-red-500">*</span></label>
-                <input type="number" id="biz-years" min="0" class="form-input" placeholder="e.g. 5" required/>
+                <label for="biz-years" class="form-label">Years in Operation <span aria-hidden="true">*</span></label>
+                <input type="number" id="biz-years" min="0" class="form-input" placeholder="e.g. 5" required aria-required="true"/>
               </div>
               <div class="form-group">
-                <label for="biz-staff" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Number of Full-Time Staff <span class="text-red-500">*</span></label>
-                <input type="number" id="biz-staff" min="1" class="form-input" placeholder="e.g. 15" required/>
+                <label for="biz-staff" class="form-label">Number of Full-Time Staff <span aria-hidden="true">*</span></label>
+                <input type="number" id="biz-staff" min="1" class="form-input" placeholder="e.g. 15" required aria-required="true"/>
               </div>
             </div>
           </div>
 
           <!-- STEP 5: DOCUMENT UPLOADS -->
           <div class="wizard-step hidden" data-step="5">
-            <div class="mb-6">
-              <h2 class="text-xl sm:text-2xl font-extrabold text-gray-900 mb-1">Verify business documents</h2>
-              <p class="text-sm text-gray-500 font-medium">Upload verification files. Supported formats: JPEG, PNG, PDF. Max 5MB.</p>
+            <div class="supplier-wizard-heading">
+              <h2>Verify business documents</h2>
+              <p>Upload verification files. Supported formats: JPEG, PNG, PDF. Max 5MB.</p>
             </div>
-            <div class="space-y-6">
+            <div style="display: flex; flex-direction: column; gap: 1.5rem;">
               <!-- Logo Upload -->
-              <div class="border border-dashed border-gray-300 hover:border-sky-500 rounded-2xl p-4 transition-colors relative">
-                <div class="flex items-center gap-4">
-                  <div class="w-12 h-12 bg-emerald-50/40 rounded-xl flex items-center justify-center text-xl text-sky-600">🖼️</div>
-                  <div class="flex-grow">
-                    <h4 class="font-bold text-gray-900 text-sm">Business Logo / Profile Banner <span class="text-red-500">*</span></h4>
-                    <p class="text-xs text-gray-500 mt-1">High-quality image of logo or entrance storefront.</p>
-                  </div>
-                  <label class="cursor-pointer px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-800 text-xs font-bold rounded-xl transition">
-                    Browse
-                    <input type="file" id="upload-logo" accept="image/*,.pdf" class="hidden" required onchange="partnerOnboarding.handleFileSelected(this, 'logo')"/>
-                  </label>
+              <div class="supplier-file-upload">
+                <div class="supplier-file-upload-icon" aria-hidden="true">&#128444;&#65039;</div>
+                <div class="supplier-file-upload-info">
+                  <h4 class="supplier-file-upload-title">Business Logo / Profile Banner <span aria-hidden="true">*</span></h4>
+                  <p class="supplier-file-upload-desc">High-quality image of logo or entrance storefront.</p>
                 </div>
-                <div id="file-logo-status" class="hidden mt-4 text-xs font-medium text-emerald-600 flex items-center gap-2">
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-                  <span>Selected: <strong class="file-name text-gray-800"></strong></span>
-                </div>
+                <label class="btn btn-sm" style="background: var(--surface-muted); color: var(--text-secondary); border: 1px solid var(--border); flex-shrink: 0; cursor: pointer;">
+                  Browse
+                  <input type="file" id="upload-logo" accept="image/*,.pdf" class="hidden" required aria-required="true" onchange="partnerOnboarding.handleFileSelected(this, 'logo')"/>
+                </label>
+              </div>
+              <div id="file-logo-status" class="supplier-file-upload-status hidden">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+                <span>Selected: <strong class="file-name" style="color: var(--text-primary);"></strong></span>
               </div>
 
               <!-- License Upload -->
-              <div class="border border-dashed border-gray-300 hover:border-sky-500 rounded-2xl p-4 transition-colors relative">
-                <div class="flex items-center gap-4">
-                  <div class="w-12 h-12 bg-emerald-50/40 rounded-xl flex items-center justify-center text-xl text-sky-600">📜</div>
-                  <div class="flex-grow">
-                    <h4 class="font-bold text-gray-900 text-sm">Business Registration Certificate / Trade License <span class="text-red-500">*</span></h4>
-                    <p class="text-xs text-gray-500 mt-1">Official registration license or GST registration.</p>
-                  </div>
-                  <label class="cursor-pointer px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-800 text-xs font-bold rounded-xl transition">
-                    Browse
-                    <input type="file" id="upload-license" accept="image/*,.pdf" class="hidden" required onchange="partnerOnboarding.handleFileSelected(this, 'license')"/>
-                  </label>
+              <div class="supplier-file-upload">
+                <div class="supplier-file-upload-icon" aria-hidden="true">&#128220;</div>
+                <div class="supplier-file-upload-info">
+                  <h4 class="supplier-file-upload-title">Business Registration Certificate / Trade License <span aria-hidden="true">*</span></h4>
+                  <p class="supplier-file-upload-desc">Official registration license or GST registration.</p>
                 </div>
-                <div id="file-license-status" class="hidden mt-4 text-xs font-medium text-emerald-600 flex items-center gap-2">
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-                  <span>Selected: <strong class="file-name text-gray-800"></strong></span>
-                </div>
+                <label class="btn btn-sm" style="background: var(--surface-muted); color: var(--text-secondary); border: 1px solid var(--border); flex-shrink: 0; cursor: pointer;">
+                  Browse
+                  <input type="file" id="upload-license" accept="image/*,.pdf" class="hidden" required aria-required="true" onchange="partnerOnboarding.handleFileSelected(this, 'license')"/>
+                </label>
+              </div>
+              <div id="file-license-status" class="supplier-file-upload-status hidden">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+                <span>Selected: <strong class="file-name" style="color: var(--text-primary);"></strong></span>
               </div>
 
               <!-- Identity Verification Document -->
-              <div class="border border-dashed border-gray-300 hover:border-sky-500 rounded-2xl p-4 transition-colors relative">
-                <div class="flex items-center gap-4">
-                  <div class="w-12 h-12 bg-emerald-50/40 rounded-xl flex items-center justify-center text-xl text-sky-600">🆔</div>
-                  <div class="flex-grow">
-                    <h4 class="font-bold text-gray-900 text-sm">Owner Identity Verification Document <span class="text-red-500">*</span></h4>
-                    <p class="text-xs text-gray-500 mt-1">Government ID, Passport, or Aadhaar Card scan.</p>
-                  </div>
-                  <label class="cursor-pointer px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-800 text-xs font-bold rounded-xl transition">
-                    Browse
-                    <input type="file" id="upload-id" accept="image/*,.pdf" class="hidden" required onchange="partnerOnboarding.handleFileSelected(this, 'id')"/>
-                  </label>
+              <div class="supplier-file-upload">
+                <div class="supplier-file-upload-icon" aria-hidden="true">&#127380;</div>
+                <div class="supplier-file-upload-info">
+                  <h4 class="supplier-file-upload-title">Owner Identity Verification Document <span aria-hidden="true">*</span></h4>
+                  <p class="supplier-file-upload-desc">Government ID, Passport, or Aadhaar Card scan.</p>
                 </div>
-                <div id="file-id-status" class="hidden mt-4 text-xs font-medium text-emerald-600 flex items-center gap-2">
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-                  <span>Selected: <strong class="file-name text-gray-800"></strong></span>
-                </div>
+                <label class="btn btn-sm" style="background: var(--surface-muted); color: var(--text-secondary); border: 1px solid var(--border); flex-shrink: 0; cursor: pointer;">
+                  Browse
+                  <input type="file" id="upload-id" accept="image/*,.pdf" class="hidden" required aria-required="true" onchange="partnerOnboarding.handleFileSelected(this, 'id')"/>
+                </label>
+              </div>
+              <div id="file-id-status" class="supplier-file-upload-status hidden">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+                <span>Selected: <strong class="file-name" style="color: var(--text-primary);"></strong></span>
               </div>
             </div>
           </div>
 
           <!-- STEP 6: REVIEW DETAILS -->
           <div class="wizard-step hidden" data-step="6">
-            <div class="mb-6">
-              <h2 class="text-xl sm:text-2xl font-extrabold text-gray-900 mb-1">Confirm application details</h2>
-              <p class="text-sm text-gray-500 font-medium">Verify your profile summary. Submitting locks your application under review.</p>
+            <div class="supplier-wizard-heading">
+              <h2>Confirm application details</h2>
+              <p>Verify your profile summary. Submitting locks your application under review.</p>
             </div>
             
-            <div class="border border-gray-100 rounded-2xl overflow-hidden divide-y divide-gray-100 bg-gray-50/50">
-              <div class="p-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="supplier-review-section">
+              <div class="supplier-review-row">
                 <div>
-                  <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Owner Full Name</h4>
-                  <p id="review-owner-name" class="text-sm font-semibold text-gray-900">--</p>
+                  <div class="supplier-review-label">Owner Full Name</div>
+                  <div id="review-owner-name" class="supplier-review-value">--</div>
                 </div>
                 <div>
-                  <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Email & Phone</h4>
-                  <p id="review-owner-contact" class="text-sm font-semibold text-gray-900">--</p>
-                </div>
-              </div>
-              <div class="p-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Business & Category</h4>
-                  <p id="review-biz-name" class="text-sm font-semibold text-gray-900">--</p>
-                </div>
-                <div>
-                  <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Airport Proximity</h4>
-                  <p id="review-biz-airport" class="text-sm font-semibold text-gray-900">--</p>
+                  <div class="supplier-review-label">Email &amp; Phone</div>
+                  <div id="review-owner-contact" class="supplier-review-value">--</div>
                 </div>
               </div>
-              <div class="p-4">
-                <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Listing Description</h4>
-                <p id="review-biz-desc" class="text-sm text-gray-700 leading-relaxed">--</p>
-              </div>
-              <div class="p-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="supplier-review-row">
                 <div>
-                  <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Website & Staff Count</h4>
-                  <p id="review-biz-details" class="text-sm font-semibold text-gray-900">--</p>
+                  <div class="supplier-review-label">Business &amp; Category</div>
+                  <div id="review-biz-name" class="supplier-review-value">--</div>
                 </div>
                 <div>
-                  <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Uploaded Documents</h4>
-                  <p id="review-biz-files" class="text-sm text-emerald-600 font-semibold flex items-center gap-1">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                    <span>All 3 certificates selected</span>
+                  <div class="supplier-review-label">Airport Proximity</div>
+                  <div id="review-biz-airport" class="supplier-review-value">--</div>
+                </div>
+              </div>
+              <div class="supplier-review-row supplier-review-row--full">
+                <div>
+                  <div class="supplier-review-label">Listing Description</div>
+                  <div id="review-biz-desc" class="supplier-review-value" style="font-weight: var(--fw-regular);">--</div>
+                </div>
+              </div>
+              <div class="supplier-review-row">
+                <div>
+                  <div class="supplier-review-label">Website &amp; Staff Count</div>
+                  <div id="review-biz-details" class="supplier-review-value">--</div>
+                </div>
+                <div>
+                  <div class="supplier-review-label">Uploaded Documents</div>
+                  <p id="review-biz-files" class="supplier-review-value" style="color: var(--success);">
+                    <span style="display: inline-flex; align-items: center; gap: 0.375rem;">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                      All 3 certificates selected
+                    </span>
                   </p>
                 </div>
               </div>
             </div>
 
-            <!-- Operational statement -->
-            <p class="text-xs text-gray-500 leading-relaxed mt-4">
+            <p class="supplier-detail-label" style="margin-top: 1rem; line-height: 1.6;">
               By submitting this application, you declare under penalty of perjury that the uploaded trade licensing documents represent your active legal incorporation credentials, and agree to the LayoverX supplier terms and SLA policies.
             </p>
           </div>
 
           <!-- SUBMIT SUCCESS PAGE -->
-          <div id="wizard-success-panel" class="hidden text-center py-6 animate-scale-up">
-            <div class="w-20 h-20 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl shadow-xl shadow-emerald-500/10">
-              ✓
-            </div>
+          <div id="wizard-success-panel" class="hidden text-center" style="padding: 2rem 0;">
+            <div class="supplier-success-icon" aria-hidden="true">&#10003;</div>
             <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900 mb-2">Application Submitted Successfully</h2>
             <p class="text-sm text-gray-500 max-w-md mx-auto mb-8 font-medium">
               Thank you for onboarding with us. Your application has been logged on Firestore and is queued for verification review.
             </p>
             
-            <div class="max-w-md mx-auto bg-gray-50 border border-gray-200 rounded-2xl p-6 text-left mb-8 space-y-4">
-              <div class="flex justify-between items-center text-sm">
-                <span class="text-gray-500 font-medium">Application Reference ID:</span>
-                <strong id="success-app-id" class="text-gray-900 font-extrabold uppercase">APP-9A2SDF90</strong>
+            <div class="supplier-success-details">
+              <div class="supplier-success-row">
+                <span class="supplier-success-label">Application Reference ID:</span>
+                <strong id="success-app-id" class="supplier-success-value">APP-9A2SDF90</strong>
               </div>
-              <div class="flex justify-between items-center text-sm">
-                <span class="text-gray-500 font-medium">Submission Date:</span>
-                <span id="success-app-date" class="text-gray-900 font-semibold">June 9, 2026</span>
+              <div class="supplier-success-row">
+                <span class="supplier-success-label">Submission Date:</span>
+                <span id="success-app-date" class="supplier-success-value">June 9, 2026</span>
               </div>
-              <div class="flex justify-between items-center text-sm">
-                <span class="text-gray-500 font-medium">Review Verification Status:</span>
-                <span class="px-2 py-1 text-xs font-bold text-amber-700 bg-amber-100 rounded-full flex items-center gap-2">
-                  <span class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>
+              <div class="supplier-success-row">
+                <span class="supplier-success-label">Review Verification Status:</span>
+                <span class="badge badge-warning">
+                  <span class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" aria-hidden="true"></span>
                   Pending Review
                 </span>
               </div>
-              <div class="flex justify-between items-center text-sm">
-                <span class="text-gray-500 font-medium">Expected Response SLA Time:</span>
-                <strong class="text-theme-primary font-bold">24-48 Hours</strong>
+              <div class="supplier-success-row">
+                <span class="supplier-success-label">Expected Response SLA Time:</span>
+                <strong class="supplier-success-value" style="color: var(--primary);">24-48 Hours</strong>
               </div>
             </div>
 
             <div class="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
-              <a href="supplier-dashboard.html" class="flex-grow px-6 py-4.5 bg-gray-900 hover:bg-black text-white text-sm font-bold rounded-xl shadow-md transition-all">
+              <a href="supplier-dashboard.html" class="btn btn-primary" style="flex: 1;">
                 Go to Supplier Dashboard
               </a>
-              <a href="index.html" class="px-6 py-4.5 border border-gray-300 hover:bg-gray-50 text-gray-800 text-sm font-semibold rounded-xl transition-all">
+              <a href="index.html" class="btn btn-outline">
                 Return Home
               </a>
             </div>
           </div>
 
           <!-- Navigation buttons -->
-          <div id="wizard-navigation-panel" class="flex justify-between items-center border-t border-gray-150 pt-8 mt-6">
-            <button type="button" id="prev-btn" onclick="partnerOnboarding.moveStep(-1)" class="px-6 py-4 border border-gray-300 text-gray-700 font-bold rounded-xl text-sm hover:bg-gray-50 transition invisible">
+          <div id="wizard-navigation-panel" class="supplier-wizard-nav">
+            <button type="button" id="prev-btn" onclick="partnerOnboarding.moveStep(-1)" class="btn btn-ghost" style="visibility: hidden;" aria-label="Go to previous step">
               Back
             </button>
-            <button type="button" id="next-btn" onclick="partnerOnboarding.moveStep(1)" class="px-6 py-4 bg-theme-primary hover:bg-theme-primary text-white font-bold rounded-xl text-sm shadow-md transition transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
+            <button type="button" id="next-btn" onclick="partnerOnboarding.moveStep(1)" class="btn btn-primary" aria-label="Go to next step">
               <span>Next Step</span>
-              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
             </button>
-            <button type="button" id="submit-btn" onclick="partnerOnboarding.submitApplication()" class="px-6 py-4 bg-emerald-600 hover:bg-emerald-600 text-white font-bold rounded-xl text-sm shadow-md transition transform hover:-translate-y-0.5 flex items-center justify-center gap-2 hidden">
+            <button type="button" id="submit-btn" onclick="partnerOnboarding.submitApplication()" class="btn btn-primary hidden" style="background: var(--success);" aria-label="Submit application">
               <span>Submit Application</span>
-              <svg class="w-4 h-4 text-white hidden spinner animate-spin" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+              <svg class="hidden spinner" style="width: 1rem; height: 1rem; animation: spin 1s linear infinite;" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" opacity="0.25"/><path d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" fill="currentColor" opacity="0.75"/></svg>
             </button>
           </div>
 
@@ -406,7 +391,6 @@
     },
     
     init() {
-      // Monitor firebase auth state
       window.layoverxAuth.onAuthStateChanged(user => {
         const authPanel = document.getElementById('auth-required-panel');
         const wizardPanel = document.getElementById('partner-wizard-panel');
@@ -416,7 +400,6 @@
           authPanel.classList.add('hidden');
           wizardPanel.classList.remove('hidden');
           
-          // Pre-fill owner step fields
           const nameInput = document.getElementById('owner-name');
           const emailInput = document.getElementById('owner-email');
           if (nameInput) nameInput.value = user.displayName || '';
@@ -431,43 +414,45 @@
     },
 
     updateStepper() {
-      // Toggle progress bars and steps highlight
       const percent = ((this.currentStep - 1) / (this.totalSteps - 1)) * 100;
       const progressLine = document.getElementById('stepper-progress-line');
       if (progressLine) progressLine.style.width = `${percent}%`;
 
-      document.querySelectorAll('.step-indicator').forEach(indicator => {
+      document.querySelectorAll('.supplier-wizard-step').forEach(indicator => {
         const step = parseInt(indicator.dataset.step);
-        const ring = indicator.querySelector('.rounded-full');
+        const ring = indicator.querySelector('.supplier-wizard-step-ring');
+        const label = indicator.querySelector('.supplier-wizard-step-label');
         if (step < this.currentStep) {
-          // Completed steps
-          ring.className = "w-8 h-8 rounded-full bg-emerald-600 text-white font-bold text-sm flex items-center justify-center shadow-md shadow-emerald-500/10 transition-all";
-          ring.innerHTML = '✓';
-          indicator.querySelector('span').className = "text-[10px] sm:text-xs font-bold text-emerald-600";
+          ring.className = 'supplier-wizard-step-ring supplier-wizard-step-ring--completed';
+          ring.textContent = '\u2713';
+          if (label) {
+            label.className = 'supplier-wizard-step-label';
+          }
         } else if (step === this.currentStep) {
-          // Active step
-          ring.className = "w-8 h-8 rounded-full bg-sky-600 text-white font-bold text-sm flex items-center justify-center shadow-md shadow-primary ring-4 ring-sky-50 transition-all";
-          ring.innerHTML = step;
-          indicator.querySelector('span').className = "text-[10px] sm:text-xs font-bold text-gray-800";
+          ring.className = 'supplier-wizard-step-ring supplier-wizard-step-ring--active';
+          ring.textContent = step;
+          if (label) {
+            label.className = 'supplier-wizard-step-label';
+          }
         } else {
-          // Inactive step
-          ring.className = "w-8 h-8 rounded-full bg-white text-gray-400 border border-gray-300 font-bold text-sm flex items-center justify-center transition-all";
-          ring.innerHTML = step;
-          indicator.querySelector('span').className = "text-[10px] sm:text-xs font-medium text-gray-400";
+          ring.className = 'supplier-wizard-step-ring supplier-wizard-step-ring--pending';
+          ring.textContent = step;
+          if (label) {
+            label.className = 'supplier-wizard-step-label supplier-wizard-step-label--pending';
+          }
         }
       });
     },
 
     moveStep(dir) {
       if (dir === 1 && !this.validateCurrentStep()) {
-        return; // Halt if current step has empty inputs
+        return;
       }
 
       this.currentStep += dir;
       if (this.currentStep < 1) this.currentStep = 1;
       if (this.currentStep > this.totalSteps) this.currentStep = this.totalSteps;
 
-      // Toggle display
       document.querySelectorAll('.wizard-step').forEach(stepEl => {
         const stepNum = parseInt(stepEl.dataset.step);
         if (stepNum === this.currentStep) {
@@ -477,22 +462,16 @@
         }
       });
 
-      // Update review contents on step 6
       if (this.currentStep === 6) {
         this.populateReviewData();
       }
 
-      // Hide or show action buttons
       const prevBtn = document.getElementById('prev-btn');
       const nextBtn = document.getElementById('next-btn');
       const submitBtn = document.getElementById('submit-btn');
 
       if (prevBtn) {
-        if (this.currentStep === 1) {
-          prevBtn.classList.add('invisible');
-        } else {
-          prevBtn.classList.remove('invisible');
-        }
+        prevBtn.style.visibility = this.currentStep === 1 ? 'hidden' : 'visible';
       }
 
       if (nextBtn && submitBtn) {
@@ -507,7 +486,6 @@
 
       this.updateStepper();
       
-      // Smooth scroll back to top of form
       document.getElementById('partner-wizard-panel').scrollIntoView({ behavior: 'smooth', block: 'start' });
     },
 
@@ -517,17 +495,14 @@
       const inputs = activeEl.querySelectorAll('input[required], select[required], textarea[required]');
       let valid = true;
       inputs.forEach(input => {
-        // Clear previous outline errors
-        input.classList.remove('border-red-500', 'focus:ring-red-500/20');
+        input.classList.remove('input-error');
         if (!input.value.trim() || (input.type === 'file' && !input.files.length && !this.uploadedFiles[input.id.replace('upload-', '')])) {
-          input.classList.add('border-red-500', 'focus:ring-red-500/20');
+          input.classList.add('input-error');
           valid = false;
         }
       });
 
       if (!valid) {
-        // Expose native validator alert message if standard form submit is bypassed
-        const errToast = document.querySelector('#toast-container') ? true : false;
         if (typeof window.layoverx.showToast === 'function') {
           window.layoverx.showToast("Please complete all required fields before proceeding.");
         } else {
@@ -546,7 +521,7 @@
           statusPanel.querySelector('.file-name').textContent = file.name;
         }
         this.uploadedFiles[docType] = file;
-        inputEl.classList.remove('border-red-500');
+        inputEl.classList.remove('input-error');
       }
     },
 
@@ -585,7 +560,6 @@
         const getVal = (id) => document.getElementById(id)?.value || '';
         const appId = 'APP_' + Math.random().toString(36).substring(2, 11).toUpperCase();
         
-        // Upload documents helper
         const docUrls = { logoUrl: '', licenseUrl: '', idUrl: '' };
         const storage = window.layoverxStorage;
         const db = window.layoverxDb;
@@ -603,7 +577,6 @@
 
         await Promise.all(uploadPromises);
 
-        // Save application data
         const docData = {
           applicationId: appId,
           userId: user.uid,
@@ -628,7 +601,6 @@
           reviewNotes: ''
         };
 
-        // Save to firestore if database is available
         if (db) {
           try {
             await db.collection("supplier_applications").doc(appId).set({
@@ -640,7 +612,6 @@
           }
         }
 
-        // Write to localStorage application state
         localStorage.setItem('layoverx_supplier_application', JSON.stringify(docData));
 
         if (typeof window.layoverx.showToast === 'function') {

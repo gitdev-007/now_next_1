@@ -1,0 +1,155 @@
+/* ==========================================================================
+   LAYOUT SYSTEM
+   Containers, section spacing, grid helpers.
+   ========================================================================== */
+
+/* ---- CONTAINERS ---- */
+.container {
+  width: 100%;
+  max-width: var(--container-xl, 1280px);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.container-sm {
+  max-width: var(--container-sm, 640px);
+}
+
+.container-md {
+  max-width: var(--container-md, 768px);
+}
+
+.container-lg {
+  max-width: var(--container-lg, 1024px);
+}
+
+.container-xl {
+  max-width: var(--container-xl, 1280px);
+}
+
+.container-max {
+  max-width: var(--container-max, 1440px);
+}
+
+.container-narrow {
+  max-width: 48rem;
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* ---- SECTION SPACING ---- */
+.section {
+  padding-top: 4rem;    /* 64px */
+  padding-bottom: 4rem;
+}
+
+.section-sm {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.section-lg {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding-top: 5rem;  /* 80px */
+    padding-bottom: 5rem;
+  }
+  .section-sm {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+  .section-lg {
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+  }
+}
+
+/* ---- HERO SECTION ---- */
+.hero-section {
+  position: relative;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-content {
+  padding-top: 6rem;    /* 96px — clears 80px fixed navbar */
+  padding-bottom: 3rem;
+}
+
+/* ---- CTA GRADIENT BACKGROUND ---- */
+.cta-gradient {
+  background: linear-gradient(
+    135deg,
+    var(--theme-hero-from, #0369a1),
+    var(--theme-hero-to, #0c4a6e)
+  ) !important;
+}
+
+/* ---- GRID HELPERS (design-system grid patterns) ---- */
+.grid-1 { grid-template-columns: repeat(1, 1fr); }
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+.grid-gap { gap: 1.5rem; }
+.grid-gap-lg { gap: 2rem; }
+
+/* ---- FLEX HELPERS ---- */
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ---- STICKY SIDEBAR ---- */
+.sidebar-sticky {
+  position: sticky;
+  top: 6rem;  /* clears navbar */
+}
+
+/* ---- Z-INDEX HIERARCHY ---- */
+.z-base    { z-index: auto; }
+.z-sticky  { z-index: 100; }
+.z-header  { z-index: 1000; }
+.z-modal   { z-index: 1500; }
+.z-toast   { z-index: 9999; }
+
+/* ---- Hide decorative elements on mobile ---- */
+@media (max-width: 639px) {
+  .hide-mobile {
+    display: none;
+  }
+}
+
+@media (min-width: 640px) {
+  .hide-desktop {
+    display: none;
+  }
+}

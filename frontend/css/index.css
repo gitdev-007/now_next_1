@@ -1,0 +1,43 @@
+/* ==========================================================================
+   LAYOVERX DESIGN SYSTEM — ENTRY POINT
+   Import all modular CSS files in the correct cascade order.
+   ========================================================================== */
+
+/* 1. Design tokens (CSS custom properties) */
+@import "./variables.css";
+
+/* 2. Reset & base element styles */
+@import "./reset.css";
+
+/* 3. Typography (headings, text utilities, section typography) */
+@import "./typography.css";
+
+/* 4. Layout (containers, sections, grid helpers) */
+@import "./layout.css";
+
+/* 5. Button system */
+@import "./buttons.css";
+
+/* 6. Card system */
+@import "./cards.css";
+
+/* 7. Form system */
+@import "./forms.css";
+
+/* 8. Navigation */
+@import "./navigation.css";
+
+/* 9. Components (modals, carousels, badges, toasts, etc.) */
+@import "./components.css";
+
+/* 10. Sector theming engine */
+@import "./themes.css";
+
+/* 11. Utilities (icons, scrollbar, WCAG overrides) */
+@import "./utilities.css";
+
+/* 12. Animations (reveal, skeleton, reduced motion) */
+@import "./animations.css";
+
+/* 13. Responsive typography overrides */
+@import "./responsive.css";
