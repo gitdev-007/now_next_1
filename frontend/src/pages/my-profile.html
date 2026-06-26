@@ -79,9 +79,9 @@
       </div>
 
       <!-- Personal Information Card -->
-      <div class="account-card">
+      <div class="account-card card">
         <div class="account-card-header">
-          <h2 class="account-card-title">
+          <h2 class="account-card-title section-title">
             <span class="card-icon" aria-hidden="true">&#128100;</span>
             Personal Information
           </h2>
@@ -89,29 +89,29 @@
 
         <form class="settings-form" onsubmit="event.preventDefault(); layoverx.showToast('Profile updated successfully!', 'success')">
           <div class="form-row">
-            <div class="form-group">
-              <label for="profile-name" class="form-label">Full Name</label>
-              <input type="text" id="profile-name" class="form-input user-name-input" value="Traveler" placeholder="Your name" required/>
+            <div class="dashboard-form-group">
+              <label for="profile-name" class="dashboard-form-label">Full Name</label>
+              <input type="text" id="profile-name" class="dashboard-form-input user-name-input" value="Traveler" placeholder="Your name" required/>
             </div>
-            <div class="form-group">
-              <label for="profile-email" class="form-label">Email Address</label>
-              <input type="email" id="profile-email" class="form-input user-email-input" value="traveler@layoverx.com" placeholder="Your email" readonly aria-describedby="email-help"/>
+            <div class="dashboard-form-group">
+              <label for="profile-email" class="dashboard-form-label">Email Address</label>
+              <input type="email" id="profile-email" class="dashboard-form-input user-email-input" value="traveler@layoverx.com" placeholder="Your email" readonly aria-describedby="email-help"/>
               <span id="email-help" class="text-xs text-muted" style="color: var(--text-muted);">Email cannot be changed</span>
             </div>
           </div>
 
           <div class="form-row">
-            <div class="form-group">
-              <label for="profile-phone" class="form-label">Phone Number</label>
-              <input type="tel" id="profile-phone" class="form-input" value="+1 (555) 019-2834" placeholder="Phone number"/>
+            <div class="dashboard-form-group">
+              <label for="profile-phone" class="dashboard-form-label">Phone Number</label>
+              <input type="tel" id="profile-phone" class="dashboard-form-input" value="+1 (555) 019-2834" placeholder="Phone number"/>
             </div>
-            <div class="form-group">
-              <label for="profile-nationality" class="form-label">Nationality</label>
-              <input type="text" id="profile-nationality" class="form-input" value="United States" placeholder="Your citizenship"/>
+            <div class="dashboard-form-group">
+              <label for="profile-nationality" class="dashboard-form-label">Nationality</label>
+              <input type="text" id="profile-nationality" class="dashboard-form-input" value="United States" placeholder="Your citizenship"/>
             </div>
           </div>
 
-          <hr class="border-gray-100" style="border-color: var(--border-light);"/>
+          <hr/>
 
           <div class="settings-section">
             <h3 class="settings-section-title">
@@ -119,18 +119,18 @@
               Transit Preference Profile
             </h3>
             <div class="form-row">
-              <div class="form-group">
-                <label for="lounge-style" class="form-label">Preferred Lounge Style</label>
-                <select id="lounge-style" class="form-input form-select cursor-pointer">
+              <div class="dashboard-form-group">
+                <label for="lounge-style" class="dashboard-form-label">Preferred Lounge Style</label>
+                <select id="lounge-style" class="dashboard-form-input dashboard-form-select cursor-pointer">
                   <option>Quiet / Sleeping Pod focus</option>
                   <option selected>Activity & City Tours</option>
                   <option>Fine Dining & Spa Wellness</option>
                   <option>Gaming & Entertainment</option>
                 </select>
               </div>
-              <div class="form-group">
-                <label for="baggage-pref" class="form-label">Baggage Preference</label>
-                <select id="baggage-pref" class="form-input form-select cursor-pointer">
+              <div class="dashboard-form-group">
+                <label for="baggage-pref" class="dashboard-form-label">Baggage Preference</label>
+                <select id="baggage-pref" class="dashboard-form-input dashboard-form-select cursor-pointer">
                   <option selected>Use Left-Luggage Airport service</option>
                   <option>Carry cabin luggage along</option>
                   <option>Checked-through to final destination</option>

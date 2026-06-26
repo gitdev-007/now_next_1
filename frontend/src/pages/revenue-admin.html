@@ -27,21 +27,21 @@
   </div>
 </section>
 
-<section class="py-8 bg-slate-50 min-h-screen text-slate-800">
+<section class="py-8 bg-[var(--background)] min-h-screen text-slate-800">
   <div class="container max-w-6xl">
     
     <!-- Navigation Tabs -->
-    <div class="flex flex-wrap gap-2 border-b border-slate-200 pb-4 mb-6">
-      <button onclick="switchAdminTab('overview')" id="admin-tab-overview" class="px-4 py-4 text-sm font-extrabold rounded-xl transition bg-slate-900 text-white shadow-md">
+    <div class="filters-container flex flex-wrap gap-2 border-b border-slate-200 pb-4 mb-6">
+      <button onclick="switchAdminTab('overview')" id="admin-tab-overview" class="px-4 py-4 text-sm font-extrabold rounded-[var(--radius-lg)] transition bg-slate-900 text-white shadow-[var(--shadow-btn)]">
         📈 Revenue Overview
       </button>
-      <button onclick="switchAdminTab('pricing')" id="admin-tab-pricing" class="px-4 py-4 text-sm font-bold text-slate-600 hover:bg-slate-100 rounded-xl transition">
+      <button onclick="switchAdminTab('pricing')" id="admin-tab-pricing" class="px-4 py-4 text-sm font-bold text-slate-600 hover:bg-slate-100 rounded-[var(--radius-lg)] transition">
         ⚙️ Pricing Rules & Yield
       </button>
-      <button onclick="switchAdminTab('promotions')" id="admin-tab-promotions" class="px-4 py-4 text-sm font-bold text-slate-600 hover:bg-slate-100 rounded-xl transition">
+      <button onclick="switchAdminTab('promotions')" id="admin-tab-promotions" class="px-4 py-4 text-sm font-bold text-slate-600 hover:bg-slate-100 rounded-[var(--radius-lg)] transition">
         🏷️ Coupons & Discounts
       </button>
-      <button onclick="switchAdminTab('payouts')" id="admin-tab-payouts" class="px-4 py-4 text-sm font-bold text-slate-600 hover:bg-slate-100 rounded-xl transition">
+      <button onclick="switchAdminTab('payouts')" id="admin-tab-payouts" class="px-4 py-4 text-sm font-bold text-slate-600 hover:bg-slate-100 rounded-[var(--radius-lg)] transition">
         💼 Payouts & Audit Logs
       </button>
     </div>
@@ -51,33 +51,33 @@
       
       <!-- Key Metric Cards -->
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <div class="bg-white rounded-2xl border border-slate-200/80 p-4 shadow-sm space-y-2">
-          <p class="text-xs text-slate-400 font-bold uppercase tracking-wider">Gross Booking Value (GBV)</p>
+        <div class="card p-4 space-y-2">
+          <p class="section-label">Gross Booking Value (GBV)</p>
           <div class="flex items-baseline gap-1">
-            <span class="text-2xl font-black text-slate-900" id="stat-gbv">₹0</span>
+            <span class="text-2xl font-black text-[var(--text-primary)]" id="stat-gbv">₹0</span>
           </div>
           <p class="text-[10px] text-emerald-600 font-semibold">↑ 12.4% from last week</p>
         </div>
         
-        <div class="bg-white rounded-2xl border border-slate-200/80 p-4 shadow-sm space-y-2">
-          <p class="text-xs text-slate-400 font-bold uppercase tracking-wider">Platform Net Revenue</p>
+        <div class="card p-4 space-y-2">
+          <p class="section-label">Platform Net Revenue</p>
           <div class="flex items-baseline gap-1">
             <span class="text-2xl font-black text-emerald-700" id="stat-net-rev">₹0</span>
           </div>
           <p class="text-[10px] text-slate-500 font-medium">Includes fees + commissions</p>
         </div>
 
-        <div class="bg-white rounded-2xl border border-slate-200/80 p-4 shadow-sm space-y-2">
-          <p class="text-xs text-slate-400 font-bold uppercase tracking-wider">Simulated Occupancy</p>
+        <div class="card p-4 space-y-2">
+          <p class="section-label">Simulated Occupancy</p>
           <div class="flex items-center gap-2">
-            <span class="text-2xl font-black text-slate-900" id="stat-occupancy">0%</span>
-            <span id="stat-occupancy-badge" class="text-[9px] font-extrabold px-2 py-1 rounded uppercase">Normal</span>
+            <span class="text-2xl font-black text-[var(--text-primary)]" id="stat-occupancy">0%</span>
+            <span id="stat-occupancy-badge" class="text-[9px] font-extrabold px-2 py-1 rounded uppercase status-badge status-badge-neutral">Normal</span>
           </div>
           <p class="text-[10px] text-slate-500 font-medium">Controls yield-pricing trigger</p>
         </div>
 
-        <div class="bg-white rounded-2xl border border-slate-200/80 p-4 shadow-sm space-y-2">
-          <p class="text-xs text-slate-400 font-bold uppercase tracking-wider">Total Active Coupons</p>
+        <div class="card p-4 space-y-2">
+          <p class="section-label">Total Active Coupons</p>
           <div class="flex items-baseline gap-1">
             <span class="text-2xl font-black text-indigo-750" id="stat-coupons-count">0</span>
           </div>
@@ -87,8 +87,8 @@
 
       <!-- Charts Section -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        <div class="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm lg:col-span-8 space-y-4">
-          <h3 class="font-bold text-slate-900 text-sm flex items-center justify-between">
+        <div class="card p-6 lg:col-span-8 space-y-4">
+          <h3 class="font-bold text-[var(--text-primary)] text-sm flex items-center justify-between">
             <span>📊 Booking Performance Trends</span>
             <span class="text-xs text-slate-400">Weekly breakdown</span>
           </h3>
@@ -97,8 +97,8 @@
           </div>
         </div>
 
-        <div class="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm lg:col-span-4 space-y-4">
-          <h3 class="font-bold text-slate-900 text-sm">🍰 Net Revenue Streams</h3>
+        <div class="card p-6 lg:col-span-4 space-y-4">
+          <h3 class="font-bold text-[var(--text-primary)] text-sm">🍰 Net Revenue Streams</h3>
           <div class="relative h-64 w-full flex items-center justify-center">
             <canvas id="streamsChart"></canvas>
           </div>
@@ -106,32 +106,32 @@
       </div>
 
       <!-- Transaction Log -->
-      <div class="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm space-y-4">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-4">
+      <div class="card p-6 space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[var(--border-light)] pb-4">
           <div>
-            <h3 class="font-bold text-slate-900 text-base">🛒 Real-time Revenue Transaction Ledger</h3>
-            <p class="text-xs text-slate-500 mt-1">Calculated prices, platform convenience fees, and taxes collected.</p>
+            <h3 class="font-bold text-[var(--text-primary)] text-base">🛒 Real-time Revenue Transaction Ledger</h3>
+            <p class="text-xs text-[var(--text-muted)] mt-1">Calculated prices, platform convenience fees, and taxes collected.</p>
           </div>
-          <button onclick="downloadFinancialPlanCA()" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs rounded-xl transition shadow-md flex items-center gap-2">
+          <button onclick="downloadFinancialPlanCA()" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs rounded-[var(--radius-lg)] transition shadow-[var(--shadow-btn)] flex items-center gap-2">
             📥 Compile CA Financial Summary
           </button>
         </div>
 
         <div class="overflow-x-auto">
-          <table class="w-full text-left text-xs border-collapse">
+          <table class="dashboard-table">
             <thead>
-              <tr class="text-slate-400 font-bold border-b border-slate-100 bg-slate-50">
-                <th class="py-4 px-4 rounded-l-lg">Booking ID</th>
-                <th class="py-4 px-4">Date</th>
-                <th class="py-4 px-4">Lead Traveler</th>
-                <th class="py-4 px-4">Itinerary Subtotal</th>
-                <th class="py-4 px-4">Discounts Applied</th>
-                <th class="py-4 px-4">Fees & Taxes</th>
-                <th class="py-4 px-4">Grand Total</th>
-                <th class="py-4 px-4 rounded-r-lg text-right">Commission Earned</th>
+              <tr>
+                <th>Booking ID</th>
+                <th>Date</th>
+                <th>Lead Traveler</th>
+                <th>Itinerary Subtotal</th>
+                <th>Discounts Applied</th>
+                <th>Fees & Taxes</th>
+                <th>Grand Total</th>
+                <th class="text-right">Commission Earned</th>
               </tr>
             </thead>
-            <tbody id="revenue-tx-table-body" class="divide-y divide-slate-100 text-slate-700">
+            <tbody id="revenue-tx-table-body">
               <!-- Dynamically populated -->
             </tbody>
           </table>
@@ -144,18 +144,18 @@
     <div id="admin-content-pricing" class="admin-tab-content hidden space-y-6">
       
       <!-- Overrides slider -->
-      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-sm space-y-4">
-        <h3 class="font-bold text-slate-900 text-lg flex items-center gap-2">
+      <div class="card p-6 sm:p-8 space-y-4">
+        <h3 class="font-bold text-[var(--text-primary)] text-lg flex items-center gap-2">
           <span>⚡ Global Price Override Control</span>
         </h3>
-        <p class="text-xs text-slate-500 leading-relaxed">
+        <p class="text-xs text-[var(--text-muted)] leading-relaxed">
           Instantly markup or discount all pricing rules across all categories. This applies dynamically at checkout review steps.
         </p>
 
-        <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200/60 max-w-xl">
+        <div class="bg-[var(--surface-muted)] p-6 rounded-[var(--radius-lg)] border border-slate-200/60 max-w-xl">
           <div class="flex items-center justify-between mb-4">
             <span class="text-xs font-bold text-slate-650">Markup Override Percent</span>
-            <span id="override-badge" class="text-sm font-black px-4 py-1 bg-emerald-50 text-emerald-700 border border-emerald-100 rounded-xl">0% (Disabled)</span>
+            <span id="override-badge" class="text-sm font-black px-4 py-1 bg-emerald-50 text-emerald-700 border border-emerald-100 rounded-[var(--radius-lg)]">0% (Disabled)</span>
           </div>
           <input type="range" id="override-slider" min="-20" max="50" step="5" value="0" oninput="updateOverrideLabel(this.value)" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-emerald-600"/>
           <div class="flex justify-between text-[9px] font-extrabold text-slate-400 uppercase tracking-widest mt-2">
@@ -163,7 +163,7 @@
             <span>Normal</span>
             <span>+50% Max Markup</span>
           </div>
-          <button onclick="saveOverrideSetting()" class="mt-4 px-4 py-2 bg-slate-900 hover:bg-black text-white font-extrabold text-xs rounded-xl transition shadow">
+          <button onclick="saveOverrideSetting()" class="mt-4 px-4 py-2 bg-slate-900 hover:bg-black text-white font-extrabold text-xs rounded-[var(--radius-lg)] transition shadow">
             Apply Global Override Slider
           </button>
         </div>
@@ -173,16 +173,16 @@
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
         
         <!-- Base Prices List -->
-        <div class="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm lg:col-span-2 space-y-4">
-          <h3 class="font-bold text-slate-900 text-base">🏨 Service Base Pricing Configurator</h3>
-          <p class="text-xs text-slate-500">Edit base prices stored in local storage for service categories.</p>
+        <div class="card p-6 lg:col-span-2 space-y-4">
+          <h3 class="font-bold text-[var(--text-primary)] text-base">🏨 Service Base Pricing Configurator</h3>
+          <p class="text-xs text-[var(--text-muted)]">Edit base prices stored in local storage for service categories.</p>
           
           <div class="space-y-4" id="base-prices-editor-container">
             <!-- Populated dynamically -->
           </div>
 
-          <div class="pt-4 border-t border-slate-100 flex justify-end">
-            <button onclick="saveBasePrices()" class="px-4 py-4 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs rounded-xl shadow transition">
+          <div class="pt-4 border-t border-[var(--border-light)] flex justify-end">
+            <button onclick="saveBasePrices()" class="px-4 py-4 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs rounded-[var(--radius-lg)] shadow transition">
               ✓ Save Configured Base Prices
             </button>
           </div>
@@ -192,20 +192,20 @@
         <div class="space-y-6 lg:col-span-1">
           
           <!-- Occupancy Slider -->
-          <div class="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm space-y-4">
-            <h3 class="font-bold text-slate-900 text-base">📈 Occupancy Pricing Yield Control</h3>
+          <div class="card p-6 space-y-4">
+            <h3 class="font-bold text-[var(--text-primary)] text-base">📈 Occupancy Pricing Yield Control</h3>
             <p class="text-xs text-slate-550">Simulate local transit demand to test dynamic markup triggers.</p>
             
             <div class="space-y-4 pt-2">
               <div class="flex justify-between items-center text-xs">
                 <span class="font-bold text-slate-600">Simulated Occupancy</span>
-                <span id="lbl-occupancy" class="font-extrabold text-slate-900">78%</span>
+                <span id="lbl-occupancy" class="font-extrabold text-[var(--text-primary)]">78%</span>
               </div>
               <input type="range" id="slider-occupancy" min="10" max="100" step="2" value="78" oninput="updateOccupancyLabel(this.value)" class="w-full h-1.5 bg-slate-200 rounded-lg cursor-pointer accent-indigo-655"/>
             </div>
 
             <!-- Yield thresholds info -->
-            <div class="bg-indigo-50 border border-indigo-100 rounded-xl p-4.5 space-y-2 text-[10px] text-indigo-700">
+            <div class="bg-indigo-50 border border-indigo-100 rounded-[var(--radius-lg)] p-4.5 space-y-2 text-[10px] text-indigo-700">
               <div class="flex items-center justify-between font-bold">
                 <span>🔥 High Occupancy (&ge;80%):</span>
                 <span>1.20x Markup</span>
@@ -216,23 +216,23 @@
               </div>
             </div>
 
-            <div class="flex items-center gap-4 pt-2 border-t border-slate-100">
-              <input type="checkbox" id="chk-auto-demand" checked class="w-4 h-4 text-emerald-600 border-gray-300 rounded focus:ring-emerald-500"/>
-              <label for="chk-auto-demand" class="text-xs font-bold text-slate-700 select-none">Enable Yield Yield Auto Adjustments</label>
+            <div class="flex items-center gap-4 pt-2 border-t border-[var(--border-light)]">
+              <input type="checkbox" id="chk-auto-demand" checked class="w-4 h-4 text-emerald-600 border-[var(--border)] rounded focus:ring-emerald-500"/>
+              <label for="chk-auto-demand" class="text-xs font-bold text-[var(--text-secondary)] select-none">Enable Yield Yield Auto Adjustments</label>
             </div>
             
-            <button onclick="saveOccupancySettings()" class="w-full px-4 py-2 bg-slate-900 hover:bg-black text-white font-extrabold text-xs rounded-xl transition shadow">
+            <button onclick="saveOccupancySettings()" class="w-full px-4 py-2 bg-slate-900 hover:bg-black text-white font-extrabold text-xs rounded-[var(--radius-lg)] transition shadow">
               Apply Yield Config
             </button>
           </div>
 
           <!-- Seasonal Pricing Config -->
-          <div class="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm space-y-4">
-            <h3 class="font-bold text-slate-900 text-base">❄️ Seasonal Calendar Multipliers</h3>
+          <div class="card p-6 space-y-4">
+            <h3 class="font-bold text-[var(--text-primary)] text-base">❄️ Seasonal Calendar Multipliers</h3>
             <div id="seasonal-pricing-list" class="space-y-4">
               <!-- Populated dynamically -->
             </div>
-            <button onclick="saveSeasonalPricing()" class="w-full px-4 py-2 bg-slate-900 hover:bg-black text-white font-extrabold text-xs rounded-xl transition shadow">
+            <button onclick="saveSeasonalPricing()" class="w-full px-4 py-2 bg-slate-900 hover:bg-black text-white font-extrabold text-xs rounded-[var(--radius-lg)] transition shadow">
               Update Seasonal Ranges
             </button>
           </div>
@@ -247,32 +247,32 @@
     <div id="admin-content-promotions" class="admin-tab-content hidden space-y-6">
       
       <!-- Discount Stack Policy -->
-      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-sm space-y-4">
-        <h3 class="font-bold text-slate-900 text-lg flex items-center gap-2">
+      <div class="card p-6 sm:p-8 space-y-4">
+        <h3 class="font-bold text-[var(--text-primary)] text-lg flex items-center gap-2">
           <span>🛡️ Stackable discount & Priority Rules</span>
         </h3>
-        <p class="text-xs text-slate-500 leading-relaxed max-w-3xl">
+        <p class="text-xs text-[var(--text-muted)] leading-relaxed max-w-3xl">
           Configure whether customized promotional coupons can be stacked on top of automated system discounts (Loyalty Member - 5%, Group Booking - 15%, Long Stay - 10%). A hard margin cap of 35% discount ceiling is enforced.
         </p>
 
         <!-- Stacking options -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
-          <div class="bg-slate-50 p-4 border border-slate-200/60 rounded-xl space-y-4">
-            <h4 class="text-xs font-bold text-slate-700 flex items-center justify-between">
+          <div class="bg-[var(--surface-muted)] p-4 border border-slate-200/60 rounded-[var(--radius-lg)] space-y-4">
+            <h4 class="text-xs font-bold text-[var(--text-secondary)] flex items-center justify-between">
               <span>Loyalty Discount</span>
               <span class="text-emerald-700 font-extrabold text-[10px]">5%</span>
             </h4>
             <p class="text-[10px] text-slate-400">Triggered if user is logged into their account.</p>
           </div>
-          <div class="bg-slate-50 p-4 border border-slate-200/60 rounded-xl space-y-4">
-            <h4 class="text-xs font-bold text-slate-700 flex items-center justify-between">
+          <div class="bg-[var(--surface-muted)] p-4 border border-slate-200/60 rounded-[var(--radius-lg)] space-y-4">
+            <h4 class="text-xs font-bold text-[var(--text-secondary)] flex items-center justify-between">
               <span>Group Booking</span>
               <span class="text-emerald-700 font-extrabold text-[10px]">15%</span>
             </h4>
             <p class="text-[10px] text-slate-400">Triggered if traveler guest count is 3 or more.</p>
           </div>
-          <div class="bg-slate-50 p-4 border border-slate-200/60 rounded-xl space-y-4">
-            <h4 class="text-xs font-bold text-slate-700 flex items-center justify-between">
+          <div class="bg-[var(--surface-muted)] p-4 border border-slate-200/60 rounded-[var(--radius-lg)] space-y-4">
+            <h4 class="text-xs font-bold text-[var(--text-secondary)] flex items-center justify-between">
               <span>Long-Stay Discount</span>
               <span class="text-emerald-700 font-extrabold text-[10px]">10%</span>
             </h4>
@@ -285,71 +285,71 @@
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
         
         <!-- Add Coupon Form -->
-        <div class="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm lg:col-span-4 space-y-4">
-          <h3 class="font-bold text-slate-900 text-base">➕ Add New Promo Coupon</h3>
+        <div class="card p-6 lg:col-span-4 space-y-4">
+          <h3 class="font-bold text-[var(--text-primary)] text-base">➕ Add New Promo Coupon</h3>
           <form id="add-coupon-form" onsubmit="createNewCoupon(event)" class="space-y-4">
-            <div class="form-group">
-              <label class="block text-[10px] font-extrabold text-slate-400 uppercase tracking-widest mb-1" for="new-coupon-code">Coupon Code</label>
-              <input type="text" id="new-coupon-code" placeholder="e.g. MONSOON40" required class="bg-slate-50 border border-slate-200 rounded-lg px-4 py-2 text-xs text-slate-800 uppercase focus:ring-1 focus:ring-sky-500 w-full font-bold"/>
+            <div class="dashboard-form-group">
+              <label class="dashboard-form-label" for="new-coupon-code">Coupon Code</label>
+              <input type="text" id="new-coupon-code" placeholder="e.g. MONSOON40" required class="dashboard-form-input uppercase"/>
             </div>
             
             <div class="grid grid-cols-2 gap-4">
-              <div class="form-group">
-                <label class="block text-[10px] font-extrabold text-slate-400 uppercase tracking-widest mb-1" for="new-coupon-type">Discount Type</label>
-                <select id="new-coupon-type" class="bg-slate-50 border border-slate-200 rounded-lg px-4 py-2 text-xs text-slate-800 focus:ring-1 focus:ring-sky-500 w-full font-semibold">
+              <div class="dashboard-form-group">
+                <label class="dashboard-form-label" for="new-coupon-type">Discount Type</label>
+                <select id="new-coupon-type" class="dashboard-form-select">
                   <option value="percent">Percentage (%)</option>
                   <option value="flat">Flat Amount (₹)</option>
                 </select>
               </div>
-              <div class="form-group">
-                <label class="block text-[10px] font-extrabold text-slate-400 uppercase tracking-widest mb-1" for="new-coupon-value">Value</label>
-                <input type="number" id="new-coupon-value" min="1" placeholder="e.g. 15" required class="bg-slate-50 border border-slate-200 rounded-lg px-4 py-2 text-xs text-slate-800 focus:ring-1 focus:ring-sky-500 w-full font-semibold"/>
+              <div class="dashboard-form-group">
+                <label class="dashboard-form-label" for="new-coupon-value">Value</label>
+                <input type="number" id="new-coupon-value" min="1" placeholder="e.g. 15" required class="dashboard-form-input"/>
               </div>
             </div>
 
             <div class="grid grid-cols-2 gap-4">
-              <div class="form-group">
-                <label class="block text-[10px] font-extrabold text-slate-400 uppercase tracking-widest mb-1" for="new-coupon-priority">Priority</label>
-                <input type="number" id="new-coupon-priority" value="5" min="1" required class="bg-slate-50 border border-slate-200 rounded-lg px-4 py-2 text-xs text-slate-800 focus:ring-1 focus:ring-sky-500 w-full font-semibold"/>
+              <div class="dashboard-form-group">
+                <label class="dashboard-form-label" for="new-coupon-priority">Priority</label>
+                <input type="number" id="new-coupon-priority" value="5" min="1" required class="dashboard-form-input"/>
               </div>
-              <div class="form-group">
-                <label class="block text-[10px] font-extrabold text-slate-400 uppercase tracking-widest mb-1" for="new-coupon-stackable">Stackable?</label>
-                <select id="new-coupon-stackable" class="bg-slate-50 border border-slate-200 rounded-lg px-4 py-2 text-xs text-slate-800 focus:ring-1 focus:ring-sky-500 w-full font-semibold">
+              <div class="dashboard-form-group">
+                <label class="dashboard-form-label" for="new-coupon-stackable">Stackable?</label>
+                <select id="new-coupon-stackable" class="dashboard-form-select">
                   <option value="true">Yes (Stackable)</option>
                   <option value="false">No (Single Use)</option>
                 </select>
               </div>
             </div>
 
-            <div class="form-group">
-              <label class="block text-[10px] font-extrabold text-slate-400 uppercase tracking-widest mb-1" for="new-coupon-desc">Description</label>
-              <textarea id="new-coupon-desc" rows="2" placeholder="Explain the discount terms..." required class="bg-slate-50 border border-slate-200 rounded-lg px-4 py-2 text-xs text-slate-800 focus:ring-1 focus:ring-sky-500 w-full"></textarea>
+            <div class="dashboard-form-group">
+              <label class="dashboard-form-label" for="new-coupon-desc">Description</label>
+              <textarea id="new-coupon-desc" rows="2" placeholder="Explain the discount terms..." required class="dashboard-form-input"></textarea>
             </div>
 
-            <button type="submit" class="w-full py-2 bg-slate-900 hover:bg-black text-white font-extrabold text-xs rounded-xl transition shadow">
+            <button type="submit" class="w-full py-2 bg-slate-900 hover:bg-black text-white font-extrabold text-xs rounded-[var(--radius-lg)] transition shadow">
               Create Coupon Code
             </button>
           </form>
         </div>
 
         <!-- Coupon List Table -->
-        <div class="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm lg:col-span-8 space-y-4">
-          <h3 class="font-bold text-slate-900 text-base">🏷️ Active Promotional Coupons</h3>
+        <div class="card p-6 lg:col-span-8 space-y-4">
+          <h3 class="font-bold text-[var(--text-primary)] text-base">🏷️ Active Promotional Coupons</h3>
           
           <div class="overflow-x-auto">
-            <table class="w-full text-left text-xs border-collapse">
+            <table class="dashboard-table">
               <thead>
-                <tr class="text-slate-400 font-bold border-b border-slate-100 bg-slate-50">
-                  <th class="py-4 px-4 rounded-l-lg">Code</th>
-                  <th class="py-4 px-4">Discount Value</th>
-                  <th class="py-4 px-4">Type</th>
-                  <th class="py-4 px-4">Priority</th>
-                  <th class="py-4 px-4">Stackable</th>
-                  <th class="py-4 px-4">Description</th>
-                  <th class="py-4 px-4 rounded-r-lg text-right">Action</th>
+                <tr>
+                  <th>Code</th>
+                  <th>Discount Value</th>
+                  <th>Type</th>
+                  <th>Priority</th>
+                  <th>Stackable</th>
+                  <th>Description</th>
+                  <th class="text-right">Action</th>
                 </tr>
               </thead>
-              <tbody id="coupons-table-body" class="divide-y divide-slate-100 text-slate-700">
+              <tbody id="coupons-table-body">
                 <!-- Dynamically populated -->
               </tbody>
             </table>
@@ -364,26 +364,26 @@
     <div id="admin-content-payouts" class="admin-tab-content hidden space-y-6">
       
       <!-- Vendor Payouts -->
-      <div class="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm space-y-4">
-        <h3 class="font-bold text-slate-900 text-base">💼 Vendor Payouts Ledger & Commissions</h3>
+      <div class="card p-6 space-y-4">
+        <h3 class="font-bold text-[var(--text-primary)] text-base">💼 Vendor Payouts Ledger & Commissions</h3>
         <p class="text-xs text-slate-550">Track payments due to transit hotels, dining bistros, spa partners and transport fleets. Commission is subtracted from gross vendor amount.</p>
         
         <div class="overflow-x-auto">
-          <table class="w-full text-left text-xs border-collapse">
+          <table class="dashboard-table">
             <thead>
-              <tr class="text-slate-400 font-bold border-b border-slate-100 bg-slate-50">
-                <th class="py-4 px-4 rounded-l-lg">Payout ID</th>
-                <th class="py-4 px-4">Booking Ref</th>
-                <th class="py-4 px-4">Vendor ID</th>
-                <th class="py-4 px-4">Service Item Name</th>
-                <th class="py-4 px-4">Commission %</th>
-                <th class="py-4 px-4">Commission (₹)</th>
-                <th class="py-4 px-4">Net Payout Amount</th>
-                <th class="py-4 px-4">Status</th>
-                <th class="py-4 px-4 rounded-r-lg text-right">Process Action</th>
+              <tr>
+                <th>Payout ID</th>
+                <th>Booking Ref</th>
+                <th>Vendor ID</th>
+                <th>Service Item Name</th>
+                <th>Commission %</th>
+                <th>Commission (₹)</th>
+                <th>Net Payout Amount</th>
+                <th>Status</th>
+                <th class="text-right">Process Action</th>
               </tr>
             </thead>
-            <tbody id="vendor-payout-table-body" class="divide-y divide-slate-100 text-slate-700">
+            <tbody id="vendor-payout-table-body">
               <!-- Dynamically populated -->
             </tbody>
           </table>
@@ -391,23 +391,23 @@
       </div>
 
       <!-- Audit Logs -->
-      <div class="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm space-y-4">
-        <h3 class="font-bold text-slate-900 text-base flex items-center gap-2">
+      <div class="card p-6 space-y-4">
+        <h3 class="font-bold text-[var(--text-primary)] text-base flex items-center gap-2">
           <span>🕒 Pricing Rule Audit Trail & Logs</span>
         </h3>
-        <p class="text-xs text-slate-500">Chronological history of manual base price changes, overrides and coupon edits.</p>
+        <p class="text-xs text-[var(--text-muted)]">Chronological history of manual base price changes, overrides and coupon edits.</p>
         
         <div class="overflow-x-auto">
-          <table class="w-full text-left text-xs border-collapse">
+          <table class="dashboard-table">
             <thead>
-              <tr class="text-slate-400 font-bold border-b border-slate-100 bg-slate-50">
-                <th class="py-4 px-4 rounded-l-lg">Timestamp</th>
-                <th class="py-4 px-4">Administrator</th>
-                <th class="py-4 px-4">Action</th>
-                <th class="py-4 px-4 rounded-r-lg">Details</th>
+              <tr>
+                <th>Timestamp</th>
+                <th>Administrator</th>
+                <th>Action</th>
+                <th>Details</th>
               </tr>
             </thead>
-            <tbody id="pricing-audit-table-body" class="divide-y divide-slate-100 text-slate-700">
+            <tbody id="pricing-audit-table-body">
               <!-- Dynamically populated -->
             </tbody>
           </table>
@@ -441,12 +441,12 @@
     document.getElementById(`admin-content-${tab}`).classList.remove('hidden');
 
     document.querySelectorAll('[id^="admin-tab-"]').forEach(btn => {
-      btn.className = "px-4 py-4 text-sm font-bold text-slate-600 hover:bg-slate-100 rounded-xl transition";
+      btn.className = "px-4 py-4 text-sm font-bold text-slate-600 hover:bg-slate-100 rounded-[var(--radius-lg)] transition";
     });
     
     const activeBtn = document.getElementById(`admin-tab-${tab}`);
     if (activeBtn) {
-      activeBtn.className = "px-4 py-4 text-sm font-extrabold rounded-xl transition bg-slate-900 text-white shadow-md";
+      activeBtn.className = "px-4 py-4 text-sm font-extrabold rounded-[var(--radius-lg)] transition bg-slate-900 text-white shadow-[var(--shadow-btn)]";
     }
 
     if (tab === 'overview') {
@@ -500,13 +500,13 @@
     const occBadge = document.getElementById('stat-occupancy-badge');
     if (occupancy >= 80) {
       occBadge.textContent = "High (Yield +20%)";
-      occBadge.className = "text-[9px] font-extrabold px-2 py-1 rounded uppercase bg-rose-100 text-rose-700 border border-rose-200";
+      occBadge.className = "text-[9px] font-extrabold px-2 py-1 rounded uppercase status-badge status-badge-warning";
     } else if (occupancy <= 30) {
       occBadge.textContent = "Low (Discount -10%)";
-      occBadge.className = "text-[9px] font-extrabold px-2 py-1 rounded uppercase bg-amber-100 text-amber-700 border border-amber-200";
+      occBadge.className = "text-[9px] font-extrabold px-2 py-1 rounded uppercase status-badge status-badge-warning";
     } else {
       occBadge.textContent = "Standard";
-      occBadge.className = "text-[9px] font-extrabold px-2 py-1 rounded uppercase bg-emerald-100 text-emerald-700 border border-emerald-200";
+      occBadge.className = "text-[9px] font-extrabold px-2 py-1 rounded uppercase status-badge status-badge-success";
     }
 
     document.getElementById('stat-coupons-count').textContent = couponsList.length;
@@ -543,15 +543,15 @@
       });
 
       tbody.innerHTML += `
-        <tr class="hover:bg-slate-50/80 transition-colors">
-          <td class="py-4 px-4 font-mono font-bold text-slate-900">${tx.bookingId}</td>
-          <td class="py-4 px-4 text-slate-500">${dateStr}</td>
-          <td class="py-4 px-4 font-semibold text-slate-800">${tx.passenger}</td>
-          <td class="py-4 px-4">₹${tx.subtotal.toFixed(2)}</td>
-          <td class="py-4 px-4 text-emerald-600 font-bold">-₹${(tx.totalDiscount || 0).toFixed(2)}</td>
-          <td class="py-4 px-4 text-slate-500">₹${((tx.convenienceFee || 0) + (tx.serviceFee || 0) + (tx.taxes || 0)).toFixed(2)}</td>
-          <td class="py-4 px-4 font-black text-slate-900">₹${tx.grandTotal.toFixed(2)}</td>
-          <td class="py-4 px-4 text-right font-bold text-emerald-700">₹${netPlatformRevenue.toFixed(2)}</td>
+        <tr class="hover:bg-[var(--surface-muted)]/80 transition-colors">
+          <td class="font-mono font-bold text-[var(--text-primary)]">${tx.bookingId}</td>
+          <td class="text-[var(--text-muted)]">${dateStr}</td>
+          <td class="font-semibold text-[var(--text-primary)]">${tx.passenger}</td>
+          <td>₹${tx.subtotal.toFixed(2)}</td>
+          <td class="text-emerald-600 font-bold">-₹${(tx.totalDiscount || 0).toFixed(2)}</td>
+          <td class="text-[var(--text-muted)]">₹${((tx.convenienceFee || 0) + (tx.serviceFee || 0) + (tx.taxes || 0)).toFixed(2)}</td>
+          <td class="font-black text-[var(--text-primary)]">₹${tx.grandTotal.toFixed(2)}</td>
+          <td class="text-right font-bold text-emerald-700">₹${netPlatformRevenue.toFixed(2)}</td>
         </tr>
       `;
     });
@@ -615,19 +615,19 @@
           }
 
           rowsHtml += `
-            <div class="flex items-center justify-between gap-4 p-4 bg-slate-50 border border-slate-100 rounded-xl">
-              <span class="text-xs font-semibold text-slate-700">${friendlyName}</span>
+            <div class="flex items-center justify-between gap-4 p-4 bg-[var(--surface-muted)] border border-slate-100 rounded-[var(--radius-lg)]">
+              <span class="text-xs font-semibold text-[var(--text-secondary)]">${friendlyName}</span>
               <div class="flex items-center gap-2">
                 <span class="text-xs text-slate-400">₹</span>
-                <input type="number" min="0" data-cat="${category}" data-id="${itemId}" value="${basePriceValue}" class="w-24 text-center rounded-lg border border-slate-200 px-2 py-1 text-xs font-bold text-slate-900 focus:outline-emerald-500 focus:ring-1 focus:ring-emerald-500"/>
+                <input type="number" min="0" data-cat="${category}" data-id="${itemId}" value="${basePriceValue}" class="w-24 text-center rounded-lg border border-slate-200 px-2 py-1 text-xs font-bold text-[var(--text-primary)] focus:outline-emerald-500 focus:ring-1 focus:ring-emerald-500"/>
               </div>
             </div>
           `;
         });
 
         container.innerHTML += `
-          <div class="bg-white border border-slate-200/80 p-4 rounded-2xl space-y-4 shadow-xs">
-            <h4 class="text-xs font-bold text-slate-900 border-b border-slate-100 pb-2 uppercase tracking-wider">${friendlyCategoryMap[category] || category}</h4>
+          <div class="bg-[var(--surface)] border border-slate-200/80 p-4 rounded-[var(--radius-lg)] space-y-4 shadow-xs">
+            <h4 class="text-xs font-bold text-[var(--text-primary)] border-b border-[var(--border-light)] pb-2 uppercase tracking-wider">${friendlyCategoryMap[category] || category}</h4>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               ${rowsHtml}
             </div>
@@ -642,11 +642,11 @@
       seasonsContainer.innerHTML = '';
       seasonsList.forEach((s, idx) => {
         seasonsContainer.innerHTML += `
-          <div class="flex flex-col gap-2 p-4.5 bg-slate-55 border border-slate-200/60 rounded-xl">
+          <div class="flex flex-col gap-2 p-4.5 bg-slate-55 border border-slate-200/60 rounded-[var(--radius-lg)]">
             <div class="flex justify-between items-center text-xs">
               <span class="font-extrabold text-slate-800">${s.name}</span>
               <div class="flex items-center gap-1">
-                <input type="number" step="0.05" id="season-mult-${idx}" value="${s.multiplier}" class="w-16 text-center border rounded px-2 py-1 text-xs font-bold text-slate-900"/>
+                <input type="number" step="0.05" id="season-mult-${idx}" value="${s.multiplier}" class="w-16 text-center border rounded px-2 py-1 text-xs font-bold text-[var(--text-primary)]"/>
                 <span class="text-[10px] text-slate-400">x</span>
               </div>
             </div>
@@ -671,13 +671,13 @@
     const overrideVal = parseInt(val);
     if (overrideVal === 0) {
       badge.textContent = "0% (Disabled)";
-      badge.className = "text-sm font-black px-4 py-1 bg-slate-100 text-slate-700 border border-slate-200 rounded-xl";
+      badge.className = "text-sm font-black px-4 py-1 bg-slate-100 text-slate-700 border border-slate-200 rounded-[var(--radius-lg)]";
     } else if (overrideVal > 0) {
       badge.textContent = `+${overrideVal}% Markup`;
-      badge.className = "text-sm font-black px-4 py-1 bg-emerald-50 text-emerald-700 border border-emerald-100 rounded-xl";
+      badge.className = "text-sm font-black px-4 py-1 bg-emerald-50 text-emerald-700 border border-emerald-100 rounded-[var(--radius-lg)]";
     } else {
       badge.textContent = `${overrideVal}% Discount`;
-      badge.className = "text-sm font-black px-4 py-1 bg-amber-50 text-amber-700 border border-amber-100 rounded-xl";
+      badge.className = "text-sm font-black px-4 py-1 bg-amber-50 text-amber-700 border border-amber-100 rounded-[var(--radius-lg)]";
     }
   }
 
@@ -763,18 +763,16 @@
     tbody.innerHTML = '';
     couponsList.forEach((c, idx) => {
       tbody.innerHTML += `
-        <tr class="hover:bg-slate-50/80 transition-colors">
-          <td class="py-4 px-4 font-mono font-bold text-slate-900">${c.code}</td>
-          <td class="py-4 px-4 font-semibold">${c.value}${c.discountType === 'percent' ? '%' : ' ₹'}</td>
-          <td class="py-4 px-4 capitalize">${c.discountType}</td>
-          <td class="py-4 px-4">${c.priority}</td>
-          <td class="py-4 px-4">
-            <span class="px-2 py-1 rounded-full text-[9px] font-bold ${c.stackable ? 'bg-emerald-50 text-emerald-700 border border-emerald-250' : 'bg-slate-100 text-slate-500'}">
-              ${c.stackable ? 'Stackable' : 'Single Use'}
-            </span>
+        <tr class="hover:bg-[var(--surface-muted)]/80 transition-colors">
+          <td class="font-mono font-bold text-[var(--text-primary)]">${c.code}</td>
+          <td class="font-semibold">${c.value}${c.discountType === 'percent' ? '%' : ' ₹'}</td>
+          <td class="capitalize">${c.discountType}</td>
+          <td>${c.priority}</td>
+          <td>
+            <span class="status-badge ${c.stackable ? 'status-badge-success' : 'status-badge-neutral'}">${c.stackable ? 'Stackable' : 'Single Use'}</span>
           </td>
-          <td class="py-4 px-4 text-slate-500">${c.desc || 'No description'}</td>
-          <td class="py-4 px-4 text-right">
+          <td class="text-[var(--text-muted)]">${c.desc || 'No description'}</td>
+          <td class="text-right">
             <button onclick="deleteCoupon(${idx})" class="text-rose-650 hover:text-rose-800 font-bold transition">Delete</button>
           </td>
         </tr>
@@ -838,11 +836,11 @@
         sortedHistory.forEach(log => {
           const time = new Date(log.timestamp).toLocaleString();
           auditTbody.innerHTML += `
-            <tr class="hover:bg-slate-50/80 transition-colors">
-              <td class="py-4 px-4 font-semibold text-slate-500 font-mono">${time}</td>
-              <td class="py-4 px-4 font-bold text-slate-900">${log.admin}</td>
-              <td class="py-4 px-4 font-bold text-emerald-700">${log.action}</td>
-              <td class="py-4 px-4 text-slate-550">${log.details}</td>
+            <tr class="hover:bg-[var(--surface-muted)]/80 transition-colors">
+              <td class="font-semibold text-slate-500 font-mono">${time}</td>
+              <td class="font-bold text-[var(--text-primary)]">${log.admin}</td>
+              <td class="font-bold text-emerald-700">${log.action}</td>
+              <td class="text-slate-550">${log.details}</td>
             </tr>
           `;
         });
@@ -863,24 +861,22 @@
           const realIdx = payoutsList.findIndex(p => p.payoutId === po.payoutId);
           
           const isPending = po.status === 'Pending';
-          const badgeClass = isPending ? 'bg-amber-50 text-amber-700 border-amber-200' : 'bg-emerald-50 text-emerald-700 border-emerald-250';
+          const badgeClass = isPending ? 'status-badge status-badge-pending' : 'status-badge status-badge-success';
           const processBtn = isPending ? `<button onclick="processPayout(${realIdx})" class="px-2 py-1 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-[10px] rounded-lg transition shadow-xs">Disburse Payout</button>` : `<span class="text-slate-400 italic text-[10px]">Settled ${new Date(po.datePaid).toLocaleDateString()}</span>`;
 
           payoutTbody.innerHTML += `
-            <tr class="hover:bg-slate-50/80 transition-colors">
-              <td class="py-4 px-4 font-mono font-bold text-slate-900">${po.payoutId}</td>
-              <td class="py-4 px-4 font-mono text-slate-500">${po.bookingId}</td>
-              <td class="py-4 px-4 font-semibold text-slate-700">${po.vendorId}</td>
-              <td class="py-4 px-4 text-slate-800 font-semibold">${po.itemName}</td>
-              <td class="py-4 px-4 font-bold">${po.ratePercent}%</td>
-              <td class="py-4 px-4 text-slate-500">₹${(po.commissionAmount || 0).toFixed(2)}</td>
-              <td class="py-4 px-4 font-black text-slate-900">₹${po.amount.toFixed(2)}</td>
-              <td class="py-4 px-4">
-                <span class="px-2 py-1 rounded-full text-[9px] font-extrabold border ${badgeClass}">
-                  ${po.status}
-                </span>
+            <tr class="hover:bg-[var(--surface-muted)]/80 transition-colors">
+              <td class="font-mono font-bold text-[var(--text-primary)]">${po.payoutId}</td>
+              <td class="font-mono text-[var(--text-muted)]">${po.bookingId}</td>
+              <td class="font-semibold text-[var(--text-secondary)]">${po.vendorId}</td>
+              <td class="text-[var(--text-primary)] font-semibold">${po.itemName}</td>
+              <td class="font-bold">${po.ratePercent}%</td>
+              <td class="text-[var(--text-muted)]">₹${(po.commissionAmount || 0).toFixed(2)}</td>
+              <td class="font-black text-[var(--text-primary)]">₹${po.amount.toFixed(2)}</td>
+              <td>
+                <span class="status-badge ${badgeClass}">${po.status}</span>
               </td>
-              <td class="py-4 px-4 text-right">${processBtn}</td>
+              <td class="text-right">${processBtn}</td>
             </tr>
           `;
         });

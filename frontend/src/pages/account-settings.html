@@ -46,9 +46,9 @@
     <div class="account-content">
 
       <!-- Account Preferences Card -->
-      <div class="account-card">
+      <div class="account-card card">
         <div class="account-card-header">
-          <h2 class="account-card-title">
+          <h2 class="account-card-title section-title">
             <span class="card-icon" aria-hidden="true">&#9881;</span>
             Account Preferences
           </h2>
@@ -57,9 +57,9 @@
         <form class="settings-form" onsubmit="event.preventDefault(); layoverx.showToast('Preferences updated successfully!', 'success')">
 
           <div class="settings-section">
-            <div class="form-group">
-              <label for="currency" class="form-label">Default Booking Currency</label>
-              <select id="currency" class="form-input form-select cursor-pointer">
+            <div class="dashboard-form-group">
+              <label for="currency" class="dashboard-form-label">Default Booking Currency</label>
+              <select id="currency" class="dashboard-form-input dashboard-form-select cursor-pointer">
                 <option value="INR" selected>INR (&#8377;) - Indian Rupee</option>
                 <option value="USD">USD ($) - US Dollar</option>
                 <option value="EUR">EUR (&euro;) - Euro</option>
@@ -97,18 +97,18 @@
               Password and Security
             </h3>
             <div class="form-row">
-              <div class="form-group">
-                <label for="new-password" class="form-label">New Password</label>
+              <div class="dashboard-form-group">
+                <label for="new-password" class="dashboard-form-label">New Password</label>
                 <div class="password-field">
-                  <input type="password" id="new-password" class="form-input" placeholder="Enter new password (min 6 characters)" minlength="6" aria-describedby="password-help"/>
+                  <input type="password" id="new-password" class="dashboard-form-input" placeholder="Enter new password (min 6 characters)" minlength="6" aria-describedby="password-help"/>
                   <button type="button" class="password-toggle" onclick="togglePassword('new-password', this)" aria-label="Toggle password visibility">Show</button>
                 </div>
                 <span id="password-help" class="text-xs" style="color: var(--text-muted);">Must be at least 6 characters</span>
               </div>
-              <div class="form-group">
-                <label for="confirm-password" class="form-label">Confirm Password</label>
+              <div class="dashboard-form-group">
+                <label for="confirm-password" class="dashboard-form-label">Confirm Password</label>
                 <div class="password-field">
-                  <input type="password" id="confirm-password" class="form-input" placeholder="Repeat password" minlength="6"/>
+                  <input type="password" id="confirm-password" class="dashboard-form-input" placeholder="Repeat password" minlength="6"/>
                   <button type="button" class="password-toggle" onclick="togglePassword('confirm-password', this)" aria-label="Toggle password visibility">Show</button>
                 </div>
               </div>

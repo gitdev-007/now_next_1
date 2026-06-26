@@ -474,129 +474,144 @@
 </script>
 </head>
 
-<body class="overflow-x-hidden bg-surface ">
+<body class="overflow-x-hidden bg-surface default-hero">
 
   <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[1001] focus:bg-white focus:text-gray-900 focus:px-4 focus:py-2 focus:rounded-lg">Skip to main content</a>
 
   <!-- Header Section -->
-  <!-- NAVBAR - Fixed, z-1000, always visible -->
-<nav class="fixed top-0 left-0 right-0 z-[1000] transition-all duration-300 bg-transparent" id="navbar" aria-label="Main Navigation">
-  <div class="container">
-    <div class="flex items-center justify-between h-16 sm:h-20 gap-4">
-      
-      <!-- LEFT: Logo -->
-      <a href="index.html" class="flex items-center gap-2 flex-shrink-0" aria-label="LayoverX Home">
-        <div class="w-9 h-9 bg-gradient-to-br from-sky-500 to-sky-600 rounded-xl flex items-center justify-center">
-          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/>
+  <nav class="navbar" id="navbar" role="navigation" aria-label="Main Navigation">
+  <div class="navbar-container">
+    <div class="navbar-inner">
+
+      <a href="index.html" class="navbar-brand" aria-label="LayoverX home">
+        <div class="navbar-brand-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/>
           </svg>
         </div>
-        <span class="text-xl font-bold tracking-tight" id="logo-text">LayoverX</span>
+        <span class="navbar-brand-text">LayoverX</span>
       </a>
 
-      <!-- CENTER: Desktop Links -->
-      <div class="hidden lg:flex items-center gap-6 mx-auto">
-        <a class="nav-link text-sm font-medium transition-colors duration-200 " href="hotels.html">Hotels</a>
-        <a class="nav-link text-sm font-medium transition-colors duration-200 " href="restaurants.html">Restaurants</a>
-        <a class="nav-link text-sm font-medium transition-colors duration-200 " href="spa-wellness.html">Spa</a>
-        <a class="nav-link text-sm font-medium transition-colors duration-200 " href="gaming-entertainment.html">Gaming</a>
-        <a class="nav-link text-sm font-medium transition-colors duration-200 " href="experiences.html">Tours</a>
-        <a class="nav-link text-sm font-medium transition-colors duration-200 " href="airport-transfers.html">Transfers</a>
+      <div class="navbar-nav">
+        <a class="navbar-link " href="hotels.html">Hotels</a>
+        <a class="navbar-link " href="restaurants.html">Restaurants</a>
+        <a class="navbar-link " href="spa-wellness.html">Spa</a>
+        <a class="navbar-link " href="gaming-entertainment.html">Gaming</a>
+        <a class="navbar-link " href="experiences.html">Tours</a>
+        <a class="navbar-link " href="airport-transfers.html">Transfers</a>
+        <div class="navbar-nav-divider" role="separator"></div>
+        <a class="navbar-link " href="trip-details.html">Trip Details</a>
+        <a class="navbar-link " href="my-itinerary.html" id="nav-itinerary-link">My Itinerary <span id="itinerary-badge" class="navbar-badge hidden">0</span></a>
       </div>
 
-      <!-- RIGHT: Desktop Actions / Auth -->
-      <div class="hidden lg:flex items-center gap-4 flex-shrink-0">
-        
-        <!-- Trip Summary Badge -->
-        <button onclick="openAuthModal('trip-context')" class="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer" id="global-trip-badge">
-          <span>✈️ Trip Summary</span>
+      <div class="navbar-actions">
+        <button onclick="openAuthModal('trip-context')" class="navbar-trip-badge" id="global-trip-badge" aria-label="View trip summary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/>
+          </svg>
         </button>
-        
-        <!-- My Itinerary Link -->
-        <a class="nav-link text-sm font-medium transition-colors duration-200 flex items-center gap-1" href="my-itinerary.html" id="nav-itinerary-link">
-          My Itinerary
-          <span id="itinerary-badge" class="hidden px-2 py-1 text-[10px] font-extrabold bg-rose-500 text-white rounded-full">0</span>
-        </a>
-        
-        <!-- Plan My Layover primary button -->
-        <a href="plan-my-layover.html" class="plan-my-layover-btn whitespace-nowrap">Plan My Layover</a>
-        
-        <!-- Auth Guest View -->
-        <div class="auth-guest flex items-center gap-4">
-          <a href="#login" class="nav-link text-sm font-medium cursor-pointer" onclick="openAuthModal('login');return false;">Login</a>
-          <a href="#signup" class="btn btn-primary !py-2 !px-4 !text-sm" onclick="openAuthModal('signup');return false;">Sign Up</a>
+
+        <a href="plan-my-layover.html" class="btn-nav-primary ">Plan My Layover</a>
+
+        <div class="auth-guest navbar-auth">
+          <a href="#login" class="btn-nav-ghost" onclick="openAuthModal('login');return false;">Log in</a>
+          <a href="#signup" class="btn-nav-secondary" onclick="openAuthModal('signup');return false;">Sign up</a>
         </div>
- 
-        <!-- Auth User View -->
-        <div class="auth-user hidden relative" id="header-user-menu">
-          <button id="user-menu-btn" class="flex items-center gap-2 border px-4 py-2 rounded-xl transition cursor-pointer" aria-expanded="false" aria-haspopup="true">
-            <div class="w-6 h-6 bg-gradient-to-br from-sky-400 to-sky-600 rounded-full flex items-center justify-center text-[10px] font-bold text-white uppercase user-avatar-letter">U</div>
-            <span class="text-sm font-medium user-name">Traveler</span>
-            <svg class="w-3.5 h-3.5 transition-transform duration-200" id="user-menu-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
+
+        <div class="auth-user hidden navbar-user-menu" id="header-user-menu">
+          <button id="user-menu-btn" class="navbar-user-btn" aria-expanded="false" aria-haspopup="true">
+            <div class="navbar-user-avatar user-avatar-letter">U</div>
+            <span class="navbar-user-name user-name">Traveler</span>
+            <svg class="navbar-user-arrow" id="user-menu-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M19 9l-7 7-7-7"/>
             </svg>
           </button>
-          
-          <div id="user-profile-dropdown" class="absolute right-0 mt-2 w-56 bg-white rounded-2xl shadow-xl border border-gray-100 py-2 hidden z-[1010]">
-            <div class="px-4 py-2 border-b border-gray-100">
-              <p class="text-xs text-gray-500 font-medium">Signed in as</p>
-              <p class="text-sm font-bold text-gray-900 truncate user-email-display">traveler@layoverx.com</p>
+
+          <div id="user-profile-dropdown" class="navbar-dropdown hidden">
+            <div class="navbar-dropdown-header">
+              <p class="navbar-dropdown-label">Signed in as</p>
+              <p class="navbar-dropdown-email user-email-display">traveler@layoverx.com</p>
             </div>
-            <a href="my-profile.html" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-800 hover:bg-gray-55 transition-colors"><span class="text-base">👤</span> My Profile</a>
-            <a href="my-trips.html" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-800 hover:bg-gray-55 transition-colors"><span class="text-base">✈️</span> My Trips</a>
-            <a href="saved-itineraries.html" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-800 hover:bg-gray-55 transition-colors"><span class="text-base">💾</span> Saved Itineraries</a>
-            <a href="supplier-dashboard.html" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-800 hover:bg-gray-55 transition-colors"><span class="text-base">💼</span> Supplier Hub</a>
-            <a href="revenue-admin.html" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-800 hover:bg-gray-55 transition-colors font-semibold text-emerald-700 bg-emerald-50/50"><span class="text-base">📊</span> Revenue Admin</a>
-            <a href="account-settings.html" class="flex items-center gap-2 px-4 py-2 text-sm text-gray-800 hover:bg-gray-55 transition-colors"><span class="text-base">⚙️</span> Settings</a>
-            <div class="border-t border-gray-100 my-1"></div>
-            <button onclick="layoverx.logout()" class="w-full flex items-center gap-2 px-4 py-2 text-sm text-red-650 hover:bg-red-50 transition-colors text-left"><span class="text-base">🚪</span> Logout</button>
+            <a href="my-profile.html" class="navbar-dropdown-item"><span>👤</span> My Profile</a>
+            <a href="my-trips.html" class="navbar-dropdown-item"><span>✈️</span> My Trips</a>
+            <a href="saved-itineraries.html" class="navbar-dropdown-item"><span>💾</span> Saved Itineraries</a>
+            <a href="supplier-dashboard.html" class="navbar-dropdown-item"><span>💼</span> Supplier Hub</a>
+            <a href="revenue-admin.html" class="navbar-dropdown-item navbar-dropdown-item--revenue"><span>📊</span> Revenue Admin</a>
+            <a href="account-settings.html" class="navbar-dropdown-item"><span>⚙️</span> Settings</a>
+            <div class="navbar-dropdown-divider"></div>
+            <button onclick="layoverx.logout()" class="navbar-dropdown-item navbar-dropdown-item--danger"><span>🚪</span> Logout</button>
           </div>
         </div>
       </div>
 
-      <!-- Mobile Hamburger Menu Button -->
-      <button class="lg:hidden p-2 rounded-lg" id="menu-btn" aria-label="Toggle Menu" aria-expanded="false">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
+      <button class="navbar-toggle" id="menu-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+        <svg class="navbar-toggle-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+          <path class="navbar-toggle-line navbar-toggle-line--top" d="M3.75 6.75h16.5"/>
+          <path class="navbar-toggle-line navbar-toggle-line--middle" d="M3.75 12h16.5"/>
+          <path class="navbar-toggle-line navbar-toggle-line--bottom" d="M3.75 17.25h16.5"/>
         </svg>
       </button>
     </div>
   </div>
 
-  <!-- Mobile Dropdown Menu -->
-  <div class="lg:hidden hidden bg-white/95 backdrop-blur-xl rounded-2xl mt-2 p-4 shadow-xl mx-4 border border-gray-100" id="mobile-menu">
-    <button onclick="openAuthModal('trip-context')" class="mb-4 w-full flex items-center justify-center gap-2 px-4 py-2 rounded-xl text-xs font-extrabold bg-sky-50 text-sky-700 border border-sky-100 transition-all cursor-pointer" id="global-trip-badge-mobile">✈️ Trip Summary</button>
-    <a class="block text-gray-800 py-2 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium" href="my-itinerary.html">My Itinerary <span id="itinerary-badge-mobile" class="hidden ml-1 px-2 py-1 text-[10px] font-extrabold bg-rose-500 text-white rounded-full">0</span></a>
-    <a class="block text-gray-800 py-2 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium " href="hotels.html">Hotels</a>
-    <a class="block text-gray-800 py-2 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium " href="restaurants.html">Restaurants</a>
-    <a class="block text-gray-800 py-2 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium " href="spa-wellness.html">Spa & Wellness</a>
-    <a class="block text-gray-800 py-2 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium " href="gaming-entertainment.html">Gaming & Fun</a>
-    <a class="block text-gray-800 py-2 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium " href="experiences.html">Tours</a>
-    <a class="block text-gray-800 py-2 px-4 rounded-xl hover:bg-gray-50 text-sm font-medium " href="airport-transfers.html">Transfers</a>
-    <a href="plan-my-layover.html" class="mt-2 block w-full text-center py-4 bg-theme-primary text-white font-semibold rounded-xl hover:bg-theme-primary transition shadow-md shadow-primary">Plan My Layover</a>
-    
-    <!-- Auth Guest View (Mobile) -->
-    <div class="auth-guest flex flex-col gap-2 mt-4 pt-4 border-t border-gray-100">
-      <a href="#login" class="block text-center py-2 text-gray-700 text-sm font-medium rounded-xl hover:bg-gray-50 border border-gray-200" onclick="openAuthModal('login');return false;">Login</a>
-      <a href="#signup" class="block text-center py-2 bg-theme-primary text-white text-sm font-semibold rounded-xl hover:bg-theme-primary transition" onclick="openAuthModal('signup');return false;">Sign Up</a>
+  <div class="navbar-mobile" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Navigation">
+    <div class="navbar-mobile-header">
+      <a href="index.html" class="navbar-brand" aria-label="LayoverX home" tabindex="-1">
+        <div class="navbar-brand-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/>
+          </svg>
+        </div>
+        <span class="navbar-brand-text">LayoverX</span>
+      </a>
+      <button class="navbar-toggle is-active" id="menu-close-btn" aria-label="Close navigation menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+          <path d="M6 6l12 12"/>
+          <path d="M18 6l-12 12"/>
+        </svg>
+      </button>
     </div>
 
-    <!-- Auth User View (Mobile) -->
-    <div class="auth-user hidden flex-col gap-2 mt-4 pt-4 border-t border-gray-100">
-      <div class="flex items-center gap-2 px-4 py-2 bg-gray-50 rounded-xl mb-2">
-        <div class="w-8 h-8 bg-gradient-to-br from-sky-400 to-sky-600 rounded-full flex items-center justify-center text-xs font-bold text-white uppercase user-avatar-letter">U</div>
-        <div>
-          <div class="text-[10px] text-gray-400 font-medium">Signed in as</div>
-          <div class="text-sm font-bold text-gray-900 user-name">Traveler</div>
-        </div>
+    <div class="navbar-mobile-body">
+      <button onclick="openAuthModal('trip-context')" class="navbar-mobile-trip" id="global-trip-badge-mobile">Trip Summary</button>
+      <nav class="navbar-mobile-nav">
+        <a class="navbar-mobile-link " href="hotels.html">Hotels</a>
+        <a class="navbar-mobile-link " href="restaurants.html">Restaurants</a>
+        <a class="navbar-mobile-link " href="spa-wellness.html">Spa &amp; Wellness</a>
+        <a class="navbar-mobile-link " href="gaming-entertainment.html">Gaming &amp; Fun</a>
+        <a class="navbar-mobile-link " href="experiences.html">Tours</a>
+        <a class="navbar-mobile-link " href="airport-transfers.html">Transfers</a>
+        <a class="navbar-mobile-link " href="how-it-works.html">How It Works</a>
+        <a class="navbar-mobile-link " href="contact.html">Contact</a>
+        <a class="navbar-mobile-link" href="my-itinerary.html">My Itinerary <span id="itinerary-badge-mobile" class="navbar-badge hidden">0</span></a>
+        <a class="navbar-mobile-link" href="trip-details.html">Trip Details</a>
+      </nav>
+    </div>
+
+    <div class="navbar-mobile-footer">
+      <a href="plan-my-layover.html" class="btn-nav-primary btn-nav-primary--block ">Plan My Layover</a>
+
+      <div class="auth-guest navbar-mobile-auth">
+        <a href="#login" class="btn-nav-ghost btn-nav-ghost--block" onclick="openAuthModal('login');return false;">Log in</a>
+        <a href="#signup" class="btn-nav-secondary btn-nav-secondary--block" onclick="openAuthModal('signup');return false;">Sign up</a>
       </div>
-      <a href="my-profile.html" class="w-full text-center py-2 bg-gray-50 hover:bg-gray-100 text-gray-800 rounded-xl text-sm transition">My Profile</a>
-      <a href="my-trips.html" class="w-full text-center py-2 bg-gray-50 hover:bg-gray-100 text-gray-800 rounded-xl text-sm transition">My Trips</a>
-      <a href="saved-itineraries.html" class="w-full text-center py-2 bg-gray-50 hover:bg-gray-100 text-gray-800 rounded-xl text-sm transition">Saved Itineraries</a>
-      <a href="supplier-dashboard.html" class="w-full text-center py-2 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 rounded-xl text-sm transition">Supplier Hub</a>
-      <a href="revenue-admin.html" class="w-full text-center py-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 rounded-xl text-sm transition font-semibold">Revenue Admin</a>
-      <a href="account-settings.html" class="w-full text-center py-2 bg-gray-50 hover:bg-gray-100 text-gray-800 rounded-xl text-sm transition">Settings</a>
-      <button class="mt-2 w-full text-center py-2 bg-red-50 text-red-600 hover:bg-red-100 text-sm font-semibold rounded-xl transition" onclick="layoverx.logout()">Logout</button>
+
+      <div class="auth-user hidden navbar-mobile-user">
+        <div class="navbar-mobile-user-info">
+          <div class="navbar-user-avatar navbar-user-avatar--lg user-avatar-letter">U</div>
+          <div>
+            <div class="navbar-mobile-user-name user-name">Traveler</div>
+            <div class="navbar-mobile-user-email user-email-display">traveler@layoverx.com</div>
+          </div>
+        </div>
+        <a href="my-profile.html" class="navbar-mobile-user-link">My Profile</a>
+        <a href="my-trips.html" class="navbar-mobile-user-link">My Trips</a>
+        <a href="saved-itineraries.html" class="navbar-mobile-user-link">Saved Itineraries</a>
+        <a href="supplier-dashboard.html" class="navbar-mobile-user-link">Supplier Hub</a>
+        <a href="revenue-admin.html" class="navbar-mobile-user-link navbar-mobile-user-link--revenue">Revenue Admin</a>
+        <a href="account-settings.html" class="navbar-mobile-user-link">Settings</a>
+        <button onclick="layoverx.logout()" class="navbar-mobile-user-link navbar-mobile-user-link--danger">Logout</button>
+      </div>
     </div>
   </div>
 </nav>
@@ -605,124 +620,146 @@
   <!-- Page Content -->
   <main id="main">
     <!-- HERO -->
-<header class="relative min-h-[92vh] flex items-center justify-center overflow-hidden bg-slate-950" id="hero-section">
-  <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image:url('assets/photos/homepage.png')" role="img" aria-label="Mumbai skyline at sunset"></div>
-  <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/80" aria-hidden="true"></div>
-  <div class="relative z-10 text-center px-4 max-w-4xl mx-auto w-full" style="padding-top:6.5rem;padding-bottom:3rem;">
-    <div class="reveal">
-      <span class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-6">
-        ✨ Mumbai Airport Layover Expert
-      </span>
-    </div>
-    <h1 class="reveal text-5xl sm:text-6xl md:text-7xl font-extrabold text-white mb-5 leading-tight tracking-tight" style="text-shadow:0 2px 24px rgba(0,0,0,0.4)">
-      Experience Mumbai<br/><span class="bg-gradient-to-r from-sky-400 to-cyan-300 bg-clip-text text-transparent">Beyond The Airport</span>
-    </h1>
-    <p class="reveal text-lg sm:text-xl text-white/90 max-w-2xl mx-auto mb-10 leading-relaxed font-light">
-      Maximize your stopover. Discover transit hotels, authentic restaurants, express spas, city tours, and fixed-price transfers near CSMIA.
-    </p>
-    <div class="reveal flex flex-col sm:flex-row items-center justify-center gap-3 mb-14">
-      <a href="experiences.html" class="btn btn-primary w-full sm:w-auto text-base px-8">Explore Tours</a>
-      <a href="plan-my-layover.html" class="btn btn-outline border-white text-white hover:bg-white/10 w-full sm:w-auto text-base px-8">Plan My Layover</a>
-    </div>
-    <div class="reveal grid grid-cols-2 md:grid-cols-4 gap-3 max-w-2xl mx-auto">
-      <div class="stat-card">
-        <div class="text-2xl sm:text-3xl font-extrabold text-sky-400 mb-1">6+</div>
-        <div class="text-white/80 text-xs font-semibold">Service Categories</div>
-      </div>
-      <div class="stat-card">
-        <div class="text-2xl sm:text-3xl font-extrabold text-sky-400 mb-1">CSMIA</div>
-        <div class="text-white/80 text-xs font-semibold">Airport Focused</div>
-      </div>
-      <div class="stat-card">
-        <div class="text-2xl sm:text-3xl font-extrabold text-sky-400 mb-1">24/7</div>
-        <div class="text-white/80 text-xs font-semibold">Instant Booking</div>
-      </div>
-      <div class="stat-card">
-        <div class="text-2xl sm:text-3xl font-extrabold text-sky-400 mb-1">Mumbai</div>
-        <div class="text-white/80 text-xs font-semibold">Local Experts</div>
-      </div>
-    </div>
-  </div>
-</header>
+    <section class="hero-section theme-hero" id="hero" role="banner" aria-label="Hero">
+      <div class="hero-bg-pattern" aria-hidden="true"></div>
+      <div class="hero-bg-glow" aria-hidden="true"></div>
+      <div class="hero-container">
+        <div class="hero-content">
 
-<!-- QUICK SEARCH WIDGET -->
-<section class="relative z-20 -mt-16 sm:-mt-20 px-4 sm:px-6 mb-20" id="search">
-  <div class="container">
-    <div class="bg-white rounded-3xl shadow-2xl border border-gray-100 p-6 sm:p-8" style="box-shadow:0 25px 50px -12px rgba(0,0,0,0.18)">
-      <!-- Category Tabs -->
-      <div class="flex items-center gap-2 mb-6 overflow-x-auto no-scrollbar -mx-1 pb-1" id="search-tabs" role="tablist" aria-label="Service categories">
-        <button class="search-tab active" onclick="location.href='hotels.html'" role="tab" aria-selected="true">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M3 21h18M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16M9 7h1m-1 4h1m-1 4h1m4-4h1m-1 4h1"/></svg>
-          Hotels
-        </button>
-        <button class="search-tab" onclick="location.href='restaurants.html'" role="tab" aria-selected="false">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2M7 2v4M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v6"/></svg>
-          Restaurants
-        </button>
-        <button class="search-tab" onclick="location.href='spa-wellness.html'" role="tab" aria-selected="false">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M12 7.5a4.5 4.5 0 1 1 4.5 4.5M12 7.5A4.5 4.5 0 1 0 7.5 12M12 7.5V12m0 0a4.5 4.5 0 1 0 4.5 4.5M12 12a4.5 4.5 0 1 1-4.5 4.5"/></svg>
-          Spa
-        </button>
-        <button class="search-tab" onclick="location.href='gaming-entertainment.html'" role="tab" aria-selected="false">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M6 12h.01M9 12h.01M15 12h.01M18 12h.01M4 11a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-6ZM9 15v2M15 15v2"/></svg>
-          Gaming
-        </button>
-        <button class="search-tab" onclick="location.href='experiences.html'" role="tab" aria-selected="false">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m16.24 7.76-2.12 6.36-6.36 2.12 2.12-6.36 6.36-2.12z"/></svg>
-          Tours
-        </button>
-        <button class="search-tab" onclick="location.href='airport-transfers.html'" role="tab" aria-selected="false">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2M7 17a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z"/></svg>
-          Transfers
-        </button>
-      </div>
+          <div class="hero-badge">
+            <span class="hero-badge-dot" aria-hidden="true"></span>
+            Mumbai Airport Transit Platform
+          </div>
 
-      <!-- Search Fields -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3" id="search-fields">
-        <div class="search-field">
-          <label for="search-location">Destination Area</label>
-          <select id="search-location" aria-label="Destination area">
-            <option value="near-airport">Near Mumbai Airport (CSMIA)</option>
-            <option value="bandra">Bandra &amp; Andheri West</option>
-            <option value="colaba">Colaba &amp; South Mumbai</option>
-            <option value="juhu">Juhu Beach Area</option>
-          </select>
-        </div>
-        <div class="search-field">
-          <label for="search-arrival">Flight Arrival Time</label>
-          <input type="datetime-local" id="search-arrival" aria-label="Arrival date and time" required/>
-        </div>
-        <div class="search-field">
-          <label for="search-departure">Flight Departure Time</label>
-          <input type="datetime-local" id="search-departure" aria-label="Departure date and time" required/>
-        </div>
-        <div class="search-field">
-          <label for="search-travelers">Travelers</label>
-          <select id="search-travelers" aria-label="Number of travelers">
-            <option value="1">1 Adult</option>
-            <option value="2" selected>2 Adults</option>
-            <option value="3">3 Adults</option>
-            <option value="4">4+ Family/Group</option>
-          </select>
+          <h1 class="hero-title">
+            Make the Most of Your Mumbai Layover
+          </h1>
+
+          <p class="hero-subtitle">
+            Hotels, dining, spas, tours, and transfers — curated around your flight schedule.
+            Turn airport waiting into memorable experiences.
+          </p>
+
+          <div class="hero-actions">
+            <a href="plan-my-layover.html" class="hero-btn-primary" aria-label="Plan your Mumbai layover">
+              Plan My Layover
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+            <a href="experiences.html" class="hero-btn-secondary" aria-label="Explore all transit services">
+              Explore Services
+            </a>
+          </div>
+
+          <div class="hero-stats" role="list" aria-label="Platform statistics">
+            <div class="hero-stat" role="listitem">
+              <span class="hero-stat-value">150+</span>
+              <span class="hero-stat-label">Services</span>
+            </div>
+            <div class="hero-stat-divider" aria-hidden="true"></div>
+            <div class="hero-stat" role="listitem">
+              <span class="hero-stat-value">24/7</span>
+              <span class="hero-stat-label">Support</span>
+            </div>
+            <div class="hero-stat-divider" aria-hidden="true"></div>
+            <div class="hero-stat" role="listitem">
+              <span class="hero-stat-value">CSMIA</span>
+              <span class="hero-stat-label">Terminals</span>
+            </div>
+            <div class="hero-stat-divider" aria-hidden="true"></div>
+            <div class="hero-stat" role="listitem">
+              <span class="hero-stat-value">4.9</span>
+              <span class="hero-stat-label">Rating</span>
+            </div>
+          </div>
+
         </div>
       </div>
+    </section>
 
-      <!-- Layover Duration Row -->
-      <div class="mt-4 flex items-center justify-between flex-wrap gap-3">
-        <div class="flex items-center gap-2 text-sm text-slate-600" id="duration-display" aria-live="polite">
-          <svg class="w-4 h-4 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          <span>Layover window: <strong class="text-slate-900 font-bold" id="layover-duration">6h 00m</strong></span>
+    <!-- SEARCH OVERLAP -->
+    <section class="hero-search-section" id="search" aria-label="Search transit services">
+      <div class="hero-search-container">
+        <div class="hero-search-card">
+
+          <div class="hero-search-grid">
+            <div class="hero-search-field">
+              <label for="home-search-location" class="hero-search-label">Airport Area</label>
+              <div class="hero-search-input">
+                <svg class="hero-search-input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/>
+                </svg>
+                <select id="home-search-location" class="hero-search-select" required aria-describedby="location-hint">
+                  <option value="near-airport" selected>Near Mumbai Airport (CSMIA)</option>
+                  <option value="bandra">Bandra &amp; Andheri West</option>
+                  <option value="colaba">Colaba &amp; South Mumbai</option>
+                  <option value="juhu">Juhu Beach Area</option>
+                </select>
+              </div>
+              <span id="location-hint" class="sr-only">Select the airport area for your layover</span>
+            </div>
+
+            <div class="hero-search-field">
+              <label for="home-search-arrival" class="hero-search-label">Arrival Time</label>
+              <div class="hero-search-input">
+                <svg class="hero-search-input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+                </svg>
+                <input type="datetime-local" id="home-search-arrival" class="hero-search-input-field" required aria-describedby="arrival-hint">
+              </div>
+              <span id="arrival-hint" class="sr-only">Enter your flight arrival date and time</span>
+            </div>
+
+            <div class="hero-search-field">
+              <label for="home-search-departure" class="hero-search-label">Departure Time</label>
+              <div class="hero-search-input">
+                <svg class="hero-search-input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+                </svg>
+                <input type="datetime-local" id="home-search-departure" class="hero-search-input-field" required aria-describedby="departure-hint">
+              </div>
+              <span id="departure-hint" class="sr-only">Enter your flight departure date and time</span>
+            </div>
+
+            <div class="hero-search-field">
+              <label for="home-search-travelers" class="hero-search-label">Travelers</label>
+              <div class="hero-search-input">
+                <svg class="hero-search-input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/>
+                </svg>
+                <select id="home-search-travelers" class="hero-search-select" required aria-describedby="travelers-hint">
+                  <option value="1" selected>1 Adult</option>
+                  <option value="2">2 Adults</option>
+                  <option value="3">3 Adults</option>
+                  <option value="4">4+ Family/Group</option>
+                </select>
+              </div>
+              <span id="travelers-hint" class="sr-only">Select number of travelers</span>
+            </div>
+
+            <div class="hero-search-field hero-search-field--action">
+              <button class="hero-search-btn" type="button" id="home-search-submit" aria-label="Build your layover itinerary">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+                <span>Build My Itinerary</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="hero-search-footer">
+            <a href="plan-my-layover.html" class="hero-search-link">
+              Detailed options available in the full planner
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+
         </div>
-        <div id="validation-message" class="text-sm text-red-500 font-medium hidden" role="alert" aria-live="assertive"></div>
       </div>
-
-      <button id="search-btn" class="btn btn-primary w-full mt-5 text-base gap-2" type="button" style="height:3.25rem">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-        Build Custom AI Itinerary
-      </button>
-    </div>
-  </div>
-</section>
+    </section>
 
 <!-- VALUE PROPOSITION -->
 <section class="py-20 bg-slate-50" id="value-proposition">

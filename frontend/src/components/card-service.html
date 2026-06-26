@@ -1,0 +1,18 @@
+<!--
+  CARD SERVICE
+  Radius: 20px | Padding: 24px | Shadow: Soft (--shadow-card)
+  Feature/value prop card for services.
+  Usage:
+    <div class="card card-feature">
+      <div class="card-icon">...</div>
+      <h3>{{TITLE}}</h3>
+      <p>{{DESCRIPTION}}</p>
+    </div>
+-->
+<div class="card card-feature">
+  <div class="w-14 h-14 bg-primary/10 text-primary rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4">
+    {{ICON}}
+  </div>
+  <h3 class="text-lg font-bold text-[var(--text-primary)] mb-2">{{TITLE}}</h3>
+  <p class="text-[var(--text-secondary)] leading-relaxed">{{DESCRIPTION}}</p>
+</div>

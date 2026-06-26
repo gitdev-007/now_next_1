@@ -16,10 +16,10 @@
 // Standardized Card Styles (TASK 3)
 .dashboard-card {
   background: var(--surface);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-lg);   /* 20px — spec */
   border: 1px solid var(--border-light);
-  box-shadow: var(--shadow-sm);
-  padding: 1.5rem;
+  box-shadow: var(--shadow-card);    /* Soft shadow — spec */
+  padding: 1.5rem;                   /* 24px — spec */
   transition: var(--transition-spring);
   position: relative;
   overflow: hidden;
@@ -174,12 +174,12 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  height: 3rem;
-  padding: 0 1.5rem;
-  font-size: var(--font-body);
-  font-weight: var(--fw-semibold);
+  height: 3.25rem;              /* 52px — spec */
+  padding: 0 1.75rem;           /* 28px horizontal — spec */
+  font-size: var(--font-small); /* 16px — spec */
+  font-weight: 600;             /* 600 — spec */
   line-height: 1;
-  border-radius: var(--radius);
+  border-radius: var(--radius); /* 14px — spec */
   border: 1px solid transparent;
   white-space: nowrap;
   cursor: pointer;
@@ -191,18 +191,26 @@
 .dashboard-btn-primary {
   background: var(--primary);
   color: var(--text-on-dark);
-  box-shadow: var(--shadow-primary);
+  box-shadow: var(--shadow-btn);   /* Medium shadow — spec */
 }
 
 .dashboard-btn-primary:hover:not(:disabled) {
   background: var(--primary-dark);
-  transform: translateY(-1px);
-  box-shadow: 0 8px 16px -4px rgba(2, 132, 199, 0.4);
+  transform: translateY(-2px);       /* Lift — spec */
+  box-shadow: 0 8px 20px -4px rgba(2, 132, 199, 0.4);
 }
 
 .dashboard-btn-secondary {
-  background: var(--secondary);
-  color: var(--text-on-dark);
+  background: transparent;
+  color: var(--primary);
+  border: 2px solid var(--primary);  /* Outlined — spec */
+  box-shadow: none;
+}
+
+.dashboard-btn-secondary:hover:not(:disabled) {
+  background: var(--primary-glow);
+  transform: translateY(-2px);        /* Lift — spec */
+  box-shadow: var(--shadow-btn);
 }
 
 .dashboard-btn-outline {
@@ -213,7 +221,8 @@
 
 .dashboard-btn-outline:hover:not(:disabled) {
   background: var(--primary-glow);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-btn);
 }
 
 .dashboard-btn-ghost {
@@ -445,10 +454,10 @@ dashboard-status-dot-neutral { background: var(--text-muted); }
 // Statistics Cards
 .stat-card {
   background: var(--surface);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-lg);  /* 20px — spec */
   border: 1px solid var(--border-light);
-  box-shadow: var(--shadow-sm);
-  padding: 1.5rem;
+  box-shadow: var(--shadow-card);   /* Soft shadow — spec */
+  padding: 1.5rem;                  /* 24px — spec */
   transition: var(--transition-spring);
   position: relative;
   overflow: hidden;

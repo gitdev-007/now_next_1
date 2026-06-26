@@ -16,10 +16,10 @@
   </div>
 </div>
 
-<section class="section bg-slate-50 min-h-screen">
+<section class="section bg-[var(--surface-muted)] min-h-screen">
   <div class="container">
     <!-- Tab Controls -->
-    <div class="flex items-center gap-4 border-b border-gray-200 pb-4 mb-8 overflow-x-auto no-scrollbar" id="trips-tabs">
+    <div class="flex items-center gap-4 border-b border-[var(--border-light)] pb-4 mb-8 overflow-x-auto no-scrollbar" id="trips-tabs">
       <button class="px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-emerald-50/400 text-white shadow flex-shrink-0" onclick="layoverx.switchTripsTab('upcoming')" id="tab-upcoming">
         📅 Upcoming Stopovers
       </button>
@@ -37,12 +37,12 @@
       <!-- UPCOMING TRIPS TAB CONTENT -->
       <div id="tab-content-upcoming" class="space-y-6">
         <!-- Live Map Interface (Improvement 1.4) -->
-        <div id="itinerary-map-container" class="bg-white rounded-3xl border border-gray-200 overflow-hidden shadow-sm hidden">
+        <div id="itinerary-map-container" class="bg-[var(--surface)] rounded-[var(--radius-xl)] border border-[var(--border-light)] overflow-hidden hidden" style="box-shadow: var(--shadow)">
           <div class="p-4 border-b border-gray-100 flex items-center justify-between">
-            <h3 class="text-sm font-bold text-slate-900 flex items-center gap-2">
+            <h3 class="text-sm font-bold text-[var(--text-primary)] flex items-center gap-2">
               <span class="text-theme-accent">🗺️</span> Live Transit Route
             </h3>
-            <span class="text-[10px] font-bold uppercase tracking-wider text-sky-600 bg-emerald-50/40 px-2 py-1 rounded-lg">Real-time sync</span>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-[var(--primary)] bg-emerald-50/40 px-2 py-1 rounded-lg">Real-time sync</span>
           </div>
           <div class="w-full h-64 bg-slate-100 relative">
             <div class="absolute inset-0 flex flex-col items-center justify-center text-slate-400">
@@ -53,9 +53,9 @@
         </div>
 
         <!-- Rendered dynamically -->
-        <div class="bg-white rounded-3xl border border-gray-200 p-12 text-center shadow-sm">
-          <div class="w-16 h-16 bg-slate-50 text-slate-400 rounded-full flex items-center justify-center text-2xl mx-auto mb-4">📅</div>
-          <h3 class="text-base font-bold text-slate-900 mb-1">No Upcoming Bookings</h3>
+        <div class="bg-[var(--surface)] rounded-[var(--radius-xl)] border border-[var(--border-light)] p-12 text-center" style="box-shadow: var(--shadow)">
+          <div class="w-16 h-16 bg-[var(--surface-muted)] text-slate-400 rounded-full flex items-center justify-center text-2xl mx-auto mb-4">📅</div>
+          <h3 class="text-base font-bold text-[var(--text-primary)] mb-1">No Upcoming Bookings</h3>
           <p class="text-slate-500 text-xs max-w-sm mx-auto mb-6">You don't have any finalized stopovers booked yet. Complete checkout to secure your reservations.</p>
           <a href="plan-my-layover.html" class="inline-flex items-center gap-2 px-4 py-2 bg-emerald-50/400 hover:bg-sky-600 text-white text-xs font-bold rounded-xl transition shadow">
             Start Planning
@@ -66,9 +66,9 @@
       <!-- SAVED DRAFTS TAB CONTENT -->
       <div id="tab-content-drafts" class="space-y-6 hidden">
         <!-- Rendered dynamically -->
-        <div class="bg-white rounded-3xl border border-gray-200 p-12 text-center shadow-sm">
-          <div class="w-16 h-16 bg-slate-50 text-slate-400 rounded-full flex items-center justify-center text-2xl mx-auto mb-4">💾</div>
-          <h3 class="text-base font-bold text-slate-900 mb-1">No Saved Drafts</h3>
+        <div class="bg-[var(--surface)] rounded-[var(--radius-xl)] border border-[var(--border-light)] p-12 text-center" style="box-shadow: var(--shadow)">
+          <div class="w-16 h-16 bg-[var(--surface-muted)] text-slate-400 rounded-full flex items-center justify-center text-2xl mx-auto mb-4">💾</div>
+          <h3 class="text-base font-bold text-[var(--text-primary)] mb-1">No Saved Drafts</h3>
           <p class="text-slate-500 text-xs max-w-sm mx-auto mb-6">Build a timeline and click "Save Draft" in the itinerary workspace to access them here.</p>
           <a href="my-itinerary.html" class="inline-flex items-center gap-2 px-4 py-2 bg-slate-900 hover:bg-black text-white text-xs font-bold rounded-xl transition shadow">
             Open Planner
@@ -79,9 +79,9 @@
       <!-- PAST TRIPS TAB CONTENT -->
       <div id="tab-content-past" class="space-y-6 hidden">
         <!-- Rendered dynamically -->
-        <div class="bg-white rounded-3xl border border-gray-200 p-12 text-center shadow-sm">
-          <div class="w-16 h-16 bg-slate-50 text-slate-400 rounded-full flex items-center justify-center text-2xl mx-auto mb-4">⏳</div>
-          <h3 class="text-base font-bold text-slate-900 mb-1">No Past Trips Found</h3>
+        <div class="bg-[var(--surface)] rounded-[var(--radius-xl)] border border-[var(--border-light)] p-12 text-center" style="box-shadow: var(--shadow)">
+          <div class="w-16 h-16 bg-[var(--surface-muted)] text-slate-400 rounded-full flex items-center justify-center text-2xl mx-auto mb-4">⏳</div>
+          <h3 class="text-base font-bold text-[var(--text-primary)] mb-1">No Past Trips Found</h3>
           <p class="text-slate-500 text-xs max-w-sm mx-auto mb-6">Trips you complete will appear here as past records with download links for invoice summaries.</p>
         </div>
       </div>
@@ -97,26 +97,26 @@
     <div class="space-y-6">
       <div class="text-center space-y-2">
         <span class="text-3xl">🛬</span>
-        <h2 id="receipt-modal-title" class="text-gray-900 text-xl font-extrabold tracking-tight">Booking Confirmation</h2>
+        <h2 id="receipt-modal-title" class="text-[var(--text-primary)] text-xl font-extrabold tracking-tight">Booking Confirmation</h2>
         <span class="inline-block text-xs font-bold bg-emerald-50 text-emerald-700 px-2 py-1 rounded border border-emerald-100" id="receipt-booking-id">LHX-94812-MUM</span>
       </div>
 
-      <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4 space-y-4.5 text-xs text-slate-700">
+      <div class="bg-[var(--surface-muted)] border border-slate-200 rounded-[var(--radius-lg)] p-4 space-y-4.5 text-xs text-slate-700">
         <div class="flex justify-between items-center">
           <span>Lead Passenger:</span>
-          <strong class="font-bold text-slate-900" id="receipt-passenger">John Doe</strong>
+          <strong class="font-bold text-[var(--text-primary)]" id="receipt-passenger">John Doe</strong>
         </div>
         <div class="flex justify-between items-center">
           <span>Passport Number:</span>
-          <strong class="font-bold text-slate-900" id="receipt-passport">Z1234567</strong>
+          <strong class="font-bold text-[var(--text-primary)]" id="receipt-passport">Z1234567</strong>
         </div>
         <div class="flex justify-between items-center">
           <span>Flight Info:</span>
-          <strong class="font-bold text-slate-900" id="receipt-flights">Incoming: BA-199 / Outgoing: EK-501</strong>
+          <strong class="font-bold text-[var(--text-primary)]" id="receipt-flights">Incoming: BA-199 / Outgoing: EK-501</strong>
         </div>
         <div class="flex justify-between items-center">
           <span>Layover Slot:</span>
-          <strong class="font-bold text-slate-900" id="receipt-timing">Flexible Slot</strong>
+          <strong class="font-bold text-[var(--text-primary)]" id="receipt-timing">Flexible Slot</strong>
         </div>
       </div>
 

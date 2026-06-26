@@ -395,10 +395,12 @@ function compilePage(filename) {
     .replace(/\{\{ACTIVE_TRANSFERS\}\}/g,   filename === 'airport-transfers.html'    ? active : inactive)
     .replace(/\{\{ACTIVE_HOW_IT_WORKS\}\}/g,filename === 'how-it-works.html'         ? active : inactive)
     .replace(/\{\{ACTIVE_CONTACT\}\}/g,     filename === 'contact.html'              ? active : inactive)
+    .replace(/\{\{ACTIVE_TRIP_DETAILS\}\}/g,filename === 'trip-details.html'         ? active : inactive)
+    .replace(/\{\{ACTIVE_MY_ITINERARY\}\}/g,filename === 'my-itinerary.html'         ? active : inactive)
     .replace(/\{\{PLAN_MY_LAYOVER_CLASS\}\}/g,
       filename === 'plan-my-layover.html'
-        ? 'plan-my-layover-btn active'
-        : 'plan-my-layover-btn'
+        ? 'is-active'
+        : ''
     );
 
   // ── Theme class on <body> ─────────────────────────────────────────────────

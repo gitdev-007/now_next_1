@@ -1,0 +1,14 @@
+<!--
+  BADGE
+  Status / info badge with optional dot indicator.
+  Variants: success, warning, danger, info, neutral, pending
+  Usage:
+    <span class="status-badge status-badge-{{VARIANT}}">
+      <span class="status-badge-dot status-badge-{{VARIANT}}"></span>
+      {{LABEL}}
+    </span>
+-->
+<span class="status-badge status-badge-{{VARIANT}}">
+  {{#HAS_DOT}}<span class="status-badge-dot"></span>{{/HAS_DOT}}
+  {{LABEL}}
+</span>

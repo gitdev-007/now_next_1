@@ -14,12 +14,12 @@
         <h1 class="text-3xl font-black tracking-tight" id="trip-title-header">Transit Itinerary Details</h1>
         <p class="text-sm text-sky-200" id="trip-meta-subtitle">Saved on --</p>
       </div>
-      <button onclick="loadThisTrip()" class="px-6 py-4.5 bg-theme-primary hover:bg-sky-800 text-white text-xs font-bold rounded-xl shadow-lg transition">Load & Edit in Workspace</button>
+      <button onclick="loadThisTrip()" class="btn btn-primary text-xs">Load & Edit in Workspace</button>
     </div>
   </div>
 </section>
 
-<section class="section bg-slate-50 min-h-[60vh]">
+<section class="section bg-[var(--background)] min-h-[60vh]">
   <div class="container">
     <div class="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
       
@@ -27,37 +27,37 @@
       <div class="lg:col-span-8 space-y-6">
         
         <!-- Summary Info Grid -->
-        <div class="bg-white rounded-3xl border border-gray-200 p-6 shadow-sm grid grid-cols-2 sm:grid-cols-4 gap-4">
-          <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100">
-            <span class="text-[10px] text-slate-400 font-extrabold uppercase tracking-wider block">Duration</span>
-            <strong class="text-base text-slate-900 font-bold block" id="trip-duration-val">--</strong>
+        <div class="card p-6 grid grid-cols-2 sm:grid-cols-4 gap-4">
+          <div class="bg-[var(--surface-muted)] p-4 rounded-[var(--radius-lg)] border border-slate-100">
+            <span class="section-label block">Duration</span>
+            <strong class="text-base text-[var(--text-primary)] font-bold block" id="trip-duration-val">--</strong>
           </div>
-          <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100">
-            <span class="text-[10px] text-slate-400 font-extrabold uppercase tracking-wider block">Passengers</span>
-            <strong class="text-base text-slate-900 font-bold block" id="trip-travelers-val">--</strong>
+          <div class="bg-[var(--surface-muted)] p-4 rounded-[var(--radius-lg)] border border-slate-100">
+            <span class="section-label block">Passengers</span>
+            <strong class="text-base text-[var(--text-primary)] font-bold block" id="trip-travelers-val">--</strong>
           </div>
-          <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100">
-            <span class="text-[10px] text-slate-400 font-extrabold uppercase tracking-wider block">Arrival</span>
-            <strong class="text-sm text-slate-900 font-bold block truncate" id="trip-arrival-val">--</strong>
+          <div class="bg-[var(--surface-muted)] p-4 rounded-[var(--radius-lg)] border border-slate-100">
+            <span class="section-label block">Arrival</span>
+            <strong class="text-sm text-[var(--text-primary)] font-bold block truncate" id="trip-arrival-val">--</strong>
           </div>
-          <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100">
-            <span class="text-[10px] text-slate-400 font-extrabold uppercase tracking-wider block">Departure</span>
-            <strong class="text-sm text-slate-900 font-bold block truncate" id="trip-departure-val">--</strong>
+          <div class="bg-[var(--surface-muted)] p-4 rounded-[var(--radius-lg)] border border-slate-100">
+            <span class="section-label block">Departure</span>
+            <strong class="text-sm text-[var(--text-primary)] font-bold block truncate" id="trip-departure-val">--</strong>
           </div>
         </div>
 
         <!-- Smart Timeline -->
-        <div class="bg-white rounded-3xl border border-gray-200 p-6 sm:p-8 shadow-sm">
-          <h2 class="text-lg font-bold text-gray-900 pb-4 border-b border-gray-100 mb-6">⏱️ Transit Schedule Timeline</h2>
+        <div class="card p-6 sm:p-8">
+          <h2 class="section-title pb-4 border-b border-[var(--border-light)] mb-6">⏱️ Transit Schedule Timeline</h2>
           <div class="relative pl-6 border-l-2 border-sky-400 space-y-6" id="trip-timeline-nodes">
             <!-- Dynamically populated timeline nodes -->
           </div>
         </div>
         
         <!-- Traveler Notes -->
-        <div class="bg-white rounded-3xl border border-gray-200 p-6 sm:p-8 shadow-sm">
-          <h2 class="text-lg font-bold text-gray-900 mb-4">📝 Passenger Exit Notes</h2>
-          <div class="bg-slate-50 border border-slate-200/60 p-4 rounded-2xl text-xs sm:text-sm text-slate-700 space-y-2">
+        <div class="card p-6 sm:p-8">
+          <h2 class="section-title mb-4">📝 Passenger Exit Notes</h2>
+          <div class="bg-[var(--surface-muted)] border border-slate-200/60 p-4 rounded-[var(--radius-lg)] text-xs sm:text-sm text-[var(--text-secondary)] space-y-2">
             <p><strong>💡 Stopover Exit Checklist:</strong></p>
             <ul class="list-disc pl-4 space-y-1">
               <li>Keep passport, flight boarding pass, and transit visa printout handy.</li>
@@ -72,23 +72,23 @@
       <!-- Right Sidebar (Pricing & AI Suggestions) -->
       <aside class="lg:col-span-4 space-y-6">
         <!-- Costs Box -->
-        <div class="bg-white rounded-3xl border border-gray-200 p-6 shadow-md flex flex-col justify-between">
-          <h2 class="text-sm font-black text-gray-900 uppercase tracking-widest mb-4">Price Breakdown</h2>
-          <div class="space-y-4 mb-6 text-xs text-slate-700" id="trip-costs-list">
+        <div class="card p-6 flex flex-col justify-between">
+          <h2 class="section-label mb-4">Price Breakdown</h2>
+          <div class="space-y-4 mb-6 text-xs text-[var(--text-secondary)]" id="trip-costs-list">
             <!-- Costs dynamic -->
           </div>
-          <hr class="border-gray-100 my-4"/>
+          <hr class="border-[var(--border-light)] my-4"/>
           <div class="flex items-baseline justify-between mb-4">
-            <span class="text-xs text-slate-500 font-bold uppercase tracking-wider">Total Price</span>
-            <strong class="text-2xl font-black text-theme-primary" id="trip-total-cost">₹0</strong>
+            <span class="text-xs text-[var(--text-muted)] font-bold uppercase tracking-wider">Total Price</span>
+            <strong class="text-2xl font-black text-[var(--primary)]" id="trip-total-cost">₹0</strong>
           </div>
-          <button onclick="window.location.href='checkout.html'" class="w-full py-4.5 bg-gray-900 hover:bg-black text-white font-extrabold text-xs rounded-xl shadow-lg transition hover:scale-[1.01] flex items-center justify-center gap-2">
+          <button onclick="window.location.href='checkout.html'" class="btn btn-primary w-full">
             ⚡ Finalize & Book Services
           </button>
         </div>
         
         <!-- AI Optimization Box -->
-        <div class="bg-gradient-to-br from-indigo-900 to-slate-900 text-white rounded-3xl p-6 shadow-md relative overflow-hidden">
+        <div class="bg-gradient-to-br from-indigo-900 to-slate-900 text-white rounded-[var(--radius-xl)] p-6 shadow-[var(--shadow-btn)] relative overflow-hidden">
           <div class="absolute -top-10 -right-10 w-24 h-24 bg-white/5 rounded-full blur-xl"></div>
           <h3 class="font-extrabold text-sm mb-2 flex items-center gap-1">✨ AI Co-Pilot Tips</h3>
           <p class="text-[11px] text-indigo-200 leading-relaxed mb-4" id="ai-optimization-text">
@@ -176,7 +176,7 @@
       costsList.innerHTML += `
         <div class="flex justify-between">
           <span>${label}</span>
-          <strong class="font-bold text-slate-900">₹${cost.toLocaleString()}</strong>
+          <strong class="font-bold text-[var(--text-primary)]">₹${cost.toLocaleString()}</strong>
         </div>
       `;
     };
@@ -197,10 +197,10 @@
     
     const addTimelineBlock = (time, title, desc, icon = '⚪') => {
       timelineNodes.innerHTML += `
-        <div class="relative bg-white border border-gray-200 p-4 rounded-xl shadow-sm">
+        <div class="relative bg-[var(--surface)] border border-[var(--border-light)] p-4 rounded-[var(--radius-lg)] shadow-[var(--shadow-card)]">
           <div class="absolute -left-[33px] top-4 w-5 h-5 rounded-full bg-emerald-50/400 border-2 border-white flex items-center justify-center text-[10px] text-white">${icon}</div>
-          <strong class="text-gray-900 block text-xs sm:text-sm font-extrabold">${time} • ${title}</strong>
-          <p class="text-gray-500 text-xs mt-1 leading-relaxed">${desc}</p>
+          <strong class="text-[var(--text-primary)] block text-xs sm:text-sm font-extrabold">${time} • ${title}</strong>
+          <p class="text-[var(--text-muted)] text-xs mt-1 leading-relaxed">${desc}</p>
         </div>
       `;
     };

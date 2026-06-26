@@ -1,0 +1,32 @@
+<!--
+  FILTER
+  Collapsible filter panel with grid of options.
+  Usage:
+    <div class="filters-container">
+      <div class="filters-header">
+        <h3 class="filters-title">{{TITLE}}</h3>
+        <button class="action-btn">{{ACTION}}</button>
+      </div>
+      <div class="filters-grid">
+        {{FILTER_OPTIONS}}
+      </div>
+    </div>
+-->
+<div class="filters-container">
+  <div class="filters-header">
+    <h3 class="filters-title">{{TITLE}}</h3>
+    <button class="action-btn">{{ACTION}}</button>
+  </div>
+  <div class="filters-grid">
+    {{FILTER_CONTENT}}
+  </div>
+</div>
+
+<!--
+  INDIVIDUAL FILTER OPTION
+  Usage:
+    <label class="flex items-center gap-2 cursor-pointer">
+      <input type="checkbox" class="w-4 h-4 rounded border-[var(--border)] text-[var(--primary)]"/>
+      <span class="text-sm text-[var(--text-secondary)]">{{LABEL}}</span>
+    </label>
+-->

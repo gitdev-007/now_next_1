@@ -1,0 +1,52 @@
+<!--
+  CARD HOTEL
+  Radius: 20px | Shadow: Soft (--shadow-card) | Image + content layout.
+  Usage:
+    <div class="card card-hotel">
+      <div class="card-img-container">
+        <img class="card-img" src="{{IMAGE}}" alt="{{NAME}}" loading="lazy"/>
+        <span class="card-badge bg-primary text-white">{{BADGE}}</span>
+      </div>
+      <div class="card-content">
+        <div class="flex items-center gap-1 text-amber-500 text-sm mb-1">
+          {{RATING_STARS}}
+          <span class="text-[var(--text-muted)] text-xs ml-1">({{REVIEWS}})</span>
+        </div>
+        <h3 class="font-bold text-[var(--text-primary)]">{{NAME}}</h3>
+        <p class="text-xs text-[var(--text-muted)] flex items-center gap-1">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+          {{LOCATION}}
+        </p>
+        <div class="flex items-center gap-2 mt-2 text-xs text-[var(--text-muted)]">
+          <span>{{AMENITIES}}</span>
+        </div>
+        <div class="flex items-center justify-between mt-3 pt-3 border-t border-[var(--border-light)]">
+          <span class="text-lg font-black text-[var(--text-primary)]">${{PRICE}}<span class="text-xs font-medium text-[var(--text-muted)]">/night</span></span>
+          <button class="btn btn-primary text-sm" style="height:2.5rem;padding:0 1.25rem">Book Now</button>
+        </div>
+      </div>
+    </div>
+-->
+<div class="card card-hotel">
+  <div class="card-img-container">
+    <img class="card-img" src="{{IMAGE}}" alt="{{NAME}}" loading="lazy"/>
+  </div>
+  <div class="card-content">
+    <div class="flex items-center gap-1 text-amber-500 text-sm mb-1">
+      {{RATING_STARS}}
+      <span class="text-[var(--text-muted)] text-xs ml-1">({{REVIEWS}})</span>
+    </div>
+    <h3 class="font-bold text-[var(--text-primary)]">{{NAME}}</h3>
+    <p class="text-xs text-[var(--text-muted)] flex items-center gap-1">
+      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+      {{LOCATION}}
+    </p>
+    <div class="flex items-center gap-2 mt-2 text-xs text-[var(--text-muted)]">
+      <span>{{AMENITIES}}</span>
+    </div>
+    <div class="flex items-center justify-between mt-3 pt-3 border-t border-[var(--border-light)]">
+      <span class="text-lg font-black text-[var(--text-primary)]">${{PRICE}}<span class="text-xs font-medium text-[var(--text-muted)]">/night</span></span>
+      <button class="btn btn-primary text-sm" style="height:2.5rem;padding:0 1.25rem">Book Now</button>
+    </div>
+  </div>
+</div>

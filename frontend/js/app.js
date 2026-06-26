@@ -673,25 +673,16 @@
   /* ===== NAVBAR DECORATOR ===== */
   function decorateNavbar() {
     const navbar = $('#navbar');
-    const logoText = $('#logo-text');
-    const menuBtn = $('#menu-btn');
     if (!navbar) return;
     
-    // Check if page has a dark hero section or layout
     const hasHero = document.querySelector('#hero-section') || document.querySelector('.theme-hero');
     
     function handleScroll() {
-      // If no hero section exists, always use the scrolled/opaque style
       const scrolled = window.scrollY > 40 || !hasHero;
-      navbar.classList.toggle('bg-transparent', !scrolled);
-      navbar.classList.toggle('bg-white/95', scrolled);
-      navbar.classList.toggle('backdrop-blur-xl', scrolled);
-      navbar.classList.toggle('shadow-md', scrolled);
       navbar.classList.toggle('scrolled', scrolled);
-      // Colors are now handled purely by CSS variables and .scrolled class in design-system.css
     }
     
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
   }
 
@@ -699,11 +690,55 @@
   function decorateMobileMenu() {
     const btn = $('#menu-btn');
     const menu = $('#mobile-menu');
+    const closeBtn = document.getElementById('menu-close-btn');
     if (!btn || !menu) return;
+    
+    function openMobileMenu() {
+      menu.classList.remove('hidden');
+      requestAnimationFrame(() => {
+        menu.classList.add('is-open');
+      });
+      btn.setAttribute('aria-expanded', 'true');
+      btn.classList.add('is-active');
+      document.body.style.overflow = 'hidden';
+      if (closeBtn) {
+        setTimeout(() => closeBtn.focus(), 150);
+      }
+    }
+    
+    function closeMobileMenu() {
+      menu.classList.remove('is-open');
+      btn.setAttribute('aria-expanded', 'false');
+      btn.classList.remove('is-active');
+      document.body.style.overflow = '';
+      setTimeout(() => {
+        menu.classList.add('hidden');
+      }, 350);
+      btn.focus();
+    }
+    
     btn.addEventListener('click', () => {
-      menu.classList.toggle('hidden');
-      const expanded = !menu.classList.contains('hidden');
-      btn.setAttribute('aria-expanded', expanded);
+      if (menu.classList.contains('is-open')) {
+        closeMobileMenu();
+      } else {
+        openMobileMenu();
+      }
+    });
+    
+    if (closeBtn) {
+      closeBtn.addEventListener('click', closeMobileMenu);
+    }
+    
+    document.addEventListener('keydown', function menuKeydown(e) {
+      if (e.key === 'Escape' && menu.classList.contains('is-open')) {
+        closeMobileMenu();
+      }
+    });
+    
+    menu.addEventListener('click', function menuBackdrop(e) {
+      if (e.target === menu) {
+        closeMobileMenu();
+      }
     });
   }
 

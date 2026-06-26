@@ -1,0 +1,41 @@
+<!--
+  CARD RESTAURANT
+  Radius: 20px | Shadow: Soft (--shadow-card) | Image + content layout.
+  Usage:
+    <div class="card card-restaurant">
+      <div class="card-img-container">
+        <img class="card-img" src="{{IMAGE}}" alt="{{NAME}}" loading="lazy"/>
+      </div>
+      <div class="card-content">
+        <span class="text-xs font-extrabold text-[var(--primary)] uppercase tracking-wider">{{CUISINE}}</span>
+        <h3 class="font-bold text-[var(--text-primary)]">{{NAME}}</h3>
+        <div class="flex items-center gap-1 text-amber-500 text-sm">
+          {{RATING_STARS}}
+          <span class="text-[var(--text-muted)] text-xs ml-1">({{REVIEWS}})</span>
+        </div>
+        <p class="text-sm text-[var(--text-secondary)] line-clamp-2">{{DESCRIPTION}}</p>
+        <div class="flex items-center justify-between mt-3 pt-3 border-t border-[var(--border-light)]">
+          <span class="text-sm font-semibold text-[var(--text-primary)]">{{PRICE_RANGE}}</span>
+          <button class="btn btn-outline text-sm" style="height:2.5rem;padding:0 1.25rem">View Menu</button>
+        </div>
+      </div>
+    </div>
+-->
+<div class="card card-restaurant">
+  <div class="card-img-container">
+    <img class="card-img" src="{{IMAGE}}" alt="{{NAME}}" loading="lazy"/>
+  </div>
+  <div class="card-content">
+    <span class="text-xs font-extrabold text-[var(--primary)] uppercase tracking-wider">{{CUISINE}}</span>
+    <h3 class="font-bold text-[var(--text-primary)]">{{NAME}}</h3>
+    <div class="flex items-center gap-1 text-amber-500 text-sm">
+      {{RATING_STARS}}
+      <span class="text-[var(--text-muted)] text-xs ml-1">({{REVIEWS}})</span>
+    </div>
+    <p class="text-sm text-[var(--text-secondary)] line-clamp-2">{{DESCRIPTION}}</p>
+    <div class="flex items-center justify-between mt-3 pt-3 border-t border-[var(--border-light)]">
+      <span class="text-sm font-semibold text-[var(--text-primary)]">{{PRICE_RANGE}}</span>
+      <button class="btn btn-outline text-sm" style="height:2.5rem;padding:0 1.25rem">View Menu</button>
+    </div>
+  </div>
+</div>

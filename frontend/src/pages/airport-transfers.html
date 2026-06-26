@@ -1,5 +1,5 @@
 <!-- HERO SECTION -->
-<section class="relative theme-hero text-white pt-24 pb-16 overflow-hidden">
+<section class="relative hero-section theme-transfers text-white pt-24 pb-16 overflow-hidden">
   <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
   <div class="absolute -top-40 -right-40 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
   <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
@@ -10,7 +10,7 @@
       <div class="lg:col-span-7 space-y-6">
         <nav class="flex items-center gap-2 text-xs text-white/70" aria-label="Breadcrumb">
           <a href="index.html" class="hover:text-white transition-colors">Home</a>
-          <svg class="w-3 h-3 text-theme-primary" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+          <svg class="w-3 h-3 text-[var(--primary)]" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
           <span class="text-white font-medium">Airport Transfers</span>
         </nav>
         
@@ -18,14 +18,14 @@
           🚕 FIXED-RATE TRANSIT TRANSFERS
         </span>
 
-        <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-tight">
+        <h1 class="text-hero font-extrabold tracking-tight leading-tight">
           Fixed-Rate Airport <br/><span class="theme-text-accent">Cabs & Transfers</span></h1>
 
         <p class="text-gray-300 text-sm sm:text-base leading-relaxed max-w-2xl">
           Book a professional, verified private taxi to escape CSMIA gates without transit surges. Free flight tracking, 45-minute terminal gate wait buffer, and professional English-speaking drivers.
         </p>
 
-        <div class="grid grid-cols-2 gap-4 pt-2">
+        <div class="grid-2 pt-2">
           <div class="flex items-center gap-2">
             <span class="w-2 h-2 rounded-full bg-white/60"></span>
             <span class="text-xs sm:text-sm font-semibold text-gray-200">Surge-Free Fixed Pricing</span>
@@ -47,7 +47,7 @@
 
       <!-- Right Column -->
       <div class="lg:col-span-5 relative">
-        <div class="relative rounded-2xl overflow-hidden shadow-2xl shadow-black/50 border border-white/10 group aspect-[4/3] sm:aspect-[16/10] lg:aspect-square">
+        <div class="relative rounded-[var(--radius-lg)] overflow-hidden shadow-[var(--shadow-xl)] shadow-black/50 border border-white/10 group aspect-[4/3] sm:aspect-[16/10] lg:aspect-square">
           <img height="600" width="800" src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=800&h=600&fit=crop&auto=format&fm=webp&q=75" alt="Luxury executive sedan transfer in Mumbai" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="eager" fetchpriority="high"/>
           <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
           <div class="absolute bottom-4 left-4 bg-black/60 backdrop-blur-md border border-white/10 px-4 py-2 rounded-lg text-xs text-white font-semibold flex items-center gap-2">
@@ -60,20 +60,20 @@
 </section>
 
 <!-- CAB BOOKING SEARCH -->
-<section class="bg-white border-b border-gray-200 py-6 sticky top-16 sm:top-20 z-40 shadow-sm">
+<section class="bg-[var(--surface)] border-b border-[var(--border-light)] py-6 sticky top-16 sm:top-20 z-40" style="box-shadow:var(--shadow)">
   <div class="container">
     <form id="transfer-search-form" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-end">
       <div>
-        <label for="cab-pickup" class="block text-xs font-bold text-theme-primary uppercase mb-1">Pickup Location</label>
-        <select id="cab-pickup" class="w-full bg-gray-50 border border-gray-200 rounded-xl p-4 text-sm font-semibold text-gray-800 focus:ring-2 focus:ring-theme-primary cursor-pointer">
+        <label for="cab-pickup" class="dashboard-form-label text-[var(--primary)]">Pickup Location</label>
+        <select id="cab-pickup" class="dashboard-form-select w-full bg-[var(--background)] border border-[var(--border-light)] rounded-[var(--radius-lg)] p-4 text-sm font-semibold text-gray-800 focus:ring-2 focus:ring-theme-primary cursor-pointer">
           <option value="t2">Mumbai Airport T2 (International)</option>
           <option value="t1">Mumbai Airport T1 (Domestic)</option>
           <option value="hotel">Nearby Hotel / Other</option>
         </select>
       </div>
       <div>
-        <label for="cab-drop" class="block text-xs font-bold text-theme-primary uppercase mb-1">Drop Location</label>
-        <select id="cab-drop" class="w-full bg-gray-50 border border-gray-200 rounded-xl p-4 text-sm font-semibold text-gray-800 focus:ring-2 focus:ring-theme-primary cursor-pointer">
+        <label for="cab-drop" class="dashboard-form-label text-[var(--primary)]">Drop Location</label>
+        <select id="cab-drop" class="dashboard-form-select w-full bg-[var(--background)] border border-[var(--border-light)] rounded-[var(--radius-lg)] p-4 text-sm font-semibold text-gray-800 focus:ring-2 focus:ring-theme-primary cursor-pointer">
           <option value="bandra">Bandra (Cafe Street / Sea Link)</option>
           <option value="colaba">Colaba (Gateway of India / South Bombay)</option>
           <option value="juhu">Juhu Beach (Seaside Hotels)</option>
@@ -81,10 +81,10 @@
         </select>
       </div>
       <div>
-        <label for="cab-time" class="block text-xs font-bold text-theme-primary uppercase mb-1">Pickup Date & Time</label>
-        <input type="datetime-local" id="cab-time" class="w-full bg-gray-50 border border-gray-200 rounded-xl p-4 text-sm font-semibold text-gray-800 focus:ring-2 focus:ring-theme-primary"/>
+        <label for="cab-time" class="dashboard-form-label text-[var(--primary)]">Pickup Date & Time</label>
+        <input type="datetime-local" id="cab-time" class="dashboard-form-input w-full bg-[var(--background)] border border-[var(--border-light)] rounded-[var(--radius-lg)] p-4 text-sm font-semibold text-gray-800 focus:ring-2 focus:ring-theme-primary"/>
       </div>
-      <button type="submit" class="py-4 bg-theme-primary hover:bg-theme-primary text-white font-bold rounded-xl shadow-md transition transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
+      <button type="submit" class="py-4 bg-theme-primary hover:bg-theme-primary text-white font-bold rounded-[var(--radius-lg)] shadow-[var(--shadow-btn)] transition transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
         Check Vehicles
       </button>
@@ -93,32 +93,32 @@
 </section>
 
 <!-- MAIN MARKETPLACE LAYOUT -->
-<section class="section bg-gray-50">
+<section class="section bg-[var(--background)]">
   <div class="container">
     <div class="flex flex-col lg:flex-row gap-8">
       
       <!-- FILTER SIDEBAR -->
       <aside class="w-full lg:w-1/4 flex-shrink-0" aria-label="Filters Panel">
-        <div class="bg-white rounded-2xl border border-gray-200 p-6 sticky top-52">
+        <div class="card p-6 sticky top-52">
           <div class="flex items-center justify-between pb-4 border-b border-gray-100 mb-6">
-            <h2 class="text-base font-bold text-gray-900">Filters</h2>
-            <button type="button" onclick="layoverx.clearCabFilters()" class="text-xs text-theme-primary hover:text-theme-primary font-bold hover:underline">Clear All</button>
+            <h2 class="text-base font-bold text-[var(--text-primary)]">Filters</h2>
+            <button type="button" onclick="layoverx.clearCabFilters()" class="text-xs text-[var(--primary)] hover:text-[var(--primary)] font-bold hover:underline">Clear All</button>
           </div>
           
           <!-- Cab category filter -->
           <div class="mb-6">
-            <h3 class="text-xs font-bold text-theme-primary uppercase tracking-wider mb-4">Cab Category</h3>
+            <h3 class="section-label text-[var(--primary)] uppercase tracking-wider mb-4">Cab Category</h3>
             <div class="space-y-2">
               <label class="flex items-center gap-2 text-sm font-medium text-gray-600 cursor-pointer">
-                <input type="checkbox" name="cab-type" value="sedan" class="rounded border-gray-300 text-theme-primary focus:ring-theme-primary"/>
+                <input type="checkbox" name="cab-type" value="sedan" class="rounded border-[var(--border)] text-[var(--primary)] focus:ring-theme-primary"/>
                 Compact Sedan
               </label>
               <label class="flex items-center gap-2 text-sm font-medium text-gray-600 cursor-pointer">
-                <input type="checkbox" name="cab-type" value="suv" class="rounded border-gray-300 text-theme-primary focus:ring-theme-primary"/>
+                <input type="checkbox" name="cab-type" value="suv" class="rounded border-[var(--border)] text-[var(--primary)] focus:ring-theme-primary"/>
                 Premium SUV
               </label>
               <label class="flex items-center gap-2 text-sm font-medium text-gray-600 cursor-pointer">
-                <input type="checkbox" name="cab-type" value="luxury" class="rounded border-gray-300 text-theme-primary focus:ring-theme-primary"/>
+                <input type="checkbox" name="cab-type" value="luxury" class="rounded border-[var(--border)] text-[var(--primary)] focus:ring-theme-primary"/>
                 Luxury Executive
               </label>
             </div>
@@ -126,14 +126,14 @@
           
           <!-- Passenger filter -->
           <div>
-            <h3 class="text-xs font-bold text-theme-primary uppercase tracking-wider mb-4">Passenger Capacity</h3>
+            <h3 class="section-label text-[var(--primary)] uppercase tracking-wider mb-4">Passenger Capacity</h3>
             <div class="space-y-2">
               <label class="flex items-center gap-2 text-sm font-medium text-gray-600 cursor-pointer">
-                <input type="checkbox" name="cab-capacity" value="4" class="rounded border-gray-300 text-theme-primary focus:ring-theme-primary"/>
+                <input type="checkbox" name="cab-capacity" value="4" class="rounded border-[var(--border)] text-[var(--primary)] focus:ring-theme-primary"/>
                 Up to 4 Passengers
               </label>
               <label class="flex items-center gap-2 text-sm font-medium text-gray-600 cursor-pointer">
-                <input type="checkbox" name="cab-capacity" value="6" class="rounded border-gray-300 text-theme-primary focus:ring-theme-primary"/>
+                <input type="checkbox" name="cab-capacity" value="6" class="rounded border-[var(--border)] text-[var(--primary)] focus:ring-theme-primary"/>
                 Up to 6 Passengers
               </label>
             </div>
@@ -144,14 +144,14 @@
       <!-- VEHICLE LISTINGS -->
       <div class="w-full lg:w-3/4">
         
-        <div class="bg-white rounded-2xl border border-gray-200 p-4 mb-6 text-sm text-gray-800">
+        <div class="card p-4 mb-6 text-sm text-gray-800">
           Select your vehicle category. Prices shown are <strong>fixed and inclusive of toll/parking fees</strong>.
         </div>
 
         <div class="space-y-6" id="cab-list">
           
           <!-- Vehicle Card 1 -->
-          <article class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col md:flex-row cab-item" 
+          <article class="card overflow-hidden hover:shadow-[var(--shadow-btn)] transition flex flex-col md:flex-row cab-item" 
                    data-type="sedan" data-capacity="4" data-price="899">
             <div class="relative w-full md:w-80 h-52 md:h-auto flex-shrink-0 bg-gray-55 flex items-center justify-center text-5xl">
               🚕
@@ -159,28 +159,28 @@
             <div class="p-6 flex-grow flex flex-col justify-between">
               <div>
                 <div class="flex items-center justify-between gap-2 mb-1">
-                  <h3 class="font-bold text-gray-900 text-lg">Compact Sedan (Toyota Etios or similar)</h3>
-                  <div class="flex items-center gap-2 bg-gray-50 text-theme-primary px-2 py-1 rounded-lg text-xs font-bold flex-shrink-0">
-                    ⭐ 4.8 <span class="text-theme-primary font-medium">(2.1k reviews)</span>
+                  <h3 class="font-bold text-[var(--text-primary)] text-lg">Compact Sedan (Toyota Etios or similar)</h3>
+                  <div class="flex items-center gap-2 bg-[var(--background)] text-[var(--primary)] px-2 py-1 rounded-lg text-xs font-bold flex-shrink-0">
+                    ⭐ 4.8 <span class="text-[var(--primary)] font-medium">(2.1k reviews)</span>
                   </div>
                 </div>
-                <div class="text-xs text-theme-primary flex items-center gap-2 mb-4">
+                <div class="text-xs text-[var(--primary)] flex items-center gap-2 mb-4">
                   <span>📍 T2 & T1 Airport Pickups</span>
                 </div>
-                <p class="text-theme-primary text-sm mb-4 leading-relaxed line-clamp-2">Ideal for 1-3 passengers with standard luggage. AC, GPS tracking, and verified high hygiene standards.</p>
+                <p class="text-[var(--primary)] text-sm mb-4 leading-relaxed line-clamp-2">Ideal for 1-3 passengers with standard luggage. AC, GPS tracking, and verified high hygiene standards.</p>
                 <div class="flex flex-wrap gap-2 mb-4">
-                  <span class="text-[10px] bg-gray-100 text-gray-800 font-bold px-2 py-1 rounded-md">👤 4 Passengers</span>
-                  <span class="text-[10px] bg-gray-100 text-gray-800 font-bold px-2 py-1 rounded-md">🧳 2 Large Bags</span>
-                  <span class="text-[10px] bg-gray-55 text-theme-primary font-bold px-2 py-1 rounded-md">⚡ Instant Confirmation</span>
+                  <span class="text-[10px] bg-[var(--surface-muted)] text-gray-800 font-bold px-2 py-1 rounded-md">👤 4 Passengers</span>
+                  <span class="text-[10px] bg-[var(--surface-muted)] text-gray-800 font-bold px-2 py-1 rounded-md">🧳 2 Large Bags</span>
+                  <span class="text-[10px] bg-gray-55 text-[var(--primary)] font-bold px-2 py-1 rounded-md">⚡ Instant Confirmation</span>
                 </div>
               </div>
               <div class="pt-4 border-t border-gray-100 flex flex-wrap items-center justify-between gap-4">
                 <div class="flex items-center gap-2">
-                  <div class="text-theme-primary text-xs">Fixed Quote<br/><span class="text-lg font-black text-theme-primary">₹899</span></div>
-                  <div class="text-theme-primary text-xs border-l border-gray-200 pl-2">Wait Buffer<br/><span class="text-theme-primary font-bold">45 Mins Free</span></div>
+                  <div class="text-[var(--primary)] text-xs">Fixed Quote<br/><span class="text-lg font-black text-[var(--primary)]">₹899</span></div>
+                  <div class="text-[var(--primary)] text-xs border-l border-[var(--border-light)] pl-2">Wait Buffer<br/><span class="text-[var(--primary)] font-bold">45 Mins Free</span></div>
                 </div>
                 <div class="flex items-center gap-2">
-                  <a href="service-details.html?type=transfer&id=sedan" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold text-xs rounded-xl transition">View Details</a>
+                  <a href="service-details.html?type=transfer&id=sedan" class="px-4 py-2 bg-[var(--surface-muted)] hover:bg-gray-200 text-[var(--text-secondary)] font-bold text-xs rounded-xl transition">View Details</a>
                   <button type="button" onclick="layoverx.addToItinerary('transfer', 'sedan')" class="btn btn-primary">Add to Itinerary</button>
                 </div>
               </div>
@@ -188,7 +188,7 @@
           </article>
 
           <!-- Vehicle Card 2 -->
-          <article class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col md:flex-row cab-item" 
+          <article class="card overflow-hidden hover:shadow-[var(--shadow-btn)] transition flex flex-col md:flex-row cab-item" 
                    data-type="suv" data-capacity="6" data-price="1499">
             <div class="relative w-full md:w-80 h-52 md:h-auto flex-shrink-0 bg-gray-55 flex items-center justify-center text-5xl">
               🚙
@@ -196,28 +196,28 @@
             <div class="p-6 flex-grow flex flex-col justify-between">
               <div>
                 <div class="flex items-center justify-between gap-2 mb-1">
-                  <h3 class="font-bold text-gray-900 text-lg">Premium SUV (Toyota Innova Crysta)</h3>
-                  <div class="flex items-center gap-2 bg-gray-50 text-theme-primary px-2 py-1 rounded-lg text-xs font-bold flex-shrink-0">
-                    ⭐ 4.9 <span class="text-theme-primary font-medium">(1.8k reviews)</span>
+                  <h3 class="font-bold text-[var(--text-primary)] text-lg">Premium SUV (Toyota Innova Crysta)</h3>
+                  <div class="flex items-center gap-2 bg-[var(--background)] text-[var(--primary)] px-2 py-1 rounded-lg text-xs font-bold flex-shrink-0">
+                    ⭐ 4.9 <span class="text-[var(--primary)] font-medium">(1.8k reviews)</span>
                   </div>
                 </div>
-                <div class="text-xs text-theme-primary flex items-center gap-2 mb-4">
+                <div class="text-xs text-[var(--primary)] flex items-center gap-2 mb-4">
                   <span>📍 T2 & T1 Airport Pickups</span>
                 </div>
-                <p class="text-theme-primary text-sm mb-4 leading-relaxed line-clamp-2">Extra room, premium comfort, great for families. AC, high luggage capacity, and professional English-speaking drivers.</p>
+                <p class="text-[var(--primary)] text-sm mb-4 leading-relaxed line-clamp-2">Extra room, premium comfort, great for families. AC, high luggage capacity, and professional English-speaking drivers.</p>
                 <div class="flex flex-wrap gap-2 mb-4">
-                  <span class="text-[10px] bg-gray-100 text-gray-800 font-bold px-2 py-1 rounded-md">👤 6 Passengers</span>
-                  <span class="text-[10px] bg-gray-100 text-gray-800 font-bold px-2 py-1 rounded-md">🧳 4 Large Bags</span>
-                  <span class="text-[10px] bg-gray-55 text-theme-primary font-bold px-2 py-1 rounded-md">⭐ Popular Choice</span>
+                  <span class="text-[10px] bg-[var(--surface-muted)] text-gray-800 font-bold px-2 py-1 rounded-md">👤 6 Passengers</span>
+                  <span class="text-[10px] bg-[var(--surface-muted)] text-gray-800 font-bold px-2 py-1 rounded-md">🧳 4 Large Bags</span>
+                  <span class="text-[10px] bg-gray-55 text-[var(--primary)] font-bold px-2 py-1 rounded-md">⭐ Popular Choice</span>
                 </div>
               </div>
               <div class="pt-4 border-t border-gray-100 flex flex-wrap items-center justify-between gap-4">
                 <div class="flex items-center gap-2">
-                  <div class="text-theme-primary text-xs">Fixed Quote<br/><span class="text-lg font-black text-theme-primary">₹1,499</span></div>
-                  <div class="text-theme-primary text-xs border-l border-gray-200 pl-2">Wait Buffer<br/><span class="text-theme-primary font-bold">45 Mins Free</span></div>
+                  <div class="text-[var(--primary)] text-xs">Fixed Quote<br/><span class="text-lg font-black text-[var(--primary)]">₹1,499</span></div>
+                  <div class="text-[var(--primary)] text-xs border-l border-[var(--border-light)] pl-2">Wait Buffer<br/><span class="text-[var(--primary)] font-bold">45 Mins Free</span></div>
                 </div>
                 <div class="flex items-center gap-2">
-                  <a href="service-details.html?type=transfer&id=suv" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold text-xs rounded-xl transition">View Details</a>
+                  <a href="service-details.html?type=transfer&id=suv" class="px-4 py-2 bg-[var(--surface-muted)] hover:bg-gray-200 text-[var(--text-secondary)] font-bold text-xs rounded-xl transition">View Details</a>
                   <button type="button" onclick="layoverx.addToItinerary('transfer', 'suv')" class="btn btn-primary">Add to Itinerary</button>
                 </div>
               </div>
@@ -225,7 +225,7 @@
           </article>
 
           <!-- Vehicle Card 3 -->
-          <article class="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col md:flex-row cab-item" 
+          <article class="card overflow-hidden hover:shadow-[var(--shadow-btn)] transition flex flex-col md:flex-row cab-item" 
                    data-type="luxury" data-capacity="4" data-price="3499">
             <div class="relative w-full md:w-80 h-52 md:h-auto flex-shrink-0 bg-gray-55 flex items-center justify-center text-5xl">
               ✨
@@ -233,28 +233,28 @@
             <div class="p-6 flex-grow flex flex-col justify-between">
               <div>
                 <div class="flex items-center justify-between gap-2 mb-1">
-                  <h3 class="font-bold text-gray-900 text-lg">Luxury Executive (Mercedes C-Class or Audi A4)</h3>
-                  <div class="flex items-center gap-2 bg-gray-50 text-theme-primary px-2 py-1 rounded-lg text-xs font-bold flex-shrink-0">
-                    ⭐ 4.9 <span class="text-theme-primary font-medium">(840 reviews)</span>
+                  <h3 class="font-bold text-[var(--text-primary)] text-lg">Luxury Executive (Mercedes C-Class or Audi A4)</h3>
+                  <div class="flex items-center gap-2 bg-[var(--background)] text-[var(--primary)] px-2 py-1 rounded-lg text-xs font-bold flex-shrink-0">
+                    ⭐ 4.9 <span class="text-[var(--primary)] font-medium">(840 reviews)</span>
                   </div>
                 </div>
-                <div class="text-xs text-theme-primary flex items-center gap-2 mb-4">
+                <div class="text-xs text-[var(--primary)] flex items-center gap-2 mb-4">
                   <span>📍 T2 arrivals gate meet service</span>
                 </div>
-                <p class="text-theme-primary text-sm mb-4 leading-relaxed line-clamp-2">Chauffeur-driven luxury class vehicle. Leather seats, airport exit gate placard meet and greet service included.</p>
+                <p class="text-[var(--primary)] text-sm mb-4 leading-relaxed line-clamp-2">Chauffeur-driven luxury class vehicle. Leather seats, airport exit gate placard meet and greet service included.</p>
                 <div class="flex flex-wrap gap-2 mb-4">
-                  <span class="text-[10px] bg-gray-100 text-gray-800 font-bold px-2 py-1 rounded-md">👤 4 Passengers</span>
-                  <span class="text-[10px] bg-gray-100 text-gray-800 font-bold px-2 py-1 rounded-md">🧳 2 Large Bags</span>
-                  <span class="text-[10px] bg-gray-55 text-theme-primary font-bold px-2 py-1 rounded-md">✨ Premium Chauffeur</span>
+                  <span class="text-[10px] bg-[var(--surface-muted)] text-gray-800 font-bold px-2 py-1 rounded-md">👤 4 Passengers</span>
+                  <span class="text-[10px] bg-[var(--surface-muted)] text-gray-800 font-bold px-2 py-1 rounded-md">🧳 2 Large Bags</span>
+                  <span class="text-[10px] bg-gray-55 text-[var(--primary)] font-bold px-2 py-1 rounded-md">✨ Premium Chauffeur</span>
                 </div>
               </div>
               <div class="pt-4 border-t border-gray-100 flex flex-wrap items-center justify-between gap-4">
                 <div class="flex items-center gap-2">
-                  <div class="text-theme-primary text-xs">Fixed Quote<br/><span class="text-lg font-black text-theme-primary">₹3,499</span></div>
-                  <div class="text-theme-primary text-xs border-l border-gray-200 pl-2">Wait Buffer<br/><span class="text-theme-primary font-bold">45 Mins Free</span></div>
+                  <div class="text-[var(--primary)] text-xs">Fixed Quote<br/><span class="text-lg font-black text-[var(--primary)]">₹3,499</span></div>
+                  <div class="text-[var(--primary)] text-xs border-l border-[var(--border-light)] pl-2">Wait Buffer<br/><span class="text-[var(--primary)] font-bold">45 Mins Free</span></div>
                 </div>
                 <div class="flex items-center gap-2">
-                  <a href="service-details.html?type=transfer&id=luxury" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold text-xs rounded-xl transition">View Details</a>
+                  <a href="service-details.html?type=transfer&id=luxury" class="px-4 py-2 bg-[var(--surface-muted)] hover:bg-gray-200 text-[var(--text-secondary)] font-bold text-xs rounded-xl transition">View Details</a>
                   <button type="button" onclick="layoverx.addToItinerary('transfer', 'luxury')" class="btn btn-primary">Add to Itinerary</button>
                 </div>
               </div>
@@ -262,10 +262,10 @@
           </article>
         </div>
 
-        <div id="cab-empty" class="bg-white rounded-2xl border border-gray-200 p-12 text-center hidden">
-          <h3 class="text-base font-bold text-gray-900 mb-1">No Vehicles Found</h3>
-          <p class="text-theme-primary text-sm mb-4">No matching vehicles fit your selected filters. Try adjusting passenger choices.</p>
-          <button type="button" onclick="layoverx.clearCabFilters()" class="px-4 py-2 bg-theme-primary text-white text-xs font-bold rounded-xl shadow-md">Reset Filters</button>
+        <div id="cab-empty" class="card p-12 text-center hidden">
+          <h3 class="text-base font-bold text-[var(--text-primary)] mb-1">No Vehicles Found</h3>
+          <p class="text-[var(--primary)] text-sm mb-4">No matching vehicles fit your selected filters. Try adjusting passenger choices.</p>
+          <button type="button" onclick="layoverx.clearCabFilters()" class="px-4 py-2 bg-theme-primary text-white text-xs font-bold rounded-xl shadow-[var(--shadow-btn)]">Reset Filters</button>
         </div>
 
       </div>
@@ -274,54 +274,54 @@
 </section>
 
 <!-- AIRPORT PICKUP INFORMATION -->
-<section class="section bg-white border-t border-gray-100" id="pickup-info">
+<section class="section bg-[var(--surface)] border-t border-gray-100" id="pickup-info">
   <div class="container max-w-4xl">
     <div class="text-center mb-12">
-      <span class="inline-block text-theme-primary font-bold text-sm uppercase tracking-wider mb-2">Important Guide</span>
-      <h2 class="text-3xl font-extrabold text-gray-900">How to Meet Your Driver at CSMIA T2</h2>
+      <span class="section-label text-[var(--primary)] font-bold text-sm uppercase tracking-wider mb-2">Important Guide</span>
+      <h2 class="section-title">How to Meet Your Driver at CSMIA T2</h2>
     </div>
     
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-      <div class="bg-gray-50 p-6 rounded-2xl border border-gray-200">
-        <div class="w-12 h-12 bg-theme-primary text-white rounded-xl flex items-center justify-center mx-auto mb-4 text-lg font-bold">1</div>
-        <h3 class="font-bold text-gray-900 mb-2 text-sm">Clear Immigration</h3>
-        <p class="text-theme-primary text-xs leading-relaxed">Proceed to immigration. Clear passport control using your transit visa (approx. 20-30 mins wait time).</p>
+    <div class="grid-3 text-center">
+      <div class="bg-[var(--background)] p-6 rounded-[var(--radius-lg)] border border-[var(--border-light)]">
+        <div class="w-12 h-12 bg-theme-primary text-white rounded-[var(--radius-lg)] flex items-center justify-center mx-auto mb-4 text-lg font-bold">1</div>
+        <h3 class="font-bold text-[var(--text-primary)] mb-2 text-sm">Clear Immigration</h3>
+        <p class="text-[var(--primary)] text-xs leading-relaxed">Proceed to immigration. Clear passport control using your transit visa (approx. 20-30 mins wait time).</p>
       </div>
-      <div class="bg-gray-50 p-6 rounded-2xl border border-gray-200">
-        <div class="w-12 h-12 bg-theme-primary text-white rounded-xl flex items-center justify-center mx-auto mb-4 text-lg font-bold">2</div>
-        <h3 class="font-bold text-gray-900 mb-2 text-sm">Exit Gate 2</h3>
-        <p class="text-theme-primary text-xs leading-relaxed">Collect baggage if checked in, then exit the arrival hall and head straight toward Exit Gate 2.</p>
+      <div class="bg-[var(--background)] p-6 rounded-[var(--radius-lg)] border border-[var(--border-light)]">
+        <div class="w-12 h-12 bg-theme-primary text-white rounded-[var(--radius-lg)] flex items-center justify-center mx-auto mb-4 text-lg font-bold">2</div>
+        <h3 class="font-bold text-[var(--text-primary)] mb-2 text-sm">Exit Gate 2</h3>
+        <p class="text-[var(--primary)] text-xs leading-relaxed">Collect baggage if checked in, then exit the arrival hall and head straight toward Exit Gate 2.</p>
       </div>
-      <div class="bg-gray-50 p-6 rounded-2xl border border-gray-200">
-        <div class="w-12 h-12 bg-theme-primary text-white rounded-xl flex items-center justify-center mx-auto mb-4 text-lg font-bold">3</div>
-        <h3 class="font-bold text-gray-900 mb-2 text-sm">Spot Name Placard</h3>
-        <p class="text-theme-primary text-xs leading-relaxed">Your driver will be waiting in the arrivals placard zone with a LayoverX banner showing your name.</p>
+      <div class="bg-[var(--background)] p-6 rounded-[var(--radius-lg)] border border-[var(--border-light)]">
+        <div class="w-12 h-12 bg-theme-primary text-white rounded-[var(--radius-lg)] flex items-center justify-center mx-auto mb-4 text-lg font-bold">3</div>
+        <h3 class="font-bold text-[var(--text-primary)] mb-2 text-sm">Spot Name Placard</h3>
+        <p class="text-[var(--primary)] text-xs leading-relaxed">Your driver will be waiting in the arrivals placard zone with a LayoverX banner showing your name.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- FAQ -->
-<section class="section bg-gray-50 border-t border-gray-100">
+<section class="section bg-[var(--background)] border-t border-gray-100">
   <div class="container max-w-4xl">
     <div class="text-center mb-12">
-      <span class="inline-block text-theme-primary font-bold text-sm uppercase tracking-wider mb-2">Transit Cab Info</span>
-      <h2 class="text-3xl font-extrabold text-gray-900">Airport Taxi FAQ</h2>
+      <span class="section-label text-[var(--primary)] font-bold text-sm uppercase tracking-wider mb-2">Transit Cab Info</span>
+      <h2 class="section-title">Airport Taxi FAQ</h2>
     </div>
     <div class="space-y-6">
-      <details class="group bg-white rounded-2xl border border-gray-200 p-4 cursor-pointer">
-        <summary class="flex items-center justify-between text-base font-bold text-gray-900 list-none">
+      <details class="group card p-4 cursor-pointer">
+        <summary class="flex items-center justify-between text-base font-bold text-[var(--text-primary)] list-none">
           What happens if my landing flight is delayed?
-          <span class="text-theme-primary group-open:rotate-180 transition-transform duration-200">▼</span>
+          <span class="text-[var(--primary)] group-open:rotate-180 transition-transform duration-200">▼</span>
         </summary>
         <p class="text-gray-800 text-sm mt-4 leading-relaxed">
           We track your flight number in real-time. If your flight is delayed or reaches early, our pickup schedule adjusts automatically. There are zero extra charges for flight delays.
         </p>
       </details>
-      <details class="group bg-white rounded-2xl border border-gray-200 p-4 cursor-pointer">
-        <summary class="flex items-center justify-between text-base font-bold text-gray-900 list-none">
+      <details class="group card p-4 cursor-pointer">
+        <summary class="flex items-center justify-between text-base font-bold text-[var(--text-primary)] list-none">
           Do these quotes include Bandra-Worli Sea Link tolls?
-          <span class="text-theme-primary group-open:rotate-180 transition-transform duration-200">▼</span>
+          <span class="text-[var(--primary)] group-open:rotate-180 transition-transform duration-200">▼</span>
         </summary>
         <p class="text-gray-800 text-sm mt-4 leading-relaxed">
           Yes! All taxi quotes shown are flat-rate and include highway tolls, airport terminal entry park fees, and driver allowances. The price you book is the final price.

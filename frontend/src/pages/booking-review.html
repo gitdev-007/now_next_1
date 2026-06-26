@@ -20,25 +20,25 @@
   </div>
 </section>
 
-<section class="section bg-slate-50 min-h-screen">
+<section class="section bg-[var(--background)] min-h-screen">
   <div class="container">
     <div class="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
       
       <!-- Left Column (Review Itinerary Items List) -->
       <div class="lg:col-span-8 space-y-6">
-        <div class="bg-white rounded-3xl border border-gray-200 p-6 sm:p-8 shadow-sm">
-          <h2 class="text-lg font-bold text-slate-900 mb-6 flex items-center gap-2">
+        <div class="card p-6 sm:p-8">
+          <h2 class="text-lg font-bold text-[var(--text-primary)] mb-6 flex items-center gap-2">
             <span>🛒</span> Selected Services Review
           </h2>
           
           <div id="booking-review-list" class="space-y-4">
             <!-- Dynamically populated via JS -->
-            <p class="text-slate-500 italic text-center py-6">No items in your active itinerary. Go back to select services.</p>
+            <p class="text-[var(--text-muted)] italic text-center py-6">No items in your active itinerary. Go back to select services.</p>
           </div>
         </div>
 
         <div class="flex items-center justify-between">
-          <a href="my-itinerary.html" class="btn btn-ghost border border-gray-200">Back to Workspace</a>
+          <a href="my-itinerary.html" class="btn btn-ghost border border-[var(--border-light)]">Back to Workspace</a>
           <a href="checkout.html" class="btn btn-primary flex items-center gap-1">
             Proceed to Traveler Details &rarr;
           </a>
@@ -47,32 +47,32 @@
 
       <!-- Right Column (Price Summary & Protection) -->
       <div class="lg:col-span-4 space-y-6">
-        <div class="bg-white rounded-3xl border border-gray-200 p-6 shadow-md space-y-6">
-          <h3 class="text-sm font-bold text-slate-900 uppercase tracking-widest">Pricing Summary</h3>
+        <div class="card p-6 space-y-6">
+          <h3 class="text-sm font-bold text-[var(--text-primary)] uppercase tracking-widest">Pricing Summary</h3>
           
           <div class="space-y-4 text-xs text-slate-650" id="review-costs-breakdown">
             <!-- Dynamically populated price breakdown -->
           </div>
 
           <!-- Promo Code Input -->
-          <div class="pt-2 border-t border-slate-100">
-            <label for="coupon-code-input" class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Have a Promo Code?</label>
+          <div class="pt-2 border-t border-[var(--border-light)]">
+            <label for="coupon-code-input" class="block text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-wider mb-1">Have a Promo Code?</label>
             <div class="flex gap-2">
-              <input type="text" id="coupon-code-input" class="bg-slate-50 border border-slate-200 rounded-lg px-2 py-2 text-xs text-slate-800 uppercase focus:ring-1 focus:ring-sky-500 flex-grow" placeholder="e.g. WELCOME10"/>
+              <input type="text" id="coupon-code-input" class="dashboard-form-input text-xs uppercase flex-grow" placeholder="e.g. WELCOME10"/>
               <button type="button" onclick="applyCouponCode()" class="px-4 py-2 bg-sky-650 hover:bg-theme-primary text-white rounded-lg text-xs font-bold transition">Apply</button>
             </div>
             <div id="coupon-msg" class="text-[10px] font-bold mt-1 hidden"></div>
           </div>
           
-          <hr class="border-gray-100"/>
+          <hr class="border-[var(--border-light)]"/>
           
           <div class="flex justify-between items-baseline">
-            <span class="text-sm font-bold text-slate-800">Total Price</span>
-            <span class="text-2xl font-black text-theme-primary" id="review-total-price">₹0</span>
+            <span class="text-sm font-bold text-[var(--text-primary)]">Total Price</span>
+            <span class="text-2xl font-black text-[var(--primary)]" id="review-total-price">₹0</span>
           </div>
         </div>
 
-        <div class="bg-emerald-50/40 border border-sky-100 rounded-3xl p-6 shadow-sm space-y-4">
+        <div class="bg-emerald-50/40 border border-sky-100 rounded-xl p-6 shadow-[var(--shadow-card)] space-y-4">
           <h3 class="font-bold text-sm text-sky-900 flex items-center gap-2">🛡️ LayoverX Protection</h3>
           <p class="text-xs text-theme-primary leading-relaxed">
             Missed flight connection protection included. If your airline delays landing, your room slot and chauffeur adjustments are done automatically.
@@ -133,8 +133,8 @@
 
     if (itinerary.length === 0) {
       listEl.innerHTML = `
-        <div class="text-center py-8 text-slate-500">
-          <p class="font-semibold">Your itinerary is empty</p>
+        <div class="empty-state">
+          <p class="empty-state-title">Your itinerary is empty</p>
           <a href="plan-my-layover.html" class="mt-4 inline-block px-4 py-2 bg-slate-900 hover:bg-black text-white text-xs font-bold rounded-xl">Add Services Now</a>
         </div>
       `;
@@ -151,15 +151,15 @@
     listEl.innerHTML = '';
     calculations.itemPricingDetails.forEach(item => {
       listEl.innerHTML += `
-        <div class="flex items-center gap-4 bg-slate-50 border border-slate-200/60 p-4 rounded-2xl">
-          <div class="w-12 h-12 bg-sky-100 text-theme-primary text-lg rounded-xl flex items-center justify-center flex-shrink-0">
+        <div class="flex items-center gap-4 bg-[var(--surface-muted)] border border-[var(--border-light)] p-4 rounded-[var(--radius-lg)]">
+          <div class="w-12 h-12 bg-sky-100 text-[var(--primary)] text-lg rounded-xl flex items-center justify-center flex-shrink-0">
             ${item.type === 'hotel' ? '🏨' : item.type === 'dining' ? '🍽️' : item.type === 'transfer' ? '🚖' : '📸'}
           </div>
           <div class="flex-grow min-w-0">
-            <h4 class="font-bold text-slate-900 text-sm truncate">${item.name}</h4>
-            <span class="text-xs text-slate-500 capitalize">${item.type} • unit price: ₹${item.finalItemUnitPrice.toFixed(2)}</span>
+            <h4 class="font-bold text-[var(--text-primary)] text-sm truncate">${item.name}</h4>
+            <span class="text-xs text-[var(--text-muted)] capitalize">${item.type} • unit price: ₹${item.finalItemUnitPrice.toFixed(2)}</span>
           </div>
-          <strong class="font-bold text-slate-900 text-sm whitespace-nowrap">₹${item.finalTotalCost.toFixed(2)}</strong>
+          <strong class="font-bold text-[var(--text-primary)] text-sm whitespace-nowrap">₹${item.finalTotalCost.toFixed(2)}</strong>
         </div>
       `;
     });
@@ -168,7 +168,7 @@
     breakdownEl.innerHTML += `
       <div class="flex justify-between font-medium">
         <span>Itinerary Subtotal</span>
-        <strong class="text-slate-800">₹${calculations.subtotal.toFixed(2)}</strong>
+        <strong class="text-[var(--text-primary)]">₹${calculations.subtotal.toFixed(2)}</strong>
       </div>
     `;
 

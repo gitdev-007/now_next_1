@@ -39,5 +39,8 @@
 /* 12. Animations (reveal, skeleton, reduced motion) */
 @import "./animations.css";
 
-/* 13. Responsive typography overrides */
+/* 13. Hero section */
+@import "./hero.css";
+
+/* 14. Responsive typography overrides */
 @import "./responsive.css";

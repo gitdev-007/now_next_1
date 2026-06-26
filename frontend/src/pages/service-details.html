@@ -22,22 +22,22 @@
   </div>
 </div>
 
-<section class="section bg-slate-50 min-h-screen">
+<section class="section bg-[var(--background)] min-h-screen">
   <div class="container">
     <!-- Skeleton Loader -->
-    <div id="details-skeleton" class="space-y-8 animate-pulse">
+    <div id="details-skeleton" class="loading-state space-y-8">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
         <div class="lg:col-span-8 space-y-6">
-          <div class="w-full h-96 bg-gray-200 rounded-2xl"></div>
-          <div class="h-6 w-1/4 bg-gray-200 rounded"></div>
+          <div class="w-full h-96 bg-[var(--surface-muted)] rounded-[var(--radius-lg)] loading-skeleton"></div>
+          <div class="h-6 w-1/4 bg-[var(--surface-muted)] rounded loading-skeleton"></div>
           <div class="space-y-2">
-            <div class="h-4 w-full bg-gray-200 rounded"></div>
-            <div class="h-4 w-5/6 bg-gray-200 rounded"></div>
-            <div class="h-4 w-4/5 bg-gray-200 rounded"></div>
+            <div class="h-4 w-full bg-[var(--surface-muted)] rounded loading-skeleton"></div>
+            <div class="h-4 w-5/6 bg-[var(--surface-muted)] rounded loading-skeleton"></div>
+            <div class="h-4 w-4/5 bg-[var(--surface-muted)] rounded loading-skeleton"></div>
           </div>
         </div>
         <div class="lg:col-span-4">
-          <div class="w-full h-80 bg-gray-200 rounded-2xl"></div>
+          <div class="w-full h-80 bg-[var(--surface-muted)] rounded-[var(--radius-lg)] loading-skeleton"></div>
         </div>
       </div>
     </div>
@@ -47,13 +47,13 @@
       <!-- Left Column -->
       <div class="lg:col-span-8 space-y-8">
         <!-- Main Image Card -->
-        <div class="bg-white rounded-3xl border border-gray-100 overflow-hidden shadow-sm">
+        <div class="card overflow-hidden">
           <div class="aspect-[16/9] w-full relative">
             <img id="details-main-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Service Hero" class="w-full h-full object-cover"/>
           </div>
           <!-- Highlights List -->
-          <div class="p-6 sm:p-8 border-t border-gray-55">
-            <h2 class="text-lg sm:text-xl font-bold text-slate-900 mb-4">Highlights</h2>
+          <div class="p-6 sm:p-8 border-t border-[var(--border-light)]">
+            <h2 class="section-title mb-4">Highlights</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" id="details-highlights">
               <!-- Dynamically loaded highlights -->
             </div>
@@ -61,29 +61,29 @@
         </div>
 
         <!-- Description -->
-        <div class="bg-white rounded-3xl border border-gray-100 p-6 sm:p-8 shadow-sm space-y-4">
-          <h2 class="text-lg sm:text-xl font-bold text-slate-900">About this Experience</h2>
+        <div class="card p-6 sm:p-8 space-y-4">
+          <h2 class="section-title">About this Experience</h2>
           <p id="details-description" class="text-slate-650 text-sm leading-relaxed"></p>
         </div>
 
         <!-- Amenities -->
-        <div class="bg-white rounded-3xl border border-gray-100 p-6 sm:p-8 shadow-sm">
-          <h2 class="text-lg sm:text-xl font-bold text-slate-900 mb-6">What is Included</h2>
+        <div class="card p-6 sm:p-8">
+          <h2 class="section-title mb-6">What is Included</h2>
           <ul class="grid grid-cols-2 sm:grid-cols-3 gap-4" id="details-amenities-list">
             <!-- Dynamically Loaded -->
           </ul>
         </div>
 
         <!-- Reviews section -->
-        <div class="bg-white rounded-3xl border border-gray-100 p-6 sm:p-8 shadow-sm space-y-6">
-          <div class="flex items-center justify-between gap-4 border-b border-gray-55 pb-6">
+        <div class="card p-6 sm:p-8 space-y-6">
+          <div class="flex items-center justify-between gap-4 border-b border-[var(--border-light)] pb-6">
             <div>
-              <h2 class="text-lg sm:text-xl font-bold text-slate-900">Guest Reviews</h2>
-              <p class="text-xs text-slate-500 mt-1">Verified traveler feedback & ratings</p>
+              <h2 class="section-title">Guest Reviews</h2>
+              <p class="text-xs text-[var(--text-muted)] mt-1">Verified traveler feedback & ratings</p>
             </div>
             <div class="text-right">
-              <span id="details-avg-score" class="text-3xl font-extrabold text-slate-900">4.8</span>
-              <span class="text-sm font-bold text-slate-500">/ 5.0</span>
+              <span id="details-avg-score" class="text-3xl font-extrabold text-[var(--text-primary)]">4.8</span>
+              <span class="text-sm font-bold text-[var(--text-muted)]">/ 5.0</span>
               <div id="details-stars-stars" class="text-xs text-amber-500 mt-1">★★★★★</div>
             </div>
           </div>
@@ -94,28 +94,28 @@
         </div>
 
         <!-- Complementary Services Section -->
-        <div class="bg-gradient-to-r from-sky-50 to-indigo-50 rounded-3xl border border-sky-100 p-6 sm:p-8 shadow-sm mt-8">
+        <div class="bg-gradient-to-r from-sky-50 to-indigo-50 rounded-[var(--radius-xl)] border border-sky-100 p-6 sm:p-8 shadow-[var(--shadow-card)] mt-8">
           <div class="flex items-center gap-4 mb-6">
             <span class="text-2xl">✨</span>
-            <h2 class="text-lg sm:text-xl font-bold text-slate-900">Make the most of your layover</h2>
+            <h2 class="section-title">Make the most of your layover</h2>
           </div>
           <p class="text-xs text-slate-600 mb-6">Travelers who booked this also considered adding these to their itinerary.</p>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <a href="airport-transfers.html" class="block bg-white rounded-2xl p-4 border border-gray-100 hover:border-sky-300 hover:shadow-md transition">
+            <a href="airport-transfers.html" class="block bg-[var(--surface)] rounded-[var(--radius-lg)] p-4 border border-[var(--border-light)] hover:border-sky-300 hover:shadow-[var(--shadow-btn)] transition">
               <div class="flex items-center gap-4">
                 <div class="w-12 h-12 bg-sky-100 rounded-xl flex items-center justify-center text-xl">🚕</div>
                 <div>
-                  <h4 class="font-bold text-sm text-slate-900">Airport Transfer</h4>
-                  <p class="text-[10px] text-slate-500 mt-1">Hassle-free rides</p>
+                  <h4 class="font-bold text-sm text-[var(--text-primary)]">Airport Transfer</h4>
+                  <p class="text-[10px] text-[var(--text-muted)] mt-1">Hassle-free rides</p>
                 </div>
               </div>
             </a>
-            <a href="spa-wellness.html" class="block bg-white rounded-2xl p-4 border border-gray-100 hover:border-sky-300 hover:shadow-md transition">
+            <a href="spa-wellness.html" class="block bg-[var(--surface)] rounded-[var(--radius-lg)] p-4 border border-[var(--border-light)] hover:border-sky-300 hover:shadow-[var(--shadow-btn)] transition">
               <div class="flex items-center gap-4">
                 <div class="w-12 h-12 bg-rose-100 rounded-xl flex items-center justify-center text-xl">💆</div>
                 <div>
-                  <h4 class="font-bold text-sm text-slate-900">Lounge & Spa</h4>
-                  <p class="text-[10px] text-slate-500 mt-1">Relax before boarding</p>
+                  <h4 class="font-bold text-sm text-[var(--text-primary)]">Lounge & Spa</h4>
+                  <p class="text-[10px] text-[var(--text-muted)] mt-1">Relax before boarding</p>
                 </div>
               </div>
             </a>
@@ -125,55 +125,55 @@
 
       <!-- Right Column (Sticky Reservation Widget) -->
       <div class="lg:col-span-4 sticky top-40 space-y-6">
-        <div class="bg-white rounded-3xl border border-gray-200 p-6 sm:p-8 shadow-xl relative overflow-hidden">
+        <div class="card p-6 sm:p-8 relative overflow-hidden">
           <div class="absolute top-0 left-0 right-0 h-1.5 bg-emerald-50/400" id="details-accent-bar"></div>
           
           <div class="flex items-baseline justify-between mb-4">
-            <span class="text-xs font-bold text-slate-500 uppercase tracking-widest">Starting Price</span>
+            <span class="text-xs font-bold text-[var(--text-muted)] uppercase tracking-widest">Starting Price</span>
             <div>
-              <span class="text-2xl sm:text-3xl font-black text-slate-900" id="details-card-price">₹--</span>
-              <span class="text-xs font-semibold text-slate-500" id="details-price-unit">/ slot</span>
+              <span class="text-2xl sm:text-3xl font-black text-[var(--text-primary)]" id="details-card-price">₹--</span>
+              <span class="text-xs font-semibold text-[var(--text-muted)]" id="details-price-unit">/ slot</span>
             </div>
           </div>
 
-          <hr class="border-gray-100 my-4"/>
+          <hr class="border-[var(--border-light)] my-4"/>
 
           <!-- Selection details display -->
-          <div class="space-y-4.5 text-xs text-slate-700 bg-slate-50 rounded-2xl p-4 border border-slate-100">
+          <div class="space-y-4.5 text-xs text-[var(--text-secondary)] bg-[var(--surface-muted)] rounded-[var(--radius-lg)] p-4 border border-slate-100">
             <div class="flex justify-between items-center">
               <span>✈️ Active Location:</span>
-              <strong class="font-bold text-slate-900" id="details-active-loc">Mumbai Airport</strong>
+              <strong class="font-bold text-[var(--text-primary)]" id="details-active-loc">Mumbai Airport</strong>
             </div>
             <div class="flex justify-between items-center">
               <span>👥 Travelers:</span>
-              <strong class="font-bold text-slate-900" id="details-active-guests">2 Guests</strong>
+              <strong class="font-bold text-[var(--text-primary)]" id="details-active-guests">2 Guests</strong>
             </div>
             <div class="flex justify-between items-center" id="details-active-duration-row">
               <span>⏱️ Stay/Slot Hours:</span>
-              <strong class="font-bold text-slate-900" id="details-active-duration">6h</strong>
+              <strong class="font-bold text-[var(--text-primary)]" id="details-active-duration">6h</strong>
             </div>
             <div class="flex justify-between items-center">
               <span>🕒 Estimated Timing:</span>
-              <strong class="font-bold text-slate-900" id="details-active-time">Flexible</strong>
+              <strong class="font-bold text-[var(--text-primary)]" id="details-active-time">Flexible</strong>
             </div>
           </div>
 
           <div class="mt-6 space-y-4">
-            <button type="button" id="details-add-itinerary" class="w-full py-4.5 bg-emerald-50/40 hover:bg-sky-100 border border-sky-200 text-theme-primary font-extrabold text-sm rounded-xl transition shadow-sm hover:scale-[1.01] flex items-center justify-center gap-2">
+            <button type="button" id="details-add-itinerary" class="w-full py-4.5 bg-emerald-50/40 hover:bg-sky-100 border border-sky-200 text-[var(--primary)] font-extrabold text-sm rounded-[var(--radius-lg)] transition shadow-[var(--shadow-card)] hover:scale-[1.01] flex items-center justify-center gap-2">
               ➕ Add to Itinerary
             </button>
-            <button type="button" id="details-book-instant" class="w-full py-4.5 bg-gray-900 hover:bg-black text-white font-extrabold text-sm rounded-xl transition shadow-lg hover:scale-[1.01] flex items-center justify-center gap-2">
+            <button type="button" id="details-book-instant" class="btn btn-primary w-full">
               ⚡ Book Instantly
             </button>
           </div>
 
-          <p class="text-[10px] text-center text-slate-500 mt-4 leading-normal">
+          <p class="text-[10px] text-center text-[var(--text-muted)] mt-4 leading-normal">
             No booking fees. Cancel free up to 3 hours before arrival slot.
           </p>
         </div>
 
         <!-- Help Widget -->
-        <div class="bg-slate-900 text-white rounded-3xl p-6 shadow-md border border-white/10 relative overflow-hidden">
+        <div class="bg-slate-900 text-white rounded-[var(--radius-xl)] p-6 shadow-[var(--shadow-btn)] border border-white/10 relative overflow-hidden">
           <div class="absolute -top-12 -right-12 w-28 h-28 bg-white/5 rounded-full blur-xl"></div>
           <h3 class="font-bold text-base mb-1">Stopover Support</h3>
           <p class="text-xs text-white/70 leading-relaxed mb-4">Need help planning visa requirements or baggage storage for this experience?</p>
