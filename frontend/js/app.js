@@ -2631,8 +2631,6 @@
       checkAndCreateLock();
       initCrossTabSync();
     }
-
-    console.log('%c LayoverX Premium Portal Activated ✈️ ', 'background:#0ea5e9;color:#fff;font-weight:bold;padding:4px 8px;border-radius:4px');
   }
 
   /* ===== EXTENDED MARKETPLACE ENGINE ===== */
@@ -5051,8 +5049,6 @@
       // Ignore stale events older than 10 seconds (e.g. leftover from previous sessions)
       if ((Date.now() - evt.ts) > 10000) return;
 
-      console.log('[CrossTabSync] Received event from another tab:', evt.type);
-
       if (evt.type === 'payment_complete') {
         // Another tab successfully completed payment
         if (countdownInterval) clearInterval(countdownInterval);
@@ -5360,8 +5356,6 @@
   // --- ANALYTICS SYSTEM ---
   const Analytics = {
     async trackEvent(eventName, eventData = {}) {
-      console.log(`[Analytics Event] ${eventName}:`, eventData);
-      
       let localEvents = [];
       try {
         localEvents = JSON.parse(localStorage.getItem('layoverx_analytics_events')) || [];

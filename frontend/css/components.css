@@ -1856,3 +1856,486 @@
   font-weight: var(--fw-bold);
   color: var(--text-primary);
 }
+
+/* ==========================================================================
+   HOW IT WORKS SECTION (SPRINT 06)
+   Premium 5-step user-journey timeline.
+   ========================================================================== */
+
+.hiw-section {
+  padding: 5rem 0;
+  background: var(--surface);
+  position: relative;
+  overflow: hidden;
+}
+
+.hiw-section::before {
+  content: '';
+  position: absolute;
+  top: 20%;
+  left: -150px;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.5;
+}
+
+.hiw-section .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---- SECTION HEADER ---- */
+.hiw-header {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 3.5rem;
+}
+
+.hiw-eyebrow {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.75rem;
+  position: relative;
+}
+
+.hiw-eyebrow::after {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 3px;
+  background: var(--primary);
+  border-radius: 2px;
+  margin: 0.5rem auto 0;
+}
+
+.hiw-heading {
+  font-size: 28px;
+  font-weight: var(--fw-extrabold);
+  color: var(--text-primary);
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.hiw-subtitle {
+  font-size: 18px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* ---- TIMELINE GRID ---- */
+.hiw-timeline {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  position: relative;
+  grid-auto-rows: 1fr;
+}
+
+/* ---- DESKTOP CONNECTOR LINE ---- */
+.hiw-connector {
+  display: none;
+}
+
+/* ---- STEP CARD ---- */
+.hiw-step {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border-light);
+  border-radius: 20px;
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s ease;
+  z-index: 1;
+}
+
+.hiw-step:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px -12px rgba(15, 23, 42, 0.1);
+  border-color: rgba(2, 132, 199, 0.15);
+}
+
+.hiw-step:focus-within {
+  outline: none;
+  box-shadow: 0 20px 40px -12px rgba(15, 23, 42, 0.1),
+              0 0 0 3px var(--primary-glow),
+              0 0 0 5px var(--primary-light);
+}
+
+/* ---- STEP NUMBER BADGE ---- */
+.hiw-step-number {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: var(--text-on-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-caption);
+  font-weight: var(--fw-bold);
+  flex-shrink: 0;
+  box-shadow: 0 6px 16px -4px rgba(2, 132, 199, 0.4);
+  margin-bottom: -20px;
+  position: relative;
+  z-index: 2;
+  border: 4px solid var(--surface);
+}
+
+/* ---- STEP ICON CONTAINER ---- */
+.hiw-step-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: var(--primary-glow);
+  color: var(--primary);
+  margin-bottom: 1.25rem;
+  margin-top: 12px;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hiw-step:hover .hiw-step-icon {
+  transform: scale(1.08) rotate(-4deg);
+}
+
+.hiw-step-icon--sky {
+  background: rgba(56, 189, 248, 0.12);
+  color: #0284c7;
+}
+
+.hiw-step-icon--amber {
+  background: rgba(245, 158, 11, 0.12);
+  color: #d97706;
+}
+
+.hiw-step-icon--violet {
+  background: rgba(139, 92, 246, 0.12);
+  color: #7c3aed;
+}
+
+.hiw-step-icon--emerald {
+  background: rgba(16, 185, 129, 0.12);
+  color: #059669;
+}
+
+.hiw-step-icon--rose {
+  background: rgba(244, 63, 94, 0.12);
+  color: #e11d48;
+}
+
+/* ---- STEP TEXT ---- */
+.hiw-step-title {
+  font-size: var(--font-h4);
+  font-weight: var(--fw-bold);
+  color: var(--text-primary);
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.5rem;
+}
+
+.hiw-step-desc {
+  font-size: 15px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  max-width: 28rem;
+}
+
+/* ---- FOOTER LINK ---- */
+.hiw-footer {
+  margin-top: 3.5rem;
+  text-align: center;
+}
+
+.hiw-footer-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: var(--font-caption);
+  font-weight: var(--fw-bold);
+  color: var(--primary);
+  text-decoration: none;
+  padding: 0.625rem 1.25rem;
+  border-radius: var(--radius-pill);
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.hiw-footer-link:hover {
+  background: var(--primary-glow);
+  transform: translateY(-1px);
+}
+
+.hiw-footer-link:focus-visible {
+  outline: 3px solid var(--primary-glow);
+  outline-offset: 2px;
+}
+
+.hiw-footer-arrow {
+  transition: transform 0.2s ease;
+}
+
+.hiw-footer-link:hover .hiw-footer-arrow {
+  transform: translateX(4px);
+}
+
+/* ---- STAGGER ANIMATION ---- */
+.hiw-step.reveal:nth-child(2) { transition-delay: 0.08s; }
+.hiw-step.reveal:nth-child(3) { transition-delay: 0.16s; }
+.hiw-step.reveal:nth-child(4) { transition-delay: 0.24s; }
+.hiw-step.reveal:nth-child(5) { transition-delay: 0.32s; }
+.hiw-step.reveal:nth-child(6) { transition-delay: 0.40s; }
+
+/* ---- RESPONSIVE: TABLET (768px+) — 2 columns ---- */
+@media (min-width: 768px) {
+  .hiw-section {
+    padding: 6rem 0;
+  }
+
+  .hiw-header {
+    margin-bottom: 4rem;
+  }
+
+  .hiw-heading {
+    font-size: 34px;
+  }
+
+  .hiw-timeline {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    grid-auto-rows: 1fr;
+  }
+}
+
+/* ---- RESPONSIVE: MEDIUM DESKTOP (1024px+) — 3 columns ---- */
+@media (min-width: 1024px) {
+  .hiw-section {
+    padding: 7rem 0;
+  }
+
+  .hiw-header {
+    margin-bottom: 4.5rem;
+  }
+
+  .hiw-heading {
+    font-size: 42px;
+    letter-spacing: -0.03em;
+  }
+
+  .hiw-timeline {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+  }
+}
+
+/* ---- RESPONSIVE: LARGE DESKTOP (1280px+) — 5 columns with connector ---- */
+@media (min-width: 1280px) {
+  .hiw-section {
+    padding: 8rem 0;
+  }
+
+  .hiw-timeline {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.25rem;
+    align-items: stretch;
+  }
+
+  .hiw-connector {
+    display: block;
+    position: absolute;
+    top: 36px;
+    left: 12%;
+    right: 12%;
+    height: 2px;
+    background: linear-gradient(90deg,
+      rgba(56, 189, 248, 0.35) 0%,
+      rgba(245, 158, 11, 0.35) 25%,
+      rgba(139, 92, 246, 0.35) 50%,
+      rgba(16, 185, 129, 0.35) 75%,
+      rgba(244, 63, 94, 0.35) 100%);
+    z-index: 0;
+    border-radius: 1px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .hiw-timeline {
+    gap: 1.75rem;
+  }
+
+  .hiw-connector {
+    left: 10%;
+    right: 10%;
+  }
+}
+
+/* ---- RESPONSIVE: SMALL PHONES (≤374px) ---- */
+@media (max-width: 374px) {
+  .hiw-heading {
+    font-size: 24px;
+  }
+
+  .hiw-subtitle {
+    font-size: 16px;
+  }
+
+  .hiw-step {
+    padding: 24px 20px;
+  }
+
+  .hiw-step-icon {
+    width: 56px;
+    height: 56px;
+  }
+
+  .hiw-step-title {
+    font-size: 1rem;
+  }
+
+  .hiw-step-desc {
+    font-size: 14px;
+  }
+}
+
+/* ==========================================================================
+   BOOKING FLOW PROGRESS STEPPER
+   ========================================================================== */
+
+.booking-stepper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: 1.5rem;
+}
+
+.booking-stepper-step {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.booking-stepper-ring {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.booking-stepper-ring--completed {
+  background: #10b981;
+  color: #fff;
+  border-color: #10b981;
+}
+
+.booking-stepper-ring--active {
+  background: #0284c7;
+  color: #fff;
+  border-color: #0284c7;
+  box-shadow: 0 0 0 4px rgba(2, 132, 199, 0.15);
+  animation: booking-stepper-pulse 2s ease-in-out infinite;
+}
+
+.booking-stepper-ring--pending {
+  background: #f1f5f9;
+  color: #94a3b8;
+  border-color: #cbd5e1;
+}
+
+@keyframes booking-stepper-pulse {
+  0%, 100% { box-shadow: 0 0 0 4px rgba(2, 132, 199, 0.15); }
+  50% { box-shadow: 0 0 0 6px rgba(2, 132, 199, 0.25); }
+}
+
+.booking-stepper-label {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.booking-stepper-label--completed {
+  color: #10b981;
+}
+
+.booking-stepper-label--active {
+  color: #0284c1;
+  font-weight: 700;
+}
+
+.booking-stepper-label--pending {
+  color: #94a3b8;
+}
+
+.booking-stepper-connector {
+  flex: 1;
+  min-width: 1.5rem;
+  max-width: 4rem;
+  height: 2px;
+  background: #e2e8f0;
+  margin: 0 0.5rem;
+  transition: background 0.3s ease;
+}
+
+.booking-stepper-connector--completed {
+  background: #10b981;
+}
+
+@media (max-width: 480px) {
+  .booking-stepper-label {
+    display: none;
+  }
+  .booking-stepper-connector {
+    min-width: 1rem;
+    max-width: 2rem;
+  }
+}
+
+/* ---- BOOKING PAGES RESPONSIVE ---- */
+@media (max-width: 767px) {
+  .booking-summary-panel {
+    margin-top: 1.5rem;
+  }
+  
+  .booking-cta-full {
+    width: 100%;
+  }
+}
+
+/* ---- VISIBLE FOCUS STATES ---- */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #0284c7;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
